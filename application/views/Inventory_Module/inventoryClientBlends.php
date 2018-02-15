@@ -147,7 +147,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <span class="nav-tabs-title"> </span>
                                             <ul class="nav nav-tabs" data-tabs="tabs">
                                                 <li class="">
-                                                    <a href="<?php echo base_url(); ?>inventoryinventorystocks.php">
+                                                    <a href="<?php echo base_url(); ?>inventoryinventoryStocks.php">
                                                         Raw Coffee
                                                         <div class="ripple-container"></div>
                                                     </a>
