@@ -15,17 +15,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/dataTables.bootstrap.min.css"/>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.dataTable.min.css"/>
     <!--  Material Dashboard CSS    -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0"/>
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/demo.css"/>
     <!--     Fonts and icons     -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css.css" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" >
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' type='text/css'>
-    <link rel="shortcut icon" href="favicon.ico">
 </head>
+<style>
+.title {
+    font-size: large;
+
+}
+</style>
 
 <body>
     <div class="wrapper">
@@ -112,16 +116,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="material-icons">person</i>
                                         <p class="hidden-lg hidden-md">Profile</p>
-                                    </a>
+                                </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="./user.php">User Profile</a>
+                                        <a href="<?php echo base_url(); ?>inventoryUser.php">User Profile</a>
                                     </li>
                                     <li>
-                                        <a href="./changepassword.php">Change Password</a>
+                                        <a href="<?php echo base_url(); ?>inventoryChangePassword.php">Change Password</a>
                                     </li>
                                     <li>
-                                        <a href="./activitylogs.php">Activity Logs</a>
+                                        <a href="<?php echo base_url(); ?>inventoryActivityLogs.php">Activity Logs</a>
                                     </li>
                                     <li>
                                         <a href="#">Logout</a>
@@ -142,43 +146,43 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <div class="nav-tabs-wrapper">
                                             <span class="nav-tabs-title"> </span>
                                             <ul class="nav nav-tabs" data-tabs="tabs">
-                                                <li>
-                                                    <a href="./inventorystocks.php">
+                                                <li class="">
+                                                    <a href="<?php echo base_url(); ?>inventorystocks.php">
                                                         Raw Coffee
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
-                                                <li class="">
-                                                    <a href="./blends.php">
+                                                <li class="active">
+                                                    <a href="<?php echo base_url(); ?>inventoryBlends.php">
                                                         Existing Blends
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li class="">
-                                                    <a href="./clientblends.php">
+                                                    <a href="<?php echo base_url(); ?>inventoryClientBlends.php">
                                                         Client Blends
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li>
-                                                    <a href="./packaging.php">
+                                                    <a href="<?php echo base_url(); ?>inventoryPackaging.php">
                                                         Packaging
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li class="">
-                                                    <a href="./stickers.php">
+                                                    <a href="<?php echo base_url(); ?>inventoryStickers.php">
                                                         Stickers
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
-                                                <li class="active">
-                                                    <a href="./machines.php">
+                                                <li class="">
+                                                    <a href="<?php echo base_url(); ?>inventoryMachines.php">
                                                        Machines
                                                         <div class="ripple-container"></div>
                                                     </a>
@@ -190,22 +194,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <div class="card-content">
                                     <table id="example" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
-                                            <th><b class="pull-left">Item Code</b></th>
-                                            <th><b class="pull-left">Machine</b></th>
-                                            <th><b class="pull-left">Reorder Level</b></th>
-                                            <th><b class="pull-left">Stock Limit</b></th>
-                                            <th><b class="pull-left">Supplier</b></th>
-                                            <th><b class="pull-left">Number of Stocks </b></th>
+                                            <th><b class="pull-left">Type of Blend</b></th>
+                                            <th><b class="pull-left">Raw Coffee A</b></th>
+                                            <th><b class="pull-left">Raw Coffee B</b></th>
+                                            <th><b class="pull-left">Raw Coffee C</b></th>
+                                            <th><b class="pull-left">Raw Coffee D</b></th>
+                                            <th><b class="pull-left">Raw Coffee E</b></th>
+                                            <th><b class="pull-left">Raw Coffee F</b></th>
                                             <th><b class="pull-left">Cue Card</b></th>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>Mchn1</td>
-                                                <td>Machine A</td>
-                                                <td>5</td>
-                                                <td>20</td>
-                                                <td>Supplier A</td>
-                                                <td>9</td>
+                                                <td>Blend A</td>
+                                                <td></td>
+                                                <td>30%</td>
+                                                <td>50%</td>
+                                                <td>20%</td>
+                                                <td></td>
+                                                <td></td>
                                                 <td>
                                                     <!-- Button trigger modal -->
                                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
@@ -218,10 +224,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                                             <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span>Cue Card Details</h4>
                                                         </div>
-                                                          
                                                       <div class="modal-body" style="padding: 5px;">
                                                             <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
-                                                                <h3><b>Machine A</b></h3>
+                                                                <h3><b>Blend A</b></h3>
                                                                 <hr>
                                                             </div>
                                                           <label>Set Date from </label>
@@ -235,7 +240,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                           <tr>
                                                             <th><b>Delivery Receipt No.</b></th>
                                                             <th><b>Delivery</b></th>
-                                                            <th><b>Client/Supplier</b></th>
+                                                            <th><b>Client</b></th>
                                                             <th><b>Date</b></th>
                                                             <th><b>Quantity</b></th>
                                                             <th><b>Remarks</b></th>
@@ -244,32 +249,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         <tbody>
                                                           <tr>
                                                             <td>12345</td>
-                                                            <td>In</td>
-                                                            <td>Supplier 1</td>
+                                                            <td>Out</td>
+                                                            <td>Client 1</td>
                                                             <td>Dec 5, 2017</td>
-                                                            <td>4 pcs</td>
+                                                            <td>250 grams</td>
                                                             <td></td>
                                                           </tr>
                                                           <tr>
                                                             <td>23456</td>
-                                                            <td>In</td>
+                                                            <td>Out</td>
                                                             <td>Client 2</td>
                                                             <td>Dec 12, 2017</td>
-                                                            <td>6 pcs</td>
+                                                            <td>500 grams</td>
                                                             <td></td>
                                                           </tr>
                                                           <tr>
                                                             <td>34567</td>
                                                             <td>In</td>
-                                                            <td>Supplier 3</td>
+                                                            <td>Client 3</td>
                                                             <td>Dec 15, 2017</td>
                                                             <td>8 pcs</td>
-                                                            <td></td>
+                                                            <td>Spoiled</td>
                                                           </tr>
                                                           <tr>
                                                             <td>45678</td>
                                                             <td>Out</td>
-                                                            <td>Supplier 1</td>
+                                                            <td>Client 4</td>
                                                             <td>Dec 8, 2017</td>
                                                             <td>2 pcs</td>
                                                             <td></td>
@@ -284,63 +289,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                           </tr>
                                                           <tr>
                                                             <td>67890</td>
-                                                            <td>Out</td>
-                                                            <td>Client 7</td>
+                                                            <td>In</td>
+                                                            <td>Client 6</td>
                                                             <td>Dec 17, 2017</td>
                                                             <td>6 pcs</td>
-                                                            <td></td>
+                                                            <td>Spoiled</td>
                                                           </tr>
                                                         </tbody>
-                                                      </table><hr>
-                                                          <div class="row">
-                                                            <div class="col-lg-6 col-md-6 col-offset-6">
-                                                                <div class="form-group">
-                                                                    <label class="col-md-4 control">Total In :</label>
-                                                                    <div class="col-md-4">
-                                                                        <p>18 pieces</p>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-4 control">Total Out :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p>12 pieces</p>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-4 control">Ending Inventory :</label>
-                                                                    <div class="col-md-5">
-                                                                        <p>6 pieces</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                                                    <div class="form-group">
-                                                                        <label class="col-md-6 control">Physical Count :</label>
-                                                                        <div class="col-md-4">
-                                                                            <input class="form-control" type="number" name="count" required />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label class="col-md-6 control">Discrepancy :</label>
-                                                                        <div class="col-md-4">
-                                                                            <input placeholder="" class="form-control" disabled />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label class="col-md-6 control">Remarks :</label>
-                                                                        <div class="col-md-10">
-                                                                            <textarea style="resize:vertical;" class="form-control" rows="2" name="remarks"></textarea>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                      </table>
                                                         </div>
                                                       </div>
                                                       <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-success accept">OK</button>
-                                                          <button style="float: right;" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                       </div>
                                                     </div>
                                                   </div>
@@ -348,133 +308,95 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>Mchn2</td>
-                                                <td>Machine B</td>
-                                                <td>5</td>
-                                                <td>20</td>
-                                                <td>Supplier B</td>
-                                                <td>15</td>
+                                                <td>Blend B</td>
+                                                <td></td>
+                                                <td>10%</td>
+                                                <td>10%</td>
+                                                <td>50%</td>
+                                                <td>10%</td>
+                                                <td>20%</td>
                                                 <td>
                                                     <!-- Button trigger modal -->
                                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>Mchn3</td>
-                                                <td>Machine C</td>
-                                                <td>5</td>
-                                                <td>20</td>
-                                                <td>Supplier C</td>
-                                                <td>10</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Mchn4</td>
-                                                <td>Machine D</td>
-                                                <td>5</td>
-                                                <td>20</td>
-                                                <td>Supplier D</td>
-                                                <td>12</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Mchn5</td>
-                                                <td>Machine E</td>
-                                                <td>5</td>
-                                                <td>20</td>
-                                                <td>Supplier E</td>
-                                                <td>7</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Mchn6</td>
-                                                <td>Machine F</td>
-                                                <td>5</td>
-                                                <td>20</td>
-                                                <td>Supplier F</td>
-                                                <td>9</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Mchn7</td>
-                                                <td>Machine G</td>
-                                                <td>5</td>
-                                                <td>20</td>
-                                                <td>Supplier G</td>
-                                                <td>6</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Mchn8</td>
-                                                <td>Machine H</td>
-                                                <td>5</td>
-                                                <td>20</td>
-                                                <td>Supplier H</td>
-                                                <td>8</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Mchn9</td>
-                                                <td>Machine I</td>
-                                                <td>5</td>
-                                                <td>20</td>
-                                                <td>Supplier I</td>
-                                                <td>17</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Mchn10</td>
-                                                <td>Machine J</td>
-                                                <td>5</td>
-                                                <td>20</td>
-                                                <td>Supplier J</td>
-                                                <td>14</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Mchn11</td>
-                                                <td>Machine K</td>
-                                                <td>5</td>
-                                                <td>20</td>
-                                                <td>Supplier K</td>
-                                                <td>13</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Total</b></td>
+                                                <td>Blend C</td>
+                                                <td>10%</td>
                                                 <td></td>
                                                 <td></td>
+                                                <td>50%</td>
                                                 <td></td>
-                                                <td>120</td>
+                                                <td>40%</td>
+                                                <td>
+                                                    <!-- Button trigger modal -->
+                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Blend D</td>
+                                                <td>30%</td>
+                                                <td></td>
+                                                <td>40%</td>
+                                                <td>20%</td>
+                                                <td>10%</td>
+                                                <td></td>
+                                                <td>
+                                                    <!-- Button trigger modal -->
+                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Blend E</td>
+                                                <td>30%</td>
+                                                <td>20%</td>
+                                                <td>20%</td>
+                                                <td></td>
+                                                <td>20%</td>
+                                                <td>10%</td>
+                                                <td>
+                                                    <!-- Button trigger modal -->
+                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Blend F</td>
+                                                <td></td>
+                                                <td>50%</td>
+                                                <td>20%</td>
+                                                <td></td>
+                                                <td>30%</td>
+                                                <td></td>
+                                                <td>
+                                                    <!-- Button trigger modal -->
+                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Blend G</td>
+                                                <td>40%</td>
+                                                <td>10%</td>
+                                                <td>20%</td>
+                                                <td>30%</td>
                                                 <td></td>
                                                 <td></td>
+                                                <td>
+                                                    <!-- Button trigger modal -->
+                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Blend H</td>
+                                                <td></td>
+                                                <td>30%</td>
+                                                <td>20%</td>
+                                                <td>30%</td>
+                                                <td>20%</td>
+                                                <td></td>
+                                                <td>
+                                                    <!-- Button trigger modal -->
+                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -504,24 +426,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?php echo base_url(); ?>assets/js/material-dashboard.js?v=1.2.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/jquery.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/jquery.datatables.js"></script>
-<script>
+<script type="text/javascript">
 $(document).ready(function() {
-    $('#fresh-datatables').DataTable({
-        select: {
-            style: 'single'
-        }
 
-    });
-    $('#datePicker')
-        .datepicker({
-            format: 'mm/dd/yyyy'
-        })
-        .on('changeDate', function(e) {
-            // Revalidate the date field
-            $('#eventForm').formValidation('revalidateField', 'date');
-        });
+    // Javascript method's body can be found in assets/js/demos.js
+    demo.initDashboardPageCharts();
+
 });
 </script>
 <script>
@@ -547,5 +457,4 @@ $(document).ready(function() {
     
                 })
 </script> 
-
 </html>

@@ -128,13 +128,13 @@ label {
                                     </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="./user.php">User Profile</a>
+                                        <a href="<?php echo base_url(); ?>inventoryUser.php">User Profile</a>
                                     </li>
                                     <li>
-                                        <a href="./changepassword.php">Change Password</a>
+                                        <a href="<?php echo base_url(); ?>inventoryChangePassword.php">Change Password</a>
                                     </li>
                                     <li>
-                                        <a href="./activitylogs.php">Activity Logs</a>
+                                        <a href="<?php echo base_url(); ?>inventoryActivityLogs.php">Activity Logs</a>
                                     </li>
                                     <li>
                                         <a href="#">Logout</a>
@@ -158,14 +158,14 @@ label {
                                                 <ul class="nav nav-tabs" data-tabs="tabs">
                                                     <span></span>
                                                     <li>
-                                                        <a href="./inventoryreport.php">
+                                                        <a href="<?php echo base_url(); ?>inventoryInventoryReport.php">
                                                             Date In
                                                             <div class="ripple-container"></div>
                                                         </a>
                                                     </li>
                                                     <span></span>
                                                     <li class="active">
-                                                        <a href="./inventoryreport2.php">
+                                                        <a href="<?php echo base_url(); ?>inventoryInventoryReport2.php">
                                                             Date Out
                                                             <div class="ripple-container"></div>
                                                         </a>

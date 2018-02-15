@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/img/favicon.png"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Activity Log</title>
+    <title>Change Password</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -118,13 +118,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="./user.php">User Profile</a>
+                                        <a href="<?php echo base_url(); ?>inventoryUser.php">User Profile</a>
                                     </li>
                                     <li>
-                                        <a href="./changepassword.php">Change Password</a>
+                                        <a href="<?php echo base_url(); ?>inventoryChangePassword.php">Change Password</a>
                                     </li>
                                     <li>
-                                        <a href="./activitylogs.php">Activity Logs</a>
+                                        <a href="<?php echo base_url(); ?>inventoryActivityLogs.php">Activity Logs</a>
                                     </li>
                                     <li>
                                         <a href="#">Logout</a>
@@ -138,65 +138,55 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="card">
-            <div class="content" style="margin-top: 0px;">
-                <div class="container-fluid">
-                    <div class="card">  
-                        <div class="card-header" data-background-color="blue">
-                            <h4 class="title"><i class="material-icons">timeline</i>  Activity Logs</h4>
-                        </div>
-                        <div class="card-content">
-                        <div class="card-content table-responsive">
-                            <div class="col-md-12 col-md-offset-0">
-                                <div class="fresh-datatables">
-                                    <!--  Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange, full-color-purple, full-color-gray
-                                    Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange, toolbar-color-purple, toolbar-color-gray -->
-                                    <table id="fresh-datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
-                                        <thead>
-                                            <tr>
-                                                <th><b>Date & Time</b></th>
-                                                <th><b>User</b></th>
-                                                <th><b>Activity</b></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Oct 3, 2017 9:11:00</td>
-                                                <td>Lani</td>
-                                                <td>Activity 1</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Oct 7, 2017 11:28:00</td>
-                                                <td>Lani</td>
-                                                <td>Activity 2</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Oct 11, 2017 13:35:00</td>
-                                                <td>Lani</td>
-                                                <td>Activity 3</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Oct 15, 2017 15:49:00</td>
-                                                <td>Lani</td>
-                                                <td>Activity 4</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Oct 18, 2017 16:59:00</td>
-                                                <td>Lani</td>
-                                                <td>Activity 5</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <div class="card-header" data-background-color="blue">
+                                    <h4 class="title"><i class="material-icons">lock_outline</i> Change Password</h4>
+                                    <p class="category">It's a good idea to use a strong password that you're not using elsewhere</p>
                                 </div>
+                                        <div class="card-content">
+                                            <form action="#" method="post" accept-charset="utf-8">
+                                            <div class="modal-body" style="padding: 5px;">
+                                                <div class="row">
+
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group label-floating">
+                                                              <label for="email">Current Password:</label>
+                                                              <input class="form-control" type="text" name="" required/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group label-floating">
+                                                              <label for="email">New Password:</label>
+                                                              <input class="form-control" type="text" name="" required/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group label-floating">
+                                                              <label for="email">Re-type New Password:</label>
+                                                              <input class="form-control" type="text" name="" required/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                 
+                                                </div>
+                                                </div>  
+                                                <div class="panel-footer" style="margin-bottom:-14px;" align="center">
+                                                    <input type="submit" class="btn btn-info" value="Save Changes"/>
+                                                </div>
+                                    </form>
+                                        </div>
                             </div>
-                        </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
         </div>
     </div>
 </body>
@@ -218,47 +208,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?php echo base_url(); ?>assets/js/material-dashboard.js?v=1.2.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/jquery.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/jquery.datatables.js"></script>
-<script>
-$(document).ready(function() {
-    $('#fresh-datatables').DataTable({
-        "pagingType": "full_numbers",
-        "lengthMenu": [
-            [10, 25, 50, -1],
-            [10, 25, 50, "All"]
-        ],
-        responsive: true,
-        language: {
-            search: "_INPUT_",
-            searchPlaceholder: "Search records",
-        }
-
-    });
-
-
-    var table = $('#fresh-datatables').DataTable();
-
-    // Edit record
-    table.on('click', '.edit', function() {
-        $tr = $(this).closest('tr');
-
-        var data = table.row($tr).data();
-        alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-    });
-
-    // Delete a record
-    table.on('click', '.remove', function(e) {
-        $tr = $(this).closest('tr');
-        table.row($tr).remove().draw();
-        e.preventDefault();
-    });
-
-    //Like record
-    table.on('click', '.like', function() {
-        alert('You clicked on Like button');
-    });
-});
-</script>
 
 </html>

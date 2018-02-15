@@ -10,13 +10,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url(); ?>assets/img/apple-icon.png"/>
     <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/img/favicon.png"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Inventory Stocks</title>
+
+    <title>Activity Log</title>
+
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/dataTables.bootstrap.min.css"/>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.dataTable.min.css"/>
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/dataTables.bootstrap.min.css"/>
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.dataTable.min.css"/>
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-datepicker3.min.css">
     <!--  Material Dashboard CSS    -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0"/>
     <!--  CSS for Demo Purpose, don't include it in your project     -->
@@ -24,7 +27,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!--     Fonts and icons     -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' type='text/css'>
-    <link rel="shortcut icon" href="favicon.ico">
 </head>
 
 <body>
@@ -64,7 +66,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <p>Purchase Order</p>
                         </a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="<?php echo base_url(); ?>inventoryOutRawCoffee.php">
                             <i class="material-icons">reply</i>
                             <p>Inventory Out</p>
@@ -95,6 +97,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="main-panel">
             <nav class="navbar navbar-transparent navbar-absolute">
                 <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#"> </a>
+                    </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
@@ -104,16 +115,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="material-icons">person</i>
                                         <p class="hidden-lg hidden-md">Profile</p>
-                                </a>
+                                    </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="./user.php">User Profile</a>
+                                        <a href="<?php echo base_url(); ?>inventoryUser.php">User Profile</a>
                                     </li>
                                     <li>
-                                        <a href="./changepassword.php">Change Password</a>
+                                        <a href="<?php echo base_url(); ?>inventoryChangePassword.php">Change Password</a>
                                     </li>
                                     <li>
-                                        <a href="./activitylogs.php">Activity Logs</a>
+                                        <a href="<?php echo base_url(); ?>inventoryActivitylogs.php">Activity Logs</a>
                                     </li>
                                     <li>
                                         <a href="#">Logout</a>
@@ -128,104 +139,64 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card card-nav-tabs">
-                                <div class="card-header" data-background-color="blue">
-                                    <div class="nav-tabs-navigation">
-                                        <div class="nav-tabs-wrapper">
-                                            <span class="nav-tabs-title"> </span>
-                                            <ul class="nav nav-tabs" data-tabs="tabs">
-                                                <li class="">
-                                                    <a href="./inventoryout.php">
-                                                        Raw Coffee
-                                                        <div class="ripple-container"></div>
-                                                    </a>
-                                                </li>
-                                                <span></span>
-                                                <li class="">
-                                                    <a href="./packagingO.php">
-                                                        Packaging
-                                                        <div class="ripple-container"></div>
-                                                    </a>
-                                                </li>
-                                                <span></span>
-                                                <li class="active">
-                                                    <a href="./machineO.php">
-                                                        Machines
-                                                        <div class="ripple-container"></div>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-content ">
-                                    <br>
-                                    <table id="example" class="table hover order-column" cellspacing="0" width="100%">
+                            <div class="card">
+            <div class="content" style="margin-top: 0px;">
+                <div class="container-fluid">
+                    <div class="card">  
+                        <div class="card-header" data-background-color="blue">
+                            <h4 class="title"><i class="material-icons">timeline</i>  Activity Logs</h4>
+                        </div>
+                        <div class="card-content">
+                        <div class="card-content table-responsive">
+                            <div class="col-md-12 col-md-offset-0">
+                                <div class="fresh-datatables">
+                                    <!--  Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange, full-color-purple, full-color-gray
+                                    Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange, toolbar-color-purple, toolbar-color-gray -->
+                                    <table id="fresh-datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                                         <thead>
-                                            <th><b class="pull-left">Delivery Receipt No.</b></th>
-                                            <th><b class="pull-left">Tagging Number</b></th>
-                                            <th><b class="pull-left">Client</b></th>
-                                            <th><b class="pull-left">Date Installed</b></th>
-                                            <th><b class="pull-left">No. of machines installed</b></th>
-                                            <th><b class="pull-left">Remarks</b></th>
+                                            <tr>
+                                                <th><b>Date & Time</b></th>
+                                                <th><b>User</b></th>
+                                                <th><b>Activity</b></th>
+                                            </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>12345</td>
-                                                <td>123456</td>
-                                                <td>Tazabelle</td>
-                                                <td>01/12/18</td>
-                                                <td>3</td>
-                                                <td>Rented</td>
+                                                <td>Oct 3, 2017 9:11:00</td>
+                                                <td>Lani</td>
+                                                <td>Activity 1</td>
                                             </tr>
                                             <tr>
-                                                <td>23456</td>
-                                                <td>345554</td>
-                                                <td>Cafe Lupe</td>
-                                                <td>01/12/18</td>
-                                                <td>2</td>
-                                                <td>Rented</td>
+                                                <td>Oct 7, 2017 11:28:00</td>
+                                                <td>Lani</td>
+                                                <td>Activity 2</td>
                                             </tr>
                                             <tr>
-                                                <td>34567</td>
-                                                <td>345745</td>
-                                                <td>The Merry Cooks, Inc.</td>
-                                                <td>01/12/18</td>
-                                                <td>1</td>
-                                                <td>Sold</td>
+                                                <td>Oct 11, 2017 13:35:00</td>
+                                                <td>Lani</td>
+                                                <td>Activity 3</td>
                                             </tr>
                                             <tr>
-                                                <td>45678</td>
-                                                <td>653454</td>
-                                                <td>Patch Cafe</td>
-                                                <td>01/13/18</td>
-                                                <td>3</td>
-                                                <td>Rented</td>
+                                                <td>Oct 15, 2017 15:49:00</td>
+                                                <td>Lani</td>
+                                                <td>Activity 4</td>
                                             </tr>
                                             <tr>
-                                                <td>56789</td>
-                                                <td>464543</td>
-                                                <td>Connie's Kitchen</td>
-                                                <td>01/15/18</td>
-                                                <td>5</td>
-                                                <td>Rented</td>
-                                            </tr>
-                                            <tr>
-                                                <td>67890</td>
-                                                <td>452323</td>
-                                                <td>The Manor Hotel</td>
-                                                <td>01/15/18</td>
-                                                <td>2</td>
-                                                <td>Sold</td>
+                                                <td>Oct 18, 2017 16:59:00</td>
+                                                <td>Lani</td>
+                                                <td>Activity 5</td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
         </div>
     </div>
 </body>
@@ -249,14 +220,44 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.datatables.js"></script>
-<script type="text/javascript">
+<script>
 $(document).ready(function() {
-    var table = $('#example').DataTable({
-        select: {
-            style: 'single'
+    $('#fresh-datatables').DataTable({
+        "pagingType": "full_numbers",
+        "lengthMenu": [
+            [10, 25, 50, -1],
+            [10, 25, 50, "All"]
+        ],
+        responsive: true,
+        language: {
+            search: "_INPUT_",
+            searchPlaceholder: "Search records",
         }
+
     });
 
+
+    var table = $('#fresh-datatables').DataTable();
+
+    // Edit record
+    table.on('click', '.edit', function() {
+        $tr = $(this).closest('tr');
+
+        var data = table.row($tr).data();
+        alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+    });
+
+    // Delete a record
+    table.on('click', '.remove', function(e) {
+        $tr = $(this).closest('tr');
+        table.row($tr).remove().draw();
+        e.preventDefault();
+    });
+
+    //Like record
+    table.on('click', '.like', function() {
+        alert('You clicked on Like button');
+    });
 });
 </script>
 

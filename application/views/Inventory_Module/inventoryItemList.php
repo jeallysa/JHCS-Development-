@@ -125,13 +125,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="./user.php">User Profile</a>
+                                        <a href="<?php echo base_url(); ?>inventoryUser.php">User Profile</a>
                                     </li>
                                     <li>
-                                        <a href="./changepassword.php">Change Password</a>
+                                        <a href="<?php echo base_url(); ?>inventoryChangePassword.php">Change Password</a>
                                     </li>
                                     <li>
-                                        <a href="./activitylogs.php">Activity Logs</a>
+                                        <a href="<?php echo base_url(); ?>inventoryActivityLogs.php">Activity Logs</a>
                                     </li>
                                     <li>
                                         <a href="#">Logout</a>
@@ -153,19 +153,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <span class="nav-tabs-title"> </span>
                                             <ul class="nav nav-tabs" data-tabs="tabs">
                                                 <li class="active">
-                                                    <a href="./itemlist.php">
+                                                    <a href="<?php echo base_url(); ?>inventoryItemList.php">
                                                         <i class="material-icons">list</i> Items
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <li class="">
-                                                    <a href="./categorylist.php">
+                                                    <a href="<?php echo base_url(); ?>inventoryCategoryList.php">
                                                         <i class="material-icons">local_shipping</i> Supplier
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="./List.php">
+                                                    <a href="<?php echo base_url(); ?>inventoryList.php">
                                                         <i class="material-icons">bubble_chart</i> Category and Type
                                                         <div class="ripple-container"></div>
                                                     </a>

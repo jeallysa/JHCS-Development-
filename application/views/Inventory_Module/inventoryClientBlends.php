@@ -119,13 +119,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="./user.php">User Profile</a>
+                                        <a href="<?php echo base_url(); ?>inventoryUser.php">User Profile</a>
                                     </li>
                                     <li>
-                                        <a href="./changepassword.php">Change Password</a>
+                                        <a href="<?php echo base_url(); ?>inventoryChangePassword.php">Change Password</a>
                                     </li>
                                     <li>
-                                        <a href="./activitylogs.php">Activity Logs</a>
+                                        <a href="<?php echo base_url(); ?>inventoryActivityLogs.php">Activity Logs</a>
                                     </li>
                                     <li>
                                         <a href="#">Logout</a>
@@ -147,42 +147,42 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <span class="nav-tabs-title"> </span>
                                             <ul class="nav nav-tabs" data-tabs="tabs">
                                                 <li class="">
-                                                    <a href="./inventorystocks.php">
+                                                    <a href="<?php echo base_url(); ?>inventoryinventorystocks.php">
                                                         Raw Coffee
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
-                                                <li class="active">
-                                                    <a href="./blends.php">
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>inventoryBlends.php">
                                                         Existing Blends
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
-                                                <li class="">
-                                                    <a href="./clientblends.php">
+                                                <li class="active">
+                                                    <a href="<?php echo base_url(); ?>inventoryClientBlends.php">
                                                         Client Blends
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li>
-                                                    <a href="./packaging.php">
+                                                    <a href="<?php echo base_url(); ?>inventoryPackaging.php">
                                                         Packaging
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li class="">
-                                                    <a href="./Stickers.php">
+                                                    <a href="<?php echo base_url(); ?>inventoryStickers.php">
                                                         Stickers
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li class="">
-                                                    <a href="./machines.php">
+                                                    <a href="<?php echo base_url(); ?>inventoryMachines.php">
                                                        Machines
                                                         <div class="ripple-container"></div>
                                                     </a>
@@ -201,202 +201,88 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <th><b class="pull-left">Raw Coffee D</b></th>
                                             <th><b class="pull-left">Raw Coffee E</b></th>
                                             <th><b class="pull-left">Raw Coffee F</b></th>
-                                            <th><b class="pull-left">Cue Card</b></th>
+                                            <th><b class="pull-left">Unit Price</b></th>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>Blend A</td>
+                                                <td>Client A Blend</td>
                                                 <td></td>
                                                 <td>30%</td>
                                                 <td>50%</td>
                                                 <td>20%</td>
                                                 <td></td>
                                                 <td></td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="machinecard" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                  <div class="modal-dialog modal-lg">
-                                                    <div class="panel panel-primary">
-                                                        <div class="panel-heading">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span>Cue Card Details</h4>
-                                                        </div>
-                                                      <div class="modal-body" style="padding: 5px;">
-                                                            <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
-                                                                <h3><b>Blend A</b></h3>
-                                                                <hr>
-                                                            </div>
-                                                          <label>Set Date from </label>
-                                                            <input type="date" name="">
-                                                            <label> to </label>
-                                                            <input type="date" name="">
-                                                          <button style="float: right;" class ="print"><i class="material-icons">print</i></button>
-                                                        <div id="toBePrinted">
-                                                        <table id="fresh-datatables" class="table table-striped table-hover responsive" cellspacing="0" width="100%">
-                                                        <thead>
-                                                          <tr>
-                                                            <th><b>Delivery Receipt No.</b></th>
-                                                            <th><b>Delivery</b></th>
-                                                            <th><b>Client</b></th>
-                                                            <th><b>Date</b></th>
-                                                            <th><b>Quantity</b></th>
-                                                            <th><b>Remarks</b></th>
-                                                          </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                          <tr>
-                                                            <td>12345</td>
-                                                            <td>Out</td>
-                                                            <td>Client 1</td>
-                                                            <td>Dec 5, 2017</td>
-                                                            <td>250 grams</td>
-                                                            <td></td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>23456</td>
-                                                            <td>Out</td>
-                                                            <td>Client 2</td>
-                                                            <td>Dec 12, 2017</td>
-                                                            <td>500 grams</td>
-                                                            <td></td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>34567</td>
-                                                            <td>In</td>
-                                                            <td>Client 3</td>
-                                                            <td>Dec 15, 2017</td>
-                                                            <td>8 pcs</td>
-                                                            <td>Spoiled</td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>45678</td>
-                                                            <td>Out</td>
-                                                            <td>Client 4</td>
-                                                            <td>Dec 8, 2017</td>
-                                                            <td>2 pcs</td>
-                                                            <td></td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>56789</td>
-                                                            <td>Out</td>
-                                                            <td>Client 5</td>
-                                                            <td>Dec 9, 2017</td>
-                                                            <td>4 pcs</td>
-                                                            <td></td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>67890</td>
-                                                            <td>In</td>
-                                                            <td>Client 6</td>
-                                                            <td>Dec 17, 2017</td>
-                                                            <td>6 pcs</td>
-                                                            <td>Spoiled</td>
-                                                          </tr>
-                                                        </tbody>
-                                                      </table>
-                                                        </div>
-                                                      </div>
-                                                      <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                      </div>
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                                </td>
+                                                <td>199</td>
                                             </tr>
                                             <tr>
-                                                <td>Blend B</td>
+                                                <td>Client B Blend</td>
                                                 <td></td>
                                                 <td>10%</td>
                                                 <td>10%</td>
                                                 <td>50%</td>
                                                 <td>10%</td>
                                                 <td>20%</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
+                                                <td>250</td>
                                             </tr>
                                             <tr>
-                                                <td>Blend C</td>
+                                                <td>Client C Blend</td>
                                                 <td>10%</td>
                                                 <td></td>
                                                 <td></td>
                                                 <td>50%</td>
                                                 <td></td>
                                                 <td>40%</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
+                                                <td>300</td>
                                             </tr>
                                             <tr>
-                                                <td>Blend D</td>
+                                                <td>Client D Blend</td>
                                                 <td>30%</td>
                                                 <td></td>
                                                 <td>40%</td>
                                                 <td>20%</td>
                                                 <td>10%</td>
                                                 <td></td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
+                                                <td>350</td>
                                             </tr>
                                             <tr>
-                                                <td>Blend E</td>
+                                                <td>Client E Blend</td>
                                                 <td>30%</td>
                                                 <td>20%</td>
                                                 <td>20%</td>
                                                 <td></td>
                                                 <td>20%</td>
                                                 <td>10%</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
+                                                <td>199</td>
                                             </tr>
                                             <tr>
-                                                <td>Blend F</td>
+                                                <td>Client F Blend</td>
                                                 <td></td>
                                                 <td>50%</td>
                                                 <td>20%</td>
                                                 <td></td>
                                                 <td>30%</td>
                                                 <td></td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
+                                                <td>250</td>
                                             </tr>
                                             <tr>
-                                                <td>Blend G</td>
+                                                <td>Client G Blend</td>
                                                 <td>40%</td>
                                                 <td>10%</td>
                                                 <td>20%</td>
                                                 <td>30%</td>
                                                 <td></td>
                                                 <td></td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
+                                                <td>199</td>
                                             </tr>
                                             <tr>
-                                                <td>Blend H</td>
+                                                <td>Client H Blend</td>
                                                 <td></td>
                                                 <td>30%</td>
                                                 <td>20%</td>
                                                 <td>30%</td>
                                                 <td>20%</td>
                                                 <td></td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
+                                                <td>199</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -434,27 +320,5 @@ $(document).ready(function() {
 
 });
 </script>
-<script>
-    $('.print').click(function(){
-    var printme = document.getElementById('toBePrinted'); 
-    
-    var wme = window.open("","","width= 900","height=700");
-        
-    var cancel = document.getElementsByClassName("btn");
-    for(var i=0; i < cancel.length; i++){  
-    cancel[i].style.visibility = 'hidden';
-    }
-    wme.document.write(printme.outerHTML);
-    wme.document.close();
-    wme.focus();
-    wme.print();
-    wme.close();
-    
-      
-    for(var i=0; i < cancel.length; i++){  
-    cancel[i].style.visibility = 'visible';
-    }
-    
-                })
-</script> 
+
 </html>

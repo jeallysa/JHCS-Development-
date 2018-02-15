@@ -10,16 +10,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url(); ?>assets/img/apple-icon.png"/>
     <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/img/favicon.png"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
-    <title>Change Password</title>
-
+    <title>Inventory Stocks</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/dataTables.bootstrap.min.css"/>
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.dataTable.min.css"/>
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-datepicker3.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/dataTables.bootstrap.min.css"/>
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.dataTable.min.css"/>
     <!--  Material Dashboard CSS    -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0"/>
     <!--  CSS for Demo Purpose, don't include it in your project     -->
@@ -27,6 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!--     Fonts and icons     -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' type='text/css'>
+    <link rel="shortcut icon" href="favicon.ico">
 </head>
 
 <body>
@@ -66,7 +64,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <p>Purchase Order</p>
                         </a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="<?php echo base_url(); ?>inventoryOutRawCoffee.php">
                             <i class="material-icons">reply</i>
                             <p>Inventory Out</p>
@@ -97,15 +95,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="main-panel">
             <nav class="navbar navbar-transparent navbar-absolute">
                 <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#"> </a>
-                    </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
@@ -115,16 +104,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="material-icons">person</i>
                                         <p class="hidden-lg hidden-md">Profile</p>
-                                    </a>
+                                </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="./user.php">User Profile</a>
+                                        <a href="<?php echo base_url(); ?>inventoryUser.php">User Profile</a>
                                     </li>
                                     <li>
-                                        <a href="./changepassword.php">Change Password</a>
+                                        <a href="<?php echo base_url(); ?>inventoryChangePassword.php">Change Password</a>
                                     </li>
                                     <li>
-                                        <a href="./activitylogs.php">Activity Logs</a>
+                                        <a href="<?php echo base_url(); ?>inventoryActivityLogs.php">Activity Logs</a>
                                     </li>
                                     <li>
                                         <a href="#">Logout</a>
@@ -138,50 +127,100 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="card">
+                        <div class="col-md-12">
+                            <div class="card card-nav-tabs">
                                 <div class="card-header" data-background-color="blue">
-                                    <h4 class="title"><i class="material-icons">lock_outline</i> Change Password</h4>
-                                    <p class="category">It's a good idea to use a strong password that you're not using elsewhere</p>
-                                </div>
-                                        <div class="card-content">
-                                            <form action="#" method="post" accept-charset="utf-8">
-                                            <div class="modal-body" style="padding: 5px;">
-                                                <div class="row">
-
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group label-floating">
-                                                              <label for="email">Current Password:</label>
-                                                              <input class="form-control" type="text" name="" required/>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group label-floating">
-                                                              <label for="email">New Password:</label>
-                                                              <input class="form-control" type="text" name="" required/>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group label-floating">
-                                                              <label for="email">Re-type New Password:</label>
-                                                              <input class="form-control" type="text" name="" required/>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                 
-                                                </div>
-                                                </div>  
-                                                <div class="panel-footer" style="margin-bottom:-14px;" align="center">
-                                                    <input type="submit" class="btn btn-info" value="Save Changes"/>
-                                                </div>
-                                    </form>
+                                    <div class="nav-tabs-navigation">
+                                        <div class="nav-tabs-wrapper">
+                                            <span class="nav-tabs-title"> </span>
+                                            <ul class="nav nav-tabs" data-tabs="tabs">
+                                                <li class="">
+                                                    <a href="<?php echo base_url(); ?>inventoryOutRawCoffee.php">
+                                                        Raw Coffee
+                                                        <div class="ripple-container"></div>
+                                                    </a>
+                                                </li>
+                                                <span></span>
+                                                <li class="">
+                                                    <a href="<?php echo base_url(); ?>inventoryOutPackaging.php">
+                                                        Packaging
+                                                        <div class="ripple-container"></div>
+                                                    </a>
+                                                </li>
+                                                <span></span>
+                                                <li class="active">
+                                                    <a href="<?php echo base_url(); ?>inventoryOutMachine.php">
+                                                        Machines
+                                                        <div class="ripple-container"></div>
+                                                    </a>
+                                                </li>
+                                            </ul>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="card-content ">
+                                    <br>
+                                    <table id="example" class="table hover order-column" cellspacing="0" width="100%">
+                                        <thead>
+                                            <th><b class="pull-left">Delivery Receipt No.</b></th>
+                                            <th><b class="pull-left">Tagging Number</b></th>
+                                            <th><b class="pull-left">Client</b></th>
+                                            <th><b class="pull-left">Date Installed</b></th>
+                                            <th><b class="pull-left">No. of machines installed</b></th>
+                                            <th><b class="pull-left">Remarks</b></th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>12345</td>
+                                                <td>123456</td>
+                                                <td>Tazabelle</td>
+                                                <td>01/12/18</td>
+                                                <td>3</td>
+                                                <td>Rented</td>
+                                            </tr>
+                                            <tr>
+                                                <td>23456</td>
+                                                <td>345554</td>
+                                                <td>Cafe Lupe</td>
+                                                <td>01/12/18</td>
+                                                <td>2</td>
+                                                <td>Rented</td>
+                                            </tr>
+                                            <tr>
+                                                <td>34567</td>
+                                                <td>345745</td>
+                                                <td>The Merry Cooks, Inc.</td>
+                                                <td>01/12/18</td>
+                                                <td>1</td>
+                                                <td>Sold</td>
+                                            </tr>
+                                            <tr>
+                                                <td>45678</td>
+                                                <td>653454</td>
+                                                <td>Patch Cafe</td>
+                                                <td>01/13/18</td>
+                                                <td>3</td>
+                                                <td>Rented</td>
+                                            </tr>
+                                            <tr>
+                                                <td>56789</td>
+                                                <td>464543</td>
+                                                <td>Connie's Kitchen</td>
+                                                <td>01/15/18</td>
+                                                <td>5</td>
+                                                <td>Rented</td>
+                                            </tr>
+                                            <tr>
+                                                <td>67890</td>
+                                                <td>452323</td>
+                                                <td>The Manor Hotel</td>
+                                                <td>01/15/18</td>
+                                                <td>2</td>
+                                                <td>Sold</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -208,5 +247,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?php echo base_url(); ?>assets/js/material-dashboard.js?v=1.2.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/jquery.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/jquery.datatables.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    var table = $('#example').DataTable({
+        select: {
+            style: 'single'
+        }
+    });
+
+});
+</script>
 
 </html>
