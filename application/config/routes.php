@@ -52,3 +52,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+ /*Sales Module Routes*/
+	$route['getSalesDashboard'] = 'salesDashboard';
+	$route['getSellProduct'] = 'salesSellProduct';
+	$route['getClients'] = 'salesClients';
+	$route['getReturns'] = 'salesReturns';
+	$route['getDeliveries'] = 'salesDelivery';
+	$route['getReceivables'] = 'salesReceivables';
+	$route['getCollections'] = 'salesCollections';
+	$route['getSalesReports'] = 'salesReport';
+	$route['getSalesUserProfile'] = 'salesUserProfile';
+	$route['getSalesActivityLogs'] = 'salesActivityLogs';
+	$route['getSalesChangePassword'] = 'salesChangePassword';
+	$route['getSalesWalkin'] = 'salesSellProduct/salesWalkin';
+	$route['getSalesClientsInfo'] = 'salesClients/salesClientsInfo';
+	$route['getSalesContract'] = 'salesClients/salesContract';

@@ -76,7 +76,7 @@
                         </a>
                     </li>
 					<li >
-                        <a href="<?php echo base_url(); ?>salesPenDelivery">
+                        <a href="<?php echo base_url(); ?>salesDelivery">
                             <i class="material-icons">local_shipping</i>
                             <p>Deliveries</p>
                         </a>
@@ -154,7 +154,7 @@
                                                 <tr>
                                                     <td>The Legend Villas</td>
                                                     <td>Pizza Volante</td>
-                                                    <td><a href="<?php echo base_url(); ?>salesClientsInfo" class="btn btn-primary btn-round btn-sm">View Details<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></td>
+                                                    <td><a href="<?php echo base_url(); ?>salesClients/salesClientsInfo" class="btn btn-primary btn-round btn-sm">View Details<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></td>
                                                 </tr>
                                             </tbody>
                                         </table>

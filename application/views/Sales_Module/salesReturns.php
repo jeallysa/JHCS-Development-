@@ -100,49 +100,49 @@
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li>
-                        <a href="<?php echo base_url(); ?>dashboard">
+                        <a href="<?php echo base_url(); ?>salesDashboard">
                             <i class="material-icons">dashboard</i>
                             <p>Dashboard</p>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(); ?>walkin">
+                        <a href="<?php echo base_url(); ?>salesSellProduct">
                             <i class="material-icons">shopping_basket</i>
                             <p>Sell Products</p>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(); ?>clients">
+                        <a href="<?php echo base_url(); ?>salesClients">
                             <i class="material-icons">supervisor_account</i>
                             <p>Clients</p>
                         </a>
                     </li>
                     <li class="active">
-                        <a href="<?php echo base_url(); ?>returns">
+                        <a href="<?php echo base_url(); ?>salesReturns">
                             <i class="material-icons">assignment_return</i>
                             <p>Returns</p>
                         </a>
                     </li>
                     <li >
-                        <a href="<?php echo base_url(); ?>pendelivery">
+                        <a href="<?php echo base_url(); ?>salesDelivery">
                             <i class="material-icons">local_shipping</i>
                             <p>Deliveries</p>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(); ?>receivables">
+                        <a href="<?php echo base_url(); ?>salesReceivables">
                             <i class="material-icons">library_books</i>
                             <p>Receivables</p>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(); ?>collections">
+                        <a href="<?php echo base_url(); ?>salesCollections">
                             <i class="material-icons">bubble_chart</i>
                             <p>Collections</p>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(); ?>sales">
+                        <a href="<?php echo base_url(); ?>salesReport">
                             <i class="material-icons">assessment</i>
                             <p>Sales Summary</p>
                         </a>

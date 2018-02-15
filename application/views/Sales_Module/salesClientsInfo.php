@@ -30,7 +30,7 @@
 
 <body>
     <div class="wrapper">
-        <div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
+        <div class="sidebar" data-color="purple" data-image="<?php echo base_url(); ?>assets/img/sidebar-1.jpg">
             <div class="logo">
                 <img src="<?php echo base_url(); ?>assets/img/logo.png" alt="image1" width="250px" height="150px">
             </div>
@@ -150,7 +150,7 @@
                                             </table>
                                             <br>
                                             <br>
-                                            <a href="./contract.php" class="btn btn-warning btn-round">View Contract</a>
+                                            <a href="<?php echo base_url(); ?>salesClients/salesContract" class="btn btn-warning btn-round">View Contract</a>
                                             <button type="button" class="btn btn-success btn-round" data-toggle="modal" data-target="#balance">Check Balance</button>
                                         </div>
                                     </div>
