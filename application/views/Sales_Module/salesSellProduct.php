@@ -202,7 +202,7 @@
                                             </table>
 											</div>
 											<div class="tab-pane" id="machine">
-                                                <a href="<?php echo base_url(); ?>machine" class="btn btn-success btn-md" style="float: right">Add Sales</a>
+                                                <a href="<?php echo base_url(); ?>salesSellProduct/salesMachine" class="btn btn-success btn-md" style="float: right">Add Sales</a>
 												<table id="" class="display table-striped table-hover cell-border" cellspacing="0" width="100%">
 													<thead>
 														<th><b>Item Code</b></th>

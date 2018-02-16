@@ -10,10 +10,15 @@
 		{ 
 			$this->load->view('Sales_Module/salesSellProduct');
 		}
+		public function salesMachine()
+		{ 
+			$this->load->view('Sales_Module/salesMachine');
+		}
 		public function salesWalkin()
 		{ 
 			$this->load->view('Sales_Module/salesWalkin');
 		}
+		
 
 	}
 

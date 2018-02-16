@@ -128,7 +128,7 @@
                 </div>
             </nav>
             <div class="content">
-                <a href="clientsinfo.php" class="btn btn-primary navbar-btn pull-left">
+                <a href="<?php echo base_url() ?>salesClients/salesClientsInfo" class="btn btn-primary navbar-btn pull-left">
         <span class="glyphicon glyphicon-chevron-left"></span>
       </a>
                 <div class="container-fluid">

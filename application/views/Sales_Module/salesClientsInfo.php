@@ -127,7 +127,7 @@
                                 <div class="col-xs-12">
                                     <div class="card card-profile">
                                         <div class="content">
-                                            <a href="clients.php" class="btn btn-primary navbar-btn pull-left">
+                                            <a href="<?php echo base_url() ?>salesClients" class="btn btn-primary navbar-btn pull-left">
                                                 <span class="glyphicon glyphicon-chevron-left"></span>
                                             </a>
                                             <h3 class="card-title">The Legend Villas</h3>
