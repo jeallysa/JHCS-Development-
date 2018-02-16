@@ -118,13 +118,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="./user.php">User Profile</a>
+                                        <a href="<?php echo base_url(); ?>inventoryUser.php">User Profile</a>
                                     </li>
                                     <li>
-                                        <a href="./changepassword.php">Change Password</a>
+                                        <a href="<?php echo base_url(); ?>inventoryChangePassword.php">Change Password</a>
                                     </li>
                                     <li>
-                                        <a href="./activitylogs.php">Activity Logs</a>
+                                        <a href="<?php echo base_url(); ?>inventoryActivityLogs.php">Activity Logs</a>
                                     </li>
                                     <li>
                                         <a href="#">Logout</a>
@@ -433,28 +433,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <ul class="nav nav-tabs" data-tabs="tabs">
                                                  
                                                 <li class="">
-                                                    <a href="./PO.php">
+                                                    <a href="<?php echo base_url(); ?>inventoryPOAdd.php">
                                                         Add Purchase Order
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li class="active">
-                                                    <a href="./PO2.php">
+                                                    <a href="<?php echo base_url(); ?>inventoryPOOrder.php">
                                                         Orders
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li class="">
-                                                    <a href="./PO4.php">
+                                                    <a href="<?php echo base_url(); ?>inventoryPOUnpaidDelivery.php">
                                                         Unpaid Delivery
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                    <li class="">
-                                                    <a href="./PO5.php">
+                                                    <a href="<?php echo base_url(); ?>inventoryPOTransactionHistory.php">
                                                         Transaction History
                                                         <div class="ripple-container"></div>
                                                     </a>

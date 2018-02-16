@@ -107,13 +107,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="./user.php">User Profile</a>
+                                        <a href="<?php echo base_url(); ?>inventoryUser.php">User Profile</a>
                                     </li>
                                     <li>
-                                        <a href="./changepassword.php">Change Password</a>
+                                        <a href="<?php echo base_url(); ?>inventoryChangePassword.php">Change Password</a>
                                     </li>
                                     <li>
-                                        <a href="./activitylogs.php">Activity Logs</a>
+                                        <a href="<?php echo base_url(); ?>inventoryActivityLogs.php">Activity Logs</a>
                                     </li>
                                     <li>
                                         <a href="#">Logout</a>
@@ -135,21 +135,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <span class="nav-tabs-title"> </span>
                                             <ul class="nav nav-tabs" data-tabs="tabs">
                                                 <li class="">
-                                                    <a href="./inventoryout.php">
+                                                    <a href="<?php echo base_url(); ?>inventoryOutRawCoffee.php">
                                                         Raw Coffee
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li class="active">
-                                                    <a href="./packagingO.php">
+                                                    <a href="<?php echo base_url(); ?>inventoryOutPackaging.php">
                                                         Packaging
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li class="">
-                                                    <a href="./machineO.php">
+                                                    <a href="<?php echo base_url(); ?>inventoryOutMachine.php">
                                                         Machines
                                                         <div class="ripple-container"></div>
                                                     </a>
