@@ -131,7 +131,7 @@
                 </div>
             </nav>
             <div class="content">
-                <a href="<?php echo base_url(); ?>contract.php" class="btn btn-primary navbar-btn pull-left">
+                <a href="<?php echo base_url(); ?>contract" class="btn btn-primary navbar-btn pull-left">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
                 <div class="container-fluid">
@@ -367,7 +367,7 @@
                                                 </div>
                                             </div>
                                             <button class="btn btn-primary btn-round" type="submit">Save Contract</button>
-                                            <a href="<?php echo base_url(); ?>contract.php" class="btn btn-primary btn-round">Back</a>
+                                            <a href="<?php echo base_url(); ?>contract" class="btn btn-primary btn-round">Back</a>
                                         </form>
                                     </div>
                                 </div>

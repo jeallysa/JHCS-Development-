@@ -129,7 +129,7 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <a href="<?php echo base_url(); ?>walkin.php" class="btn btn-primary navbar-btn pull-left">
+                        <a href="<?php echo base_url(); ?>walkin" class="btn btn-primary navbar-btn pull-left">
                             <span class="glyphicon glyphicon-chevron-left"></span>
                         </a>
                         <div class="col-sm-12">

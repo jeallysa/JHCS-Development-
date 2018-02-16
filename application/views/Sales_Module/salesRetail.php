@@ -225,43 +225,43 @@
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(); ?>walkin.php">
+                        <a href="<?php echo base_url(); ?>walkin">
                             <i class="material-icons">shopping_basket</i>
                             <p>Sell Products</p>
                         </a>
                     </li>
                     <li class="active">
-                        <a href="<?php echo base_url(); ?>clients.php">
+                        <a href="<?php echo base_url(); ?>clients">
                             <i class="material-icons">supervisor_account</i>
                             <p>Clients</p>
                         </a>
                     </li>
 					<li>
-                        <a href="<?php echo base_url(); ?>returns.php">
+                        <a href="<?php echo base_url(); ?>returns">
                             <i class="material-icons">assignment_return</i>
                             <p>Returns</p>
                         </a>
                     </li>
 					<li >
-                        <a href="<?php echo base_url(); ?>pendelivery.php">
+                        <a href="<?php echo base_url(); ?>pendelivery">
                             <i class="material-icons">local_shipping</i>
                             <p>Deliveries</p>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(); ?>receivables.php">
+                        <a href="<?php echo base_url(); ?>receivables">
                             <i class="material-icons">library_books</i>
                             <p>Receivables</p>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(); ?>collections.php">
+                        <a href="<?php echo base_url(); ?>collections">
                             <i class="material-icons">bubble_chart</i>
                             <p>Collections</p>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(); ?>sales.php">
+                        <a href="<?php echo base_url(); ?>sales">
                             <i class="material-icons">assessment</i>
                             <p>Sales Summary</p>
                         </a>
@@ -304,7 +304,7 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <a href="./clients.php" class="btn btn-primary navbar-btn pull-left">
+                        <a href="<?php echo base_url(); ?>clients" class="btn btn-primary navbar-btn pull-left">
                             <span class="glyphicon glyphicon-chevron-left"></span>
                         </a>
                         <div class="col-sm-12">
