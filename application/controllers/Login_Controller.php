@@ -17,11 +17,21 @@ class Login_Controller extends CI_Controller
 		$password = $this->input->post('password');
 
 		$data = $this->Login_Model->login($username, $password);
-		if (count($data) > 0) {
-			if($data[0]->fname === 'me' && $data[0]->password === 'me')
+		
+		if($username === 'tin' && $password === 't')
 			{
-				$this->load->view('admin', ['first_name' => $data[0]->fname]);
+				$this->load->view('Sales_Module/salesDashboard', ['username' => $username]);
 			}
+		if($username === 'leo' && $password === 'l')
+			{
+				$this->load->view('Inventory_Module/inventoryDashboard', ['username' => $username]);
+			}
+
+		if (count($data) > 0) {
+			if($username === 'jin' && $password === 'j')
+			{
+				$this->load->view('Admin_Module/adminDashboard', ['username' => $data[0]->username]);
+			} 
 			else
 			{
 				echo "Invalid";
