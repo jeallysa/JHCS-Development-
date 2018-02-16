@@ -30,7 +30,7 @@
 
 <body>
     <div class="wrapper">
-        <div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
+        <div class="sidebar" data-color="purple" data-image="<?php echo base_url(); ?>assets/img/sidebar-1.jpg">
             <div class="logo">
                 <img src="<?php echo base_url(); ?>assets/img/logo.png" alt="image1" width="250px" height="150px">
             </div>
@@ -127,7 +127,7 @@
                                 <div class="col-xs-12">
                                     <div class="card card-profile">
                                         <div class="content">
-                                            <a href="clients.php" class="btn btn-primary navbar-btn pull-left">
+                                            <a href="<?php echo base_url() ?>salesClients" class="btn btn-primary navbar-btn pull-left">
                                                 <span class="glyphicon glyphicon-chevron-left"></span>
                                             </a>
                                             <h3 class="card-title">The Legend Villas</h3>
@@ -150,7 +150,7 @@
                                             </table>
                                             <br>
                                             <br>
-                                            <a href="./contract.php" class="btn btn-warning btn-round">View Contract</a>
+                                            <a href="<?php echo base_url(); ?>salesClients/salesContract" class="btn btn-warning btn-round">View Contract</a>
                                             <button type="button" class="btn btn-success btn-round" data-toggle="modal" data-target="#balance">Check Balance</button>
                                         </div>
                                     </div>

@@ -68,7 +68,7 @@
                         </a>
                     </li>
                     <li >
-                        <a href="<?php echo base_url(); ?>salesPenDelivery">
+                        <a href="<?php echo base_url(); ?>salesDelivery">
                             <i class="material-icons">local_shipping</i>
                             <p>Deliveries</p>
                         </a>
@@ -129,7 +129,7 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <a href="<?php echo base_url(); ?>walkin" class="btn btn-primary navbar-btn pull-left">
+                        <a href="<?php echo base_url(); ?>salesSellProduct" class="btn btn-primary navbar-btn pull-left">
                             <span class="glyphicon glyphicon-chevron-left"></span>
                         </a>
                         <div class="col-sm-12">

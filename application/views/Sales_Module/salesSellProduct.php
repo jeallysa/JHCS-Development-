@@ -50,49 +50,49 @@
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li>
-                        <a href="<?php echo base_url(); ?>dashboard">
+                        <a href="<?php echo base_url(); ?>salesDashboard">
                             <i class="material-icons">dashboard</i>
                             <p>Dashboard</p>
                         </a>
                     </li>
                     <li class="active">
-                        <a href="<?php echo base_url(); ?>walkin">
+                        <a href="<?php echo base_url(); ?>salesSellProduct">
                             <i class="material-icons">shopping_basket</i>
                             <p>Sell Products</p>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(); ?>clients">
+                        <a href="<?php echo base_url(); ?>salesClients">
                             <i class="material-icons">supervisor_account</i>
                             <p>Clients</p>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(); ?>returns">
+                        <a href="<?php echo base_url(); ?>salesReturns">
                             <i class="material-icons">assignment_return</i>
                             <p>Returns</p>
                         </a>
                     </li>
                     <li >
-                        <a href="<?php echo base_url(); ?>pendelivery">
+                        <a href="<?php echo base_url(); ?>salesDelivery">
                             <i class="material-icons">local_shipping</i>
                             <p>Deliveries</p>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(); ?>receivables">
+                        <a href="<?php echo base_url(); ?>salesReceivables">
                             <i class="material-icons">library_books</i>
                             <p>Receivables</p>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(); ?>collections">
+                        <a href="<?php echo base_url(); ?>salesCollections">
                             <i class="material-icons">bubble_chart</i>
                             <p>Collections</p>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(); ?>sales">
+                        <a href="<?php echo base_url(); ?>salesReport">
                             <i class="material-icons">assessment</i>
                             <p>Sales Summary</p>
                         </a>
@@ -135,101 +135,101 @@
             <div class="content">
                 <div class="container-fluid">
 					<div class="row">
-										<div class="col-sm-12">
-											<div class="card card-nav-tabs">
-												<div class="card-header" data-background-color="purple">
-													<div class="nav-tabs-navigation">
-														<div class="nav-tabs-wrapper">
-															<ul class="nav nav-tabs" data-tabs="tabs">
-																<li class="active">
-																	<a href="#sell" data-toggle="tab">
-																		<i class="material-icons">local_cafe</i> Coffee
-																		<div class="ripple-container"></div>
-																	</a>
-																</li>
-																<li class="">
-																	<a href="#machine" data-toggle="tab">
-																		<i class="material-icons">gradient</i> Machine
-																		<div class="ripple-container"></div>
-																	</a>
-																</li>
-															</ul>
-														</div>
-													</div>
-												</div>
-												<div class="card-content">
-													<div class="tab-content">
-														<div class="tab-pane active" id="sell">
-                                                            <a href="<?php echo base_url(); ?>walkinsale" class="btn btn-success btn-md" style="float: right">Add Sales</a>
-															 <table id="" class="display table-striped table-hover cell-border" cellspacing="0" width="100%" style="width:100%">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th><b>Item Code</b></th>
-                                                                    <th><b>Date</b></th>
-																	<th><b>Client</b></th>
-																	<th><b>Coffee</b></th>
-																	<th><b>Bag</b></th>
-																	<th><b>Size</b></th>
-																	<th><b>Qty</b></th>
-																	<th><b>Price</b></th>
-																	<th><b>Total Amount</b></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-																<tr>
-																	<td>I0001</td>
-                                                                    <td>Oct 1, 2017</td>
-																	<td>Ariel Tide</td>
-																	<td>Fiesta Blend Ground</td>
-																	<td>brown</td>
-																	<td>250 g</td>
-																	<td>2</td>
-																	<td>350</td>
-																	<td>700</td>
-																</tr>
-																<tr>
-																	<td>I0002</td>
-																	<td>Oct 1, 2017</td>
-																	<td>Jan Lapid</td>
-																	<td>Guatamela Rainforest</td>
-																	<td>brown</td>
-																	<td>500 g</td>
-																	<td>1</td>
-																	<td>650</td>
-																	<td>650</td>
-																</tr>
-															</tbody>
-                                                        </table>
-														</div>
-														<div class="tab-pane" id="machine">
-                                                            <a href="<?php echo base_url(); ?>machine" class="btn btn-success btn-md" style="float: right">Add Sales</a>
-															<table id="" class="display table-striped table-hover cell-border" cellspacing="0" width="100%">
-																<thead>
-																	<th><b>Item Code</b></th>
-																	<th><b>Date</b></th>
-																	<th><b>Client</b></th>
-																	<th><b>Machine</b></th>
-																	<th><b>Quantity</b></th>
-																	<th><b>Unit Price</b></th>
-																	<th><b>Total Amount</b></th>
-																</thead>
-																<tbody>
-																	<tr>
-																		<td>I0023</td>
-																		<td>Oct 31, 2017</td>
-																		<td>Taylor Swift</td>
-																		<td>Saeco</td>
-																		<td>1</td>
-																		<td>5, 000</td>
-																		<td>5, 000</td>
-																	</tr>
-																</tbody>
-															</table>
-														</div>
-													</div>
-												</div>
+							<div class="col-sm-12">
+								<div class="card card-nav-tabs">
+									<div class="card-header" data-background-color="purple">
+										<div class="nav-tabs-navigation">
+											<div class="nav-tabs-wrapper">
+												<ul class="nav nav-tabs" data-tabs="tabs">
+													<li class="active">
+														<a href="#sell" data-toggle="tab">
+															<i class="material-icons">local_cafe</i> Coffee
+															<div class="ripple-container"></div>
+														</a>
+													</li>
+													<li class="">
+														<a href="#machine" data-toggle="tab">
+															<i class="material-icons">gradient</i> Machine
+															<div class="ripple-container"></div>
+														</a>
+													</li>
+												</ul>
 											</div>
 										</div>
+									</div>
+									<div class="card-content">
+										<div class="tab-content">
+											<div class="tab-pane active" id="sell">
+                                                <a href="<?php echo base_url(); ?>salesSellProduct/salesWalkin" class="btn btn-success btn-md" style="float: right">Add Sales</a>
+												 <table id="" class="display table-striped table-hover cell-border" cellspacing="0" width="100%" style="width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th><b>Item Code</b></th>
+                                                        <th><b>Date</b></th>
+														<th><b>Client</b></th>
+														<th><b>Coffee</b></th>
+														<th><b>Bag</b></th>
+														<th><b>Size</b></th>
+														<th><b>Qty</b></th>
+														<th><b>Price</b></th>
+														<th><b>Total Amount</b></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+													<tr>
+														<td>I0001</td>
+                                                        <td>Oct 1, 2017</td>
+														<td>Ariel Tide</td>
+														<td>Fiesta Blend Ground</td>
+														<td>brown</td>
+														<td>250 g</td>
+														<td>2</td>
+														<td>350</td>
+														<td>700</td>
+													</tr>
+													<tr>
+														<td>I0002</td>
+														<td>Oct 1, 2017</td>
+														<td>Jan Lapid</td>
+														<td>Guatamela Rainforest</td>
+														<td>brown</td>
+														<td>500 g</td>
+														<td>1</td>
+														<td>650</td>
+														<td>650</td>
+													</tr>
+												</tbody>
+                                            </table>
+											</div>
+											<div class="tab-pane" id="machine">
+                                                <a href="<?php echo base_url(); ?>salesSellProduct/salesMachine" class="btn btn-success btn-md" style="float: right">Add Sales</a>
+												<table id="" class="display table-striped table-hover cell-border" cellspacing="0" width="100%">
+													<thead>
+														<th><b>Item Code</b></th>
+														<th><b>Date</b></th>
+														<th><b>Client</b></th>
+														<th><b>Machine</b></th>
+														<th><b>Quantity</b></th>
+														<th><b>Unit Price</b></th>
+														<th><b>Total Amount</b></th>
+													</thead>
+													<tbody>
+														<tr>
+															<td>I0023</td>
+															<td>Oct 31, 2017</td>
+															<td>Taylor Swift</td>
+															<td>Saeco</td>
+															<td>1</td>
+															<td>5, 000</td>
+															<td>5, 000</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
                         </div>
                 </div>
             </div>

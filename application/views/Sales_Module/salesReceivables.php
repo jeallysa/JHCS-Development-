@@ -73,7 +73,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(); ?>salesPenDelivery">
+                        <a href="<?php echo base_url(); ?>salesDelivery">
                             <i class="material-icons">local_shipping</i>
                             <p>Deliveries</p>
                         </a>
