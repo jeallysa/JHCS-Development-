@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
+<meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
     <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -10,14 +10,14 @@
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../assets/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-    <link href="../assets/css/jquery.dataTable.min.css" rel="stylesheet" />
-    <link href="../assets/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/jquery.dataTable.min.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/bootstrap-datepicker3.min.css" rel="stylesheet">
     <!--  Material Dashboard CSS    -->
-    <link href="../assets/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="../assets/css/demo.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/demo.css" rel="stylesheet" />
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
@@ -39,54 +39,54 @@
     <div class="wrapper">
         <div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
             <div class="logo">
-                <img src="../assets/img/logo.png" alt="image1" width="250px" height="150px">
+                <img src="<?php echo base_url(); ?>assets/img/logo.png" alt="image1" width="250px" height="150px">
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li>
-                        <a href="dashboard.php">
+                        <a href="<?php echo base_url(); ?>salesDashboard">
                             <i class="material-icons">dashboard</i>
                             <p>Dashboard</p>
                         </a>
                     </li>
                     <li class="active">
-                        <a href="./walkin.php">
+                        <a href="<?php echo base_url(); ?>salesSellProduct">
                             <i class="material-icons">shopping_basket</i>
                             <p>Sell Products</p>
                         </a>
                     </li>
                     <li>
-                        <a href="./clients.php">
+                        <a href="<?php echo base_url(); ?>salesClients">
                             <i class="material-icons">supervisor_account</i>
                             <p>Clients</p>
                         </a>
                     </li>
-					<li>
-                        <a href="./returns.php">
+                    <li>
+                        <a href="<?php echo base_url(); ?>salesReturns">
                             <i class="material-icons">assignment_return</i>
                             <p>Returns</p>
                         </a>
                     </li>
-					<li >
-                        <a href="./pendelivery.php">
+                    <li >
+                        <a href="<?php echo base_url(); ?>salesPenDelivery">
                             <i class="material-icons">local_shipping</i>
                             <p>Deliveries</p>
                         </a>
                     </li>
                     <li>
-                        <a href="./receivables.php">
+                        <a href="<?php echo base_url(); ?>salesReceivables">
                             <i class="material-icons">library_books</i>
                             <p>Receivables</p>
                         </a>
                     </li>
                     <li>
-                        <a href="./collections.php">
+                        <a href="<?php echo base_url(); ?>salesCollections">
                             <i class="material-icons">bubble_chart</i>
                             <p>Collections</p>
                         </a>
                     </li>
                     <li>
-                        <a href="./sales.php">
+                        <a href="<?php echo base_url(); ?>salesReport">
                             <i class="material-icons">assessment</i>
                             <p>Sales Summary</p>
                         </a>
@@ -109,13 +109,13 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="./user.php">User Profile</a>
+                                        <a href="<?php echo base_url(); ?>salesUserProfile">User Profile</a>
                                     </li>
                                     <li>
-                                        <a href="./changepassword.php">Change Password</a>
+                                        <a href="<?php echo base_url(); ?>salesChangePassword">Change Password</a>
                                     </li>
                                     <li>
-                                        <a href="./activitylogs.php">Activity Logs</a>
+                                        <a href="<?php echo base_url(); ?>activitylogs">Activity Logs</a>
                                     </li>
                                     <li>
                                         <a href="#">Logout</a>
@@ -129,7 +129,7 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <a href="walkin.php" class="btn btn-primary navbar-btn pull-left">
+                        <a href="<?php echo base_url(); ?>walkin.php" class="btn btn-primary navbar-btn pull-left">
                             <span class="glyphicon glyphicon-chevron-left"></span>
                         </a>
                         <div class="col-sm-12">
