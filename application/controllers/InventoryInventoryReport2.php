@@ -1,6 +1,6 @@
 <?php
 
-	class SalesUserProfile extends CI_Controller
+	class InventoryInventoryReport2 extends CI_Controller
 	{
 		function __construct(){
 			parent::__construct();
@@ -8,7 +8,7 @@
 		
 		public function index()
 		{ 
-			$this->load->view('Sales_Module/salesUserProfile');
+			$this->load->view('Inventory_Module/inventoryInventoryReport2');
 		}
 
 	}

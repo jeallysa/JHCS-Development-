@@ -1,6 +1,6 @@
 <?php
 
-	class SalesReceivables extends CI_Controller
+	class InventoryClientReturn extends CI_Controller
 	{
 		function __construct(){
 			parent::__construct();
@@ -8,7 +8,7 @@
 		
 		public function index()
 		{ 
-			$this->load->view('Sales_Module/salesReceivables');
+			$this->load->view('Inventory_Module/inventoryClientReturn');
 		}
 
 	}

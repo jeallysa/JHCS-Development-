@@ -1,6 +1,6 @@
 <?php
 
-	class SalesReturns extends CI_Controller
+	class InventoryStickers extends CI_Controller
 	{
 		function __construct(){
 			parent::__construct();
@@ -8,7 +8,7 @@
 		
 		public function index()
 		{ 
-			$this->load->view('Sales_Module/salesReturns');
+			$this->load->view('Inventory_Module/inventoryStickers');
 		}
 
 	}
