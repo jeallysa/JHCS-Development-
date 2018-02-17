@@ -131,7 +131,7 @@
                                     <p class="category">Raw Coffee Beans</p>
                                     <h3 class="title">38,000 Grams</h3>
                                 </div>
-                                <a href="product_inventory.php">
+                                <a href="<?php echo base_url(); ?>adminProductInventory">
                                     <div class="card-footer">
                                         <div class="stats">
                                             <i class="material-icons">date_range</i> Details
@@ -149,7 +149,7 @@
                                     <p class="category">Machines</p>
                                     <h3 class="title">120 Units</h3>
                                 </div>
-                                <a href="machines.php">
+                                <a href="<?php echo base_url(); ?>adminMachines">
                                     <div class="card-footer">
                                         <div class="stats">
                                             <i class="material-icons">date_range</i> Details
@@ -167,7 +167,7 @@
                                     <p class="category">Stickers</p>
                                     <h3 class="title">901 Pieces</h3>
                                 </div>
-                                <a href="stickers.php">
+                                <a href="<?php echo base_url(); ?>adminStickers">
                                     <div class="card-footer">
                                         <div class="stats">
                                             <i class="material-icons">date_range</i> Details
@@ -185,7 +185,7 @@
                                     <p class="category">Packaging</p>
                                     <h3 class="title">3,900 Bags</h3>
                                 </div>
-                                <a href="packaging.php">
+                                <a href="<?php echo base_url(); ?>adminPackaging">
                                     <div class="card-footer">
                                         <div class="stats">
                                             <i class="material-icons">date_range</i> Details

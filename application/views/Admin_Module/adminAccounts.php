@@ -393,7 +393,7 @@
                                 <h4 class="title">List of Users </h4>
                             </div>
                             <div class="card-content table-responsive">
-                                <a href="newaccounts.html" class="btn btn-success" data-original-title style="float: right"> Create New Account</a>
+                                <a href="<?php echo base_url(); ?>adminNewAccounts" class="btn btn-success" data-original-title style="float: right"> Create New Account</a>
                                 <div class="col-md-12 col-md-offset-0">
                                     <div class="fresh-datatables">
                                         <table id="fresh-datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
@@ -520,41 +520,7 @@
                     </div>
                 </div>
             </div>
-            <footer class="footer">
-                <div class="container-fluid">
-                    <nav class="pull-left">
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    Home
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Company
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Portfolio
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Blog
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <p class="copyright pull-right">
-                        &copy;
-                        <script>
-                        document.write(new Date().getFullYear())
-                        </script>
-                        <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-                    </p>
-                </div>
-            </footer>
+            
         </div>
     </div>
 </body>

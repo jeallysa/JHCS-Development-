@@ -469,7 +469,7 @@ thead th {
                                      </h4>
                             </div>
                         <div class="card-content table-responsive">
-                              <a href="newsuppliers.html" class="btn btn-success" data-original-title style="float: right"> Create New Account</a>
+                              <a href="<?php echo base_url(); ?>adminNewSuppliers" class="btn btn-success" data-original-title style="float: right"> Create New Account</a>
                             <div class="col-md-12 col-md-offset-0">
                                 <div class="fresh-datatables">
                                     <!--  Available colors for the full background: full-color-blue, full-color-azure, full-color-purple, full-color-red, full-color-orange, full-color-purple, full-color-gray

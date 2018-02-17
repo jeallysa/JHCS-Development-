@@ -163,43 +163,43 @@
                                                 <div class="nav-tabs-navigation">
                                                     <div class="nav-tabs-wrapper">
                                                         <ul class="nav nav-tabs" data-tabs="tabs" data-background-color="green">
-                                                            <li>
-                                                                <a href="./sales_report.php">
+                                                            <li class="">
+                                                                <a href="<?php echo base_url(); ?>adminSalesReport">
                                                         Sales Report
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                             </li>
                                                             <span></span>
                                                             <li class="">
-                                                                <a href="./receivable_report.php">
+                                                                <a href="<?php echo base_url(); ?>adminReceivableReport">
                                                         Accounts Receivables Report
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                             </li>
                                                             <span></span>
                                                             <li class="">
-                                                                <a href="./collection_report.php">
+                                                                <a href="<?php echo base_url(); ?>adminCollectionReport">
                                                         Collection Report
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                             </li>
                                                             <span></span>
                                                             <li class="">
-                                                                <a href="./inventory_report.php">
+                                                                <a href="<?php echo base_url(); ?>adminInventoryReport">
                                                         Inventory Report
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                             </li>
                                                             <span></span>
                                                             <li class="">
-                                                                <a href="./order_report.php">
+                                                                <a href="<?php echo base_url(); ?>adminOrderReport">
                                                         PO Report
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                             </li>
                                                             <span></span>
-                                                            <li  class="active">
-                                                                <a href="./delivery_report.php">
+                                                            <li class="active">
+                                                                <a href="<?php echo base_url(); ?>adminDeliveryReport">
                                                         Delivery Report
                                                         <div class="ripple-container"></div>
                                                    </a>

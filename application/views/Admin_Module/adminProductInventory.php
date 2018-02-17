@@ -135,41 +135,41 @@
                                         <div class="nav-tabs-wrapper">
                                             <ul class="nav nav-tabs" data-tabs="tabs" data-background-color="green">
                                                 <li class="active">
-                                                    <a href="./inventorystocks.php">
+                                                    <a href="<?php echo base_url(); ?>adminProductInventory">
                                                         Raw Coffee
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
-                                                <li class="">
-                                                    <a href="./blends.php">
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>adminBlends">
                                                         Existing Blends
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <li class="">
-                                                    <a href="./clientblends.php">
+                                                    <a href="<?php echo base_url(); ?>adminClientBlends">
                                                         Client Blends
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li>
-                                                    <a href="./packaging.php">
+                                                    <a href="<?php echo base_url(); ?>adminPackaging">
                                                         Packaging
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li class="">
-                                                    <a href="./stickers.php">
+                                                    <a href="<?php echo base_url(); ?>adminStickers">
                                                         Stickers
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li class="">
-                                                    <a href="./machines.php">
+                                                    <a href="<?php echo base_url(); ?>adminMachines">
                                                        Machines
                                                         <div class="ripple-container"></div>
                                                     </a>
