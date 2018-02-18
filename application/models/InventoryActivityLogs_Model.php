@@ -13,8 +13,8 @@ class InventoryActivityLogs_Model extends CI_model
 	}
 
 	function fetch_data(){
-		$query = $this->db->query("SELECT timestamp, CONCAT(first_name,' ', last_name) AS name, message 
-			FROM `jhcs`.`activitylogs` INNER JOIN jhcs.user ON activitylogs.user_id=user.user_id;");
+		$query = $this->db->query("SELECT timestamp, CONCAT(u_fname,' ', u_lname) AS name, message 
+			FROM `jhcs`.`activitylogs` INNER JOIN jhcs.user ON activitylogs.user_no=user.user_no;");
 		return $query;
 	}
 
