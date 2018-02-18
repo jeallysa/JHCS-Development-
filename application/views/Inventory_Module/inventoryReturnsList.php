@@ -264,7 +264,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <thead>
                                                         <tr>
                                                             <th><b>Company Return No.</b></th>
-                                                            <th><b>Date</b></th>
+                                                            <th><b>Date Returned</b></th>
                                                             <th><b>Supplier</b></th>
                                                             <th><b>Total</b></th>
                                                             <th><b>Coffee A</b></th>

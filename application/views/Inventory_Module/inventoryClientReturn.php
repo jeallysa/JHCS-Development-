@@ -143,142 +143,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card card-nav-tabs">
-                                <div class="modal fade" id="details1" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                        <div class="panel panel-primary">
-                                            <form action="#" method="post" accept-charset="utf-8">
-                                                <div class="modal-body" style="padding: 5px;">
-                                                    <div id="page-wrapper">
-                                                        <div class="table-responsive">
-                                                            <center><b>Client 1</b></center>
-                                                            <center><b>10/01/18</b></center>
-                                                            <table class="table table-striped" id="table-mutasi">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>GUATEMALA</th>
-                                                                        <th>SUMATRA</th>
-                                                                        <th>ROBUSTA</th>
-                                                                        <th>BENGUET</th>
-                                                                        <th>COLOMBIA</th>
-                                                                        <th>BARAKO</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td>600</td>
-                                                                        <td>400</td>
-                                                                        <td>0</td>
-                                                                        <td>600</td>
-                                                                        <td>0</td>
-                                                                        <td>400</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="panel-footer" align="center" style="margin-bottom:-14px;">
-                                                    <button type="button" class="btn btn-default btn-close" data-dismiss="modal">CLOSE</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal fade" id="details2" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                        <div class="panel panel-primary">
-                                            <form action="#" method="post" accept-charset="utf-8">
-                                                <div class="modal-body" style="padding: 5px;">
-                                                    <div id="page-wrapper">
-                                                        <div class="table-responsive">
-                                                            <center><b>Client 2</b></center>
-                                                            <center><b>10/03/18</b></center>
-                                                            <table class="table table-striped" id="table-mutasi">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>GUATEMALA</th>
-                                                                        <th>SUMATRA</th>
-                                                                        <th>ROBUSTA</th>
-                                                                        <th>BENGUET</th>
-                                                                        <th>COLOMBIA</th>
-                                                                        <th>BARAKO</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td>100</td>
-                                                                        <td>400</td>
-                                                                        <td>100</td>
-                                                                        <td>600</td>
-                                                                        <td>100</td>
-                                                                        <td>0</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="panel-footer" align="center" style="margin-bottom:-14px;">
-                                                    <button type="button" class="btn btn-default btn-close" data-dismiss="modal">CLOSE</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal fade" id="details3" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                        <div class="panel panel-primary">
-                                            <form action="#" method="post" accept-charset="utf-8">
-                                                <div class="modal-body" style="padding: 5px;">
-                                                    <div id="page-wrapper">
-                                                        <div class="table-responsive">
-                                                            <center><b>Client 3</b></center>
-                                                            <center><b>10/05/18</b></center>
-                                                            <table class="table table-striped" id="table-mutasi">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>GUATEMALA</th>
-                                                                        <th>SUMATRA</th>
-                                                                        <th>ROBUSTA</th>
-                                                                        <th>BENGUET</th>
-                                                                        <th>COLOMBIA</th>
-                                                                        <th>BARAKO</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td>0</td>
-                                                                        <td>600</td>
-                                                                        <td>400</td>
-                                                                        <td>0</td>
-                                                                        <td>600</td>
-                                                                        <td>300</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="panel-footer" align="center" style="margin-bottom:-14px;">
-                                                    <button type="button" class="btn btn-default btn-close" data-dismiss="modal">CLOSE</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="card-header" data-background-color="blue">
                                     <div class="nav-tabs-navigation">
                                         <div class="nav-tabs-wrapper">
                                             <ul class="nav nav-tabs" data-tabs="tabs">
                                                 <span> </span>
                                                 <li>
-                                                    <a href="<?php echo base_url(); ?>returnslist">
+                                                    <a href="<?php echo base_url(); ?>inventoryReturnsList">
                                                         <i class="material-icons">home</i> Company Returns
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <li class="active">
-                                                    <a href="<?php echo base_url(); ?>clientreturn">
+                                                    <a href="<?php echo base_url(); ?>inventoryClientReturn">
                                                         <i class="material-icons">group</i> Client Returns
                                                         <div class="ripple-container"></div>
                                                     </a>
@@ -288,75 +165,107 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </div>
                                 </div>
                                 <div class="card-content">
-                                    <div class="tab-content">
-                                        <div class="tab-pane active" id="type">
-                                            <div class="card-content table-responsive">
-                                                <div class="col-md-12 col-md-offset-0">
-                                                    <div class="fresh-datatables">
-                                                        <!--  Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange, full-color-purple, full-color-gray
-                                    Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange, toolbar-color-purple, toolbar-color-gray -->
-                                                        <table id="fresh-datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th><b>Client Return No.</b></th>
-                                                                    <th><b>Date</b></th>
-                                                                    <th><b>Client</b></th>
-                                                                    <th><b>Coffee</b></th>
-                                                                    <th><b>Coffee Bag</b></th>
-                                                                    <th><b>Grams</b></th>
-                                                                    <th><b>Quantity</b></th>
-                                                                    <th><b>Remarks</b></th>
-                                                                    <th><b>Action taken</b></th>
-                                                                    <th></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>00001</td>
-                                                                    <td>Oct 1, 2017</td>
-                                                                    <td>Client 1</td>
-                                                                    <td>Sumatra Night</td>
-                                                                    <td>Clear Bag</td>
-                                                                    <td>250 g</td>
-                                                                    <td>3</td>
-                                                                    <td>Incorrect Blend</td>
-                                                                    <td>Added to Sample</td>
-                                                                    <td>
-                                                                        <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#details1">Details</a>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>00002</td>
-                                                                    <td>Oct 3, 2017</td>
-                                                                    <td>Client 2</td>
-                                                                    <td>Guatemala Rainforest</td>
-                                                                    <td>Brown Bag</td>
-                                                                    <td>500 g</td>
-                                                                    <td>2</td>
-                                                                    <td>Spoiled</td>
-                                                                    <td>Disposed</td>
-                                                                    <td>
-                                                                        <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#details2">Details</a>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>00003</td>
-                                                                    <td>Oct 5, 2017</td>
-                                                                    <td>Client 3</td>
-                                                                    <td>Cordillera Sunrise</td>
-                                                                    <td>Clear Bag</td>
-                                                                    <td>1000 g</td>
-                                                                    <td>1</td>
-                                                                    <td>Incorrect Blend</td>
-                                                                    <td>Added to Sample</td>
-                                                                    <td>
-                                                                        <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#details3">Details</a>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
+                                    <div class="card-content table-responsive">
+                                        <div class="col-md-12 col-md-offset-0">
+                                            <div class="fresh-datatables">
+                                                <!--  Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange, full-color-purple, full-color-gray
+                                    Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange, toolbar-color-purple, toolbar-color-gray -->      
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+                                        <h3><b>Coffee</b></h3>
+                                        <hr>
+                                    </div>
+                                        <table id="" class="table hover order-column" cellspacing="0" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th><b>Delivery Receipt No.</b></th>
+                                                    <th><b>Client Return No.</b></th>
+                                                    <th><b>Date Returned</b></th>
+                                                    <th><b>Client</b></th>
+                                                    <th><b>Coffee</b></th>
+                                                    <th><b>Bag</b></th>
+                                                    <th><b>Grams</b></th>
+                                                    <th><b>Quantity</b></th>
+                                                    <th><b>Remarks</b></th>
+                                                    <th><b>Action Taken</b></th>
+                                                    <th><b>Status</b></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1020</td>
+                                                    <td>00001</td>
+                                                    <td>Oct 1, 2017</td>
+                                                    <td>Client 1</td>
+                                                    <td>Sumatra Night</td>
+                                                    <td>Clear Bag</td>
+                                                    <td>250 g</td>
+                                                    <td>3</td>
+                                                    <td>Incorrect Blend</td>
+                                                    <td>Added to Sample</td>
+                                                    <td>Resolved</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>1030</td>
+                                                    <td>00002</td>
+                                                    <td>Oct 3, 2017</td>
+                                                    <td>Client 2</td>
+                                                    <td>Guatemala Rainforest</td>
+                                                    <td>Brown Bag</td>
+                                                    <td>500 g</td>
+                                                    <td>2</td>
+                                                    <td>Spoiled</td>
+                                                    <td>Disposed</td>
+                                                    <td>Resolved</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+                                                <h3><b>Machine</b></h3>
+                                                <hr>
+                                            </div>
+                                                <table id="" class="table hover order-column" cellspacing="0" width="100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th><b>Delivery Receipt No.</b></th>
+                                                            <th><b>Client Return No.</b></th>
+                                                            <th><b>Date Returned</b></th>
+                                                            <th><b>Client</b></th>
+                                                            <th><b>Machine</b></th>
+                                                            <th><b>Quantity</b></th>
+                                                            <th><b>Remarks</b></th>
+                                                            <th><b>Action Taken</b></th>
+                                                            <th><b>Status</b></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>2352</td>
+                                                            <td>1524</td>
+                                                            <td>Dec 9, 2017</td>
+                                                            <td>Client 1</td>
+                                                            <td>Machine A</td>
+                                                            <td>2</td>
+                                                            <td>Damaged</td>
+                                                            <td>Repaired</td>
+                                                            <td>Resolved</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>5345</td>
+                                                            <td>3245</td>
+                                                            <td>Dec 10, 2017</td>
+                                                            <td>Client 2</td>
+                                                            <td>Machine B</td>
+                                                            <td>1</td>
+                                                            <td>Damaged</td>
+                                                            <td>Repaired</td>
+                                                            <td>Resolved</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
@@ -396,12 +305,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?php echo base_url(); ?>assets/js/jquery.datatables.js"></script>
 <script>
 $(document).ready(function() {
-    $('#fresh-datatables').DataTable({
-        select: {
-            style: 'single'
-        }
-
-    });
+    $('table.table').DataTable();
 });
 </script>
 

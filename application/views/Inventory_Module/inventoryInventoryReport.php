@@ -158,14 +158,14 @@ input {
                                                 <ul class="nav nav-tabs" data-tabs="tabs">
                                                     <span></span>
                                                     <li class="active">
-                                                        <a href="<?php echo base_url(); ?>inventoryreport">
+                                                        <a href="<?php echo base_url(); ?>inventoryInventoryReport">
                                                             Date In
                                                             <div class="ripple-container"></div>
                                                         </a>
                                                     </li>
                                                     <span></span>
                                                     <li class="">
-                                                        <a href="<?php echo base_url(); ?>inventoryreport2">
+                                                        <a href="<?php echo base_url(); ?>inventoryInventoryReport2">
                                                             Date Out
                                                             <div class="ripple-container"></div>
                                                         </a>
