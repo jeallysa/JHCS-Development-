@@ -168,7 +168,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             ?>
                                             <tr>
                                                 <td><?php echo $row->timestamp; ?></td>
-                                                <td><?php echo $row->user_id; ?></td>
+                                                <td><?php echo $row->name; ?></td>
                                                 <td><?php echo $row->message; ?></td>
                                             </tr>
 
