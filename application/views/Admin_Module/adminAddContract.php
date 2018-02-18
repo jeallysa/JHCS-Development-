@@ -327,8 +327,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <a href="contract.php" class="btn btn-success btn-round">Save Contract</a>
-                                            <a href="clients.php" class="btn btn-default btn-round">Back</a>
+                                            <a href="<?php echo base_url(); ?>adminContract" class="btn btn-success btn-round">Save Contract</a>
+                                            <a href="<?php echo base_url(); ?>adminClients" class="btn btn-default btn-round">Back</a>
                                         </form>
                                     </div>
                                 </div>

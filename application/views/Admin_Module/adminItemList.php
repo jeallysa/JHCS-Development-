@@ -419,7 +419,7 @@ thead th {
                                     <h4>List of Items</h4>
                                 </div>
                                 <div class="card-content">
-                                    <a href="newitem.php" class="btn btn-success" data-original-title style="float: right"> Create New Item </a>
+                                    <a href="<?php echo base_url(); ?>adminNewItem" class="btn btn-success" data-original-title style="float: right"> Create New Item </a>
                                     <br>
                                     <br>
                                     <div class="card-content table-responsive">
