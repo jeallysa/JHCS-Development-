@@ -25,7 +25,111 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
 </head>
+<style>
+    /*
+        td.highlight {
+            background-color: whitesmoke !important;
+        }
+*/
 
+    .table thead,
+    thead th {
+        text-align: center;
+        font-size: 120%;
+    }
+    /* Custom Style */
+
+    .onoffswitch {
+        position: relative;
+        width: 110px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+
+    .onoffswitch-checkbox {
+        display: none;
+    }
+
+    .onoffswitch-label {
+        display: block;
+        overflow: hidden;
+        cursor: pointer;
+        border: 2px solid #999999;
+        border-radius: 20px;
+    }
+
+    .onoffswitch-inner {
+        display: block;
+        width: 200%;
+        margin-left: -100%;
+        -moz-transition: margin 0.3s ease-in 0s;
+        -webkit-transition: margin 0.3s ease-in 0s;
+        -o-transition: margin 0.3s ease-in 0s;
+        transition: margin 0.3s ease-in 0s;
+    }
+
+    .onoffswitch-inner:before,
+    .onoffswitch-inner:after {
+        display: block;
+        float: left;
+        width: 50%;
+        height: 30px;
+        padding: 0;
+        line-height: 30px;
+        font-size: 14px;
+        color: white;
+        font-family: Trebuchet, Arial, sans-serif;
+        font-weight: bold;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .onoffswitch-inner:before {
+        content: " Enabled";
+        padding-left: 10px;
+        background-color: #2FCCFF;
+        color: #FFFFFF;
+    }
+
+    .onoffswitch-inner:after {
+        content: "Disabled";
+        padding-right: 10px;
+        background-color: #EEEEEE;
+        color: #999999;
+        text-align: right;
+    }
+
+    .onoffswitch-switch {
+        display: block;
+        width: 18px;
+        margin: 7px;
+        background: #FFFFFF;
+        border: 2px solid #999999;
+        border-radius: 20px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 70px;
+        -moz-transition: all 0.3s ease-in 0s;
+        -webkit-transition: all 0.3s ease-in 0s;
+        -o-transition: all 0.3s ease-in 0s;
+        transition: all 0.3s ease-in 0s;
+    }
+
+    .onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-inner {
+        margin-left: 0;
+    }
+
+    .onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-switch {
+        right: 0px;
+    }
+
+    .navbar {
+        background-color: chartreuse;
+    }
+    </style>
 <body>
     <div class="wrapper">
         <div class="sidebar" data-color="green" data-image="<?php echo base_url(); ?>assets/img/sidebar-1.jpg">
@@ -43,12 +147,6 @@
                             <i class="material-icons">dashboard</i>
                             
                             <p>Dashboard</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url(); ?>adminItemList">
-                            <i class="material-icons">list</i>
-                            <p>Item</p>
                         </a>
                     </li>
                     <li class = "active">
@@ -125,6 +223,186 @@
                     </div>
                 </div>
             </nav>
+            <div class="modal fade" id="stock" tabindex="1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign" ></span> Adjust Stock Limit</h4>
+                        </div>
+                        <form action="#" method="post" accept-charset="utf-8">
+                            <div class="modal-body" style="padding-left: 100px;">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            <label for="type">(Item Name)</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="example-number-input" class="col-2 col-form-label">Stock Limit</label>
+                                    <div class="col-10">
+                                        <input class="form-control" type="number" value="100" id="example-number-input">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="example-number-input" class="col-2 col-form-label">Reorder Level</label>
+                                    <div class="col-10">
+                                        <input class="form-control" type="number" value="1000" id="example-number-input">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="panel-footer" style="margin-bottom:-14px;">
+                                        <input type="submit" class="btn btn-success" value="Add" style="float: right;" />
+                                        <!--<span class="glyphicon glyphicon-ok"></span>-->
+                                        <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="newblend" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading" >
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span> Add New Blend </h4>
+                        </div>
+                        <form action="#" method="post" accept-charset="utf-8">
+                            <div class="modal-body" style="padding: 5px;">
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Blend Name</label>
+                                            <input class="form-control" type="text" name="" placeholder="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Price Per Unit</label>
+                                            <input class="form-control" type="number" name="" placeholder="" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Stock Limit</label>
+                                            <input class="form-control" type="text" name="" placeholder="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Reorder Level</label>
+                                            <input class="form-control" type="number" name="" placeholder="" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div id="field">
+                                    <div class="input" id="field1">
+                                        <div class="col-md-6">
+                                            <select class="form-control" name="coffee">
+                                                <option value="">Guatemala Rainforest</option>
+                                                <option value="">Cordillera Sunrise</option>
+                                                <option value="">Sumatra Night</option>
+                                                <option value="">Espresso</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input class="form-control" type="number" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button id="b1" class="btn btn-success add-more " type="button">+</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                </div>
+                            </div>
+                            <div class="panel-footer" style="margin-bottom:-14px;">
+                                <input type="submit" class="btn btn-success" value="Add" />
+                                <!--<span class="glyphicon glyphicon-ok"></span>-->
+                                <input type="reset" class="btn btn-danger" value="Clear" />
+                                <!--<span class="glyphicon glyphicon-remove"></span>-->
+                                <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="updateblend" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading" >
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span> Update Blend </h4>
+                        </div>
+                        <form action="#" method="post" accept-charset="utf-8">
+                            <div class="modal-body" style="padding: 5px;">
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Blend Name</label>
+                                            <input class="form-control" type="text" name="" placeholder="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Price Per Unit</label>
+                                            <input class="form-control" type="number" name="" placeholder="" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Size</label>
+                                            <input class="form-control" type="text" name="" placeholder="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Packaging</label>
+                                            <input class="form-control" type="number" name="" placeholder="" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div id="field">
+                                    <div class="input" id="field1">
+                                        <div class="col-md-6">
+                                            <select class="form-control" name="coffee">
+                                                <option value="">Guatemala Rainforest</option>
+                                                <option value="">Cordillera Sunrise</option>
+                                                <option value="">Sumatra Night</option>
+                                                <option value="">Espresso</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input class="form-control" type="number" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button id="b1" class="btn btn-success add-more " type="button">+</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                </div>
+                            </div>
+                            <div class="panel-footer" style="margin-bottom:-14px;">
+                                <input type="submit" class="btn btn-success" value="Add" />
+                                <!--<span class="glyphicon glyphicon-ok"></span>-->
+                                <input type="reset" class="btn btn-danger" value="Clear" />
+                                <!--<span class="glyphicon glyphicon-remove"></span>-->
+                                <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -166,92 +444,6 @@
                                                     <input type="submit" class="btn btn-success" value="Change Price" />
                                                     <!--<span class="glyphicon glyphicon-ok"></span>-->
                                                     
-                                                    <!--<span class="glyphicon glyphicon-remove"></span>-->
-                                                    <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal fade" id="newblend" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="panel panel-primary">
-                                            <div class="panel-heading" >
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span> Add New Blend </h4>
-                                            </div>
-                                            <form action="#" method="post" accept-charset="utf-8">
-                                                <div class="modal-body" style="padding: 5px;">
-                                                    <div class="row">
-                                                        <div class="col-md-6 form-group">
-                                                            <div class="form-group label-floating">
-                                                                <label for="email">Blend Name</label>
-                                                                <input class="form-control" type="text" name="" placeholder="" />
-                                                            </div>
-                                                        </div>
-                                                        
-                                                    
-                                                        
-                                                        <div class="col-lg-6 form-group">
-                                                            <div class="form-group label-floating">
-                                                                <label for="email">Price Per Unit</label>
-                                                                <input class="form-control" type="number" name="" placeholder="" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <hr>
-                                                    <h3><b><center>Proportions</center></b><h3>
-                                                     <div class="row">
-                                                        <div class="col-md-6 form-group">
-                                                            <div class="form-group label-floating">
-                                                                <label for="email">Coffee A</label>
-                                                                <input class="form-control" type="number" name="" placeholder="grams" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6 form-group">
-                                                            <div class="form-group label-floating">
-                                                                <label for="email">Coffee B</label>
-                                                                <input class="form-control" type="number" name="" placeholder="grams" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-6 form-group">
-                                                            <div class="form-group label-floating">
-                                                                <label for="email">Coffee C</label>
-                                                                <input class="form-control" type="number" name="" placeholder="grams" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6 form-group">
-                                                            <div class="form-group label-floating">
-                                                                <label for="email">Coffee D</label>
-                                                                <input class="form-control" type="number" name="" placeholder="grams" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-6 form-group">
-                                                            <div class="form-group label-floating">
-                                                                <label for="email">Coffee E</label>
-                                                                <input class="form-control" type="number" name="" placeholder="grams" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6 form-group">
-                                                            <div class="form-group label-floating">
-                                                                <label for="email">Coffee F</label>
-                                                                <input class="form-control" type="number" name="" placeholder="grams" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    
-                                                    <div class="row">
-                                                    </div>
-                                                </div>
-                                                <div class="panel-footer" style="margin-bottom:-14px;">
-                                                    <input type="submit" class="btn btn-success" value="Add" />
-                                                    <!--<span class="glyphicon glyphicon-ok"></span>-->
-                                                    <input type="reset" class="btn btn-danger" value="Clear" />
                                                     <!--<span class="glyphicon glyphicon-remove"></span>-->
                                                     <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
                                                 </div>
@@ -311,95 +503,36 @@
                                     <a class="btn btn-success" data-toggle="modal" data-target="#newblend" data-original-title style="float: right">Add New Blend</a>
                                     <table id="example" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
-                                            <th><b class="pull-left">Type of Blend</b></th>
-                                            <th><b class="pull-left">Raw Coffee A</b></th>
-                                            <th><b class="pull-left">Raw Coffee B</b></th>
-                                            <th><b class="pull-left">Raw Coffee C</b></th>
-                                            <th><b class="pull-left">Raw Coffee D</b></th>
-                                            <th><b class="pull-left">Raw Coffee E</b></th>
-                                            <th><b class="pull-left">Raw Coffee F</b></th>
-                                            <th><b class="pull-left">Action</b></th>
+                                            <th><b class="pull-left">Blend Name</b></th>
+                                            <th><b class="pull-left">Blend Information</b></th>
+                                            <th><b class="pull-left">Size</b></th>
+                                            <th><b class="pull-left">Packaging</b></th>
+                                            <th><b class="pull-left">Price Per Unit</b></th>
+                                            <th class="disabled-sorting"><b>Adjust Stock Limit</b></th>
+                                            <th><b class="pull-left">Update Blends Details</b></th>
+                                            <th><b class="pull-left">Activation</b></th>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td>Blend A</td>
-                                                <td></td>
-                                                <td>30%</td>
-                                                <td>50%</td>
-                                                <td>20%</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td> <a class="btn btn-success" data-toggle="modal" data-target="#contact" data-original-title >Change Price</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Blend B</td>
-                                                <td></td>
-                                                <td>10%</td>
-                                                <td>10%</td>
-                                                <td>50%</td>
-                                                <td>10%</td>
-                                                <td>20%</td>
-                                                <td> <a class="btn btn-success" data-toggle="modal" data-target="#contact" data-original-title >Change Price</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Blend C</td>
-                                                <td>10%</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>50%</td>
-                                                <td></td>
-                                                <td>40%</td>
-                                                <td> <a class="btn btn-success" data-toggle="modal" data-target="#contact" data-original-title >Change Price</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Blend D</td>
-                                                <td>30%</td>
-                                                <td></td>
-                                                <td>40%</td>
-                                                <td>20%</td>
-                                                <td>10%</td>
-                                                <td></td>
-                                                <td> <a class="btn btn-success" data-toggle="modal" data-target="#contact" data-original-title >Change Price</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Blend E</td>
-                                                <td>30%</td>
-                                                <td>20%</td>
-                                                <td>20%</td>
-                                                <td></td>
-                                                <td>20%</td>
-                                                <td>10%</td>
-                                                <td> <a class="btn btn-success" data-toggle="modal" data-target="#contact" data-original-title >Change Price</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Blend F</td>
-                                                <td></td>
-                                                <td>50%</td>
-                                                <td>20%</td>
-                                                <td></td>
-                                                <td>30%</td>
-                                                <td></td>
-                                                <td> <a class="btn btn-success" data-toggle="modal" data-target="#contact" data-original-title >Change Price</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Blend G</td>
-                                                <td>40%</td>
-                                                <td>10%</td>
-                                                <td>20%</td>
-                                                <td>30%</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td> <a class="btn btn-success" data-toggle="modal" data-target="#contact" data-original-title >Change Price</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Blend H</td>
-                                                <td></td>
-                                                <td>30%</td>
-                                                <td>20%</td>
-                                                <td>30%</td>
-                                                <td>20%</td>
-                                                <td></td>
-                                                <td> <a class="btn btn-success" data-toggle="modal" data-target="#contact" data-original-title >Change Price</a></td>
+                                                <td>Guatamela - 30%</td>
+                                                <td>250</td>
+                                                <td>Clear</td>
+                                                <td>350</td>
+                                                </td>
+                                                <td> <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a></td>
+                                                <td>
+                                                    <a class="btn btn-warning btn-sm" data-toggle="modal" style="margin-top: 0px" data-toggle="modal" data-target="#updateblend" data-original-title>Update Info</a>
+                                                </td>
+                                                <td>
+                                                    <div class="onoffswitch">
+                                                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+                                                        <label class="onoffswitch-label" for="myonoffswitch">
+                                                            <span class="onoffswitch-inner"></span>
+                                                            <span class="onoffswitch-switch"></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -407,42 +540,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <footer class="footer">
-                    <div class="container-fluid">
-                        <nav class="pull-left">
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                    Home
-                                </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                    Company
-                                </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                    Portfolio
-                                </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                    Blog
-                                </a>
-                                </li>
-                            </ul>
-                        </nav>
-                        <p class="copyright pull-right">
-                            &copy;
-                            <script>
-                            document.write(new Date().getFullYear())
-                            </script>
-                            <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-                        </p>
-                    </div>
-                </footer>
+                </div>  
             </div>
         </div>
     </div>
@@ -489,6 +587,36 @@ $(document).ready(function() {
 
     // Javascript method's body can be found in assets/js/demos.js
     demo.initDashboardPageCharts();
+
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+    var next = 1;
+    $(".add-more").click(function(e) {
+        e.preventDefault();
+        var addto = "#field" + next;
+        var addRemove = "#field" + (next);
+        next = next + 1;
+        var newIn = '<div class="input" id="field' + next + '"><div class="col-md-6"><select class="form-control" name="coffee"><option value="">Guatemala Rainforest</option><option value="">Cordillera Sunrise</option><option value="">Sumatra Night</option><option value="">Espresso</option></select></div><div class="col-md-4"><input class="form-control" name="coffeeType" type="number" required /> </div></div>';
+        var newInput = $(newIn);
+        var removeBtn = ' <button id="remove' + (next - 1) + '" class="btn btn-danger remove-me" >-</button></div><div id="field">';
+        var removeButton = $(removeBtn);
+        $(addto).after(newInput);
+        $(addRemove).after(removeButton);
+        $("#field" + next).attr('data-source', $(addto).attr('data-source'));
+        $("#count").val(next);
+
+        $('.remove-me').click(function(e) {
+            e.preventDefault();
+            var fieldNum = this.id.charAt(this.id.length - 1);
+            var fieldID = "#field" + fieldNum;
+            $(this).remove();
+            $(fieldID).remove();
+        });
+    });
+
+
 
 });
 </script>

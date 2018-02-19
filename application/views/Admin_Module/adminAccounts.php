@@ -157,12 +157,6 @@
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(); ?>adminItemList">
-                            <i class="material-icons">list</i>
-                            <p>Item</p>
-                        </a>
-                    </li>
-                    <li>
                         <a href="<?php echo base_url(); ?>adminProductInventory">
                             <i class="material-icons">assessment</i>
                             <p>Inventory</p>
@@ -411,106 +405,48 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>U1</td>
-                                                    <td>Fernandez</td>
-                                                    <td>Mariella</td>
-                                                    <td>Manager</td>
-                                                    <td>Liwanag Loakan</td>
-                                                    <td>2153118@slu.edu.ph</td>
-                                                    <td>09174131225</td>
-                                                    <td>
+                                                
+                                                <?php
+                                                if($fetch_data->num_rows() > 0){
+
+                                                    foreach ($fetch_data -> result() as $row) 
+                                                    {
+                                                ?>
+                                                    <tr>
+                                                        <td>UA-<?php echo $row->account_id; ?></td>
+                                                        <td><?php echo $row->last_name; ?></td>
+                                                        <td><?php echo $row->first_name; ?></td>
+                                                        <td><?php echo $row->position; ?></td>
+                                                        <td><?php echo $row->address; ?></td>
+                                                        <td><?php echo $row->email; ?></td>
+                                                        <td>0<?php echo $row->cellphone_number; ?></td>
+                                                        <td>
                                                         <span data-toggle="modal" data-target="#deactivate">
-                                                    <a href="#" class="deactivate" data-toggle="tooltip" data-placement="bottom" title="Deactivate"><i class="fa fa-close"></i></a> </span>
-                                                    <span data-toggle="modal" data-target="#archive">
-                                                    <a href="#" class="archive" data-toggle="tooltip" data-placement="bottom" title="Archive"><i class="fa fa-archive"></i></a></span>
-                                                    <span data-toggle="modal" data-target="#blacklist">
-                                                    <a href="#" class="blacklist" data-toggle="tooltip" data-placement="bottom" title="Blacklist"><i class="fa fa-ban"></i></a></span>
-                                                    </td>
-                                                    <td>
-                                                                <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
-                                                </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>U2</td>
-                                                    <td>Maslian</td>
-                                                    <td>Averey</td>
-                                                    <td>Sales Clerk</td>
-                                                    <td>Quirino Hill</td>
-                                                    <td>2152578@slu.edu.ph</td>
-                                                    <td>09174131225</td>
-                                                    <td>
-                                                        <span data-toggle="modal" data-target="#deactivate">
-                                                    <a href="#" class="deactivate" data-toggle="tooltip" data-placement="bottom" title="Deactivate"><i class="fa fa-close"></i></a> </span>
-                                                    <span data-toggle="modal" data-target="#archive">
-                                                    <a href="#" class="archive" data-toggle="tooltip" data-placement="bottom" title="Archive"><i class="fa fa-archive"></i></a> </span>
-                                                    <span data-toggle="modal" data-target="#blacklist">
-                                                    <a href="#" class="blacklist" data-toggle="tooltip" data-placement="bottom" title="Blacklist"><i class="fa fa-ban"></i></a></span>
-                                                    </td>
-                                                   <td>
-                                                                <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
-                                                </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>U3</td>
-                                                    <td>Dullao</td>
-                                                    <td>Jeanne</td>
-                                                    <td>Inventory Custodian</td>
-                                                    <td>Ambiong</td>
-                                                    <td>2155296@slu.edu.ph</td>
-                                                    <td>09174131225</td>
-                                                    <td>
-                                                        <span data-toggle="modal" data-target="#deactivate">
-                                                    <a href="#" class="deactivate" data-toggle="tooltip" data-placement="bottom" title="Deactivate"><i class="fa fa-close"></i></a> </span>
-                                                    <span data-toggle="modal" data-target="#archive">
-                                                    <a href="#" class="archive" data-toggle="tooltip" data-placement="bottom" title="Archive"><i class="fa fa-archive"></i></a> </span>
-                                                    <span data-toggle="modal" data-target="#blacklist">
-                                                    <a href="#" class="blacklist" data-toggle="tooltip" data-placement="bottom" title="Blacklist"><i class="fa fa-ban"></i></a> </span>
-                                                    </td>
-                                                    <td>
-                                                                <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
-                                                </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>U4</td>
-                                                    <td>Caguioa</td>
-                                                    <td>Christine</td>
-                                                    <td>Accountant</td>
-                                                    <td>Green Valley</td>
-                                                    <td>2152498@slu.edu.ph</td>
-                                                    <td>09174131225</td>
-                                                    <td>
-                                                        <span data-toggle="modal" data-target="#deactivate">
-                                                    <a href="#" class="deactivate" data-toggle="tooltip" data-placement="bottom" title="Deactivate"><i class="fa fa-close"></i></a> </span>
-                                                    <span data-toggle="modal" data-target="#archive">
-                                                    <a href="#" class="archive" data-toggle="tooltip" data-placement="bottom" title="Archive"><i class="fa fa-archive"></i></a> </span>
-                                                    <span data-toggle="modal" data-target="#blacklist">
-                                                    <a href="#" class="blacklist" data-toggle="tooltip" data-placement="bottom" title="Blacklist"><i class="fa fa-ban"></i></a> </span>
-                                                    </td>
-                                                    <td>
-                                                                <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
-                                                </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>U5</td>
-                                                    <td>Calpito</td>
-                                                    <td>Keiffer</td>
-                                                    <td>Delivery Man</td>
-                                                    <td>Liwanag Loakan</td>
-                                                    <td>2152579@slu.edu.ph</td>
-                                                    <td>09174131225</td> 
-                                                    <td>
-                                                        <span data-toggle="modal" data-target="#deactivate">
-                                                    <a href="#" class="deactivate" data-toggle="tooltip" data-placement="bottom" title="Deactivate"><i class="fa fa-close"></i></a> </span>
-                                                    <span data-toggle="modal" data-target="#archive">
-                                                    <a href="#" class="archive" data-toggle="tooltip" data-placement="bottom" title="Archive"><i class="fa fa-archive"></i></a> </span>
-                                                    <span data-toggle="modal" data-target="#blacklist">
-                                                    <a href="#" class="blacklist" data-toggle="tooltip" data-placement="bottom" title="Blacklist"><i class="fa fa-ban"></i></a>  </span>
-                                                    </td> 
-                                                    <td>
-                                                                <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
-                                                </td>
-                                                </tr>
+                                                        <a href="#" class="deactivate" data-toggle="tooltip" data-placement="bottom" title="Deactivate"><i class="fa fa-close"></i></a> </span>
+                                                        <span data-toggle="modal" data-target="#archive">
+                                                        <a href="#" class="archive" data-toggle="tooltip" data-placement="bottom" title="Archive"><i class="fa fa-archive"></i></a></span>
+                                                        <span data-toggle="modal" data-target="#blacklist">
+                                                        <a href="#" class="blacklist" data-toggle="tooltip" data-placement="bottom" title="Blacklist"><i class="fa fa-ban"></i></a></span>
+                                                        </td>
+                                                        <td>
+                                                                    <a href='#' class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
+                                                        </td>
+                                                    </tr>
+
+                                                <?php
+                                                    }
+
+                                                }
+                                                else{
+                                                ?>
+                                                    <tr>
+                                                        <td colspan = 9 style = "text-align: center;"> <h3>No users found</h3> </td>
+                                                    </tr>
+                                                <?php
+                                                }
+
+                                                ?>
+                                                
                                             </tbody>
                                         </table>
                                     </div>

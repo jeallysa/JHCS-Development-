@@ -160,12 +160,6 @@ thead th {
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(); ?>adminItemList">
-                            <i class="material-icons">list</i>
-                            <p>Item</p>
-                        </a>
-                    </li>
-                    <li>
                         <a href="<?php echo base_url(); ?>adminProductInventory">
                             <i class="material-icons">assessment</i>
                             <p>Inventory</p>
@@ -490,92 +484,50 @@ thead th {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>SN 1</td>
-                                                <td>La Festive Trading, Inc</td>
-                                                <td>Clear Bags</td>
-                                                <td>Aeneid Adversalo</td>
-                                                <td>Manager</td>
-                                                <td>Legarda</td>
-                                                <td>lafestive@gmail.com</td>
-                                                <td>442-1234</td>
-                                                <td>
-                                                    <span data-toggle="modal" data-target="#deactivate">
-                                                    <a href="#" class="deactivate" data-toggle="tooltip" data-placement="bottom" title="Deactivate"><i class="fa fa-close"></i></a> </span>
-                                                    <span data-toggle="modal" data-target="#archive">
-                                                    <a href="#" class="archive" data-toggle="tooltip" data-placement="bottom" title="Archive"><i class="fa fa-archive"></i></a> </span>
-                                                    <span data-toggle="modal" data-target="#blacklist">
-                                                    <a href="#" class="blacklist" data-toggle="tooltip" data-placement="bottom" title="Blacklist"><i class="fa fa-ban"></i></a></span>
-                                                </td>
-                                                 <td>
-                                                                <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>SN 2</td>
-                                                <td>Lila Enterprise</td>
-                                                <td>Stickers</td>
-                                                <td>Jeanne Dullao</td>
-                                                <td>Manager</td>
-                                                <td>Loakan Proper</td>
-                                                <td>lila1022@gmail.com</td>
-                                                <td>442-5248</td>
-                                                <td>
-                                                    <span data-toggle="modal" data-target="#deactivate">
-                                                    <a href="#" class="deactivate" data-toggle="tooltip" data-placement="bottom" title="Deactivate"><i class="fa fa-close"></i></a> </span>
-                                                    <span data-toggle="modal" data-target="#archive">
-                                                    <a href="#" class="archive" data-toggle="tooltip" data-placement="bottom" title="Archive"><i class="fa fa-archive"></i></a></span>
-                                                    <span data-toggle="modal" data-target="#blacklist">
-                                                    <a href="#" class="blacklist" data-toggle="tooltip" data-placement="bottom" title="Blacklist"><i class="fa fa-ban"></i></a> </span>
-                                                </td>
-                                                 <td>
-                                                                <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>SN 3</td>
-                                                <td>Lanz Trading, Inc</td>
-                                                <td>Machines</td>
-                                                <td>Tinz Caguioa</td>
-                                                <td>Manager</td>
-                                                <td>Labsan</td>
-                                                <td>lanz_01@gmail.com</td>
-                                                <td>442-5896</td>
-                                                <td>
-                                                    <span data-toggle="modal" data-target="#deactivate">
-                                                    <a href="#" class="deactivate" data-toggle="tooltip" data-placement="bottom" title="Deactivate"><i class="fa fa-close"></i></a> </span>
-                                                    <span data-toggle="modal" data-target="#archive">
-                                                    <a href="#" class="archive" data-toggle="tooltip" data-placement="bottom" title="Archive"><i class="fa fa-archive"></i></a> </span>
-                                                    <span data-toggle="modal" data-target="#blacklist">
-                                                    <a href="#" class="blacklist" data-toggle="tooltip" data-placement="bottom" title="Blacklist"><i class="fa fa-ban"></i></a> </span>
-                                                </td>
-                                                 <td>
-                                                                <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>SN 4</td>
-                                                <td>Tinz Enterprise</td>
-                                                <td>Raw Coffee Beans</td>
-                                                <td>Leo Malicdem</td>
-                                                <td>Manager</td>
-                                                <td>Quirino Hill</td>
-                                                <td>tinzenterprise@gmail.com</td>
-                                                <td>442-5895</td>
-                                                <td>
-                                                    <span data-toggle="modal" data-target="#deactivate">
-                                                    <a href="#" class="deactivate" data-toggle="tooltip" data-placement="bottom" title="Deactivate"><i class="fa fa-close"></i></a> </span>
-                                                    <span data-toggle="modal" data-target="#archive">
-                                                    <a href="#" class="archive" data-toggle="tooltip" data-placement="bottom" title="Archive"><i class="fa fa-archive"></i></a> </span>
-                                                    <span data-toggle="modal" data-target="#blacklist">
-                                                    <a href="#" class="blacklist" data-toggle="tooltip" data-placement="bottom" title="Blacklist"><i class="fa fa-ban"></i></a> </span>
-                                                </td>
-                                                 <td>
-                                                                <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                            </tr>
+                                            
+                                            
+                                            
+                                                <?php
+                                                    if($fetch_data->num_rows() > 0){
+
+                                                        foreach($fetch_data -> result() as $row)
+                                                        {
+                                                ?>
+                                                    <tr>
+                                                    <td>SP-<?php echo $row->supplier_id; ?></td>
+                                                    <td><?php echo $row->supplier_name; ?></td>
+                                                    <td>N/A</td>
+                                                    <td><?php echo $row->contact_personnel; ?></td>
+                                                    <td><?php echo $row->position; ?></td>
+                                                    <td><?php echo $row->address; ?></td>
+                                                    <td><?php echo $row->email_address; ?></td>
+                                                    <td><?php echo $row->telephone_number; ?></td>
+                                                    
+                                                    <td>
+                                                        <span data-toggle="modal" data-target="#deactivate">
+                                                        <a href="#" class="deactivate" data-toggle="tooltip" data-placement="bottom" title="Deactivate"><i class="fa fa-close"></i></a> </span>
+                                                        <span data-toggle="modal" data-target="#archive">
+                                                        <a href="#" class="archive" data-toggle="tooltip" data-placement="bottom" title="Archive"><i class="fa fa-archive"></i></a> </span>
+                                                        <span data-toggle="modal" data-target="#blacklist">
+                                                        <a href="#" class="blacklist" data-toggle="tooltip" data-placement="bottom" title="Blacklist"><i class="fa fa-ban"></i></a></span>
+                                                    </td>
+                                                     <td>
+                                                                    <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
+                                                    </td>
+                                                </tr>
+                                                <?php
+                                                 }
+
+                                                }
+                                                else{
+                                                ?>
+                                                    <tr>
+                                                        <td colspan = 10 style = "text-align: center;"> <h3>No users found</h3> </td>
+                                                    </tr>
+                                                <?php
+                                                }
+
+                                                ?>
                                         </tbody>
                                     </table>
                                 </div>

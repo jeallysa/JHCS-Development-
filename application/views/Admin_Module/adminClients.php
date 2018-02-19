@@ -162,12 +162,6 @@ thead th {
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(); ?>adminItemList">
-                            <i class="material-icons">list</i>
-                            <p>Item</p>
-                        </a>
-                    </li>
-                    <li>
                         <a href="<?php echo base_url(); ?>adminProductInventory">
                             <i class="material-icons">assessment</i>
                             <p>Inventory</p>
@@ -360,15 +354,22 @@ thead th {
                                         </thead>
                                         <tbody>
                                             
-                                            <tr>
-                                                <td>C1</td>
-                                                <td>The Legend Villas</td>
-                                                <td>Wholesale</td>
-                                                <td>Jesselyn Amagan</td>
-                                                <td>General Manager</td>
-                                                <td>Mandaluyong City</td>
-                                                <td>chef22@manor.com</td>
-                                                <td>442-4896</td>
+                                            
+                                                <?php
+                                                    if($fetch_data->num_rows() > 0){
+
+                                                        foreach($fetch_data -> result() as $row)
+                                                        {
+                                                ?>
+                                                <tr>
+                                                <td>CL-<?php echo $row->client_id; ?></td>
+                                                <td><?php echo $row->client_name; ?></td>
+                                                <td><?php echo $row->client_type; ?></td>
+                                                <td><?php echo $row->contact_personnel; ?></td>
+                                                <td><?php echo $row->position; ?></td>
+                                                <td><?php echo $row->address; ?></td>
+                                                <td><?php echo $row->email; ?></td>
+                                                <td><?php echo $row->telephone_no; ?></td>
                                                 <td>
                                                     <span data-toggle="modal" data-target="#deactivate">
                                                     <a href="#" class="deactivate" data-toggle="tooltip" data-placement="bottom" title="Deactivate"><i class="fa fa-close"></i></a> </span>
@@ -382,74 +383,21 @@ thead th {
                                                                 <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>C2</td>
-                                                <td>Point and Grill</td>
-                                                <td>Wholesale</td>
-                                                <td>Annysa Calpito</td>
-                                                <td>Manager</td>
-                                                <td>Session Road</td>
-                                                <td>maecalpito@gmail.com</td>
-                                                <td>442-4785</td>
-                                                <td>
-                                                    <span data-toggle="modal" data-target="#deactivate">
-                                                    <a href="#" class="deactivate" data-toggle="tooltip" data-placement="bottom" title="Deactivate"><i class="fa fa-close"></i></a> </span>
-                                                    <span data-toggle="modal" data-target="#archive">
-                                                    <a href="#" class="archive" data-toggle="tooltip" data-placement="bottom" title="Archive"><i class="fa fa-archive"></i></a> </span>
-                                                    <span data-toggle="modal" data-target="#blacklist">
-                                                    <a href="#" class="blacklist" data-toggle="tooltip" data-placement="bottom" title="Blacklist"><i class="fa fa-ban"></i></a> </span>
-                                                </td>
-                                                <td><a href="./addcontract.html" class="btn btn-sm btn-round" size="25">Contract</a></td>
-                                                 <td>
-                                                                <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>C3</td>
-                                                <td>De Vera Inn</td>
-                                                <td>Retail</td>
-                                                <td>Khalil Ramos</td>
-                                                <td>Manager</td>
-                                                <td>Aurora Hill</td>
-                                                <td>khalil22@gmail.com</td>
-                                                <td>442-4875</td>
-                                                <td>
-                                                    <span data-toggle="modal" data-target="#deactivate">
-                                                    <a href="#" class="deactivate" data-toggle="tooltip" data-placement="bottom" title="Deactivate"><i class="fa fa-close"></i></a> </span>
-                                                    <span data-toggle="modal" data-target="#archive">
-                                                    <a href="#" class="archive" data-toggle="tooltip" data-placement="bottom" title="Archive"><i class="fa fa-archive"></i></a> </span>
-                                                    <span data-toggle="modal" data-target="#blacklist">
-                                                    <a href="#" class="blacklist" data-toggle="tooltip" data-placement="bottom" title="Blacklist"><i class="fa fa-ban"></i></a> </span>
-                                                </td>
-                                                <td><a href="./addcontract.html" class="btn btn-sm btn-round" size="25">Contract</a></td>
-                                                 <td>
-                                                                <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>C4</td>
-                                                <td>Eurotel</td>
-                                                <td>Wholesale</td>
-                                                <td>James Reid</td>
-                                                <td>Manager</td>
-                                                <td>Legarda</td>
-                                                <td>jamesreid@gmail.com</td>
-                                                <td>442-5896</td>
-                                                <td>
-                                                    <span data-toggle="modal" data-target="#deactivate">
-                                                    <a href="#" class="deactivate" data-toggle="tooltip" data-placement="bottom" title="Deactivate"><i class="fa fa-close"></i></a> </span>
-                                                    <span data-toggle="modal" data-target="#archive">
-                                                    <a href="#" class="archive" data-toggle="tooltip" data-placement="bottom" title="Archive"><i class="fa fa-archive"></i></a> </span>
-                                                    <span data-toggle="modal" data-target="#blacklist">
-                                                    <a href="#" class="blacklist" data-toggle="tooltip" data-placement="bottom" title="Blacklist"><i class="fa fa-ban"></i></a> </span>
-                                                </td>
-                                                <td><a href="./addcontract.html" class="btn btn-sm btn-round" size="25">Contract</a></td>
-                                                 <td>
-                                                                <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                            </tr>
+
+                                            <?php
+                                                    }
+
+                                                }
+                                                else{
+                                                ?>
+                                                    <tr>
+                                                        <td colspan = 11 style = "text-align: center;"> <h3>No clients found</h3> </td>
+                                                    </tr>
+                                                <?php
+                                                }
+
+                                                ?>
+                                            
                                         </tbody>
                                     </table>
                                 </div>

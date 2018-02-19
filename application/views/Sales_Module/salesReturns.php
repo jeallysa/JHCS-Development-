@@ -215,18 +215,13 @@
 													</div>
 												</div>
 												<div class="card-content">
-													<div class="tab-content">
-														<div class="tab-pane active" id="coffeereturns">
-															<div class="card-header btn btn-primary btn-lg" data-background-color="green" data-toggle="modal" data-target="#add_coffee_return" data-original-title style="float:right;">
-																Add Return
-															</div>
-															<br>
-															<br>
-															 <table id="fresh-datatables" class="display table-striped table-hover cell-border" cellspacing="0" width="100%" style="width:100%">
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane active" id="coffeereturns">
+                                                             <table id="fresh-datatables" class="display table-striped table-hover cell-border" cellspacing="0" width="100%" style="width:100%">
                                                             <thead>
                                                                 <tr>
                                                                     <th><b>Client Return No.</b></th>
-																	<th><b>Delivery Receipt No.</b></th>
+                                                                    <th><b>Delivery Receipt No.</b></th>
                                                                     <th><b>Date of Return</b></th>
                                                                     <th><b>Quantity Returned</b></th>
                                                                     <th><b>Client</b></th>
@@ -238,65 +233,40 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
+                                                                <?php
+                                                                    foreach($data1['coffee'] as $row)
+                                                                    {
+                                                                ?>
                                                                 <tr>
-                                                                    <td>00001</td>
-																	<td>DR0123</td>
-                                                                    <td>October 1, 2017</td>
-																	<td>3</td>
-                                                                    <td>Client 1</td>
-                                                                    <td>Sumatra Night</td>
-                                                                    <td>Clear Bag</td>
-                                                                    <td>250 g</td>
-                                                                    
-                                                                    <td>Incorrect Blend</td>
+                                                                    <td><?php echo $row->client_coffReturnID; ?></td>
+                                                                    <td><?php echo $row->client_dr; ?></td>
+                                                                    <td><?php echo $row->coff_returnDate; ?></td>
+                                                                    <td><?php echo $row->coff_returnQty; ?></td>
+                                                                    <td><?php echo $row->client_company; ?></td>
+                                                                    <td>--</td>
+                                                                    <td>--</td>
+                                                                    <td>--</td>
+                                                                    <td><?php echo $row->coff_remarks; ?></td>
                                                                     <td>
                                                                         <button class="btn btn-danger btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#resolve_coffee">Resolve</button>
                                                                     </td>
                                                                 </tr>
-                                                                <tr>
-                                                                    <td>00002</td>
-																	<td>DR0124</td>
-                                                                    <td>October 3, 2017</td>
-																	<td>2</td>
-                                                                    <td>Client 2</td>
-                                                                    <td>Guatemala Rainforest</td>
-                                                                    <td>Brown Bag</td>
-                                                                    <td>500 g</td>
-                                                                    
-                                                                    <td>Incorrect Blend</td>
-                                                                    <td>
-                                                                        <button class="btn btn-danger btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#resolve_coffee">Resolve</button>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>00003</td>
-																	<td>DR0125</td>
-                                                                    <td>October 5, 2017</td>
-																	<td>1</td>
-                                                                    <td>Client 3</td>
-                                                                    <td>Cordillera Sunrise</td>
-                                                                    <td>Clear Bag</td>
-                                                                    <td>1000 g</td>
-                                                                    
-                                                                    <td>Incorrect Blend</td>
-                                                                    <td>
-                                                                        <button class="btn btn-danger  btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#resolve_coffee">Resolve</button>
-                                                                    </td>
-                                                                </tr>
+                                                                <?php
+                                                                    }
+                                                                ?>
                                                             </tbody>
                                                         </table>
-														</div>
-														<div class="tab-pane" id="machinereturn">
-															<div class="card-header btn btn-primary btn-lg" data-background-color="green" data-toggle="modal" data-target="#add_machine_return" data-original-title style="float:right;">
-																Add Return
-															</div>
-															<br>
-															<br>
-															 <table id="fresh-datatables" class="display table-striped table-hover cell-border" cellspacing="0" width="100%" style="width:100%">
+                                                        </div>
+                                                        <div class="tab-pane" id="machinereturn">
+                                                            <!--<div class="card-header btn btn-primary btn-lg" data-background-color="green" data-toggle="modal" data-target="#add_machine_return" data-original-title style="float:right;">
+                                                                Add Return
+                                                            </div>-->
+                                                            <br>
+                                                            <br>
+                                                            <table id="fresh-datatables" class="display table-striped table-hover cell-border" cellspacing="0" width="100%" style="width:100%">
                                                             <thead>
                                                                 <tr>
                                                                     <th><b>Client Return No.</b></th>
-																	<th><b>Delivery Receipt No.</b></th>
                                                                     <th><b>Date of Return</b></th>
                                                                     <th><b>Quantity Returned</b></th>
                                                                     <th><b>Client</b></th>
@@ -306,103 +276,107 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
+                                                                <?php
+                                                                    foreach($data2['machine'] as $row)
+                                                                    {
+                                                                ?>
                                                                 <tr>
-                                                                    <td>00001</td>
-																	<td>DR0123</td>
-                                                                    <td>October 1, 2017</td>
-																	<td>1</td>
-                                                                    <td>Client 10</td>
-                                                                    <td>Saeco</td>
-                                                                    <td>Damaged</td>
+                                                                    <td><?php echo $row->client_machReturnID; ?></td>
+                                                                    <td><?php echo $row->mach_returnDate; ?></td>
+                                                                    <td><?php echo $row->mach_returnQty; ?></td>
+                                                                    <td><?php echo $row->client_company; ?></td>
+                                                                    <td><?php echo $row->brewer; ?></td>
+                                                                    <td><?php echo $row->mach_remarks; ?></td>
                                                                     <td>
-                                                                        <button class="btn btn-danger btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#resolve_machine">Resolve</button>
+                                                                        <button class="btn btn-danger btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#resolve_coffee">Resolve</button>
                                                                     </td>
                                                                 </tr>
-                                                                <tr>
-                                                                    <td>00002</td>
-																	<td>DR0124</td>
-                                                                    <td>October 3, 2017</td>
-																	<td>2</td>
-                                                                    <td>Client 20</td>
-                                                                    <td>Machine B</td>                                                                  
-                                                                    <td>Damaged</td>
-                                                                    <td>
-                                                                        <button class="btn btn-danger btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#resolve_machine">Resolve</button>
-                                                                    </td>
-                                                                </tr>
+                                                                <?php
+                                                                    }
+                                                                ?>
                                                             </tbody>
                                                         </table>
-														</div>
-														<div class="tab-pane" id="deliveries">
-															<ul class="nav nav-tabs navbar-default justify-content-center" id="deliveries" >
-																<li class="active"><a href="#myTable1" data-toggle="tab" >Coffee</a></li>
-																<li><a href="#myTable2" data-toggle="tab">Machine</a></li>
-															</ul>
-															<div class="tab-content tab-color">
-																<div class="tab-pane active" id="myTable1">
-																	<table id="myTable1" class="display hover order-column cell-border" cellspacing="0" width="100%">
-																		<thead>
-																			<th><b>Client Return No.</b></th>
-																			<th><b class="pull-left">Delivery Receipt No.</b></th>
-																			<th><b class="pull-left">Date Delivered</b></th>
-																			<th><b class="pull-left">Coffee</b></th>
-																			<th><b class="pull-left">Bag</b></th>
-																			<th><b class="pull-left">Size</b></th>
-																			<th><b class="pull-left">Quantity Delivered</b></th>
-																			<th><b class="pull-left">Unit Price</b></th>
-																			<th><b class="pull-left">Total Amount</b></th>
-																			<th><b>Receiver</b></th>
-																			<th>Remarks</th>
-																		</thead>
-																		<tbody>
-																			<tr>
-																				<td>1946</td>
-																				<td>3246</td>
-																				<td>September 31, 2017</td>
-																				<td>Farmers Ground</td>
-																				<td>Brown</td>
-																				<td>250g</td>
-																				<td>175</td>
-																				<td>160</td>
-																				<td>Php 28,000.00</td>
-																				<td>Robin Hod</td>
-																				<th></th>
-																			</tr>
-																		</tbody>
-																	</table>
-																</div>
-																<div class="tab-pane fade" id="myTable2">
-																	<table id="myTable2" class="display hover order-column cell-border" cellspacing="0" width="100%">
-																		<thead>
-																		   <th><b>Client Return No.</b></th>
-																			<th><b>Delivery Receipt No.</b></th>
-																			<th><b>Date Delivered</b></th>
-																			<th><b>Quantity Delivered</b></th>
-																			<th><b>Client</b></th>
-																			<th><b>Machine</b></th>
-																			<th><b>Receiver</b></th>
-																			<th><b>Remarks</b></th>
-																		</thead>
-																		<tbody>
-																			<tr>
-																				<td>1946</td>
-																				<td>DR256</td>
-																				<td>September 31, 2017</td>
-																				<td>1</td>
-																				<td>Mike Aid</td>
-																				<td>Machine X</td>
-																				<td>Gen Lee</td>
-																				<th></th>
-																			</tr>
-																		</tbody>
-																	</table>
-																</div>
-															</div>
-															
+                                                        </div>
+                                                        <div class="tab-pane" id="deliveries">
+                                                            <ul class="nav nav-tabs navbar-default justify-content-center" id="deliveries" >
+                                                                <li class="active"><a href="#myTable1" data-toggle="tab" >Coffee</a></li>
+                                                                <li><a href="#myTable2" data-toggle="tab">Machine</a></li>
+                                                            </ul>
+                                                            <div class="tab-content tab-color">
+                                                                <div class="tab-pane active" id="myTable1">
+                                                                    <table id="myTable1" class="display hover order-column cell-border" cellspacing="0" width="100%">
+                                                                        <thead>
+                                                                            <th><b>Client Return No.</b></th>
+                                                                            <th><b class="pull-left">Delivery Receipt No.</b></th>
+                                                                            <th><b class="pull-left">Date Delivered</b></th>
+                                                                            <th><b class="pull-left">Coffee</b></th>
+                                                                            <th><b class="pull-left">Bag</b></th>
+                                                                            <th><b class="pull-left">Size</b></th>
+                                                                            <th><b class="pull-left">Quantity Delivered</b></th>
+                                                                            <th><b class="pull-left">Unit Price</b></th>
+                                                                            <th><b class="pull-left">Total Amount</b></th>
+                                                                            <th><b>Receiver</b></th>
+                                                                            <th>Remarks</th>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <?php
+                                                                                foreach($data3['resolved_coffee'] as $row)
+                                                                                {
+                                                                            ?>
+                                                                            <tr>
+                                                                                <td><?php echo $row->client_coffReturnID; ?></td>
+                                                                                <td><?php echo $row->client_dr; ?></td>
+                                                                                <td><?php echo $row->coff_returnDate; ?></td>
+                                                                                <td>--</td>
+                                                                                <td>--</td>
+                                                                                <td>--</td>
+                                                                                <td><?php echo $row->coff_returnQty; ?></td>
+                                                                                <td>--</td>
+                                                                                <td>--</td>
+                                                                                <td><?php echo $row->client_receive; ?></td>
+                                                                                <td><?php echo $row->coff_returnAction; ?></td>
+                                                                            </tr>
+                                                                            <?php
+                                                                                }
+                                                                            ?>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                                <div class="tab-pane fade" id="myTable2">
+                                                                    <table id="myTable2" class="display hover order-column cell-border" cellspacing="0" width="100%">
+                                                                        <thead>
+                                                                           <th><b>Client Return No.</b></th>
+                                                                            <th><b>Date Delivered</b></th>
+                                                                            <th><b>Quantity Delivered</b></th>
+                                                                            <th><b>Client</b></th>
+                                                                            <th><b>Machine</b></th>
+                                                                            <th><b>Remarks</b></th>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <?php
+                                                                                foreach($data4['resolved_machine'] as $row)
+                                                                                {
+                                                                            ?>
+                                                                            <tr>
+                                                                                <td><?php echo $row->client_machReturnID; ?> </td>
+                                                                                <td><?php echo $row->mach_returnDate; ?> </td>
+                                                                                <td><?php echo $row->mach_returnQty; ?> </td>
+                                                                                <td><?php echo $row->client_company; ?> </td>
+                                                                                <td><?php echo $row->brewer; ?> </td>
+                                                                                <td><?php echo $row->mach_returnAction; ?> </td>
+                                                                            </tr>
+                                                                            <?php
+                                                                                }
+                                                                            ?>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                            
 
-														</div>
-													</div>
-												</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 											</div>
 										</div>
                         </div>

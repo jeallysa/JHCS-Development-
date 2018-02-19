@@ -25,7 +25,111 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
 </head>
+<style>
+    /*
+        td.highlight {
+            background-color: whitesmoke !important;
+        }
+*/
 
+    .table thead,
+    thead th {
+        text-align: center;
+        font-size: 120%;
+    }
+    /* Custom Style */
+
+    .onoffswitch {
+        position: relative;
+        width: 110px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+
+    .onoffswitch-checkbox {
+        display: none;
+    }
+
+    .onoffswitch-label {
+        display: block;
+        overflow: hidden;
+        cursor: pointer;
+        border: 2px solid #999999;
+        border-radius: 20px;
+    }
+
+    .onoffswitch-inner {
+        display: block;
+        width: 200%;
+        margin-left: -100%;
+        -moz-transition: margin 0.3s ease-in 0s;
+        -webkit-transition: margin 0.3s ease-in 0s;
+        -o-transition: margin 0.3s ease-in 0s;
+        transition: margin 0.3s ease-in 0s;
+    }
+
+    .onoffswitch-inner:before,
+    .onoffswitch-inner:after {
+        display: block;
+        float: left;
+        width: 50%;
+        height: 30px;
+        padding: 0;
+        line-height: 30px;
+        font-size: 14px;
+        color: white;
+        font-family: Trebuchet, Arial, sans-serif;
+        font-weight: bold;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .onoffswitch-inner:before {
+        content: " Enabled";
+        padding-left: 10px;
+        background-color: #2FCCFF;
+        color: #FFFFFF;
+    }
+
+    .onoffswitch-inner:after {
+        content: "Disabled";
+        padding-right: 10px;
+        background-color: #EEEEEE;
+        color: #999999;
+        text-align: right;
+    }
+
+    .onoffswitch-switch {
+        display: block;
+        width: 18px;
+        margin: 7px;
+        background: #FFFFFF;
+        border: 2px solid #999999;
+        border-radius: 20px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 70px;
+        -moz-transition: all 0.3s ease-in 0s;
+        -webkit-transition: all 0.3s ease-in 0s;
+        -o-transition: all 0.3s ease-in 0s;
+        transition: all 0.3s ease-in 0s;
+    }
+
+    .onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-inner {
+        margin-left: 0;
+    }
+
+    .onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-switch {
+        right: 0px;
+    }
+
+    .navbar {
+        background-color: chartreuse;
+    }
+    </style>
 <body>
     <div class="wrapper">
         <div class="sidebar" data-color="green" data-image="<?php echo base_url(); ?>assets/img/sidebar-1.jpg">
@@ -43,12 +147,6 @@
                             <i class="material-icons">dashboard</i>
                             
                             <p>Dashboard</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url(); ?>adminItemList">
-                            <i class="material-icons">list</i>
-                            <p>Item</p>
                         </a>
                     </li>
                     <li class="active">
@@ -125,6 +223,183 @@
                     </div>
                 </div>
             </nav>
+            <div class="modal fade" id="newblend" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading" >
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span> Add New Machines</h4>
+                        </div>
+                        <form action="#" method="post" accept-charset="utf-8">
+                            <div class="modal-body" style="padding: 5px;">
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Machine Name</label>
+                                            <input class="form-control" type="text" name="" placeholder="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            
+                                            <label for="email">Supplier</label>
+                                            <select class="form-control" name="supplier" required>
+                                                <option value="">Supplier A</option>
+                                                <option value="">Supplier B</option>
+                                                <option value="">Supplier C</option>
+                                            </select>                  
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="">Stock Limit</label>
+                                            <input class="form-control" type="number" name="" placeholder="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="number">Reorder Level</label>
+                                            <input class="form-control" type="number" name="" placeholder="" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                </div>
+                            </div>
+                            <div class="panel-footer" style="margin-bottom:-14px;">
+                                <input type="submit" class="btn btn-success" value="Add" />
+                                <!--<span class="glyphicon glyphicon-ok"></span>-->
+                                <input type="reset" class="btn btn-danger" value="Clear" />
+                                <!--<span class="glyphicon glyphicon-remove"></span>-->
+                                <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="stock" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading" >
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span> Add New Sticker</h4>
+                        </div>
+                        <form action="#" method="post" accept-charset="utf-8">
+                            <div class="modal-body" style="padding: 5px;">
+                                <div class="row">
+                                    <div class="col-md-12 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Machine Name</label>
+                                            <input class="form-control" type="text" name="" placeholder="" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Reorder Level</label>
+                                            <input class="form-control" type="text" name="" placeholder="" disabled="" />
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Supplier</label>
+                                            <select class="form-control" name="supplier" required>
+                                                <option value="">Supplier A</option>
+                                                <option value="">Supplier B</option>
+                                                <option value="">Supplier C</option>
+                                            </select>                  
+                                        </div>
+                                    </div>
+                                </div>
+                                    <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Stock Limit</label>
+                                            <input class="form-control" type="text" name="" placeholder="" disabled="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Number of Stocks</label>
+                                            <input class="form-control" type="number" name="" placeholder="" disabled="" />
+                                        </div>
+                                    </div>
+                                        
+                                </div>
+                                 <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Price per Unit</label>
+                                            <input class="form-control" type="number" name="" placeholder="" disabled="" />
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            <div class="panel-footer" style="margin-bottom:-14px;">
+                                <input type="submit" class="btn btn-success" value="Add" />
+                                <!--<span class="glyphicon glyphicon-ok"></span>-->
+                                <input type="reset" class="btn btn-danger" value="Clear" />
+                                <!--<span class="glyphicon glyphicon-remove"></span>-->
+                                <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="updateblend" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading" >
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span> Update Machine</h4>
+                        </div>
+                        <form action="#" method="post" accept-charset="utf-8">
+                            <div class="modal-body" style="padding: 5px;">
+                                <div class="row">
+                                    <div class="col-md-4 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Machine Name</label>
+                                            <input class="form-control" type="text" name="" placeholder="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <div class="form-group label-floating">
+                                            
+                                            <label for="email">Supplier</label>
+                                            <select class="form-control" name="supplier" required>
+                                                <option value="">Supplier A</option>
+                                                <option value="">Supplier B</option>
+                                                <option value="">Supplier C</option>
+                                            </select>                  
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Price/Unit</label>
+                                            <input class="form-control" type="text" name="" placeholder="" disabled="" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                </div>
+                            </div>
+                            <div class="panel-footer" style="margin-bottom:-14px;">
+                                <input type="submit" class="btn btn-success" value="Add" />
+                                <!--<span class="glyphicon glyphicon-ok"></span>-->
+                                <input type="reset" class="btn btn-danger" value="Clear" />
+                                <!--<span class="glyphicon glyphicon-remove"></span>-->
+                                <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -179,6 +454,7 @@
                                     </div>
                                 </div>
                                 <div class="card-content">
+                                    <a class="btn btn-success" data-toggle="modal" data-target="#stock" data-original-title style="float: right">Add New Machine</a>
                                     <table id="example" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
                                             <th><b class="pull-left">Machine</b></th>
@@ -186,6 +462,10 @@
                                             <th><b class="pull-left">Stock Limit</b></th>
                                             <th><b class="pull-left">Supplier</b></th>
                                             <th><b class="pull-left">Number of Stocks </b></th>
+                                            <th><b class="pull-left">Price/Unit</b></th>
+                                            <th><b class="pull-left">Adjust Limit</b></th>
+                                            <th><b class="pull-left">Change Details</b></th>
+                                            <th><b class="pull-left">Activation</b></th>
                                         </thead>
                                         <tbody>
                                             <tr>
@@ -194,6 +474,22 @@
                                                 <td>20</td>
                                                 <td>Supplier A</td>
                                                 <td>9</td>
+                                                <td>1500</td>
+                                                <td>
+                                                    <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#updateblend">Edit Info</a>
+                                                </td>
+                                                <td>
+                                                    <div class="onoffswitch">
+                                                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+                                                        <label class="onoffswitch-label" for="myonoffswitch">
+                                                            <span class="onoffswitch-inner"></span>
+                                                            <span class="onoffswitch-switch"></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td>Machine B</td>
@@ -201,6 +497,22 @@
                                                 <td>20</td>
                                                 <td>Supplier B</td>
                                                 <td>15</td>
+                                                <td>1200</td>
+                                                <td>
+                                                    <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#updateblend">Edit Info</a>
+                                                </td>
+                                                <td>
+                                                    <div class="onoffswitch">
+                                                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+                                                        <label class="onoffswitch-label" for="myonoffswitch">
+                                                            <span class="onoffswitch-inner"></span>
+                                                            <span class="onoffswitch-switch"></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td>Machine C</td>
@@ -208,69 +520,22 @@
                                                 <td>20</td>
                                                 <td>Supplier C</td>
                                                 <td>10</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Machine D</td>
-                                                <td>5</td>
-                                                <td>20</td>
-                                                <td>Supplier D</td>
-                                                <td>12</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Machine E</td>
-                                                <td>5</td>
-                                                <td>20</td>
-                                                <td>Supplier E</td>
-                                                <td>7</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Machine F</td>
-                                                <td>5</td>
-                                                <td>20</td>
-                                                <td>Supplier F</td>
-                                                <td>9</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Machine G</td>
-                                                <td>5</td>
-                                                <td>20</td>
-                                                <td>Supplier G</td>
-                                                <td>6</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Machine H</td>
-                                                <td>5</td>
-                                                <td>20</td>
-                                                <td>Supplier H</td>
-                                                <td>8</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Machine I</td>
-                                                <td>5</td>
-                                                <td>20</td>
-                                                <td>Supplier I</td>
-                                                <td>17</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Machine J</td>
-                                                <td>5</td>
-                                                <td>20</td>
-                                                <td>Supplier J</td>
-                                                <td>14</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Machine K</td>
-                                                <td>5</td>
-                                                <td>20</td>
-                                                <td>Supplier K</td>
-                                                <td>13</td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Total</b></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>120</td>
+                                                <td>1300</td>
+                                                <td>
+                                                    <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#updateblend">Edit Info</a>
+                                                </td>
+                                                <td>
+                                                    <div class="onoffswitch">
+                                                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+                                                        <label class="onoffswitch-label" for="myonoffswitch">
+                                                            <span class="onoffswitch-inner"></span>
+                                                            <span class="onoffswitch-switch"></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>

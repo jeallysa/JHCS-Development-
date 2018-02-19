@@ -161,32 +161,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <?php
+                                                if($fetch_data->num_rows() > 0){
+                                                    foreach ($fetch_data -> result() as $row) 
+                                                {
+                                            ?>
                                             <tr>
-                                                <td>Oct 3, 2017 9:11:00</td>
-                                                <td>Lani</td>
-                                                <td>Activity 1</td>
+                                                <td><?php echo $row->timestamp; ?></td>
+                                                <td><?php echo $row->name; ?></td>
+                                                <td><?php echo $row->message; ?></td>
                                             </tr>
-                                            <tr>
-                                                <td>Oct 7, 2017 11:28:00</td>
-                                                <td>Lani</td>
-                                                <td>Activity 2</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Oct 11, 2017 13:35:00</td>
-                                                <td>Lani</td>
-                                                <td>Activity 3</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Oct 15, 2017 15:49:00</td>
-                                                <td>Lani</td>
-                                                <td>Activity 4</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Oct 18, 2017 16:59:00</td>
-                                                <td>Lani</td>
-                                                <td>Activity 5</td>
-                                            </tr>
-                                        </tbody>
+
+                                            <?php
+                                                    }
+
+                                                }
+                                                else{
+                                                ?>
+                                                    <tr>
+                                                        <td colspan = 9 style = "text-align: center;"> <h3>No logs found</h3> </td>
+                                                    </tr>
+                                                <?php
+                                                }
+
+                                                ?>
+                                       </tbody>
                                     </table>
                                 </div>
                             </div>

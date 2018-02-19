@@ -8,7 +8,9 @@
 		
 		public function index()
 		{ 
-			$this->load->view('Sales_Module/salesClients');
+			$this->load->model('SalesClients_model');
+			$data['clients'] = $this->SalesClients_model->get_clients_list();
+			$this->load->view('Sales_Module/salesClients', $data);
 		}
 		public function salesClientsInfo()
 		{
