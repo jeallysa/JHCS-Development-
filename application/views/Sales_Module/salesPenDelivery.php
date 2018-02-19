@@ -167,7 +167,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-content">
+                                 <div class="card-content">
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="purchaseorder">
                                             <table id="" class="display hover order-column cell-border" cellspacing="0" width="100%">
@@ -185,6 +185,29 @@
                                                     <th><b class="pull-left">Delivery Status</b></th>
                                                 </thead>
                                                 <tbody>
+                                                    <?php
+                                                        foreach($data1['get_delivery_list'] as $row)
+                                                        {
+                                                            
+                                                    ?>
+                                                    
+                                                    <tr>
+                                                        <td><?php echo $row->contractPO_no; ?></td>
+                                                        <td><?php echo $row->client_company; ?></td>
+                                                        <td>--</td>
+                                                        <td>--</td>
+                                                        <td>--</td>
+                                                        <td>--</td>
+                                                        <td>--</td>
+                                                        <td>--</td>
+                                                        <td>--</td>
+                                                        <td><?php echo $row->contractPO_date; ?></td>
+                                                        <td><?php echo $row->delivery_stat; ?></td>
+                                                    </tr>
+                                                    
+                                                    <?php
+                                                        }
+                                                    ?>
                                                     <tr>
                                                         <td>PO2563</td>
                                                         <td>Mario's</td>
@@ -238,8 +261,35 @@
                                                     <th><b class="pull-left">Total Amount</b></th>
                                                     <th><b>Received By</b></th>
                                                     <th>Remarks</th>
+                                                    <th></th>
                                                 </thead>
                                                 <tbody>
+                                                    <?php 
+                                                        foreach($data2['get_delivered'] as $row)
+                                                        {
+                                                    ?>
+                                                    <tr>
+                                                        <td><?php echo $row->client_dr; ?></td>
+                                                        <td><?php echo $row->client_invoice; ?></td>
+                                                        <td>--</td>
+                                                        <td><?php echo $row->contractPO_no; ?></td>
+                                                        <td><?php echo $row->client_deliverDate; ?></td>
+                                                        <td><?php echo $row->client_company; ?></td>
+                                                        <td>--</td>
+                                                        <td>--</td>
+                                                        <td><?php echo $row->contractPO_qty; ?></td>
+                                                        <td>--</td>
+                                                        <td>--</td>
+                                                        <td><?php echo $row->client_receive; ?></td>
+                                                        <td><?php echo $row->payment_remarks; ?></td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#add_coffee_return">Add Return</button>
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                    <?php
+                                                        }
+                                                    ?>
                                                     <tr>
                                                         <td>1946</td>
                                                         <td>3246</td>
@@ -257,6 +307,9 @@
                                                             <center>
                                                                 <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#drbalance">Unpaid</button>
                                                             </center>
+                                                        </td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#add_coffee_return">Add Return</button>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -277,6 +330,24 @@
                                                     <th><b class="pull-left">Remarks</b></th>
                                                 </thead>
                                                 <tbody>
+                                                    <?php 
+                                                        foreach($data3['get_paid'] as $row)
+                                                        {
+                                                    ?>
+                                                    <tr>
+                                                        <td><?php echo $row->collection_no; ?></td>
+                                                        <td><?php echo $row->client_dr; ?></td>
+                                                        <td><?php echo $row->client_company; ?></td>
+                                                        <td><?php echo $row->payment_mode; ?></td>
+                                                        <td><?php echo $row->paid_date; ?></td>
+                                                        <td><?php echo $row->paid_amount; ?></td>
+                                                        <td><?php echo $row->gross_amount; ?></td>
+                                                        <td><?php echo $row->withheld; ?></td>
+                                                        <td><?php echo $row->payment_remarks; ?></td>
+                                                    </tr>
+                                                    <?php 
+                                                        }
+                                                    ?>
                                                     <tr>
                                                         <td>CR0502</td>
                                                         <td>DR0502</td>

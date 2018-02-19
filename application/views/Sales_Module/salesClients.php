@@ -152,12 +152,20 @@
                                                 <th></th>
                                             </thead>
                                             <tbody>
+                                            <?php
+                                                    foreach($clients as $row)
+                                                    {
+                                                ?>
                                                 <tr>
-                                                    <td>The Legend Villas</td>
-                                                    <td>Pizza Volante</td>
+                                                    <td><?php echo $row->client_company; ?></td>
+                                                    <td><?php echo $row->client_type; ?></td>
                                                     <td><a href="<?php echo base_url(); ?>salesClients/salesClientsInfo" class="btn btn-primary btn-round btn-sm">View Details<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></td>
                                                     <td><div class="btn btn-primary btn-sm" data-background-color="green" data-toggle="modal" data-target="#PurchaseOrder"> Purchase Order</div></td>
                                                 </tr>
+                                                <?php
+                                                    }
+                                                ?>
+                                                
                                             </tbody>
                                         </table>
                                     </div>
