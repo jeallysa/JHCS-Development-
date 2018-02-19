@@ -166,19 +166,6 @@
                                                 <td>138.09</td>
                                                 <td>Retail</td>
                                             </tr>
-                                            <tr>
-                                                <td>2943</td>
-                                                <td>3747</td>
-                                                <td>Oct 2, 2017</td>
-                                                <td>Bloomfield Hotel/Patch Cafe</td>
-                                                <td>Bloomfield Beans</td>
-                                                <td>clear</td>
-                                                <td>500 g</td>
-                                                <td>24</td>
-                                                <td>492.80</td>
-                                                <td>11,827.20</td>
-                                                <td>Coffee Services</td>
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
