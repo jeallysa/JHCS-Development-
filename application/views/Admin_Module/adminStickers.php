@@ -149,12 +149,6 @@
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="<?php echo base_url(); ?>adminItemList">
-                            <i class="material-icons">list</i>
-                            <p>Item</p>
-                        </a>
-                    </li>
                     <li class="active">
                         <a href="<?php echo base_url(); ?>adminProductInventory">
                             <i class="material-icons">assessment</i>
@@ -286,41 +280,64 @@
                     </div>
                 </div>
             </div>
-             <div class="modal fade" id="stock" tabindex="1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+            <div class="modal fade" id="stock" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="panel panel-primary">
-                        <div class="panel-heading">
+                        <div class="panel-heading" >
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign" ></span> Adjust Stock Limit</h4>
+                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span> Add New Sticker</h4>
                         </div>
                         <form action="#" method="post" accept-charset="utf-8">
-                            <div class="modal-body" style="padding-left: 100px;">
+                            <div class="modal-body" style="padding: 5px;">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12 form-group">
                                         <div class="form-group label-floating">
-                                            <label for="type">(Item Name)</label>
+                                            <label for="email">Sticker Name</label>
+                                            <input class="form-control" type="text" name="" placeholder="" />
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="example-number-input" class="col-2 col-form-label">Stock Limit</label>
-                                    <div class="col-10">
-                                        <input class="form-control" type="number" value="100" id="example-number-input">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="example-number-input" class="col-2 col-form-label">Reorder Level</label>
-                                    <div class="col-10">
-                                        <input class="form-control" type="number" value="1000" id="example-number-input">
-                                    </div>
-                                </div>
                                 <div class="row">
-                                    <div class="panel-footer" style="margin-bottom:-14px;">
-                                        <input type="submit" class="btn btn-success" value="Add" style="float: right;" />
-                                        <!--<span class="glyphicon glyphicon-ok"></span>-->
-                                        <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Reorder Level</label>
+                                            <input class="form-control" type="text" name="" placeholder="" disabled="" />
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Supplier</label>
+                                            <select class="form-control" name="supplier" required>
+                                                <option value="">Supplier A</option>
+                                                <option value="">Supplier B</option>
+                                                <option value="">Supplier C</option>
+                                            </select>                  
+                                        </div>
                                     </div>
                                 </div>
+                                    <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Stock Limit</label>
+                                            <input class="form-control" type="text" name="" placeholder="" disabled="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Number of Stocks</label>
+                                            <input class="form-control" type="number" name="" placeholder="" disabled="" />
+                                        </div>
+                                    </div>
+                                        
+                                </div>
+                                </div>
+                            <div class="panel-footer" style="margin-bottom:-14px;">
+                                <input type="submit" class="btn btn-success" value="Add" />
+                                <!--<span class="glyphicon glyphicon-ok"></span>-->
+                                <input type="reset" class="btn btn-danger" value="Clear" />
+                                <!--<span class="glyphicon glyphicon-remove"></span>-->
+                                <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
                             </div>
                         </form>
                     </div>
@@ -429,7 +446,7 @@
                                     </div>
                                 </div>
                                 <div class="card-content">
-                                    <a class="btn btn-success" data-toggle="modal" data-target="#newblend" data-original-title style="float: right">Add New Sticker</a>
+                                    <a class="btn btn-success" data-toggle="modal" data-target="#stock" data-original-title style="float: right">Add New Sticker</a>
                                     <table id="example" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
                                             <th><b class="pull-left">Sticker</b></th>
@@ -437,7 +454,6 @@
                                             <th><b class="pull-left">Stock Limit (pc)</b></th>
                                             <th><b class="pull-left">Supplier</b></th>
                                             <th><b class="pull-left">Number of Stocks (pc)</b></th>
-                                            <th><b class="pull-left">Price/Unit</b></th>
                                             <th><b class="pull-left">Adjust Limit</b></th>
                                             <th><b class="pull-left">Change Details</b></th>
                                             <th><b class="pull-left">Activation</b></th>
@@ -449,7 +465,6 @@
                                                 <td>300</td>
                                                 <td>Supplier A</td>
                                                 <td>60</td>
-                                                <td>50</td>
                                                 <td>
                                                     <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a>
                                                 </td>
@@ -472,7 +487,6 @@
                                                 <td>400</td>
                                                 <td>supplier B</td>
                                                 <td>100</td>
-                                                <td>50</td>
                                                 <td>
                                                     <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a>
                                                 </td>
@@ -495,7 +509,6 @@
                                                 <td>500</td>
                                                 <td>supplier B</td>
                                                 <td>250</td>
-                                                <td>50</td>
                                                 <td>
                                                     <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a>
                                                 </td>
@@ -518,7 +531,6 @@
                                                 <td>400</td>
                                                 <td>supplier B</td>
                                                 <td>91</td>
-                                                <td>50</td>
                                                 <td>
                                                     <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a>
                                                 </td>
@@ -541,7 +553,6 @@
                                                 <td>400</td>
                                                 <td>supplier B</td>
                                                 <td>120</td>
-                                                <td>50</td>
                                                 <td>
                                                     <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a>
                                                 </td>
@@ -564,7 +575,6 @@
                                                 <td>300</td>
                                                 <td>supplier B</td>
                                                 <td>100</td>
-                                                <td>50</td>
                                                 <td>
                                                     <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a>
                                                 </td>

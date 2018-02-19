@@ -151,12 +151,6 @@ thead th {
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="<?php echo base_url(); ?>adminItemList">
-                            <i class="material-icons">list</i>
-                            <p>Item</p>
-                        </a>
-                    </li>
                     <li class="active">
                         <a href="<?php echo base_url(); ?>adminProductInventory">
                             <i class="material-icons">assessment</i>
@@ -411,6 +405,68 @@ thead th {
                     </div>
                 </div>
             </div>
+         <div class="modal fade" id="newrawcoffee" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading" >
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span> Add New Raw Coffee</h4>
+                        </div>
+                        <form action="#" method="post" accept-charset="utf-8">
+                            <div class="modal-body" style="padding: 5px;">
+                                <div class="row">
+                                    <div class="col-md-12 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Name</label>
+                                            <input class="form-control" type="text" name="" placeholder="" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                     <div class="col-lg-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Reorder Level</label>
+                                            <input class="form-control" type="number" name="" placeholder="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Stock Limit</label>
+                                            <input class="form-control" type="number" name="" placeholder="" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                     <div class="col-lg-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Supplier</label>
+                                            <select class="form-control" name="supplier" required>
+                                                <option value="">Supplier A</option>
+                                                <option value="">Supplier B</option>
+                                                <option value="">Supplier C</option>
+                                            </select>                  
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Number of Stocks</label>
+                                            <input class="form-control" type="text" name="" placeholder="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-footer" style="margin-bottom:-14px;">
+                                <input type="submit" class="btn btn-success" value="Add" />
+                                <!--<span class="glyphicon glyphicon-ok"></span>-->
+                                <input type="reset" class="btn btn-danger" value="Clear" />
+                                <!--<span class="glyphicon glyphicon-remove"></span>-->
+                                <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -438,7 +494,7 @@ thead th {
                                                         Client Blends 
                                                         <div class="ripple-container"></div>
                                                     </a>
-                                                </li>
+                                             </li>
                                                 <span></span>
                                                 <li>
                                                     <a href="<?php echo base_url(); ?>adminPackaging">
@@ -465,7 +521,7 @@ thead th {
                                     </div>
                                 </div>
                                 <div class="card-content">
-                                    <a class="btn btn-success" data-toggle="modal" data-target="#newblend" data-original-title style="float: right">Add New Raw Coffee</a>
+                                    <a class="btn btn-success" data-toggle="modal" data-target="#newrawcoffee" data-original-title style="float: right">Add New Raw Coffee</a>
                                     <table id="example" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
                                             <th><b class="pull-left">Name</b></th>

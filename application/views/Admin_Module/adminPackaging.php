@@ -149,12 +149,6 @@
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="<?php echo base_url(); ?>adminItemList">
-                            <i class="material-icons">list</i>
-                            <p>Item</p>
-                        </a>
-                    </li>
                     <li class="active">
                         <a href="<?php echo base_url(); ?>adminProductInventory">
                             <i class="material-icons">assessment</i>
@@ -239,15 +233,14 @@
                         <form action="#" method="post" accept-charset="utf-8">
                             <div class="modal-body" style="padding: 5px;">
                                 <div class="row">
-                                    <div class="col-md-4 form-group">
+                                    <div class="col-md-12 form-group">
                                         <div class="form-group label-floating">
                                             <label for="email">Packaging Name</label>
                                             <input class="form-control" type="text" name="" placeholder="" />
                                         </div>
                                     </div>
-                                    <div class="col-md-4 form-group">
+                                    <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
-                                            
                                             <label for="email">Supplier</label>
                                             <select class="form-control" name="supplier" required>
                                                 <option value="">Supplier A</option>
@@ -256,35 +249,34 @@
                                             </select>                  
                                         </div>
                                     </div>
-                                    <div class="col-md-4 form-group">
+                                    <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
-                                            <label for="email">Grams</label>
+                                            <label for="email">Size</label>
                                             <input class="form-control" type="text" name="" placeholder="" />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-4 form-group">
+                                    <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
                                             <label for="email">Reorder Level</label>
                                             <input class="form-control" type="text" name="" placeholder="" disabled="" />
                                         </div>
                                     </div>
-                                    <div class="col-md-4 form-group">
+                                    <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
                                             <label for="email">Stock Limit</label>
                                             <input class="form-control" type="text" name="" placeholder="" disabled="" />
                                         </div>
                                     </div>
-                                    <div class="col-md-4 form-group">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
-                                            <label for="email">Price/Unit</label>
-                                            <input class="form-control" type="text" name="" placeholder="" disabled="" />
+                                            <label for="email">Number of Stocks</label>
+                                            <input class="form-control" type="number" name="" placeholder="" disabled="" />
                                         </div>
                                     </div>
-                                </div>
-                                <hr>
-                                <div class="row">
                                 </div>
                             </div>
                             <div class="panel-footer" style="margin-bottom:-14px;">
@@ -369,14 +361,8 @@
                                 <div class="row">
                                     <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
-                                            <label for="email">Grams</label>
+                                            <label for="email">Size</label>
                                             <input class="form-control" type="text" name="" placeholder="" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="email">Price/Unit</label>
-                                            <input class="form-control" type="text" name="" placeholder="" disabled="" />
                                         </div>
                                     </div>
                                 </div>
@@ -454,11 +440,10 @@
                                         <thead>
                                             <th><b class="pull-left">Type</b></th>
                                             <th><b class="pull-left">Supplier</b></th>
-                                            <th><b class="pull-left">Grams</b></th>
+                                            <th><b class="pull-left">Size</b></th>
                                             <th><b class="pull-left">Reorder Level (pc)</b></th>
                                             <th><b class="pull-left">Stock Limit (pc)</b></th>
-                                            <th><b class="pull-left">Number of stocks (pc)</b></th>
-                                            <th><b class="pull-left">Price/Unit</b></th>                                            
+                                            <th><b class="pull-left">Number of stocks (pc)</b></th>                                         
                                             <th><b class="pull-left">Adjust Limit</b></th>
                                             <th><b class="pull-left">Change Details</b></th>
                                             <th><b class="pull-left">Activation</b></th>
@@ -472,7 +457,6 @@
                                                 <td>200</td>
                                                 <td>1000</td>
                                                 <td>800</td>
-                                                <td>20</td>
                                                 <td>
                                                     <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a>
                                                 </td>
@@ -496,7 +480,6 @@
                                                 <td>200</td>
                                                 <td>1000</td>
                                                 <td>700</td>
-                                                <td>20</td>
                                                 <td>
                                                     <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a>
                                                 </td>
@@ -520,7 +503,6 @@
                                                 <td>200</td>
                                                 <td>1000</td>
                                                 <td>800</td>
-                                                <td>20</td>
                                                 <td>
                                                     <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a>
                                                 </td>

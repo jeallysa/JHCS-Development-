@@ -40,12 +40,6 @@
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(); ?>adminItemList">
-                            <i class="material-icons">list</i>
-                            <p>Item</p>
-                        </a>
-                    </li>
-                    <li>
                         <a href="<?php echo base_url(); ?>adminProductInventory">
                             <i class="material-icons">assessment</i>
                             <p>Inventory</p>
@@ -250,55 +244,6 @@
                                             </tr>
                                         </tbody>
                             </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <div class="card">
-                        <div class="card-header" data-background-color="green">
-                            <h4 class="title">Client Statistics</h4>
-                            <p class="category">Year 2017</p>
-                        </div>
-                        <div class="card-content table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th><b>Name of Client</b></th>
-                                        <th><b>Percentage</b></th>
-                                        <th><b>Amount</b></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Le Chef</td>
-                                        <td>50%</td>
-                                        <td>250000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Manila Sales</td>
-                                        <td>28%</td>
-                                        <td>140000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>The Manor Hotel</td>
-                                        <td>22%</td>
-                                        <td>110000</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="card">
-                        <div class="card-header" data-background-color="green">
-                            <h4 class="title">Pie Graph</h4>
-                            <p class="category">Chart Representation</p>
-                        </div>
-                        <div class="card-content table-responsive">
-                            <div id="chartContainer" style="height: 220px; width: 100%;"></div>
                         </div>
                     </div>
                 </div>
