@@ -26,11 +26,71 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" >
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' type='text/css'>
 </head>
-<style>
+    <style>
+    /*
+		td.highlight {
+			background-color: whitesmoke !important;
+		}
+*/
 .title {
     font-size: large;
 }
-</style>
+		.table thead,
+		thead th {
+			text-align: center;
+		}
+		.table tbody, tbody td{
+			text-align: center;
+		}
+		.navbar-default { 
+			text-align: center !important;
+			
+		}
+		.navbar-default > li.active > a, .navbar-default > li.active > a:focus, .navbar-default > li.active > a:hover {
+			border-top: 1px solid #75DAE2 !important;
+			border-right: 1px solid #75DAE2 !important;
+			border-left: 1px solid #75DAE2 !important;
+			border-bottom: transparent !important;
+			background-color: #75DAE2 !important;
+			color: white !important;
+		}
+		.navbar-default > li.active > a {
+			color: white!important; 
+			float: none !important;
+			display: inline-block!important;
+		}
+		.navbar-default > li > a, .navbar-default > li > a:hover {
+			border: none;
+			color: #75DAE2 !important; 
+			background: transparent; 
+		}
+		.navbar-default > li > a::after {
+			content: "";
+			background: transparent; 
+			height: 2px; 
+			position: absolute; 
+			width: 100%; 
+			left: 0px;
+			bottom: -1px;
+			transition: all 250ms ease 0s;
+			transform: scale(0); 
+			color: white;
+		}
+		.navbar-default > li.active > a::after, .navbar-default > li:hover > a::after {
+			transform: scale(1); 
+		}
+		.tab-nav > li > a::after {
+			background: #21527d none repeat scroll 0% 0%; color: #fff;
+		}
+		.tab-pane { 
+			padding: 15px 0;
+		}
+		.tab-color{	
+			padding:20px;
+			border-top: 3px solid #75DAE2;
+			border-left: 2px solid #75DAE2;
+		}
+    </style>
 
 <body>
     <div class="wrapper">
@@ -165,110 +225,102 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </div>
                                 </div>
                                 <div class="card-content">
-                                    <div class="card-content table-responsive">
-                                        <div class="col-md-12 col-md-offset-0">
-                                            <div class="fresh-datatables">
+                                    <ul class="nav nav-tabs navbar-default justify-content-center">
+                                        <li class="active"><a href="#coffee">Coffee</a></li>
+                                        <li><a href="#machine">Machine</a></li>
+                                    </ul>
                                                 <!--  Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange, full-color-purple, full-color-gray
-                                    Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange, toolbar-color-purple, toolbar-color-gray -->      
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 text-center">
-                                        <h3><b>Coffee</b></h3>
-                                        <hr>
-                                    </div>
-                                        <table id="" class="table hover order-column" cellspacing="0" width="100%">
-                                            <thead>
-                                                <tr>
-                                                    <th><b>Delivery Receipt No.</b></th>
-                                                    <th><b>Client Return No.</b></th>
-                                                    <th><b>Date Returned</b></th>
-                                                    <th><b>Client</b></th>
-                                                    <th><b>Coffee</b></th>
-                                                    <th><b>Bag</b></th>
-                                                    <th><b>Grams</b></th>
-                                                    <th><b>Quantity</b></th>
-                                                    <th><b>Remarks</b></th>
-                                                    <th><b>Action Taken</b></th>
-                                                    <th><b>Status</b></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1020</td>
-                                                    <td>00001</td>
-                                                    <td>Oct 1, 2017</td>
-                                                    <td>Client 1</td>
-                                                    <td>Sumatra Night</td>
-                                                    <td>Clear Bag</td>
-                                                    <td>250 g</td>
-                                                    <td>3</td>
-                                                    <td>Incorrect Blend</td>
-                                                    <td>Added to Sample</td>
-                                                    <td>Resolved</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>1030</td>
-                                                    <td>00002</td>
-                                                    <td>Oct 3, 2017</td>
-                                                    <td>Client 2</td>
-                                                    <td>Guatemala Rainforest</td>
-                                                    <td>Brown Bag</td>
-                                                    <td>500 g</td>
-                                                    <td>2</td>
-                                                    <td>Spoiled</td>
-                                                    <td>Disposed</td>
-                                                    <td>Resolved</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                        <div class="row">
-                                            <div class="col-lg-12 col-md-12 col-sm-12 text-center">
-                                                <h3><b>Machine</b></h3>
-                                                <hr>
-                                            </div>
-                                                <table id="" class="table hover order-column" cellspacing="0" width="100%">
-                                                    <thead>
-                                                        <tr>
-                                                            <th><b>Delivery Receipt No.</b></th>
-                                                            <th><b>Client Return No.</b></th>
-                                                            <th><b>Date Returned</b></th>
-                                                            <th><b>Client</b></th>
-                                                            <th><b>Machine</b></th>
-                                                            <th><b>Quantity</b></th>
-                                                            <th><b>Remarks</b></th>
-                                                            <th><b>Action Taken</b></th>
-                                                            <th><b>Status</b></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>2352</td>
-                                                            <td>1524</td>
-                                                            <td>Dec 9, 2017</td>
-                                                            <td>Client 1</td>
-                                                            <td>Machine A</td>
-                                                            <td>2</td>
-                                                            <td>Damaged</td>
-                                                            <td>Repaired</td>
-                                                            <td>Resolved</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>5345</td>
-                                                            <td>3245</td>
-                                                            <td>Dec 10, 2017</td>
-                                                            <td>Client 2</td>
-                                                            <td>Machine B</td>
-                                                            <td>1</td>
-                                                            <td>Damaged</td>
-                                                            <td>Repaired</td>
-                                                            <td>Resolved</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange, toolbar-color-purple, toolbar-color-gray --> 
+                                            <div class="tab-content tab-color">
+																<div class="tab-pane active" id="coffee">
+																	<table id="" class="display hover order-column cell-border" cellspacing="0" width="100%">
+																		<thead>
+                                                                            <tr>
+                                                                                <th><b>Delivery Receipt No.</b></th>
+                                                                                <th><b>Client Return No.</b></th>
+                                                                                <th><b>Date Returned</b></th>
+                                                                                <th><b>Client</b></th>
+                                                                                <th><b>Coffee</b></th>
+                                                                                <th><b>Bag</b></th>
+                                                                                <th><b>Grams</b></th>
+                                                                                <th><b>Quantity</b></th>
+                                                                                <th><b>Remarks</b></th>
+                                                                                <th><b>Action Taken</b></th>
+                                                                                <th><b>Status</b></th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>1020</td>
+                                                                                <td>00001</td>
+                                                                                <td>Oct 1, 2017</td>
+                                                                                <td>Client 1</td>
+                                                                                <td>Sumatra Night</td>
+                                                                                <td>Clear Bag</td>
+                                                                                <td>250 g</td>
+                                                                                <td>3</td>
+                                                                                <td>Incorrect Blend</td>
+                                                                                <td>Added to Sample</td>
+                                                                                <td>Resolved</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>1030</td>
+                                                                                <td>00002</td>
+                                                                                <td>Oct 3, 2017</td>
+                                                                                <td>Client 2</td>
+                                                                                <td>Guatemala Rainforest</td>
+                                                                                <td>Brown Bag</td>
+                                                                                <td>500 g</td>
+                                                                                <td>2</td>
+                                                                                <td>Spoiled</td>
+                                                                                <td>Disposed</td>
+                                                                                <td>Resolved</td>
+                                                                            </tr>
+                                                                        </tbody>
+																	</table>
+																</div>
+																<div class="tab-pane fade" id="machine">
+																	<table id="" class="display hover order-column cell-border" cellspacing="0" width="100%">
+																		<thead>
+                                                                            <tr>
+                                                                                <th><b>Delivery Receipt No.</b></th>
+                                                                                <th><b>Client Return No.</b></th>
+                                                                                <th><b>Date Returned</b></th>
+                                                                                <th><b>Client</b></th>
+                                                                                <th><b>Machine</b></th>
+                                                                                <th><b>Quantity</b></th>
+                                                                                <th><b>Remarks</b></th>
+                                                                                <th><b>Action Taken</b></th>
+                                                                                <th><b>Status</b></th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>2352</td>
+                                                                                <td>1524</td>
+                                                                                <td>Dec 9, 2017</td>
+                                                                                <td>Client 1</td>
+                                                                                <td>Machine A</td>
+                                                                                <td>2</td>
+                                                                                <td>Damaged</td>
+                                                                                <td>Repaired</td>
+                                                                                <td>Resolved</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>5345</td>
+                                                                                <td>3245</td>
+                                                                                <td>Dec 10, 2017</td>
+                                                                                <td>Client 2</td>
+                                                                                <td>Machine B</td>
+                                                                                <td>1</td>
+                                                                                <td>Damaged</td>
+                                                                                <td>Repaired</td>
+                                                                                <td>Resolved</td>
+                                                                            </tr>
+                                                                        </tbody>
+																	</table>
+																</div>
+															</div>
                                 </div>
                             </div>
                         </div>
@@ -305,7 +357,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?php echo base_url(); ?>assets/js/jquery.datatables.js"></script>
 <script>
 $(document).ready(function() {
-    $('table.table').DataTable();
+    $('table.display').DataTable();
 });
 </script>
 

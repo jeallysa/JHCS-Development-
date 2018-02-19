@@ -162,62 +162,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <br>
                                     <table id="example" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
-                                            <th><b class="pull-left">Delivery Receipt No.</b></th>
-                                            <th><b class="pull-left">Tagging Number</b></th>
-                                            <th><b class="pull-left">Client</b></th>
-                                            <th><b class="pull-left">Date Installed</b></th>
-                                            <th><b class="pull-left">No. of machines installed</b></th>
-                                            <th><b class="pull-left">Remarks</b></th>
+                                            <th><b>Sales Invoice No.</b></th>
+                                            <th><b>Tagging Number</b></th>
+                                            <th><b>Client</b></th>
+                                            <th><b>Date Installed</b></th>
+                                            <th><b>No. of machines installed</b></th>
+                                            <th><b>Remarks</b></th>
                                         </thead>
                                         <tbody>
+                                            <?php
+                                                foreach($machineout as $row){
+                                            ?>
                                             <tr>
-                                                <td>12345</td>
-                                                <td>123456</td>
-                                                <td>Tazabelle</td>
-                                                <td>01/12/18</td>
-                                                <td>3</td>
-                                                <td>Rented</td>
+                                                <td><?php echo $row->mach_salesID; ?></td>
+                                                <td><?php echo $row->mach_tagNO; ?></td>
+                                                <td><?php echo $row->client_company; ?></td>
+                                                <td><?php echo $row->date_installed; ?></td>
+                                                <td><?php echo $row->mach_qty; ?></td>
+                                                <td><?php echo $row->remarks; ?></td>
                                             </tr>
-                                            <tr>
-                                                <td>23456</td>
-                                                <td>345554</td>
-                                                <td>Cafe Lupe</td>
-                                                <td>01/12/18</td>
-                                                <td>2</td>
-                                                <td>Rented</td>
-                                            </tr>
-                                            <tr>
-                                                <td>34567</td>
-                                                <td>345745</td>
-                                                <td>The Merry Cooks, Inc.</td>
-                                                <td>01/12/18</td>
-                                                <td>1</td>
-                                                <td>Sold</td>
-                                            </tr>
-                                            <tr>
-                                                <td>45678</td>
-                                                <td>653454</td>
-                                                <td>Patch Cafe</td>
-                                                <td>01/13/18</td>
-                                                <td>3</td>
-                                                <td>Rented</td>
-                                            </tr>
-                                            <tr>
-                                                <td>56789</td>
-                                                <td>464543</td>
-                                                <td>Connie's Kitchen</td>
-                                                <td>01/15/18</td>
-                                                <td>5</td>
-                                                <td>Rented</td>
-                                            </tr>
-                                            <tr>
-                                                <td>67890</td>
-                                                <td>452323</td>
-                                                <td>The Manor Hotel</td>
-                                                <td>01/15/18</td>
-                                                <td>2</td>
-                                                <td>Sold</td>
-                                            </tr>
+                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>

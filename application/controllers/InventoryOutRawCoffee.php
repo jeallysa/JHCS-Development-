@@ -8,7 +8,9 @@
 		
 		public function index()
 		{ 
-			$this->load->view('Inventory_Module/inventoryOutRawCoffee');
+			$this->load->model('InventoryOutRawCoffee_model');
+            $data['rawcoffeeout'] = $this->InventoryOutRawCoffee_model->get_rawcoffeeout();
+            $this->load->view('Inventory_Module/inventoryOutRawCoffee', $data);
 		}
 
 	}

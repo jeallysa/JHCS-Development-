@@ -182,7 +182,7 @@ label {
                                         <input type="date" name=""><br><br>
                                     <hr>
                                     <h4>Generate Inventory  Report</h4>
-                                    <table id="example" class="display table table-hover table-responsive" cellspacing="0" width="100%">
+                                    <table id="example" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
                                                 <th><b>Date Out</b></th>
