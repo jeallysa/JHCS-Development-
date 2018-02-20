@@ -340,8 +340,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <table id="machine" class="table hover order-column" cellspacing="0" width="100%">
                                                         <thead>
                                                             <tr>
-                                                                <th><b>Delivery Receipt No.</b></th>
                                                                 <th><b>Client Return No.</b></th>
+                                                                <th><b>Delivery Receipt No.</b></th>
                                                                 <th><b>Date Returned</b></th>
                                                                 <th><b>Client</b></th>
                                                                 <th><b>Machine</b></th>
@@ -352,28 +352,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+                                                            <?php 
+                                                        foreach($data3['get_clientmachinereturns'] as $row)
+                                                        {
+                                                    ?>
                                                             <tr>
-                                                                <td>2352</td>
-                                                                <td>1524</td>
-                                                                <td>Dec 9, 2017</td>
-                                                                <td>Client 1</td>
-                                                                <td>Machine A</td>
-                                                                <td>2</td>
-                                                                <td>Damaged</td>
-                                                                <td>Repaired</td>
-                                                                <td>Resolved</td>
+                                                                <td><?php echo $row->client_machReturnID; ?></td>
+                                                                <td><?php echo $row->client_dr; ?></td>
+                                                                <td><?php echo $row->mach_returnDate; ?></td>
+                                                                <td><?php echo $row->client_company; ?></td>
+                                                                <td><?php echo $row->mach_id; ?></td>
+                                                                <td><?php echo $row->mach_returnQty; ?></td>
+                                                                <td><?php echo $row->mach_remarks; ?></td>
+                                                                <td><?php echo $row->mach_returnAction; ?></td>
+                                                                <td><?php echo $row->status; ?></td>
                                                             </tr>
-                                                            <tr>
-                                                                <td>5345</td>
-                                                                <td>3245</td>
-                                                                <td>Dec 10, 2017</td>
-                                                                <td>Client 2</td>
-                                                                <td>Machine B</td>
-                                                                <td>1</td>
-                                                                <td>Damaged</td>
-                                                                <td>Repaired</td>
-                                                                <td>Resolved</td>
-                                                            </tr>
+                                                            <?php
+                                                        }
+                                                    ?>
                                                         </tbody>
                                                     </table>
                                                 </div>
