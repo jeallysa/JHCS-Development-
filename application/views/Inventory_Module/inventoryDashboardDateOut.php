@@ -149,15 +149,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </div>
                                 <div class="card-content">
                                     <p class="category">Raw Coffee</p>
-                                    <h3 class="title">18,750
+                                    <h3 class="title"> <?php echo $data1['rawcoffeestock']; ?>
                                         <small>grams</small>
                                     </h3>
                                 </div>
+                                <a href="<?php echo base_url(); ?>inventoryStocks">
                                 <div class="card-footer">
                                     <div class="stats">
                                         <i class="material-icons">date_range</i> Details
                                     </div>
                                 </div>
+                                </a>
+
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6">
@@ -167,15 +170,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </div>
                                 <div class="card-content">
                                     <p class="category">Packaging</p>
-                                    <h3 class="title">3,900
+                                    <h3 class="title"> <?php echo $data2['packagingstock']; ?>
                                         <small>pieces</small>
                                     </h3>
                                 </div>
+                                <a href="<?php echo base_url(); ?>inventoryPackaging">
                                 <div class="card-footer">
                                     <div class="stats">
                                         <i class="material-icons">date_range</i> Details
                                     </div>
                                 </div>
+                                </a>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6">
@@ -185,10 +190,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </div>
                                 <div class="card-content">
                                     <p class="category">Stickers</p>
-                                    <h3 class="title"> 850 <br>
+                                    <h3 class="title"> <?php echo $data3['stickerstock']; ?>
                                     <small>pieces</small>
                                     </h3>
                                 </div>
+                                <a href="<?php echo base_url(); ?>inventoryStickers">
                                 <div class="card-footer">
                                     <div class="stats">
                                         <i class="material-icons">date_range</i> Details
@@ -203,15 +209,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </div>
                                 <div class="card-content">
                                     <p class="category">Machines</p>
-                                    <h3 class="title">75<br>
+                                    <h3 class="title"> <?php echo $data4['machinestock']; ?>
                                     <small>pieces</small>
                                     </h3>
                                 </div>
+                                <a href="<?php echo base_url(); ?>inventoryMachines">
                                 <div class="card-footer">
                                     <div class="stats">
                                         <i class="material-icons">date_range</i> Details
                                     </div>
                                 </div>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -257,7 +265,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </div>
                                 <div class="card-content table-responsive">
                                     <table class="table table-hover" id="out">
-                                        <thead class="text-info">
+                                        <thead>
                                             <th><b>Date Out</b></th>
                                             <th><b>Client</b></th>
                                             <th><b>Grams</b></th>
@@ -270,7 +278,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <th><b>Coffee E</b></th>
                                             <th><b>Coffee F</b></th>
                                             <th><b>Packaging</b></th>
-                                            <th><b>Type of Service</b></th>
+                                            <th><b>Service Type</b></th>
                                         </thead>
                                         <tbody>
                                             <tr>

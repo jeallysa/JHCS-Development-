@@ -148,7 +148,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </div>
                                 <div class="card-content">
                                     <p class="category">Raw Coffee</p>
-                                    <h3 class="title">18,750
+                                    <h3 class="title"> <?php echo $data1['rawcoffeestock']; ?>
                                         <small>grams</small>
                                     </h3>
                                 </div>
@@ -169,7 +169,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </div>
                                 <div class="card-content">
                                     <p class="category">Packaging</p>
-                                    <h3 class="title">3,900
+                                    <h3 class="title"> <?php echo $data2['packagingstock']; ?>
                                         <small>pieces</small>
                                     </h3>
                                 </div>
@@ -189,7 +189,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </div>
                                 <div class="card-content">
                                     <p class="category">Stickers</p>
-                                    <h3 class="title"> 850
+                                    <h3 class="title"> <?php echo $data3['stickerstock']; ?>
                                     <small>pieces</small>
                                     </h3>
                                 </div>
@@ -208,7 +208,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </div>
                                 <div class="card-content">
                                     <p class="category">Machines</p>
-                                    <h3 class="title">75
+                                    <h3 class="title"> <?php echo $data4['machinestock']; ?>
                                     <small>pieces</small>
                                     </h3>
                                 </div>
