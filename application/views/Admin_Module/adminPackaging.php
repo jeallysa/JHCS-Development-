@@ -450,14 +450,17 @@
 
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Brown Bag</td>
-                                                <td>Supplier A</td>
-                                                <td>250 g</td>
-                                                <td>200</td>
-                                                <td>1000</td>
-                                                <td>800</td>
-                                                <td>
+                                             <?php 
+                                                foreach ($packaging as $row) {
+                                             ?>
+                                             <tr>
+                                                 <td><?php echo $row->package_type; ?></td>
+                                                 <td><?php echo $row->sup_company; ?></td>
+                                                 <td><?php echo $row->package_size; ?></td>
+                                                 <td><?php echo $row->package_reorder; ?></td>
+                                                 <td><?php echo $row->package_limit; ?></td>
+                                                 <td><?php echo $row->package_stock; ?></td>
+                                                 <td>
                                                     <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a>
                                                 </td>
                                                 <td>
@@ -472,53 +475,11 @@
                                                         </label>
                                                     </div>
                                                 </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Brown Bag</td>
-                                                <td>Supplier B</td>
-                                                <td>500 g</td>
-                                                <td>200</td>
-                                                <td>1000</td>
-                                                <td>700</td>
-                                                <td>
-                                                    <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a>
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#updateblend">Edit Info</a>
-                                                </td>
-                                                <td>
-                                                    <div class="onoffswitch">
-                                                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                                                        <label class="onoffswitch-label" for="myonoffswitch">
-                                                            <span class="onoffswitch-inner"></span>
-                                                            <span class="onoffswitch-switch"></span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Brown Bag</td>
-                                                <td>Supplier C</td>
-                                                <td>1000 g</td>
-                                                <td>200</td>
-                                                <td>1000</td>
-                                                <td>800</td>
-                                                <td>
-                                                    <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a>
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#updateblend">Edit Info</a>
-                                                </td>
-                                                <td>
-                                                    <div class="onoffswitch">
-                                                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                                                        <label class="onoffswitch-label" for="myonoffswitch">
-                                                            <span class="onoffswitch-inner"></span>
-                                                            <span class="onoffswitch-switch"></span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                             </tr>
+                                             <?php 
+                                                }
+                                              ?>
+                                            
                                         </tbody>
                                     </table>
                                 </div>

@@ -459,12 +459,16 @@
                                             <th><b class="pull-left">Activation</b></th>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Coffee A Sticker</td>
-                                                <td>20</td>
-                                                <td>300</td>
-                                                <td>Supplier A</td>
-                                                <td>60</td>
+                                          
+                                             <?php 
+                                                foreach ($stickers as $row) {
+                                             ?>
+                                             <tr>
+                                                 <td><?php echo $row->sticker; ?></td>
+                                                 <td><?php echo $row->sticker_reorder; ?></td>
+                                                 <td><?php echo $row->sticker_limit; ?></td>
+                                                 <td><?php echo $row->sup_company; ?></td>
+                                                 <td><?php echo $row->sticker_stock; ?></td>
                                                 <td>
                                                     <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a>
                                                 </td>
@@ -480,117 +484,11 @@
                                                         </label>
                                                     </div>
                                                 </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Coffee B Sticker</td>
-                                                <td>20</td>
-                                                <td>400</td>
-                                                <td>supplier B</td>
-                                                <td>100</td>
-                                                <td>
-                                                    <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a>
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#updateblend">Edit Info</a>
-                                                </td>
-                                                <td>
-                                                    <div class="onoffswitch">
-                                                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                                                        <label class="onoffswitch-label" for="myonoffswitch">
-                                                            <span class="onoffswitch-inner"></span>
-                                                            <span class="onoffswitch-switch"></span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Coffee C Sticker</td>
-                                                <td>100</td>
-                                                <td>500</td>
-                                                <td>supplier B</td>
-                                                <td>250</td>
-                                                <td>
-                                                    <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a>
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#updateblend">Edit Info</a>
-                                                </td>
-                                                <td>
-                                                    <div class="onoffswitch">
-                                                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                                                        <label class="onoffswitch-label" for="myonoffswitch">
-                                                            <span class="onoffswitch-inner"></span>
-                                                            <span class="onoffswitch-switch"></span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Coffee D Sticker</td>
-                                                <td>50</td>
-                                                <td>400</td>
-                                                <td>supplier B</td>
-                                                <td>91</td>
-                                                <td>
-                                                    <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a>
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#updateblend">Edit Info</a>
-                                                </td>
-                                                <td>
-                                                    <div class="onoffswitch">
-                                                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                                                        <label class="onoffswitch-label" for="myonoffswitch">
-                                                            <span class="onoffswitch-inner"></span>
-                                                            <span class="onoffswitch-switch"></span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Coffee E Sticker</td>
-                                                <td>80</td>
-                                                <td>400</td>
-                                                <td>supplier B</td>
-                                                <td>120</td>
-                                                <td>
-                                                    <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a>
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#updateblend">Edit Info</a>
-                                                </td>
-                                                <td>
-                                                    <div class="onoffswitch">
-                                                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                                                        <label class="onoffswitch-label" for="myonoffswitch">
-                                                            <span class="onoffswitch-inner"></span>
-                                                            <span class="onoffswitch-switch"></span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Coffee F Sticker</td>
-                                                <td>50</td>
-                                                <td>300</td>
-                                                <td>supplier B</td>
-                                                <td>100</td>
-                                                <td>
-                                                    <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a>
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#updateblend">Edit Info</a>
-                                                </td>
-                                                <td>
-                                                    <div class="onoffswitch">
-                                                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                                                        <label class="onoffswitch-label" for="myonoffswitch">
-                                                            <span class="onoffswitch-inner"></span>
-                                                            <span class="onoffswitch-switch"></span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                             </tr>
+                                             <?php 
+                                                }
+                                              ?>
+                                            
                                         </tbody>
                                     </table>
                                 </div>
