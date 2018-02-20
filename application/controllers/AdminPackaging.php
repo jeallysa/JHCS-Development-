@@ -8,7 +8,9 @@
 		
 		public function index()
 		{ 
-			$this->load->view('Admin_Module/adminPackaging');
+			$this->load->model('AdminPackaging_model');
+			$data['packaging']=$this->AdminPackaging_model->getPackaging();
+			$this->load->view('Admin_Module/adminPackaging', $data);
 		}
 
 	}

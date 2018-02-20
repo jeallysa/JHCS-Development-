@@ -534,79 +534,16 @@ thead th {
                                             <th class="disabled-sorting"><b>Update Details</b></th>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Raw Coffee A</td>
-                                                <td>5000 g</td>
-                                                <td>10000 g</td>
-                                                <td>Supplier A</td>
-                                                <td>8000 g</td>
-                                                <td>
-                                                    <div class="onoffswitch">
-                                                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                                                        <label class="onoffswitch-label" for="myonoffswitch">
-                                                            <span class="onoffswitch-inner"></span>
-                                                            <span class="onoffswitch-switch"></span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a>
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#updateblend">Edit info</a>
-                                                </td> 
-                                            </tr>
-                                            <tr>
-                                                <td>Raw Coffee B</td>
-                                                <td>5000 kg</td>
-                                                <td>15000 g</td>
-                                                <td>supplier B</td>
-                                                <td>6000 g</td>
-                                                <td>
-                                                    <div class="onoffswitch">
-                                                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                                                        <label class="onoffswitch-label" for="myonoffswitch">
-                                                            <span class="onoffswitch-inner"></span>
-                                                            <span class="onoffswitch-switch"></span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a>
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#updateblend">edit info</a>
-                                                </td> 
-                                            </tr>
-                                            <tr>
-                                                <td>Raw Coffee C</td>
-                                                <td>5000 kg</td>
-                                                <td>15000 g</td>
-                                                <td>supplier C</td>
-                                                <td>6000 g</td>
-                                                <td>
-                                                    <div class="onoffswitch">
-                                                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                                                        <label class="onoffswitch-label" for="myonoffswitch">
-                                                            <span class="onoffswitch-inner"></span>
-                                                            <span class="onoffswitch-switch"></span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a>
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#updateblend">Edit info</a>
-                                                </td> 
-                                            </tr>
-                                            <tr>
-                                                <td>Raw Coffee D</td>
-                                                <td>5000 kg</td>
-                                                <td>15000 g</td>
-                                                <td>supplier D</td>
-                                                <td>6000 g</td>
-                                                <td>
+                                             <?php 
+                                                foreach ($product as $row) {
+                                             ?>
+                                             <tr>
+                                                 <td><?php echo $row->raw_coffee; ?></td>
+                                                 <td><?php echo $row->raw_reorder; ?></td>
+                                                 <td><?php echo $row->raw_limit; ?></td>
+                                                 <td><?php echo $row->sup_company; ?></td>
+                                                 <td><?php echo $row->raw_stock; ?></td>
+                                                 <td>
                                                     <div class="onoffswitch">
                                                         <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
                                                         <label class="onoffswitch-label" for="myonoffswitch">
@@ -621,59 +558,10 @@ thead th {
                                                 <td>
                                                     <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#updateblend">Edit info</a>
                                                 </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Raw Coffee E</td>
-                                                <td>5000 kg</td>
-                                                <td>15000 g</td>
-                                                <td>supplier E</td>
-                                                <td>6000 g</td>
-                                                <td>
-                                                    <div class="onoffswitch">
-                                                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                                                        <label class="onoffswitch-label" for="myonoffswitch">
-                                                            <span class="onoffswitch-inner"></span>
-                                                            <span class="onoffswitch-switch"></span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a>
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#updateblend">Edit info</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Raw Coffee F</td>
-                                                <td>3000 kg</td>
-                                                <td>15000 g</td>
-                                                <td>supplier E</td>
-                                                <td>6000 g</td>
-                                                <td>
-                                                    <div class="onoffswitch">
-                                                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                                                        <label class="onoffswitch-label" for="myonoffswitch">
-                                                            <span class="onoffswitch-inner"></span>
-                                                            <span class="onoffswitch-switch"></span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a>
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#updateblend">Edit info</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Total</b></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>38000 g</td>
-                                                <td></td>
-                                            </tr>
+                                             </tr>
+                                             <?php 
+                                                }
+                                              ?>
                                         </tbody>
                                     </table>
                                 </div>

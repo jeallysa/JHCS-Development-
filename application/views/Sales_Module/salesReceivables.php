@@ -152,51 +152,20 @@
                                         <thead>
                                             <tr>
                                                 <th><b>Client</b></th>
-                                                <th><b>November</b>(Current)</th>
                                                 <th><b>Total Receivable</b></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Astoria Hotel and Resort</td>
-                                                <td>43,750.00</td>
-                                                <td>43,750.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>BloomField Hotel</td>
-                                                <td>11,827.20</td>
-                                                <td>11,827.20</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Blue Rock Resort</td>
-                                                <td>11,160.00</td>
-                                                <td>11,160.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Boracay Haven Resort</td>
-                                                <td></td>
-                                                <td>21,900.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Bread House</td>
-                                                <td>9,120.00</td>
-                                                <td>10,020.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Canto Restaurant</td>
-                                                <td>9,408.00</td>
-                                                <td>9,408.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Connies Kitchen</td>
-                                                <td>9,100.00</td>
-                                                <td>15,340.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Le Chef Deli</td>
-                                                <td>15,750.00</td>
-                                                <td>15,750.00</td>
-                                            </tr>
+                                            <?php 
+                                                foreach ($receivable as $row) {
+                                             ?>
+                                             <tr>
+                                                 <td><?php echo $row->client_company; ?></td>
+                                                 <td><?php echo $row->client_balance; ?></td>
+                                             </tr>
+                                             <?php 
+                                                }
+                                              ?>
                                         </tbody>
                                     </table>
                                     <div class="modal fade" id="myModal">

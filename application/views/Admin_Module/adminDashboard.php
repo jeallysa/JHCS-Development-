@@ -216,32 +216,26 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>2415</td>
-                                                <td>3747</td>
-                                                <td>Oct 1, 2017</td>
-                                                <td>Lazada</td>
-                                                <td>Fiesta Blend Ground</td>
-                                                <td>brown</td>
-                                                <td>250 g</td>
-                                                <td>1</td>
-                                                <td>138.09</td>
-                                                <td>138.09</td>
-                                                <td>Retail</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2943</td>
-                                                <td>3747</td>
-                                                <td>Oct 2, 2017</td>
-                                                <td>Bloomfield Hotel/Patch Cafe</td>
-                                                <td>Bloomfield Beans</td>
-                                                <td>clear</td>
-                                                <td>500 g</td>
-                                                <td>24</td>
-                                                <td>492.80</td>
-                                                <td>11,827.20</td>
-                                                <td>Coffee Services</td>
-                                            </tr>
+                                           
+                                             <?php 
+                                                foreach ($sales as $row) {
+                                             ?>
+                                             <tr>
+                                                 <td><?php echo $row->client_dr; ?></td>
+                                                 <td><?php echo $row->client_invoice; ?></td>
+                                                 <td><?php echo $row->client_deliverDate; ?></td>
+                                                 <td><?php echo $row->client_company; ?></td>
+                                                 <td>wala pa</td>
+                                                 <td>wala pa</td>
+                                                 <td>wala pa</td>
+                                                 <td><?php echo $row->contractPO_qty; ?></td>
+                                                 <td>wala pa</td>
+                                                 <td><?php echo $row->client_balance; ?></td>
+                                                 <td><?php echo $row->client_type; ?></td>
+                                             </tr>
+                                             <?php 
+                                                }
+                                              ?>
                                         </tbody>
                             </table>
                         </div>

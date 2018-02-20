@@ -23,13 +23,13 @@ DROP TABLE IF EXISTS `activitylogs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `activitylogs` (
-  `log_id` int(11) NOT NULL AUTO_INCREMENT,
+  `activitylogs_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_no` varchar(45) NOT NULL,
-  `message` varchar(45) NOT NULL,
   `timestamp` datetime NOT NULL,
+  `message` varchar(45) NOT NULL,
   `type` varchar(45) NOT NULL,
-  PRIMARY KEY (`log_id`),
-  UNIQUE KEY `idactivitylogs_UNIQUE` (`log_id`)
+  PRIMARY KEY (`activitylogs_id`),
+  UNIQUE KEY `idactivitylogs_UNIQUE` (`activitylogs_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -39,7 +39,7 @@ CREATE TABLE `activitylogs` (
 
 LOCK TABLES `activitylogs` WRITE;
 /*!40000 ALTER TABLE `activitylogs` DISABLE KEYS */;
-INSERT INTO `activitylogs` VALUES (1,'1','Add returns','2018-02-18 07:34:58','inventory'),(2,'3','Add samples','2018-02-18 09:22:43','inventory'),(3,'4','Edit blah blah','2018-02-18 16:27:31','inventory');
+INSERT INTO `activitylogs` VALUES (1,'1','2018-02-17 15:37:58','Add samples','inventory'),(2,'3','2018-02-19 11:47:15','Add returns','inventory'),(3,'4','2018-02-20 13:19:27','Edit blah blah','inventory');
 /*!40000 ALTER TABLE `activitylogs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -80,15 +80,15 @@ DROP TABLE IF EXISTS `client_delivery`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `client_delivery` (
   `client_deliveryID` int(11) NOT NULL AUTO_INCREMENT,
-  `contractPO_no` int(11) NOT NULL,
+  `contractPO_id` int(11) NOT NULL,
   `client_dr` varchar(50) NOT NULL,
   `client_invoice` varchar(50) NOT NULL,
   `client_deliverDate` date NOT NULL,
-  `client_amount` int(11) NOT NULL,
+  `client_balance` int(11) NOT NULL,
   `client_receive` varchar(50) NOT NULL,
-  `payment_remarks` varchar(50) NOT NULL DEFAULT 'unpaid',
   `client_id` int(11) NOT NULL,
-  PRIMARY KEY (`client_deliveryID`)
+  PRIMARY KEY (`client_deliveryID`),
+  UNIQUE KEY `client_dr` (`client_dr`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -98,7 +98,7 @@ CREATE TABLE `client_delivery` (
 
 LOCK TABLES `client_delivery` WRITE;
 /*!40000 ALTER TABLE `client_delivery` DISABLE KEYS */;
-INSERT INTO `client_delivery` VALUES (1,3,'dr234','234','2018-02-13',10000,'Mark De Vera','unpaid',1),(2,1,'dr233','233','2018-02-12',13000,'Leah Ramos','paid',2);
+INSERT INTO `client_delivery` VALUES (1,1,'dr233','233','2018-02-13',10000,'Mark De Vera',1),(2,2,'dr234','234','2018-02-12',13000,'Leah Ramos',2);
 /*!40000 ALTER TABLE `client_delivery` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -253,14 +253,14 @@ DROP TABLE IF EXISTS `contracted_po`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `contracted_po` (
-  `contractPO_id` int(11) NOT NULL,
+  `contractPO_id` int(11) NOT NULL AUTO_INCREMENT,
   `client_id` int(11) NOT NULL,
   `blend_id` int(11) NOT NULL,
-  `contractPO_no` varchar(50) NOT NULL,
   `contractPO_date` date NOT NULL,
   `contractPO_qty` int(11) NOT NULL,
-  `delivery_stat` varchar(20) NOT NULL DEFAULT 'pending'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `delivery_stat` varchar(20) NOT NULL DEFAULT 'pending',
+  PRIMARY KEY (`contractPO_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -269,7 +269,7 @@ CREATE TABLE `contracted_po` (
 
 LOCK TABLES `contracted_po` WRITE;
 /*!40000 ALTER TABLE `contracted_po` DISABLE KEYS */;
-INSERT INTO `contracted_po` VALUES (0,1,1,'PO111','2018-02-06',300,'pending'),(0,2,2,'PO222','2018-02-05',300,'pending');
+INSERT INTO `contracted_po` VALUES (1,1,1,'2018-02-14',300,'delivered'),(2,2,2,'2018-02-08',300,'pending');
 /*!40000 ALTER TABLE `contracted_po` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -367,16 +367,15 @@ DROP TABLE IF EXISTS `payment_contracted`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `payment_contracted` (
   `paid_id` int(11) NOT NULL AUTO_INCREMENT,
+  `client_dr` varchar(50) NOT NULL,
   `collection_no` varchar(20) NOT NULL,
-  `client_dr` varchar(20) NOT NULL,
   `payment_mode` varchar(20) NOT NULL,
   `paid_date` date NOT NULL,
   `paid_amount` int(11) NOT NULL,
-  `gross_amount` int(11) NOT NULL,
   `withheld` int(11) NOT NULL,
   `payment_remarks` varchar(20) NOT NULL,
   PRIMARY KEY (`paid_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -385,7 +384,7 @@ CREATE TABLE `payment_contracted` (
 
 LOCK TABLES `payment_contracted` WRITE;
 /*!40000 ALTER TABLE `payment_contracted` DISABLE KEYS */;
-INSERT INTO `payment_contracted` VALUES (1,'C111','dr233','bank','2018-02-15',10000,10000,0,'full');
+INSERT INTO `payment_contracted` VALUES (2,'dr233','C111','bank','2018-02-13',10000,0,'Fully paid');
 /*!40000 ALTER TABLE `payment_contracted` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -658,4 +657,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-18 21:32:18
+-- Dump completed on 2018-02-20  9:58:51

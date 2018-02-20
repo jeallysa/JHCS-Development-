@@ -153,19 +153,25 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>2415</td>
-                                                <td>3747</td>
-                                                <td>Oct 1, 2017</td>
-                                                <td>Volante</td>
-                                                <td>Fiesta Blend Ground</td>
-                                                <td>brown</td>
-                                                <td>250 g</td>
-                                                <td>1</td>
-                                                <td>138.09</td>
-                                                <td>138.09</td>
-                                                <td>Retail</td>
-                                            </tr>
+                                            <?php 
+                                                foreach ($sales as $row) {
+                                             ?>
+                                             <tr>
+                                                 <td><?php echo $row->client_dr; ?></td>
+                                                 <td><?php echo $row->client_invoice; ?></td>
+                                                 <td><?php echo $row->client_deliverDate; ?></td>
+                                                 <td><?php echo $row->client_company; ?></td>
+                                                 <td><?php echo $row->blend; ?></td>
+                                                 <td><?php echo $row->bag; ?></td>
+                                                 <td><?php echo $row->size; ?></td>
+                                                 <td><?php echo $row->contractPO_qty; ?></td>
+                                                 <td><?php echo $row->blend_price; ?></td>
+                                                 <td><?php echo $row->client_balance; ?></td>
+                                                 <td><?php echo $row->client_type; ?></td>
+                                             </tr>
+                                             <?php 
+                                                }
+                                              ?>
                                         </tbody>
                                     </table>
                                 </div>

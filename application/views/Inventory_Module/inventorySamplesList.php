@@ -244,57 +244,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="details" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="panel panel-primary">
-                        <form action="#" method="post" accept-charset="utf-8">
-                            <div class="modal-body" style="padding: 5px;">
-                                <div id="page-wrapper">
-                                    <div class="table-responsive">
-                                        <center><b>(Client Blend Name)</b>
-                                            <br>
-                                            <b>1/31/18</b></center>
-                                        <table class="table table-striped" id="table-mutasi">
-                                            <thead>
-                                                <tr>
-                                                    <th>Blend Name</th>
-                                                    <th>GUATEMALA</th>
-                                                    <th>SUMATRA</th>
-                                                    <th>ROBUSTA</th>
-                                                    <th>BENGUET</th>
-                                                    <th>COLOMBIA</th>
-                                                    <th>BARAKO</th>
-                                                    <th>Quantity</th>
-                                                    <th>Unit Price</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        Mario's Blend
-                                                    </td>
-                                                    <td>600</td>
-                                                    <td>400</td>
-                                                    <td>0</td>
-                                                    <td>600</td>
-                                                    <td>0</td>
-                                                    <td>400</td>
-                                                    <td>3</td>
-                                                    <td>199</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel-footer" align="center" style="margin-bottom:-14px;">
-                                <button type="button" class="btn btn-default btn-close" data-dismiss="modal">CLOSE</button>
-                                <button type="submit" class="btn btn-success accept">Save</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -319,76 +268,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <th><b>Recipient</b></th>
                                                             <th><b>Packaging</b></th>
                                                             <th><b>Stickers</b></th>
-                                                            <th><b>Actions</b></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        <?php
+                                                        if($fetch_data->num_rows() > 0){
+                                                            foreach ($fetch_data -> result() as $row)
+                                                        {
+                                                        ?>
                                                         <tr>
-                                                            <td>1</td>
-                                                            <td>01/31/18</td>
-                                                            <td>Sample</td>
-                                                            <td>Leon Araneta</td>
-                                                            <td>Brown Bag</td>
-                                                            <td>Blend A Sticker</td>
-                                                            <td>
-                                                                <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#details">Details</a>
-                                                            </td>
+                                                            <td><?php echo $row->samples_id; ?></td>
+                                                            <td><?php echo $row->date; ?></td>
+                                                            <td><?php echo $row->type; ?></td>
+                                                            <td><?php echo $row->recipient; ?></td>
+                                                            <td><?php echo $row->packaging; ?></td>
+                                                            <td><?php echo $row->stickers; ?></td>
                                                         </tr>
+                                                    <?php
+                                                                }
+
+                                                            }
+                                                        else{
+                                                         ?>
                                                         <tr>
-                                                            <td>2</td>
-                                                            <td>01/26/18</td>
-                                                            <td>Free taste</td>
-                                                            <td>Guards at SLU Main Campus</td>
-                                                            <td>Brown Bag</td>
-                                                            <td>Blend A Sticker</td>
-                                                            <td>
-                                                                <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#details">Details</a>
-                                                            </td>
+                                                            <td colspan = 9 style = "text-align: center;"> <h3>No data found</h3> </td>
                                                         </tr>
-                                                        <tr>
-                                                            <td>3</td>
-                                                            <td>01/23/18</td>
-                                                            <td>Sample</td>
-                                                            <td>CSE Sumatra night</td>
-                                                            <td>Brown Bag</td>
-                                                            <td>Blend A Sticker</td>
-                                                            <td>
-                                                                <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#details">Details</a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>4</td>
-                                                            <td>01/14/18</td>
-                                                            <td>Free taste</td>
-                                                            <td>Pedestrians along Session Road</td>
-                                                            <td>Brown Bag</td>
-                                                            <td>Blend A Sticker</td>
-                                                            <td>
-                                                                <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#details">Details</a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>5</td>
-                                                            <td>01/11/18</td>
-                                                            <td>Freebies</td>
-                                                            <td>The Manor Hotel</td>
-                                                            <td>Brown Bag</td>
-                                                            <td>Blend A Sticker</td>
-                                                            <td>
-                                                                <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#details">Details</a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>6</td>
-                                                            <td>01/04/18</td>
-                                                            <td>Sample</td>
-                                                            <td>Tazabelle</td>
-                                                            <td>Brown Bag</td>
-                                                            <td>Blend A Sticker</td>
-                                                            <td>
-                                                                <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#details">Details</a>
-                                                            </td>
-                                                        </tr>
+                                                        <?php
+                                                        }
+
+                                                    ?>
                                                     </tbody>
                                                 </table>
                                             </div>

@@ -299,8 +299,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <table id="coffee" class="table hover order-column" cellspacing="0" width="100%">
                                                         <thead>
                                                             <tr>
-                                                                <th><b>Delivery Receipt No.</b></th>
                                                                 <th><b>Client Return No.</b></th>
+                                                                <th><b>Delivery Receipt No.</b></th>
                                                                 <th><b>Date Returned</b></th>
                                                                 <th><b>Client</b></th>
                                                                 <th><b>Coffee</b></th>
@@ -313,32 +313,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+                                                            <?php 
+                                                        foreach($data2['get_clientcoffeereturns'] as $row)
+                                                        {
+                                                    ?>
                                                             <tr>
-                                                                <td>1020</td>
-                                                                <td>00001</td>
-                                                                <td>Oct 1, 2017</td>
-                                                                <td>Client 1</td>
-                                                                <td>Sumatra Night</td>
-                                                                <td>Clear Bag</td>
-                                                                <td>250 g</td>
-                                                                <td>3</td>
-                                                                <td>Incorrect Blend</td>
-                                                                <td>Added to Sample</td>
-                                                                <td>Resolved</td>
+                                                                <td><?php echo $row->client_coffReturnID; ?></td>
+                                                                <td><?php echo $row->client_dr; ?></td>
+                                                                <td><?php echo $row->coff_returnDate; ?></td>
+                                                                <td><?php echo $row->client_company; ?></td>
+                                                                <td><?php echo $row->coff_returned; ?></td>
+                                                                <td><?php echo $row->coff_bag; ?></td>
+                                                                <td><?php echo $row->coff_baggrams; ?></td>
+                                                                <td><?php echo $row->coff_returnQty; ?></td>
+                                                                <td><?php echo $row->coff_remarks; ?></td>
+                                                                <td><?php echo $row->coff_returnAction; ?></td>
+                                                                <td><?php echo $row->status; ?></td>
                                                             </tr>
-                                                            <tr>
-                                                                <td>1030</td>
-                                                                <td>00002</td>
-                                                                <td>Oct 3, 2017</td>
-                                                                <td>Client 2</td>
-                                                                <td>Guatemala Rainforest</td>
-                                                                <td>Brown Bag</td>
-                                                                <td>500 g</td>
-                                                                <td>2</td>
-                                                                <td>Spoiled</td>
-                                                                <td>Disposed</td>
-                                                                <td>Resolved</td>
-                                                            </tr>
+                                                            <?php
+                                                        }
+                                                    ?>
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -346,8 +340,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <table id="machine" class="table hover order-column" cellspacing="0" width="100%">
                                                         <thead>
                                                             <tr>
-                                                                <th><b>Delivery Receipt No.</b></th>
                                                                 <th><b>Client Return No.</b></th>
+                                                                <th><b>Delivery Receipt No.</b></th>
                                                                 <th><b>Date Returned</b></th>
                                                                 <th><b>Client</b></th>
                                                                 <th><b>Machine</b></th>
@@ -358,28 +352,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+                                                            <?php 
+                                                        foreach($data3['get_clientmachinereturns'] as $row)
+                                                        {
+                                                    ?>
                                                             <tr>
-                                                                <td>2352</td>
-                                                                <td>1524</td>
-                                                                <td>Dec 9, 2017</td>
-                                                                <td>Client 1</td>
-                                                                <td>Machine A</td>
-                                                                <td>2</td>
-                                                                <td>Damaged</td>
-                                                                <td>Repaired</td>
-                                                                <td>Resolved</td>
+                                                                <td><?php echo $row->client_machReturnID; ?></td>
+                                                                <td><?php echo $row->client_dr; ?></td>
+                                                                <td><?php echo $row->mach_returnDate; ?></td>
+                                                                <td><?php echo $row->client_company; ?></td>
+                                                                <td><?php echo $row->mach_id; ?></td>
+                                                                <td><?php echo $row->mach_returnQty; ?></td>
+                                                                <td><?php echo $row->mach_remarks; ?></td>
+                                                                <td><?php echo $row->mach_returnAction; ?></td>
+                                                                <td><?php echo $row->status; ?></td>
                                                             </tr>
-                                                            <tr>
-                                                                <td>5345</td>
-                                                                <td>3245</td>
-                                                                <td>Dec 10, 2017</td>
-                                                                <td>Client 2</td>
-                                                                <td>Machine B</td>
-                                                                <td>1</td>
-                                                                <td>Damaged</td>
-                                                                <td>Repaired</td>
-                                                                <td>Resolved</td>
-                                                            </tr>
+                                                            <?php
+                                                        }
+                                                    ?>
                                                         </tbody>
                                                     </table>
                                                 </div>

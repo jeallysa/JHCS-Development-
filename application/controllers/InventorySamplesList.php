@@ -8,7 +8,9 @@
 		
 		public function index()
 		{ 
-			$this->load->view('Inventory_Module/inventorySamplesList');
+			$this->load->model("InventorySamplesList_Model");
+			$smpl_data["fetch_data"] = $this->InventorySamplesList_Model->fetch_data();
+			$this->load->view('Inventory_Module/inventorySamplesList', $smpl_data);
 		}
 
 	}

@@ -8,7 +8,9 @@
 		
 		public function index()
 		{ 
-			$this->load->view('Sales_Module/salesCollections');
+			$this->load->model('Collections_model');
+			$data['collections']=$this->Collections_model->getCollections();
+			$this->load->view('Sales_Module/salesCollections', $data);
 		}
 
 	}

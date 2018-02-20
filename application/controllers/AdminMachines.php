@@ -8,7 +8,9 @@
 		
 		public function index()
 		{ 
-			$this->load->view('Admin_Module/adminMachines');
+			$this->load->model('AdminMachines_model');
+			$data['machines']=$this->AdminMachines_model->getMachines();
+			$this->load->view('Admin_Module/adminMachines', $data);
 		}
 
 	}
