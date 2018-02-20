@@ -8,7 +8,9 @@
 		
 		public function index()
 		{ 
-			$this->load->view('Sales_Module/salesReceivables');
+			$this->load->model('Receivable_model');
+			$data['receivable']=$this->Receivable_model->getReceivable();
+			$this->load->view('Sales_Module/salesReceivables', $data);
 		}
 
 	}
