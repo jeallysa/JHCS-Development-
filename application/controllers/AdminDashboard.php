@@ -8,7 +8,9 @@
 		
 		public function index()
 		{ 
-			$this->load->view('Admin_Module/adminDashboard');
+			$this->load->model('AdminDashboard_model');
+			$data['sales']=$this->AdminDashboard_model->getSales();
+			$this->load->view('Admin_Module/adminDashboard', $data);
 		}
 
 	}

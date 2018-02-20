@@ -8,7 +8,9 @@
 		
 		public function index()
 		{ 
-			$this->load->view('Admin_Module/adminStickers');
+			$this->load->model('AdminStickers_model');
+			$data['stickers']=$this->AdminStickers_model->getStickers();
+			$this->load->view('Admin_Module/adminStickers', $data);
 		}
 
 	}
