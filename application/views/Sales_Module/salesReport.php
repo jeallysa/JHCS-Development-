@@ -161,11 +161,11 @@
                                                  <td><?php echo $row->client_invoice; ?></td>
                                                  <td><?php echo $row->client_deliverDate; ?></td>
                                                  <td><?php echo $row->client_company; ?></td>
-                                                 <td>wala pa</td>
-                                                 <td>wala pa</td>
-                                                 <td>wala pa</td>
+                                                 <td><?php echo $row->blend; ?></td>
+                                                 <td><?php echo $row->bag; ?></td>
+                                                 <td><?php echo $row->size; ?></td>
                                                  <td><?php echo $row->contractPO_qty; ?></td>
-                                                 <td>wala pa</td>
+                                                 <td><?php echo $row->blend_price; ?></td>
                                                  <td><?php echo $row->client_balance; ?></td>
                                                  <td><?php echo $row->client_type; ?></td>
                                              </tr>
