@@ -236,56 +236,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <th><b>Company Return No.</b></th>
                                                     <th><b>Date Returned</b></th>
                                                     <th><b>Supplier</b></th>
-                                                    <th><b>Total</b></th>
-                                                    <th><b>Coffee A</b></th>
-                                                    <th><b>Coffee B</b></th>
-                                                    <th><b>Coffee C</b></th>
-                                                    <th><b>Coffee D</b></th>
-                                                    <th><b>Coffee E</b></th>
-                                                    <th><b>Coffee F</b></th>
+                                                    <th><b>Quantity</b></th>
+                                                    <th><b>Item</b></th>
                                                     <th><b>Remarks</b></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <?php 
+                                                    foreach($data1['get_companyreturns'] as $row)
+                                                    {
+                                                ?>
                                                 <tr>
-                                                    <td>00001</td>
-                                                    <td>Oct 1, 2017</td>
-                                                    <td>Supplier 1</td>
-                                                    <td>300 g</td>
-                                                    <td>100</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>200</td>
-                                                    <td>-</td>
-                                                    <td>Incorrect Roast</td>
+                                                    <td><?php echo $row->company_returnID; ?></td>
+                                                    <td><?php echo $row->sup_returnDate; ?></td>
+                                                    <td><?php echo $row->sup_company; ?></td>
+                                                    <td><?php echo $row->sup_returnQty; ?> g</td>
+                                                    <td><?php echo $row->sup_returnItem; ?></td>
+                                                    <td><?php echo $row->sup_returnRemarks; ?></td>
                                                 </tr>
-                                                <tr>
-                                                    <td>00002</td>
-                                                    <td>Oct 3, 2017</td>
-                                                    <td>Supplier 2</td>
-                                                    <td>500 g</td>
-                                                    <td>-</td>
-                                                    <td>300</td>
-                                                    <td>-</td>
-                                                    <td>100</td>
-                                                    <td>-</td>
-                                                    <td>100</td>
-                                                    <td>Spoiled</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>00003</td>
-                                                    <td>Oct 5, 2017</td>
-                                                    <td>Supplier 3</td>
-                                                    <td>600 g</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>400</td>
-                                                    <td>-</td>
-                                                    <td>200</td>
-                                                    <td>-</td>
-                                                    <td>Incorrect Roast</td>
-                                                </tr>
+                                                <?php
+                                                    }
+                                                ?>
                                             </tbody>
                                         </table>
                                         </div>
