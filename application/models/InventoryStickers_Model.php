@@ -1,6 +1,6 @@
 <?php
 
-class InventoryPackaging_Model extends CI_model
+class InventoryStickers_Model extends CI_model
 {
 	function __construct()
 	{
@@ -13,7 +13,7 @@ class InventoryPackaging_Model extends CI_model
 	}
 
 	function fetch_data(){
-		$query = $this->db->query("SELECT * FROM jhcs.packaging NATURAL JOIN supplier;");
+		$query = $this->db->query("SELECT * FROM jhcs.sticker NATURAL JOIN supplier;");
 		return $query;
 	}
 

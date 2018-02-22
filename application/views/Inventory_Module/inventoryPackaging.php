@@ -195,6 +195,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <th><b class="pull-left">Grams</b></th>
                                             <th><b class="pull-left">Reorder Level (per pc)</b></th>
                                             <th><b class="pull-left">Stock Limit (per pc)</b></th>
+                                            <th><b class="pull-left">Supplier</b></th>
                                             <th><b class="pull-left">Number of stocks (per pc)</b></th>
                                             <th><b class="pull-left">Cue Card</b></th>
                                         </thead>
@@ -205,11 +206,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             {
                                             ?>
                                             <tr>
-                                                <td><?php echo $row->package_id; ?></td>
+                                                <td>Pckg<?php echo $row->package_id; ?></td>
                                                 <td><?php echo $row->package_type; ?> bag</td>
                                                 <td><?php echo $row->package_size; ?> g</td>
                                                 <td><?php echo $row->package_reorder; ?></td>
                                                 <td><?php echo $row->package_limit; ?></td>
+                                                <td><?php echo $row->sup_company; ?></td>
                                                 <td><?php echo $row->package_stock; ?></td>
                                                 <td>
                                                     <!-- Button trigger modal -->
