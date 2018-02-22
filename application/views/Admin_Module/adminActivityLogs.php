@@ -108,7 +108,7 @@
                                         <a href="<?php echo base_url(); ?>adminActivityLogs">Activity Logs</a>
                                     </li>
                                     <li>
-                                        <a href="#">Logout</a>
+                                        <a href="<?php echo base_url('login');  ?>">Logout</a>
                                     </li>
                                 </ul>
                             </li>
