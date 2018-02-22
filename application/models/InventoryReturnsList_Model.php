@@ -6,7 +6,7 @@
 		}
 		
 		public function get_companyreturns(){
-			$query = $this->db->query("SELECT client_machReturnID, client_dr, mach_returnDate, client_company, mach_id, mach_returnQty, mach_remarks, mach_returnAction, status FROM jhcs.client_machreturn NATURAL JOIN client_delivery NATURAL JOIN contracted_client;");
+			$query = $this->db->query("SELECT company_returnID, sup_returnDate, sup_company, sup_returnQty, sup_returnItem, sup_returnRemarks FROM jhcs.company_returns NATURAL JOIN supplier;");
 			return $query->result();
 			
 		}
