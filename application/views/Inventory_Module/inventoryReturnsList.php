@@ -289,7 +289,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 <td><?php echo $row->client_dr; ?></td>
                                                                 <td><?php echo $row->coff_returnDate; ?></td>
                                                                 <td><?php echo $row->client_company; ?></td>
-                                                                <td><?php echo $row->coff_returnQty; ?></td>
+                                                                <td><?php echo $row->coff_returnQty; ?> g</td>
                                                                 <td><?php echo $row->coff_remarks; ?></td>
                                                                 <td><?php echo $row->coff_returnAction; ?></td>
                                                             </tr>
@@ -325,7 +325,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 <td><?php echo $row->mach_returnDate; ?></td>
                                                                 <td><?php echo $row->client_company; ?></td>
                                                                 <td><?php echo $row->mach_id; ?></td>
-                                                                <td><?php echo $row->mach_returnQty; ?></td>
+                                                                <td><?php echo $row->mach_returnQty; ?> pc/s</td>
                                                                 <td><?php echo $row->mach_remarks; ?></td>
                                                                 <td><?php echo $row->mach_returnAction; ?></td>
                                                             </tr>

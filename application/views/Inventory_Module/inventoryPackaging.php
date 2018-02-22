@@ -199,13 +199,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <th><b class="pull-left">Cue Card</b></th>
                                         </thead>
                                         <tbody>
+                                            <?php
+                                                if($fetch_data->num_rows() > 0){
+                                                    foreach ($fetch_data -> result() as $row)
+                                            {
+                                            ?>
                                             <tr>
-                                                <td>BrwnBg250</td>
-                                                <td>Brown Bag</td>
-                                                <td>250 g</td>
-                                                <td>200</td>
-                                                <td>1000</td>
-                                                <td>800</td>
+                                                <td><?php echo $row->package_id; ?></td>
+                                                <td><?php echo $row->package_type; ?> bag</td>
+                                                <td><?php echo $row->package_size; ?> g</td>
+                                                <td><?php echo $row->package_reorder; ?></td>
+                                                <td><?php echo $row->package_limit; ?></td>
+                                                <td><?php echo $row->package_stock; ?></td>
                                                 <td>
                                                     <!-- Button trigger modal -->
                                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#packagingcard">Details</button>
@@ -346,75 +351,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>BrwnBg500</td>
-                                                <td>Brown Bag</td>
-                                                <td>500 g</td>
-                                                <td>200</td>
-                                                <td>1000</td>
-                                                <td>700</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#packagingcard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>BrwnBg1000</td>
-                                                <td>Brown Bag</td>
-                                                <td>1000 g</td>
-                                                <td>200</td>
-                                                <td>1000</td>
-                                                <td>800</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#packagingcard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>ClrBg250</td>
-                                                <td>Clear Bag</td>
-                                                <td>250 g</td>
-                                                <td>200</td>
-                                                <td>1000</td>
-                                                <td>600</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#packagingcard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>ClrBg500</td>
-                                                <td>Clear Bag</td>
-                                                <td>500 g</td>
-                                                <td>200</td>
-                                                <td>1000</td>
-                                                <td>500</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#packagingcard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>ClrBg1000</td>
-                                                <td>Clear Bag</td>
-                                                <td>1000 g</td>
-                                                <td>200</td>
-                                                <td>1000</td>
-                                                <td>500</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#packagingcard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Total</b></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>3900 pcs</td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
+                                            <?php
+                                                                }
+
+                                                            }
+                                                        else{
+                                                         ?>
+                                                        <tr>
+                                                            <td colspan = 9 style = "text-align: center;"> <h3>No data found</h3> </td>
+                                                        </tr>
+                                                        <?php
+                                                        }
+
+                                                    ?>
                                         </tbody>
                                     </table>
                                 </div>
