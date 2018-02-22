@@ -136,21 +136,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <ul class="nav nav-tabs" data-tabs="tabs">
                                                 <li class="">
                                                     <a href="<?php echo base_url(); ?>inventoryOutRawCoffee">
-                                                        Raw Coffee
+                                                        <i class="material-icons">local_cafe</i> Coffee
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li class="">
                                                     <a href="<?php echo base_url(); ?>inventoryOutPackaging">
-                                                        Packaging
+                                                        <i class="material-icons">branding_watermark</i> Packaging
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li class="active">
                                                     <a href="<?php echo base_url(); ?>inventoryOutMachine">
-                                                        Machines
+                                                        <i class="material-icons">gradient</i> Machines
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
@@ -162,7 +162,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <br>
                                     <table id="example" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
-                                            <th><b>Sales Invoice No.</b></th>
+                                            <th><b>Delivery Receipt No.</b></th>
                                             <th><b>Tagging Number</b></th>
                                             <th><b>Client</b></th>
                                             <th><b>Date Installed</b></th>

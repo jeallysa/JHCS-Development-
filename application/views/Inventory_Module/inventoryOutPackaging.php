@@ -136,21 +136,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <ul class="nav nav-tabs" data-tabs="tabs">
                                                 <li class="">
                                                     <a href="<?php echo base_url(); ?>inventoryOutRawCoffee">
-                                                        Raw Coffee
+                                                        <i class="material-icons">local_cafe</i> Coffee
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li class="active">
                                                     <a href="<?php echo base_url(); ?>inventoryOutPackaging">
-                                                        Packaging
+                                                        <i class="material-icons">branding_watermark</i> Packaging
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li class="">
                                                     <a href="<?php echo base_url(); ?>inventoryOutMachine">
-                                                        Machines
+                                                        <i class="material-icons">gradient</i> Machines
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
@@ -163,14 +163,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <table id="example" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
                                             <th><b>Delivery Receipt No.</b></th>
-                                            <th><b>Client</b></th>
                                             <th><b>Date</b></th>
-                                            <th><b>250g clear bag</b></th>
-                                            <th><b>500g clear bag</b></th>
-                                            <th><b>1000g clear bag</b></th>
-                                            <th><b>250g brown bags</b></th>
-                                            <th><b>500g brown bag</b></th>
-                                            <th><b>1000g brown bag</b></th>
+                                            <th><b>Client</b></th>
+                                            <th><b>Bag</b></th>
+                                            <th><b>Size</b></th>
+                                            <th><b>Quantity</b></th>
                                             <th><b>Requested by</b></th>
                                             <th><b>Released by</b></th>
                                         </thead>
@@ -184,45 +181,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <td></td>
                                                 <td>2</td>
                                                 <td>5</td>
-                                                <td></td>
-                                                <td>Domeng</td>
-                                                <td>Jhen</td>
-                                            </tr>
-                                            <tr>
-                                                <td>23456</td>
-                                                <td>Le Chef S W</td>
-                                                <td>01/30/18</td>
-                                                <td></td>
-                                                <td>17</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>1</td>
-                                                <td>Jhen</td>
-                                                <td>Lani</td>
-                                            </tr>
-                                            <tr>
-                                                <td>34567</td>
-                                                <td>Volante</td>
-                                                <td>02/1/18</td>
-                                                <td></td>
-                                                <td>126</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>2</td>
-                                                <td>7</td>
-                                                <td>Domeng</td>
-                                                <td>Jhen</td>
-                                            </tr>
-                                            <tr>
-                                                <td>45678</td>
-                                                <td>Escala</td>
-                                                <td>02/2/18</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>15</td>
-                                                <td>10</td>
                                                 <td></td>
                                                 <td>Domeng</td>
                                                 <td>Jhen</td>
