@@ -168,23 +168,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <th><b>Bag</b></th>
                                             <th><b>Size</b></th>
                                             <th><b>Quantity</b></th>
-                                            <th><b>Requested by</b></th>
-                                            <th><b>Released by</b></th>
                                         </thead>
                                         <tbody>
+                                            <?php 
+                                                foreach($packageout as $row)
+                                                {
+                                            ?>
                                             <tr>
-                                                <td>12345</td>
-                                                <td>Camayan</td>
-                                                <td>01/30/18</td>
-                                                <td>11</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>2</td>
-                                                <td>5</td>
-                                                <td></td>
-                                                <td>Domeng</td>
-                                                <td>Jhen</td>
+                                                <td><?php echo $row->client_dr; ?></td>
+                                                <td><?php echo $row->client_deliverDate; ?></td>
+                                                <td><?php echo $row->client_company; ?></td>
+                                                <td>--</td>
+                                                <td>--</td>
+                                                <td>--</td>
                                             </tr>
+
+                                            <?php
+                                                }
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>

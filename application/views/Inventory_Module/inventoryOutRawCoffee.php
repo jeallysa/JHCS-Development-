@@ -167,27 +167,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <th><b>Client</b></th>
                                             <th><b>Coffee Blend</b></th>
                                             <th><b>Bag</b></th>
-                                            <th><b>Weight(g)</b></th>
+                                            <th><b>Size</b></th>
                                             <th><b>Quantity</b></th>
-                                            <th><b>Total Amount</b></th>
                                             <th><b>Received By</b></th>
                                         </thead>
                                         <tbody>
-                                            <?php
-                                                foreach($rawcoffeeout as $row){
+                                            <?php 
+                                                foreach($rawcoffeeout as $row)
+                                                {
                                             ?>
                                             <tr>
                                                 <td><?php echo $row->client_dr; ?></td>
                                                 <td><?php echo $row->client_deliverDate; ?></td>
                                                 <td><?php echo $row->client_company; ?></td>
-                                                <td><?php echo $row->blend; ?></td>
-                                                <td><?php echo $row->package_type; ?></td>
-                                                <td><?php echo $row->package_size; ?></td>
-                                                <td><?php echo $row->qty; ?></td>
-                                                <td><?php echo $row->client_amount; ?></td>
+                                                <td>--</td>
+                                                <td>--</td>
+                                                <td>--</td>
+                                                <td><?php echo $row->contractPO_qty; ?></td>
                                                 <td><?php echo $row->client_receive; ?></td>
                                             </tr>
-                                            <?php } ?>
+
+                                            <?php
+                                                }
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -221,7 +223,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?php echo base_url(); ?>assets/js/jquery.datatables.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-    var table = $('#example').DataTable({
+    var table = $('table.table').DataTable({
         select: {
             style: 'single'
         }
