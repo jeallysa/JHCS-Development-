@@ -124,7 +124,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <a href="<?php echo base_url(); ?>inventoryActivityLogs">Activity Logs</a>
                                     </li>
                                     <li>
-                                        <a href="#">Logout</a>
+                                        <a href="<?php echo base_url('Login/logout');  ?>">Logout</a>
                                     </li>
                                 </ul>
                             </li>
@@ -199,13 +199,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <th><b class="pull-left">Cue Card</b></th>
                                         </thead>
                                         <tbody>
+                                            <?php
+                                                if($fetch_data->num_rows() > 0){
+                                                    foreach ($fetch_data -> result() as $row)
+                                            {
+                                            ?>
                                             <tr>
-                                                <td>Stckr1</td>
-                                                <td>Coffee A Sticker</td>
-                                                <td>20</td>
-                                                <td>300</td>
-                                                <td>Supplier A</td>
-                                                <td>60</td>
+                                                <td>Stckr<?php echo $row->sticker_id; ?></td>
+                                                <td><?php echo $row->sticker; ?></td>
+                                                <td><?php echo $row->sticker_reorder; ?></td>
+                                                <td><?php echo $row->sticker_limit; ?></td>
+                                                <td><?php echo $row->sup_company; ?></td>
+                                                <td><?php echo $row->sticker_stock; ?></td>
                                                 <td>
                                                     <!-- Button trigger modal -->
                                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#stickercard">Details</button>
@@ -346,80 +351,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>Stckr2</td>
-                                                <td>Coffee B Sticker</td>
-                                                <td>20</td>
-                                                <td>400</td>
-                                                <td>supplier B</td>
-                                                <td>100</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#stickercard">Details</button>
+                                            <?php
+                                                                }
 
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Stckr3</td>
-                                                <td>Coffee C Sticker</td>
-                                                <td>100</td>
-                                                <td>500</td>
-                                                <td>supplier B</td>
-                                                <td>250</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#stickercard">Details</button>
+                                                            }
+                                                        else{
+                                                         ?>
+                                                        <tr>
+                                                            <td colspan = 9 style = "text-align: center;"> <h3>No data found</h3> </td>
+                                                        </tr>
+                                                        <?php
+                                                        }
 
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Stckr4</td>
-                                                <td>Coffee D Sticker</td>
-                                                <td>50</td>
-                                                <td>400</td>
-                                                <td>supplier B</td>
-                                                <td>91</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#stickercard">Details</button>
-
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Stckr5</td>
-                                                <td>Coffee E Sticker</td>
-                                                <td>80</td>
-                                                <td>400</td>
-                                                <td>supplier B</td>
-                                                <td>120</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#stickercard">Details</button>
-
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Stckr6</td>
-                                                <td>Coffee F Sticker</td>
-                                                <td>50</td>
-                                                <td>300</td>
-                                                <td>supplier B</td>
-                                                <td>100</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#stickercard">Details</button>
-
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Total</b></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>901 </td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
+                                                    ?>
                                         </tbody>
                                     </table>
                                 </div>

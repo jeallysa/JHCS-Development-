@@ -57,7 +57,7 @@
                         		</div>
                             </div>
                             <div class="form-bottom">
-			                    <form role="form" action='<?php echo base_url(); ?>login' method='post' class="login-form validate-form">
+			                    <form role="form" action="<?php echo base_url();?>login/validate" method="post" class="login-form validate-form">
 			                    	<div class="form-group">
 			                    		<label class="sr-only" for="username">Username</label>
 			                        	<input type="text" name="username" placeholder="Username..." class="form-username form-control" id="Username">

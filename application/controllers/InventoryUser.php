@@ -8,7 +8,7 @@
 		
 		public function index()
 		{ 
-			$this->load->view('Inventory_Module/inventoryStocks');
+			$this->load->view('Inventory_Module/inventoryUser');
 		}
 
 	}

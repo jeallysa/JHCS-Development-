@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 22, 2018 at 06:31 AM
--- Server version: 5.7.14
--- PHP Version: 5.6.25
+-- Generation Time: Feb 23, 2018 at 07:22 AM
+-- Server version: 10.1.25-MariaDB
+-- PHP Version: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -82,17 +84,16 @@ CREATE TABLE `client_delivery` (
   `client_balance` int(11) NOT NULL,
   `client_receive` varchar(50) NOT NULL,
   `client_id` int(11) NOT NULL,
-  `return` enum('No','Yes') NOT NULL DEFAULT 'No',
-  `payment_remarks` enum('paid','unpaid') DEFAULT 'unpaid'
+  `return` enum('No','Yes') NOT NULL DEFAULT 'No'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `client_delivery`
 --
 
-INSERT INTO `client_delivery` (`client_deliveryID`, `contractPO_id`, `client_dr`, `client_invoice`, `client_deliverDate`, `client_balance`, `client_receive`, `client_id`, `return`, `payment_remarks`) VALUES
-(1, 1, 'dr123', '233', '2018-02-13', 10000, 'Mark De Vera', 1, 'No', 'unpaid'),
-(2, 2, 'dr124', '234', '2018-02-12', 13000, 'Leah Ramos', 2, 'Yes', 'unpaid');
+INSERT INTO `client_delivery` (`client_deliveryID`, `contractPO_id`, `client_dr`, `client_invoice`, `client_deliverDate`, `client_balance`, `client_receive`, `client_id`, `return`) VALUES
+(1, 1, 'dr123', '233', '2018-02-13', 10000, 'Mark De Vera', 1, 'No'),
+(2, 2, 'dr124', '234', '2018-02-12', 13000, 'Leah Ramos', 2, 'Yes');
 
 -- --------------------------------------------------------
 
@@ -205,6 +206,15 @@ CREATE TABLE `company_returns` (
   `sup_returnRemarks` varchar(50) NOT NULL,
   `sup_returnAction` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `company_returns`
+--
+
+INSERT INTO `company_returns` (`company_returnID`, `sup_returnDate`, `sup_id`, `sup_returnQty`, `sup_returnItem`, `sup_returnRemarks`, `sup_returnAction`) VALUES
+(1, '2018-02-21', 1, 25, 'Raw Coffee A', 'Spoiled', ''),
+(2, '2018-02-21', 1, 30, 'Raw Coffee A', 'Damage Package', ''),
+(3, '2018-02-21', 2, 50, 'Raw Coffee B', 'Damage Package', '');
 
 -- --------------------------------------------------------
 
@@ -353,7 +363,7 @@ CREATE TABLE `payment_contracted` (
 --
 
 INSERT INTO `payment_contracted` (`paid_id`, `client_dr`, `collection_no`, `payment_mode`, `paid_date`, `paid_amount`, `withheld`, `payment_remarks`) VALUES
-(2, 'dr233', 'C111', 'bank', '2018-02-13', 10000, 0, 'Fully paid');
+(2, 'dr123', 'C111', 'bank', '2018-02-01', 10000, 0, 'Fully paid');
 
 -- --------------------------------------------------------
 
@@ -391,8 +401,12 @@ CREATE TABLE `raw_coffee` (
 --
 
 INSERT INTO `raw_coffee` (`raw_id`, `raw_coffee`, `raw_reorder`, `raw_limit`, `raw_stock`, `sup_id`, `raw_activation`) VALUES
-(1, 'Raw Coffee A', 5000, 10000, 80000, 1, 1),
-(2, 'Raw Coffee B', 2000, 7000, 9000, 2, 1);
+(1, 'GUATEMALA', 5000, 10000, 80000, 1, 1),
+(2, 'SUMATRA', 2000, 7000, 9000, 2, 1),
+(3, 'ROBUSTA', 1000, 8500, 1000, 2, 1),
+(4, 'BENGUET', 1500, 9000, 1800, 3, 1),
+(5, 'COLOMBIA', 2000, 10000, 5000, 1, 1),
+(6, 'BARAKO', 1500, 10500, 8000, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -415,6 +429,30 @@ CREATE TABLE `retail` (
 INSERT INTO `retail` (`retail_id`, `retail_date`, `retail_credit`, `blend_id`, `retail_qty`) VALUES
 (1, '2018-02-22', '30 day', 1, 300),
 (2, '2018-02-09', '30 day', 2, 300);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sample`
+--
+
+CREATE TABLE `sample` (
+  `sample_id` int(11) NOT NULL,
+  `sample_date` date DEFAULT NULL,
+  `sample_recipient` varchar(50) NOT NULL,
+  `sample_type` varchar(50) NOT NULL,
+  `client_coffReturnID` int(11) NOT NULL,
+  `package_id` int(11) NOT NULL,
+  `sticker_id` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sample`
+--
+
+INSERT INTO `sample` (`sample_id`, `sample_date`, `sample_recipient`, `sample_type`, `client_coffReturnID`, `package_id`, `sticker_id`) VALUES
+(1, '2018-02-21', 'Walkin Client', 'freebies', 1, 4, 1),
+(2, '2018-02-22', 'The Manor', 'free taste', 2, 5, 2);
 
 -- --------------------------------------------------------
 
@@ -501,6 +539,14 @@ CREATE TABLE `supplier_po` (
   `supPayment_stat` varchar(20) NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `supplier_po`
+--
+
+INSERT INTO `supplier_po` (`supPO_id`, `sup_id`, `supPO_date`, `supPO_qty`, `truck_fee`, `sup_credit`, `total_item`, `total_amount`, `sup_delivery`, `supPayment_stat`) VALUES
+(1, 1, '2018-02-21', 10000, 50, '30 days', 1, 5050, 'pending', 'pending'),
+(2, 2, '2018-02-21', 15000, 100, '15 days', 2, 8600, 'pending', 'pending');
+
 -- --------------------------------------------------------
 
 --
@@ -525,9 +571,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_no`, `username`, `u_lname`, `u_fname`, `u_email`, `u_contact`, `u_address`, `password`, `u_activation`, `u_type`) VALUES
-(1, 'tin', 'Caguioa', 'Tin', '2155651@slu.edu.ph', '09269044317', 'Baguio City', 'tin', 1, 'sales'),
-(3, 'lila', 'Fernandez', 'Mariella', 'lila22@gmail.com', '09176524553', '#09 Hillside, Baguio City', 'l', 1, 'admin'),
-(4, 'jom', 'Julhusin', 'Jomari', 'jom22@gmail.com', '09786525443', '#127 Aurora Hill, Baguio City', 'j', 1, 'inventory');
+(1, 'tin', 'Caguioa', 'Tin', '2155651@slu.edu.ph', '09269044317', 'Baguio City', 't', 1, 'sales'),
+(2, 'lila', 'Fernandez', 'Mariella', 'lila22@gmail.com', '09176524553', '#09 Hillside, Baguio City', 'l', 1, 'admin'),
+(3, 'jom', 'Julhusin', 'Jomari', 'jom22@gmail.com', '09786525443', '#127 Aurora Hill, Baguio City', 'j', 1, 'inventory'),
+(5, 'jin', 'Dullao', 'Jeanne', 'jeanne@gmail.com', '09067275881', '#90 Central Ambiong ', 'j', 1, 'admin');
 
 -- --------------------------------------------------------
 
@@ -595,6 +642,12 @@ ALTER TABLE `coffee_blend`
   ADD PRIMARY KEY (`blend_id`);
 
 --
+-- Indexes for table `company_returns`
+--
+ALTER TABLE `company_returns`
+  ADD PRIMARY KEY (`company_returnID`);
+
+--
 -- Indexes for table `contracted_client`
 --
 ALTER TABLE `contracted_client`
@@ -647,6 +700,12 @@ ALTER TABLE `raw_coffee`
 --
 ALTER TABLE `retail`
   ADD PRIMARY KEY (`retail_id`);
+
+--
+-- Indexes for table `sample`
+--
+ALTER TABLE `sample`
+  ADD PRIMARY KEY (`sample_id`);
 
 --
 -- Indexes for table `sticker`
@@ -719,6 +778,11 @@ ALTER TABLE `coffeeservice`
 ALTER TABLE `coffee_blend`
   MODIFY `blend_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
+-- AUTO_INCREMENT for table `company_returns`
+--
+ALTER TABLE `company_returns`
+  MODIFY `company_returnID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT for table `contracted_client`
 --
 ALTER TABLE `contracted_client`
@@ -757,12 +821,17 @@ ALTER TABLE `payment_supplier`
 -- AUTO_INCREMENT for table `raw_coffee`
 --
 ALTER TABLE `raw_coffee`
-  MODIFY `raw_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `raw_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `retail`
 --
 ALTER TABLE `retail`
   MODIFY `retail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `sample`
+--
+ALTER TABLE `sample`
+  MODIFY `sample_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `sticker`
 --
@@ -782,17 +851,18 @@ ALTER TABLE `supplier_delivery`
 -- AUTO_INCREMENT for table `supplier_po`
 --
 ALTER TABLE `supplier_po`
-  MODIFY `supPO_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `supPO_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `user_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `walkin_sales`
 --
 ALTER TABLE `walkin_sales`
-  MODIFY `walkin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `walkin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

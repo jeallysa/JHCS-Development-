@@ -8,7 +8,9 @@
 		
 		public function index()
 		{ 
-			$this->load->view('Inventory_Module/inventoryPackaging');
+			$this->load->model("InventoryPackaging_Model");
+			$pckng_data["fetch_data"] = $this->InventoryPackaging_Model->fetch_data();
+			$this->load->view('Inventory_Module/inventoryPackaging', $pckng_data);
 		}
 
 	}

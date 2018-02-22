@@ -130,7 +130,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <a href="<?php echo base_url(); ?>inventoryActivityLogs">Activity Logs</a>
                                     </li>
                                     <li>
-                                        <a href="#">Logout</a>
+                                        <a href="<?php echo base_url('Login/logout');  ?>">Logout</a>
                                     </li>
                                 </ul>
                             </li>
@@ -267,6 +267,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <th><b>Type</b></th>
                                                             <th><b>Recipient</b></th>
                                                             <th><b>Packaging</b></th>
+                                                            <th><b>Size</b></th>
                                                             <th><b>Stickers</b></th>
                                                         </tr>
                                                     </thead>
@@ -277,12 +278,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         {
                                                         ?>
                                                         <tr>
-                                                            <td><?php echo $row->samples_id; ?></td>
-                                                            <td><?php echo $row->date; ?></td>
-                                                            <td><?php echo $row->type; ?></td>
-                                                            <td><?php echo $row->recipient; ?></td>
-                                                            <td><?php echo $row->packaging; ?></td>
-                                                            <td><?php echo $row->stickers; ?></td>
+                                                            <td><?php echo $row->sample_id; ?></td>
+                                                            <td><?php echo $row->sample_date; ?></td>
+                                                            <td><?php echo $row->sample_type; ?></td>
+                                                            <td><?php echo $row->sample_recipient; ?></td>
+                                                            <td><?php echo $row->package_type; ?> bag</td>
+                                                            <td><?php echo $row->package_size; ?> g</td>
+                                                            <td><?php echo $row->sticker; ?></td>
                                                         </tr>
                                                     <?php
                                                                 }
