@@ -192,7 +192,7 @@
                                                     ?>
                                                     
                                                     <tr>
-                                                        <td><?php echo $row->contractPO_no; ?></td>
+                                                        <td><?php echo $row->contractPO_id; ?></td>
                                                         <td><?php echo $row->client_company; ?></td>
                                                         <td>--</td>
                                                         <td>--</td>
@@ -272,7 +272,7 @@
                                                         <td><?php echo $row->client_dr; ?></td>
                                                         <td><?php echo $row->client_invoice; ?></td>
                                                         <td>--</td>
-                                                        <td><?php echo $row->contractPO_no; ?></td>
+                                                        <td><?php echo $row->contractPO_id; ?></td>
                                                         <td><?php echo $row->client_deliverDate; ?></td>
                                                         <td><?php echo $row->client_company; ?></td>
                                                         <td>--</td>

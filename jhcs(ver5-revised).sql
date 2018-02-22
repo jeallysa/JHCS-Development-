@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 20, 2018 at 01:19 PM
+-- Generation Time: Feb 22, 2018 at 06:31 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `thesis_v2`
+-- Database: `jhcs`
 --
 
 -- --------------------------------------------------------
@@ -55,16 +55,17 @@ CREATE TABLE `client_coffreturn` (
   `coff_returnDate` date NOT NULL,
   `coff_returnQty` int(11) NOT NULL,
   `coff_remarks` varchar(50) NOT NULL,
-  `coff_returnAction` varchar(50) NOT NULL
+  `coff_returnAction` varchar(50) NOT NULL,
+  `returned` enum('Yes','No') NOT NULL DEFAULT 'No'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `client_coffreturn`
 --
 
-INSERT INTO `client_coffreturn` (`client_coffReturnID`, `client_dr`, `coff_returnDate`, `coff_returnQty`, `coff_remarks`, `coff_returnAction`) VALUES
-(1, 'dr123', '2018-02-28', 100, 'damaged', 'sample'),
-(2, 'dr124', '2018-02-19', 100, 'spoiled', 'redeliver');
+INSERT INTO `client_coffreturn` (`client_coffReturnID`, `client_dr`, `coff_returnDate`, `coff_returnQty`, `coff_remarks`, `coff_returnAction`, `returned`) VALUES
+(1, 'dr123', '2018-02-28', 100, 'damaged', 'sample', 'Yes'),
+(2, 'dr124', '2018-02-19', 100, 'spoiled', 'redeliver', 'Yes');
 
 -- --------------------------------------------------------
 
@@ -81,16 +82,17 @@ CREATE TABLE `client_delivery` (
   `client_balance` int(11) NOT NULL,
   `client_receive` varchar(50) NOT NULL,
   `client_id` int(11) NOT NULL,
-  `return` enum('No','Yes') NOT NULL DEFAULT 'No'
+  `return` enum('No','Yes') NOT NULL DEFAULT 'No',
+  `payment_remarks` enum('paid','unpaid') DEFAULT 'unpaid'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `client_delivery`
 --
 
-INSERT INTO `client_delivery` (`client_deliveryID`, `contractPO_id`, `client_dr`, `client_invoice`, `client_deliverDate`, `client_balance`, `client_receive`, `client_id`, `return`) VALUES
-(1, 1, 'dr233', '233', '2018-02-13', 10000, 'Mark De Vera', 1, 'No'),
-(2, 2, 'dr234', '234', '2018-02-12', 13000, 'Leah Ramos', 2, 'Yes');
+INSERT INTO `client_delivery` (`client_deliveryID`, `contractPO_id`, `client_dr`, `client_invoice`, `client_deliverDate`, `client_balance`, `client_receive`, `client_id`, `return`, `payment_remarks`) VALUES
+(1, 1, 'dr123', '233', '2018-02-13', 10000, 'Mark De Vera', 1, 'No', 'unpaid'),
+(2, 2, 'dr124', '234', '2018-02-12', 13000, 'Leah Ramos', 2, 'Yes', 'unpaid');
 
 -- --------------------------------------------------------
 
@@ -219,16 +221,17 @@ CREATE TABLE `contracted_client` (
   `client_email` varchar(50) NOT NULL,
   `client_address` varchar(100) NOT NULL,
   `client_contact` varchar(12) NOT NULL,
-  `client_type` varchar(20) NOT NULL
+  `client_type` varchar(20) NOT NULL,
+  `client_status` enum('enabled','disabled') NOT NULL DEFAULT 'disabled'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `contracted_client`
 --
 
-INSERT INTO `contracted_client` (`client_id`, `client_company`, `client_fname`, `client_lname`, `client_position`, `client_email`, `client_address`, `client_contact`, `client_type`) VALUES
-(1, 'Eurotel', 'Amagan', 'Jesselyn', 'General Manager', 'jesselyn22@gmail.com', '#118 Liwanag Loakan, Baguio City', '09176253445', 'Retail'),
-(2, 'De Vera Inn', 'Calpito', 'Annyssa', 'Manager', 'maecalpito@gmail.com', '#52 Green Valley, Baguio City', '0962736554', 'Coffee Service');
+INSERT INTO `contracted_client` (`client_id`, `client_company`, `client_fname`, `client_lname`, `client_position`, `client_email`, `client_address`, `client_contact`, `client_type`, `client_status`) VALUES
+(1, 'Eurotel', 'Amagan', 'Jesselyn', 'General Manager', 'jesselyn22@gmail.com', '#118 Liwanag Loakan, Baguio City', '09176253445', 'Retail', 'enabled'),
+(2, 'De Vera Inn', 'Calpito', 'Annyssa', 'Manager', 'maecalpito@gmail.com', '#52 Green Valley, Baguio City', '0962736554', 'Coffee Service', 'enabled');
 
 -- --------------------------------------------------------
 
@@ -270,6 +273,13 @@ CREATE TABLE `machine` (
   `mach_activation` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `machine`
+--
+
+INSERT INTO `machine` (`mach_id`, `brewer`, `brewer_type`, `mach_reorder`, `mach_limit`, `mach_stocks`, `sup_id`, `mach_activation`) VALUES
+(1, 'Saeco', 'Double Cup Espresso', 5, 10, 7, '1', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -308,6 +318,18 @@ CREATE TABLE `packaging` (
   `sup_id` int(11) NOT NULL,
   `pack_activation` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `packaging`
+--
+
+INSERT INTO `packaging` (`package_id`, `package_type`, `package_size`, `package_reorder`, `package_limit`, `package_stock`, `sup_id`, `pack_activation`) VALUES
+(1, 'clear', '1000', 50, 200, 60, 1, 1),
+(2, 'clear', '500', 50, 200, 70, 2, 1),
+(3, 'clear', '250', 50, 200, 90, 1, 1),
+(4, 'brown', '1000', 50, 200, 102, 2, 1),
+(5, 'brown', '500', 50, 200, 95, 1, 1),
+(6, 'brown', '250', 50, 200, 145, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -369,8 +391,8 @@ CREATE TABLE `raw_coffee` (
 --
 
 INSERT INTO `raw_coffee` (`raw_id`, `raw_coffee`, `raw_reorder`, `raw_limit`, `raw_stock`, `sup_id`, `raw_activation`) VALUES
-(1, 'Raw Coffee A', 5000, 10000, 80000, 0, 1),
-(2, 'Raw Coffee B', 2000, 7000, 9000, 0, 1);
+(1, 'Raw Coffee A', 5000, 10000, 80000, 1, 1),
+(2, 'Raw Coffee B', 2000, 7000, 9000, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -409,6 +431,14 @@ CREATE TABLE `sticker` (
   `sup_id` int(11) NOT NULL,
   `sticker_activation` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sticker`
+--
+
+INSERT INTO `sticker` (`sticker_id`, `sticker`, `sticker_reorder`, `sticker_limit`, `sticker_stock`, `sup_id`, `sticker_activation`) VALUES
+(1, 'Marios', 500, 1000, 600, 1, 1),
+(2, 'Manor', 500, 1000, 700, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -486,17 +516,18 @@ CREATE TABLE `user` (
   `u_contact` varchar(12) NOT NULL,
   `u_address` varchar(100) NOT NULL,
   `password` varchar(20) NOT NULL,
-  `u_activation` int(11) NOT NULL DEFAULT '1'
+  `u_activation` int(11) NOT NULL DEFAULT '1',
+  `u_type` varchar(45) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_no`, `username`, `u_lname`, `u_fname`, `u_email`, `u_contact`, `u_address`, `password`, `u_activation`) VALUES
-(1, 'tin', 'Caguioa', 'Tin', '2155651@slu.edu.ph', '09269044317', 'Baguio City', 'tin', 1),
-(3, 'lila', 'Fernandez', 'Mariella', 'lila22@gmail.com', '09176524553', '#09 Hillside, Baguio City', 'l', 1),
-(4, 'jom', 'Julhusin', 'Jomari', 'jom22@gmail.com', '09786525443', '#127 Aurora Hill, Baguio City', 'j', 1);
+INSERT INTO `user` (`user_no`, `username`, `u_lname`, `u_fname`, `u_email`, `u_contact`, `u_address`, `password`, `u_activation`, `u_type`) VALUES
+(1, 'tin', 'Caguioa', 'Tin', '2155651@slu.edu.ph', '09269044317', 'Baguio City', 'tin', 1, 'sales'),
+(3, 'lila', 'Fernandez', 'Mariella', 'lila22@gmail.com', '09176524553', '#09 Hillside, Baguio City', 'l', 1, 'admin'),
+(4, 'jom', 'Julhusin', 'Jomari', 'jom22@gmail.com', '09786525443', '#127 Aurora Hill, Baguio City', 'j', 1, 'inventory');
 
 -- --------------------------------------------------------
 
@@ -701,7 +732,7 @@ ALTER TABLE `contracted_po`
 -- AUTO_INCREMENT for table `machine`
 --
 ALTER TABLE `machine`
-  MODIFY `mach_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `mach_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `machine_out`
 --
@@ -711,7 +742,7 @@ ALTER TABLE `machine_out`
 -- AUTO_INCREMENT for table `packaging`
 --
 ALTER TABLE `packaging`
-  MODIFY `package_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `package_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `payment_contracted`
 --
@@ -736,7 +767,7 @@ ALTER TABLE `retail`
 -- AUTO_INCREMENT for table `sticker`
 --
 ALTER TABLE `sticker`
-  MODIFY `sticker_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sticker_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `supplier`
 --
