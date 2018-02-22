@@ -274,13 +274,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 <th><b>Delivery Receipt No.</b></th>
                                                                 <th><b>Date Returned</b></th>
                                                                 <th><b>Client</b></th>
-                                                                <th><b>Coffee</b></th>
-                                                                <th><b>Bag</b></th>
-                                                                <th><b>Grams</b></th>
                                                                 <th><b>Quantity</b></th>
                                                                 <th><b>Remarks</b></th>
                                                                 <th><b>Action Taken</b></th>
-                                                                <th><b>Status</b></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -293,13 +289,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 <td><?php echo $row->client_dr; ?></td>
                                                                 <td><?php echo $row->coff_returnDate; ?></td>
                                                                 <td><?php echo $row->client_company; ?></td>
-                                                                <td><?php echo $row->coff_returned; ?></td>
-                                                                <td><?php echo $row->coff_bag; ?></td>
-                                                                <td><?php echo $row->coff_baggrams; ?></td>
                                                                 <td><?php echo $row->coff_returnQty; ?></td>
                                                                 <td><?php echo $row->coff_remarks; ?></td>
                                                                 <td><?php echo $row->coff_returnAction; ?></td>
-                                                                <td><?php echo $row->status; ?></td>
                                                             </tr>
                                                             <?php
                                                         }
@@ -336,7 +328,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 <td><?php echo $row->mach_returnQty; ?></td>
                                                                 <td><?php echo $row->mach_remarks; ?></td>
                                                                 <td><?php echo $row->mach_returnAction; ?></td>
-                                                                <td><?php echo $row->status; ?></td>
                                                             </tr>
                                                             <?php
                                                         }

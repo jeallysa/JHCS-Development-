@@ -11,12 +11,12 @@
 			
 		}
 		public function get_clientcoffeereturns(){
-			$query = $this->db->query("SELECT client_coffReturnID, client_dr, coff_returnDate, client_company, coff_returned, coff_bag, coff_baggrams, coff_returnQty, coff_remarks, coff_returnAction, status FROM jhcs.client_coffreturn NATURAL JOIN client_delivery NATURAL JOIN contracted_client;");
+			$query = $this->db->query("SELECT client_coffReturnID, client_dr, coff_returnDate, client_company, coff_returnQty, coff_remarks, coff_returnAction FROM jhcs.client_coffreturn NATURAL JOIN client_delivery NATURAL JOIN contracted_client;");
 			return $query->result();
 			
 		}
 		public function get_clientmachinereturns(){
-			$query = $this->db->query("SELECT client_machReturnID, client_dr, mach_returnDate, client_company, mach_id, mach_returnQty, mach_remarks, mach_returnAction, status FROM jhcs.client_machreturn NATURAL JOIN client_delivery NATURAL JOIN contracted_client;");
+			$query = $this->db->query("SELECT client_machReturnID, client_dr, mach_returnDate, client_company, mach_id, mach_returnQty, mach_remarks, mach_returnAction FROM jhcs.client_machreturn NATURAL JOIN client_delivery NATURAL JOIN contracted_client;");
 			return $query->result();
 			
 		}
