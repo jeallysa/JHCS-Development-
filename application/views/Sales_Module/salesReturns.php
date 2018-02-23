@@ -85,6 +85,10 @@
 			border-left: 2px solid #CC99FF;
 		}
 		
+		.select-pane {
+        display: none;
+    	}
+		
 
 		
 
@@ -477,6 +481,8 @@
                                                     </div>
                                                 </div>
                                             </div>
+											</div>
+										<div class="row">
                                             <div class="col-lg-2 col-md-2 col-sm-2"></div>
                                             <div class="col-lg-8 col-md-8 col-sm-8 ">
                                                 <div class="select-pane" id="delivery">
@@ -489,6 +495,17 @@
                                                 </div>
                                             </div>
                                         </div>
+										<div class="row">
+											<div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="col-md-5 control">Remarks :</label>
+                                                    <div class="col-md-7">
+                                                        <input id="" name="name" type="text" class="form-control">
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+										</div>
                                     </div>
 										<div class="panel-footer" align="center">
 											<input type="submit" class="btn btn-success" value="Add" />
