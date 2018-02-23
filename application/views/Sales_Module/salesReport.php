@@ -21,6 +21,8 @@
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+
+
 </head>
 
 <body>
@@ -128,15 +130,16 @@
                                     <h3 class="title"><center>Sales Report</center></h3>
                                 </div>
                                 <div class="card-content">
-                                    <label>Set Date from </label>
-                                    <input type="date" name="">
-                                    <label> to </label>
-                                    <input type="date" name="">
-                                    <button>Submit</button>
-                                    <h4>Total Sales: 25,000</h4>
-                                    <hr>
-                                    <h4>Generate Sales Report</h4>
-                                    <table id="example" class="display  hover order-column" cellspacing="0" width="100%">
+                                <div class="form-group col-xs-3">
+                                <label>Filter By:</label>
+                                    <div class="input-group input-daterange">
+                                        <input type="text" id="min" class="form-control" value="2000-01-01" >
+                                        <span class="input-group-addon">to</span>
+                                        <input type="text" id="max" class="form-control" value="<?php   echo date("Y-m-d") ?>" >
+                                    </div>
+                                </div>
+
+                                    <table id="table-mutasi" class="display  hover order-column" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
                                                 <th><b>Delivery Receipt No.</b></th>
@@ -186,6 +189,7 @@
 <!--   Core JS Files   -->
 <script src="../assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="../assets/js/bootstrap-datepicker.min.js"></script>
 <script src="../assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
 <script src="../assets/FileExport/buttons.flash.min.js" type="text/javascript"></script>
 <script src="../assets/FileExport/dataTables.buttons.min.js" type="text/javascript"></script>
@@ -210,7 +214,7 @@
 <script src="../assets/js/material-dashboard.js?v=1.2.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="../assets/js/demo.js"></script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 $(document).ready(function() {
     $('#example').DataTable({
         dom: 'Bfrtip',
@@ -219,6 +223,58 @@ $(document).ready(function() {
         ]
     });
 });
+</script> -->
+
+<script>   
+    
+    
+    $.fn.dataTableExt.afnFiltering.push(
+        function(oSettings, aData, iDataIndex){
+            var dateStart = parseDateValue($("#min").val());
+            var dateEnd = parseDateValue($("#max").val());
+            var evalDate= parseDateValue(aData[2]);
+
+            if (evalDate >= dateStart && evalDate <= dateEnd) {
+                return true;
+            }
+            else {
+                return false;
+            }
+    });
+    //Date Converter
+    function parseDateValue(rawDate) {
+        var month = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+        var dateArray = rawDate.split(" ");
+        var parsedDate = dateArray[2] + month + dateArray[0];
+        return parsedDate;
+    }
+
+    var oTable = $('#table-mutasi').dataTable({ 
+        "dom":' <"search"fl><"top">rt<"bottom"ip><"clear">',
+        "iDisplayLength": 25,
+        "lengthChange": false,
+        "info":     false
+    });
+
+    $('#min,#max').datepicker({
+        format: "yyyy-mm-dd",
+        weekStart: 1,
+        daysOfWeekHighlighted: "0",
+        autoclose: true,
+        todayHighlight: true
+    });
+
+    // Event Listeners
+    $("#min").datepicker().on( 'changeDate', function() {
+        oTable.fnDraw(); 
+    });
+    $("#max").datepicker().on( 'changeDate', function() { 
+        oTable.fnDraw(); 
+    });
+    
+
+
 </script>
+
 
 </html>

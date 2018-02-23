@@ -140,13 +140,6 @@
                                     <h3 class="title"><center>Recievables</center></h3>
                                 </div>
                                 <div class="card-content">
-                                    <label>Set Date from </label>
-                                    <input type="date" name="">
-                                    <label> to </label>
-                                    <input type="date" name="">
-                                    <button>Submit</button>
-                                    <h4>Total Receivables: 25,000</h4>
-                                    <hr>
                                     <h4>Generate Receivables Report</h4>
                                     <table id="example" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
@@ -287,14 +280,6 @@
 <script type="text/javascript">
 $(document).ready(function() {
     $('#example').DataTable({
-        "columns": [
-            null,
-            { "width": "30%" },
-            null
-        ],
-        "columnDefs": [
-            { className: "dt-body-center", "targets": [0] }
-        ],
         dom: 'Bfrtip',
         buttons: [
             'excel', 'pdf', 'print'
@@ -307,53 +292,8 @@ $('table tbody tr  td').on('click', function() {
     $("#txtfname").val($(this).closest('tr').children()[0].textContent);
     $("#txtlname").val($(this).closest('tr').children()[1].textContent);
 });
-$('#datePicker')
-    .datepicker({
-        format: 'mm/dd/yyyy'
-    })
-    .on('changeDate', function(e) {
-        // Revalidate the date field
-        $('#eventForm').formValidation('revalidateField', 'date');
-    });
 
-$('#eventForm').formValidation({
-    framework: 'bootstrap',
-    icon: {
-        valid: 'glyphicon glyphicon-ok',
-        invalid: 'glyphicon glyphicon-remove',
-        validating: 'glyphicon glyphicon-refresh'
-    },
-    fields: {
-        name: {
-            validators: {
-                notEmpty: {
-                    message: 'The name is required'
-                }
-            }
-        },
-        date: {
-            validators: {
-                notEmpty: {
-                    message: 'The date is required'
-                },
-                date: {
-                    format: 'MM/DD/YYYY',
-                    message: 'The date is not a valid'
-                }
-            }
-        }
-    }
-});
 </script>
-<script type="text/javascript">
-$(document).ready(function() {
-    $('table.display').DataTable({
-        dom: 'Bfrtip',
-        buttons: [
-            'excel', 'pdf', 'print'
-        ]
-    });
-});
-</script>
+
 
 </html>
