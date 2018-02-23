@@ -13,7 +13,7 @@ class Admin_Accounts_Model extends CI_model
 	}
 
 	function fetch_data(){
-		$query = $this->db->get("accounts");
+		$query = $this->db->get("user");
 		return $query;
 	}
 

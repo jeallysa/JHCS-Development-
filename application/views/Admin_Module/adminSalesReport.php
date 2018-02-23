@@ -294,43 +294,48 @@
                                                 <th><b>Quantity</b></th>
                                                 <th><b>Unit Price</b></th>
                                                 <th><b>Total Amount</b></th>
-                                                <th><b>Remarks</b></th>
+                                                
                                                 <th class="disabled-sorting">Edit</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <?php
+                                                if($fetch_data->num_rows() > 0){
+
+                                                    foreach ($fetch_data -> result() as $row) 
+                                                    {
+                                                ?>
                                             <tr>
-                                                <td>2415</td>
-                                                <td>3747</td>
-                                                <td>Oct 1, 2017</td>
-                                                <td>Lazada</td>
-                                                <td>Fiesta Blend Ground</td>
-                                                <td>brown</td>
-                                                <td>250 g</td>
-                                                <td>1</td>
-                                                <td>138.09</td>
-                                                <td>138.09</td>
-                                                <td>Retail</td>
+                                                <td><?php echo $row->client_dr; ?></td>
+                                                <td>SI-<?php echo $row->client_invoice; ?></td>
+                                                <td><?php echo $row->client_deliverDate; ?></td>
+                                                <td><?php echo $row->client_company; ?></td>
+                                                <td><?php echo $row->blend; ?></td>
+                                                <td><?php echo $row->bag; ?></td>
+                                                <td><?php echo $row->size; ?></td>
+                                                <td><?php echo $row->contractPO_qty; ?></td>
+                                                <td><?php echo $row->blend_price; ?></td>
+                                                <td><?php echo $row->total_amount; ?></td>
+                                                
                                                 <td>
                                                                 <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>2943</td>
-                                                <td>3747</td>
-                                                <td>Oct 2, 2017</td>
-                                                <td>Bloomfield Hotel/Patch Cafe</td>
-                                                <td>Bloomfield Beans</td>
-                                                <td>clear</td>
-                                                <td>500 g</td>
-                                                <td>24</td>
-                                                <td>492.80</td>
-                                                <td>11,827.20</td>
-                                                <td>Coffee Services</td>
-                                                <td>
-                                                                <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
-                                                </td>
-                                            </tr>
+
+                                            <?php
+                                                    }
+
+                                                }
+                                                else{
+                                                ?>
+                                                <tr>
+                                                        <td colspan = 11 style = "text-align: center;"> <h3>This section is empty, a sales report cannot be generated</h3> </td>
+                                                    </tr>
+                                                <?php
+                                                }
+
+                                                ?>
+                                            
                                         </tbody>
                                     </table>
                                 </div>

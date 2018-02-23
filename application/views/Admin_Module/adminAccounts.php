@@ -396,7 +396,7 @@
                                                     <th><b>User No.</b></th>
                                                     <th><b>Last Name</b></th>
                                                     <th><b>First Name</b></th>
-                                                    <th><b>Position</b></th>
+                                                    <th><b>Department</b></th>
                                                     <th><b>Address</b></th>
                                                     <th><b>Email</b></th>
                                                     <th><b>Cellphone No.</b></th>
@@ -413,13 +413,13 @@
                                                     {
                                                 ?>
                                                     <tr>
-                                                        <td>UA-<?php echo $row->account_id; ?></td>
-                                                        <td><?php echo $row->last_name; ?></td>
-                                                        <td><?php echo $row->first_name; ?></td>
-                                                        <td><?php echo $row->position; ?></td>
-                                                        <td><?php echo $row->address; ?></td>
-                                                        <td><?php echo $row->email; ?></td>
-                                                        <td>0<?php echo $row->cellphone_number; ?></td>
+                                                        <td>UA-<?php echo $row->user_no; ?></td>
+                                                        <td><?php echo $row->u_lname; ?></td>
+                                                        <td><?php echo $row->u_fname; ?></td>
+                                                        <td><?php echo $row->u_type; ?></td>
+                                                        <td><?php echo $row->u_address; ?></td>
+                                                        <td><?php echo $row->u_email; ?></td>
+                                                        <td>0<?php echo $row->u_contact; ?></td>
                                                         <td>
                                                         <span data-toggle="modal" data-target="#deactivate">
                                                         <a href="#" class="deactivate" data-toggle="tooltip" data-placement="bottom" title="Deactivate"><i class="fa fa-close"></i></a> </span>

@@ -363,13 +363,13 @@ thead th {
                                                 ?>
                                                 <tr>
                                                 <td>CL-<?php echo $row->client_id; ?></td>
-                                                <td><?php echo $row->client_name; ?></td>
+                                                <td><?php echo $row->client_company; ?></td>
                                                 <td><?php echo $row->client_type; ?></td>
                                                 <td><?php echo $row->contact_personnel; ?></td>
-                                                <td><?php echo $row->position; ?></td>
-                                                <td><?php echo $row->address; ?></td>
-                                                <td><?php echo $row->email; ?></td>
-                                                <td><?php echo $row->telephone_no; ?></td>
+                                                <td><?php echo $row->client_position; ?></td>
+                                                <td><?php echo $row->client_address; ?></td>
+                                                <td><?php echo $row->client_email; ?></td>
+                                                <td><?php echo $row->client_contact; ?></td>
                                                 <td>
                                                     <span data-toggle="modal" data-target="#deactivate">
                                                     <a href="#" class="deactivate" data-toggle="tooltip" data-placement="bottom" title="Deactivate"><i class="fa fa-close"></i></a> </span>
