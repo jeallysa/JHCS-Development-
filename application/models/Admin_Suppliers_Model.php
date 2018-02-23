@@ -13,7 +13,7 @@ class Admin_Suppliers_Model extends CI_model
 	}
 
 	function fetch_data(){
-		$query = $this->db->get("supplier");
+		$query = $this->db->query("SELECT sup_id, sup_company, CONCAT(sup_fname, ' ', sup_lname) AS contact_personnel, sup_position, sup_address, sup_email, sup_contact FROM supplier");
 		return $query;
 	}
 

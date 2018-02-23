@@ -227,7 +227,7 @@ thead th {
                                         <a href="<?php echo base_url(); ?>adminActivityLogs">Activity Logs</a>
                                     </li>
                                     <li>
-                                        <a href="#">Logout</a>
+                                        <a href="<?php echo base_url('Login/logout');  ?>">Logout</a>
                                     </li>
                                 </ul>
                             </li>
@@ -363,13 +363,13 @@ thead th {
                                                 ?>
                                                 <tr>
                                                 <td>CL-<?php echo $row->client_id; ?></td>
-                                                <td><?php echo $row->client_name; ?></td>
+                                                <td><?php echo $row->client_company; ?></td>
                                                 <td><?php echo $row->client_type; ?></td>
                                                 <td><?php echo $row->contact_personnel; ?></td>
-                                                <td><?php echo $row->position; ?></td>
-                                                <td><?php echo $row->address; ?></td>
-                                                <td><?php echo $row->email; ?></td>
-                                                <td><?php echo $row->telephone_no; ?></td>
+                                                <td><?php echo $row->client_position; ?></td>
+                                                <td><?php echo $row->client_address; ?></td>
+                                                <td><?php echo $row->client_email; ?></td>
+                                                <td><?php echo $row->client_contact; ?></td>
                                                 <td>
                                                     <span data-toggle="modal" data-target="#deactivate">
                                                     <a href="#" class="deactivate" data-toggle="tooltip" data-placement="bottom" title="Deactivate"><i class="fa fa-close"></i></a> </span>
@@ -406,41 +406,6 @@ thead th {
                     </div>
                 </div>
             </div>
-            <footer class="footer">
-                <div class="container-fluid">
-                    <nav class="pull-left">
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    Home
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Company
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Portfolio
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Blog
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <p class="copyright pull-right">
-                        &copy;
-                        <script>
-                        document.write(new Date().getFullYear())
-                        </script>
-                        <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-                    </p>
-                </div>
-            </footer>
         </div>
     </div>
 </body>

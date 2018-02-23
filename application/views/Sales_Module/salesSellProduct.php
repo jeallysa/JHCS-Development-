@@ -124,7 +124,7 @@
                                         <a href="<?php echo base_url(); ?>activitylogs">Activity Logs</a>
                                     </li>
                                     <li>
-                                        <a href="#">Logout</a>
+                                        <a href="<?php echo base_url('Login/logout');  ?>">Logout</a>
                                     </li>
                                 </ul>
                             </li>
@@ -176,29 +176,24 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-													<tr>
-														<td>I0001</td>
-                                                        <td>Oct 1, 2017</td>
-														<td>Ariel Tide</td>
-														<td>Fiesta Blend Ground</td>
-														<td>brown</td>
-														<td>250 g</td>
-														<td>2</td>
-														<td>350</td>
-														<td>700</td>
-													</tr>
-													<tr>
-														<td>I0002</td>
-														<td>Oct 1, 2017</td>
-														<td>Jan Lapid</td>
-														<td>Guatamela Rainforest</td>
-														<td>brown</td>
-														<td>500 g</td>
-														<td>1</td>
-														<td>650</td>
-														<td>650</td>
-													</tr>
-												</tbody>
+                                                    <?php 
+                                                        foreach ($data1['sellCoffee'] as $row) {
+                                                     ?>
+                                                     <tr>
+                                                         <td><?php echo $row->blend_id; ?></td>
+                                                         <td><?php echo $row->walkin_date; ?></td>
+                                                         <td><?php echo $row->Client; ?></td>
+                                                         <td><?php echo $row->blend; ?></td>
+                                                         <td><?php echo $row->bag; ?></td>
+                                                         <td><?php echo $row->size; ?></td>
+                                                         <td><?php echo $row->walkin_qty; ?></td>
+                                                         <td><?php echo $row->blend_price; ?></td>
+                                                         <td> -- </td>
+                                                     </tr>
+                                                     <?php 
+                                                        }
+                                                      ?>
+                                                </tbody>
                                             </table>
 											</div>
 											<div class="tab-pane" id="machine">
@@ -214,16 +209,22 @@
 														<th><b>Total Amount</b></th>
 													</thead>
 													<tbody>
-														<tr>
-															<td>I0023</td>
-															<td>Oct 31, 2017</td>
-															<td>Taylor Swift</td>
-															<td>Saeco</td>
-															<td>1</td>
-															<td>5, 000</td>
-															<td>5, 000</td>
-														</tr>
-													</tbody>
+                                                    <?php 
+                                                        foreach ($data2['sellMachine'] as $row) {
+                                                     ?>
+                                                     <tr>
+                                                         <td><?php echo $row->mach_tagNO; ?></td>
+                                                         <td><?php echo $row->date; ?></td>
+                                                         <td><?php echo $row->client_company; ?></td>
+                                                         <td><?php echo $row->brewer; ?></td>
+                                                         <td><?php echo $row->mach_qty; ?></td>
+                                                         <td><?php echo $row->mach_price; ?></td>
+                                                         <td> -- </td>
+                                                     </tr>
+                                                     <?php 
+                                                        }
+                                                      ?>
+                                                </tbody>
 												</table>
 											</div>
 										</div>
@@ -299,41 +300,6 @@
                     </div>
                 </div>
             </div>
-            <footer class="footer">
-                <div class="container-fluid">
-                    <nav class="pull-left">
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    Home
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Company
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Portfolio
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Blog
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <p class="copyright pull-right">
-                        &copy;
-                        <script>
-                        document.write(new Date().getFullYear())
-                        </script>
-                        <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-                    </p>
-                </div>
-            </footer>
         </div>
     </div>
 </body>

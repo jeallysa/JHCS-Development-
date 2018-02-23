@@ -225,7 +225,7 @@ thead th {
                                         <a href="<?php echo base_url(); ?>adminActivityLogs">Activity Logs</a>
                                     </li>
                                     <li>
-                                        <a href="#">Logout</a>
+                                        <a href="<?php echo base_url('Login/logout');  ?>">Logout</a>
                                     </li>
                                 </ul>
                             </li>
@@ -494,14 +494,14 @@ thead th {
                                                         {
                                                 ?>
                                                     <tr>
-                                                    <td>SP-<?php echo $row->supplier_id; ?></td>
-                                                    <td><?php echo $row->supplier_name; ?></td>
+                                                    <td>SP-<?php echo $row->sup_id; ?></td>
+                                                    <td><?php echo $row->sup_company; ?></td>
                                                     <td>N/A</td>
                                                     <td><?php echo $row->contact_personnel; ?></td>
-                                                    <td><?php echo $row->position; ?></td>
-                                                    <td><?php echo $row->address; ?></td>
-                                                    <td><?php echo $row->email_address; ?></td>
-                                                    <td><?php echo $row->telephone_number; ?></td>
+                                                    <td><?php echo $row->sup_position; ?></td>
+                                                    <td><?php echo $row->sup_address; ?></td>
+                                                    <td><?php echo $row->sup_email; ?></td>
+                                                    <td><?php echo $row->sup_contact; ?></td>
                                                     
                                                     <td>
                                                         <span data-toggle="modal" data-target="#deactivate">
@@ -536,41 +536,6 @@ thead th {
                     </div>
                 </div>
             </div>
-            <footer class="footer">
-                <div class="container-fluid">
-                    <nav class="pull-left">
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    Home
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Company
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Portfolio
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Blog
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <p class="copyright pull-right">
-                        &copy;
-                        <script>
-                        document.write(new Date().getFullYear())
-                        </script>
-                        <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-                    </p>
-                </div>
-            </footer>
         </div>
     </div>
 </body>

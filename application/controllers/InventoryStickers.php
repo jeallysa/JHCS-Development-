@@ -8,7 +8,9 @@
 		
 		public function index()
 		{ 
-			$this->load->view('Inventory_Module/inventoryStickers');
+			$this->load->model("InventoryStickers_Model");
+			$stckr_data["fetch_data"] = $this->InventoryStickers_Model->fetch_data();
+			$this->load->view('Inventory_Module/inventoryStickers', $stckr_data);
 		}
 
 	}

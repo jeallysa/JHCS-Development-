@@ -12,6 +12,7 @@
     <!-- Bootstrap core CSS     -->
     <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/bootstrap-datepicker3.min.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>assets/css/jquery.dataTable.min.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/FileExport/buttons.dataTables.min.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/FileExport/jquery.dataTables.min.css" rel="stylesheet" />
@@ -112,7 +113,7 @@
                                         <a href="<?php echo base_url(); ?>salesActivityLogs">Activity Logs</a>
                                     </li>
                                     <li>
-                                        <a href="#">Logout</a>
+                                        <a href="<?php echo base_url('Login/logout');  ?>">Logout</a>
                                     </li>
                                 </ul>
                             </li>
@@ -129,15 +130,16 @@
                                     <h3 class="title"><center>Collections Report</center></h3>
                                 </div>
                                 <div class="card-content">
-                                    <label>Set Date from </label>
-                                    <input type="date" name="">
-                                    <label> to </label>
-                                    <input type="date" name="">
-                                    <button>Submit</button>
-                                    <h4>Total Collection: 25,000</h4>
-                                    <hr>
-                                    <h4>Generate Collection Report</h4>
-                                    <table id="example" class="display  hover order-column" cellspacing="0" width="100%">
+                                    <div class="form-group col-xs-3">
+                                    <label>Filter By:</label>
+                                        <div class="input-group input-daterange">
+                                            <input type="text" id="min" class="form-control" value="2000-01-01" >
+                                            <span class="input-group-addon">to</span>
+                                            <input type="text" id="max" class="form-control" value="<?php   echo date("Y-m-d") ?>" >
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <table id="table-mutasi" class="display  hover order-column" cellspacing="0" width="100%">
                                         <thead>
                                             <th><b class="pull-left">Collection Receipt No.</b></th>
                                             <th><b class="pull-left">Delivery Receipt No.</b></th>
@@ -168,7 +170,8 @@
                                                 }
                                               ?>
                                         </tbody>
-                                    </table>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -181,6 +184,7 @@
 <!--   Core JS Files   -->
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/bootstrap-datepicker.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/buttons.flash.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/dataTables.buttons.min.js" type="text/javascript"></script>
@@ -205,15 +209,71 @@
 <script src="../assets/js/material-dashboard.js?v=1.2.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="../assets/js/demo.js"></script>
-<script type="text/javascript">
+
+
+<script>   
+    
+    
+    $.fn.dataTableExt.afnFiltering.push(
+        function(oSettings, aData, iDataIndex){
+            var dateStart = parseDateValue($("#min").val());
+            var dateEnd = parseDateValue($("#max").val());
+            var evalDate= parseDateValue(aData[4]);
+
+            if (evalDate >= dateStart && evalDate <= dateEnd) {
+                return true;
+            }
+            else {
+                return false;
+            }
+    });
+    //Date Converter
+    function parseDateValue(rawDate) {
+        var month = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+        var dateArray = rawDate.split(" ");
+        var parsedDate = dateArray[2] + month + dateArray[0];
+        return parsedDate;
+    }
+
+
+    var oTable = $('#table-mutasi').dataTable({ 
+        "dom":' <"search"fl><"top">rt<"bottom"ip><"clear">',
+        "iDisplayLength": 25,
+        "lengthChange": false,
+        "info":     false
+    });
+
+    $('#min,#max').datepicker({
+        format: "yyyy-mm-dd",
+        weekStart: 1,
+        daysOfWeekHighlighted: "0",
+        autoclose: true,
+        todayHighlight: true
+    });
+
+    // Event Listeners
+    $("#min").datepicker().on( 'changeDate', function() {
+        oTable.fnDraw(); 
+    });
+    $("#max").datepicker().on( 'changeDate', function() { 
+        oTable.fnDraw(); 
+    });
+    
+
+
+</script>
+
+
+
+<!-- <script type="text/javascript">
 $(document).ready(function() {
-    $('#example').DataTable({
+    $('#table-mutasi').DataTable({
         dom: 'Bfrtip',
         buttons: [
             'excel', 'pdf', 'print'
         ]
     });
 });
-</script>
+</script> -->
 
 </html>

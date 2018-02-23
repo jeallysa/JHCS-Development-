@@ -53,12 +53,13 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-/*Login*/
+/*Login
 $route['home'] = 'Home_Controller/index';
 $route['admin'] = 'Home_Controller/admin';
 $route['sales'] = 'Home_Controller/sales';
 $route['inventory'] = 'Home_Controller/inventory';
 $route['login'] = 'Login_Controller/login';
+*/
 
 /*Sales Module Routes*/
 	$route['getSalesDashboard'] = 'salesDashboard';
