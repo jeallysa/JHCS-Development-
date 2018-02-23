@@ -139,7 +139,7 @@ thead th {
                                 
                                 <li> <a href="<?php echo base_url(); ?>inventoryActivityLogs">Activity Logs</a> </li>
                                 
-                                <li> <a href="#">Logout</a></li>
+                                <li> <a href="<?php echo base_url('Login/logout');  ?>">Logout</a></li>
                             </ul>
                         </li>
                     </ul>

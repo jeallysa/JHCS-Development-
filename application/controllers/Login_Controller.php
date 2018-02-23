@@ -41,6 +41,11 @@ class Login_Controller extends CI_Controller
 		{
 			echo "Invalid";
 		}
+	}
 
+	function logout() {
+		$this->session_destroy();
+
+		redirect('login');
 	}
 }
