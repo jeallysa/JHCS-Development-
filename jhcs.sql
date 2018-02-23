@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 23, 2018 at 07:22 AM
+-- Generation Time: Feb 23, 2018 at 08:17 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -276,6 +276,7 @@ CREATE TABLE `machine` (
   `mach_id` int(11) NOT NULL,
   `brewer` varchar(50) NOT NULL,
   `brewer_type` varchar(50) NOT NULL,
+  `mach_price` int(11) NOT NULL,
   `mach_reorder` int(11) NOT NULL,
   `mach_limit` int(11) NOT NULL,
   `mach_stocks` int(11) NOT NULL,
@@ -287,8 +288,8 @@ CREATE TABLE `machine` (
 -- Dumping data for table `machine`
 --
 
-INSERT INTO `machine` (`mach_id`, `brewer`, `brewer_type`, `mach_reorder`, `mach_limit`, `mach_stocks`, `sup_id`, `mach_activation`) VALUES
-(1, 'Saeco', 'Double Cup Espresso', 5, 10, 7, '1', 1);
+INSERT INTO `machine` (`mach_id`, `brewer`, `brewer_type`, `mach_price`, `mach_reorder`, `mach_limit`, `mach_stocks`, `sup_id`, `mach_activation`) VALUES
+(1, 'Saeco', 'Double Cup Espresso', 10000, 5, 10, 7, '1', 1);
 
 -- --------------------------------------------------------
 
@@ -299,7 +300,7 @@ INSERT INTO `machine` (`mach_id`, `brewer`, `brewer_type`, `mach_reorder`, `mach
 CREATE TABLE `machine_out` (
   `mach_salesID` int(11) NOT NULL,
   `mach_tagNO` int(11) NOT NULL,
-  `date_installed` date NOT NULL,
+  `date` date NOT NULL,
   `mach_qty` int(11) NOT NULL,
   `client_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -308,7 +309,7 @@ CREATE TABLE `machine_out` (
 -- Dumping data for table `machine_out`
 --
 
-INSERT INTO `machine_out` (`mach_salesID`, `mach_tagNO`, `date_installed`, `mach_qty`, `client_id`) VALUES
+INSERT INTO `machine_out` (`mach_salesID`, `mach_tagNO`, `date`, `mach_qty`, `client_id`) VALUES
 (1, 111, '2018-02-24', 1, 1),
 (2, 112, '2018-02-12', 1, 2);
 
@@ -363,7 +364,7 @@ CREATE TABLE `payment_contracted` (
 --
 
 INSERT INTO `payment_contracted` (`paid_id`, `client_dr`, `collection_no`, `payment_mode`, `paid_date`, `paid_amount`, `withheld`, `payment_remarks`) VALUES
-(2, 'dr123', 'C111', 'bank', '2018-02-01', 10000, 0, 'Fully paid');
+(2, 'dr123', 'C111', 'bank', '2018-02-01', 10000, 0, 'paid');
 
 -- --------------------------------------------------------
 
@@ -588,16 +589,16 @@ CREATE TABLE `walkin_sales` (
   `walkin_lname` varchar(50) NOT NULL,
   `walkin_date` date NOT NULL,
   `walkin_qty` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL
+  `blend_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `walkin_sales`
 --
 
-INSERT INTO `walkin_sales` (`walkin_id`, `walkin_fname`, `walkin_lname`, `walkin_date`, `walkin_qty`, `product_id`) VALUES
-(1, 'Michael', 'Torres', '2018-02-15', 2, 0),
-(2, 'Alcantara', 'Danica', '2018-02-15', 3, 0);
+INSERT INTO `walkin_sales` (`walkin_id`, `walkin_fname`, `walkin_lname`, `walkin_date`, `walkin_qty`, `blend_id`) VALUES
+(1, 'Michael', 'Torres', '2018-02-15', 2, 2),
+(2, 'Alcantara', 'Danica', '2018-02-15', 3, 3);
 
 --
 -- Indexes for dumped tables
