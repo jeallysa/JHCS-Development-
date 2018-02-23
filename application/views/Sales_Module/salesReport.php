@@ -189,15 +189,16 @@
 <!--   Core JS Files   -->
 <script src="../assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
-<script src="../assets/js/bootstrap-datepicker.min.js"></script>
+
 <script src="../assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
-<script src="../assets/FileExport/buttons.flash.min.js" type="text/javascript"></script>
-<script src="../assets/FileExport/dataTables.buttons.min.js" type="text/javascript"></script>
-<script src="../assets/FileExport/buttons.php5.min.js" type="text/javascript"></script>
-<script src="../assets/FileExport/buttons.print.min.js" type="text/javascript"></script>
-<script src="../assets/FileExport/jszip.min.js" type="text/javascript"></script>
-<script src="../assets/FileExport/pdfmake.min.js" type="text/javascript"></script>
-<script src="../assets/FileExport/vfs_fonts.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/dataTables.buttons.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.flash.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.html5.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.print.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/jszip.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/pdfmake.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/vfs_fonts.js" type="text/javascript"></script>
+<script src="../assets/js/bootstrap-datepicker.min.js"></script>
 <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="../assets/js/material.min.js" type="text/javascript"></script>
 <!--  Charts Plugin -->
@@ -250,10 +251,14 @@ $(document).ready(function() {
     }
 
     var oTable = $('#table-mutasi').dataTable({ 
-        "dom":' <"search"fl><"top">rt<"bottom"ip><"clear">',
-        "iDisplayLength": 25,
+        "dom":' fBrtip',
         "lengthChange": false,
-        "info":     false
+        "info":     false,
+		buttons: [
+            { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs' },
+			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs' },
+			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs' }
+        ]
     });
 
     $('#min,#max').datepicker({
