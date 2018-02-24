@@ -233,7 +233,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                              <table id="" class="table hover order-column" cellspacing="0" width="100%">
                                             <thead>
                                                 <tr>
-                                                    <th><b>Company Return No.</b></th>
+                                                    <th><b>#</b></th>
                                                     <th><b>Date Returned</b></th>
                                                     <th><b>Supplier</b></th>
                                                     <th><b>Quantity</b></th>
@@ -270,7 +270,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <table id="coffee" class="table hover order-column" cellspacing="0" width="100%">
                                                         <thead>
                                                             <tr>
-                                                                <th><b>Client Return No.</b></th>
+                                                                <th><b>#</b></th>
                                                                 <th><b>Delivery Receipt No.</b></th>
                                                                 <th><b>Date Returned</b></th>
                                                                 <th><b>Client</b></th>
@@ -303,7 +303,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <table id="machine" class="table hover order-column" cellspacing="0" width="100%">
                                                         <thead>
                                                             <tr>
-                                                                <th><b>Client Return No.</b></th>
+                                                                <th><b>#</b></th>
                                                                 <th><b>Delivery Receipt No.</b></th>
                                                                 <th><b>Date Returned</b></th>
                                                                 <th><b>Client</b></th>

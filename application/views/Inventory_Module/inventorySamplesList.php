@@ -138,112 +138,96 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                 </div>
             </nav>
-            <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
+            <div class="modal fade" id="sample" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                <div class="modal-dialog">
                     <div class="panel panel-primary">
-                        <form action="#" method="post" accept-charset="utf-8">
+                        <div class="panel-heading">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span>Add New Sample</h4>
+                        </div>
+                        <form action="InventorySamplesList/insert" method="post" accept-charset="utf-8">
                             <div class="modal-body" style="padding: 5px;">
-                                <div id="page-wrapper">
-                                    <div class="table-responsive">
-                                        <center><b>Add New Samples</b>
-                                            <br>
-                                            <b>1/31/18</b></center>
-                                        <form>
-                                            <div class="row">
-                                                <div class="col-md-3 form-group">
-                                                    <div class="form-group label-floating">
-                                                        <label>Sample For</label>
-                                                        <select class="form-control" name="supplier" required>
-                                                            <option>Walk in</option>
-                                                            <option>Client A</option>
-                                                            <option>Client B</option>
-                                                            <option>Client C</option>
-                                                            <option>Client D</option>
-                                                            <option>Client E</option>
-                                                            <option>Client F</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 form-group">
-                                                    <div class="form-group label-floating">
-                                                        <label>Type</label>
-                                                        <select class="form-control" name="supplier" required>
-                                                            <option>Light Roast</option>
-                                                            <option>Medium Roast</option>
-                                                            <option>City Roast</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 form-group">
-                                                    <div class="form-group label-floating">
-                                                        <label>Packaging</label>
-                                                        <select class="form-control" name="supplier" required>
-                                                            <option>Clear Bag</option>
-                                                            <option>Brown Bag</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 form-group">
-                                                    <div class="form-group label-floating">
-                                                        <label>Date Released</label>
-                                                        <input class="form-control" type="date" name=""/>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Released Date</label>
+                                            <input class="form-control" type="date" name="date" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Type</label>
+                                            <textarea style="resize:vertical;" class="form-control" rows="1" name="type" required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Recipient</label>
+                                            <textarea style="resize:vertical;" class="form-control" rows="1" name="recipient" required></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Packaging</label>
+                                            <select class="form-control" name="packaging" required>
+                                                <option disabled selected value> -- select an item -- </option>
+                                                <?php 
 
-                                        <table class="table table-striped" id="table-mutasi">
-                                            <thead>
-                                                <tr>
-                                                    <th>GUATEMALA</th>
-                                                    <th>SUMATRA</th>
-                                                    <th>ROBUSTA</th>
-                                                    <th>BENGUET</th>
-                                                    <th>COLOMBIA</th>
-                                                    <th>BARAKO</th>
-                                                    <th><b>Quantity</b></th>
-                                                    <th><b>Unit Price</b></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <input type="number" class="form-control">
-                                                    </td>
-                                                    <td>
-                                                        <input type="number" class="form-control">
-                                                    </td>
-                                                    <td>
-                                                        <input type="number" class="form-control">
-                                                    </td>
-                                                    <td>
-                                                        <input type="number" class="form-control">
-                                                    </td>
-                                                    <td>
-                                                        <input type="number" class="form-control">
-                                                    </td>
-                                                    <td>
-                                                        <input type="number" class="form-control">
-                                                    </td>
-                                                    <td>
-                                                        <input type="number" class="form-control">
-                                                    </td>
-                                                    <td>
-                                                        <input type="number" class="form-control">
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                                    foreach($data2['get_packaging'] as $row)
+                                                    { 
+                                                        echo '<option value="'.$row->package_id.'">'.$row->package.'</option>';
+                                                    }
+                                                 ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Sticker</label>
+                                            <select class="form-control" name="sticker" required>
+                                                <option disabled selected value> -- select an item -- </option>
+                                                <?php 
+
+                                                    foreach($data3['get_sticker'] as $row)
+                                                    { 
+                                                        echo '<option value="'.$row->sticker_id.'">'.$row->sticker.'</option>';
+                                                    }
+                                                 ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Delivery Receipt No.</label>
+                                            <select class="form-control" name="drnumber" required>
+                                                <option disabled selected value> -- select an item -- </option>
+                                                <?php 
+
+                                                    foreach($data1['get_drnumber'] as $row)
+                                                    { 
+                                                        echo '<option value="'.$row->client_coffReturnID.'">'.$row->client_dr.'</option>';
+                                                    }
+                                                 ?>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="panel-footer" align="center" style="margin-bottom:-14px;">
-                                <button type="button" class="btn btn-default btn-close" data-dismiss="modal">CLOSE</button>
-                                <button type="submit" class="btn btn-success accept">Save</button>
+                            <div class="panel-footer" style="margin-bottom:-14px;">
+                                <input type="submit" class="btn btn-success" value="Add" />
+                                <!--<span class="glyphicon glyphicon-ok"></span>-->
+                                <input type="reset" class="btn btn-danger" value="Clear" />
+                                <!--<span class="glyphicon glyphicon-remove"></span>-->
+                                <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
                             </div>
                         </form>
                     </div>
                 </div>
-            </div>
+            </div> 
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -253,7 +237,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <h4>List of Samples</h4>
                                 </div>
                                 <div class="card-content">
-                                    <a class="btn btn-success" data-toggle="modal" data-target="#contact" data-original-title style="float: right;">Add Samples</a>
+                                    <a class="btn btn-success" data-toggle="modal" data-target="#sample" data-original-title style="float: right;">Add Samples</a>
                                     <div class="card-content table-responsive">
                                         <div class="col-md-12 col-md-offset-0">
                                             <div class="fresh-datatables">
@@ -272,11 +256,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <?php
-                                                        if($fetch_data->num_rows() > 0){
-                                                            foreach ($fetch_data -> result() as $row)
-                                                        {
-                                                        ?>
+                                                        <?php 
+                                                    foreach($smpl_data['fetch_data'] as $row)
+                                                    {
+                                                ?>
                                                         <tr>
                                                             <td><?php echo $row->sample_id; ?></td>
                                                             <td><?php echo $row->sample_date; ?></td>
@@ -286,18 +269,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <td><?php echo $row->package_size; ?> g</td>
                                                             <td><?php echo $row->sticker; ?></td>
                                                         </tr>
-                                                    <?php
-                                                                }
-
-                                                            }
-                                                        else{
-                                                         ?>
-                                                        <tr>
-                                                            <td colspan = 9 style = "text-align: center;"> <h3>No data found</h3> </td>
-                                                        </tr>
                                                         <?php
                                                         }
-
                                                     ?>
                                                     </tbody>
                                                 </table>
