@@ -8,8 +8,11 @@
 		
 		public function index()
 		{ 
-			$this->load->view('Admin_Module/adminDeliveryReport');
+			$this->load->model('AdminDeliveryReport_model');
+			$data['delivery']=$this->AdminDeliveryReport_model->getDelivery();
+			$this->load->view('Admin_Module/adminDeliveryReport', $data);
 		}
 
 	}
+
 ?>
