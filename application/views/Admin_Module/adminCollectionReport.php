@@ -291,62 +291,26 @@
                                             <th class="disabled-sorting">Edit</th>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>C1022</td>
-                                                <td>C1022</td>
-                                                <td>Mario's</td>
-                                                <td>Cash on Hand</td>
-                                                <td>Oct. 2,2017</td>
-                                                <td>25,000.00</td>
-                                                <td>30,000.00</td>
-                                                <td>5,000.00</td>
-                                                <td>Tax Withheld</td>
+                                            
+                                             <?php 
+                                                foreach ($collections as $row) {
+                                             ?>
+                                             <tr>
+                                                 <td><?php echo $row->collection_no; ?></td>
+                                                 <td><?php echo $row->client_dr; ?></td>
+                                                 <td><?php echo $row->client_company; ?></td>
+                                                 <td><?php echo $row->payment_mode; ?></td>
+                                                 <td><?php echo $row->paid_date; ?></td>
+                                                 <td><?php echo $row->paid_amount; ?></td>
+                                                 <td><?php echo $row->client_balance; ?></td>
+                                                 <td><?php echo $row->withheld; ?></td>
                                                 <td>
                                                                 <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
                                                 </td>
-                                            </tr>
-                                            <tr>
-                                                <td>C1023</td>
-                                                <td>C1023</td>
-                                                <td>Boracay</td>
-                                                <td>Bank Deposit</td>
-                                                <td>Oct. 2,2017</td>
-                                                <td>25,000.00</td>
-                                                <td>25,000.00</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>
-                                                                <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>C1024</td>
-                                                <td>C1024</td>
-                                                <td>Bloom Field</td>
-                                                <td>Cheque</td>
-                                                <td>pending</td>
-                                                <td>25,000.00</td>
-                                                <td>35,000.00</td>
-                                                <td>10,000.00</td>
-                                                <td>Tax Withheld</td>
-                                                <td>
-                                                                <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>C1025</td>
-                                                <td>C1025</td>
-                                                <td>Volante</td>
-                                                <td>Cheque</td>
-                                                <td>Oct. 9,2017</td>
-                                                <td>25,000.00</td>
-                                                <td>40,000.00</td>
-                                                <td>15,000.00</td>
-                                                <td>Tax Withheld</td>
-                                                <td>
-                                                                <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
-                                                </td>
-                                            </tr>
+                                             </tr>
+                                             <?php 
+                                                }
+                                              ?>
                                         </tbody>
                                     </table>
                                 </div>

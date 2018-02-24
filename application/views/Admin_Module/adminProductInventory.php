@@ -529,9 +529,9 @@ thead th {
                                             <th><b class="pull-left">Stock Limit (grams)</b></th>
                                             <th><b class="pull-left">Supplier</b></th>
                                             <th><b class="pull-left">Number of Stocks (grams)</b></th>
-                                            <th><b class="pull-left">Activation</b></th>
                                             <th class="disabled-sorting"><b>Adjust Stock Limit</b></th>
                                             <th class="disabled-sorting"><b>Update Details</b></th>
+                                            <th><b class="pull-left">Activation</b></th>
                                         </thead>
                                         <tbody>
                                              <?php 
@@ -544,6 +544,12 @@ thead th {
                                                  <td><?php echo $row->sup_company; ?></td>
                                                  <td><?php echo $row->raw_stock; ?></td>
                                                  <td>
+                                                    <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#updateblend">Edit info</a>
+                                                </td>
+                                                 <td>
                                                     <div class="onoffswitch">
                                                         <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
                                                         <label class="onoffswitch-label" for="myonoffswitch">
@@ -551,12 +557,6 @@ thead th {
                                                             <span class="onoffswitch-switch"></span>
                                                         </label>
                                                     </div>
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a>
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#updateblend">Edit info</a>
                                                 </td>
                                              </tr>
                                              <?php 

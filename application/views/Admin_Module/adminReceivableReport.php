@@ -244,37 +244,26 @@
                                         <thead>
                                             <tr>
                                                 <th><b>Client</b></th>
-                                                <th><b>November (Current)</b></th>
                                                 <th><b>Total Receivables</b></th>
                                                 <th class="disabled-sorting">Edit</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Astoria Hotel and Resort</td>
-                                                <td>43,750.00</td>
-                                                <td>43,750.00</td> 	
-                                                <td>
+                                            
+                                             <?php 
+                                                foreach ($receivable as $row) {
+                                             ?>
+                                             <tr>
+                                                 <td><?php echo $row->client_company; ?></td>
+                                                 <td><?php echo $row->client_balance; ?></td>
+                                                  <td>
                                                                 <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
                                                 </td>
-		
-                                            </tr>
-                                            <tr>
-                                                <td>BloomField Hotel</td>
-                                                <td>11,827.20</td>
-                                                <td>11,827.20</td>
-                                                <td>
-                                                                <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Blue Rock Resort</td>
-                                                <td>11,160.00</td> 	
-                                                <td>11,160.00</td>
-                                                <td>
-                                                                <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
-                                                </td>
-                                            </tr>
+                                             </tr>
+                                             <?php 
+                                                }
+                                              ?>
+                                            
                                         </tbody>
                                     </table>
                                 </div>
