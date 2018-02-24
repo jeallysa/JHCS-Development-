@@ -124,7 +124,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <a href="<?php echo base_url(); ?>inventoryActivityLogs">Activity Logs</a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo base_url('Login/logout');  ?>">Logout</a>
+                                        <a href="#">Logout</a>
                                     </li>
                                 </ul>
                             </li>
@@ -192,6 +192,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <thead>
                                             <th><b class="pull-left">Item Code</b></th>
                                             <th><b class="pull-left">Machine</b></th>
+                                            <th><b class="pull-left">Type</b></th>
                                             <th><b class="pull-left">Reorder Level</b></th>
                                             <th><b class="pull-left">Stock Limit</b></th>
                                             <th><b class="pull-left">Supplier</b></th>
@@ -199,13 +200,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <th><b class="pull-left">Cue Card</b></th>
                                         </thead>
                                         <tbody>
+                                            <?php
+                                                if($fetch_data->num_rows() > 0){
+                                                    foreach ($fetch_data -> result() as $row)
+                                            {
+                                            ?>
                                             <tr>
-                                                <td>Mchn1</td>
-                                                <td>Machine A</td>
-                                                <td>5</td>
-                                                <td>20</td>
-                                                <td>Supplier A</td>
-                                                <td>9</td>
+                                                <td>Mchn<?php echo $row->mach_id; ?></td>
+                                                <td><?php echo $row->brewer; ?></td>
+                                                <td><?php echo $row->brewer_type; ?></td>
+                                                <td><?php echo $row->mach_reorder; ?></td>
+                                                <td><?php echo $row->mach_limit; ?></td>
+                                                <td><?php echo $row->sup_company; ?></td>
+                                                <td><?php echo $row->mach_stocks; ?></td>
                                                 <td>
                                                     <!-- Button trigger modal -->
                                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
@@ -347,135 +354,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>Mchn2</td>
-                                                <td>Machine B</td>
-                                                <td>5</td>
-                                                <td>20</td>
-                                                <td>Supplier B</td>
-                                                <td>15</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Mchn3</td>
-                                                <td>Machine C</td>
-                                                <td>5</td>
-                                                <td>20</td>
-                                                <td>Supplier C</td>
-                                                <td>10</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Mchn4</td>
-                                                <td>Machine D</td>
-                                                <td>5</td>
-                                                <td>20</td>
-                                                <td>Supplier D</td>
-                                                <td>12</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Mchn5</td>
-                                                <td>Machine E</td>
-                                                <td>5</td>
-                                                <td>20</td>
-                                                <td>Supplier E</td>
-                                                <td>7</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Mchn6</td>
-                                                <td>Machine F</td>
-                                                <td>5</td>
-                                                <td>20</td>
-                                                <td>Supplier F</td>
-                                                <td>9</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Mchn7</td>
-                                                <td>Machine G</td>
-                                                <td>5</td>
-                                                <td>20</td>
-                                                <td>Supplier G</td>
-                                                <td>6</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Mchn8</td>
-                                                <td>Machine H</td>
-                                                <td>5</td>
-                                                <td>20</td>
-                                                <td>Supplier H</td>
-                                                <td>8</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Mchn9</td>
-                                                <td>Machine I</td>
-                                                <td>5</td>
-                                                <td>20</td>
-                                                <td>Supplier I</td>
-                                                <td>17</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Mchn10</td>
-                                                <td>Machine J</td>
-                                                <td>5</td>
-                                                <td>20</td>
-                                                <td>Supplier J</td>
-                                                <td>14</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Mchn11</td>
-                                                <td>Machine K</td>
-                                                <td>5</td>
-                                                <td>20</td>
-                                                <td>Supplier K</td>
-                                                <td>13</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Total</b></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>120</td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
+                                            <?php
+                                                                }
+
+                                                            }
+                                                        else{
+                                                         ?>
+                                                        <tr>
+                                                            <td colspan = 9 style = "text-align: center;"> <h3>No data found</h3> </td>
+                                                        </tr>
+                                                        <?php
+                                                        }
+
+                                                    ?>
                                         </tbody>
                                     </table>
                                 </div>

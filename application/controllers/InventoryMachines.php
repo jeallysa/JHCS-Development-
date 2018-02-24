@@ -8,7 +8,9 @@
 		
 		public function index()
 		{ 
-			$this->load->view('Inventory_Module/inventoryMachines');
+			$this->load->model("InventoryMachines_Model");
+			$mchn_data["fetch_data"] = $this->InventoryMachines_Model->fetch_data();
+			$this->load->view('Inventory_Module/inventoryMachines', $mchn_data);
 		}
 
 	}
