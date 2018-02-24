@@ -494,14 +494,14 @@ thead th {
                                                         {
                                                 ?>
                                                     <tr>
-                                                    <td>SP-<?php echo $row->supplier_id; ?></td>
-                                                    <td><?php echo $row->supplier_name; ?></td>
+                                                    <td>SP-<?php echo $row->sup_id; ?></td>
+                                                    <td><?php echo $row->sup_company; ?></td>
                                                     <td>N/A</td>
                                                     <td><?php echo $row->contact_personnel; ?></td>
-                                                    <td><?php echo $row->position; ?></td>
-                                                    <td><?php echo $row->address; ?></td>
-                                                    <td><?php echo $row->email_address; ?></td>
-                                                    <td><?php echo $row->telephone_number; ?></td>
+                                                    <td><?php echo $row->sup_position; ?></td>
+                                                    <td><?php echo $row->sup_address; ?></td>
+                                                    <td><?php echo $row->sup_email; ?></td>
+                                                    <td><?php echo $row->sup_contact; ?></td>
                                                     
                                                     <td>
                                                         <span data-toggle="modal" data-target="#deactivate">

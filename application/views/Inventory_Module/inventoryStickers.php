@@ -151,14 +151,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <span></span>
                                                 <li class="">
                                                     <a href="<?php echo base_url(); ?>inventoryBlends">
-                                                        Existing Blends
-                                                        <div class="ripple-container"></div>
-                                                    </a>
-                                                </li>
-                                                <span></span>
-                                                <li class="">
-                                                    <a href="<?php echo base_url(); ?>inventoryClientBlends">
-                                                        Client Blends
+                                                        Blends
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
@@ -190,7 +183,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <div class="card-content">
                                     <table id="example" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
-                                            <th><b class="pull-left">Item Code</b></th>
+                                            <th><b class="pull-left">Sticker No.</b></th>
                                             <th><b class="pull-left">Sticker</b></th>
                                             <th><b class="pull-left">Reorder Level (per pc)</b></th>
                                             <th><b class="pull-left">Stock Limit (per pc)</b></th>
@@ -205,7 +198,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             {
                                             ?>
                                             <tr>
-                                                <td>Stckr<?php echo $row->sticker_id; ?></td>
+                                                <td><?php echo $row->sticker_id; ?></td>
                                                 <td><?php echo $row->sticker; ?></td>
                                                 <td><?php echo $row->sticker_reorder; ?></td>
                                                 <td><?php echo $row->sticker_limit; ?></td>

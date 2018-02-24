@@ -482,7 +482,7 @@
 									<div class="row">
 										<div class="col-lg-2 col-md-2 col-sm-2"></div>
 										<div class="col-lg-8 col-md-8 col-sm-8 ">
-											<div class="select-pane " id="delivery">
+											<div class="select-pane" id="delivery">
 												<div class="form-group">
 													<label class="col-md-6 control">Quantity Delivered:</label>
 													<div class="col-md-5">
