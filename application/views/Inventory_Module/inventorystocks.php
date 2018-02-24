@@ -183,7 +183,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <div class="card-content">
                                     <table id="example" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
-                                            <th><b class="pull-left">Item Code</b></th>
+                                            <th><b class="pull-left">Raw Coffee No.</b></th>
                                             <th><b class="pull-left">Name</b></th>
                                             <th><b class="pull-left">Reorder Level (grams)</b></th>
                                             <th><b class="pull-left">Stock Limit (grams)</b></th>
@@ -192,13 +192,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <th><b class="pull-left">Cue Card</b></th>
                                         </thead>
                                         <tbody>
+                                            <?php
+                                                if($fetch_data->num_rows() > 0){
+                                                    foreach ($fetch_data -> result() as $row)
+                                            {
+                                            ?>
                                             <tr>
-                                                <td>000001</td>
-                                                <td>Coffee A</td>
-                                                <td>5000 g</td>
-                                                <td>10000 g</td>
-                                                <td>Supplier A</td>
-                                                <td>8000 g</td>
+                                                <td><?php echo $row->raw_id; ?></td>
+                                                <td><?php echo $row->raw_coffee; ?></td>
+                                                <td><?php echo $row->raw_reorder; ?> g</td>
+                                                <td><?php echo $row->raw_limit; ?> g</td>
+                                                <td><?php echo $row->sup_company; ?></td>
+                                                <td><?php echo $row->raw_stock; ?></td>
                                                 <td>
                                                     <!-- Button trigger modal -->
                                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#rawcard">Details</button>
@@ -347,75 +352,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>000002</td>
-                                                <td>Coffee B</td>
-                                                <td>5000 kg</td>
-                                                <td>15000 g</td>
-                                                <td>supplier B</td>
-                                                <td>6000 g</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#rawcard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>000003</td>
-                                                <td>Coffee C</td>
-                                                <td>5000 kg</td>
-                                                <td>15000 g</td>
-                                                <td>supplier C</td>
-                                                <td>6000 g</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#rawcard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>000004</td>
-                                                <td>Coffee D</td>
-                                                <td>5000 kg</td>
-                                                <td>15000 g</td>
-                                                <td>supplier D</td>
-                                                <td>6000 g</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#rawcard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>000005</td>
-                                                <td>Coffee E</td>
-                                                <td>5000 kg</td>
-                                                <td>15000 g</td>
-                                                <td>supplier E</td>
-                                                <td>6000 g</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#rawcard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>000007</td>
-                                                <td>Coffee F</td>
-                                                <td>3000 kg</td>
-                                                <td>15000 g</td>
-                                                <td>supplier E</td>
-                                                <td>6000 g</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#rawcard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Total</b></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>38000 g</td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
+                                            <?php
+                                                                }
+
+                                                            }
+                                                        else{
+                                                         ?>
+                                                        <tr>
+                                                            <td colspan = 9 style = "text-align: center;"> <h3>No data found</h3> </td>
+                                                        </tr>
+                                                        <?php
+                                                        }
+
+                                                    ?>
                                         </tbody>
                                     </table>
                                 </div>
