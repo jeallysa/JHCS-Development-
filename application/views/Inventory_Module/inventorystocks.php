@@ -143,35 +143,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <ul class="nav nav-tabs" data-tabs="tabs">
                                                 <li class="active">
                                                     <a href="<?php echo base_url(); ?>inventoryStocks">
-                                                        Raw Coffee
+                                                        <i class="material-icons">local_cafe</i>Raw Coffee
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li class="">
                                                     <a href="<?php echo base_url(); ?>inventoryBlends">
-                                                        Blends
+                                                        <i class="material-icons">opacity</i>Blends
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li>
                                                     <a href="<?php echo base_url(); ?>inventoryPackaging">
-                                                        Packaging
+                                                        <i class="material-icons">local_mall</i>Packaging
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li class="">
                                                     <a href="<?php echo base_url(); ?>inventoryStickers">
-                                                        Stickers
+                                                        <i class="material-icons">wallpaper</i>Stickers
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li class="">
                                                     <a href="<?php echo base_url(); ?>inventoryMachines">
-                                                       Machines
+                                                        <i class="material-icons">local_laundry_service</i>Machines
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
@@ -188,7 +188,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <th><b class="pull-left">Reorder Level (grams)</b></th>
                                             <th><b class="pull-left">Stock Limit (grams)</b></th>
                                             <th><b class="pull-left">Supplier</b></th>
-                                            <th><b class="pull-left">Number of Stocks (per grams)</b></th>
+                                            <th><b class="pull-left">Number of Stocks (grams)</b></th>
                                             <th><b class="pull-left">Cue Card</b></th>
                                         </thead>
                                         <tbody>
@@ -203,7 +203,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <td><?php echo $row->raw_reorder; ?> g</td>
                                                 <td><?php echo $row->raw_limit; ?> g</td>
                                                 <td><?php echo $row->sup_company; ?></td>
-                                                <td><?php echo $row->raw_stock; ?></td>
+                                                <td><b><?php echo $row->raw_stock; ?> g</b></td>
                                                 <td>
                                                     <!-- Button trigger modal -->
                                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#rawcard">Details</button>

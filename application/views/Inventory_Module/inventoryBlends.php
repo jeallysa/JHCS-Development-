@@ -148,35 +148,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <ul class="nav nav-tabs" data-tabs="tabs">
                                                 <li class="">
                                                     <a href="<?php echo base_url(); ?>inventoryStocks">
-                                                        Raw Coffee
+                                                        <i class="material-icons">local_cafe</i>Raw Coffee
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li class="active">
                                                     <a href="<?php echo base_url(); ?>inventoryBlends">
-                                                        Blends
+                                                        <i class="material-icons">opacity</i>Blends
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li>
                                                     <a href="<?php echo base_url(); ?>inventoryPackaging">
-                                                        Packaging
+                                                        <i class="material-icons">local_mall</i>Packaging
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li class="">
                                                     <a href="<?php echo base_url(); ?>inventoryStickers">
-                                                        Stickers
+                                                        <i class="material-icons">wallpaper</i>Stickers
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li class="">
                                                     <a href="<?php echo base_url(); ?>inventoryMachines">
-                                                       Machines
+                                                       <i class="material-icons">local_laundry_service</i>Machines
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
@@ -190,7 +190,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <th><b class="pull-left">Blend No.</b></th>
                                             <th><b class="pull-left">Name</b></th>
                                             <th><b class="pull-left">Bag</b></th>
-                                            <th><b class="pull-left">Size</b></th>
+                                            <th><b class="pull-left">Size (in grams)</b></th>
                                             <th><b class="pull-left">Price</b></th>
                                             <th><b class="pull-left">Cue Card</b></th>
                                         </thead>
@@ -205,7 +205,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <td><?php echo $row->blend; ?></td>
                                                 <td><?php echo $row->bag; ?></td>
                                                 <td><?php echo $row->size; ?></td>
-                                                <td><?php echo $row->blend; ?></td>
+                                                <td>Php <?php echo $row->blend_price; ?></td>
                                                 <td>
                                                     <!-- Button trigger modal -->
                                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>

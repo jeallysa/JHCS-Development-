@@ -20,6 +20,20 @@
 			return $query->result();
 			
 		}
+		public function get_suppliers(){
+			$query = $this->db->query("SELECT sup_id, sup_company FROM jhcs.supplier;");
+			return $query->result();
+			
+		}
+		public function get_coffee(){
+			$query = $this->db->query("SELECT raw_coffee FROM jhcs.raw_coffee;");
+			return $query->result();
+			
+		}
+
+		function insert_data($data){ 
+			$this->db->insert('company_returns', $data);
+		}
 	}
 
 ?>

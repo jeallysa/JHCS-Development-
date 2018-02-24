@@ -144,35 +144,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <ul class="nav nav-tabs" data-tabs="tabs">
                                                 <li>
                                                     <a href="<?php echo base_url(); ?>inventoryStocks">
-                                                        Raw Coffee
+                                                        <i class="material-icons">local_cafe</i>Raw Coffee
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li class="">
                                                     <a href="<?php echo base_url(); ?>inventoryBlends">
-                                                        Blends
+                                                        <i class="material-icons">opacity</i>Blends
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li>
                                                     <a href="<?php echo base_url(); ?>inventoryPackaging">
-                                                        Packaging
+                                                        <i class="material-icons">local_mall</i>Packaging
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li class="">
                                                     <a href="<?php echo base_url(); ?>inventoryStickers">
-                                                        Stickers
+                                                        <i class="material-icons">wallpaper</i>Stickers
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li class="active">
                                                     <a href="<?php echo base_url(); ?>inventoryMachines">
-                                                       Machines
+                                                        <i class="material-icons">local_laundry_service</i>Machines
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
@@ -186,10 +186,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <th><b class="pull-left">Machine No.</b></th>
                                             <th><b class="pull-left">Machine</b></th>
                                             <th><b class="pull-left">Type</b></th>
-                                            <th><b class="pull-left">Reorder Level</b></th>
-                                            <th><b class="pull-left">Stock Limit</b></th>
+                                            <th><b class="pull-left">Reorder Level (per pc)</b></th>
+                                            <th><b class="pull-left">Stock Limit (per pc)</b></th>
                                             <th><b class="pull-left">Supplier</b></th>
-                                            <th><b class="pull-left">Number of Stocks </b></th>
+                                            <th><b class="pull-left">Number of Stocks (per pc)</b></th>
                                             <th><b class="pull-left">Cue Card</b></th>
                                         </thead>
                                         <tbody>
@@ -205,7 +205,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <td><?php echo $row->mach_reorder; ?></td>
                                                 <td><?php echo $row->mach_limit; ?></td>
                                                 <td><?php echo $row->sup_company; ?></td>
-                                                <td><?php echo $row->mach_stocks; ?></td>
+                                                <td><b><?php echo $row->mach_stocks; ?></b></td>
                                                 <td>
                                                     <!-- Button trigger modal -->
                                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>

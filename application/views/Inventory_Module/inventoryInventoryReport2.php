@@ -159,14 +159,14 @@ label {
                                                     <span></span>
                                                     <li>
                                                         <a href="<?php echo base_url(); ?>inventoryInventoryReport">
-                                                            Date In
+                                                            <i class="material-icons">call_received</i>Date In
                                                             <div class="ripple-container"></div>
                                                         </a>
                                                     </li>
                                                     <span></span>
                                                     <li class="active">
                                                         <a href="<?php echo base_url(); ?>inventoryInventoryReport2">
-                                                            Date Out
+                                                            <i class="material-icons">call_made</i>Date Out
                                                             <div class="ripple-container"></div>
                                                         </a>
                                                     </li>
