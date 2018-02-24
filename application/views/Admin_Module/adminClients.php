@@ -370,13 +370,14 @@ thead th {
                                                 <td><?php echo $row->client_address; ?></td>
                                                 <td><?php echo $row->client_email; ?></td>
                                                 <td><?php echo $row->client_contact; ?></td>
-                                                <td>
-                                                    <span data-toggle="modal" data-target="#deactivate">
-                                                    <a href="#" class="deactivate" data-toggle="tooltip" data-placement="bottom" title="Deactivate"><i class="fa fa-close"></i></a> </span>
-                                                    <span data-toggle="modal" data-target="#archive">
-                                                    <a href="#" class="archive" data-toggle="tooltip" data-placement="bottom" title="Archive"><i class="fa fa-archive"></i></a> </span>
-                                                    <span data-toggle="modal" data-target="#blacklist">
-                                                    <a href="#" class="blacklist" data-toggle="tooltip" data-placement="bottom" title="Blacklist"><i class="fa fa-ban"></i></a> </span>
+                                                 <td>
+                                                    <div class="onoffswitch">
+                                                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+                                                        <label class="onoffswitch-label" for="myonoffswitch">
+                                                            <span class="onoffswitch-inner"></span>
+                                                            <span class="onoffswitch-switch"></span>
+                                                        </label>
+                                                    </div>
                                                 </td>
                                                 <td><a href="./addcontract.html" class="btn btn-sm btn-round" size="25">Contract</a></td>
                                                  <td>

@@ -136,21 +136,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <ul class="nav nav-tabs" data-tabs="tabs">
                                                 <li class="active">
                                                     <a href="<?php echo base_url(); ?>inventoryOutRawCoffee">
-                                                        Raw Coffee
+                                                        <i class="material-icons">local_cafe</i> Coffee
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li class="">
                                                     <a href="<?php echo base_url(); ?>inventoryOutPackaging">
-                                                        Packaging
+                                                        <i class="material-icons">branding_watermark</i> Packaging
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li class="">
                                                     <a href="<?php echo base_url(); ?>inventoryOutMachine">
-                                                        Machines
+                                                        <i class="material-icons">gradient</i> Machines
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
@@ -163,35 +163,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <table id="example" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
                                             <th><b>Delivery Receipt No.</b></th>
-                                            <th><b>Sales Invoice No.</b></th>
                                             <th><b>Date Delivered</b></th>
                                             <th><b>Client</b></th>
                                             <th><b>Coffee Blend</b></th>
                                             <th><b>Bag</b></th>
-                                            <th><b>Weight(g)</b></th>
+                                            <th><b>Size</b></th>
                                             <th><b>Quantity</b></th>
-                                            <th><b>Unit Price</b></th>
-                                            <th><b>Total Amount</b></th>
                                             <th><b>Received By</b></th>
                                         </thead>
                                         <tbody>
-                                            <?php
-                                                foreach($rawcoffeeout as $row){
+                                            <?php 
+                                                foreach($rawcoffeeout as $row)
+                                                {
                                             ?>
                                             <tr>
-                                                <td><?php echo $row->dr_no; ?></td>
-                                                <td><?php echo $row->si_no; ?></td>
-                                                <td><?php echo $row->date_delivered; ?></td>
-                                                <td><?php echo $row->client; ?></td>
-                                                <td><?php echo $row->blend; ?></td>
-                                                <td><?php echo $row->bag; ?></td>
-                                                <td><?php echo $row->size; ?></td>
-                                                <td><?php echo $row->quantity; ?></td>
-                                                <td><?php echo $row->unit_price; ?></td>
-                                                <td><?php echo $row->total_amount; ?></td>
-                                                <td><?php echo $row->received_by; ?></td>
+                                                <td><?php echo $row->client_dr; ?></td>
+                                                <td><?php echo $row->client_deliverDate; ?></td>
+                                                <td><?php echo $row->client_company; ?></td>
+                                                <td>--</td>
+                                                <td>--</td>
+                                                <td>--</td>
+                                                <td><?php echo $row->contractPO_qty; ?></td>
+                                                <td><?php echo $row->client_receive; ?></td>
                                             </tr>
-                                            <?php } ?>
+
+                                            <?php
+                                                }
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -225,7 +223,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?php echo base_url(); ?>assets/js/jquery.datatables.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-    var table = $('#example').DataTable({
+    var table = $('table.table').DataTable({
         select: {
             style: 'single'
         }

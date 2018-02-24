@@ -292,6 +292,7 @@
                                             <th><b class="pull-left">Sales Invoice No.</b></th>
                                             <th><b class="pull-left">Purchase Order No.</b></th>
                                             <th><b class="pull-left">Date Delivered</b></th>
+                                            <th><b class="pull-left">Client</b></th>
                                             <th><b class="pull-left">Coffee Blend</b></th>
                                             <th><b class="pull-left">Bag</b></th>
                                             <th><b class="pull-left">Size</b></th>
@@ -303,22 +304,30 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1946</td>
-                                            <td>3246</td>
-                                            <td>PO2562</td>
-                                            <td>03-Nov-16</td>
-                                            <td>Farmers Ground</td>
-                                            <td>Brown</td>
-                                            <td>250g</td>
-                                            <td>175</td>
-                                            <td>160</td>
-                                            <td>Php 28,000.00</td>
-                                            <td>Robin Hod</td>
-                                            <td>
+                                        
+                                         <?php 
+                                                foreach ($delivery as $row) {
+                                             ?>
+                                             <tr>
+                                                     <td><?php echo $row->client_dr; ?></td>
+                                                        <td><?php echo $row->client_invoice; ?></td>
+                                                        <td>--</td>
+                                                        <td><?php echo $row->contractPO_id; ?></td>
+                                                        <td><?php echo $row->client_deliverDate; ?></td>
+                                                        <td><?php echo $row->client_company; ?></td>
+                                                        <td>--</td>
+                                                        <td>--</td>
+                                                        <td><?php echo $row->contractPO_qty; ?></td>
+                                                        <td>--</td>
+                                                        <td>--</td>
+                                                        <td><?php echo $row->client_receive; ?></td>
+                                                         <td>
                                                                 <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
-                                            </td>
-                                        </tr>
+                                                            </td>
+                                             </tr>
+                                             <?php 
+                                                }
+                                              ?>
                                     </tbody>
                                 </table>
                                 </div>
@@ -331,16 +340,18 @@
     </div>
 </body>
 <!--   Core JS Files   -->
+<!--   Core JS Files   -->
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/FileExport/buttons.flash.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/dataTables.buttons.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/FileExport/buttons.php5.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.flash.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.Html5.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/buttons.print.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/jszip.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/pdfmake.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/vfs_fonts.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/datepicker.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/material.min.js" type="text/javascript"></script>
 <!--  Charts Plugin -->
@@ -360,12 +371,31 @@
 <script type="text/javascript">
 $(document).ready(function() {
     $('#example').DataTable({
-        dom: 'Bfrtip',
-        buttons: [
-            'excel', 'pdf', 'print'
+        "dom":' fBrtip',
+        "lengthChange": false,
+        "info":     false,
+		buttons: [
+            { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print' },
+			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel'},
+			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF'}
         ]
     });
 });
+
+$('table tbody tr  td').on('click', function() {
+    $("#myModal").modal("show");
+    $("#txtfname").val($(this).closest('tr').children()[0].textContent);
+    $("#txtlname").val($(this).closest('tr').children()[1].textContent);
+});
+</script>
+
+<script>
+$(function() {
+    $('#toggle-two').bootstrapToggle({
+        on: 'Enabled',
+        off: 'Disabled'
+    });
+})
 </script>
 
 </html>

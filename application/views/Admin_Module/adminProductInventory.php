@@ -26,6 +26,7 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
 </head>
 <style>
+    
 /*
         td.highlight {
             background-color: whitesmoke !important;
@@ -529,9 +530,9 @@ thead th {
                                             <th><b class="pull-left">Stock Limit (grams)</b></th>
                                             <th><b class="pull-left">Supplier</b></th>
                                             <th><b class="pull-left">Number of Stocks (grams)</b></th>
-                                            <th><b class="pull-left">Activation</b></th>
                                             <th class="disabled-sorting"><b>Adjust Stock Limit</b></th>
                                             <th class="disabled-sorting"><b>Update Details</b></th>
+                                            <th><b class="pull-left">Activation</b></th>
                                         </thead>
                                         <tbody>
                                              <?php 
@@ -544,6 +545,12 @@ thead th {
                                                  <td><?php echo $row->sup_company; ?></td>
                                                  <td><?php echo $row->raw_stock; ?></td>
                                                  <td>
+                                                    <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#updateblend">Edit info</a>
+                                                </td>
+                                                 <td>
                                                     <div class="onoffswitch">
                                                         <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
                                                         <label class="onoffswitch-label" for="myonoffswitch">
@@ -551,12 +558,6 @@ thead th {
                                                             <span class="onoffswitch-switch"></span>
                                                         </label>
                                                     </div>
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a>
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#updateblend">Edit info</a>
                                                 </td>
                                              </tr>
                                              <?php 
@@ -577,13 +578,14 @@ thead th {
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/FileExport/buttons.flash.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/dataTables.buttons.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/FileExport/buttons.php5.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.flash.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.Html5.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/buttons.print.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/jszip.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/pdfmake.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/vfs_fonts.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/datepicker.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/material.min.js" type="text/javascript"></script>
 <!--  Charts Plugin -->
@@ -603,21 +605,24 @@ thead th {
 <script type="text/javascript">
 $(document).ready(function() {
     $('#example').DataTable({
-        dom: 'Bfrtip',
-        buttons: [
-            'excel', 'pdf', 'print'
+        "dom":' fBrtip',
+        "lengthChange": false,
+        "info":     false,
+		buttons: [
+            { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print' },
+			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel'},
+			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF'}
         ]
     });
 });
-</script>
-<script type="text/javascript">
-$(document).ready(function() {
 
-    // Javascript method's body can be found in assets/js/demos.js
-    demo.initDashboardPageCharts();
-
+$('table tbody tr  td').on('click', function() {
+    $("#myModal").modal("show");
+    $("#txtfname").val($(this).closest('tr').children()[0].textContent);
+    $("#txtlname").val($(this).closest('tr').children()[1].textContent);
 });
 </script>
+
 <script>
 $(function() {
     $('#toggle-two').bootstrapToggle({
