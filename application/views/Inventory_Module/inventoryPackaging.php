@@ -151,14 +151,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <span></span>
                                                 <li class="">
                                                     <a href="<?php echo base_url(); ?>inventoryBlends">
-                                                        Existing Blends
-                                                        <div class="ripple-container"></div>
-                                                    </a>
-                                                </li>
-                                                <span></span>
-                                                <li class="">
-                                                    <a href="<?php echo base_url(); ?>inventoryClientBlends">
-                                                        Client Blends
+                                                        Blends
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
@@ -190,7 +183,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <div class="card-content">
                                     <table id="example" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
-                                            <th><b class="pull-left">Item Code</b></th>
+                                            <th><b class="pull-left">Packaging No.</b></th>
                                             <th><b class="pull-left">Type</b></th>
                                             <th><b class="pull-left">Grams</b></th>
                                             <th><b class="pull-left">Reorder Level (per pc)</b></th>
@@ -206,7 +199,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             {
                                             ?>
                                             <tr>
-                                                <td>Pckg<?php echo $row->package_id; ?></td>
+                                                <td><?php echo $row->package_id; ?></td>
                                                 <td><?php echo $row->package_type; ?> bag</td>
                                                 <td><?php echo $row->package_size; ?> g</td>
                                                 <td><?php echo $row->package_reorder; ?></td>

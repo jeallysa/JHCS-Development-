@@ -155,14 +155,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <span></span>
                                                 <li class="active">
                                                     <a href="<?php echo base_url(); ?>inventoryBlends">
-                                                        Existing Blends
-                                                        <div class="ripple-container"></div>
-                                                    </a>
-                                                </li>
-                                                <span></span>
-                                                <li class="">
-                                                    <a href="<?php echo base_url(); ?>inventoryClientBlends">
-                                                        Client Blends
+                                                        Blends
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
@@ -194,24 +187,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <div class="card-content">
                                     <table id="example" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
-                                            <th><b class="pull-left">Type of Blend</b></th>
-                                            <th><b class="pull-left">Raw Coffee A</b></th>
-                                            <th><b class="pull-left">Raw Coffee B</b></th>
-                                            <th><b class="pull-left">Raw Coffee C</b></th>
-                                            <th><b class="pull-left">Raw Coffee D</b></th>
-                                            <th><b class="pull-left">Raw Coffee E</b></th>
-                                            <th><b class="pull-left">Raw Coffee F</b></th>
+                                            <th><b class="pull-left">Blend No.</b></th>
+                                            <th><b class="pull-left">Name</b></th>
+                                            <th><b class="pull-left">Bag</b></th>
+                                            <th><b class="pull-left">Size</b></th>
+                                            <th><b class="pull-left">Price</b></th>
                                             <th><b class="pull-left">Cue Card</b></th>
                                         </thead>
                                         <tbody>
+                                            <?php
+                                                if($fetch_data->num_rows() > 0){
+                                                    foreach ($fetch_data -> result() as $row)
+                                            {
+                                            ?>
                                             <tr>
-                                                <td>Blend A</td>
-                                                <td></td>
-                                                <td>30%</td>
-                                                <td>50%</td>
-                                                <td>20%</td>
-                                                <td></td>
-                                                <td></td>
+                                                <td><?php echo $row->blend_id; ?></td>
+                                                <td><?php echo $row->blend; ?></td>
+                                                <td><?php echo $row->bag; ?></td>
+                                                <td><?php echo $row->size; ?></td>
+                                                <td><?php echo $row->blend; ?></td>
                                                 <td>
                                                     <!-- Button trigger modal -->
                                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
@@ -307,97 +301,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>Blend B</td>
-                                                <td></td>
-                                                <td>10%</td>
-                                                <td>10%</td>
-                                                <td>50%</td>
-                                                <td>10%</td>
-                                                <td>20%</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Blend C</td>
-                                                <td>10%</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>50%</td>
-                                                <td></td>
-                                                <td>40%</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Blend D</td>
-                                                <td>30%</td>
-                                                <td></td>
-                                                <td>40%</td>
-                                                <td>20%</td>
-                                                <td>10%</td>
-                                                <td></td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Blend E</td>
-                                                <td>30%</td>
-                                                <td>20%</td>
-                                                <td>20%</td>
-                                                <td></td>
-                                                <td>20%</td>
-                                                <td>10%</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Blend F</td>
-                                                <td></td>
-                                                <td>50%</td>
-                                                <td>20%</td>
-                                                <td></td>
-                                                <td>30%</td>
-                                                <td></td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Blend G</td>
-                                                <td>40%</td>
-                                                <td>10%</td>
-                                                <td>20%</td>
-                                                <td>30%</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Blend H</td>
-                                                <td></td>
-                                                <td>30%</td>
-                                                <td>20%</td>
-                                                <td>30%</td>
-                                                <td>20%</td>
-                                                <td></td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
-                                                </td>
-                                            </tr>
+                                            <?php
+                                                                }
+
+                                                            }
+                                                        else{
+                                                         ?>
+                                                        <tr>
+                                                            <td colspan = 9 style = "text-align: center;"> <h3>No data found</h3> </td>
+                                                        </tr>
+                                                        <?php
+                                                        }
+
+                                                    ?>
                                         </tbody>
                                     </table>
                                 </div>

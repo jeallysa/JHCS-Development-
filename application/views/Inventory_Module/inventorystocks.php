@@ -150,13 +150,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <span></span>
                                                 <li class="">
                                                     <a href="<?php echo base_url(); ?>inventoryBlends">
-                                                        Existing Blends
-                                                        <div class="ripple-container"></div>
-                                                    </a>
-                                                </li>
-                                                <li class="">
-                                                    <a href="<?php echo base_url(); ?>inventoryClientBlends">
-                                                        Client Blends
+                                                        Blends
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
