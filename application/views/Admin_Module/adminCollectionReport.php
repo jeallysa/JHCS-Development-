@@ -304,6 +304,7 @@
                                                  <td><?php echo $row->paid_amount; ?></td>
                                                  <td><?php echo $row->client_balance; ?></td>
                                                  <td><?php echo $row->withheld; ?></td>
+                                                 <td><?php echo $row->payment_remarks; ?></td>
                                                 <td>
                                                                 <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
                                                 </td>
@@ -323,16 +324,18 @@
     </div>
 </body>
 <!--   Core JS Files   -->
+<!--   Core JS Files   -->
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/FileExport/buttons.flash.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/dataTables.buttons.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/FileExport/buttons.php5.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.flash.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.Html5.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/buttons.print.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/jszip.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/pdfmake.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/vfs_fonts.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/datepicker.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/material.min.js" type="text/javascript"></script>
 <!--  Charts Plugin -->
@@ -352,12 +355,31 @@
 <script type="text/javascript">
 $(document).ready(function() {
     $('#example').DataTable({
-        dom: 'Bfrtip',
-        buttons: [
-            'excel', 'pdf', 'print'
+        "dom":' fBrtip',
+        "lengthChange": false,
+        "info":     false,
+		buttons: [
+            { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print' },
+			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel'},
+			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF'}
         ]
     });
 });
+
+$('table tbody tr  td').on('click', function() {
+    $("#myModal").modal("show");
+    $("#txtfname").val($(this).closest('tr').children()[0].textContent);
+    $("#txtlname").val($(this).closest('tr').children()[1].textContent);
+});
+</script>
+
+<script>
+$(function() {
+    $('#toggle-two').bootstrapToggle({
+        on: 'Enabled',
+        off: 'Disabled'
+    });
+})
 </script>
 
 </html>
