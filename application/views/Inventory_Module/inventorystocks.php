@@ -230,70 +230,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         <table id="fresh-datatables" class="table table-striped table-hover responsive" cellspacing="0" width="100%">
                                                         <thead>
                                                           <tr>
-                                                            <th><b>Delivery Receipt No.</b></th>
-                                                            <th><b>Delivery</b></th>
+                                                            <th><b>No.</b></th>
                                                             <th><b>Client/Supplier</b></th>
                                                             <th><b>Date</b></th>
                                                             <th><b>Quantity/Weight</b></th>
-                                                            <th><b>Type</b></th>
                                                             <th><b>Remarks</b></th>
+                                                            <th><b>Type</b></th>
                                                           </tr>
                                                         </thead>
                                                         <tbody>
-                                                          <tr>
-                                                            <td>12345</td>
-                                                            <td>In</td>
-                                                            <td>Supplier 1</td>
-                                                            <td>Dec 5, 2017</td>
-                                                            <td>100 grams</td>
-                                                            <td>City Roast</td>
-                                                            <td></td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>23456</td>
-                                                            <td>In</td>
-                                                            <td>Client 2</td>
-                                                            <td>Dec 12, 2017</td>
-                                                            <td>20 grams</td>
-                                                            <td>City Roast</td>
-                                                            <td>Incorrect Blend</td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>34567</td>
-                                                            <td>In</td>
-                                                            <td>Supplier 3</td>
-                                                            <td>Dec 15, 2017</td>
-                                                            <td>200 grams</td>
-                                                            <td>City Roast</td>
-                                                            <td></td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>45678</td>
-                                                            <td>Out</td>
-                                                            <td>Supplier 1</td>
-                                                            <td>Dec 8, 2017</td>
-                                                            <td>100 grams</td>
-                                                            <td>City Roast</td>
-                                                            <td>Incorrect Roast</td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>56789</td>
-                                                            <td>Out</td>
-                                                            <td>Client 5</td>
-                                                            <td>Dec 9, 2017</td>
-                                                            <td>50 grams</td>
-                                                            <td>City Roast</td>
-                                                            <td></td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>67890</td>
-                                                            <td>Out</td>
-                                                            <td>Client 7</td>
-                                                            <td>Dec 17, 2017</td>
-                                                            <td>30 grams</td>
-                                                            <td>City Roast</td>
-                                                            <td>Sample</td>
-                                                          </tr>
+                                                            <?php
+                                              $retrieveDetails3 ="SELECT * FROM jhcs.company_returns NATURAL JOIN supplier where sup_returnItem = '$row->raw_coffee';" ;
+                                              $query = $this->db->query($retrieveDetails3);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td>'  . $object->company_returnID. '</td>' ,
+                                                '<td>'  . $object->sup_company  . '</td>' ,
+                                                '<td>'  . $object->sup_returnDate  . '</td>' ,
+                                                '<td>'  . $object->sup_returnQty  . '</td>' ;
+                                                ?>
+                                                    <td>Company Return</td>
+                                                    <td>Out</td>
+                                                 <?php   
+                                                '</tr>' ;
+                                              }
+                                            }
+                                        ?>  
                                                         </tbody>
                                                       </table><hr>
                                                           <div class="row">

@@ -234,63 +234,53 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         <table id="fresh-datatables" class="table table-striped table-hover responsive" cellspacing="0" width="100%">
                                                         <thead>
                                                           <tr>
-                                                            <th><b>Delivery Receipt No.</b></th>
-                                                            <th><b>Delivery</b></th>
+                                                            <th><b>No.</b></th>
                                                             <th><b>Client/Supplier</b></th>
                                                             <th><b>Date</b></th>
                                                             <th><b>Quantity</b></th>
                                                             <th><b>Remarks</b></th>
+                                                            <th><b>Type</b></th>
                                                           </tr>
                                                         </thead>
                                                         <tbody>
-                                                          <tr>
-                                                            <td>12345</td>
-                                                            <td>In</td>
-                                                            <td>Supplier 1</td>
-                                                            <td>Dec 5, 2017</td>
-                                                            <td>4 pcs</td>
-                                                            <td></td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>23456</td>
-                                                            <td>In</td>
-                                                            <td>Client 2</td>
-                                                            <td>Dec 12, 2017</td>
-                                                            <td>6 pcs</td>
-                                                            <td></td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>34567</td>
-                                                            <td>In</td>
-                                                            <td>Supplier 3</td>
-                                                            <td>Dec 15, 2017</td>
-                                                            <td>8 pcs</td>
-                                                            <td></td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>45678</td>
-                                                            <td>Out</td>
-                                                            <td>Supplier 1</td>
-                                                            <td>Dec 8, 2017</td>
-                                                            <td>2 pcs</td>
-                                                            <td></td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>56789</td>
-                                                            <td>Out</td>
-                                                            <td>Client 5</td>
-                                                            <td>Dec 9, 2017</td>
-                                                            <td>4 pcs</td>
-                                                            <td></td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>67890</td>
-                                                            <td>Out</td>
-                                                            <td>Client 7</td>
-                                                            <td>Dec 17, 2017</td>
-                                                            <td>6 pcs</td>
-                                                            <td></td>
-                                                          </tr>
+                                                            <?php
+                                              $retrieveDetails ="SELECT * FROM jhcs.machine_out NATURAL JOIN machine NATURAL JOIN contracted_client where mach_id = '$row->mach_id';" ;
+                                              $query = $this->db->query($retrieveDetails);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td>'  . $object->mach_salesID. '</td>' ,
+                                                '<td>'  . $object->client_company  . '</td>' ,
+                                                '<td>'  . $object->date_installed  . '</td>' ,
+                                                '<td>'  . $object->mach_qty  . '</td>' ;
+                                                ?>
+                                                    <td>Sales</td>
+                                                    <td>OUT</td>
+                                                 <?php   
+                                                '</tr>' ;
+                                              }
+                                            }
+                                        ?>  
+
+                                        <?php
+                                              $retrieveDetails2 ="SELECT * FROM jhcs.client_machreturn NATURAL JOIN contracted_client where mach_id = '$row->mach_id';" ;
+                                              $query = $this->db->query($retrieveDetails2);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td>'  . $object->client_machReturnID. '</td>' ,
+                                                '<td>'  . $object->client_company  . '</td>' ,
+                                                '<td>'  . $object->mach_returnDate  . '</td>' ,
+                                                '<td>'  . $object->mach_returnQty  . '</td>' ;
+                                                ?>
+                                                    <td>Return</td>
+                                                    <td>IN</td>
+                                                 <?php   
+                                                '</tr>' ;
+                                              }
+                                            }
+                                        ?>  
+                                                          
                                                         </tbody>
                                                       </table><hr>
                                                           <div class="row">
