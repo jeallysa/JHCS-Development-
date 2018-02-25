@@ -13,7 +13,7 @@ class InventorySamplesList_Model extends CI_model
 	}
 
 	function fetch_data(){
-		$query = $this->db->query("SELECT sample_id, sample_date, sample_type, sample_recipient, package_type, package_size, sticker FROM jhcs.sample NATURAL JOIN client_coffreturn NATURAL JOIN packaging INNER JOIN sticker on sample.sticker_id=sticker.sticker_id;");
+		$query = $this->db->query("SELECT sample_id, sample_date, sample_type, sample_recipient, package_type, package_size, sticker, coff_returnAction FROM jhcs.sample NATURAL JOIN client_coffreturn NATURAL JOIN packaging INNER JOIN sticker on sample.sticker_id=sticker.sticker_id WHERE coff_returnAction='sample';");
 		return $query->result();
 	}
 	public function get_drnumber(){
