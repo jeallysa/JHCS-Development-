@@ -223,63 +223,6 @@
                     </div>
                 </div>
             </nav>
-            <div class="modal fade" id="newblend" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading" >
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span> Add New Sticker</h4>
-                        </div>
-                        <form action="#" method="post" accept-charset="utf-8">
-                            <div class="modal-body" style="padding: 5px;">
-                                <div class="row">
-                                    <div class="col-md-6 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="email">Packaging Name</label>
-                                            <input class="form-control" type="text" name="" placeholder="" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <div class="form-group label-floating">
-                                            
-                                            <label for="email">Supplier</label>
-                                            <select class="form-control" name="supplier" required>
-                                                <option value="">Supplier A</option>
-                                                <option value="">Supplier B</option>
-                                                <option value="">Supplier C</option>
-                                            </select>                  
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="">Stock Limit</label>
-                                            <input class="form-control" type="number" name="" placeholder="" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="number">Reorder Level</label>
-                                            <input class="form-control" type="number" name="" placeholder="" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                </div>
-                            </div>
-                            <div class="panel-footer" style="margin-bottom:-14px;">
-                                <input type="submit" class="btn btn-success" value="Add" />
-                                <!--<span class="glyphicon glyphicon-ok"></span>-->
-                                <input type="reset" class="btn btn-danger" value="Clear" />
-                                <!--<span class="glyphicon glyphicon-remove"></span>-->
-                                <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
             <div class="modal fade" id="stock" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="panel panel-primary">
@@ -287,49 +230,50 @@
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                             <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span> Add New Sticker</h4>
                         </div>
-                        <form action="#" method="post" accept-charset="utf-8">
+                        <form action="AdminStickers/insert" method="post" accept-charset="utf-8">
                             <div class="modal-body" style="padding: 5px;">
-                                <div class="row">
+                                 <div class="row">
                                     <div class="col-md-12 form-group">
                                         <div class="form-group label-floating">
-                                            <label for="email">Sticker Name</label>
-                                            <input class="form-control" type="text" name="" placeholder="" />
+                                            <label for="email">Name</label>
+                                            <input class="form-control" type="text" name="name" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6 form-group">
+                                     <div class="col-lg-6 form-group">
                                         <div class="form-group label-floating">
                                             <label for="email">Reorder Level</label>
-                                            <input class="form-control" type="text" name="" placeholder="" disabled="" />
+                                            <input class="form-control" type="number" name="reorder" required>
                                         </div>
                                     </div>
-                                    
-                                    <div class="col-md-6 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="email">Supplier</label>
-                                            <select class="form-control" name="supplier" required>
-                                                <option value="">Supplier A</option>
-                                                <option value="">Supplier B</option>
-                                                <option value="">Supplier C</option>
-                                            </select>                  
-                                        </div>
-                                    </div>
-                                </div>
-                                    <div class="row">
                                     <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
                                             <label for="email">Stock Limit</label>
-                                            <input class="form-control" type="text" name="" placeholder="" disabled="" />
+                                            <input class="form-control" type="number" name="stocklimit" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
                                             <label for="email">Number of Stocks</label>
-                                            <input class="form-control" type="number" name="" placeholder="" disabled="" />
+                                            <input class="form-control" type="number" name="stocks" required>
                                         </div>
                                     </div>
-                                        
+                                    <div class="col-md-6 form-group">
+                                           <div class="form-group label-floating">
+                                            <label for="email">Supplier</label>
+                                            <select class="form-control" name="sup_company" required>
+                                                <option disabled selected value> -- select an item -- </option>
+                                                <?php 
+
+                                                    foreach($data1['getSupplier'] as $row)
+                                                    { 
+                                                        echo '<option value="'.$row->sup_id.'">'.$row->sup_company.'</option>';
+                                                    }
+                                                 ?>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                                 </div>
                             <div class="panel-footer" style="margin-bottom:-14px;">
@@ -461,7 +405,7 @@
                                         <tbody>
                                           
                                              <?php 
-                                                foreach ($stickers as $row) {
+                                                foreach ($data['stickers'] as $row) {
                                              ?>
                                              <tr>
                                                  <td><?php echo $row->sticker; ?></td>
