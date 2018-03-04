@@ -4,6 +4,8 @@
 	{
 		function __construct(){
 			parent::__construct();
+			$this->load->model('AdminStickers_model', 'CM');
+			$this->load->helper('security');
 		}
 		
 		function index()
@@ -24,6 +26,7 @@
                 "sticker_stock" =>$this->input->post("stocks"),
                 "sup_id" =>$this->input->post("sup_company")
 			);
+			$data = $this->security->xss_clean($data);
 			$this->AdminStickers_model->insert_data($data);
 			$this->index();
 		}

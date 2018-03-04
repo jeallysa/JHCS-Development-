@@ -4,6 +4,8 @@
 	{
 		function __construct(){
 			parent::__construct();
+			$this->load->model('Admin_Clients_Model', 'CM');
+			$this->load->helper('security');
 		}
 		
 		public function index()

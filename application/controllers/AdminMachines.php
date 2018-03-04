@@ -4,6 +4,8 @@
 	{
 		function __construct(){
 			parent::__construct();
+			$this->load->model('AdminMachines_model', 'CM');
+			$this->load->helper('security');
 		}
 		
         function index()
@@ -26,6 +28,7 @@
                 "sup_id" =>$this->input->post("sup_company")
         
 			);
+			$data = $this->security->xss_clean($data);
 			$this->AdminMachines_model->insert_data($data);
 			$this->index();
 		}

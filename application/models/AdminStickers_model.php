@@ -7,6 +7,7 @@ class AdminStickers_model extends CI_MODEL
 	{
 		parent::__construct();
 	}
+	
 
 	function getStickers(){
 		$query=$this->db->query("SELECT sticker, sticker_reorder, sticker_limit, sup_company, sticker_stock FROM sticker NATURAL JOIN supplier");
@@ -21,5 +22,6 @@ class AdminStickers_model extends CI_MODEL
     function insert_data($data){ 
 		$this->db->insert('sticker', $data);
 	}
+
 }
 ?>

@@ -21,5 +21,6 @@ class AdminPackaging_model extends CI_MODEL
     function insert_data($data){ 
 		$this->db->insert('packaging', $data);
 	}
+
 }
 ?>

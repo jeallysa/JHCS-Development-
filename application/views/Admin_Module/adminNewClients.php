@@ -168,7 +168,7 @@
                                     </div>
                                 </div>
                                 
-                                <h6> Product </h6>
+                                <h6> Type: </h6>
                                 <div class="row">
                                     <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
                                         <select class="form-control" name="cli_type" placeholder="Client Type" type="text" required>
