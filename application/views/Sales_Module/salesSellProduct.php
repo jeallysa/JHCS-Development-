@@ -213,7 +213,7 @@
                                                         foreach ($data2['sellMachine'] as $row) {
                                                      ?>
                                                      <tr>
-                                                         <td><?php echo $row->mach_tagNO; ?></td>
+                                                         <td><?php echo $row->mach_id; ?></td>
                                                          <td><?php echo $row->date; ?></td>
                                                          <td><?php echo $row->client_company; ?></td>
                                                          <td><?php echo $row->brewer; ?></td>

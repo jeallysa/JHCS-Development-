@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
     <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/bootstrap-select.min.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/css/dataTables.bootstrap.min.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/css/jquery.dataTable.min.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/css/bootstrap-datepicker3.min.css" rel="stylesheet">
@@ -137,135 +138,136 @@
                                 <div class="card-header" data-background-color="purple">
                                     <h3 class="title"><center>Retail Client Machine Purchase</center></h3>
                                 </div>
-                                        <div class="card-content">
-                                            <form action="#" method="post" accept-charset="utf-8">
-                                                <div class="modal-body" style="padding: 5px;">
-                                                        <div class="row">
-                                                            <div class="col-md-5">
-                                                                <div class="form-group label-floating">
-                                                                    <label for="email">Date of Purchase:</label>
-                                                                    <input class="form-control" type="date" name="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-5">
-                                                                <div class="form-group label-floating">
-                                                                    <label for="email">Client:</label>
-                                                                    <select class="form-control">
-                                                                        <option>Boracay</option>
-                                                                        <option>Volante</option>
-                                                                        <option>Mario's</option>
-                                                                        <option>Bloomfield</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
+                                <form action="add" method="post" accept-charset="utf-8">
+                                <div class="card-content">
+                                        <div class="modal-body" style="padding: 5px;">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="form-group label-floating">
+                                                            <label for="email">Date of Purchase:</label>
+                                                            <input class="form-control" type="date" name="date">
                                                         </div>
                                                     </div>
-                                            </form>
-                                        </div><hr>  
-
-                                            <div class="modal-body" style="padding: 5px;">
-
-                                                    <div class="row">
-                                                        <div class="form-conttrol label-floating">
-                                                            <div class="col-md-5">
-                                                                <label>Machine</label>
-                                                            </div>
-                                                            <div class="col-md-5">
-                                                                <label>Quantity</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                      
-                                                    <div id="education_fields"> </div>
-                                                    
-                                                    <div class="col-sm-5 nopadding">
-                                                      <div class="form-group">
-                                                        <div class="">
-                                                          <select class="form-control" id="educationDate" name="educationDate[]">
-                                                            <option value="2015">Saeco A</option>
-                                                            <option value="2016">Saeco B</option>
-                                                            <option value="2017">Saeco C</option>
-                                                            <option value="2018">Saeco D</option>
+                                                    <div class="col-md-5">
+                                                        <div class="form-group label-floating">
+                                                            <label for="email">Client:</label>
+                                                            <select class="selectpicker" data-live-search="true" name="client_id">
+                                                            <?php 
+                                                            foreach($data6['client'] as $row)
+                                                            { 
+                                                                echo '<option value="'.$row->client_id.'">'.$row->client_company.'</option>';
+                                                            }
+                                                            ?>
                                                           </select>
                                                         </div>
-                                                      </div>
                                                     </div>
-
-                                                    <div class="col-sm-5 nopadding">
-                                                      <div class="form-group">
-                                                          <div class="input-group">
-                                                            <input type="number" class="form-control" id="" name="" value="" placeholder="qty">
-                                                                <div class="input-group-btn">
-                                                                    <button class="btn btn-success" type="button"  onclick="education_fields();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
-                                                              </div>
-                                                          </div>
-                                                      </div>
-                                                    </div>
+                                                </div>
                                             </div>
-                                            
+                                </div><hr>  
+
+                                <div class="modal-body" style="padding: 5px;">
+
+                                        <div class="row">
+                                            <div class="form-conttrol label-floating">
+                                                <div class="col-md-5">
+                                                    <label>Machine</label>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <label>Quantity</label>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                          
+                                        <div id="education_fields"> </div>
+                                        
+                                        <div class="col-sm-5 nopadding">
+                                          <div class="form-group">
+                                            <div class="">
+                                              <select class="selectpicker" data-live-search="true" name="mach_id">
+                                                <?php 
+                                                foreach($data5['machine'] as $row)
+                                                { 
+                                                    echo '<option value="'.$row->mach_id.'">'.$row->brewer."/ ".$row->brewer.'</option>';
+                                                }
+                                                ?>
+                                              </select>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div class="col-sm-5 nopadding">
+                                          <div class="form-group">
+                                              <div class="input-group">
+                                                <input type="number" class="form-control" id="qty" name="qty" value="qty" placeholder="qty">
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-success" type="button"  onclick="education_fields();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                        </div>
                                 </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#verify">
+                                      Record
+                                    </button>
+                                </div>
+                              </form>
                             </div>
                         </div>
-
-                        <div class="text-center">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#verify">
-                              Record
-                            </button>
-                        </div>
-                                
                     </div>
-
-                    <!--modal for verification-->
-                    <div class="modal fade" id="verify" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                    <h4 class="panel-title" id="contactLabel"><center>Verify Order</center> </h4>
-                                </div>
-                                <div class="modal-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h4>Client: Juanito Perez</h4>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h4>Date: January 22, 2018</h4>
-                                    </div>
-                                </div>
-                                <hr>
-                                
-                                 <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th><b>Machine</b></th>
-                                            <th><b>Quantity</b></th>
-                                            <th><b>Price</b></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Saeco A</td>
-                                            <td>2</td>
-                                            <td>Php 10,000.00</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
-                                <hr>
-                                <h3>Total Amount: Php 20,000.00</h3>
-                              </div>
-                              <div align="center">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-success">Save</button>
-                              </div>
-                            </div>
-                            </div>
-                        </div>
                 </div>
             </div>
         </div>
+
+        <!--modal for verification-->
+      <!--   <div class="modal fade" id="verify" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="panel-title" id="contactLabel"><center>Verify Order</center> </h4>
+                    </div>
+                    <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>Client: Juanito Perez</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Date: January 22, 2018</h4>
+                        </div>
+                    </div>
+                    <hr>
+                    
+                     <table class="table">
+                        <thead>
+                            <tr>
+                                <th><b>Machine</b></th>
+                                <th><b>Quantity</b></th>
+                                <th><b>Price</b></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Saeco A</td>
+                                <td>2</td>
+                                <td>Php 10,000.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <hr>
+                    <h3>Total Amount: Php 20,000.00</h3>
+                  </div>
+                  <div align="center">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success">Save</button>
+                  </div>
+                </div>
+                </div>
+            </div> -->
+            </div>
+        </div>
+    </div>
 </body>
 <!--   Core JS Files   -->
 <script src="../assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
@@ -274,6 +276,8 @@
 <script src="../assets/js/datepicker.js" type="text/javascript"></script>
 <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="../assets/js/material.min.js" type="text/javascript"></script>
+<script src="../assets/js/bootstrap-select.js"></script>
+
 <!--  Charts Plugin -->
 <script src="../assets/js/chartist.min.js"></script>
 <!--  Dynamic Elements plugin -->

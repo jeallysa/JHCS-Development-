@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 23, 2018 at 08:17 AM
+-- Generation Time: Mar 05, 2018 at 06:23 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -299,7 +299,7 @@ INSERT INTO `machine` (`mach_id`, `brewer`, `brewer_type`, `mach_price`, `mach_r
 
 CREATE TABLE `machine_out` (
   `mach_salesID` int(11) NOT NULL,
-  `mach_tagNO` int(11) NOT NULL,
+  `mach_id` int(11) NOT NULL,
   `date` date NOT NULL,
   `mach_qty` int(11) NOT NULL,
   `client_id` int(11) NOT NULL
@@ -309,9 +309,10 @@ CREATE TABLE `machine_out` (
 -- Dumping data for table `machine_out`
 --
 
-INSERT INTO `machine_out` (`mach_salesID`, `mach_tagNO`, `date`, `mach_qty`, `client_id`) VALUES
-(1, 111, '2018-02-24', 1, 1),
-(2, 112, '2018-02-12', 1, 2);
+INSERT INTO `machine_out` (`mach_salesID`, `mach_id`, `date`, `mach_qty`, `client_id`) VALUES
+(1, 1, '2018-02-24', 1, 1),
+(2, 1, '2018-02-12', 1, 2),
+(3, 1, '2018-03-16', 12, 2);
 
 -- --------------------------------------------------------
 
@@ -407,7 +408,11 @@ INSERT INTO `raw_coffee` (`raw_id`, `raw_coffee`, `raw_reorder`, `raw_limit`, `r
 (3, 'ROBUSTA', 1000, 8500, 1000, 2, 1),
 (4, 'BENGUET', 1500, 9000, 1800, 3, 1),
 (5, 'COLOMBIA', 2000, 10000, 5000, 1, 1),
-(6, 'BARAKO', 1500, 10500, 8000, 1, 1);
+(6, 'BARAKO', 1500, 10500, 8000, 1, 1),
+(7, 'Tin Coffee', 1000, 2000, 1500, 1, 1),
+(8, 'jgh', 78, 678, 678, 1, 1),
+(9, 'asd', 798, 798, 987, 1, 1),
+(10, 'serrrrrr', 687, 687, 867, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -802,7 +807,7 @@ ALTER TABLE `machine`
 -- AUTO_INCREMENT for table `machine_out`
 --
 ALTER TABLE `machine_out`
-  MODIFY `mach_salesID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `mach_salesID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `packaging`
 --
@@ -822,7 +827,7 @@ ALTER TABLE `payment_supplier`
 -- AUTO_INCREMENT for table `raw_coffee`
 --
 ALTER TABLE `raw_coffee`
-  MODIFY `raw_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `raw_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `retail`
 --
@@ -862,7 +867,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `walkin_sales`
 --
 ALTER TABLE `walkin_sales`
-  MODIFY `walkin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;COMMIT;
+  MODIFY `walkin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
