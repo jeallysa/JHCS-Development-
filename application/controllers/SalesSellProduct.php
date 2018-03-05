@@ -15,11 +15,46 @@
 		}
 		public function salesMachine()
 		{ 
-			$this->load->view('Sales_Module/salesMachine');
+			$this->load->model('sellProduct_model');
+			$data5['machine']=$this->sellProduct_model->getMachine();
+			$data6['client']=$this->sellProduct_model->getClient();
+			$this->load->view('Sales_Module/salesMachine', ['data6' => $data6, 'data5' => $data5]);
 		}
 		public function salesWalkin()
 		{ 
-			$this->load->view('Sales_Module/salesWalkin');
+			$this->load->model('sellProduct_model');
+			$data3['blends']=$this->sellProduct_model->getBlends();
+
+			$this->load->view('Sales_Module/salesWalkin', ['data3' => $data3]);
+		}
+
+
+		public function record()
+		{
+			$this->load->model('sellProduct_model');
+			$data4 = array(
+				"walkin_fname" =>$this->input->post("fname"),
+				"walkin_lname" =>$this->input->post("lname"),
+				"walkin_date" =>$this->input->post("date"),
+                "walkin_qty" =>$this->input->post("qty"),
+                "blend_id" =>$this->input->post("blend_id")
+        
+			);
+			$this->sellProduct_model->record_data($data4);
+			$this->salesWalkin();
+		}
+
+		public function add()
+		{
+			$this->load->model('sellProduct_model');
+			$data7 = array(
+				"mach_id" =>$this->input->post("mach_id"),
+				"date" =>$this->input->post("date"),
+				"mach_qty" =>$this->input->post("qty"),
+                "client_id" =>$this->input->post("client_id"),
+			);
+			$this->sellProduct_model->add_data($data7);
+			$this->salesMachine();
 		}
 		
 
