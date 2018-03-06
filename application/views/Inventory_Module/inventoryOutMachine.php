@@ -164,10 +164,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <thead>
                                             <th><b>Delivery Receipt No.</b></th>
                                             <th><b>Tagging Number</b></th>
+                                            <th><b>Date</b></th>
                                             <th><b>Client</b></th>
-                                            <th><b>Date Installed</b></th>
                                             <th><b>No. of machines installed</b></th>
-                                            <th><b>Remarks</b></th>
                                         </thead>
                                         <tbody>
                                             <?php
@@ -176,10 +175,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <tr>
                                                 <td><?php echo $row->mach_salesID; ?></td>
                                                 <td><?php echo $row->mach_tagNO; ?></td>
+                                                <td><?php echo $row->date; ?></td>
                                                 <td><?php echo $row->client_company; ?></td>
-                                                <td><?php echo $row->date_installed; ?></td>
                                                 <td><?php echo $row->mach_qty; ?></td>
-                                                <td><?php echo $row->remarks; ?></td>
                                             </tr>
                                             <?php } ?>
                                         </tbody>
