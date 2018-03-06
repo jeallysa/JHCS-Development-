@@ -6,7 +6,7 @@
 		}
 		
 		public function get_companyreturns(){
-			$query = $this->db->query("SELECT company_returnID, sup_returnDate, sup_company, sup_returnQty, sup_returnItem, sup_returnRemarks FROM jhcs.company_returns NATURAL JOIN supplier;");
+			$query = $this->db->query("SELECT * FROM jhcs.company_returns INNER JOIN raw_coffee ON sup_returnItem = raw_id INNER JOIN supplier ON company_returns.sup_id = supplier.sup_id;");
 			return $query->result();
 			
 		}

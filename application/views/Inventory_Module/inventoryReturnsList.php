@@ -251,7 +251,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <td><?php echo $row->sup_returnDate; ?></td>
                                                     <td><?php echo $row->sup_company; ?></td>
                                                     <td><?php echo $row->sup_returnQty; ?> g</td>
-                                                    <td><?php echo $row->sup_returnItem; ?></td>
+                                                    <td><?php echo $row->raw_coffee; ?></td>
                                                     <td><?php echo $row->sup_returnRemarks; ?></td>
                                                 </tr>
                                                 <?php

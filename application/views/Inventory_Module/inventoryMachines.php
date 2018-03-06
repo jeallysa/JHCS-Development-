@@ -251,7 +251,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                            echo '<tr>' ,
                                                 '<td>'  . $object->mach_salesID. '</td>' ,
                                                 '<td>'  . $object->client_company  . '</td>' ,
-                                                '<td>'  . $object->date_installed  . '</td>' ,
+                                                '<td>'  . $object->date  . '</td>' ,
                                                 '<td>'  . $object->mach_qty  . '</td>' ;
                                                 ?>
                                                     <td>Sales</td>
