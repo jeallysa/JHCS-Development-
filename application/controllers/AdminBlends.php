@@ -8,7 +8,9 @@
 		
 		public function index()
 		{ 
-			$this->load->view('Admin_Module/adminBlends');
+			$this->load->model('Admin_Blends_Model');
+			$blend_data["fetch_data"] = $this->Admin_Blends_Model->fetch_data();
+			$this->load->view('Admin_Module/adminBlends', $blend_data);
 		}
 
 	}
