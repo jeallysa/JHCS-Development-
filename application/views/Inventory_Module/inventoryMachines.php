@@ -288,19 +288,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 <div class="form-group">
                                                                     <label class="col-md-4 control">Total In :</label>
                                                                     <div class="col-md-4">
-                                                                        <p>18 pieces</p>
+                                                                        <p>- pieces</p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="col-md-4 control">Total Out :</label>
                                                                     <div class="col-md-7">
-                                                                        <p>12 pieces</p>
+                                                                        <p>- pieces</p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="col-md-4 control">Ending Inventory :</label>
                                                                     <div class="col-md-5">
-                                                                        <p>6 pieces</p>
+                                                                        <p>- pieces</p>
                                                                     </div>
                                                                 </div>
                                                             </div>

@@ -40,8 +40,11 @@
                 "blend_id" =>$this->input->post("blend_id")
         
 			);
+			$data4 = $this->security->xss_clean($data4);
 			$this->sellProduct_model->record_data($data4);
-			$this->salesWalkin();
+			// $this->salesWalkin();
+			$this->session->set_flashdata('success','New sales on blends added');
+            redirect ('salesSellProduct','refresh');
 		}
 
 		public function add()
@@ -53,8 +56,11 @@
 				"mach_qty" =>$this->input->post("qty"),
                 "client_id" =>$this->input->post("client_id"),
 			);
+			$data7 = $this->security->xss_clean($data7);
 			$this->sellProduct_model->add_data($data7);
-			$this->salesMachine();
+			// $this->salesMachine();
+			// $this->session->set_flashdata('success','New sales on machines added');
+            redirect ('salesSellProduct', 'refresh');
 		}
 		
 

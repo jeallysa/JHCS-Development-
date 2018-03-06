@@ -338,7 +338,7 @@
                                                 <?php
                                                 for ($i = 1; $i <= $rowcount; $i++){
                                                     $colname = "coff" . $i?>
-                                                        <td><?php echo $row->$colname; ?>
+                                                        <td><?php echo $row->$colname; ?> </td>
                                                 <?php
 
                                                 }

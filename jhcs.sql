@@ -149,8 +149,9 @@ CREATE TABLE `coffee_blend` (
   `size` int(11) NOT NULL,
   `blend_price` int(11) NOT NULL,
   `blend_activation` int(11) NOT NULL DEFAULT '1',
+  `blend_type` varchar(45) NOT NULL,
   PRIMARY KEY (`blend_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -159,7 +160,7 @@ CREATE TABLE `coffee_blend` (
 
 LOCK TABLES `coffee_blend` WRITE;
 /*!40000 ALTER TABLE `coffee_blend` DISABLE KEYS */;
-INSERT INTO `coffee_blend` VALUES (1,'Guatemala Rainforest','brown',1000,1025,1),(2,'Guatemala Rainforest','brown',500,615,1),(3,'Guatemala Rainforest','brown',250,365,1),(4,'Cordillera Sunrise','brown',1000,950,1),(5,'Cordillera Sunrise','brown',500,575,1),(6,'Cordillera Sunrise','brown',250,350,1),(7,'Sumatra Night','brown',1000,850,1),(8,'Sumatra Night','brown ',500,530,1),(9,'Sumatra Night','brown',250,325,1),(10,'Chef\'s Blend','brown',1000,800,1),(11,'Chef\'s Blend','brown',500,465,1),(12,'Chef\'s Blend','brown',250,265,1),(13,'Espresso Blend','brown',1000,750,1),(14,'Espresso Blend','brown',500,415,1),(15,'Espresso Blend','brown',250,230,1),(16,'Breakfast Blend','brown',1000,675,1),(17,'Breakfast Blend','brown',500,375,1),(18,'Breakfast Blend','brown',250,200,1),(19,'Mabuhay Blend','brown',1000,600,1),(20,'Mabuhay Blend','brown',500,350,1),(21,'Mabuhay Blend','brown',250,180,1),(22,'Fiesta Blend','brown',1000,500,1),(23,'Fiesta Blend','brown',500,315,1),(24,'Fiesta Blend','brown',250,165,1),(25,'Kalayaan Blend','brown',1000,400,1),(26,'Kalayaan Blend','brown',500,275,1),(27,'Kalayaan Blend','brown',250,150,1);
+INSERT INTO `coffee_blend` VALUES (1,'Guatemala Rainforest','brown',1000,1025,1,'Existing'),(2,'Guatemala Rainforest','brown',500,615,1,'Existing'),(3,'Guatemala Rainforest','brown',250,365,1,'Existing'),(4,'Cordillera Sunrise','brown',1000,950,1,'Existing'),(5,'Cordillera Sunrise','brown',500,575,1,'Existing'),(6,'Cordillera Sunrise','brown',250,350,1,'Existing'),(7,'Sumatra Night','brown',1000,850,1,'Existing'),(8,'Sumatra Night','brown ',500,530,1,'Existing'),(9,'Sumatra Night','brown',250,325,1,'Existing'),(10,'Chef\'s Blend','brown',1000,800,1,'Existing'),(11,'Chef\'s Blend','brown',500,465,1,'Existing'),(12,'Chef\'s Blend','brown',250,265,1,'Existing'),(13,'Espresso Blend','brown',1000,750,1,'Existing'),(14,'Espresso Blend','brown',500,415,1,'Existing'),(15,'Espresso Blend','brown',250,230,1,'Existing'),(16,'Breakfast Blend','brown',1000,675,1,'Existing'),(17,'Breakfast Blend','brown',500,375,1,'Existing'),(18,'Breakfast Blend','brown',250,200,1,'Existing'),(19,'Mabuhay Blend','brown',1000,600,1,'Existing'),(20,'Mabuhay Blend','brown',500,350,1,'Existing'),(21,'Mabuhay Blend','brown',250,180,1,'Existing'),(22,'Fiesta Blend','brown',1000,500,1,'Existing'),(23,'Fiesta Blend','brown',500,315,1,'Existing'),(24,'Fiesta Blend','brown',250,165,1,'Existing'),(25,'Kalayaan Blend','brown',1000,400,1,'Existing'),(26,'Kalayaan Blend','brown',500,275,1,'Existing'),(27,'Kalayaan Blend','brown',250,150,1,'Existing');
 /*!40000 ALTER TABLE `coffee_blend` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -451,6 +452,36 @@ CREATE TABLE `payment_supplier` (
 LOCK TABLES `payment_supplier` WRITE;
 /*!40000 ALTER TABLE `payment_supplier` DISABLE KEYS */;
 /*!40000 ALTER TABLE `payment_supplier` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `proportions`
+--
+
+DROP TABLE IF EXISTS `proportions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `proportions` (
+  `proportion_id` int(11) NOT NULL AUTO_INCREMENT,
+  `blend_id` int(11) NOT NULL,
+  `raw_id` int(11) NOT NULL,
+  `percentage` int(11) NOT NULL,
+  PRIMARY KEY (`proportion_id`),
+  KEY `raw_prop_idx` (`raw_id`),
+  KEY `blend_prop_idx` (`blend_id`),
+  CONSTRAINT `blend_prop` FOREIGN KEY (`blend_id`) REFERENCES `coffee_blend` (`blend_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `raw_prop` FOREIGN KEY (`raw_id`) REFERENCES `raw_coffee` (`raw_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `proportions`
+--
+
+LOCK TABLES `proportions` WRITE;
+/*!40000 ALTER TABLE `proportions` DISABLE KEYS */;
+INSERT INTO `proportions` VALUES (1,1,1,10),(2,1,4,30),(3,1,5,60),(4,2,1,10),(5,2,4,30),(6,2,5,60),(7,3,1,10),(8,3,4,30),(9,3,5,60),(10,4,2,60),(11,4,3,40),(12,5,2,60),(13,5,3,40),(14,6,2,60),(15,6,3,40),(16,7,2,45),(17,7,3,35),(18,7,6,15),(19,8,2,45),(20,8,3,35),(21,8,6,15),(22,9,2,45),(23,9,3,35),(24,9,6,15),(25,10,1,20),(26,10,2,20),(27,10,6,60),(28,11,1,20),(29,11,2,20),(30,11,6,60),(31,12,1,20),(32,12,2,20),(33,12,6,60),(34,13,4,35),(35,13,5,65),(36,14,4,35),(37,14,5,65),(38,15,4,35),(39,15,5,65),(40,16,2,25),(41,16,5,75),(42,17,2,25),(43,17,5,75),(44,18,2,25),(45,18,5,75);
+/*!40000 ALTER TABLE `proportions` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -765,4 +796,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-05 16:42:41
+-- Dump completed on 2018-03-06 23:37:58
