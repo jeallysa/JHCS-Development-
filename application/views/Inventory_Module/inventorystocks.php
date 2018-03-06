@@ -143,35 +143,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <ul class="nav nav-tabs" data-tabs="tabs">
                                                 <li class="active">
                                                     <a href="<?php echo base_url(); ?>inventoryStocks">
-                                                        Raw Coffee
+                                                        <i class="material-icons">local_cafe</i>Raw Coffee
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li class="">
                                                     <a href="<?php echo base_url(); ?>inventoryBlends">
-                                                        Blends
+                                                        <i class="material-icons">opacity</i>Blends
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li>
                                                     <a href="<?php echo base_url(); ?>inventoryPackaging">
-                                                        Packaging
+                                                        <i class="material-icons">local_mall</i>Packaging
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li class="">
                                                     <a href="<?php echo base_url(); ?>inventoryStickers">
-                                                        Stickers
+                                                        <i class="material-icons">wallpaper</i>Stickers
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li class="">
                                                     <a href="<?php echo base_url(); ?>inventoryMachines">
-                                                       Machines
+                                                        <i class="material-icons">local_laundry_service</i>Machines
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
@@ -188,7 +188,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <th><b class="pull-left">Reorder Level (grams)</b></th>
                                             <th><b class="pull-left">Stock Limit (grams)</b></th>
                                             <th><b class="pull-left">Supplier</b></th>
-                                            <th><b class="pull-left">Number of Stocks (per grams)</b></th>
+                                            <th><b class="pull-left">Number of Stocks (grams)</b></th>
                                             <th><b class="pull-left">Cue Card</b></th>
                                         </thead>
                                         <tbody>
@@ -203,13 +203,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <td><?php echo $row->raw_reorder; ?> g</td>
                                                 <td><?php echo $row->raw_limit; ?> g</td>
                                                 <td><?php echo $row->sup_company; ?></td>
-                                                <td><?php echo $row->raw_stock; ?></td>
+                                                <td><b><?php echo $row->raw_stock; ?> g</b></td>
                                                 <td>
                                                     <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#rawcard">Details</button>
+                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#<?php echo $row->raw_coffee; ?>">Details</button>
 
                                                 <!-- Modal -->
-                                                <div class="modal fade" id="rawcard" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                <div class="modal fade" id="<?php echo $row->raw_coffee; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                   <div class="modal-dialog modal-lg">
                                                     <div class="panel panel-primary">
                                                         <div class="panel-heading">
@@ -217,83 +217,46 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span>Cue Card Details</h4>
                                                         </div>
                                                       <div class="modal-body" style="padding: 5px;">
-                                                            <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
-                                                                <h3><b>Coffee A</b></h3>
-                                                                <hr>
-                                                            </div>
                                                           <label>Set Date from </label>
                                                             <input type="date" name="">
                                                             <label> to </label>
                                                             <input type="date" name="">
-                                                          <button style="float: right;" class ="print"><i class="material-icons">print</i></button>
-                                                        <div id="toBePrinted">
+                                                          <button style="float: right;" onclick="printDiv('toBePrinted<?php echo $row->raw_coffee; ?>')"><i class="material-icons">print</i></button>
+                                                        <div id="toBePrinted<?php echo $row->raw_coffee; ?>">
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
+                                                                <h3><b><?php echo $row->raw_coffee; ?></b></h3>
+                                                                <hr>
+                                                            </div>
                                                         <table id="fresh-datatables" class="table table-striped table-hover responsive" cellspacing="0" width="100%">
                                                         <thead>
                                                           <tr>
-                                                            <th><b>Delivery Receipt No.</b></th>
-                                                            <th><b>Delivery</b></th>
+                                                            <th><b>No.</b></th>
                                                             <th><b>Client/Supplier</b></th>
                                                             <th><b>Date</b></th>
                                                             <th><b>Quantity/Weight</b></th>
-                                                            <th><b>Type</b></th>
                                                             <th><b>Remarks</b></th>
+                                                            <th><b>Type</b></th>
                                                           </tr>
                                                         </thead>
                                                         <tbody>
-                                                          <tr>
-                                                            <td>12345</td>
-                                                            <td>In</td>
-                                                            <td>Supplier 1</td>
-                                                            <td>Dec 5, 2017</td>
-                                                            <td>100 grams</td>
-                                                            <td>City Roast</td>
-                                                            <td></td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>23456</td>
-                                                            <td>In</td>
-                                                            <td>Client 2</td>
-                                                            <td>Dec 12, 2017</td>
-                                                            <td>20 grams</td>
-                                                            <td>City Roast</td>
-                                                            <td>Incorrect Blend</td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>34567</td>
-                                                            <td>In</td>
-                                                            <td>Supplier 3</td>
-                                                            <td>Dec 15, 2017</td>
-                                                            <td>200 grams</td>
-                                                            <td>City Roast</td>
-                                                            <td></td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>45678</td>
-                                                            <td>Out</td>
-                                                            <td>Supplier 1</td>
-                                                            <td>Dec 8, 2017</td>
-                                                            <td>100 grams</td>
-                                                            <td>City Roast</td>
-                                                            <td>Incorrect Roast</td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>56789</td>
-                                                            <td>Out</td>
-                                                            <td>Client 5</td>
-                                                            <td>Dec 9, 2017</td>
-                                                            <td>50 grams</td>
-                                                            <td>City Roast</td>
-                                                            <td></td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>67890</td>
-                                                            <td>Out</td>
-                                                            <td>Client 7</td>
-                                                            <td>Dec 17, 2017</td>
-                                                            <td>30 grams</td>
-                                                            <td>City Roast</td>
-                                                            <td>Sample</td>
-                                                          </tr>
+                                                            <?php
+                                              $retrieveDetails3 ="SELECT * FROM jhcs.company_returns NATURAL JOIN supplier where sup_returnItem = '$row->raw_coffee';" ;
+                                              $query = $this->db->query($retrieveDetails3);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td>'  . $object->company_returnID. '</td>' ,
+                                                '<td>'  . $object->sup_company  . '</td>' ,
+                                                '<td>'  . $object->sup_returnDate  . '</td>' ,
+                                                '<td>'  . $object->sup_returnQty  . '</td>' ;
+                                                ?>
+                                                    <td>Company Return</td>
+                                                    <td>Out</td>
+                                                 <?php   
+                                                '</tr>' ;
+                                              }
+                                            }
+                                        ?>  
                                                         </tbody>
                                                       </table><hr>
                                                           <div class="row">
@@ -415,26 +378,26 @@ $(document).ready(function() {
 });
 </script>
 <script>
-    $('.print').click(function(){
-    var printme = document.getElementById('toBePrinted'); 
+    function printDiv(divName){
+        var printme = document.getElementById(divName); 
     
-    var wme = window.open("","","width= 900","height=700");
-        
-    var cancel = document.getElementsByClassName("btn");
-    for(var i=0; i < cancel.length; i++){  
-    cancel[i].style.visibility = 'hidden';
-    }
-    wme.document.write(printme.outerHTML);
-    wme.document.close();
-    wme.focus();
-    wme.print();
-    wme.close();
+        var wme = window.open("","","width= 900","height=700");
+    
+        var cancel = document.getElementsByClassName("btn");
+        for(var i=0; i < cancel.length; i++){  
+            cancel[i].style.visibility = 'hidden';
+        }
+        wme.document.write(printme.outerHTML);
+        wme.document.close();
+        wme.focus();
+        wme.print();
+        wme.close();
     
       
-    for(var i=0; i < cancel.length; i++){  
-    cancel[i].style.visibility = 'visible';
-    }
+        for(var i=0; i < cancel.length; i++){  
+            cancel[i].style.visibility = 'visible';
+        }
     
-                })
+    }
 </script> 
 </html>

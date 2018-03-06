@@ -277,6 +277,8 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                
                                 
                                 <div class="card-content">
                                     <table id="example" class="display  hover order-column table table-responsive" cellspacing="0" width="100%">
@@ -284,81 +286,89 @@
                                             <tr>
                                                 <th><b>Date In</b></th>
                                                 <th><b>Supplier</b></th>
-                                                <th><b>Coffee A</b></th>
-                                                <th><b>Coffee B</b></th>
-                                                <th><b>Coffee C</b></th>
-                                                <th><b>Coffee D</b></th>
-                                                <th><b>Coffee E</b></th>
-                                                <th><b>Coffee F</b></th>
+                                                <?php
+                                                    $conntitle=mysqli_connect("localhost","root","","jhcs");
+                                                    if ($conntitle->connect_error) {
+                                                        die("Connection failed: " . $conntitle->connect_error);
+                                                    } 
+                                                    $sql="SELECT * FROM raw_coffee";
+                                                    $result = $conntitle->query($sql);
+                                                    if ($result->num_rows > 0) {
+                                                        while($row = $result->fetch_assoc()) {
+                                                ?>
+                                                <th><b><?php echo $row["raw_coffee"]; ?></b></th>
+                                                <?php
+                                                    }
+                                                } else {
+                                                    echo "0 results";
+                                                }
+                                                $conntitle->close();
+                                                ?>
                                                 <th class="disabled-sorting"><b>Edit</b></th>
                                             </tr>
                                         </thead>
                                         <tbody>
+
+                                             <?php
+                                                    $con=mysqli_connect("localhost","root","","jhcs");
+                                                    if (mysqli_connect_errno())
+                                                      {
+                                                      echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                                                      }
+                                                    $sql="SELECT * FROM raw_coffee";
+
+                                                    if ($result=mysqli_query($con,$sql))
+                                                      {
+
+                                                      $rowcount=mysqli_num_rows($result);
+                                                      mysqli_free_result($result);
+                                                      }
+                                                      mysqli_close($con);
+
+                                                    if($fetch_data->num_rows() > 0){
+
+                                                        foreach($fetch_data -> result() as $row)
+                                                        {
+                                                ?>
                                             <tr>
-                                                <td>Sept 30, 2017</td>
-                                                <td>Beginning Inventory</td>
+                                                <td><?php echo $row->transact_date; ?></td>
+
+                                                <td><?php echo $row->sup_company; ?></td>
+                                                
+                                                <?php
+                                                for ($i = 1; $i <= $rowcount; $i++){
+                                                    $colname = "coff" . $i?>
+                                                        <td><?php echo $row->$colname; ?>
+                                                <?php
+
+                                                }
+                                                
+                                                ?>
+
+                                                <!--
                                                 <td>3000 g</td>
                                                 <td>8000 g</td>
                                                 <td>4000 g</td>
                                                 <td>5000 g</td>
                                                 <td>3000 g</td>
-                                                <td>7000 g</td>
+                                                <td>7000 g</td> -->
                                                 <td>
                                                                 <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>Oct 2, 2017</td>
-                                                <td>Gourmet Farms</td>
-                                                <td>2000 g</td>
-                                                <td>6000 g</td>
-                                                <td>-</td>
-                                                <td>3000 g</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>
-                                                                <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Oct 2, 2017</td>
-                                                <td>Gourmet Farms</td>
-                                                <td>2000 g</td>
-                                                <td>-</td>
-                                                <td>4000 g</td>
-                                                <td>-</td>
-                                                <td>3000 g</td>
-                                                <td>-</td>
-                                                <td>
-                                                                <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Oct 2, 2017</td>
-                                                <td>Gourmet Farms</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>2000 g</td>
-                                                <td>-</td>
-                                                <td>3000 g</td>
-                                                <td>8000 g</td>
-                                                <td>
-                                                                <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Total</b></td>
-                                                <td></td>
-                                                <td>7000 g</td>
-                                                <td>14000 g</td>
-                                                <td>10000 g</td>
-                                                <td>8000 g</td>
-                                                <td>9000 g</td>
-                                                <td>15000 g</td>
-                                                <td>
-                                                                <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
-                                                </td>
-                                            </tr>
+                                            <?php
+                                                    }
+
+                                                }
+                                                else{
+                                                ?>
+                                                    <tr>
+                                                        <td colspan = 11 style = "text-align: center;"> <h3>No clients found</h3> </td>
+                                                    </tr>
+                                                <?php
+                                                }
+
+                                                ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -371,16 +381,18 @@
     </div>
 </body>
 <!--   Core JS Files   -->
+<!--   Core JS Files   -->
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/FileExport/buttons.flash.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/dataTables.buttons.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/FileExport/buttons.php5.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.flash.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.Html5.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/buttons.print.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/jszip.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/pdfmake.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/vfs_fonts.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/datepicker.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/material.min.js" type="text/javascript"></script>
 <!--  Charts Plugin -->
@@ -400,12 +412,31 @@
 <script type="text/javascript">
 $(document).ready(function() {
     $('#example').DataTable({
-        dom: 'Bfrtip',
-        buttons: [
-            'excel', 'pdf', 'print'
+        "dom":' fBrtip',
+        "lengthChange": false,
+        "info":     false,
+		buttons: [
+            { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print' },
+			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel'},
+			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF'}
         ]
     });
 });
+
+$('table tbody tr  td').on('click', function() {
+    $("#myModal").modal("show");
+    $("#txtfname").val($(this).closest('tr').children()[0].textContent);
+    $("#txtlname").val($(this).closest('tr').children()[1].textContent);
+});
+</script>
+
+<script>
+$(function() {
+    $('#toggle-two').bootstrapToggle({
+        on: 'Enabled',
+        off: 'Disabled'
+    });
+})
 </script>
 
 </html>

@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
     <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/bootstrap-select.min.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/css/dataTables.bootstrap.min.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/css/jquery.dataTable.min.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/css/bootstrap-datepicker3.min.css" rel="stylesheet">
@@ -21,6 +22,8 @@
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+
+
     <style>
     .table thead,
     thead th {
@@ -32,6 +35,8 @@
     tbody td {
         text-align: right;
     }
+
+
     </style>
 </head>
 
@@ -137,159 +142,142 @@
                                 <div class="card-header" data-background-color="purple">
                                     <h3 class="title"><center>Walk-in Client Order</center></h3>
                                 </div>
-                                        <div class="card-content">
-                                            <form action="#" method="post" accept-charset="utf-8">
-                                                <div class="modal-body" style="padding: 5px;">
-                                                        <div class="row">
-                                                            <div class="col-md-5">
-                                                                <div class="form-group label-floating">
-                                                                    <label for="email">Date</label>
-                                                                    <input class="form-control" type="date" name="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-5">
-                                                                <div class="form-group label-floating">
-                                                                    <label for="email">Client:</label>
-                                                                    <input type="text" class="form-control" name="">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                            </form>
-                                        </div><hr>  
 
-                                            <div class="modal-body" style="padding: 5px;">
-
-                                                    <div class="row">
-                                                        <div class="form-conttrol label-floating">
-                                                            <div class="col-md-3">
-                                                                <label>Coffee</label>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <label>Bag</label>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <label>Size</label>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <label>Quantity</label>
-                                                            </div>
+                                <form action="record" method="post" accept-charset="utf-8">
+                                    <div class="card-content">
+                                        <div class="modal-body" style="padding: 5px;">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group label-floating">
+                                                            <label for="email">Date</label>
+                                                            <input class="form-control" type="date" name="date" required="">
                                                         </div>
                                                     </div>
-                                                      
-                                                    <div id="education_fields"> </div>
-                                                    
-                                                    <div class="col-sm-3 nopadding">
-                                                      <div class="form-group">
-                                                        <div class="">
-                                                          <select class="form-control" id="educationDate" name="educationDate[]">
-                                                            <option value="Guatamela">Guatamela Rainforest</option>
-                                                            <option value="Sunrise">Cordillera Sunrise</option>
-                                                            <option value="Sumatra">Sumatra Night</option>
-                                                            <option value="Espresso">Espresso</option>
-                                                          </select>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group label-floating">
+                                                            <label for="email">First Name:</label>
+                                                            <input type="text" class="form-control" name="fname" required="">
                                                         </div>
-                                                      </div>
                                                     </div>
-                                                    <div class="col-sm-3 nopadding">
-                                                      <div class="form-group">
-                                                        <div class="">
-                                                          <select class="form-control" id="educationDate" name="educationDate[]">
-                                                            <option value="clear">clear bag</option>
-                                                            <option value="brown">brown bag</option>
-                                                          </select>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group label-floating">
+                                                            <label for="email">Last Name:</label>
+                                                            <input type="text" class="form-control" name="lname" required="">
                                                         </div>
-                                                      </div>
                                                     </div>
-                                                    <div class="col-sm-3 nopadding">
-                                                      <div class="form-group">
-                                                        <div class="">
-                                                          <select class="form-control" id="educationDate" name="educationDate[]">
-                                                            <option value="250">250 g</option>
-                                                            <option value="500">500 g</option>
-                                                            <option value="1000">1000 g</option>
-                                                          </select>
-                                                        </div>
-                                                      </div>
-                                                    </div>
-
-                                                    <div class="col-sm-3 nopadding">
-                                                      <div class="form-group">
-                                                          <div class="input-group">
-                                                            <input type="number" class="form-control" id="" name="" value="" placeholder="qty">
-                                                                <div class="input-group-btn">
-                                                                    <button class="btn btn-success" type="button"  onclick="education_fields();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
-                                                              </div>
-                                                          </div>
-                                                      </div>
-                                                    </div>
+                                                </div>
                                             </div>
+                                    </div><hr>  
+
+                                    <div class="modal-body" style="padding: 5px;">
+
+                                            <div class="row-fluid">
+                                                <div class="form-conttrol label-floating">
+                                                    <div class="col-md-6">
+                                                        <label>Coffee</label>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <label>Quantity</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                              
+                                            <div id="education_fields"> </div>
                                             
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                            <div class="col-sm-6 nopadding">
+                                              <div class="form-group">
+                                                  <select class="selectpicker" data-live-search="true" name="blend_id">
+                                                    <?php 
+                                                    foreach($data3['blends'] as $row)
+                                                    { 
+                                                        echo '<option value="'.$row->blend_id.'">'.$row->blend." ".$row->bag." ".$row->size." g".'</option>';
+                                                    }
+                                                    ?>
+                                                  </select>
+                                              </div>
+                                            </div>
 
-                        <div class="text-center">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#verify">
-                              Record
-                            </button>
-                        </div>
-
-                    <!--modal for verification-->
-                    <div class="modal fade" id="verify" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                    <h4 class="panel-title" id="contactLabel"><center>Verify Order</center> </h4>
-                                </div>
-                                <div class="modal-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h4>Client: Juanito Perez</h4>
+                                            <div class="col-sm-6 nopadding">
+                                              <div class="form-group">
+                                                  <div class="input-group">
+                                                    <input type="number" class="form-control" id="qty" name="qty" value="qty" placeholder="qty" required="">
+                                                        <div class="input-group-btn">
+                                                            <button class="btn btn-success" type="button"  onclick="education_fields();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                            </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <h4>Date: January 22, 2018</h4>
+                                    <br><br>
+                                    <div class="text-center" data-toggle="modal" data-target="#verify">
+                                        <button type="submit" class="btn btn-warning">
+                                          Record
+                                        </button>
                                     </div>
-                                </div>
-                                <hr>
-                                
-                                 <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th><b>Coffee</b></th>
-                                            <th><b>Bag</b></th>
-                                            <th><b>Size</b></th>
-                                            <th><b>Qty</b></th>
-                                            <th><b>Price</b></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Fiesta Blend Ground</td>
-                                            <td>brown</td>
-                                            <td>250 g</td>
-                                            <td>2</td>
-                                            <td>350</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
-                                <hr>
-                                <h3>Total Amount: Php 700.00</h3>
-                              </div>
-                              <div align="center">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-success">Save</button>
-                              </div>
-                            </div>
+                                </form> 
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
-        </div>
+
+                        
+
+
+
+            <!--modal for verification-->
+          <!--   <div class="modal fade" id="verify" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="panel-title" id="contactLabel"><center>Verify Order</center> </h4>
+                        </div>
+                        <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>Client: Juanito Perez</h4>
+                            </div>
+                            <div class="col-md-6">
+                                <h4>Date: January 22, 2018</h4>
+                            </div>
+                        </div>
+                        <hr>
+                        
+                         <table class="table">
+                            <thead>
+                                <tr>
+                                    <th><b>Coffee</b></th>
+                                    <th><b>Bag</b></th>
+                                    <th><b>Size</b></th>
+                                    <th><b>Qty</b></th>
+                                    <th><b>Price</b></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Fiesta Blend Ground</td>
+                                    <td>brown</td>
+                                    <td>250 g</td>
+                                    <td>2</td>
+                                    <td>350</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <hr>
+                        <h3>Total Amount: Php 700.00</h3>
+                      </div>
+                      <div align="center">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success">Save</button>
+                      </div>
+                    </div>
+                    </div>
+                </div> -->
+             </div>
+    </div>
 </body>
 <!--   Core JS Files   -->
 <script src="../assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
@@ -310,8 +298,14 @@
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 <!-- Material Dashboard javascript methods -->
 <script src="../assets/js/material-dashboard.js?v=1.2.0"></script>
+<script src="../assets/js/bootstrap-select.js"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="../assets/js/demo.js"></script>
+
+
+
+
+
 <script type="text/javascript">
 $(document).ready(function() {
 
@@ -364,6 +358,24 @@ $(document).ready(function() {
         }
     });
 </script>
+<!-- <script type="text/javascript">
+    var room = 1;
+    function education_fields() {
+     
+        room++;
+        var objTo = document.getElementById('education_fields')
+        var divtest = document.createElement("div");
+        divtest.setAttribute("class", "form-group removeclass"+room);
+        var rdiv = 'removeclass'+room;
+        divtest.innerHTML = '<div class="col-sm-6 nopadding"><div class="form-group"><select class="selectpicker" data-live-search="true" name="blend_id"> <?php foreach($data3['blends'] as $row){ echo '<option value="'.$row->blend_id.'">'.$row->blend." ".$row->bag." ".$row->size.'</option>'; } ?> </select></div></div><div class="col-sm-6 nopadding"><div class="form-group"><div class="input-group"><input type="number" class="form-control" id="qty" name="qty" value="qty" placeholder="qty" required><div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields('+ room +');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div>';
+        
+        objTo.appendChild(divtest)
+    }
+   function remove_education_fields(rid) {
+       $('.removeclass'+rid).remove();
+   }
+</script> -->
+
 <script type="text/javascript">
     var room = 1;
     function education_fields() {
@@ -377,6 +389,9 @@ $(document).ready(function() {
         
         objTo.appendChild(divtest)
     }
+
+
+    
    function remove_education_fields(rid) {
        $('.removeclass'+rid).remove();
    }

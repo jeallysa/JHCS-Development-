@@ -105,7 +105,7 @@
                                         <a href="<?php echo base_url(); ?>adminActivityLogs">Activity Logs</a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo base_url('Login/logout');  ?>">Logout</a>
+                                        <a href="#">Logout</a>
                                     </li>
                                 </ul>
                             </li>
@@ -115,76 +115,84 @@
             </nav>
             <div class="content">
                 <div class="container-fluid">
-                    <div class="row">
+                   <div class="row">
                         <div class="col-lg-3 col-md-6 col-sm-6">
                             <div class="card card-stats">
-                                <div class="card-header" data-background-color="blue">
-                                    <i class="material-icons">content_copy</i>
+                                <div class="card-header" data-background-color="orange">
+                                    <i class="material-icons">content_paste</i>
                                 </div>
                                 <div class="card-content">
-                                    <p class="category">Raw Coffee Beans</p>
-                                    <h3 class="title">38,000 Grams</h3>
+                                    <p class="category">Raw Coffee</p>
+                                    <h3 class="title"> <?php echo $data1['rawcoffeestock']; ?>
+                                        <small>grams</small>
+                                    </h3>
                                 </div>
                                 <a href="<?php echo base_url(); ?>adminProductInventory">
-                                    <div class="card-footer">
-                                        <div class="stats">
-                                            <i class="material-icons">date_range</i> Details
-                                        </div>
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <i class="material-icons">date_range</i> Details
                                     </div>
+                                </div>
+                                </a>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header" data-background-color="green">
+                                    <i class="material-icons">credit_card</i>
+                                </div>
+                                <div class="card-content">
+                                    <p class="category">Packaging</p>
+                                    <h3 class="title"> <?php echo $data2['packagingstock']; ?>
+                                        <small>pieces</small>
+                                    </h3>
+                                </div>
+                                <a href="<?php echo base_url(); ?>adminPackaging">
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <i class="material-icons">date_range</i> Details
+                                    </div>
+                                </div>
                                 </a>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6">
                             <div class="card card-stats">
                                 <div class="card-header" data-background-color="red">
-                                    <i class="material-icons">store</i>
-                                </div>
-                                <div class="card-content">
-                                    <p class="category">Machines</p>
-                                    <h3 class="title">120 Units</h3>
-                                </div>
-                                <a href="<?php echo base_url(); ?>adminMachines">
-                                    <div class="card-footer">
-                                        <div class="stats">
-                                            <i class="material-icons">date_range</i> Details
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="card card-stats">
-                                <div class="card-header" data-background-color="green">
-                                    <i class="material-icons">info_outline</i>
+                                    <i class="material-icons">collections</i>
                                 </div>
                                 <div class="card-content">
                                     <p class="category">Stickers</p>
-                                    <h3 class="title">901 Pieces</h3>
+                                    <h3 class="title"> <?php echo $data3['stickerstock']; ?>
+                                    <small>pieces</small>
+                                    </h3>
                                 </div>
                                 <a href="<?php echo base_url(); ?>adminStickers">
-                                    <div class="card-footer">
-                                        <div class="stats">
-                                            <i class="material-icons">date_range</i> Details
-                                        </div>
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <i class="material-icons">date_range</i> Details
                                     </div>
-                                </a>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6">
                             <div class="card card-stats">
                                 <div class="card-header" data-background-color="blue">
-                                    <i class="fa fa-twitter"></i>
+                                    <i class="material-icons">store</i>
                                 </div>
                                 <div class="card-content">
-                                    <p class="category">Packaging</p>
-                                    <h3 class="title">3,900 Bags</h3>
+                                    <p class="category">Machines</p>
+                                    <h3 class="title"> <?php echo $data4['machinestock']; ?>
+                                    <small>pieces</small>
+                                    </h3>
                                 </div>
-                                <a href="<?php echo base_url(); ?>adminPackaging">
-                                    <div class="card-footer">
-                                        <div class="stats">
-                                            <i class="material-icons">date_range</i> Details
-                                        </div>
+                                <a href="<?php echo base_url(); ?>adminMachines">
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <i class="material-icons">date_range</i> Details
                                     </div>
+                                </div>
                                 </a>
                             </div>
                         </div>
@@ -218,7 +226,7 @@
                                         <tbody>
                                            
                                              <?php 
-                                                foreach ($sales as $row) {
+                                                foreach ($data5['sales'] as $row) {
                                              ?>
                                              <tr>
                                                  <td><?php echo $row->client_dr; ?></td>
@@ -243,6 +251,42 @@
                 </div>
             </div>
         </div>
+    </div>
+     <footer class="footer">
+                        <div class="container-fluid">
+                            <nav class="pull-left">
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                    Home
+                                </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                    Company
+                                </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                    Portfolio
+                                </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                    Blog
+                                </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <p class="copyright pull-right">
+                                &copy;
+                                <script>
+                                document.write(new Date().getFullYear())
+                                </script>
+                                <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+                            </p>
+                        </div>
+                    </footer>
     </div>
 </body>
 <!--   Core JS Files   -->

@@ -8,7 +8,9 @@
 		
 		public function index()
 		{ 
-			$this->load->view('Admin_Module/adminInventoryReport');
+			$this->load->model('Admin_Inventory_Report_Model');
+			$inv_data["fetch_data"] = $this->Admin_Inventory_Report_Model->fetch_data();
+			$this->load->view('Admin_Module/adminInventoryReport', $inv_data);
 		}
 
 	}

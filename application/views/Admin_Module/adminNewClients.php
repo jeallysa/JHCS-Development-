@@ -121,57 +121,63 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header" data-background-color="green">
                                     <h4 class="title">Create New Account</h4>
-                                    <p class="category">Fill the form</p>
+                                    <p class="category">Fill in the client's details</p>
                                 </div>
                                 <div class="card-content">
-                                    <form>
-                                        <h6> Personal Information </h6>
+                                    <form role="form" action="<?php echo base_url();?>addClient/insertClient" method="post">
+                                        <h5 style="text-align: center;"> Company Details </h5>
                                 <div class="row">
-                                    <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
+                                    <div class="col-lg-12 col-md-12 col-sm-6" style="padding-bottom: 15px;">
                                         <input class="form-control" name="client" placeholder="Client" type="text" required autofocus />
                                     </div>
+                                    
+
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <input class="form-control" name="contactpersonnel" placeholder="Contact Personnel" type="text" required />
+                                       <div class="col-lg-12 col-md-12 col-sm-6">
+                                        <textarea style="resize:vertical;" class="form-control" placeholder="Address" rows="2" name="address" required></textarea>
+                                    </div>                             
+                                </div>
+                                        <h6> Contact Personnel </h6>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 15px;">
+                                        <input class="form-control" name="cpfname" placeholder="First Name" type="text" required />
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 15px;">
+                                        <input class="form-control" name="cplname" placeholder="Last Name" type="text" required />
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div>
-                                        <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                            <input class="form-control" name="position " placeholder="Position" type="text" required />
+                                        <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 15px;">
+                                            <input class="form-control" name="position" placeholder="Position" type="text" required />
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
+                                
+                                    <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 15px;">
                                         <input class="form-control" name="email" placeholder="Email" type="text" required />
                                     </div>
                                 </div>
                                  <div class="row">
-                                    <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <input class="form-control" name="tel number" placeholder="Telephone Number" type="text" required />
+                                    <div class="col-lg-12 col-md-6 col-sm-6" style="padding-bottom: 15px;">
+                                        <input class="form-control" name="tel_number" placeholder="Telephone Number" type="text" required />
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-lg-10 col-md-12 col-sm-12">
-                                        <textarea style="resize:vertical;" class="form-control" placeholder="Address" rows="2" name="address" required></textarea>
-                                    </div>
-                                </div>
-                                <h6> Product </h6>
+                                
+                                <h6> Type: </h6>
                                 <div class="row">
                                     <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <select class="form-control" name="position" placeholder="Client Type" type="text" required>
+                                        <select class="form-control" name="cli_type" placeholder="Client Type" type="text" required>
                                             <option>Wholesale</option>
                                             <option>Retail</option>
                                         </select>
                                     </div>
                                 </div>
-                                     <input type="submit" class="btn btn-success" value="Add" />
+                                <input type="submit" class="btn btn-success" value="Add" />
                                 <!--<span class="glyphicon glyphicon-ok"></span>-->
                                 <input type="reset" class="btn btn-danger" value="Clear" />
                                 <!--<span class="glyphicon glyphicon-remove"></span>-->

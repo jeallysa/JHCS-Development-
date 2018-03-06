@@ -8,8 +8,11 @@
 		
 		public function index()
 		{ 
-			$this->load->view('Admin_Module/adminCollectionReport');
+			$this->load->model('AdminCollectionReport_model');
+			$data['collections']=$this->AdminCollectionReport_model->getCollections();
+			$this->load->view('Admin_Module/adminCollectionReport', $data);
 		}
 
 	}
+
 ?>

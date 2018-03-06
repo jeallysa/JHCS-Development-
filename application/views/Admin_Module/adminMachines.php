@@ -223,63 +223,6 @@
                     </div>
                 </div>
             </nav>
-            <div class="modal fade" id="newblend" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading" >
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span> Add New Machines</h4>
-                        </div>
-                        <form action="#" method="post" accept-charset="utf-8">
-                            <div class="modal-body" style="padding: 5px;">
-                                <div class="row">
-                                    <div class="col-md-6 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="email">Machine Name</label>
-                                            <input class="form-control" type="text" name="" placeholder="" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <div class="form-group label-floating">
-                                            
-                                            <label for="email">Supplier</label>
-                                            <select class="form-control" name="supplier" required>
-                                                <option value="">Supplier A</option>
-                                                <option value="">Supplier B</option>
-                                                <option value="">Supplier C</option>
-                                            </select>                  
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="">Stock Limit</label>
-                                            <input class="form-control" type="number" name="" placeholder="" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="number">Reorder Level</label>
-                                            <input class="form-control" type="number" name="" placeholder="" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                </div>
-                            </div>
-                            <div class="panel-footer" style="margin-bottom:-14px;">
-                                <input type="submit" class="btn btn-success" value="Add" />
-                                <!--<span class="glyphicon glyphicon-ok"></span>-->
-                                <input type="reset" class="btn btn-danger" value="Clear" />
-                                <!--<span class="glyphicon glyphicon-remove"></span>-->
-                                <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
             <div class="modal fade" id="stock" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="panel panel-primary">
@@ -287,60 +230,57 @@
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                             <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span> Add New Sticker</h4>
                         </div>
-                        <form action="#" method="post" accept-charset="utf-8">
+                        <form action="AdminMachines/insert" method="post" accept-charset="utf-8">
                             <div class="modal-body" style="padding: 5px;">
-                                <div class="row">
-                                    <div class="col-md-12 form-group">
+                               <div class="row">
+                                    <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
-                                            <label for="email">Machine Name</label>
-                                            <input class="form-control" type="text" name="" placeholder="" />
+                                            <label for="email">Brewer</label>
+                                            <input class="form-control" type="text" name="brewer" required>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Type</label>
+                                            <input class="form-control" type="text" name="type" required>
+                                        </div>
+                                    </div>
+                                     <div class="col-lg-6 form-group">
                                         <div class="form-group label-floating">
                                             <label for="email">Reorder Level</label>
-                                            <input class="form-control" type="text" name="" placeholder="" disabled="" />
+                                            <input class="form-control" type="number" name="reorder" required>
                                         </div>
                                     </div>
-                                    
-                                    <div class="col-md-6 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="email">Supplier</label>
-                                            <select class="form-control" name="supplier" required>
-                                                <option value="">Supplier A</option>
-                                                <option value="">Supplier B</option>
-                                                <option value="">Supplier C</option>
-                                            </select>                  
-                                        </div>
-                                    </div>
-                                </div>
-                                    <div class="row">
                                     <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
                                             <label for="email">Stock Limit</label>
-                                            <input class="form-control" type="text" name="" placeholder="" disabled="" />
+                                            <input class="form-control" type="number" name="stocklimit" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
                                             <label for="email">Number of Stocks</label>
-                                            <input class="form-control" type="number" name="" placeholder="" disabled="" />
+                                            <input class="form-control" type="number" name="stocks" required>
                                         </div>
                                     </div>
-                                        
-                                </div>
-                                 <div class="row">
                                     <div class="col-md-6 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="email">Price per Unit</label>
-                                            <input class="form-control" type="number" name="" placeholder="" disabled="" />
+                                           <div class="form-group label-floating">
+                                            <label for="email">Supplier</label>
+                                            <select class="form-control" name="sup_company" required>
+                                                <option disabled selected value> -- select an item -- </option>
+                                                <?php 
+
+                                                    foreach($data1['getSupplier'] as $row)
+                                                    { 
+                                                        echo '<option value="'.$row->sup_id.'">'.$row->sup_company.'</option>';
+                                                    }
+                                                 ?>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
-                                </div>
-                            <div class="panel-footer" style="margin-bottom:-14px;">
+                            </div>
+                             <div class="panel-footer" style="margin-bottom:-14px;">
                                 <input type="submit" class="btn btn-success" value="Add" />
                                 <!--<span class="glyphicon glyphicon-ok"></span>-->
                                 <input type="reset" class="btn btn-danger" value="Clear" />
@@ -470,7 +410,7 @@
                                         <tbody>
                                             
                                              <?php 
-                                                foreach ($machines as $row) {
+                                                foreach ($data['machines'] as $row) {
                                              ?>
                                              <tr>
                                                  <td><?php echo $row->brewer; ?></td>
@@ -511,16 +451,18 @@
     </div>
 </body>
 <!--   Core JS Files   -->
+<!--   Core JS Files   -->
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/FileExport/buttons.flash.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/dataTables.buttons.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/FileExport/buttons.php5.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.flash.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.Html5.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/buttons.print.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/jszip.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/pdfmake.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/vfs_fonts.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/datepicker.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/material.min.js" type="text/javascript"></script>
 <!--  Charts Plugin -->
@@ -540,20 +482,31 @@
 <script type="text/javascript">
 $(document).ready(function() {
     $('#example').DataTable({
-        dom: 'Bfrtip',
-        buttons: [
-            'excel', 'pdf', 'print'
+        "dom":' fBrtip',
+        "lengthChange": false,
+        "info":     false,
+		buttons: [
+            { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print' },
+			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel'},
+			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF'}
         ]
     });
 });
-</script>
-<script type="text/javascript">
-$(document).ready(function() {
 
-    // Javascript method's body can be found in assets/js/demos.js
-    demo.initDashboardPageCharts();
-
+$('table tbody tr  td').on('click', function() {
+    $("#myModal").modal("show");
+    $("#txtfname").val($(this).closest('tr').children()[0].textContent);
+    $("#txtlname").val($(this).closest('tr').children()[1].textContent);
 });
+</script>
+
+<script>
+$(function() {
+    $('#toggle-two').bootstrapToggle({
+        on: 'Enabled',
+        off: 'Disabled'
+    });
+})
 </script>
 
 </html>

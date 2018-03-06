@@ -233,7 +233,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                              <table id="" class="table hover order-column" cellspacing="0" width="100%">
                                             <thead>
                                                 <tr>
-                                                    <th><b>Company Return No.</b></th>
+                                                    <th><b>#</b></th>
                                                     <th><b>Date Returned</b></th>
                                                     <th><b>Supplier</b></th>
                                                     <th><b>Quantity</b></th>
@@ -270,7 +270,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <table id="coffee" class="table hover order-column" cellspacing="0" width="100%">
                                                         <thead>
                                                             <tr>
-                                                                <th><b>Client Return No.</b></th>
+                                                                <th><b>#</b></th>
                                                                 <th><b>Delivery Receipt No.</b></th>
                                                                 <th><b>Date Returned</b></th>
                                                                 <th><b>Client</b></th>
@@ -303,7 +303,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <table id="machine" class="table hover order-column" cellspacing="0" width="100%">
                                                         <thead>
                                                             <tr>
-                                                                <th><b>Client Return No.</b></th>
+                                                                <th><b>#</b></th>
                                                                 <th><b>Delivery Receipt No.</b></th>
                                                                 <th><b>Date Returned</b></th>
                                                                 <th><b>Client</b></th>
@@ -351,22 +351,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                             <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span>Add New Return</h4>
                         </div>
-                        <form action="#" method="post" accept-charset="utf-8">
+                        <form action="InventoryReturnsList/insert" method="post" accept-charset="utf-8">
                             <div class="modal-body" style="padding: 5px;">
                                 <div class="row">
                                     <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
                                             <label for="email">Date</label>
-                                            <input class="form-control" type="date" name="" required>
+                                            <input class="form-control" type="date" name="date" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
                                             <label for="email">Supplier</label>
                                             <select class="form-control" name="supplier" required>
-                                                <option value="">Supplier 1</option>
-                                                <option value="">Supplier 2</option>
-                                                <option value="">Supplier 3</option>
+                                                <option disabled selected value> -- select a supplier -- </option>
+                                                <?php 
+
+                                                    foreach($data4['get_suppliers'] as $row)
+                                                    { 
+                                                        echo '<option value="'.$row->sup_id.'">'.$row->sup_company.'</option>';
+                                                    }
+                                                 ?>
                                             </select>
                                         </div>
                                     </div>
@@ -374,49 +379,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <div class="row">
                                     <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
-                                            <label for="email">Coffee A</label>
-                                            <input class="form-control" type="number" name="" placeholder="grams" />
+                                            <label for="email">Item Returned</label>
+                                            <select class="form-control" name="coffee" required>
+                                                <option disabled selected value> -- select an item -- </option>
+                                                <?php 
+
+                                                    foreach($data5['get_coffee'] as $row)
+                                                    { 
+                                                        echo '<option value="'.$row->raw_coffee.'">'.$row->raw_coffee.'</option>';
+                                                    }
+                                                 ?>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
-                                            <label for="email">Coffee B</label>
-                                            <input class="form-control" type="number" name="" placeholder="grams" />
+                                            <label for="email">Quantity</label>
+                                            <input class="form-control" type="number" name="quantity" placeholder="grams" required />
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="email">Coffee C</label>
-                                            <input class="form-control" type="number" name="" placeholder="grams" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="email">Coffee D</label>
-                                            <input class="form-control" type="number" name="" placeholder="grams" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="email">Coffee E</label>
-                                            <input class="form-control" type="number" name="" placeholder="grams" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="email">Coffee F</label>
-                                            <input class="form-control" type="number" name="" placeholder="grams" />
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <label for="email">Remarks</label>
-                                        <textarea style="resize:vertical;" class="form-control" rows="3" name="remarks"></textarea>
+                                        <textarea style="resize:vertical;" class="form-control" rows="3" name="remarks" required></textarea>
                                     </div>
                                 </div>
                                 <div class="row">

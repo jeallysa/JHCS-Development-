@@ -148,35 +148,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <ul class="nav nav-tabs" data-tabs="tabs">
                                                 <li class="">
                                                     <a href="<?php echo base_url(); ?>inventoryStocks">
-                                                        Raw Coffee
+                                                        <i class="material-icons">local_cafe</i>Raw Coffee
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li class="active">
                                                     <a href="<?php echo base_url(); ?>inventoryBlends">
-                                                        Blends
+                                                        <i class="material-icons">opacity</i>Blends
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li>
                                                     <a href="<?php echo base_url(); ?>inventoryPackaging">
-                                                        Packaging
+                                                        <i class="material-icons">local_mall</i>Packaging
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li class="">
                                                     <a href="<?php echo base_url(); ?>inventoryStickers">
-                                                        Stickers
+                                                        <i class="material-icons">wallpaper</i>Stickers
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                                 <span></span>
                                                 <li class="">
                                                     <a href="<?php echo base_url(); ?>inventoryMachines">
-                                                       Machines
+                                                       <i class="material-icons">local_laundry_service</i>Machines
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
@@ -190,7 +190,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <th><b class="pull-left">Blend No.</b></th>
                                             <th><b class="pull-left">Name</b></th>
                                             <th><b class="pull-left">Bag</b></th>
-                                            <th><b class="pull-left">Size</b></th>
+                                            <th><b class="pull-left">Size (in grams)</b></th>
                                             <th><b class="pull-left">Price</b></th>
                                             <th><b class="pull-left">Cue Card</b></th>
                                         </thead>
@@ -205,13 +205,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <td><?php echo $row->blend; ?></td>
                                                 <td><?php echo $row->bag; ?></td>
                                                 <td><?php echo $row->size; ?></td>
-                                                <td><?php echo $row->blend; ?></td>
+                                                <td>Php <?php echo $row->blend_price; ?></td>
                                                 <td>
                                                     <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#machinecard">Details</button>
+                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#<?php echo $row->blend_id; ?>">Details</button>
 
                                                 <!-- Modal -->
-                                                <div class="modal fade" id="machinecard" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                <div class="modal fade" id="<?php echo $row->blend_id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                   <div class="modal-dialog modal-lg">
                                                     <div class="panel panel-primary">
                                                         <div class="panel-heading">
@@ -219,16 +219,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span>Cue Card Details</h4>
                                                         </div>
                                                       <div class="modal-body" style="padding: 5px;">
-                                                            <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
-                                                                <h3><b>Blend A</b></h3>
-                                                                <hr>
-                                                            </div>
                                                           <label>Set Date from </label>
                                                             <input type="date" name="">
                                                             <label> to </label>
                                                             <input type="date" name="">
-                                                          <button style="float: right;" class ="print"><i class="material-icons">print</i></button>
-                                                        <div id="toBePrinted">
+                                                            <button style="float: right;" onclick="printDiv('toBePrinted<?php echo $row->blend_id; ?>')"><i class="material-icons">print</i></button>
+                                                        <div id="toBePrinted<?php echo $row->blend_id; ?>">
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
+                                                                <h3><b><?php echo $row->blend; ?></b></h3>
+                                                                <h4><?php echo $row->bag; ?> bag (<?php echo $row->size; ?>g)</h4>
+                                                                <hr>
+                                                            </div>
                                                         <table id="fresh-datatables" class="table table-striped table-hover responsive" cellspacing="0" width="100%">
                                                         <thead>
                                                           <tr>
@@ -351,26 +352,26 @@ $(document).ready(function() {
 });
 </script>
 <script>
-    $('.print').click(function(){
-    var printme = document.getElementById('toBePrinted'); 
+    function printDiv(divName){
+        var printme = document.getElementById(divName); 
     
-    var wme = window.open("","","width= 900","height=700");
-        
-    var cancel = document.getElementsByClassName("btn");
-    for(var i=0; i < cancel.length; i++){  
-    cancel[i].style.visibility = 'hidden';
-    }
-    wme.document.write(printme.outerHTML);
-    wme.document.close();
-    wme.focus();
-    wme.print();
-    wme.close();
+        var wme = window.open("","","width= 900","height=700");
+    
+        var cancel = document.getElementsByClassName("btn");
+        for(var i=0; i < cancel.length; i++){  
+            cancel[i].style.visibility = 'hidden';
+        }
+        wme.document.write(printme.outerHTML);
+        wme.document.close();
+        wme.focus();
+        wme.print();
+        wme.close();
     
       
-    for(var i=0; i < cancel.length; i++){  
-    cancel[i].style.visibility = 'visible';
-    }
+        for(var i=0; i < cancel.length; i++){  
+            cancel[i].style.visibility = 'visible';
+        }
     
-                })
+    }
 </script> 
 </html>
