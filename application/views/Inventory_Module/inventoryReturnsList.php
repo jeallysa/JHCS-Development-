@@ -386,7 +386,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                                                     foreach($data5['get_coffee'] as $row)
                                                     { 
-                                                        echo '<option value="'.$row->raw_coffee.'">'.$row->raw_coffee.'</option>';
+                                                        echo '<option value="'.$row->raw_id.'">'.$row->raw_coffee.'</option>';
                                                     }
                                                  ?>
                                             </select>

@@ -240,7 +240,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         </thead>
                                                         <tbody>
                                                             <?php
-                                              $retrieveDetails3 ="SELECT * FROM jhcs.company_returns NATURAL JOIN supplier where sup_returnItem = '$row->raw_coffee';" ;
+                                              $retrieveDetails3 ="SELECT * FROM jhcs.company_returns NATURAL JOIN supplier where sup_returnItem = '$row->raw_id';" ;
                                               $query = $this->db->query($retrieveDetails3);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
@@ -264,19 +264,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 <div class="form-group">
                                                                     <label class="col-md-4 control">Total In :</label>
                                                                     <div class="col-md-4">
-                                                                        <p>320 grams</p>
+                                                                        <p>- grams</p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="col-md-4 control">Total Out :</label>
                                                                     <div class="col-md-7">
-                                                                        <p>180 grams</p>
+                                                                        <p>- grams</p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="col-md-4 control">Ending Inventory :</label>
                                                                     <div class="col-md-5">
-                                                                        <p>140 grams</p>
+                                                                        <p>- grams</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
