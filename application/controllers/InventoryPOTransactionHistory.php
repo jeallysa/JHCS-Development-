@@ -1,4 +1,5 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 	class InventoryPOTransactionHistory extends CI_Controller
 	{
@@ -8,7 +9,15 @@
 		
 		public function index()
 		{ 
-			$this->load->view('Inventory_Module/inventoryPOTransactionHistory');
+            $this->load->view('layout/header');
+            $this->load->model('inventoryPOTransactionHistory_model');
+            
+            
+            $data['Transactions'] = $this->inventoryPOTransactionHistory_model ->retrieveTransactions();
+            
+            
+            
+			$this->load->view('inventoryPOTransactionHistory' , $data);
 		}
 
 	}

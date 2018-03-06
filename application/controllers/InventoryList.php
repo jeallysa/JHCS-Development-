@@ -1,4 +1,5 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 	class InventoryList extends CI_Controller
 	{
@@ -8,7 +9,13 @@
 		
 		public function index()
 		{ 
-			$this->load->view('Inventory_Module/inventoryList');
+            $this->load->view('layout/header');
+            
+            $this->load->model('inventoryList_model');
+            $data['category'] = $this->inventoryList_model ->retrieveCategory();
+            
+            
+			$this->load->view('inventoryList' , $data);
 		}
 
 	}

@@ -136,6 +136,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                 </div>
             </nav>
+        
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
