@@ -33,6 +33,14 @@
     tbody td {
         text-align: right;
     }
+
+/*    .content {
+        height: 1000px !important;
+    }*/
+
+    .center {
+        text-align: center;
+    }
     </style>
 </head>
 
@@ -130,9 +138,7 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <a href="<?php echo base_url(); ?>salesSellProduct" class="btn btn-primary navbar-btn pull-left">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
-                        </a>
+                        
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-header" data-background-color="purple">
@@ -140,30 +146,39 @@
                                 </div>
                                 <form action="add" method="post" accept-charset="utf-8">
                                 <div class="card-content">
-                                        <div class="modal-body" style="padding: 5px;">
-                                                <div class="row">
+                                    <div class="modal-body" style="padding: 5px;">
+                                            <div class="row">
+                                                <div class="form-conttrol label-floating">
                                                     <div class="col-md-5">
-                                                        <div class="form-group label-floating">
-                                                            <label for="email">Date of Purchase:</label>
-                                                            <input class="form-control" type="date" name="date">
-                                                        </div>
+                                                        <label>Client</label>
                                                     </div>
                                                     <div class="col-md-5">
-                                                        <div class="form-group label-floating">
-                                                            <label for="email">Client:</label>
-                                                            <select class="selectpicker" data-live-search="true" name="client_id">
-                                                            <?php 
-                                                            foreach($data6['client'] as $row)
-                                                            { 
-                                                                echo '<option value="'.$row->client_id.'">'.$row->client_company.'</option>';
-                                                            }
-                                                            ?>
-                                                          </select>
-                                                        </div>
+                                                        <label>Date of Purchase</label>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <div class="form-group label-floating">
+                                                        <select class="selectpicker" data-live-search="true" name="client_id">
+                                                        <?php 
+                                                        foreach($data6['client'] as $row)
+                                                        { 
+                                                            echo '<option value="'.$row->client_id.'">'.$row->client_company.'</option>';
+                                                        }
+                                                        ?>
+                                                      </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <div class="form-group label-floating">
+                                                        <input class="form-control" type="date" name="date" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                 </div><hr>  
+                                <div class="card-content">
 
                                 <div class="modal-body" style="padding: 5px;">
 
@@ -198,7 +213,7 @@
                                         <div class="col-sm-5 nopadding">
                                           <div class="form-group">
                                               <div class="input-group">
-                                                <input type="number" class="form-control" id="qty" name="qty" value="qty" placeholder="qty">
+                                                <input type="number" class="form-control" id="qty" name="qty" value="qty" placeholder="qty" required="">
                                                     <div class="input-group-btn">
                                                         <button class="btn btn-success" type="button"  onclick="education_fields();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
                                                   </div>
@@ -206,10 +221,19 @@
                                           </div>
                                         </div>
                                 </div>
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#verify">
-                                      Record
+                            </div>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <div class="center">
+                                    <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#verify">
+                                      Save
                                     </button>
+                                    <a href="<?php echo base_url(); ?>salesSellProduct" class="btn btn-danger"> Cancel</a>
                                 </div>
                               </form>
                             </div>

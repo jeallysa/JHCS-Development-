@@ -35,7 +35,9 @@
     tbody td {
         text-align: right;
     }
-
+    .content {
+        height: 1000px !important;
+    }
 
     </style>
 </head>
@@ -134,9 +136,6 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <a href="<?php echo base_url(); ?>salesSellProduct" class="btn btn-primary navbar-btn pull-left">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
-                        </a>
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-header" data-background-color="purple">
@@ -209,11 +208,18 @@
                                               </div>
                                             </div>
                                     </div>
-                                    <br><br>
+                                    <br><br>                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
                                     <div class="text-center" data-toggle="modal" data-target="#verify">
                                         <button type="submit" class="btn btn-warning">
                                           Record
                                         </button>
+                                        <a href="<?php echo base_url(); ?>salesSellProduct" class="btn btn-danger"> Cancel</a>
                                     </div>
                                 </form> 
                             </div>
