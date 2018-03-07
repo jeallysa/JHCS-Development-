@@ -16,7 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $data['unpaid'] = $this->inventoryPOUnpaidDelivery_model->retrieveUnpaid();
             
             
-			$this->load->view('inventoryPOUnpaidDelivery', $data);
+			$this->load->view('Inventory_Module/inventoryPOUnpaidDelivery', $data);
 		}
 
 	}

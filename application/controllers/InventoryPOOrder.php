@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $data['details'] = $this->inventoryPOOrder_model ->details();
             
             
-			$this->load->view('inventoryPOOrder' , $data);
+			$this->load->view('Inventory_Module/inventoryPOOrder' , $data);
 		}
 
 	}

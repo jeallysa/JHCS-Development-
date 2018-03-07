@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             
             
             
-			$this->load->view('inventoryPOTransactionHistory' , $data);
+			$this->load->view('Inventory_Module/inventoryPOTransactionHistory' , $data);
 		}
 
 	}

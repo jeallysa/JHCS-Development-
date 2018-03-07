@@ -15,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $data['category'] = $this->inventoryList_model ->retrieveCategory();
             
             
-			$this->load->view('inventoryList' , $data);
+			$this->load->view('Inventory_Module/inventoryList' , $data);
 		}
 
 	}

@@ -19,7 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $data['suppliersItem'] = $this->inventoryPOAdd_model ->retrieveItems();
             $data['truckingFee'] = $this->inventoryPOAdd_model->retrieveTruckingFee();
             
-			$this->load->view('inventoryPOAdd', $data);
+			$this->load->view('Inventory_Module/inventoryPOAdd', $data);
             
 		}
 //put inside the form validation. dito muna to.
@@ -35,7 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          
          
          
-         redirect(base_url('inventoryPOAdd'));
+         redirect(base_url('Inventory_Module/inventoryPOAdd'));
      }   
     
       
@@ -93,7 +93,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $this->inventoryPOAdd_model->insertOrder($data);
     }
          
-          redirect(base_url('inventoryPOAdd'));
+          redirect(base_url('Inventory_Module/inventoryPOAdd'));
 
       
 }
