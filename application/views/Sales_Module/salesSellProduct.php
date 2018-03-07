@@ -161,6 +161,11 @@
 										<div class="tab-content">
 											<div class="tab-pane active" id="sell">
                                                 <a href="<?php echo base_url(); ?>salesSellProduct/salesWalkin" class="btn btn-success btn-md" style="float: right">Add Sales</a>
+                                                <?php if(isset($_SESSION['success'])){ ?>
+                                                  <div class="alert alert-success"> <?php echo $_SESSION['success']; ?> </div>
+                                                    <?php
+                                                  } ?>
+                                                <?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
 												 <table id="" class="display table-striped table-hover cell-border" cellspacing="0" width="100%" style="width:100%">
                                                 <thead>
                                                     <tr>

@@ -139,7 +139,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         
-                        <div class="col-sm-12">
+                        <div class="col-md-10 col-md-offset-1">
                             <div class="card">
                                 <div class="card-header" data-background-color="purple">
                                     <h3 class="title"><center>Retail Client Machine Purchase</center></h3>

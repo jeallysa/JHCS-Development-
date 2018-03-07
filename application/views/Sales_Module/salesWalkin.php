@@ -136,7 +136,7 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-md-10 col-md-offset-1">
                             <div class="card">
                                 <div class="card-header" data-background-color="purple">
                                     <h3 class="title"><center>Walk-in Client Order</center></h3>
@@ -216,8 +216,8 @@
                                 <br>
                                 <br>
                                     <div class="text-center" data-toggle="modal" data-target="#verify">
-                                        <button type="submit" class="btn btn-warning">
-                                          Record
+                                        <button type="submit" class="btn btn-success">
+                                          Save
                                         </button>
                                         <a href="<?php echo base_url(); ?>salesSellProduct" class="btn btn-danger"> Cancel</a>
                                     </div>
