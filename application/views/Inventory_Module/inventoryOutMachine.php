@@ -162,12 +162,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <br>
                                     <table id="example" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
-                                            <th><b>Machine Sales No.</b></th>
-                                            <th><b>Machine</b></th>
+                                            <th><b>Delivery Receipt No.</b></th>
+                                            <th><b>Tagging Number</b></th>
+                                            <th><b>Date</b></th>
                                             <th><b>Client</b></th>
-                                            <th><b>Date Installed</b></th>
                                             <th><b>No. of machines installed</b></th>
-                                            <th><b>Remarks</b></th>
                                         </thead>
                                         <tbody>
                                             <?php
@@ -175,11 +174,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             ?>
                                             <tr>
                                                 <td><?php echo $row->mach_salesID; ?></td>
-                                                <td><?php echo $row->machine; ?></td>
-                                                <td><?php echo $row->client_company; ?></td>
+                                                <td><?php echo $row->mach_id; ?></td>
                                                 <td><?php echo $row->date; ?></td>
+                                                <td><?php echo $row->client_company; ?></td>
                                                 <td><?php echo $row->mach_qty; ?></td>
-                                                <td><?php echo $row->remarks; ?></td>
                                             </tr>
                                             <?php } ?>
                                         </tbody>

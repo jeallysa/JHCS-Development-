@@ -287,46 +287,61 @@
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="updateblend" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+            <div class="modal fade" id="updatestickers" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="panel panel-primary">
                         <div class="panel-heading" >
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span> Add New Sticker</h4>
+                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span> Update Sticker</h4>
                         </div>
                         <form action="#" method="post" accept-charset="utf-8">
                             <div class="modal-body" style="padding: 5px;">
                                 <div class="row">
-                                    <div class="col-md-4 form-group">
+                                    <div class="col-md-12 form-group">
                                         <div class="form-group label-floating">
-                                            <label for="email">Sticker Name</label>
-                                            <input class="form-control" type="text" name="" placeholder="" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 form-group">
-                                        <div class="form-group label-floating">
-                                            
-                                            <label for="email">Supplier</label>
-                                            <select class="form-control" name="supplier" required>
-                                                <option value="">Supplier A</option>
-                                                <option value="">Supplier B</option>
-                                                <option value="">Supplier C</option>
-                                            </select>                  
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="email">Price/Unit</label>
-                                            <input class="form-control" type="text" name="" placeholder="" disabled="" />
+                                            <label for="email">Name</label>
+                                            <input class="form-control" type="text" name="name" required>
                                         </div>
                                     </div>
                                 </div>
-                                <hr>
                                 <div class="row">
+                                     <div class="col-lg-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Reorder Level</label>
+                                            <input class="form-control" type="number" name="reorder" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Stock Limit</label>
+                                            <input class="form-control" type="number" name="stocklimit" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Number of Stocks</label>
+                                            <input class="form-control" type="number" name="stocks" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                           <div class="form-group label-floating">
+                                            <label for="email">Supplier</label>
+                                            <select class="form-control" name="sup_company" required>
+                                                <option disabled selected value> -- select an item -- </option>
+                                                <?php 
+
+                                                    foreach($data1['getSupplier'] as $row)
+                                                    { 
+                                                        echo '<option value="'.$row->sup_id.'">'.$row->sup_company.'</option>';
+                                                    }
+                                                 ?>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="panel-footer" style="margin-bottom:-14px;">
-                                <input type="submit" class="btn btn-success" value="Add" />
+                                <input type="submit" class="btn btn-success" value="Update" />
                                 <!--<span class="glyphicon glyphicon-ok"></span>-->
                                 <input type="reset" class="btn btn-danger" value="Clear" />
                                 <!--<span class="glyphicon glyphicon-remove"></span>-->
@@ -398,7 +413,6 @@
                                             <th><b class="pull-left">Stock Limit (pc)</b></th>
                                             <th><b class="pull-left">Supplier</b></th>
                                             <th><b class="pull-left">Number of Stocks (pc)</b></th>
-                                            <th><b class="pull-left">Adjust Limit</b></th>
                                             <th><b class="pull-left">Change Details</b></th>
                                             <th><b class="pull-left">Activation</b></th>
                                         </thead>
@@ -414,10 +428,7 @@
                                                  <td><?php echo $row->sup_company; ?></td>
                                                  <td><?php echo $row->sticker_stock; ?></td>
                                                 <td>
-                                                    <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a>
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#updateblend">Edit Info</a>
+                                                    <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#updatestickers">Edit Info</a>
                                                 </td>
                                                 <td>
                                                     <div class="onoffswitch">
@@ -442,7 +453,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </body>
 <!--   Core JS Files   -->
 <!--   Core JS Files   -->
