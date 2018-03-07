@@ -244,8 +244,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         </thead>
                                                         <tbody>
                                                             <?php
-                                              $retrieveDetails4 ="SELECT walkin_id, blend_id, CONCAT(walkin_fname,' ',walkin_lname) AS customer, walkin_date, walkin_qty FROM jhcs.walkin_sales NATURAL JOIN coffee_blend WHERE blend_id = '$row->blend_id';" ;
-                                              $query = $this->db->query($retrieveDetails4);
+                                              $retrieveDetails1 ="SELECT walkin_id, blend_id, CONCAT(walkin_fname,' ',walkin_lname) AS customer, walkin_date, walkin_qty FROM jhcs.walkin_sales NATURAL JOIN coffee_blend WHERE blend_id = '$row->blend_id';" ;
+                                              $query = $this->db->query($retrieveDetails1);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
                                            echo '<tr>' ,
@@ -253,6 +253,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 '<td>'  . $object->customer  . '</td>' ,
                                                 '<td>'  . $object->walkin_date  . '</td>' ,
                                                 '<td>'  . $object->walkin_qty  . ' pc/s</td>' ;
+                                                ?>
+                                                    <td>Walkin Sales</td>
+                                                    <td>Out</td>
+                                                 <?php   
+                                                '<tr>' ;
+                                              }
+                                            }
+                                        ?>  
+
+                                        <?php
+                                              $retrieveDetails2 ="SELECT contractPO_id, client_company, contractPO_date, contractPO_qty FROM jhcs.contracted_po NATURAL JOIN contracted_client WHERE delivery_stat = 'delivered' AND blend_id = '$row->blend_id';" ;
+                                              $query = $this->db->query($retrieveDetails2);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td>'  . $object->contractPO_id. '</td>' ,
+                                                '<td>'  . $object->client_company  . '</td>' ,
+                                                '<td>'  . $object->contractPO_date  . '</td>' ,
+                                                '<td>'  . $object->contractPO_qty  . ' pc/s</td>' ;
                                                 ?>
                                                     <td>Sales</td>
                                                     <td>Out</td>
