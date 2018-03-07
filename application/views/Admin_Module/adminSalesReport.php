@@ -3,28 +3,24 @@
 
 <head>
     <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url(); ?>assets/img/apple-icon.png" />
-    <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/img/favicon.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>Sales Report</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
     <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/css/dataTables.bootstrap.min.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/css/jquery.dataTable.min.css" rel="stylesheet" />
-    <link href="<?php echo base_url(); ?>assets/FileExport/buttons.dataTables.min.css" rel="stylesheet" />
-    <link href="<?php echo base_url(); ?>assets/FileExport/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/bootstrap-datepicker3.min.css" rel="stylesheet">
     <!--  Material Dashboard CSS    -->
     <link href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="<?php echo base_url(); ?>assets/css/demo.css" rel="stylesheet" />
     <!--     Fonts and icons     -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
-    <!--   Fonts   -->
 </head>
 
 <body>
@@ -130,23 +126,14 @@
                 <div class="container-fluid">
                     <div class="card">
                         <div class="card-content">
-                            <form>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">From date:</label>
-                                            <input type="date" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">To date:</label>
-                                            <input type="date" class="form-control">
-                                        </div>
+                            <div class="form-group col-xs-3">
+                                <label>Filter By:</label>
+                                    <div class="input-group input-daterange">
+                                        <input type="text" id="min" class="form-control" value="2000-01-01" >
+                                        <span class="input-group-addon">to</span>
+                                        <input type="text" id="max" class="form-control" value="<?php   echo date("Y-m-d") ?>" >
                                     </div>
                                 </div>
-                                <div class="clearfix"></div>
-                            </form>
                         </div>
                         <div class="content">
                             <div class="container-fluid">
@@ -345,65 +332,91 @@
                 </div>
             </div>
         </div>
-    </div>
 </body>
+
 <!--   Core JS Files   -->
-<!--   Core JS Files   -->
-<script src="<?php echo base_url(); ?>assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+<script src="../assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
+
+<script src="../assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/dataTables.buttons.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/buttons.flash.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/FileExport/buttons.Html5.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.html5.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/buttons.print.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/jszip.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/pdfmake.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/vfs_fonts.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/js/datepicker.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/js/material.min.js" type="text/javascript"></script>
+<script src="../assets/js/bootstrap-datepicker.min.js"></script>
+<script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../assets/js/material.min.js" type="text/javascript"></script>
 <!--  Charts Plugin -->
-<script src="<?php echo base_url(); ?>assets/js/chartist.min.js"></script>
+<script src="../assets/js/chartist.min.js"></script>
 <!--  Dynamic Elements plugin -->
-<script src="<?php echo base_url(); ?>assets/js/arrive.min.js"></script>
+<script src="../assets/js/arrive.min.js"></script>
 <!--  PerfectScrollbar Library -->
-<script src="<?php echo base_url(); ?>assets/js/perfect-scrollbar.jquery.min.js"></script>
+<script src="../assets/js/perfect-scrollbar.jquery.min.js"></script>
 <!--  Notifications Plugin    -->
-<script src="<?php echo base_url(); ?>assets/js/bootstrap-notify.js"></script>
+<script src="../assets/js/bootstrap-notify.js"></script>
 <!--  Google Maps Plugin    -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 <!-- Material Dashboard javascript methods -->
-<script src="<?php echo base_url(); ?>assets/js/material-dashboard.js?v=1.2.0"></script>
+<script src="../assets/js/material-dashboard.js?v=1.2.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-<script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-    $('#example').DataTable({
+<script src="../assets/js/demo.js"></script>
+
+<script>   
+    
+    
+    $.fn.dataTableExt.afnFiltering.push(
+        function(oSettings, aData, iDataIndex){
+            var dateStart = parseDateValue($("#min").val());
+            var dateEnd = parseDateValue($("#max").val());
+            var evalDate= parseDateValue(aData[2]);
+
+            if (evalDate >= dateStart && evalDate <= dateEnd) {
+                return true;
+            }
+            else {
+                return false;
+            }
+    });
+    //Date Converter
+    function parseDateValue(rawDate) {
+        var month = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+        var dateArray = rawDate.split(" ");
+        var parsedDate = dateArray[2] + month + dateArray[0];
+        return parsedDate;
+    }
+
+    var oTable = $('#example').dataTable({ 
         "dom":' fBrtip',
         "lengthChange": false,
         "info":     false,
 		buttons: [
-            { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print' },
-			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel'},
-			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF'}
+            { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs' },
+			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs' },
+			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs' }
         ]
     });
-});
 
-$('table tbody tr  td').on('click', function() {
-    $("#myModal").modal("show");
-    $("#txtfname").val($(this).closest('tr').children()[0].textContent);
-    $("#txtlname").val($(this).closest('tr').children()[1].textContent);
-});
-</script>
-
-<script>
-$(function() {
-    $('#toggle-two').bootstrapToggle({
-        on: 'Enabled',
-        off: 'Disabled'
+    $('#min,#max').datepicker({
+        format: "yyyy-mm-dd",
+        weekStart: 1,
+        daysOfWeekHighlighted: "0",
+        autoclose: true,
+        todayHighlight: true
     });
-})
+
+    // Event Listeners
+    $("#min").datepicker().on( 'changeDate', function() {
+        oTable.fnDraw(); 
+    });
+    $("#max").datepicker().on( 'changeDate', function() { 
+        oTable.fnDraw(); 
+    });
+    
+
+
 </script>
 
 </html>
