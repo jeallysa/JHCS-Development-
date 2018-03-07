@@ -22,7 +22,7 @@ class Admin_Blends_Model extends CI_model
 							        ELSE NULL
 							    END) AS per".$i.",";
 		}
-		$query_append .= " c.size, c.bag, c.blend_price FROM raw_coffee a JOIN proportions b JOIN coffee_blend c ON a.raw_id = b.raw_id AND b.blend_id = c.blend_id GROUP BY c.blend_id;";
+		$query_append .= " d.package_size, d.package_type, c.blend_price FROM raw_coffee a JOIN proportions b JOIN coffee_blend c NATURAL JOIN packaging d ON a.raw_id = b.raw_id AND b.blend_id = c.blend_id GROUP BY c.blend_id;";
 
 
 		$query = $this->db->query($query_append);
