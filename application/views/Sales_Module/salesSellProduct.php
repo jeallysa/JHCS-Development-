@@ -138,35 +138,21 @@
 							<div class="col-sm-12">
 								<div class="card card-nav-tabs">
 									<div class="card-header" data-background-color="purple">
-										<div class="nav-tabs-navigation">
-											<div class="nav-tabs-wrapper">
-												<ul class="nav nav-tabs" data-tabs="tabs">
-													<li class="active">
-														<a href="#sell" data-toggle="tab">
-															<i class="material-icons">local_cafe</i> Coffee
-															<div class="ripple-container"></div>
-														</a>
-													</li>
-													<li class="">
-														<a href="#machine" data-toggle="tab">
-															<i class="material-icons">gradient</i> Machine
-															<div class="ripple-container"></div>
-														</a>
-													</li>
-												</ul>
-											</div>
-										</div>
+                                        <ul class="nav nav-tabs" id="myTab">
+                                            <li class="active"><a data-toggle="tab" href="#sell">Coffee</a></li>
+                                            <li><a data-toggle="tab" href="#machine">Machine</a></li>
+                                        </ul>
 									</div>
 									<div class="card-content">
 										<div class="tab-content">
-											<div class="tab-pane active" id="sell">
+											<div class="tab-pane in active" id="sell">
                                                 <a href="<?php echo base_url(); ?>salesSellProduct/salesWalkin" class="btn btn-success btn-md" style="float: right">Add Sales</a>
                                                 <?php if(isset($_SESSION['success'])){ ?>
                                                   <div class="alert alert-success"> <?php echo $_SESSION['success']; ?> </div>
                                                     <?php
                                                   } ?>
                                                 <?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
-												 <table id="" class="display table-striped table-hover cell-border" cellspacing="0" width="100%" style="width:100%">
+												 <table id="cosales" class="display table-striped table-hover cell-border" cellspacing="0" width="100%" style="width:100%">
                                                 <thead>
                                                     <tr>
                                                         <th><b>Item Code</b></th>
@@ -203,7 +189,7 @@
 											</div>
 											<div class="tab-pane" id="machine">
                                                 <a href="<?php echo base_url(); ?>salesSellProduct/salesMachine" class="btn btn-success btn-md" style="float: right">Add Sales</a>
-												<table id="" class="display table-striped table-hover cell-border" cellspacing="0" width="100%">
+												<table id="masales" class="display table-striped table-hover cell-border" cellspacing="0" width="100%">
 													<thead>
 														<th><b>Item Code</b></th>
 														<th><b>Date</b></th>
@@ -239,72 +225,7 @@
                         </div>
                 </div>
             </div>
-            <!--modal body-->
-            <div class="modal fade" id="myModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">FEMI</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>Date Receivable Started: </p>
-                            <p>Due Date: </p>
-                            <br>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Total Amount</th>
-                                        <th>Current Month (november)</th>
-                                        <th>October</th>
-                                        <th>September</th>
-                                        <th>August</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <td>0.00</td>
-                                    <td>0.00</td>
-                                    <td>0.00</td>
-                                    <td>0.00</td>
-                                    <td>0.00</td>
-                                </tbody>
-                            </table>
-                            <hr>
-                            <br>
-                            <p>
-                                <center><a class="btn btn-primary" data-toggle="collapse" href="#collapsePayment" aria-expanded="false" aria-controls="collapseExample">blah ...</a></center>
-                            </p>
-                            <div class="collapse" id="collapsePayment">
-                                <div class="card-block">
-                                    <form action="#" method="post" accept-charset="utf-8">
-                                        <div class="modal-body" style="padding: 5px;">
-                                            <div class="row">
-                                                <div class="col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 20px;">
-                                                    <div class="form-group">
-                                                        <div class="col-xs-5 date">
-                                                            <div class="input-group input-append date" id="datePicker">
-                                                                <input type="text" class="form-control" name="date" />
-                                                                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 20px;">
-                                                            <input class="form-control" name="coffeeType" placeholder="Amount" type="text" required />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <input type="submit" class="btn btn-success" value="Save" />
-                                                <input type="reset" class="btn btn-warning" value="Cancel" />
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
 </body>
@@ -331,51 +252,32 @@
 <script src="../assets/js/demo.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-        $('table.display').DataTable({
-			"ordering": false
-		});
-
-$('table tbody tr  td').on('click', function() {
-    $("#myModal").modal("show");
-    $("#txtfname").val($(this).closest('tr').children()[0].textContent);
-    $("#txtlname").val($(this).closest('tr').children()[1].textContent);
-});
-$('#datePicker')
-    .datepicker({
-        format: 'mm/dd/yyyy'
-    })
-    .on('changeDate', function(e) {
-        $('#eventForm').formValidation('revalidateField', 'date');
+    $('#cosales').DataTable({
+        "dom":' fBrtip',
+        "lengthChange": false,
+        "info":     false,
     });
-
-$('#eventForm').formValidation({
-    framework: 'bootstrap',
-    icon: {
-        valid: 'glyphicon glyphicon-ok',
-        invalid: 'glyphicon glyphicon-remove',
-        validating: 'glyphicon glyphicon-refresh'
-    },
-    fields: {
-        name: {
-            validators: {
-                notEmpty: {
-                    message: 'The name is required'
-                }
-            }
-        },
-        date: {
-            validators: {
-                notEmpty: {
-                    message: 'The date is required'
-                },
-                date: {
-                    format: 'MM/DD/YYYY',
-                    message: 'The date is not a valid'
-                }
-            }
-        }
-    }
 });
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#masales').DataTable({
+        "dom":' fBrtip',
+        "lengthChange": false,
+        "info":     false,
+    });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+        localStorage.setItem('activeTab', $(e.target).attr('href'));
+    });
+    var activeTab = localStorage.getItem('activeTab');
+    if(activeTab){
+        $('#myTab a[href="' + activeTab + '"]').tab('show');
+    }
 });
 </script>
 

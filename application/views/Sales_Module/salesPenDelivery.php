@@ -144,7 +144,7 @@
                                     <div class="nav-tabs-navigation">
                                         <div class="nav-tabs-wrapper">
                                             <span class="nav-tabs-title">Transaction:</span>
-                                            <ul class="nav nav-tabs" data-tabs="tabs">
+                                            <ul class="nav nav-tabs" data-tabs="tabs" id="myTab">
                                                 <li class="active">
                                                     <a href="#purchaseorder" data-toggle="tab">
                                                         <i class="material-icons">assignment_late</i> Pending Deliveries
@@ -733,5 +733,15 @@ $(document).ready(function() {
 
 });
 </script>
-
+<script type="text/javascript">
+$(document).ready(function(){
+    $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+        localStorage.setItem('activeTab', $(e.target).attr('href'));
+    });
+    var activeTab = localStorage.getItem('activeTab');
+    if(activeTab){
+        $('#myTab a[href="' + activeTab + '"]').tab('show');
+    }
+});
+</script>
 </html>

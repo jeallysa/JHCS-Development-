@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 	class SalesSellProduct extends CI_Controller
 	{
@@ -12,6 +12,8 @@
 			$data1['sellCoffee']=$this->sellProduct_model->getSoldCoffee();
 			$data2['sellMachine']=$this->sellProduct_model->getSoldMachine();
 			$this->load->view('Sales_Module/salesSellProduct', ['data1' => $data1, 'data2' => $data2]);
+			$this->load->library('session');
+			echo $this->session->flashdata('success');
 		}
 		public function salesMachine()
 		{ 
@@ -42,9 +44,7 @@
 			);
 			$data4 = $this->security->xss_clean($data4);
 			$this->sellProduct_model->record_data($data4);
-			// $this->salesWalkin();
-			$this->session->set_flashdata('success','New sales on blends added');
-            redirect ('salesSellProduct','refresh');
+            redirect ('salesSellProduct');
 		}
 
 		public function add()
@@ -58,9 +58,7 @@
 			);
 			$data7 = $this->security->xss_clean($data7);
 			$this->sellProduct_model->add_data($data7);
-			// $this->salesMachine();
-			// $this->session->set_flashdata('success','New sales on machines added');
-            redirect ('salesSellProduct', 'refresh');
+            redirect ('salesSellProduct');
 		}
 		
 
