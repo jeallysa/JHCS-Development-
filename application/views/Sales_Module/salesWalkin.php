@@ -190,7 +190,7 @@
                                                     <?php 
                                                     foreach($data3['blends'] as $row)
                                                     { 
-                                                        echo '<option value="'.$row->blend_id.'">'.$row->blend." ".$row->bag." ".$row->size." g".'</option>';
+                                                        echo '<option value="'.$row->blend_id.'">'.$row->blend." ".$row->package_type." ".$row->package_size." g".'</option>';
                                                     }
                                                     ?>
                                                   </select>
@@ -309,61 +309,6 @@
 <script src="../assets/js/demo.js"></script>
 
 
-
-
-
-<script type="text/javascript">
-$(document).ready(function() {
-
-    $('#example').DataTable();
-
-
-
-    });
-
-    $('table tbody tr  td').on('click', function() {
-        $("#myModal").modal("show");
-        $("#txtfname").val($(this).closest('tr').children()[0].textContent);
-        $("#txtlname").val($(this).closest('tr').children()[1].textContent);
-    });
-    $('#datePicker')
-        .datepicker({
-            format: 'mm/dd/yyyy'
-        })
-        .on('changeDate', function(e) {
-            // Revalidate the date field
-            $('#eventForm').formValidation('revalidateField', 'date');
-        });
-
-    $('#eventForm').formValidation({
-        framework: 'bootstrap',
-        icon: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            name: {
-                validators: {
-                    notEmpty: {
-                        message: 'The name is required'
-                    }
-                }
-            },
-            date: {
-                validators: {
-                    notEmpty: {
-                        message: 'The date is required'
-                    },
-                    date: {
-                        format: 'MM/DD/YYYY',
-                        message: 'The date is not a valid'
-                    }
-                }
-            }
-        }
-    });
-</script>
 <!-- <script type="text/javascript">
     var room = 1;
     function education_fields() {

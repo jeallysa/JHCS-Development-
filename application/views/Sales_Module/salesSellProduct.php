@@ -175,8 +175,8 @@
                                                          <td><?php echo $row->walkin_date; ?></td>
                                                          <td><?php echo $row->Client; ?></td>
                                                          <td><?php echo $row->blend; ?></td>
-                                                         <td><?php echo $row->bag; ?></td>
-                                                         <td><?php echo $row->size; ?></td>
+                                                         <td><?php echo $row->package_type; ?></td>
+                                                         <td><?php echo $row->package_size; ?></td>
                                                          <td><?php echo $row->walkin_qty; ?></td>
                                                          <td><?php echo $row->blend_price; ?></td>
                                                          <td> -- </td>

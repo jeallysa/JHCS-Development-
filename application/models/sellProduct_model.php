@@ -9,7 +9,7 @@ class sellProduct_model extends CI_MODEL
 	}
 
 	Public function getSoldCoffee(){
-		$query=$this->db->query("SELECT blend_id, walkin_date, CONCAT(walkin_fname,' ', walkin_lname) AS Client, blend, bag, size, walkin_qty, blend_price FROM walkin_sales NATURAL JOIN coffee_blend");
+		$query=$this->db->query("SELECT blend_id, walkin_date, CONCAT(walkin_fname,' ', walkin_lname) AS Client, blend, package_type, package_size, walkin_qty, blend_price FROM walkin_sales NATURAL JOIN coffee_blend NATURAL JOIN packaging");
 		return $query->result();
 	}
 
@@ -19,7 +19,7 @@ class sellProduct_model extends CI_MODEL
 	}
 
 	Public function getBlends(){
-		$query3=$this->db->query("SELECT * FROM coffee_blend where blend_activation = 1");
+		$query3=$this->db->query("SELECT * FROM coffee_blend NATURAL JOIN packaging where blend_activation = 1");
 		return $query3->result();
 	}
 

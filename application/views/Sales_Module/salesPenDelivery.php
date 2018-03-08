@@ -341,7 +341,7 @@
                                                         <td><?php echo $row->payment_mode; ?></td>
                                                         <td><?php echo $row->paid_date; ?></td>
                                                         <td><?php echo $row->paid_amount; ?></td>
-                                                        <td><?php echo $row->gross_amount; ?></td>
+                                                        <td><?php echo $row->client_balance; ?></td>
                                                         <td><?php echo $row->withheld; ?></td>
                                                         <td><?php echo $row->payment_remarks; ?></td>
                                                     </tr>
