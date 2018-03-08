@@ -178,8 +178,13 @@
                                                          <td><?php echo $row->package_type; ?></td>
                                                          <td><?php echo $row->package_size; ?></td>
                                                          <td><?php echo $row->walkin_qty; ?></td>
-                                                         <td><?php echo $row->blend_price; ?></td>
-                                                         <td> -- </td>
+                                                         <td>Php <?php echo number_format($row->blend_price,2); ?></td>
+                                                         <td><?php 
+                                                                $price = $row->blend_price;
+                                                                $qty = $row->walkin_qty;
+                                                                echo 'Php '.number_format($price * $qty,2);
+                                                             ?>
+                                                        </td>
                                                      </tr>
                                                      <?php 
                                                         }
@@ -210,7 +215,12 @@
                                                          <td><?php echo $row->brewer; ?></td>
                                                          <td><?php echo $row->mach_qty; ?></td>
                                                          <td><?php echo $row->mach_price; ?></td>
-                                                         <td> -- </td>
+                                                         <td><?php 
+                                                                $price = $row->mach_price;
+                                                                $qty = $row->mach_qty;
+                                                                echo $price * $qty;
+                                                             ?>
+                                                         </td>
                                                      </tr>
                                                      <?php 
                                                         }

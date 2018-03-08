@@ -233,7 +233,7 @@
                                                         <th><b>Bag</b></th>
                                                         <th><b>Grams</b></th>
                                                         <th><b>Remarks</b></th>
-                                                        <th><b>Actions</b></th>
+                                                        <th><b>Action</b></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
