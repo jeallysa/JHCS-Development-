@@ -566,8 +566,8 @@
                                                 }
                                                 
                                                 ?>
-                                                <td><?php echo $row->size; ?></td>
-                                                <td><?php echo $row->bag; ?></td>
+                                                <td><?php echo $row->package_size; ?></td>
+                                                <td><?php echo $row->package_type; ?></td>
                                                 <td><?php echo $row->blend_price; ?></td>
 
                                                 <!--
