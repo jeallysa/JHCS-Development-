@@ -17,4 +17,19 @@ class Admin_Suppliers_Model extends CI_model
 		return $query;
 	}
 
+	public function get_by_id($id)
+	{
+		$this->db->from('supplier');
+		$this->db->where('sup_id',$id);
+		$query = $this->db->get();
+ 
+		return $query->row();
+	}
+
+	public function sup_update($where, $data)
+	{
+		$this->db->update('supplier', $data, $where);
+		return $this->db->affected_rows();
+	}
+
 }
