@@ -35,7 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          
          
          
-         redirect(base_url('Inventory_Module/inventoryPOAdd'));
+         redirect(base_url('inventoryPOAdd'));
      }   
     
       
@@ -93,7 +93,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $this->inventoryPOAdd_model->insertOrder($data);
     }
          
-          redirect(base_url('Inventory_Module/inventoryPOAdd'));
+          redirect(base_url('inventoryPOAdd'));
 
       
 }

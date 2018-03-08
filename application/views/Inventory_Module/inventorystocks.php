@@ -376,8 +376,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script>
 $(document).ready(function() {
     $('#fresh-datatables').DataTable({
+		ordering: true,
         select: {
-            style: 'single'
+            style: 'single',
+			
         }
 
     });
