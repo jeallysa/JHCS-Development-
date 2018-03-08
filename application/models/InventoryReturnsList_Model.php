@@ -16,7 +16,7 @@
 			
 		}
 		public function get_clientmachinereturns(){
-			$query = $this->db->query("SELECT client_machReturnID, client_dr, mach_returnDate, client_company, mach_id, mach_returnQty, mach_remarks, mach_returnAction FROM jhcs.client_machreturn NATURAL JOIN client_delivery NATURAL JOIN contracted_client;");
+			$query = $this->db->query("SELECT client_machReturnID, client_dr, mach_returnDate, client_company, mach_id, mach_returnQty, mach_remarks, mach_returnAction, CONCAT(brewer,' (',brewer_type,')') AS machine FROM jhcs.client_machreturn NATURAL JOIN client_delivery NATURAL JOIN contracted_client NATURAL JOIN machine;");
 			return $query->result();
 			
 		}

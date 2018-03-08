@@ -1,151 +1,4 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
 
-<!doctype html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url(); ?>assets/img/apple-icon.png"/>
-    <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/img/favicon.png"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Add Purchase Order</title>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
-    <!-- Bootstrap core CSS     -->
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/dataTables.bootstrap.min.css"/>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.dataTable.min.css"/>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/FileExport/buttons.dataTables.min.css"/>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/FileExport/jquery.dataTables.min.css"/>
-    <!--  Material Dashboard CSS    -->
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0"/>
-    <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/demo.css"/>
-    <!--     Fonts and icons     -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' type='text/css'>
-    <link rel="shortcut icon" href="favicon.ico">
-</head>
-<style>
-.title {
-    font-size: large;
-}
-
-
-/*
-        td.highlight {
-            background-color: whitesmoke !important;
-        }
-*/
-
-.table thead,
-thead th {
-    text-align: center;
-    font-size: 140%;
-}
-</style>
-
-    
-    
-<body>
-    <div class="wrapper">
-        
-        <div class="sidebar" data-color="blue" data-image="<?php echo base_url(); ?>assets/img/sidebar-0.jpg">
-            <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
-
-        Tip 2: you can also add an image using data-image tag
-    -->
-        <div class="logo">
-            <img src="<?php echo base_url(); ?>assets/img/logo.png" alt="image1" width="250px" height="150px">
-        </div>
-        <div class="sidebar-wrapper">
-                <ul class="nav">
-                    <li>
-                        <a href="<?php echo base_url(); ?>inventoryDashboard">
-                            <i class="material-icons">dashboard</i>
-                            <p>Dashboard</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url(); ?>inventoryStocks">
-                            <i class="material-icons">assessment</i>
-                            <p>Inventory Stocks</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url(); ?>inventoryInventoryReport">
-                            <i class="material-icons">content_paste</i>
-                            <p>Inventory Report</p>
-                        </a>
-                    </li>
-                    <li class="active">
-                        <a href="<?php echo base_url(); ?>inventoryPOAdd">
-                            <i class="material-icons">shopping cart</i>
-                            <p>Purchase Order</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url(); ?>inventoryOutRawCoffee">
-                            <i class="material-icons">reply</i>
-                            <p>Inventory Out</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url(); ?>inventoryItemList">
-                            <i class="material-icons">storage</i>
-                            <p>Items</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url(); ?>inventoryReturnsList">
-                            <i class="material-icons">input</i>
-                            <p>Returns</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url(); ?>inventorySamplesList">
-                            <i class="material-icons">dvr</i>
-                            <p>Samples</p>
-                        </a>
-                    </li>
-                    
-                </ul>
-        </div>
-    </div>
-         
-
-    <div class="main-panel">
-        <nav class="navbar navbar-transparent navbar-absolute">
-            <div class="container-fluid">
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                            <li>
-                                <p class="title">Hi, User 1</p>
-                            </li>
-                            <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="material-icons">person</i>
-                                    <p class="hidden-lg hidden-md">Profile</p>
-                            </a>
-                        
-                            <ul class="dropdown-menu">
-                                
-                                <li><a href="<?php echo base_url(); ?>inventoryUser">User Profile</a></li>
-                                
-                                <li><a href="<?php echo base_url(); ?>inventoryChangePassword">Change Password</a></li>
-                                
-                                <li> <a href="<?php echo base_url(); ?>inventoryActivityLogs">Activity Logs</a> </li>
-                                
-                                <li> <a href="<?php echo base_url('Login/logout');  ?>">Logout</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -200,18 +53,22 @@ thead th {
                                                         <h4 style="text-align: center;">Supplier</h4>
                                                     </div>
                                                     <div class="card-content">
-                                                        <form>
+                                                        
+                                                        <form method = "post" action ="<?php echo base_url(); ?>inventoryPOAdd/insertSupplierToTemp">
                                                             <div class="row">
                                                                 <div class="col-md-12">
                                                                     <div class="form-group label-floating">
                                                                         <label class="control-label">Supplier's Name</label>
-                                                                        <select class="form-control" id="sel1">
+                                                                        <select class="form-control" id="sel1" name = "dropdown">
                                                                             <option>-- --</option>
-                                                                            <option>Supplier 1</option>
-                                                                            <option>Supplier 2</option>
-                                                                            <option>Supplier 3</option>
-                                                                            <option>Supplier 4</option>
-                                                                            <option>Supplier 5</option>
+                                           <?php
+                                                                          
+                                                         foreach($suppliers as $object){ 
+                                                            echo '<option>'  . $object->sup_company . '</option>' ;
+                               
+                                 
+                                                          }  
+                                  ?>                                                    
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -220,7 +77,7 @@ thead th {
                                                                 <div class="col-md-12">
                                                                     <div class="form-group label-floating">
                                                                       <label for="email">Ordered Date:</label>
-                                                                      <input class="form-control" type="date" name="">
+                                                                       <input class="form-control" type="date" name="date">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -228,35 +85,40 @@ thead th {
                                                                 <div class="col-md-6">
                                                                     <div class="form-group label-floating">
                                                                         <label class="control-label">Credit Terms:</label>
-                                                                        <input type="text" class="form-control">
+                                                                        <input type="text" class="form-control" name="creditTerms">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="form-group label-floating">
                                                                         <label class="control-label">Trucking Fee</label>
-                                                                        <input type="text" class="form-control">
+                                                                        <input type="text" class="form-control" name = "truckingFee">
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
                                                                 <div align="center">
-                                                                    <button type="submit" class="btn btn-success accept">Add</button>
+                                                                    <button type="submit" name = "insert"  value ="Insert" class="btn btn-success accept">Add</button>
                                                                     <div class="clearfix"></div>
                                                                 </div>
                                                             </div>
                                                         </form>
+                                                        
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-8">
                                                 <button class ="print pull-right"> Generate PDF</button>
-                                                <form id = "toBePrinted">
-                                                 
+                                                <form method = "post" action ="inventoryPOAdd/insertOrder" id ="toBePrinted"> 
+                                                    
+                                                   
                                                     <div >
                                                         <h1>List of Order/s</h1>
                                                         <h3>PO #1</h3>
                                                         <p>Date of Recording: January 25, 2018
+                                                        
                                                     </div>
+                                                   
                                                     <div class="container col-md-12">
                                                         <table id="myTable" class=" table order-list">
                                                             <thead>
@@ -271,40 +133,74 @@ thead th {
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
+                                                                    
+                                                                 
                                                                     <td class="col-sm-4">
-                                                                        <input type="number" name="mail"  class="form-control"/>
+                                                                          <select class="form-control" name= "<?php echo "item[]" ?>" id="item">
+                                                                            <option>-- --</option>
+                                                                              
+                                                                              
+                                                <?php
+                                                                
+                                                         foreach($suppliersItem as $object){ 
+                                                            echo '<option>'  . $object->item_name . '</option>' ;
+                               
+                                 
+                                                          }  
+                                                ?> 
+                                                                              
+                                                                        </select>
                                                                     </td>
                                                                     <td class="col-sm-3">
-                                                                        <input type="number" name="mail"  class="form-control"/>
+                                                                        <input type="text" class="form-control" name=" <?php echo "qty[]" ?>"  />
                                                                     </td>
                                                                     <td class="col-sm-3">
-                                                                        <input type="number" name="phone"  class="form-control"/>
+                                                                        <input type="text" class="form-control" name=""  />
                                                                     </td>
                                                                     <td class="col-sm-3">
-                                                                        <input type="number" name="phone"  class="form-control"/>
+                                                                        <input type="text"  class="form-control" name="" />
                                                                     </td>
-                                                                    <td class="col-sm-2"><a class="deleteRow"></a>
-
-                                                                    </td>
+                                                                  
                                                                 </tr>
                                                             </tbody>
                                                             <tfoot>
+                                                                
                                                                 <tr>
                                                                     <td colspan="5" style="text-align: left;">
                                                                         <input type="button" class="btn btn-md btn-block " id="addrow" value="Add Row" />
                                                                     </td>
                                                                 </tr>
+                                                                
                                                                 <tr>
                                                                 </tr>
+                                                                
                                                                 <tr>
-                                                                    <td><center><b>Trucking Fee</b></center></td>
-                                                                    <td><center>1102</center></td>
-                                                                  
-                                                                    <td><center>5</center></td>
+                                                                <td><b>Trucking Fee</b></td>
+                                                                    
+                                                                    <td>    
+                                                                              
+                                                                              
+                                                <?php
+                                                      if(!empty($truckingFee)) { 
+                                                              foreach($truckingFee as $object) {
+                                                                echo $object->trucking_fee;
+                                                                 }
+                                                                 }
+                                                             
+                                                      
+                                                 
+                                                     ?>                         
+                                                                  </td>   
+                                                             
+                                                                    
+                                                                    
+                                                                    
+                                                                    <td></td>
                                                                     <td><center>5510.00</center></td>
                                                                 </tr>
+                                                                
                                                                 <tr>
-                                                                    <td><center><b>Total Grams</b></center></td>
+                                                                    <td><b>Total Grams</b></td>
                                                                     <td><center>1102</center></td>
                                                                  
                                                                     <td></td>
@@ -329,12 +225,14 @@ thead th {
                                                             </tfoot>
                                                         </table>
                                                         <div align="center">
-                                                            <button type="submit" class="btn btn-success accept">Save</button>
+                                                            <button type="submit" name = "submit"  value ="Insert" class="btn btn-success accept">Save</button>
                                                             <button type="button" class="btn btn-danger decline">Cancel</button>
                                                             <div class="clearfix"></div>
                                                         </div>
                                                     </div>
-                                                </form>
+                                                    </form>
+                                                    
+                                               
                                             </div>
                                         </div>
                                     </div>
@@ -402,20 +300,23 @@ thead th {
     
                 })
 </script>    
-                          
+        
+
+
+
 <script type="text/javascript">
     $(document).ready(function () {
-    var counter = 0;
+    var counter = 2;
 
     $("#addrow").on("click", function () {
         var newRow = $("<tr>");
         var cols = "";
-
-        cols += '<td><input type="dropdown" class="form-control" name="name' + counter + '"/></td>';
-        cols += '<td><input type="text" class="form-control" name="mail' + counter + '"/></td>';
-        cols += '<td><input type="text" class="form-control" name="phone' + counter + '"/></td>';
-        cols += '<td><input type="text" class="form-control" name="phone' + counter + '"/></td>';
-
+     
+        
+cols +='<td><select class="form-control" name= "item[]"> <option>-- --</option><?php foreach($suppliersItem as $object){  echo '<option>'  . $object->item_name . '</option>' ;}?></select></td>';
+        cols += '<td><input type="text" class="form-control" name="qty[]"/></td>';
+        cols += '<td><input type="text" class="form-control" name=""/></td>';
+        cols += '<td><input type="text" class="form-control" name=""/></td>';
         cols += '<td><input type="button" class="ibtnDel btn btn-sm btn-danger "  value="Remove"></td>';
         newRow.append(cols);
         $("table.order-list").append(newRow);
@@ -429,6 +330,37 @@ thead th {
         counter -= 1
     });
 
+ /*       
+   $('#save').click(function(){
+      var item = [];
+      var qty = [];
+      var unitPrice = [];
+      var amount = [];
+      
+      for(var i = 1 ; i > counter ; i++ ){
+          $('#item'+i).(function(){
+              item.push($(this).text());
+                                  });
+                                   
+                                   
+          $('#qty'+i).(function(){
+              qty.push($(this).text());
+                                  });
+          $('#unitPrice'+i).(function(){
+              unitPrice.push($(this).text());
+                                  });
+          $('#amount'+i).(function(){
+              amount.push($(this).text());
+                                  });
+          $.ajax({
+              url:"insert.php",
+              method:"POST",
+              data:{item:item ,qty:qty, unitPrice:unitPrice,amount:amount},
+              success:function(data);
+          })
+     }
+   });     
+   */     
 
 });
 

@@ -1,4 +1,5 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 	class InventoryPOUnpaidDelivery extends CI_Controller
 	{
@@ -8,7 +9,14 @@
 		
 		public function index()
 		{ 
-			$this->load->view('Inventory_Module/inventoryPOUnpaidDelivery');
+            $this->load->view('layout/header');
+            $this->load->model('inventoryPOUnpaidDelivery_model');
+            
+            
+            $data['unpaid'] = $this->inventoryPOUnpaidDelivery_model->retrieveUnpaid();
+            
+            
+			$this->load->view('Inventory_Module/inventoryPOUnpaidDelivery', $data);
 		}
 
 	}

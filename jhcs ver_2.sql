@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `jhcs` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `jhcs`;
 -- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
 -- Host: localhost    Database: jhcs
 -- ------------------------------------------------------
--- Server version	5.7.14
+-- Server version	5.6.17
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -131,7 +129,7 @@ CREATE TABLE `client_machreturn` (
 
 LOCK TABLES `client_machreturn` WRITE;
 /*!40000 ALTER TABLE `client_machreturn` DISABLE KEYS */;
-INSERT INTO `client_machreturn` VALUES (1,'2018-02-13',1,'1',1,'damaged','return to supplier'),(2,'2018-02-07',1,'2',2,'damaged','repair');
+INSERT INTO `client_machreturn` VALUES (1,'2018-02-13',1,'1',1,'damaged','return to supplier'),(2,'2018-02-07',1,'2',1,'damaged','repair');
 /*!40000 ALTER TABLE `client_machreturn` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145,12 +143,12 @@ DROP TABLE IF EXISTS `coffee_blend`;
 CREATE TABLE `coffee_blend` (
   `blend_id` int(11) NOT NULL AUTO_INCREMENT,
   `blend` varchar(20) NOT NULL,
-  `bag` varchar(20) NOT NULL,
-  `size` int(11) NOT NULL,
+  `package_id` varchar(45) NOT NULL,
   `blend_price` int(11) NOT NULL,
   `blend_activation` int(11) NOT NULL DEFAULT '1',
+  `blend_type` varchar(45) NOT NULL,
   PRIMARY KEY (`blend_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -159,7 +157,7 @@ CREATE TABLE `coffee_blend` (
 
 LOCK TABLES `coffee_blend` WRITE;
 /*!40000 ALTER TABLE `coffee_blend` DISABLE KEYS */;
-INSERT INTO `coffee_blend` VALUES (1,'Guatemala Rainforest','brown',1000,1025,1),(2,'Guatemala Rainforest','brown',500,615,1),(3,'Guatemala Rainforest','brown',250,365,1),(4,'Cordillera Sunrise','brown',1000,950,1),(5,'Cordillera Sunrise','brown',500,575,1),(6,'Cordillera Sunrise','brown',250,350,1),(7,'Sumatra Night','brown',1000,850,1),(8,'Sumatra Night','brown ',500,530,1),(9,'Sumatra Night','brown',250,325,1),(10,'Chef\'s Blend','brown',1000,800,1),(11,'Chef\'s Blend','brown',500,465,1),(12,'Chef\'s Blend','brown',250,265,1),(13,'Espresso Blend','brown',1000,750,1),(14,'Espresso Blend','brown',500,415,1),(15,'Espresso Blend','brown',250,230,1),(16,'Breakfast Blend','brown',1000,675,1),(17,'Breakfast Blend','brown',500,375,1),(18,'Breakfast Blend','brown',250,200,1),(19,'Mabuhay Blend','brown',1000,600,1),(20,'Mabuhay Blend','brown',500,350,1),(21,'Mabuhay Blend','brown',250,180,1),(22,'Fiesta Blend','brown',1000,500,1),(23,'Fiesta Blend','brown',500,315,1),(24,'Fiesta Blend','brown',250,165,1),(25,'Kalayaan Blend','brown',1000,400,1),(26,'Kalayaan Blend','brown',500,275,1),(27,'Kalayaan Blend','brown',250,150,1);
+INSERT INTO `coffee_blend` VALUES (1,'Guatemala Rainforest','4',1025,1,'Existing'),(2,'Guatemala Rainforest','5',615,1,'Existing'),(3,'Guatemala Rainforest','6',365,1,'Existing'),(4,'Cordillera Sunrise','4',950,1,'Existing'),(5,'Cordillera Sunrise','5',575,1,'Existing'),(6,'Cordillera Sunrise','6',350,1,'Existing'),(7,'Sumatra Night','4',850,1,'Existing'),(8,'Sumatra Night','5',530,1,'Existing'),(9,'Sumatra Night','6',325,1,'Existing'),(10,'Chef\'s Blend','4',800,1,'Existing'),(11,'Chef\'s Blend','5',465,1,'Existing'),(12,'Chef\'s Blend','6',265,1,'Existing'),(13,'Espresso Blend','4',750,1,'Existing'),(14,'Espresso Blend','5',415,1,'Existing'),(15,'Espresso Blend','6',230,1,'Existing'),(16,'Breakfast Blend','1',675,1,'Existing'),(17,'Breakfast Blend','2',375,1,'Existing'),(18,'Breakfast Blend','3',200,1,'Existing'),(19,'Mabuhay Blend','1',600,1,'Existing'),(20,'Mabuhay Blend','2',350,1,'Existing'),(21,'Mabuhay Blend','3',180,1,'Existing'),(22,'Fiesta Blend','1',500,1,'Existing'),(23,'Fiesta Blend','2',315,1,'Existing'),(24,'Fiesta Blend','3',165,1,'Existing'),(25,'Kalayaan Blend','1',400,1,'Existing'),(26,'Kalayaan Blend','2',275,1,'Existing'),(27,'Kalayaan Blend','3',150,1,'Existing');
 /*!40000 ALTER TABLE `coffee_blend` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -208,7 +206,7 @@ CREATE TABLE `company_returns` (
   `sup_returnRemarks` varchar(50) NOT NULL,
   `sup_returnAction` varchar(50) NOT NULL,
   PRIMARY KEY (`company_returnID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -217,7 +215,7 @@ CREATE TABLE `company_returns` (
 
 LOCK TABLES `company_returns` WRITE;
 /*!40000 ALTER TABLE `company_returns` DISABLE KEYS */;
-INSERT INTO `company_returns` VALUES (1,'2018-02-21',1,25,'Raw Coffee A','Spoiled',''),(2,'2018-02-21',1,30,'Raw Coffee A','Damage Package',''),(3,'2018-02-21',2,50,'Raw Coffee B','Damage Package','');
+INSERT INTO `company_returns` VALUES (1,'2018-02-21',1,25,'1','Spoiled',''),(2,'2018-02-21',1,30,'1','Damage Package',''),(3,'2018-02-21',2,50,'2','Damage Package',''),(4,'2018-03-07',2,11111,'4','Incorrect Roast','');
 /*!40000 ALTER TABLE `company_returns` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -454,6 +452,36 @@ LOCK TABLES `payment_supplier` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `proportions`
+--
+
+DROP TABLE IF EXISTS `proportions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `proportions` (
+  `proportion_id` int(11) NOT NULL AUTO_INCREMENT,
+  `blend_id` int(11) NOT NULL,
+  `raw_id` int(11) NOT NULL,
+  `percentage` int(11) NOT NULL,
+  PRIMARY KEY (`proportion_id`),
+  KEY `raw_prop_idx` (`raw_id`),
+  KEY `blend_prop_idx` (`blend_id`),
+  CONSTRAINT `blend_prop` FOREIGN KEY (`blend_id`) REFERENCES `coffee_blend` (`blend_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `raw_prop` FOREIGN KEY (`raw_id`) REFERENCES `raw_coffee` (`raw_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `proportions`
+--
+
+LOCK TABLES `proportions` WRITE;
+/*!40000 ALTER TABLE `proportions` DISABLE KEYS */;
+INSERT INTO `proportions` VALUES (1,1,1,10),(2,1,4,30),(3,1,5,60),(4,2,1,10),(5,2,4,30),(6,2,5,60),(7,3,1,10),(8,3,4,30),(9,3,5,60),(10,4,2,60),(11,4,3,40),(12,5,2,60),(13,5,3,40),(14,6,2,60),(15,6,3,40),(16,7,2,45),(17,7,3,35),(18,7,6,15),(19,8,2,45),(20,8,3,35),(21,8,6,15),(22,9,2,45),(23,9,3,35),(24,9,6,15),(25,10,1,20),(26,10,2,20),(27,10,6,60),(28,11,1,20),(29,11,2,20),(30,11,6,60),(31,12,1,20),(32,12,2,20),(33,12,6,60),(34,13,4,35),(35,13,5,65),(36,14,4,35),(37,14,5,65),(38,15,4,35),(39,15,5,65),(40,16,2,25),(41,16,5,75),(42,17,2,25),(43,17,5,75),(44,18,2,25),(45,18,5,75);
+/*!40000 ALTER TABLE `proportions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `raw_coffee`
 --
 
@@ -469,7 +497,7 @@ CREATE TABLE `raw_coffee` (
   `sup_id` int(11) NOT NULL,
   `raw_activation` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`raw_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -478,7 +506,7 @@ CREATE TABLE `raw_coffee` (
 
 LOCK TABLES `raw_coffee` WRITE;
 /*!40000 ALTER TABLE `raw_coffee` DISABLE KEYS */;
-INSERT INTO `raw_coffee` VALUES (1,'GUATEMALA',5000,10000,80000,1,1),(2,'SUMATRA',2000,7000,9000,2,1),(3,'ROBUSTA',1000,8500,1000,2,1),(4,'BENGUET',1500,9000,1800,3,1),(5,'COLOMBIA',2000,10000,5000,1,1),(6,'BARAKO',1500,10500,8000,1,1),(7,'Tin Coffee',1000,2000,1500,1,1),(8,'jgh',78,678,678,1,1),(9,'asd',798,798,987,1,1),(10,'serrrrrr',687,687,867,2,1);
+INSERT INTO `raw_coffee` VALUES (1,'GUATEMALA',5000,10000,80000,1,1),(2,'SUMATRA',2000,7000,9000,2,1),(3,'ROBUSTA',1000,8500,1000,2,1),(4,'BENGUET',1500,9000,1800,2,1),(5,'COLOMBIA',2000,10000,5000,1,1),(6,'BARAKO',1500,10500,8000,1,1);
 /*!40000 ALTER TABLE `raw_coffee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -659,6 +687,231 @@ INSERT INTO `supplier_po` VALUES (1,1,'2018-02-21',10000,50,'30 days',1,5050,'pe
 UNLOCK TABLES;
 
 --
+-- Table structure for table `test_category`
+--
+
+DROP TABLE IF EXISTS `test_category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `test_category` (
+  `idtest_category` int(11) NOT NULL AUTO_INCREMENT,
+  `category` varchar(45) NOT NULL,
+  `activation` int(11) DEFAULT '1',
+  PRIMARY KEY (`idtest_category`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `test_category`
+--
+
+LOCK TABLES `test_category` WRITE;
+/*!40000 ALTER TABLE `test_category` DISABLE KEYS */;
+INSERT INTO `test_category` VALUES (1,'Blended Coffee',1),(2,'Coffee Filter',1),(3,'Coffee Machine',1),(4,'Packaging',1),(5,'Raw Coffee',1),(6,'Sticker',1);
+/*!40000 ALTER TABLE `test_category` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `test_items`
+--
+
+DROP TABLE IF EXISTS `test_items`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `test_items` (
+  `item_id` int(11) NOT NULL,
+  `item_name` varchar(45) NOT NULL,
+  `category` varchar(45) NOT NULL,
+  `supplier_id` int(11) NOT NULL,
+  `unitPrice` double NOT NULL,
+  `desc` varchar(45) DEFAULT NULL,
+  `status` varchar(45) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`item_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `test_items`
+--
+
+LOCK TABLES `test_items` WRITE;
+/*!40000 ALTER TABLE `test_items` DISABLE KEYS */;
+INSERT INTO `test_items` VALUES (1,'coffee 1','raw coffee',1,3.2,'sss','1'),(2,'coffee 2','raw coffee',1,4.5,'asd','1'),(3,'coffee 3','raw coffee',1,4,'asd','1'),(4,'coffee 4','raw coffee',1,5.4,'asd','1'),(5,'coffee 5','raw coffee',2,3.5,'asd','1'),(6,'sticker 1','sticker',2,2,'aasdd','1'),(7,'sticker 2','sticker',1,3,'ddsa','1');
+/*!40000 ALTER TABLE `test_items` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `test_multi_insert`
+--
+
+DROP TABLE IF EXISTS `test_multi_insert`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `test_multi_insert` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `supp_po_id` int(11) DEFAULT NULL,
+  `item` varchar(45) DEFAULT NULL,
+  `qty` int(11) DEFAULT NULL,
+  `unitPrice` int(11) DEFAULT NULL,
+  `amount` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `test_multi_insert`
+--
+
+LOCK TABLES `test_multi_insert` WRITE;
+/*!40000 ALTER TABLE `test_multi_insert` DISABLE KEYS */;
+INSERT INTO `test_multi_insert` VALUES (1,NULL,'coffee 3',213,213,23),(2,NULL,'coffee 3',213,412,23),(3,NULL,'coffee 3',24,31,213),(4,NULL,'coffee 3',23,213,23),(5,NULL,'sticker 1',23,23,3),(6,NULL,'-- --',0,0,0),(7,NULL,'coffee 2',213,23,23),(8,NULL,'coffee 1',0,0,0),(9,NULL,'coffee 1',0,0,0),(10,NULL,'coffee 1',0,0,0),(11,NULL,'sticker 1',23,213,23),(12,NULL,'sticker 1',0,0,0),(13,NULL,'-- --',0,0,0),(14,NULL,'sticker 1',0,0,0),(15,NULL,'-- --',0,0,0),(16,NULL,'-- --',0,0,0),(17,NULL,'-- --',0,0,0),(18,NULL,'-- --',0,0,0),(19,NULL,'-- --',0,0,0),(20,NULL,'',NULL,NULL,NULL),(21,NULL,'-- --',0,0,0),(22,NULL,'213',NULL,NULL,NULL),(23,NULL,'-- --',0,0,0),(24,NULL,'-- --',0,0,0),(25,NULL,'-- --',0,0,0),(26,NULL,'-- --',0,0,0),(27,NULL,'-- --',0,0,0),(28,NULL,'coffee 2',23,124,124),(29,NULL,'coffee 3',23,24,12),(30,NULL,'sticker 2',214,51,123),(31,NULL,'-- --',0,0,0),(32,NULL,'-- --',0,0,0),(33,NULL,'-- --',0,0,0),(34,NULL,'-- --',0,0,0),(35,NULL,'-- --',0,0,0),(36,NULL,'coffee 1',32,23,123),(37,NULL,'coffee 1',1,1,1),(38,6,'sticker 2',2,2,2),(39,24,'coffee 1',23,23,23),(40,24,'sticker 1',1245,112345,124512);
+/*!40000 ALTER TABLE `test_multi_insert` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `test_supp_delivery`
+--
+
+DROP TABLE IF EXISTS `test_supp_delivery`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `test_supp_delivery` (
+  `idtest_supp_delivery` int(11) NOT NULL AUTO_INCREMENT,
+  `delivery_batch_id` int(11) NOT NULL,
+  `test_supp_po_ordered_id` int(11) NOT NULL,
+  `supp_po_id` int(11) NOT NULL,
+  `date_received` date NOT NULL,
+  `yield_weight` double NOT NULL,
+  `yields` double NOT NULL,
+  `receieved_by` varchar(45) NOT NULL,
+  PRIMARY KEY (`idtest_supp_delivery`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `test_supp_delivery`
+--
+
+LOCK TABLES `test_supp_delivery` WRITE;
+/*!40000 ALTER TABLE `test_supp_delivery` DISABLE KEYS */;
+INSERT INTO `test_supp_delivery` VALUES (1,1,1,1,'2018-02-02',1500,1000,'Ms. A'),(2,1,2,1,'2018-02-02',1500,1000,'Ms. A'),(3,1,3,1,'2018-02-02',2000,1500,'Ms. A'),(4,1,4,1,'2018-02-02',2500,2000,'Ms. A'),(5,2,5,2,'2018-03-01',2500,1000,'Ms. B'),(6,2,6,2,'2018-03-01',2000,1000,'Ms. B'),(7,3,9,4,'2018-03-19',1500,100,'Ms. A');
+/*!40000 ALTER TABLE `test_supp_delivery` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `test_supp_po`
+--
+
+DROP TABLE IF EXISTS `test_supp_po`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `test_supp_po` (
+  `supp_po_id` int(11) NOT NULL AUTO_INCREMENT,
+  `supp_id` int(11) NOT NULL,
+  `suppPO_date` date NOT NULL,
+  `trucking_fee` double NOT NULL,
+  `supp_creditTerm` varchar(45) NOT NULL,
+  `total_item` int(11) NOT NULL DEFAULT '0',
+  `total_amount` double NOT NULL DEFAULT '0',
+  `delivery_stat` varchar(45) DEFAULT '0',
+  `payment_stat` varchar(45) DEFAULT '0',
+  PRIMARY KEY (`supp_po_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `test_supp_po`
+--
+
+LOCK TABLES `test_supp_po` WRITE;
+/*!40000 ALTER TABLE `test_supp_po` DISABLE KEYS */;
+INSERT INTO `test_supp_po` VALUES (1,1,'2018-01-16',300,'30 days',7500,5000,'1','1'),(2,1,'2018-01-16',3300,'30 days',4500,10000,'1','1'),(3,2,'2018-01-16',2000,'30 days',3000,5000,'0','0'),(4,2,'2018-02-16',1000,'30 days',1500,2000,'1','0'),(5,1,'2018-02-17',1000,'30 days',1500,2500,'0','0'),(6,1,'2018-02-18',500,'30 days',2500,2500,'0','0');
+/*!40000 ALTER TABLE `test_supp_po` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `test_supp_po_ordered`
+--
+
+DROP TABLE IF EXISTS `test_supp_po_ordered`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `test_supp_po_ordered` (
+  `test_supp_po_ordered_id` int(11) NOT NULL AUTO_INCREMENT,
+  `supp_po_id` int(11) NOT NULL,
+  `item` varchar(45) NOT NULL,
+  `qty` int(11) NOT NULL,
+  `amount` double NOT NULL,
+  `type` varchar(45) NOT NULL DEFAULT 'Type',
+  `delivery_stat` varchar(45) DEFAULT '0',
+  `payment_stat` varchar(45) DEFAULT '0',
+  PRIMARY KEY (`test_supp_po_ordered_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `test_supp_po_ordered`
+--
+
+LOCK TABLES `test_supp_po_ordered` WRITE;
+/*!40000 ALTER TABLE `test_supp_po_ordered` DISABLE KEYS */;
+INSERT INTO `test_supp_po_ordered` VALUES (1,1,'coffee 1',1500,1000,'medium roast','1','1'),(2,1,'coffee 1',1500,1000,'city roast','1','1'),(3,1,'coffee 2',1000,1000,'medium roast','1','1'),(4,1,'coffee 2',2500,2000,'medium roast','1','1'),(5,2,'coffee 1',2500,5000,'city roast','1','1'),(6,2,'coffee 1',2000,5000,'city roast','1','1'),(7,3,'coffee 2',1500,3000,'medium roast','0','0'),(8,3,'coffee 2',1500,2000,'medium roast','0','0'),(9,4,'coffee 1',2000,2000,'city roast','1','0'),(10,5,'coffee 1',700,1000,'medium roast','0','0'),(11,5,'coffee 2',800,1500,'city roast','0','0'),(12,6,'coffee 2',1000,2000,'medium roast','1','0'),(13,6,'coffee 2',1500,500,'city','0','0');
+/*!40000 ALTER TABLE `test_supp_po_ordered` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `test_supp_temp_po`
+--
+
+DROP TABLE IF EXISTS `test_supp_temp_po`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `test_supp_temp_po` (
+  `id_supp_temp_PO` int(11) NOT NULL AUTO_INCREMENT,
+  `supp_name` varchar(45) NOT NULL,
+  `date` date NOT NULL,
+  `trucking_fee` decimal(10,0) NOT NULL,
+  `credit_term` varchar(45) NOT NULL,
+  PRIMARY KEY (`id_supp_temp_PO`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `test_supp_temp_po`
+--
+
+LOCK TABLES `test_supp_temp_po` WRITE;
+/*!40000 ALTER TABLE `test_supp_temp_po` DISABLE KEYS */;
+/*!40000 ALTER TABLE `test_supp_temp_po` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `test_transac_history`
+--
+
+DROP TABLE IF EXISTS `test_transac_history`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `test_transac_history` (
+  `transac_id` int(11) NOT NULL AUTO_INCREMENT,
+  `supp_po_id` varchar(45) NOT NULL,
+  `date_received` date NOT NULL,
+  `date_payment` date NOT NULL,
+  PRIMARY KEY (`transac_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `test_transac_history`
+--
+
+LOCK TABLES `test_transac_history` WRITE;
+/*!40000 ALTER TABLE `test_transac_history` DISABLE KEYS */;
+INSERT INTO `test_transac_history` VALUES (1,'1','2018-02-02','2018-02-28'),(2,'2','2018-03-01','2018-03-15');
+/*!40000 ALTER TABLE `test_transac_history` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `trans_raw`
 --
 
@@ -675,7 +928,7 @@ CREATE TABLE `trans_raw` (
   KEY `raw_idx` (`raw_coffeeid`),
   CONSTRAINT `t_raw` FOREIGN KEY (`raw_coffeeid`) REFERENCES `raw_coffee` (`raw_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `t_transact` FOREIGN KEY (`trans_id`) REFERENCES `inv_transact` (`trans_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -684,7 +937,7 @@ CREATE TABLE `trans_raw` (
 
 LOCK TABLES `trans_raw` WRITE;
 /*!40000 ALTER TABLE `trans_raw` DISABLE KEYS */;
-INSERT INTO `trans_raw` VALUES (1,1,1,2000),(2,1,2,4300),(3,1,5,4500),(4,2,4,10000),(5,2,6,12000),(6,3,7,2300),(7,3,1,8000),(8,3,3,5000),(9,3,4,15000),(10,4,2,1200),(11,4,4,14000),(12,4,6,12000),(13,4,9,9000),(14,5,4,8500),(15,6,6,8100),(16,6,9,7400),(17,7,2,6500),(18,7,8,6900),(19,7,9,10000),(20,7,10,12000);
+INSERT INTO `trans_raw` VALUES (1,1,1,2000),(2,1,2,4300),(3,1,5,4500),(4,2,4,10000),(5,2,6,12000),(7,3,1,8000),(8,3,3,5000),(9,3,4,15000),(10,4,2,1200),(11,4,4,14000),(12,4,6,12000),(14,5,4,8500),(15,6,6,8100),(17,7,2,6500);
 /*!40000 ALTER TABLE `trans_raw` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -747,14 +1000,6 @@ LOCK TABLES `walkin_sales` WRITE;
 INSERT INTO `walkin_sales` VALUES (1,'Michael','Torres','2018-02-15',2,2),(2,'Alcantara','Danica','2018-02-15',3,3);
 /*!40000 ALTER TABLE `walkin_sales` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping events for database 'jhcs'
---
-
---
--- Dumping routines for database 'jhcs'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -765,4 +1010,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-05 16:42:41
+-- Dump completed on 2018-03-07 21:20:41

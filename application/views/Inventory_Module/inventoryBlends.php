@@ -136,6 +136,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                 </div>
             </nav>
+        
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -203,8 +204,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <tr>
                                                 <td><?php echo $row->blend_id; ?></td>
                                                 <td><?php echo $row->blend; ?></td>
-                                                <td><?php echo $row->bag; ?></td>
-                                                <td><?php echo $row->size; ?></td>
+                                                <td><?php echo $row->package_type; ?></td>
+                                                <td><?php echo $row->package_size; ?></td>
                                                 <td>Php <?php echo $row->blend_price; ?></td>
                                                 <td>
                                                     <!-- Button trigger modal -->
@@ -227,70 +228,59 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         <div id="toBePrinted<?php echo $row->blend_id; ?>">
                                                             <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
                                                                 <h3><b><?php echo $row->blend; ?></b></h3>
-                                                                <h4><?php echo $row->bag; ?> bag (<?php echo $row->size; ?>g)</h4>
+                                                                <h4><?php echo $row->package_type; ?> bag (<?php echo $row->package_size; ?>g)</h4>
                                                                 <hr>
                                                             </div>
                                                         <table id="fresh-datatables" class="table table-striped table-hover responsive" cellspacing="0" width="100%">
                                                         <thead>
                                                           <tr>
-                                                            <th><b>Delivery Receipt No.</b></th>
-                                                            <th><b>Delivery</b></th>
+                                                            <th><b>No.</b></th>
                                                             <th><b>Client</b></th>
                                                             <th><b>Date</b></th>
                                                             <th><b>Quantity</b></th>
                                                             <th><b>Remarks</b></th>
+                                                            <th><b>Type</b></th>
                                                           </tr>
                                                         </thead>
                                                         <tbody>
-                                                          <tr>
-                                                            <td>12345</td>
-                                                            <td>Out</td>
-                                                            <td>Client 1</td>
-                                                            <td>Dec 5, 2017</td>
-                                                            <td>250 grams</td>
-                                                            <td></td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>23456</td>
-                                                            <td>Out</td>
-                                                            <td>Client 2</td>
-                                                            <td>Dec 12, 2017</td>
-                                                            <td>500 grams</td>
-                                                            <td></td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>34567</td>
-                                                            <td>In</td>
-                                                            <td>Client 3</td>
-                                                            <td>Dec 15, 2017</td>
-                                                            <td>8 pcs</td>
-                                                            <td>Spoiled</td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>45678</td>
-                                                            <td>Out</td>
-                                                            <td>Client 4</td>
-                                                            <td>Dec 8, 2017</td>
-                                                            <td>2 pcs</td>
-                                                            <td></td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>56789</td>
-                                                            <td>Out</td>
-                                                            <td>Client 5</td>
-                                                            <td>Dec 9, 2017</td>
-                                                            <td>4 pcs</td>
-                                                            <td></td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>67890</td>
-                                                            <td>In</td>
-                                                            <td>Client 6</td>
-                                                            <td>Dec 17, 2017</td>
-                                                            <td>6 pcs</td>
-                                                            <td>Spoiled</td>
-                                                          </tr>
-                                                        </tbody>
+                                                            <?php
+                                              $retrieveDetails1 ="SELECT walkin_id, blend_id, CONCAT(walkin_fname,' ',walkin_lname) AS customer, walkin_date, walkin_qty FROM jhcs.walkin_sales NATURAL JOIN coffee_blend WHERE blend_id = '$row->blend_id';" ;
+                                              $query = $this->db->query($retrieveDetails1);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td>'  . $object->walkin_id. '</td>' ,
+                                                '<td>'  . $object->customer  . '</td>' ,
+                                                '<td>'  . $object->walkin_date  . '</td>' ,
+                                                '<td>'  . $object->walkin_qty  . ' pc/s</td>' ;
+                                                ?>
+                                                    <td>Walkin Sales</td>
+                                                    <td>Out</td>
+                                                 <?php   
+                                                '<tr>' ;
+                                              }
+                                            }
+                                        ?>  
+
+                                        <?php
+                                              $retrieveDetails2 ="SELECT contractPO_id, client_company, contractPO_date, contractPO_qty FROM jhcs.contracted_po NATURAL JOIN contracted_client WHERE delivery_stat = 'delivered' AND blend_id = '$row->blend_id';" ;
+                                              $query = $this->db->query($retrieveDetails2);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td>'  . $object->contractPO_id. '</td>' ,
+                                                '<td>'  . $object->client_company  . '</td>' ,
+                                                '<td>'  . $object->contractPO_date  . '</td>' ,
+                                                '<td>'  . $object->contractPO_qty  . ' pc/s</td>' ;
+                                                ?>
+                                                    <td>Sales</td>
+                                                    <td>Out</td>
+                                                 <?php   
+                                                '</tr>' ;
+                                              }
+                                            }
+                                        ?>  
+                                                    </tbody>
                                                       </table>
                                                         </div>
                                                       </div>

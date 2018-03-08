@@ -488,7 +488,7 @@
                                             <th><b class="pull-left">Price Per Unit (gram)</b></th>
                                             <th><b class="pull-left">Size</b></th>
                                             <th><b class="pull-left">Packaging</b></th>
-                                            <th><b class="pull-left">Adjust Limit</b></th>
+                                            
                                             <th><b class="pull-left">Update Blends Details</b></th>
                                             <th><b class="pull-left">Activation</b></th>
                                         </thead>
@@ -500,7 +500,7 @@
                                                 <td>300</td>
                                                 <td>250</td>
                                                 <td>Clear Bag</td>
-                                                <td> <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a></td>
+                                               
                                                 <td>
                                                     <a class="btn btn-warning btn-sm" data-toggle="modal" style="margin-top: 0px" data-toggle="modal" data-target="#updateblend" data-original-title>Update Info</a>
                                                 </td>
@@ -521,7 +521,7 @@
                                                 <td>300</td>
                                                 <td>500</td>
                                                 <td>Clear Bag</td>
-                                                <td> <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#stock">Adjust</a></td>
+                                                
                                                 <td>
                                                     <a class="btn btn-warning btn-sm" data-toggle="modal" style="margin-top: 0px" data-toggle="modal" data-target="#updateblend" data-original-title>Update Info</a>
                                                 </td>
@@ -544,7 +544,7 @@
                 </div>
             </div>
         </div>
-    </div>
+
 </body>
 <!--   Core JS Files   -->
 <!--   Core JS Files   -->

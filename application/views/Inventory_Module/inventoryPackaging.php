@@ -241,54 +241,43 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                           </tr>
                                                         </thead>
                                                         <tbody>
-                                                          <tr>
-                                                            <td>12345</td>
-                                                            <td>In</td>
-                                                            <td>Supplier 1</td>
-                                                            <td>Dec 5, 2017</td>
-                                                            <td>300 pcs</td>
-                                                            <td></td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>23456</td>
-                                                            <td>In</td>
-                                                            <td>Client 2</td>
-                                                            <td>Dec 12, 2017</td>
-                                                            <td>100 pcs</td>
-                                                            <td>Wrong Packaging</td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>34567</td>
-                                                            <td>In</td>
-                                                            <td>Supplier 3</td>
-                                                            <td>Dec 15, 2017</td>
-                                                            <td>500 pcs</td>
-                                                            <td></td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>45678</td>
-                                                            <td>Out</td>
-                                                            <td>Supplier 1</td>
-                                                            <td>Dec 8, 2017</td>
-                                                            <td>200 pcs</td>
-                                                            <td>Damaged</td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>56789</td>
-                                                            <td>Out</td>
-                                                            <td>Client 5</td>
-                                                            <td>Dec 9, 2017</td>
-                                                            <td>300 pcs</td>
-                                                            <td></td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>67890</td>
-                                                            <td>Out</td>
-                                                            <td>Client 7</td>
-                                                            <td>Dec 17, 2017</td>
-                                                            <td>200 pcs</td>
-                                                            <td>Sample</td>
-                                                          </tr>
+                                                            <?php
+                                              $retrieveDetails1 ="SELECT walkin_id, package_id, CONCAT(walkin_fname,' ',walkin_lname) AS customer, walkin_date, walkin_qty FROM jhcs.walkin_sales NATURAL JOIN coffee_blend NATURAL JOIN packaging WHERE package_id = '$row->package_id';" ;
+                                              $query = $this->db->query($retrieveDetails1);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td>'  . $object->walkin_id. '</td>' ,
+                                                '<td>'  . $object->customer  . '</td>' ,
+                                                '<td>'  . $object->walkin_date  . '</td>' ,
+                                                '<td>'  . $object->walkin_qty  . ' pc/s</td>' ;
+                                                ?>
+                                                    <td>Walkin Sales</td>
+                                                    <td>Out</td>
+                                                 <?php   
+                                                 ;
+                                              }
+                                            }
+                                        ?>  
+
+                                        <?php
+                                              $retrieveDetails2 ="SELECT package_id, contractPO_id, client_company, contractPO_date, contractPO_qty FROM jhcs.contracted_po NATURAL JOIN contracted_client NATURAL JOIN coffee_blend NATURAL JOIN packaging WHERE delivery_stat = 'delivered' AND package_id = '$row->package_id';" ;
+                                              $query = $this->db->query($retrieveDetails2);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td>'  . $object->contractPO_id. '</td>' ,
+                                                '<td>'  . $object->client_company  . '</td>' ,
+                                                '<td>'  . $object->contractPO_date  . '</td>' ,
+                                                '<td>'  . $object->contractPO_qty  . ' pc/s</td>' ;
+                                                ?>
+                                                    <td>Sales</td>
+                                                    <td>Out</td>
+                                                 <?php   
+                                                '</tr>' ;
+                                              }
+                                            }
+                                        ?>  
                                                         </tbody>
                                                       </table><hr>
                                                           <div class="row">
