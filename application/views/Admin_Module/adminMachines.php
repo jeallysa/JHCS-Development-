@@ -463,7 +463,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </body>
 <!--   Core JS Files   -->
 <!--   Core JS Files   -->
