@@ -6,7 +6,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
     <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Collection Report</title>
+    <title>Purchase Order Report</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
@@ -52,7 +52,7 @@
                     <li >
                         <a href="<?php echo base_url(); ?>adminAccounts">
                             <i class="material-icons">account_circle</i>
-                            <p>User Accounts</p>
+                            <p>Accounts</p>
                         </a>
                     </li>
                     <li>
@@ -130,7 +130,7 @@
                         </div>
                         <div class="content">
                             <div class="container-fluid">
-                                <div class="row">
+                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="card">
                                             <div class="card-header" data-background-color="green">
@@ -142,20 +142,19 @@
                                                         Sales Report
                                                         <div class="ripple-container"></div>
                                                     </a>
-                                                            </li>
-                                                            <span></span>
-                                                            <li class="">
-                                                                <a href="<?php echo base_url(); ?>adminReceivableReport">
-                                                        Accounts Receivables Report
-                                                        <div class="ripple-container"></div>
-                                                    </a>
-                                                            </li>
+                                                            </li> 
                                                             <span></span>
                                                             <li class="">
                                                                 <a href="<?php echo base_url(); ?>adminCollectionReport">
                                                         Collection Report
                                                         <div class="ripple-container"></div>
                                                     </a>
+                                                            </li>
+                                                            <li class="">
+                                                                <a href="<?php echo base_url(); ?>adminDeliveryReport">
+                                                        Delivery Report
+                                                        <div class="ripple-container"></div>
+                                                   </a>
                                                             </li>
                                                             <span></span>
                                                             <li class="">
@@ -173,10 +172,10 @@
                                                             </li>
                                                             <span></span>
                                                             <li class="">
-                                                                <a href="<?php echo base_url(); ?>adminDeliveryReport">
-                                                        Delivery Report
+                                                                <a href="<?php echo base_url(); ?>adminReceivableReport">
+                                                        Accounts Receivables Report
                                                         <div class="ripple-container"></div>
-                                                   </a>
+                                                    </a>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -392,9 +391,23 @@
         "lengthChange": false,
         "info":     false,
 		buttons: [
-            { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs' },
-			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs' },
-			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs' }
+            { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs',
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+                }
+            },
+            
+			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs',
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+                }
+            },
+            
+			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs',
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+                }
+            }
         ]
     });
 

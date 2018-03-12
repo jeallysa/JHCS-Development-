@@ -170,7 +170,7 @@ thead th {
                     <li >
                         <a href="<?php echo base_url(); ?>adminAccounts">
                             <i class="material-icons">account_circle</i>
-                            <p>User Accounts</p>
+                            <p>Accounts</p>
                         </a>
                     </li>
                     <li class="active">
