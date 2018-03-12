@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/img/favicon.png" />
     <link rel="shortcut icon" type="image/png" href="<?php echo base_url(); ?>assets/img/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>User Account</title>
+    <title>Accounts</title>
     <!--   Style   -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/fresh-datatables.css">
@@ -165,7 +165,7 @@
                     <li class="active">
                         <a href="<?php echo base_url(); ?>adminAccounts">
                             <i class="material-icons">account_circle</i>
-                            <p>User Accounts</p>
+                            <p>Accounts</p>
                         </a>
                     </li>
                     <li>
@@ -384,7 +384,7 @@
                                     </div>
                                 </div>
                             <div class="card-header " data-background-color="green">
-                                <h4 class="title">List of Users </h4>
+                                <h4 class="title">List of Employee Accounts</h4>
                             </div>
                             <div class="card-content table-responsive">
                                 <a href="<?php echo base_url(); ?>adminNewAccounts" class="btn btn-success" data-original-title style="float: right"> Create New Account</a>
@@ -393,7 +393,7 @@
                                         <table id="fresh-datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                                             <thead>
                                                 <tr>
-                                                    <th><b>User No.</b></th>
+                                                    <th><b>Employee No.</b></th>
                                                     <th><b>Last Name</b></th>
                                                     <th><b>First Name</b></th>
                                                     <th><b>Department</b></th>
@@ -413,7 +413,7 @@
                                                     {
                                                 ?>
                                                     <tr>
-                                                        <td>UA-<?php echo $row->user_no; ?></td>
+                                                        <td>Employee-<?php echo $row->user_no; ?></td>
                                                         <td><?php echo $row->u_lname; ?></td>
                                                         <td><?php echo $row->u_fname; ?></td>
                                                         <td><?php echo $row->u_type; ?></td>

@@ -48,7 +48,7 @@
                     <li >
                         <a href="<?php echo base_url(); ?>adminAccounts">
                             <i class="material-icons">account_circle</i>
-                            <p>User Accounts</p>
+                            <p>Accounts</p>
                         </a>
                     </li>
                     <li>
@@ -174,6 +174,7 @@
                                         <i class="material-icons">date_range</i> Details
                                     </div>
                                 </div>
+                                </a>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6">
