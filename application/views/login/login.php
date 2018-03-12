@@ -51,21 +51,31 @@
                         		<div class="form-top-left">
                         			<h3>JHCS Login Form </h3>
                             		<p>Enter your username and password to log on:</p>
+                                    <?php
+                                        $error = $this->session->flashdata('error');
+                                        if(!empty($error)){
+                                          echo $error;
+                                        }
+                                      ?>
                         		</div>
                         		<div class="form-top-right">
                         			<i class="fa fa-lock"></i>
                         		</div>
                             </div>
                             <div class="form-bottom">
-			                    <form role="form" action="<?php echo base_url();?>login/validate" method="post" class="login-form validate-form">
+			                    <form role="form" action="<?php echo site_url('login/validate');?>" method="post" class="login-form validate-form">
 			                    	<div class="form-group">
 			                    		<label class="sr-only" for="username">Username</label>
-			                        	<input type="text" name="username" placeholder="Username..." class="form-username form-control" id="Username">
+			                        	<input type="text" name="username" placeholder="Username..." class="form-username form-control" id="username">
 			                        </div>
 			                        <div class="form-group">
 			                        	<label class="sr-only" for="password">Password</label>
-			                        	<input type="password" name="password" placeholder="Password..." class="form-password form-control" id="Password">
+			                        	<input type="password" name="password" placeholder="Password..." class="form-password form-control" id="password">
 			                        </div>
+                                    <div class="row" style="display: flex; align-items: center; justify-content: center;color: red">
+                                      
+
+                                      </div>
 			                        <button type="submit" class="btn">Sign in!</button>
 			                    </form>
 		                    </div>
