@@ -252,7 +252,7 @@
                                                         <td>--</td>
                                                         <td><?php echo $row->coff_remarks; ?></td>
                                                         <td>
-                                                            <button class="btn btn-danger btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#resolve_coffee">Resolve</button>
+                                                            <button class="btn btn-danger btn-sm viewCoffeeReturns" style="margin-top: 0px" data-toggle="modal" data-target="#resolve_coffee" id="getDetails" data-id="<?php echo $row->client_id; ?>"> Resolve</button>
                                                         </td>
                                                     </tr>
                                                     <?php
@@ -388,133 +388,12 @@
                 </div>
             </div>
 		<!--modal for coffee returns-->
-			 <div class="modal fade" id="resolve_coffee" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-							<div class="modal-dialog modal-md">
-								<div class="panel panel-primary">
-									<div class="panel-heading">
-										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-										<h4 class="panel-title" id="contactLabel"><center>Refolve Coffee Returns</center></h4>
-									</div>
-									<form action="#" method="post" accept-charset="utf-8">
-										<div class="modal-body" style="padding: 5px;">
-                                        <div class="row">
-                                            <div class="col-lg-7">
-												<div class="row">
-													<div class="form-group">
-														<label class="col-md-5 control">Coffee Blend :</label>
-														<div class="col-md-7">
-															<p><b>SUMATRA NIGHT</b></p>
-														</div>
-													</div>
-													<div class="form-group">
-														<label class="col-md-5 control">Size :</label>
-														<div class="col-md-5">
-															<p><b>500g</b></p>
-														</div>
-													</div>
-												</div>
-												<div class="row">
-													<div class="form-group">
-														<label class="col-md-5 control">Bag :</label>
-														<div class="col-md-6">
-															<p><b>Clear</b></p>
-														</div>
-													</div>
-													<div class="form-group">
-														<label class="col-md-5 control">Quantity :</label>
-														<div class="col-md-6">
-															<p><b>3</b></p>
-														</div>
-													</div>
-												</div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="col-md-6 control">Delivery Receipt No :</label>
-                                                    <div class="col-md-6">
-                                                        <p class="form-control" contenteditable="true">DR0123</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="col-md-6 control">Date of Delivery :</label>
-                                                    <div class="col-md-6">
-                                                        <input class="form-control" name="coffeeType" placeholder="Date" type="date" required />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-										<div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="col-md-5 control">Received by :</label>
-                                                    <div class="col-md-7">
-                                                        <input id="" name="name" type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="col-md-6 control">Delivery status:</label>
-                                                    <div class="col-md-6">
-                                                        <select class="form-control nav">
-                                                            <option value="">Full Deivery</option>
-                                                            <option value="delivery">Partial Delivery</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-										</div>
-                                        <div class="row">
-                                            <div class="col-lg-2 col-md-2 col-sm-2"></div>
-                                            <div class="col-lg-8 col-md-8 col-sm-8 ">
-                                                <div class="select-pane " id="delivery">
-                                                    <div class="form-group">
-                                                        <label class="col-md-6 control">Quantity Delivered:</label>
-                                                        <div class="col-md-5">
-                                                            <input class="form-control" type="text" name="" placeholder="2">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-											</div>
-										<div class="row">
-                                            <div class="col-lg-2 col-md-2 col-sm-2"></div>
-                                            <div class="col-lg-8 col-md-8 col-sm-8 ">
-                                                <div class="select-pane" id="delivery">
-                                                    <div class="form-group">
-                                                        <label class="col-md-6 control">Remaining Quantity: </label>
-                                                        <div class="col-md-5">
-                                                            <p><b>1</b></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-										<div class="row">
-											<div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="col-md-5 control">Remarks :</label>
-                                                    <div class="col-md-7">
-                                                        <input id="" name="name" type="text" class="form-control">
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-										</div>
-                                    </div>
-										<div class="panel-footer" align="center">
-											<input type="submit" class="btn btn-success" value="Add" />
-											<input type="reset" class="btn btn-warning" value="Clear" />
-										</div>
-							</form>
-						</div>
+			 <div class="modal fade displaycontent" id="resolve_coffee" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+							<?php include('Modals/CoffeeReturns_Modals.php'); ?>
+				
+
 					</div>
-				</div>
+				
 		<!--modal for machine returns-->
 				<div class="modal fade" id="resolve_machine" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
 							<div class="modal-dialog modal-md">
@@ -632,7 +511,7 @@
 				</div>
 		<!--modal for add coffee returns-->
 				<div class="modal fade" id="add_coffee_return" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-									<div class="modal-dialog modal-md">
+							<div class="modal-dialog modal-md">
 										<div class="panel panel-primary">
 											<div class="panel-heading">
 												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -719,7 +598,7 @@
 												</div>
 									</form>
 								</div>
-							</div>
+							</div>		
 						</div>
 			<!--modal for add machine returns-->
 						<div class="modal fade" id="add_machine_return" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
@@ -796,10 +675,11 @@
 							</div>
 						</div>
         </div>
-    </div>
+
+
 </body>
 <!--   Core JS Files   -->
-<script src="../assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
 <script src="../assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
 <script src="../assets/js/datepicker.js" type="text/javascript"></script>
@@ -828,20 +708,52 @@ $(document).ready(function() {
     } );
 
 
-	$('table tbody tr  td').on('click', function() {
-		$("#myModal").modal("show");
-		$("#txtfname").val($(this).closest('tr').children()[0].textContent);
-		$("#txtlname").val($(this).closest('tr').children()[1].textContent);
-	});
-	$('#datePicker')
-		.datepicker({
-			format: 'mm/dd/yyyy'
-		})
-		.on('changeDate', function(e) {
-			$('#eventForm').formValidation('revalidateField', 'date');
-		});
 });
 
+
+</script>
+<script>
+$(document).ready(function(){
+    
+    $(document).on('click', '#getDetails', function(e){
+        
+        e.preventDefault();
+        var id = $(this).data('id');   // it will get id of clicked row
+
+        
+        jQuery.ajax({
+            method: 'GET',
+            type: 'ajax',
+			dataType: 'json',
+            url: '<?=base_url()?>SalesReturns/getDetails/' + id ,
+			
+			
+			/*success: function (response) {
+                $(".displaycontent").html(response);
+				
+				$('#resolve_coffee').modal('show');
+                  
+             }*/
+			
+			 success: function(response)
+				{
+					$('#resolve_coffee').modal('show');
+					$('.displaycontent').html(response);
+
+				},
+				error: function (jqXHR, textStatus, errorThrown)
+				{
+					alert('Error get data from ajax');
+				}
+           
+            
+                });
+
+        
+        
+    });
+    
+});
 
 </script>
 <script type="text/javascript">

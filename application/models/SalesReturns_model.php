@@ -11,7 +11,7 @@
 			
 		}
 		public function get_coffee_return(){
-			$query = $this->db->query("SELECT * FROM client_coffreturn NATURAL JOIN client_delivery NATURAL JOIN contracted_client WHERE returned='Yes' ");
+			$query = $this->db->query("SELECT * FROM client_coffreturn NATURAL JOIN client_delivery NATURAL JOIN contracted_client NATURAL JOIN contracted_po NATURAL JOIN coffee_blend WHERE returned='Yes' ");
 			return $query->result();
 			
 		}
@@ -25,6 +25,19 @@
 			return $query->result();
 			
 		}
+		public function getDetailsCoffee($id){
+			$query = $this->db->query("SELECT blend FROM contracted_client NATURAL JOIN contracted_po NATURAL JOIN coffee_blend WHERE client_id='$id' ");
+			 return $query->result_array();
+			
+			
+			/* if ($query->num_rows() > 0 ) {
+				 return $query->result();
+			   } else {
+				 return FALSE;
+			   }*/
+			
+		}
+		
 	}
 
 ?>
