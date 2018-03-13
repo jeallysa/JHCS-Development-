@@ -347,9 +347,9 @@ thead th {
                                                 <th><b>Address</b></th>
                                                 <th><b>Email</b></th>
                                                 <th><b>Telephone No.</b></th>
+                                                <th class="disabled-sorting"><b>Edit</b></th>
                                                 <th><b class="pull-left">Actions</b></th>
                                                 <th><b class="pull-left">Contract</b></th>
-                                                <th class="disabled-sorting"><b>Edit</b></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -371,6 +371,9 @@ thead th {
                                                 <td><?php echo $row->client_email; ?></td>
                                                 <td><?php echo $row->client_contact; ?></td>
                                                  <td>
+                                                                <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
+                                                </td>
+                                                 <td>
                                                     <div class="onoffswitch">
                                                         <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
                                                         <label class="onoffswitch-label" for="myonoffswitch">
@@ -379,10 +382,7 @@ thead th {
                                                         </label>
                                                     </div>
                                                 </td>
-                                                <td><a href="./addcontract.html" class="btn btn-sm btn-round" size="25">Contract</a></td>
-                                                 <td>
-                                                                <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
-                                                </td>
+                                                <td><a href="<?php echo base_url(); ?>adminAddContract" class="btn btn-sm btn-round" size="25">Contract</a></td>
                                             </tr>
 
                                             <?php

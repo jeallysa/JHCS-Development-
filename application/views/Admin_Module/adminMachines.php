@@ -232,6 +232,12 @@
                                <div class="row">
                                     <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
+                                            <label for="email">Machine Serial Number</label>
+                                            <input class="form-control" type="text" name="mach_serial" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
                                             <label for="email">Brewer</label>
                                             <input class="form-control" type="text" name="brewer" required>
                                         </div>
@@ -298,6 +304,12 @@
                         <form action="#" method="post" accept-charset="utf-8">
                             <div class="modal-body" style="padding: 5px;">
                                  <div class="row">
+                                     <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Machine Serial Number</label>
+                                            <input class="form-control" type="text" name="mach_serial" required>
+                                        </div>
+                                    </div>
                                     <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
                                             <label for="email">Brewer</label>
@@ -413,6 +425,7 @@
                                     <a class="btn btn-success" data-toggle="modal" data-target="#stock" data-original-title style="float: right">Add New Machine</a>
                                     <table id="example" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
+                                            <th><b class="pull-left">Machine Serial Number</b></th>
                                             <th><b class="pull-left">Machine</b></th>
                                             <th><b class="pull-left">Type</b></th>
                                             <th><b class="pull-left">Reorder Level</b></th>
@@ -428,6 +441,7 @@
                                                 foreach ($data['machines'] as $row) {
                                              ?>
                                              <tr>
+                                                 <td><?php echo $row->mach_serial; ?></td>
                                                  <td><?php echo $row->brewer; ?></td>
                                                  <td><?php echo $row->brewer_type; ?></td>
                                                  <td><?php echo $row->mach_reorder; ?></td>

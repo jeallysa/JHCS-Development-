@@ -400,8 +400,8 @@
                                                     <th><b>Address</b></th>
                                                     <th><b>Email</b></th>
                                                     <th><b>Cellphone No.</b></th>
-                                                    <th><b class="pull-left">Actions</b></th>
                                                     <th class="disabled-sorting"><b>Edit</b></th>
+                                                    <th><b class="pull-left">Actions</b></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -420,6 +420,10 @@
                                                         <td><?php echo $row->u_address; ?></td>
                                                         <td><?php echo $row->u_email; ?></td>
                                                         <td>0<?php echo $row->u_contact; ?></td>
+                                                        
+                                                        <td>
+                                                                    <a href='#' class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
+                                                        </td>
                                                          <td>
                                                             <div class="onoffswitch">
                                                                 <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
@@ -428,9 +432,6 @@
                                                                     <span class="onoffswitch-switch"></span>
                                                                 </label>
                                                             </div>
-                                                        </td>
-                                                        <td>
-                                                                    <a href='#' class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
                                                         </td>
                                                     </tr>
 

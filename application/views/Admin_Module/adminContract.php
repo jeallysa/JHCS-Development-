@@ -180,7 +180,7 @@
                                                             </select>
                                                         </div>
                                                       
-                                                       <p><h6><b>Machine Specifications</b></h6>
+                                                       <p><h6><b>Machine:</b></h6>
                                                      <div class="form-group row">
                                                         <div for="example-number-input" class="col-2 col-form-label">
                                                             <label for="type">Brewer</label>
@@ -193,50 +193,6 @@
                                                             <input class="form-control" type="textarea" value="Double Cup Espresso" id="example-number-input">
                                                         </div>
                                                     </div>
-                                                        <div class="form-group row">
-                                                        <div for="example-number-input" class="col-2 col-form-label">
-                                                            <label for="type">Storage Capacity (Grams)</label>
-                                                            <input class="form-control" type="number" value="300" id="example-number-input">
-                                                        </div>
-                                                    </div>
-                                                        <div class="form-group row">
-                                                        <div for="example-number-input" class="col-2 col-form-label">
-                                                            <label for="type">No. of Cups before refilling</label>
-                                                            <input class="form-control" type="number" value="30-35" id="example-number-input">
-                                                        </div>
-                                                    </div>
-                                                       <div class="form-group row">
-                                                        <div for="example-number-input" class="col-2 col-form-label">
-                                                            <label for="type">Dimensions(mm)</label>
-                                                            <input class="form-control" type="number" value="300x395x455" id="example-number-input">
-                                                        </div>
-                                                    </div>
-                                                      <p><div class="form-group row">
-                                                        <div for="example-number-input" class="col-2 col-form-label">
-                                                            <label for="type">Weight (kg)</label>
-                                                            <input class="form-control" type="number" value="15" id="example-number-input">
-                                                        </div>
-                                                    </div>
-                                                        <div class="form-group row">
-                                                        <div for="example-number-input" class="col-2 col-form-label">
-                                                            <label for="type">Voltage</label>
-                                                            <input class="form-control" type="number" value="220-240" id="example-number-input">
-                                                        </div>
-                                                    </div>
-                                                        <div class="form-group row">
-                                                        <div for="example-number-input" class="col-2 col-form-label">
-                                                            <label for="type">Watts</label>
-                                                            <input class="form-control" type="number" value="1600" id="example-number-input">
-                                                        </div>
-                                                    </div>
-                                                      <div class="form-group row">
-                                                        <div for="example-number-input" class="col-2 col-form-label">
-                                                            <label for="type">User Interface</label>
-                                                            <input class="form-control" type="textarea" value="LCD Digital Display" id="example-number-input">
-                                                        </div>
-                                                    </div>
-                                                      
-                                                      
                                                     <div class="row">
                                                         <div class="panel-footer" style="margin-bottom:-14px;">
                                                             <input type="submit" class="btn btn-success" value="Add" style="float: right;" />
@@ -252,7 +208,7 @@
                                 </div>
         
             <div class="content">
-                <a href="clients.php" class="btn btn-success navbar-btn pull-left">
+                <a href="<?php echo base_url(); ?>adminClients" class="btn btn-success navbar-btn pull-left">
         <span class="glyphicon glyphicon-chevron-left"></span>
       </a>
                 <div class="container-fluid">
@@ -340,7 +296,7 @@
                                     <div class="card card-profile">
                                         <div class="content">
                                             <table class="card-content" cellspacing="0" width="90%" align="center">
-                                                <h6 class="card-title">Machine Specifications</h6>
+                                                <h6 class="card-title">Machine:</h6>
                                                 <tbody>
                                                     <tr>
                                                         <td><b>Brewer:</b></td>
@@ -349,34 +305,6 @@
                                                     <tr>
                                                         <td><b>Type:</b></td>
                                                         <td align="left">Double Cup Espresso</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Storage Capacity:</b></td>
-                                                        <td align="left">300g</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>No. of Cups before refilling</b></td>
-                                                        <td align="left">30-35</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Dimension:</b></td>
-                                                        <td align="left">300 x 395 x 455 mm</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Weight:</b></td>
-                                                        <td align="left">15kg</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Voltage:</b></td>
-                                                        <td align="left">220V -240V</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Watts:</b></td>
-                                                        <td align="left">1600 W</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>User Interface:</b></td>
-                                                        <td align="left">LCD Digital Display</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
