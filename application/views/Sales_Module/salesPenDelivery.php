@@ -170,7 +170,7 @@
                                  <div class="card-content">
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="purchaseorder">
-                                            <table id="" class="display hover order-column cell-border" cellspacing="0" width="100%">
+                                            <table id="fresh-datatables" class="display hover order-column cell-border" cellspacing="0" width="100%">
                                                 <thead>
                                                     <th><b class="pull-left">Purchase Order No.</b></th>
                                                     <th><b class="pull-left">Client</b></th>
@@ -194,54 +194,41 @@
                                                     <tr>
                                                         <td><?php echo $row->contractPO_id; ?></td>
                                                         <td><?php echo $row->client_company; ?></td>
-                                                        <td>--</td>
-                                                        <td>--</td>
-                                                        <td>--</td>
-                                                        <td>--</td>
-                                                        <td>--</td>
-                                                        <td>--</td>
-                                                        <td>--</td>
+                                                        <td><?php echo $row->blend_id; ?></td>
+                                                        <td><?php echo $row->blend; ?></td>
+                                                        <td><?php echo $row->package_type; ?></td>
+                                                        <td><?php echo $row->package_size; ?> g</td>
+                                                        <td><?php echo $row->contractPO_qty; ?></td>
+                                                        <td>Php <?php echo number_format($row->blend_price,2); ?></td>
+                                                        <td><?php 
+                                                                $price = $row->blend_price;
+                                                                $qty = $row->contractPO_qty;
+                                                                $amount = $price * $qty;
+                                                                echo 'Php '.number_format($amount,2);
+                                                             ?>
+                                                        </td>
                                                         <td><?php echo $row->contractPO_date; ?></td>
-                                                        <td><?php echo $row->delivery_stat; ?></td>
+                                                        <td><?php 
+                                                                $dbStat = $row->delivery_stat; 
+                                                                $pending = 'pending';
+                                                                $partial = 'partial';
+                                                                if (strcmp($dbStat, $pending) == 0) {
+                                                                    echo '<center>
+                                                                    <div class=" btn btn-danger btn-xs" data-toggle="modal" data-target="#pending" data-original-title>pending</div>
+                                                                </center>';
+                                                                } 
+                                                                else {
+                                                                    echo '<center>
+                                                                    <div class=" btn btn-warning btn-xs" data-toggle="modal" data-target="#pending" data-original-title>partial</div>
+                                                                </center>';
+                                                                }
+                                                            ?>
+                                                        </td>
                                                     </tr>
                                                     
                                                     <?php
                                                         }
                                                     ?>
-                                                    <tr>
-                                                        <td>PO2563</td>
-                                                        <td>Mario's</td>
-                                                        <td>F11489</td>
-                                                        <td>Farmer's Blend Ground Coffee</td>
-                                                        <td>Clear</td>
-                                                        <td>500 g</td>
-                                                        <td>80</td>
-                                                        <td>320.00</td>
-                                                        <td>25,600.00</td>
-                                                        <td>November 24, 2017</td>
-                                                        <td>
-                                                            <center>
-                                                                <div class=" btn btn-primary btn-xs" data-background-color="red" data-toggle="modal" data-target="#pending" data-original-title>pending</div>
-                                                            </center>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>PO2564</td>
-                                                        <td>Bloomfield</td>
-                                                        <td>F11489</td>
-                                                        <td>Farmer's Blend Ground Coffee</td>
-                                                        <td>Clear</td>
-                                                        <td>500 g</td>
-                                                        <td>80</td>
-                                                        <td>320.00</td>
-                                                        <td>25,600.00</td>
-                                                        <td>November 24, 2017</td>
-                                                        <td>
-                                                            <center>
-                                                                <div class=" btn btn-warning btn-xs" data-toggle="modal" data-target="#pending" data-original-title>partial</div>
-                                                            </center>
-                                                        </td>
-                                                    </tr>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -261,7 +248,7 @@
                                                     <th><b class="pull-left">Total Amount</b></th>
                                                     <th><b>Received By</b></th>
                                                     <th>Remarks</th>
-                                                    <th></th>
+                                                    <th>Action</th>
                                                 </thead>
                                                 <tbody>
                                                     <?php 
@@ -271,47 +258,42 @@
                                                     <tr>
                                                         <td><?php echo $row->client_dr; ?></td>
                                                         <td><?php echo $row->client_invoice; ?></td>
-                                                        <td>--</td>
                                                         <td><?php echo $row->contractPO_id; ?></td>
                                                         <td><?php echo $row->client_deliverDate; ?></td>
                                                         <td><?php echo $row->client_company; ?></td>
-                                                        <td>--</td>
-                                                        <td>--</td>
+                                                        <td><?php echo $row->blend; ?></td>
+                                                        <td><?php echo $row->package_type; ?></td>
+                                                        <td><?php echo $row->package_size; ?> g</td>
                                                         <td><?php echo $row->contractPO_qty; ?></td>
-                                                        <td>--</td>
-                                                        <td>--</td>
+                                                        <td>Php <?php echo number_format($row->blend_price,2); ?></td>
+                                                        <td><?php 
+                                                                $price = $row->blend_price;
+                                                                $qty = $row->contractPO_qty;
+                                                                $amount = $price * $qty;
+                                                                echo 'Php '.number_format($amount,2);
+                                                             ?>
+                                                        </td>
                                                         <td><?php echo $row->client_receive; ?></td>
-                                                        <td><?php echo $row->payment_remarks; ?></td>
+                                                        <td><?php 
+                                                                $dbStat = $row->payment_remarks; 
+                                                                $paid = 'paid';
+                                                                $unpaid = 'unpaid';
+                                                                if (strcmp($dbStat, $paid) == 0) {
+                                                                    echo 'paid';
+                                                                } 
+                                                                else {
+                                                                    echo '<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#drbalance">Unpaid</button>';
+                                                                }
+                                                            ?>
+                                                        </td>
                                                         <td>
-                                                            <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#add_coffee_return">Add Return</button>
+                                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#return_coffee">Return</button>
                                                         </td>
                                                     </tr>
                                                     
                                                     <?php
                                                         }
                                                     ?>
-                                                    <tr>
-                                                        <td>1946</td>
-                                                        <td>3246</td>
-                                                        <td>PO2562</td>
-                                                        <td>03-Nov-16</td>
-                                                        <td>Bloomfield</td>
-                                                        <td>Farmers Ground</td>
-                                                        <td>Brown</td>
-                                                        <td>250g</td>
-                                                        <td>175</td>
-                                                        <td>160</td>
-                                                        <td>Php 28,000.00</td>
-                                                        <td>Robin Hod</td>
-                                                        <td>
-                                                            <center>
-                                                                <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#drbalance">Unpaid</button>
-                                                            </center>
-                                                        </td>
-                                                        <td>
-                                                            <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#add_coffee_return">Add Return</button>
-                                                        </td>
-                                                    </tr>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -624,6 +606,53 @@
                     </div>
                 </div>
             </div>
+
+            <!-- modal coffee returns -->
+            <div class="modal fade" id="return_coffee" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title" id="contactLabel"><center>Return Delivered Item/s</center> </h4>
+                        </div>
+                        <div class="modal-body" style="padding: 5px;">
+                            <div class="card-block">
+                                <form action="#" method="post" accept-charset="utf-8">
+                                    <div class="modal-body" style="padding: 5px;">
+                                        <div class="row">
+                                            <div class="col-lg-12" style="padding-bottom: 20px;">
+                                                <div class="form-group label-floating">
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col-md-6 col-sm-6 offset-3">
+                                                                <div class="form-group label-floating">
+                                                                    <label for="email">Date Returned:</label>
+                                                                    <input class="form-control" type="date" name="">
+                                                                </div>
+                                                                <div class="form-group label-floating">
+                                                                    <label for="email">Quantity Returned:</label>
+                                                                    <input class="form-control" type="number" name="">
+                                                                </div>
+                                                                <div class="form-group label-floating">
+                                                                    <label for="email">Remarks:</label>
+                                                                    <input class="form-control" type="text" name="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <center>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-success">Save</button>
+                                                </center>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
@@ -649,24 +678,28 @@
 <script src="../assets/js/demo.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-    $('table.display').DataTable({
-        "ordering": false
+     
+    $('table.display').DataTable( {
+        scrollCollapse: true,
+        
+    } );
 
 
+    $('table tbody tr  td').on('click', function() {
+        $("#myModal").modal("show");
+        $("#txtfname").val($(this).closest('tr').children()[0].textContent);
+        $("#txtlname").val($(this).closest('tr').children()[1].textContent);
     });
-
-
     $('#datePicker')
-
         .datepicker({
             format: 'mm/dd/yyyy'
         })
         .on('changeDate', function(e) {
-            // Revalidate the date field
             $('#eventForm').formValidation('revalidateField', 'date');
         });
-
 });
+
+
 </script>
 <script type="text/javascript">
 $(document).ready(function() {

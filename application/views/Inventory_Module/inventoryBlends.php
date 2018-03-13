@@ -234,7 +234,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         <table id="fresh-datatables" class="table table-striped table-hover responsive" cellspacing="0" width="100%">
                                                         <thead>
                                                           <tr>
-                                                            <th><b>No.</b></th>
                                                             <th><b>Client</b></th>
                                                             <th><b>Date</b></th>
                                                             <th><b>Quantity</b></th>
@@ -249,7 +248,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
                                            echo '<tr>' ,
-                                                '<td>'  . $object->walkin_id. '</td>' ,
                                                 '<td>'  . $object->customer  . '</td>' ,
                                                 '<td>'  . $object->walkin_date  . '</td>' ,
                                                 '<td>'  . $object->walkin_qty  . ' pc/s</td>' ;
@@ -268,7 +266,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
                                            echo '<tr>' ,
-                                                '<td>'  . $object->contractPO_id. '</td>' ,
                                                 '<td>'  . $object->client_company  . '</td>' ,
                                                 '<td>'  . $object->contractPO_date  . '</td>' ,
                                                 '<td>'  . $object->contractPO_qty  . ' pc/s</td>' ;

@@ -14,7 +14,8 @@ class Admin_Inventory_Report_Model extends CI_model
 
 	function fetch_data(){
 		$count = $this->db->count_all_results('raw_coffee');
-		$query_append = "SELECT c.transact_date, d.sup_company";
+		$query_append = "SELECT a.*, b.* FROM
+							(SELECT c.trans_id AS main_id, c.transact_date AS transact_date, d.sup_company AS sup_company";
 
 		for ($i = 0; $i <= $count; $i++){
 			$query_append .= ", SUM(CASE
@@ -22,7 +23,7 @@ class Admin_Inventory_Report_Model extends CI_model
 							        ELSE NULL
 							    END) AS coff".$i."";
 		}
-		$query_append .= " FROM raw_coffee a JOIN trans_raw b JOIN inv_transact c JOIN supplier d ON a.raw_id = b.raw_coffeeid AND b.trans_id = c.trans_id AND c.supplier_id = d.sup_id GROUP BY c.trans_id;";
+		$query_append .= " FROM raw_coffee a JOIN trans_raw b JOIN inv_transact c JOIN supplier d ON a.raw_id = b.raw_coffeeid AND b.trans_id = c.trans_id AND c.supplier_id = d.sup_id GROUP BY c.trans_id) a JOIN (SELECT a.trans_id AS main_id, SUM(CASE a.quantity WHEN NULL THEN NULL ELSE a.quantity END) AS packaging FROM trans_pack a JOIN packaging b ON a.package_id = b.package_id GROUP BY a.trans_id) b ON a.main_id = b.main_id GROUP BY a.main_id;";
 
 
 		$query = $this->db->query($query_append);

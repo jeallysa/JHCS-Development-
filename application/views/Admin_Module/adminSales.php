@@ -53,7 +53,7 @@
                     <li>
                         <a href="./accounts.php">
                             <i class="material-icons">account_circle</i>
-                            <p>User Accounts</p>
+                            <p>Accounts</p>
                         </a>
                     </li>
                     <li>

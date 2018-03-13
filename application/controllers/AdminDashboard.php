@@ -9,6 +9,7 @@
 		public function index()
 		{ 
 			$this->load->model('AdminDashboard_model');
+            $this->AdminDashboard_model->security();
             $rawcoffeeStock = $this->AdminDashboard_model->get_rawcoffeestock();
             $data1['rawcoffeestock'] = $rawcoffeeStock[0]->rawstock;
             $packagingStock = $this->AdminDashboard_model->get_packagingstock();
