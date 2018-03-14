@@ -16,7 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $data['supplier'] = $this->inventorySupplierList_model ->retrieveSupplier();
             
             
-			$this->load->view('Inventory_Module/inventorySupplierList' ,$data);
+			$this->load->view('inventorySupplierList' ,$data);
             
             
             

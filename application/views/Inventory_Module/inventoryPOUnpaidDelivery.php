@@ -38,7 +38,7 @@
                                                     </thead>
                                                     <tbody>
                                            <?php
-                                              $retrieveDetails ="SELECT * FROM test_supp_delivery left join test_supp_po_ordered using(test_supp_po_ordered_id) left join test_items on item= item_name  where test_supp_po_ordered.supp_po_id = $temp" ;
+                                              $retrieveDetails ="SELECT * FROM supp_delivery join supp_po_ordered using(supp_po_ordered_id) join items on item = item_name  where supp_po_ordered.supp_po_id = $temp" ;
                                               $query = $this->db->query($retrieveDetails);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
@@ -159,8 +159,9 @@
                                                     <tbody>
                                                                          
                                             <?php
-                                              $retrieveDetails ="SELECT * FROM test_supp_delivery left join test_supp_po_ordered using(test_supp_po_ordered_id) left join test_items on item= item_name 
-                                              where test_supp_po_ordered.supp_po_id = $temp" ;
+                                              $retrieveDetails ="SELECT * FROM supp_delivery left join supp_po_ordered using(supp_po_ordered_id) left join items on item= item_name 
+                                              where supp_po_ordered.supp_po_id = $temp" ;
+               
                                               $query = $this->db->query($retrieveDetails);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
@@ -234,6 +235,7 @@
                                                             <table class="table table-striped" id="table-mutasi">
                                                                 <thead>
                                                                     <tr>
+                                                                        <th>Date Received</th>
                                                                         <th>Item Name</th>
                                                                         <th>Type</th>
                                                                         <th>Quantity/ Original Weight(g)</th>
@@ -246,13 +248,14 @@
                                                                 <tbody>
     
                                             <?php
-                                              $retrieveDetails ="SELECT * FROM test_supp_delivery left join test_supp_po_ordered using(test_supp_po_ordered_id) left join test_items  on item= item_name  
-                                              where test_supp_po_ordered.supp_po_id = $temp" ;
+                                              $retrieveDetails ="SELECT * FROM supp_delivery left join supp_po_ordered using(supp_po_ordered_id) left join items  on item= item_name  
+                                              where supp_po_ordered.supp_po_id = $temp" ;
                
                                               $query = $this->db->query($retrieveDetails);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
                                            echo '<tr>' ,
+                                                '<td>'  . $object->date_received   . '</td>' ,
                                                 '<td>'  . $object->item_name   . '</td>' ,
                                                 '<td>'  . $object->type  . '</td>' ,
                                                 '<td>'  . $object->qty  . '</td>' ,
@@ -342,7 +345,7 @@
                                         <thead>
                                             <th><b class="pull-left">PO #</b></th>
                                             <th><b class="pull-left">Date Ordered</b></th>
-                                            <th><b class="pull-left">Date Received</b></th>
+                                            
                                             <th><b class="pull-left">Supplier</b></th>
                                        
                                        
@@ -363,7 +366,7 @@
                                            echo '<tr>' ,
                                                 '<td>'  . $object->supp_po_id. '</td>' ,
                                                 '<td>'  . $object->suppPO_date   . '</td>' ,
-                                                '<td>'  . $object->date_received  . '</td>' ,
+                                               
                                                 '<td>'  . $object->sup_company  . '</td>';
 												                      
                                              ?>

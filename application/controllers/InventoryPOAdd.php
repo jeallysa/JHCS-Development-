@@ -19,15 +19,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $data['suppliersItem'] = $this->inventoryPOAdd_model ->retrieveItems();
             $data['truckingFee'] = $this->inventoryPOAdd_model->retrieveTruckingFee();
             
-			$this->load->view('Inventory_Module/inventoryPOAdd', $data);
+			$this->load->view('inventoryPOAdd', $data);
             
 		}
+        
+        
+        
+        
 //put inside the form validation. dito muna to.
      public function insertSupplierToTemp(){
          $dataInsert = array("supp_name" => $this->input->post("dropdown"),
                              "date" => $this->input->post("date"),
                              "trucking_fee" => $this->input->post("truckingFee"),
-                             "credit_term" => $this->input->post("creditTerms")
+                             "credit_term" => $this->input->post("creditTerms"),
                             );
          
          $this->inventoryPOAdd_model->insertChosenSupplier($dataInsert);

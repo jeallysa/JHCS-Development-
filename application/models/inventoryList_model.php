@@ -20,7 +20,7 @@
   
   function retrieveCategory(){
       
-     $query = $this->db->query('Select * from test_category');
+     $query = $this->db->query('Select * from category');
             
       if($query->num_rows() > 0){
           return $query-> result();

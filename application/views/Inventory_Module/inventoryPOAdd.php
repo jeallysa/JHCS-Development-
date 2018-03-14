@@ -54,7 +54,7 @@
                                                     </div>
                                                     <div class="card-content">
                                                         
-                                                        <form method = "post" action ="<?php echo base_url(); ?>inventoryPOAdd/insertSupplierToTemp">
+                                                        <form method = "post" action ="<?php echo base_url(); ?>InventoryPOAdd/insertSupplierToTemp">
                                                             <div class="row">
                                                                 <div class="col-md-12">
                                                                     <div class="form-group label-floating">
@@ -109,7 +109,7 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <button class ="print pull-right"> Generate PDF</button>
-                                                <form method = "post" action ="inventoryPOAdd/insertOrder" id ="toBePrinted"> 
+                                                <form method = "post" action ="InventoryPOAdd/insertOrder" id ="toBePrinted"> 
                                                     
                                                    
                                                     <div >
@@ -152,13 +152,13 @@
                                                                         </select>
                                                                     </td>
                                                                     <td class="col-sm-3">
-                                                                        <input type="text" class="form-control" name=" <?php echo "qty[]" ?>"  />
+                                                                        <input type="number" class="form-control" min='1' name=" <?php echo "qty[]" ?>"  />
                                                                     </td>
                                                                     <td class="col-sm-3">
-                                                                        <input type="text" class="form-control" name=""  />
+                                                                        <input type="text" class="form-control" name=""  id="" readonly/>
                                                                     </td>
                                                                     <td class="col-sm-3">
-                                                                        <input type="text"  class="form-control" name="" />
+                                                                        <input type="text"  class="form-control" name="" id="" readonly/>
                                                                     </td>
                                                                   
                                                                 </tr>
@@ -196,12 +196,12 @@
                                                                     
                                                                     
                                                                     <td></td>
-                                                                    <td><center>5510.00</center></td>
+                                                                    <td><center><b><input type="text"  class="form-control" name="" id="" readonly value="xxx"/></b></center></td>
                                                                 </tr>
                                                                 
                                                                 <tr>
                                                                     <td><b>Total Grams</b></td>
-                                                                    <td><center>1102</center></td>
+                                                                    <td><center><b><input type="text"  class="form-control" name="" id="" readonly value="xxx"/></b></center></td>
                                                                  
                                                                     <td></td>
                                                                     <td></td>
@@ -212,7 +212,7 @@
                                                                     <td></td>
                                                                
                                                                     <td><center><b>Sub total</b></center></td>
-                                                                    <td><center><b>20510.00</b></center></td>
+                                                                    <td><center><b><input type="text"  class="form-control" name="" id="" readonly value="xxx"/></b></center></td>
                                                                 </tr>
                                                                 
                                                                 <tr>
@@ -220,7 +220,7 @@
                                                                     <td> </td>
                                                                
                                                                     <td><center><b>Amount Due</b></center></td>
-                                                                    <td><center><b>20510.00</b></center></td>
+                                                                    <td><center><b><input type="text"  class="form-control" name="" id=""  readonly value="xxx"/></b></center></td>
                                                                 </tr>
                                                             </tfoot>
                                                         </table>

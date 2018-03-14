@@ -46,8 +46,8 @@
                                                 
                                                 
                                         <?php
-                                              $retrieveDetails ="SELECT * FROM test_supp_delivery left join test_supp_po_ordered using(test_supp_po_ordered_id) left join test_items on item= item_name
-                                              where test_supp_po_ordered.supp_po_id = $temp" ;
+                                              $retrieveDetails ="SELECT * FROM supp_delivery left join supp_po_ordered using(supp_po_ordered_id) left join items on item= item_name
+                                              where supp_po_ordered.supp_po_id = $temp" ;
                                               $query = $this->db->query($retrieveDetails);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
