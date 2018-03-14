@@ -2,15 +2,14 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url(); ?>assets/img/apple-icon.png"/>
     <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/img/favicon.png"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Inventory Stocks</title>
+    <title>Inventory Stickers</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
@@ -26,7 +25,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' type='text/css'>
     <link rel="shortcut icon" href="favicon.ico">
 </head>
-
 <body>
     <div class="wrapper">
         <div class="sidebar" data-color="blue" data-image="<?php echo base_url(); ?>assets/img/sidebar-0.jpg">
@@ -102,6 +100,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
+                        <a class="navbar-brand" href="#"> </a>
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
@@ -135,7 +134,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-sm-12">
                             <div class="card card-nav-tabs">
                                 <div class="card-header" data-background-color="blue">
                                     <div class="nav-tabs-navigation">
@@ -148,29 +147,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
-                                                <span></span>
-                                                <li class="">
+                                                <li>
                                                     <a href="<?php echo base_url(); ?>inventoryBlends">
                                                         <i class="material-icons">opacity</i>Blends
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
-                                                <span></span>
                                                 <li>
                                                     <a href="<?php echo base_url(); ?>inventoryPackaging">
                                                         <i class="material-icons">local_mall</i>Packaging
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
-                                                <span></span>
                                                 <li class="active">
-                                                    <a href="<?php echo base_url(); ?>inventoryStickers">
+                                                    <a href="#invstickers" data-toggle="tab">
                                                         <i class="material-icons">wallpaper</i>Stickers
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
-                                                <span></span>
-                                                <li class="">
+                                                <li>
                                                     <a href="<?php echo base_url(); ?>inventoryMachines">
                                                         <i class="material-icons">local_laundry_service</i>Machines
                                                         <div class="ripple-container"></div>
@@ -181,34 +176,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </div>
                                 </div>
                                 <div class="card-content">
-                                    <table id="example" class="table hover order-column" cellspacing="0" width="100%">
-                                        <thead>
-                                            <th><b class="pull-left">Sticker No.</b></th>
-                                            <th><b class="pull-left">Sticker</b></th>
-                                            <th><b class="pull-left">Reorder Level (per pc)</b></th>
-                                            <th><b class="pull-left">Stock Limit (per pc)</b></th>
-                                            <th><b class="pull-left">Supplier</b></th>
-                                            <th><b class="pull-left">Number of Stocks (per pc)</b></th>
-                                            <th><b class="pull-left">Cue Card</b></th>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                                if($fetch_data->num_rows() > 0){
-                                                    foreach ($fetch_data -> result() as $row)
-                                            {
-                                            ?>
-                                            <tr>
-                                                <td><?php echo $row->sticker_id; ?></td>
-                                                <td><?php echo $row->sticker; ?></td>
-                                                <td><?php echo $row->sticker_reorder; ?></td>
-                                                <td><?php echo $row->sticker_limit; ?></td>
-                                                <td><?php echo $row->sup_company; ?></td>
-                                                <td><b><?php echo $row->sticker_stock; ?></b></td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#<?php echo $row->sticker_id; ?>">Details</button>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="invstickers">
+                                            <br>
+                                            <br>
+                                             <table id="" class="table hover order-column" cellspacing="0" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th><b class="pull-left">Sticker No.</b></th>
+                                                    <th><b class="pull-left">Sticker</b></th>
+                                                    <th><b class="pull-left">Reorder Level (per pc)</b></th>
+                                                    <th><b class="pull-left">Stock Limit (per pc)</b></th>
+                                                    <th><b class="pull-left">Supplier</b></th>
+                                                    <th><b class="pull-left">Number of Stocks (per pc)</b></th>
+                                                    <th><b class="pull-left">Cue Card</b></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php 
+                                                    if($fetch_data->num_rows() > 0){
+                                                        foreach ($fetch_data -> result() as $row)
+                                                    {
+                                                ?>
+                                                <tr>
+                                                    <td><?php echo $row->sticker_id; ?></td>
+                                                    <td><?php echo $row->sticker; ?></td>
+                                                    <td><?php echo $row->sticker_reorder; ?></td>
+                                                    <td><?php echo $row->sticker_limit; ?></td>
+                                                    <td><?php echo $row->sup_company; ?></td>
+                                                    <td><b><?php echo $row->sticker_stock; ?></b></td>
+                                                    <td><a class="btn btn-info" data-toggle="modal" data-target="#<?php echo $row->sticker_id; ?>" data-original-title style="float: right">View</a>
 
-                                                <!-- Modal -->
+                                                        <!-- Modal -->
                                                 <div class="modal fade" id="<?php echo $row->sticker_id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                   <div class="modal-dialog modal-lg">
                                                     <div class="panel panel-primary">
@@ -342,9 +341,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     </div>
                                                   </div>
                                                 </div>
-                                                </td>
-                                            </tr>
-                                            <?php
+                                            </td>
+                                                </tr>
+                                                <?php
                                                                 }
 
                                                             }
@@ -357,17 +356,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         }
 
                                                     ?>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                            </tbody>
+                                        </table>
+                                        </div>
+                                    </div>
+                                </div> 
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
 </body>
 <!--   Core JS Files   -->
+<!--
+    <script src="../assets/js/jquery-1.12.4.js" type="text/javascript"></script>
+-->
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/material.min.js" type="text/javascript"></script>
@@ -389,22 +398,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?php echo base_url(); ?>assets/js/jquery.datatables.js"></script>
 <script>
 $(document).ready(function() {
-    $('#fresh-datatables').DataTable({
+    $('table.table').DataTable({
         select: {
             style: 'single'
         }
 
     });
-    $('#datePicker')
-        .datepicker({
-            format: 'mm/dd/yyyy'
-        })
-        .on('changeDate', function(e) {
-            // Revalidate the date field
-            $('#eventForm').formValidation('revalidateField', 'date');
-        });
-
-
 });
 </script>
 <script>
@@ -430,5 +429,5 @@ $(document).ready(function() {
     
     }
 </script> 
-
+ 
 </html>
