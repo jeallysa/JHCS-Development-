@@ -261,7 +261,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         ?>  
 
                                         <?php
-                                              $retrieveDetails2 ="SELECT * FROM jhcs.client_machreturn NATURAL JOIN contracted_client where mach_id = '$row->mach_id';" ;
+                                              $retrieveDetails2 ="SELECT * FROM jhcs.client_machreturn NATURAL JOIN contracted_client WHERE mach_id = '$row->mach_id';" ;
                                               $query = $this->db->query($retrieveDetails2);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
@@ -285,13 +285,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 <div class="form-group">
                                                                     <label class="col-md-4 control">Total In :</label>
                                                                     <div class="col-md-4">
-                                                                        <p>- pieces</p>
+                                                                        <?php
+                                              $retrieveDetails3 ="SELECT SUM(mach_returnQty) AS totalQty FROM (SELECT * FROM jhcs.client_machreturn NATURAL JOIN contracted_client WHERE mach_id = '$row->mach_id') AS stickerIn;" ;
+                                              $query = $this->db->query($retrieveDetails3);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<p>'  . $object->totalQty  . ' pieces</p>' ;
+                                           }
+                                            }
+                                                ?>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="col-md-4 control">Total Out :</label>
                                                                     <div class="col-md-7">
-                                                                        <p>- pieces</p>
+                                                                        <?php
+                                              $retrieveDetails4 ="SELECT SUM(mach_qty) AS totalQty FROM (SELECT * FROM jhcs.machine_out NATURAL JOIN machine NATURAL JOIN contracted_client where mach_id = '$row->mach_id') AS stickerOut;" ;
+                                              $query = $this->db->query($retrieveDetails4);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<p>'  . $object->totalQty  . ' pieces</p>' ;
+                                           }
+                                            }
+                                                ?>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">

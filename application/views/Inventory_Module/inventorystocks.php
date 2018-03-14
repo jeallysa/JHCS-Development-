@@ -239,7 +239,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         </thead>
                                                         <tbody>
                                                             <?php
-                                              $retrieveDetails3 ="SELECT * FROM jhcs.company_returns NATURAL JOIN supplier where sup_returnItem = '$row->raw_id';" ;
+                                              $retrieveDetails3 ="SELECT * FROM jhcs.company_returns NATURAL JOIN supplier WHERE sup_returnItem = '$row->raw_id';" ;
                                               $query = $this->db->query($retrieveDetails3);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
@@ -257,7 +257,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         ?>
                                                             
                                                             <?php
-                                              $retrieveDetails4 ="SELECT raw_coffeeid, trans_id, raw_coffee, sup_company, transact_date, quantity FROM jhcs.trans_raw NATURAL JOIN inv_transact NATURAL JOIN raw_coffee NATURAL JOIN supplier where raw_coffee = '$row->raw_coffee';" ;
+                                              $retrieveDetails4 ="SELECT raw_coffeeid, trans_id, raw_coffee, sup_company, transact_date, quantity FROM jhcs.trans_raw NATURAL JOIN inv_transact INNER JOIN raw_coffee ON raw_coffeeid = raw_id NATURAL JOIN supplier where raw_coffee = '$row->raw_coffee';" ;
                                               $query = $this->db->query($retrieveDetails4);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
@@ -280,13 +280,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 <div class="form-group">
                                                                     <label class="col-md-4 control">Total In :</label>
                                                                     <div class="col-md-4">
-                                                                        <p>- grams</p>
+                                                                    <?php
+                                              $retrieveDetails5 ="SELECT SUM(quantity) AS totalQty FROM (SELECT raw_coffee, quantity FROM jhcs.trans_raw INNER JOIN raw_coffee ON raw_coffeeid = raw_id WHERE raw_coffee = '$row->raw_coffee') AS coffetrans;" ;
+                                              $query = $this->db->query($retrieveDetails5);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<p>'  . $object->totalQty  . ' grams</p>' ;
+                                           }
+                                            }
+                                                ?>
+                                                
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="col-md-4 control">Total Out :</label>
                                                                     <div class="col-md-7">
-                                                                        <p>- grams</p>
+                                                                        <?php
+                                              $retrieveDetails6 ="SELECT SUM(sup_returnQty) AS totalQty FROM (SELECT * FROM jhcs.company_returns NATURAL JOIN supplier WHERE sup_returnItem = '$row->raw_id') AS coffeeout;" ;
+                                              $query = $this->db->query($retrieveDetails6);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<p>'  . $object->totalQty  . ' grams</p>' ;
+                                           }
+                                            }
+                                                ?>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
