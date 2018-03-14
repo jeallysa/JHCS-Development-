@@ -56,7 +56,7 @@
            $this->db->update('supp_po_ordered', $data); 
          }
 
-      $query = $this->db->query('SELECT * FROM items join supp_po_ordered  on item= name join supp_po using (supp_po_id) where supp_PO_id ='.$supp_po_id.
+      $query = $this->db->query('SELECT * FROM items join supp_po_ordered  on item = item_name join supp_po using (supp_po_id) where supp_PO_id ='.$supp_po_id.
                 ' and supp_po_ordered.delivery_stat = 0');
           
     if($query->num_rows() > 0){
