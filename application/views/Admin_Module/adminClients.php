@@ -331,7 +331,7 @@ thead th {
                                     </h4>
                             </div>
                         <div class="card-content table-responsive">
-                              <a href="<?php echo base_url(); ?>adminNewClients" class="btn btn-success" data-original-title style="float: right"> Create New Account</a>
+                              <a href="<?php echo base_url(); ?>adminNewClients" class="btn btn-success" data-original-title style="float: right"> Create New Client</a>
                             <div class="col-md-12 col-md-offset-0">
                                 <div class="fresh-datatables">
                                     <!--  Available colors for the full background: full-color-blue, full-color-azure, full-color-purple, full-color-red, full-color-orange, full-color-purple, full-color-gray
@@ -371,7 +371,7 @@ thead th {
                                                 <td><?php echo $row->client_email; ?></td>
                                                 <td><?php echo $row->client_contact; ?></td>
                                                  <td>
-                                                                <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
+                                                                <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit<?php echo $row->client_id; ?>">Edit</a>
                                                 </td>
                                                  <td>
                                                     <div class="onoffswitch">
@@ -383,6 +383,78 @@ thead th {
                                                     </div>
                                                 </td>
                                                 <td><a href="<?php echo base_url(); ?>adminAddContract" class="btn btn-sm btn-round" size="25">Contract</a></td>
+                                                <div class="modal fade" id="edit<?php echo $row->client_id; ?>" tabindex="1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="panel panel-primary">
+                                                                    <div class="panel-heading">
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                                        <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign" ></span> Edit Account Information</h4>
+                                                                    </div>
+                                                                    <form action="<?php echo base_url(); ?>AdminClients/update" method="post" accept-charset="utf-8">
+                                                                          <div class="modal-body" style="padding-left: 100px;">
+                                                                             <div class="form-group row">
+                                                                                <div for="example-number-input" class="col-2 col-form-label">
+                                                                                    <label for="type">Company Name</label>
+                                                                                    <input class="form-control" name="comp_name" type="text" value="<?php echo $row->client_company; ?>" id="example-number-input">
+                                                                                </div>
+                                                                            </div>
+                                                                                
+                                                                                 <p><div class="form-group row">
+                                                                                <div for="example-number-input" class="col-2 col-form-label">
+                                                                                    <label for="type">Client Type</label>
+                                                                                    <input class="form-control" name="cli_type" type="text" value="<?php echo $row->client_type; ?>" id="example-number-input">
+                                                                                </div>
+                                                                            </div>
+                                                                            <h5> Contact Personnel </h5>
+                                                                                <div class="form-group row">
+                                                                                <div for="example-number-input" class="col-2 col-form-label">
+                                                                                    <label for="type">Last Name</label>
+                                                                                    <input class="form-control" name="last_name" type="text" value="<?php echo $row->client_lname; ?>" id="example-number-input">
+                                                                                </div>
+                                                                                <div for="example-number-input" class="col-2 col-form-label">
+                                                                                    <label for="type">First Name</label>
+                                                                                    <input class="form-control" name="first_name" type="text" value="<?php echo $row->client_fname; ?>" id="example-number-input">
+                                                                                </div>
+                                                                            </div>
+                                                                                <div class="form-group row">
+                                                                                <div for="example-number-input" class="col-2 col-form-label">
+                                                                                    <label for="type">Address</label>
+                                                                                    <input class="form-control" name="address" type="text" value="<?php echo $row->client_address; ?>" id="example-number-input">
+                                                                                </div>
+                                                                            </div>
+                                                                                <div class="form-group row">
+                                                                                <div for="example-number-input" class="col-2 col-form-label">
+                                                                                    <label for="type">Email</label>
+                                                                                    <input class="form-control" name="email" type="text" value="<?php echo $row->client_email; ?>" id="example-number-input">
+                                                                                </div>
+                                                                            </div>
+                                                                              
+                                                                                <div class="form-group row">
+                                                                                <div for="example-number-input" class="col-2 col-form-label">
+                                                                                    <label for="type">Cellphone Number</label>
+                                                                                    <input class="form-control" name="cell_no" type="number" value="<?php echo $row->client_contact; ?>" id="example-number-input">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-group row">
+                                                                                <div for="example-number-input" class="col-2 col-form-label">
+                                                                                    <label for="type"></label>
+                                                                                    <input class="form-control" name="id" type="hidden" value="<?php echo $row->client_id; ?>" id="example-number-input">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="panel-footer" style="margin-bottom:-14px;">
+                                                                                    <input type="submit" class="btn btn-success" value="Add" style="float: right;" />
+                                                                                    <!--<span class="glyphicon glyphicon-ok"></span>-->
+                                                                                    <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
+                                                                                </div>
+                                                                            </div>
+                                                                              
+                                                                            </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                             </tr>
 
                                             <?php
