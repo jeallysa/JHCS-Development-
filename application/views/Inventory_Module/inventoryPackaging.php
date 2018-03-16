@@ -273,7 +273,43 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 '</tr>' ;
                                               }
                                             }
+                                        ?>
+
+                                        <?php
+                                              $retrieveDetails3 ="SELECT retail_id, package_id, client_company, retail_date, retail_qty FROM jhcs.retail NATURAL JOIN coffee_blend NATURAL JOIN packaging NATURAL JOIN contracted_client WHERE package_id = '$row->package_id';" ;
+                                              $query = $this->db->query($retrieveDetails3);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td>'  . $object->client_company  . '</td>' ,
+                                                '<td>'  . $object->retail_date  . '</td>' ,
+                                                '<td>'  . $object->retail_qty  . ' pc/s</td>' ;
+                                                ?>
+                                                    <td>Retail Sales</td>
+                                                    <td>Out</td>
+                                                 <?php   
+                                                '</tr>' ;
+                                              }
+                                            }
                                         ?>  
+
+                                        <?php
+                                              $retrieveDetails4 = "SELECT package_id, trans_id, sup_company, transact_date, quantity FROM jhcs.trans_pack NATURAL JOIN inv_transact NATURAL JOIN packaging NATURAL JOIN supplier WHERE package_id = '$row->package_id';" ;
+                                              $query = $this->db->query($retrieveDetails4);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td>'  . $object->sup_company  . '</td>' ,
+                                                '<td>'  . $object->transact_date  . '</td>' ,
+                                                '<td>'  . $object->quantity  . '</td>' ;
+                                                ?>
+                                                    <td>Company Delivery</td>
+                                                    <td>IN</td>
+                                                 <?php   
+                                                '</tr>' ;
+                                              }
+                                            }
+                                        ?>
                                                         </tbody>
                                                       </table><hr>
                                                           <div class="row">

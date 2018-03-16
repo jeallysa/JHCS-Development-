@@ -256,7 +256,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         ?>
                                                             
                                                             <?php
-                                              $retrieveDetails4 ="SELECT raw_coffeeid, trans_id, raw_coffee, sup_company, transact_date, quantity FROM jhcs.trans_raw NATURAL JOIN inv_transact INNER JOIN raw_coffee ON raw_coffeeid = raw_id NATURAL JOIN supplier where raw_coffee = '$row->raw_coffee';" ;
+                                              $retrieveDetails4 ="SELECT raw_coffeeid, trans_id, raw_coffee, sup_company, transact_date, quantity FROM jhcs.trans_raw NATURAL JOIN inv_transact INNER JOIN raw_coffee ON raw_coffeeid = raw_id NATURAL JOIN supplier WHERE raw_coffee = '$row->raw_coffee';" ;
                                               $query = $this->db->query($retrieveDetails4);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {

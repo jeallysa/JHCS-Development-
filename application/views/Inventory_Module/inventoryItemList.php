@@ -10,7 +10,7 @@
                                             <span class="nav-tabs-title"> </span>
                                             <ul class="nav nav-tabs" data-tabs="tabs">
                                                 
-                                                <li class="">
+                                                <li class= "active">
                                                     <a href="<?php echo base_url(); ?>inventoryItemList">
                                                         <i class="material-icons">list</i> Items
                                                         <div class="ripple-container"></div>

@@ -187,6 +187,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <th><b class="pull-left">Name</b></th>
                                                     <th><b class="pull-left">Bag</b></th>
                                                     <th><b class="pull-left">Size (in grams)</b></th>
+                                                    <th><b class="pull-left">Number of Stocks (per pc)</b></th>
                                                     <th><b class="pull-left">Price</b></th>
                                                     <th><b class="pull-left">Cue Card</b></th>
                                                 </tr>
@@ -202,6 +203,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <td><?php echo $row->blend; ?></td>
                                                     <td><?php echo $row->package_type; ?></td>
                                                     <td><?php echo $row->package_size; ?></td>
+                                                    <td><b><?php echo $row->blend_qty; ?></b></td>
                                                     <td>Php <?php echo $row->blend_price; ?></td>
                                                     <td><a class="btn btn-info" data-toggle="modal" data-target="#<?php echo $row->blend_id; ?>" data-original-title style="float: right">View</a>
 
@@ -247,7 +249,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 '<td>'  . $object->walkin_qty  . ' pc/s</td>' ;
                                                 ?>
                                                     <td>Walkin Sales</td>
-                                                    <td>Out</td>
+                                                    <td>OUT</td>
                                                  <?php   
                                                 '<tr>' ;
                                               }
@@ -265,12 +267,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 '<td>'  . $object->contractPO_qty  . ' pc/s</td>' ;
                                                 ?>
                                                     <td>Sales</td>
-                                                    <td>Out</td>
+                                                    <td>OUT</td>
                                                  <?php   
                                                 '</tr>' ;
                                               }
                                             }
                                         ?>  
+
+                                        <?php
+                                              $retrieveDetails3 ="SELECT coService_id, blend_id, client_company, coService_date, coService_qty FROM jhcs.coffeeservice NATURAL JOIN coffee_blend NATURAL JOIN contracted_client WHERE blend_id = '$row->blend_id';" ;
+                                              $query = $this->db->query($retrieveDetails3);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td>'  . $object->client_company  . '</td>' ,
+                                                '<td>'  . $object->coService_date  . '</td>' ,
+                                                '<td>'  . $object->coService_qty  . '</td>' ;
+                                                ?>
+                                                    <td>Coffee Services</td>
+                                                    <td>OUT</td>
+                                                 <?php   
+                                                '</tr>' ;
+                                              }
+                                            }
+                                        ?> 
                                                     </tbody>
                                                       </table>
                                                         </div>

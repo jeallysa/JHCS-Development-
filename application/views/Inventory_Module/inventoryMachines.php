@@ -276,6 +276,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                               }
                                             }
                                         ?>  
+
+                                        <?php
+                                              $retrieveDetails3 ="SELECT coService_id, mach_id, client_company, coService_date, mach_qty FROM jhcs.coffeeservice NATURAL JOIN machine NATURAL JOIN contracted_client WHERE mach_id = '$row->mach_id';" ;
+                                              $query = $this->db->query($retrieveDetails3);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td>'  . $object->client_company  . '</td>' ,
+                                                '<td>'  . $object->coService_date  . '</td>' ,
+                                                '<td>'  . $object->mach_qty  . '</td>' ;
+                                                ?>
+                                                    <td>Coffee Services</td>
+                                                    <td>OUT</td>
+                                                 <?php   
+                                                '</tr>' ;
+                                              }
+                                            }
+                                        ?>
                                                           
                                                         </tbody>
                                                       </table><hr>

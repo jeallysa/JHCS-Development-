@@ -229,83 +229,81 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         <table id="fresh-datatables" class="table table-striped table-hover responsive" cellspacing="0" width="100%">
                                                         <thead>
                                                           <tr>
-                                                            <th><b>Delivery Receipt No.</b></th>
-                                                            <th><b>Delivery</b></th>
                                                             <th><b>Client/Supplier</b></th>
                                                             <th><b>Date</b></th>
                                                             <th><b>Quantity</b></th>
                                                             <th><b>Remarks</b></th>
+                                                            <th><b>Delivery</b></th>
                                                           </tr>
                                                         </thead>
                                                         <tbody>
-                                                          <tr>
-                                                            <td>12345</td>
-                                                            <td>In</td>
-                                                            <td>Supplier 1</td>
-                                                            <td>Dec 5, 2017</td>
-                                                            <td>300 pcs</td>
-                                                            <td></td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>23456</td>
-                                                            <td>In</td>
-                                                            <td>Client 2</td>
-                                                            <td>Dec 12, 2017</td>
-                                                            <td>100 pcs</td>
-                                                            <td>Wrong Sticker</td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>34567</td>
-                                                            <td>In</td>
-                                                            <td>Supplier 3</td>
-                                                            <td>Dec 15, 2017</td>
-                                                            <td>500 pcs</td>
-                                                            <td></td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>45678</td>
-                                                            <td>Out</td>
-                                                            <td>Supplier 1</td>
-                                                            <td>Dec 8, 2017</td>
-                                                            <td>200 pcs</td>
-                                                            <td>Wrong Sticker Design</td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>56789</td>
-                                                            <td>Out</td>
-                                                            <td>Client 5</td>
-                                                            <td>Dec 9, 2017</td>
-                                                            <td>300 pcs</td>
-                                                            <td></td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>67890</td>
-                                                            <td>Out</td>
-                                                            <td>Client 7</td>
-                                                            <td>Dec 17, 2017</td>
-                                                            <td>200 pcs</td>
-                                                            <td>Sample</td>
-                                                          </tr>
-                                                        </tbody>
+                                                          <?php
+                                              $retrieveDetails1 ="SELECT walkin_id, sticker_id, CONCAT(walkin_fname,' ',walkin_lname) AS customer, walkin_date, walkin_qty FROM jhcs.walkin_sales NATURAL JOIN coffee_blend WHERE sticker_id = '$row->sticker_id';" ;
+                                              $query = $this->db->query($retrieveDetails1);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td>'  . $object->customer  . '</td>' ,
+                                                '<td>'  . $object->walkin_date  . '</td>' ,
+                                                '<td>'  . $object->walkin_qty  . ' pc/s</td>' ;
+                                                ?>
+                                                    <td>Walkin Sales</td>
+                                                    <td>Out</td>
+                                                 <?php   
+                                                 ;
+                                              }
+                                            }
+                                        ?>
+
+                                        <?php
+                                              $retrieveDetails2 ="SELECT sticker_id, contractPO_id, client_company, contractPO_date, contractPO_qty FROM jhcs.contracted_po NATURAL JOIN contracted_client NATURAL JOIN coffee_blend WHERE delivery_stat = 'delivered' AND sticker_id = '$row->sticker_id';" ;
+                                              $query = $this->db->query($retrieveDetails2);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td>'  . $object->client_company  . '</td>' ,
+                                                '<td>'  . $object->contractPO_date  . '</td>' ,
+                                                '<td>'  . $object->contractPO_qty  . ' pc/s</td>' ;
+                                                ?>
+                                                    <td>Sales</td>
+                                                    <td>Out</td>
+                                                 <?php   
+                                                '</tr>' ;
+                                              }
+                                            }
+                                        ?>
+
+                                        <?php
+                                              $retrieveDetails3 ="SELECT retail_id, sticker_id, client_company, retail_date, retail_qty FROM jhcs.retail NATURAL JOIN coffee_blend NATURAL JOIN contracted_client WHERE sticker_id = '$row->sticker_id';" ;
+                                              $query = $this->db->query($retrieveDetails3);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td>'  . $object->client_company  . '</td>' ,
+                                                '<td>'  . $object->retail_date  . '</td>' ,
+                                                '<td>'  . $object->retail_qty  . ' pc/s</td>' ;
+                                                ?>
+                                                    <td>Retail Sales</td>
+                                                    <td>Out</td>
+                                                 <?php   
+                                                '</tr>' ;
+                                              }
+                                            }
+                                        ?> 
+                                                    </tbody>
                                                       </table><hr>
                                                           <div class="row">
                                                             <div class="col-lg-6 col-md-6 col-offset-6">
                                                                 <div class="form-group">
                                                                     <label class="col-md-4 control">Total In :</label>
                                                                     <div class="col-md-4">
-                                                                        <p>900 pieces</p>
+                                                                        <p>- pieces</p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="col-md-4 control">Total Out :</label>
                                                                     <div class="col-md-7">
-                                                                        <p>700 pieces</p>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-4 control">Ending Inventory :</label>
-                                                                    <div class="col-md-5">
-                                                                        <p>200 pieces</p>
+                                                                        <p>- pieces</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
