@@ -25,7 +25,7 @@
 			$cell_no = $this->input->post("cell_no");
 			$this->Admin_Clients_Model->update($id, $comp_name, $cli_type, $l_name, $f_name, $address, $email, $cell_no);
 			echo "<script>alert('Update successful!');</script>";
-			$this->index();
+			redirect('adminClients', 'refresh');
 		}
 
 	}

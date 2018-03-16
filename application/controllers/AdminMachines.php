@@ -33,5 +33,21 @@
 			$this->index();
 		}
 
+		function update(){
+			$this->load->model('AdminMachines_Model');
+			$id = $this->input->post("id");
+			$serial = $this->input->post("mach_serial");
+			$brewer = $this->input->post("brewer");
+			$type = $this->input->post("type");
+			$price = $this->input->post("price");
+			$reorder = $this->input->post("reorder");
+			$limit = $this->input->post("stocklimit");
+			$stock_level = $this->input->post("stocks");
+			$sup_id = $this->input->post("sup_company");
+			$this->AdminMachines_Model->update($id, $serial, $brewer, $type, $price, $reorder, $limit, $stock_level, $sup_id);
+			echo "<script>alert('Update successful!');</script>";
+			redirect('adminMachines', 'refresh');
+		}
+
 	}
 ?>
