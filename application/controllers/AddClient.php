@@ -5,7 +5,13 @@
 		public function __construct(){
 			parent::__construct();
 
-			$this->load->model('addclient_model');  
+			if ($this->session->userdata('username') != '')
+			{
+				$this->load->model('addclient_model');  
+			} else {
+				redirect('login');
+			}
+
 		}
 		
 		public function insertClient()

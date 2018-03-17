@@ -10,10 +10,15 @@
 		
 		function index()
 		{ 
-			$this->load->model('AdminPackaging_model');
-			$data['packaging']=$this->AdminPackaging_model->getPackaging();
-            $data1['getSupplier'] = $this->AdminPackaging_model->getSupplier();
-			$this->load->view('Admin_Module/adminPackaging', ['data' => $data,  'data1' => $data1]);
+			if ($this->session->userdata('username') != '')
+			{
+				$this->load->model('AdminPackaging_model');
+				$data['packaging']=$this->AdminPackaging_model->getPackaging();
+	            $data1['getSupplier'] = $this->AdminPackaging_model->getSupplier();
+				$this->load->view('Admin_Module/adminPackaging', ['data' => $data,  'data1' => $data1]);
+			} else {
+				redirect('login');
+			}
 		}
         
         function insert()

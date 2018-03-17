@@ -8,7 +8,12 @@
 		
 		public function index()
 		{ 
-			$this->load->view('Sales_Module/salesActivityLogs');
+			if ($this->session->userdata('username') != '')
+            {
+            	$this->load->view('Sales_Module/salesActivityLogs');
+            } else {
+            	redirect('login');
+            }
 		}
 
 	}

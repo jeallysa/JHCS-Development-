@@ -8,6 +8,14 @@ class AdminProductInventory_model extends CI_MODEL
 		parent::__construct();
 	}
     
+    public function security(){
+        $username = $this->session->sess_destroy('username');
+        if (!empty($username)) {
+            $this->session->sess_destroy();
+            redirect('login');
+        }
+    }
+
 	function getProducts(){
 		$query=$this->db->query("SELECT sup_company, raw_id, raw_coffee, raw_reorder, raw_limit, sup_company, raw_stock FROM raw_coffee NATURAL JOIN supplier");
 		return $query->result();

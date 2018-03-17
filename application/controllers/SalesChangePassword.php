@@ -8,7 +8,12 @@
 		
 		public function index()
 		{ 
-			$this->load->view('Sales_Module/salesChangePassword');
+			if ($this->session->userdata('username') != '')
+            {
+            	$this->load->view('Sales_Module/salesChangePassword');
+            } else {
+            	redirect('login');
+            }
 		}
 
 	}

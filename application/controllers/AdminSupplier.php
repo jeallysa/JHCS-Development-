@@ -4,14 +4,19 @@
 	{
 		function __construct(){
 			parent::__construct();
-			$this->load->model('Admin_Suppliers_Model');
+			
 		}
 		
 		public function index()
 		{ 
-			
-			$sup_data["fetch_data"] = $this->Admin_Suppliers_Model->fetch_data();
-			$this->load->view('Admin_Module/adminSupplier', $sup_data);
+			if ($this->session->userdata('username') != '' )
+			{
+				//$sup_data["fetch_data"] = $this->Admin_Suppliers_Model->fetch_data();
+				$this->load->model('Admin_Suppliers_Model');
+				$this->load->view('Admin_Module/adminSupplier', $sup_data);
+			} else {
+				redirect('login');
+			}
 		}
 
 

@@ -8,9 +8,14 @@
 		
 		public function index()
 		{ 
-			$this->load->model('Admin_Blends_Model');
-			$blend_data["fetch_data"] = $this->Admin_Blends_Model->fetch_data();
-			$this->load->view('Admin_Module/adminBlends', $blend_data);
+			if ($this->session->userdata('username') != '')
+			{
+				$this->load->model('Admin_Blends_Model');
+				$blend_data["fetch_data"] = $this->Admin_Blends_Model->fetch_data();
+				$this->load->view('Admin_Module/adminBlends', $blend_data);
+			} else {
+				redirect('login');
+			}
 		}
 
 	}

@@ -10,7 +10,12 @@
 		
 		public function index()
 		{ 
-			$this->load->view('Admin_Module/adminNewClients');
+			if ($this->session->userdata('username') != '')
+			{
+				$this->load->view('Admin_Module/adminNewClients');
+			} else {
+				redirect('login');
+			}
 		}
 
 	}

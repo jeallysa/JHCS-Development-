@@ -10,10 +10,15 @@
 		
         function index()
 		{ 
-			$this->load->model('AdminMachines_model');
-			$data['machines']=$this->AdminMachines_model->getMachines();
-            $data1['getSupplier'] = $this->AdminMachines_model->getSupplier();
-			$this->load->view('Admin_Module/adminMachines', ['data' => $data,  'data1' => $data1]);
+			if ($this->session->userdata('username') != '')
+			{
+				$this->load->model('AdminMachines_model');
+				$data['machines']=$this->AdminMachines_model->getMachines();
+	            $data1['getSupplier'] = $this->AdminMachines_model->getSupplier();
+				$this->load->view('Admin_Module/adminMachines', ['data' => $data,  'data1' => $data1]);
+			} else {
+				redirect('login');
+			}
 		}
         
          function insert()

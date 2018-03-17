@@ -8,9 +8,14 @@
 		
 		public function index()
 		{ 
-			$this->load->model("Admin_Accounts_Model");
-			$acc_data["fetch_data"] = $this->Admin_Accounts_Model->fetch_data();
-			$this->load->view('Admin_Module/adminAccounts', $acc_data);
+			if ($this->session->userdata('username') != '')
+			{
+				$this->load->model("Admin_Accounts_Model");
+				$acc_data["fetch_data"] = $this->Admin_Accounts_Model->fetch_data();
+				$this->load->view('Admin_Module/adminAccounts', $acc_data);
+			} else {
+				redirect('login');
+			}
 		}
 
 		function update(){

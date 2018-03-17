@@ -12,14 +12,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         
 		public function index(){ 
            
-            $this->load->view('layout/header');
-           
+            if ($this->session->userdata('username') != '')
+            {
+                $this->load->view('layout/header');  
+                $data['suppliers'] = $this->inventoryPOAdd_model ->retrieveSuppliers();
+                $data['suppliersItem'] = $this->inventoryPOAdd_model ->retrieveItems();
+                $data['truckingFee'] = $this->inventoryPOAdd_model->retrieveTruckingFee();
             
-            $data['suppliers'] = $this->inventoryPOAdd_model ->retrieveSuppliers();
-            $data['suppliersItem'] = $this->inventoryPOAdd_model ->retrieveItems();
-            $data['truckingFee'] = $this->inventoryPOAdd_model->retrieveTruckingFee();
-            
-			$this->load->view('inventoryPOAdd', $data);
+		        $this->load->view('inventoryPOAdd', $data);
+            } else {
+                redirect('login');
+            }
             
 		}
         
