@@ -34,7 +34,7 @@ class AdminMachines_model extends CI_MODEL
 	        'sup_id' => $sup_id	        
 		);
 
-		$this->db->where('sup_id', $id);
+		$this->db->where('mach_id', $id);
 		$this->db->update('machine', $data);
 	}
 }
