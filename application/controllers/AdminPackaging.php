@@ -16,6 +16,20 @@
 			$this->load->view('Admin_Module/adminPackaging', ['data' => $data,  'data1' => $data1]);
 		}
         
+        function update(){
+			$this->load->model('AdminPackaging_model');
+			$id = $this->input->post("package_id");
+			$type = $this->input->post("type");
+            $size = $this->input->post("size");
+			$reorder = $this->input->post("reorder");
+			$stocklimit = $this->input->post("stocklimit");
+			$stocks = $this->input->post("stocks");
+			$sup_id = $this->input->post("sup_company");
+			$this->AdminPackaging_model->update($id, $type, $size, $reorder, $stocks, $stocklimit, $sup_id);
+			echo "<script>alert('Update successful!');</script>";
+			$this->index();
+		}
+        
         function insert()
 		{
 			$this->load->model('AdminPackaging_model');
