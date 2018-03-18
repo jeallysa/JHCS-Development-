@@ -283,6 +283,8 @@
                                                 $conntitle->close();
                                                 ?>
                                                 <th><b> Packaging </b> </th>
+                                                <th><b> Machines </b> </th>
+                                                <th><b> Stickers </b> </th>
                                                 <th class="disabled-sorting"><b>Edit</b></th>
                                             </tr>
                                         </thead>
@@ -332,6 +334,8 @@
                                                 <td>3000 g</td>
                                                 <td>7000 g</td> -->
                                                 <td><?php echo $row->packaging; ?></td>
+                                                <td><?php echo $row->machines; ?></td>
+                                                <td><?php echo $row->stickers; ?></td>
                                                 <td>
                                                         <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
                                                 </td>
