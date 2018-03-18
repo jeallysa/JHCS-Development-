@@ -88,6 +88,7 @@
 		.select-pane {
         display: none;
     	}
+	
 		
 
 		
@@ -292,7 +293,7 @@
                                                         <td><?php echo $row->brewer; ?></td>
                                                         <td><?php echo $row->mach_remarks; ?></td>
                                                         <td>
-                                                            <button class="btn btn-danger btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#resolve_coffee">Resolve</button>
+                                                            <button class="btn btn-danger btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#resolve_machine">Resolve</button>
                                                         </td>
                                                     </tr>
                                                     <?php
@@ -389,7 +390,165 @@
             </div>
 		<!--modal for coffee returns-->
 			 <div class="modal fade displaycontent" id="resolve_coffee" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-							<?php include('Modals/CoffeeReturns_Modals.php'); ?>
+				 <div class="modal-dialog modal-md">
+					 <div class="panel panel-primary">
+									<div class="panel-heading">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+										<h4 class="panel-title" id="contactLabel"><center>Resolve Coffee Returns</center></h4>
+									</div>
+									
+										<div class="modal-body" style="padding: 10px;">
+
+											
+                                        <div class="row">
+                                            <div class="col-lg-7">
+
+												<div class="row">
+													<div class="form-group">
+														<label class="col-md-5 control">Coffee Blend :</label>
+														<div class="col-md-7" >
+															<p ><b> <input name="blendName" class="form-control no-border" type="disabled"  readonly></b></p>
+													
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="col-md-5 control">Size :</label>
+														<div class="col-md-5">
+															<p><b><input name="size" class="form-control" type="disabled"  readonly></b></p>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="form-group">
+														<label class="col-md-5 control">Bag :</label>
+														<div class="col-md-6">
+															<p><b><input name="bagType" class="form-control" type="disabled"  readonly></b></p>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="col-md-5 control">Quantity :</label>
+														<div class="col-md-6">
+															<p><input name="quantity" id="Originalquantity" class="form-control" type="disabled"  readonly></p>
+														</div>
+													</div>
+												</div>
+													
+												
+                                            </div>
+                                        </div>
+											
+                                        <hr>
+										<?php echo form_open('SalesReturns/addReturns', array('method'=>'POST')); ?>
+											
+											<div class="alert alert-danger print-error-msg" style="display:none">
+												</div>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="col-md-6 control">Delivery Receipt No :</label>
+                                                    <div class="col-md-6">
+                                                        <!--<p class="form-control" contenteditable="true" name="delivery_receipt">DR0123</p>-->
+														<?php echo form_input(['name'=>'DRReturns','id'=>'deliveryReceipt', 'class'=>'form-control','type'=>'text']); ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+											
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="col-md-6 control">Date of Delivery :</label>
+                                                    <div class="col-md-6">
+                                                        <!--<input class="form-control" name="delivery_date" placeholder="Date" type="date" required />-->
+														<?php echo form_input(['name'=>'delivery_date','id'=>'DateDelivered','placeholder'=>'Date', 'class'=>'form-control','type'=>'date']); ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+										<div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="col-md-5 control">Received by :</label>
+                                                    <div class="col-md-7">
+                                                        <!--<input id="" name="receiver" type="text" class="form-control">-->
+														<?php echo form_input(['name'=>'receiver','id'=>'receiver', 'class'=>'form-control','type'=>'text']); ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="col-md-6 control">Delivery status:</label>
+                                                    <div class="col-md-6">
+                                                        <select class="form-control nav" name="delivery_status">
+															<option value="">Choose Delivery Status</option>
+                                                            <option value="full_delivery">Full Deivery</option>
+                                                            <option value="partial_delivery">Partial Delivery</option>
+                                                        </select>
+														
+                                                    </div>
+                                                </div>
+                                            </div>
+										</div>
+											<div class="row">
+                                            <div class="col-lg-2 col-md-2 col-sm-2"></div>
+                                            <div class="col-lg-8 col-md-8 col-sm-8 ">
+                                                <div class="select-pane " id="full_delivery">
+                                                    <div class="form-group">
+                                                        <label class="col-md-6 control">Quantity Delivered:</label>
+                                                        <div class="col-md-5">
+                                                            <input name="quantity" class="form-control" type="text" id="quantity">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+											</div>
+                                        <div class="row">
+                                            <div class="col-lg-2 col-md-2 col-sm-2"></div>
+                                            <div class="col-lg-8 col-md-8 col-sm-8 ">
+                                                <div class="select-pane " id="partial_delivery">
+                                                    <div class="form-group">
+                                                        <label class="col-md-6 control">Quantity Delivered:</label>
+                                                        <div class="col-md-5">
+                                                            <input id="deliveredCoffee" class="form-control" type="text" name="quantity_delivered">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+											</div>
+										<div class="row">
+                                            <div class="col-lg-2 col-md-2 col-sm-2"></div>
+                                            <div class="col-lg-8 col-md-8 col-sm-8 ">
+                                                <div class="select-pane" id="partial_delivery">
+                                                    <div class="form-group">
+                                                        <label class="col-md-6 control">Remaining Quantity: </label>
+                                                        <div class="col-md-5">
+                                                            <p><input name="remaining_quantity" id="subt" class="form-control" type="text" name="subt" ></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+										<div class="row">
+											<div class="col-lg-10">
+                                                <div class="form-group">
+                                                    <label class="col-md-5 control">Remarks :</label>
+                                                    <div class="col-md-8">
+                                                        <!--<input id="" name="coffee_returns_remarks" type="text" class="form-control">-->
+														<?php echo form_input(['name'=>'remarksReturns','id'=>'remarksReturns', 'class'=>'form-control','type'=>'text']); ?>
+														
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+										</div><br>
+										<div class="modal-footer">
+											<!--<button type="submit" class="btn btn-primary" name="submit">Save changes</button>-->
+											<?php echo form_submit(['name'=>'ResolveReturn', 'value'=>'Resolve','class'=>'btn btn-primary']) ?>
+											
+										</div>
+									<?php echo form_close(); ?>
+						</div>
+						 
+					</div>
+</div>
 				
 
 					</div>
@@ -706,53 +865,58 @@ $(document).ready(function() {
         scrollCollapse: true,
 		
     } );
+	
+	difference();
+	$("#Originalquantity, #deliveredCoffee").on("keydown keyup", function() {
+		 difference();
+    });
+	});
 
-
-});
+	function difference() {
+            var num1 = document.getElementById('Originalquantity').value;
+            var num2 = document.getElementById('deliveredCoffee').value;
+			/*var result = parseInt(num1) + parseInt(num2);*/
+			var result = parseInt(num1) - parseInt(num2);
+            if (!isNaN(result)) {
+                /*document.getElementById('sum').value = result;*/
+				document.getElementById('subt').value = result;
+            }
+        }
+	
+	
 
 
 </script>
 <script>
-$(document).ready(function(){
-    
-    $(document).on('click', '#getDetails', function(e){
-        
+$(document).ready(function(){  
+    $(document).on('click', '#getDetails', function(e){   
         e.preventDefault();
         var id = $(this).data('id');   // it will get id of clicked row
-
-        
+  
         jQuery.ajax({
             method: 'GET',
             type: 'ajax',
 			dataType: 'json',
-            url: '<?=base_url()?>SalesReturns/getDetails/' + id ,
-			
-			
-			/*success: function (response) {
-                $(".displaycontent").html(response);
-				
-				$('#resolve_coffee').modal('show');
-                  
-             }*/
-			
-			 success: function(response)
+            url: '<?=base_url()?>SalesReturns/getDetails/' + id ,			
+			success: function(data)
 				{
+					 $('[name="blendName"]').val(data.blend);
+					$('[name="size"]').val(data.package_size);
+					$('[name="quantity"]').val(data.contractPO_qty);
+					$('[name="bagType"]').val(data.package_type);
+					$('[name="DRReturns"]').val(data.client_dr);
+					
 					$('#resolve_coffee').modal('show');
-					$('.displaycontent').html(response);
+					/*$('#blendName').html(blend);*/
+
 
 				},
-				error: function (jqXHR, textStatus, errorThrown)
+			error: function (jqXHR, textStatus, errorThrown)
 				{
 					alert('Error get data from ajax');
-				}
-           
-            
-                });
-
-        
-        
-    });
-    
+				}         
+                });        
+    });   
 });
 
 </script>

@@ -20,7 +20,7 @@
 													<div class="form-group">
 														<label class="col-md-5 control">Coffee Blend :</label>
 														<div class="col-md-7">
-															<p><b><?php echo $blends[0]['blend']; ?></b></p>
+															<p><b><?php echo $data['blend']; ?></b></p>
 													
 														</div>
 													</div>

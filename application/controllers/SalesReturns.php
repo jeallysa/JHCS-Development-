@@ -25,23 +25,37 @@
 			
 			/*$id = array('id'=> $this->input->post('id'));	*/
 
-			$data['blends'] = $this->SalesReturns_model->getDetailsCoffee($id);
+			$data = $this->SalesReturns_model->getDetailsCoffee($id);
 			/*$coffee = json_decode($coffeee);*/
 			/*$this->load->view('Sales_Module/Modals/CoffeeReturns_Modals',$coffee);*/
 			
-			  /*echo json_encode($data);*/
-			$this->load->view('SalesModule/Modals/CoffeeReturns_Modals', $data);
-			
-			
+			  echo json_encode($data);		
 		}
 
 		function addReturns()
 		{
-			$this->form_validation->set_rules('delivery_date','Delivery Date','recquired');
-			$this->form_validation->set_rules('receiver','Receiver','recquired');
+			$this->form_validation->set_rules('delivery_date','Delivery Date','required');
+			$this->form_validation->set_rules('receiver','Receiver','required');
+			/*$this->form_validation->set_rules('DRReturns','Delivery Receipt','required|callback_DRCheck');*/
+			/*$this->form_validation->set_rules('delivery_status','Delivery Status','required');*/
+			$this->form_validation->set_rules('remarksReturns','Remarks','required');
 			if ($this->form_validation->run())
 				{
 					echo 'A new return has been resolved';
+				 		// post values
+					  $name = $this->input->post('delivery_date');
+					  $username = $this->input->post('receiver');
+					  $email = $this->input->post('DRReturns');
+					  $password = $this->input->post('delivery_status');
+					  // set post values
+					  $this->user->setName($name);
+					  $this->user->setUserName($username);
+					  $this->user->setEmail($email);
+					  $this->user->setPassword(MD5($password));
+					  $this->user->setStatus(1);
+					  // insert values in database
+					  $this->user->createUser();
+					  redirect('users/index');
 				}
 				else
 				{

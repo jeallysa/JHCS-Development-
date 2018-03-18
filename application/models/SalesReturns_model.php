@@ -26,9 +26,10 @@
 			
 		}
 		public function getDetailsCoffee($id){
-			$query = $this->db->query("SELECT blend FROM contracted_client NATURAL JOIN contracted_po NATURAL JOIN coffee_blend WHERE client_id='$id' ");
-			 return $query->result_array();
+			$query = $this->db->query("SELECT * FROM contracted_client NATURAL JOIN client_delivery NATURAL JOIN contracted_po NATURAL JOIN coffee_blend NATURAL JOIN packaging WHERE client_id='$id' ");
+			 return $query->row();
 			
+		
 			
 			/* if ($query->num_rows() > 0 ) {
 				 return $query->result();
