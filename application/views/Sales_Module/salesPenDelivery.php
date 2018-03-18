@@ -186,40 +186,38 @@
                                                 </thead>
                                                 <tbody>
                                                     <?php
-                                                        foreach($data1['get_delivery_list'] as $row)
+                                                        foreach($data1['get_delivery_list'] as $row1)
                                                         {
                                                             
                                                     ?>
-                                                    
                                                     <tr>
-                                                        <td><?php echo $row->contractPO_id; ?></td>
-                                                        <td><?php echo $row->client_company; ?></td>
-                                                        <td><?php echo $row->blend_id; ?></td>
-                                                        <td><?php echo $row->blend; ?></td>
-                                                        <td><?php echo $row->package_type; ?></td>
-                                                        <td><?php echo $row->package_size; ?> g</td>
-                                                        <td><?php echo $row->contractPO_qty; ?></td>
-                                                        <td>Php <?php echo number_format($row->blend_price,2); ?></td>
+                                                        <td><?php echo $row1->contractPO_id; ?></td>
+                                                        <td><?php echo $row1->client_company; ?></td>
+                                                        <td><?php echo $row1->blend_id; ?></td>
+                                                        <td><?php echo $row1->blend; ?></td>
+                                                        <td><?php echo $row1->package_type; ?></td>
+                                                        <td><?php echo $row1->package_size; ?> g</td>
+                                                        <td><?php echo $row1->contractPO_qty; ?></td>
+                                                        <td>Php <?php echo number_format($row1->blend_price,2); ?></td>
                                                         <td><?php 
-                                                                $price = $row->blend_price;
-                                                                $qty = $row->contractPO_qty;
+                                                                $price = $row1->blend_price;
+                                                                $qty = $row1->contractPO_qty;
                                                                 $amount = $price * $qty;
                                                                 echo 'Php '.number_format($amount,2);
                                                              ?>
                                                         </td>
-                                                        <td><?php echo $row->contractPO_date; ?></td>
+                                                        <td><?php echo $row1->contractPO_date; ?></td>
                                                         <td><?php 
-                                                                $dbStat = $row->delivery_stat; 
-                                                                $pending = 'pending';
-                                                                $partial = 'partial';
-                                                                if (strcmp($dbStat, $pending) == 0) {
+                                                                $id = "<script> document.write(contractPO_id) </script>";
+                                                                $dbStat = $row1->delivery_stat; 
+                                                                if ($dbStat == 'partial') {
                                                                     echo '<center>
-                                                                    <div class=" btn btn-danger btn-xs" data-toggle="modal" data-target="#pending" data-original-title>pending</div>
+                                                                   <a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#deliver'.$row1->contractPO_id.'">Partial</a>
                                                                 </center>';
-                                                                } 
-                                                                else {
+                                                                }
+                                                                elseif  ($dbStat == 'pending'){
                                                                     echo '<center>
-                                                                    <div class=" btn btn-warning btn-xs" data-toggle="modal" data-target="#pending" data-original-title>partial</div>
+                                                                    <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#deliver'.$row1->contractPO_id.'">Pending</a>
                                                                 </center>';
                                                                 }
                                                             ?>
@@ -366,7 +364,7 @@
             </div>
 
             <!--modal for pending delivery-->
-            <div class="modal fade" id="pending" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+            <div class="modal fade" id="deliver<?php echo $row1->contractPO_id;?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
@@ -377,22 +375,31 @@
                             <div class="modal-body" style="padding: 5px;">
                                 <div class="row">
                                     <div class="col-lg-7">
+                                         <div class="form-group">
+                                            <label class="col-md-5 control">Contract PO ID :</label>
+                                            <div class="col-md-7">
+                                                <p><b><?php echo $row1->contractPO_id;
+                                                ?></b></p>
+                                            </div>
+                                        </div>
                                         <div class="form-group">
                                             <label class="col-md-5 control">Coffee Blend :</label>
                                             <div class="col-md-7">
-                                                <p><b>Farmer's Blend Coffee</b></p>
+                                                <p><b><?php echo $row1->blend;
+                                                ?></b></p>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-5 control">Size :</label>
                                             <div class="col-md-5">
-                                                <p><b>500g</b></p>
+                                                <p><b><?php echo $row1->package_size;
+                                                ?> g</b></p>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-5 control">Quantity :</label>
                                             <div class="col-md-6">
-                                                <p><b>80</b></p>
+                                                <p><b><?php echo $row1->contractPO_qty; ?></b></p>
                                             </div>
                                         </div>
                                     </div>
@@ -401,13 +408,18 @@
                                             <div class="form-group">
                                                 <label class="col-md-5 control">Unit Price :</label>
                                                 <div class="col-md-7">
-                                                    <p><b>320.00</b></p>
+                                                    <p><b>Php <?php echo number_format($row1->blend_price,2); ?></b></p>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-md-5 control">Total Amount :</label>
                                                 <div class="col-md-5">
-                                                    <p><b>25,600.00</b></p>
+                                                    <p><b><?php 
+                                                                $price = $row1->blend_price;
+                                                                $qty = $row1->contractPO_qty;
+                                                                $amount = $price * $qty;
+                                                                echo 'Php '.number_format($amount,2);
+                                                             ?></b></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -684,12 +696,6 @@ $(document).ready(function() {
         
     } );
 
-
-    $('table tbody tr  td').on('click', function() {
-        $("#myModal").modal("show");
-        $("#txtfname").val($(this).closest('tr').children()[0].textContent);
-        $("#txtlname").val($(this).closest('tr').children()[1].textContent);
-    });
     $('#datePicker')
         .datepicker({
             format: 'mm/dd/yyyy'
@@ -701,25 +707,7 @@ $(document).ready(function() {
 
 
 </script>
-<script type="text/javascript">
-$(document).ready(function() {
-    $("#mytable #checkall").click(function() {
-        if ($("#mytable #checkall").is(':checked')) {
-            $("#mytable input[type=checkbox]").each(function() {
-                $(this).prop("checked", true);
-            });
 
-
-        } else {
-            $("#mytable input[type=checkbox]").each(function() {
-                $(this).prop("checked", false);
-            });
-        }
-    });
-
-    $("[data-toggle=tooltip]").tooltip();
-});
-</script>
 <script type="text/javascript">
 $(document).on('change', 'select.nav', function() {
     var $this = this;
@@ -736,36 +724,7 @@ $(document).on('click', '.series-select', function() {
 
 })
 </script>
-<script type="text/javascript">
-$(document).ready(function() {
-    var next = 1;
-    $(".add-more").click(function(e) {
-        e.preventDefault();
-        var addto = "#field" + next;
-        var addRemove = "#field" + (next);
-        next = next + 1;
-        var newIn = '<div class="input" id="field' + next + '"><div class="col-md-4"><select class="form-control" name="coffee"><option value="">Guatemala Rainforest</option><option value="">Cordillera Sunrise</option><option value="">Sumatra Night</option><option value="">Espresso</option></select></div><div class="col-md-2"><select class="form-control" name="coffee"><option value="clear">Clear</option><option value="brown">Brown</option></select> </div><div class="col-md-2"><select class="form-control" name="coffee"><option value="clear">250g</option><option value="brown">500g</option> <option value="brown">1000g</option></select> </div><div class="col-md-2"><input class="form-control" name="coffeeType" type="number" required /> </div></div>';
-        var newInput = $(newIn);
-        var removeBtn = ' <button id="remove' + (next - 1) + '" class="btn btn-danger remove-me" >-</button></div><div id="field">';
-        var removeButton = $(removeBtn);
-        $(addto).after(newInput);
-        $(addRemove).after(removeButton);
-        $("#field" + next).attr('data-source', $(addto).attr('data-source'));
-        $("#count").val(next);
 
-        $('.remove-me').click(function(e) {
-            e.preventDefault();
-            var fieldNum = this.id.charAt(this.id.length - 1);
-            var fieldID = "#field" + fieldNum;
-            $(this).remove();
-            $(fieldID).remove();
-        });
-    });
-
-
-
-});
-</script>
 <script type="text/javascript">
 $(document).ready(function(){
     $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
@@ -777,4 +736,15 @@ $(document).ready(function(){
     }
 });
 </script>
+
+<!-- <script type="text/javascript">
+    $(document).ready(function(){
+        $('.view_data').click(function(){
+            var contractPO_id = $(this).attr("id");
+            alert(contractPO_id);
+            $('#' + contractPO_id).modal('show');
+        });
+    });
+</script> -->
+
 </html>
