@@ -8,9 +8,14 @@
 		
 		public function index()
 		{ 
-			$this->load->model('Collections_model');
-			$data['collections']=$this->Collections_model->getCollections();
-			$this->load->view('Sales_Module/salesCollections', $data);
+			if ($this->session->userdata('username') != '')
+            {
+            	$this->load->model('Collections_model');
+				$data['collections']=$this->Collections_model->getCollections();
+				$this->load->view('Sales_Module/salesCollections', $data);
+			} else {
+				redirect('login');
+			}
 		}
 
 	}

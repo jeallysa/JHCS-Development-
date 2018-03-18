@@ -10,10 +10,15 @@
 		
 		function index()
 		{ 
-			$this->load->model('AdminProductInventory_model');
-            $data["product"] = $this->AdminProductInventory_model->getProducts();
-            $data1['getSupplier'] = $this->AdminProductInventory_model->getSupplier();
-			$this->load->view('Admin_Module/adminProductInventory', ['data' => $data,  'data1' => $data1]);
+			if ($this->session->userdata('username') != '')
+			{
+				$this->load->model('AdminProductInventory_model');
+	            $data["product"] = $this->AdminProductInventory_model->getProducts();
+	            $data1['getSupplier'] = $this->AdminProductInventory_model->getSupplier();
+				$this->load->view('Admin_Module/adminProductInventory', ['data' => $data,  'data1' => $data1]);
+			} else {
+				redirect('login');
+			}
             
 		}
 

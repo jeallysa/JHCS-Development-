@@ -8,9 +8,15 @@
 		
 		public function index()
 		{ 
-			$this->load->model('InventoryOutMachine_model');
-            $data['machineout'] = $this->InventoryOutMachine_model->get_machineout();
-            $this->load->view('Inventory_Module/inventoryOutMachine', $data);
+			if ($this->session->userdata('username') != '')
+			{
+				$this->load->model('InventoryOutMachine_model');
+	            $data['machineout'] = $this->InventoryOutMachine_model->get_machineout();
+	            $this->load->view('Inventory_Module/inventoryOutMachine', $data);
+	        }  else {
+	        	redirect('login');
+	        }
+
 		}
 	}
 

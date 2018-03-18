@@ -8,7 +8,12 @@
 		
 		public function index()
 		{ 
-			$this->load->view('Admin_Module/adminAddContract');
+			if ($this->session->userdata('username') != '')
+			{
+				$this->load->view('Admin_Module/adminAddContract');
+			} else {
+				redirect('login');
+			}
 		}
 
 	}

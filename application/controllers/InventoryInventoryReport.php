@@ -8,9 +8,14 @@
 		
 		public function index()
 		{ 
-			$this->load->view('Inventory_Module/inventoryInventoryReport');
+			if ($this->session->userdata('username') != '')
+			{
+				$this->load->view('Inventory_Module/inventoryInventoryReport');
+			} else {
+				redirect('login');
+			}
+
 		}
 
 	}
-
 ?>

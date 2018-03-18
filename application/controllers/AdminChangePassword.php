@@ -8,7 +8,12 @@
 		
 		public function index()
 		{ 
-			$this->load->view('Admin_Module/adminChangePassword');
+			if ($this->session->userdata('username') != '')
+			{
+				$this->load->view('adminChangePassword');
+			} else {
+				redirect('login');
+			}
 		}
 
 	}

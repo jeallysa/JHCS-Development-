@@ -10,10 +10,28 @@
 		
 		function index()
 		{ 
+			if ($this->session->userdata('username') != '')
+			{
+				$this->load->model('AdminStickers_model');
+				$data['stickers']=$this->AdminStickers_model->getStickers();
+	            $data1['getSupplier'] = $this->AdminStickers_model->getSupplier();
+				$this->load->view('Admin_Module/adminStickers',  ['data' => $data,  'data1' => $data1]);
+			} else {
+				redirect('login');
+			}
+		}
+        
+        function update(){
 			$this->load->model('AdminStickers_model');
-			$data['stickers']=$this->AdminStickers_model->getStickers();
-            $data1['getSupplier'] = $this->AdminStickers_model->getSupplier();
-			$this->load->view('Admin_Module/adminStickers',  ['data' => $data,  'data1' => $data1]);
+			$id = $this->input->post("sticker_id");
+			$name = $this->input->post("name");
+			$reorder = $this->input->post("reorder");
+			$stocklimit = $this->input->post("stocklimit");
+			$stocks = $this->input->post("stocks");
+			$sup_id = $this->input->post("sup_company");
+			$this->AdminStickers_model->update($id, $name, $reorder, $stocks, $stocklimit, $sup_id);
+			echo "<script>alert('Update successful!');</script>";
+			$this->index();
 		}
         
          function insert()

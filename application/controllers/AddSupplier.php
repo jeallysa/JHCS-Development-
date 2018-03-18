@@ -4,8 +4,13 @@
 	{
 		public function __construct(){
 			parent::__construct();
+			if ($this->session->userdata('username') != '')
+			{
+				$this->load->model('addsupplier_model');  
 
-			$this->load->model('addsupplier_model');  
+			} else {
+				redirect('login');
+			}
 		}
 		
 		public function insertSupplier()

@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		function __construct(){
 			parent::__construct();
             
-            $this->load->model('inventoryPOOrder_model');
+            
 		}
 		
         
@@ -15,14 +15,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         
         
 		public function index(){ 
-           $this->load->view('layout/header');
-            
-            
-            $data['order'] = $this->inventoryPOOrder_model ->retrieveOrder();
-            
-            
-            
-			$this->load->view('inventoryPOOrder' , $data);
+            if ($this->session->userdata('username') != '')
+            {
+                $this->load->model('inventoryPOOrder_model');
+                $this->load->view('layout/header'); 
+                $data['order'] = $this->inventoryPOOrder_model ->retrieveOrder();
+    			$this->load->view('inventoryPOOrder' , $data);
+            } else {
+                redirect('login');
+            }
 		}
         
         

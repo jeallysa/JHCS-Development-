@@ -9,15 +9,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 		public function index()
 		{ 
-            $this->load->view('layout/header');
-            $this->load->model('inventoryPOTransactionHistory_model');
-            
-            
-            $data['Transactions'] = $this->inventoryPOTransactionHistory_model ->retrieveTransactions();
-            
-            
-            
-			$this->load->view('inventoryPOTransactionHistory' , $data);
+			if ($this->session->userdata('username') != '')
+            {
+	            $this->load->view('layout/header');
+	            $this->load->model('inventoryPOTransactionHistory_model');
+	            
+	            
+	            $data['Transactions'] = $this->inventoryPOTransactionHistory_model ->retrieveTransactions();
+	            
+	            
+	            
+				$this->load->view('inventoryPOTransactionHistory' , $data);
+			} else {
+				redirect('login');
+			}
 		}
 
 	}

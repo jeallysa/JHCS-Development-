@@ -8,9 +8,14 @@
 		
 		public function index()
 		{ 
-			$this->load->model("InventoryStocks_Model");
-			$rawcoff_data["fetch_data"] = $this->InventoryStocks_Model->fetch_data();
-			$this->load->view('Inventory_Module/inventoryStocks', $rawcoff_data);
+			if ($this->session->userdata('username') != '')
+			{
+				$this->load->model("InventoryStocks_Model");
+				$rawcoff_data["fetch_data"] = $this->InventoryStocks_Model->fetch_data();
+				$this->load->view('Inventory_Module/inventoryStocks', $rawcoff_data);
+			} else {
+				redirect('login');
+			}
 		}
 
 	}

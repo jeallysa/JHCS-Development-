@@ -10,10 +10,29 @@
 		
 		function index()
 		{ 
+			if ($this->session->userdata('username') != '')
+			{
+				$this->load->model('AdminPackaging_model');
+				$data['packaging']=$this->AdminPackaging_model->getPackaging();
+	            $data1['getSupplier'] = $this->AdminPackaging_model->getSupplier();
+				$this->load->view('Admin_Module/adminPackaging', ['data' => $data,  'data1' => $data1]);
+			} else {
+				redirect('login');
+			}
+		}
+        
+        function update(){
 			$this->load->model('AdminPackaging_model');
-			$data['packaging']=$this->AdminPackaging_model->getPackaging();
-            $data1['getSupplier'] = $this->AdminPackaging_model->getSupplier();
-			$this->load->view('Admin_Module/adminPackaging', ['data' => $data,  'data1' => $data1]);
+			$id = $this->input->post("package_id");
+			$type = $this->input->post("type");
+            $size = $this->input->post("size");
+			$reorder = $this->input->post("reorder");
+			$stocklimit = $this->input->post("stocklimit");
+			$stocks = $this->input->post("stocks");
+			$sup_id = $this->input->post("sup_company");
+			$this->AdminPackaging_model->update($id, $type, $size, $reorder, $stocks, $stocklimit, $sup_id);
+			echo "<script>alert('Update successful!');</script>";
+			$this->index();
 		}
         
         function insert()
