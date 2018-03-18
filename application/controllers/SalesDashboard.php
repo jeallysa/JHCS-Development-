@@ -8,7 +8,14 @@
 		
 		public function index()
 		{ 
-			$this->load->view('Sales_Module/salesDashboard');
+			if ($this->session->userdata('username') != '')
+			{
+				$this->load->model('sales_model');
+				$this->load->view('Sales_Module/salesDashboard');
+			} else {
+				redirect('login');
+			}
+
 		}
 	}
 

@@ -9,13 +9,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 		public function index()
 		{ 
-            $this->load->view('layout/header');
+            if ($this->session->userdata('username') != '')
+			{
+				$this->load->view('layout/header');
             
-            $this->load->model('inventoryList_model');
-            $data['category'] = $this->inventoryList_model ->retrieveCategory();
-            
-            
-			$this->load->view('Inventory_Module/inventoryList' , $data);
+	            $this->load->model('inventoryList_model');
+	            $data['category'] = $this->inventoryList_model ->retrieveCategory();
+	            
+	            
+				$this->load->view('inventoryList' , $data);
+			} else {
+				redirect('login');
+			}
 		}
 
 	}

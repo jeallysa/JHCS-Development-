@@ -9,7 +9,7 @@ class AdminMachines_model extends CI_MODEL
 	}
 
 	function getMachines(){
-		$query=$this->db->query("SELECT brewer, brewer_type, mach_reorder, mach_limit, sup_company, mach_stocks FROM machine NATURAL JOIN supplier");
+		$query=$this->db->query("SELECT mach_id, mach_serial, brewer, brewer_type, mach_price, mach_reorder, mach_limit, sup_company, mach_stocks FROM machine NATURAL JOIN supplier");
 		return $query->result();
 	}
     
@@ -20,6 +20,22 @@ class AdminMachines_model extends CI_MODEL
     
     function insert_data($data){ 
 		$this->db->insert('machine', $data);
+	}
+
+	function update($id, $serial, $brewer, $type, $price, $reorder, $limit, $stock_level, $sup_id){
+		$data = array(
+	        'mach_serial' => $serial,
+	        'brewer' => $brewer,
+	        'brewer_type' => $type,
+	        'mach_price' => $price,
+	        'mach_reorder' => $reorder,
+	        'mach_limit' => $limit,
+	        'mach_stocks' => $stock_level,
+	        'sup_id' => $sup_id	        
+		);
+
+		$this->db->where('mach_id', $id);
+		$this->db->update('machine', $data);
 	}
 }
 ?>

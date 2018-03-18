@@ -10,10 +10,15 @@
 		
         function index()
 		{ 
-			$this->load->model('AdminMachines_model');
-			$data['machines']=$this->AdminMachines_model->getMachines();
-            $data1['getSupplier'] = $this->AdminMachines_model->getSupplier();
-			$this->load->view('Admin_Module/adminMachines', ['data' => $data,  'data1' => $data1]);
+			if ($this->session->userdata('username') != '')
+			{
+				$this->load->model('AdminMachines_model');
+				$data['machines']=$this->AdminMachines_model->getMachines();
+	            $data1['getSupplier'] = $this->AdminMachines_model->getSupplier();
+				$this->load->view('Admin_Module/adminMachines', ['data' => $data,  'data1' => $data1]);
+			} else {
+				redirect('login');
+			}
 		}
         
          function insert()
@@ -31,6 +36,22 @@
 			$data = $this->security->xss_clean($data);
 			$this->AdminMachines_model->insert_data($data);
 			$this->index();
+		}
+
+		function update(){
+			$this->load->model('AdminMachines_Model');
+			$id = $this->input->post("id");
+			$serial = $this->input->post("mach_serial");
+			$brewer = $this->input->post("brewer");
+			$type = $this->input->post("type");
+			$price = $this->input->post("price");
+			$reorder = $this->input->post("reorder");
+			$limit = $this->input->post("stocklimit");
+			$stock_level = $this->input->post("stocks");
+			$sup_id = $this->input->post("sup_company");
+			$this->AdminMachines_Model->update($id, $serial, $brewer, $type, $price, $reorder, $limit, $stock_level, $sup_id);
+			echo "<script>alert('Update successful!');</script>";
+			redirect('adminMachines', 'refresh');
 		}
 
 	}

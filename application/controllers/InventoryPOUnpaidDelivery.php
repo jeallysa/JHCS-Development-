@@ -9,14 +9,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 		public function index()
 		{ 
-            $this->load->view('layout/header');
-            $this->load->model('inventoryPOUnpaidDelivery_model');
-            
-            
-            $data['unpaid'] = $this->inventoryPOUnpaidDelivery_model->retrieveUnpaid();
-            
-            
-			$this->load->view('Inventory_Module/inventoryPOUnpaidDelivery', $data);
+            if ($this->session->userdata('username') != '')
+            {
+            	$this->load->view('layout/header');
+            	$this->load->model('inventoryPOUnpaidDelivery_model'); 
+            	$data['unpaid'] = $this->inventoryPOUnpaidDelivery_model->retrieveUnpaid(); 
+				$this->load->view('inventoryPOUnpaidDelivery', $data);
+			} else {
+				redirect('login');
+			}
 		}
 
 	}

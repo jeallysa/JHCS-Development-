@@ -2,15 +2,14 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url(); ?>assets/img/apple-icon.png"/>
     <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/img/favicon.png"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Inventory Stocks</title>
+    <title>Inventory Machines</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
@@ -22,11 +21,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/demo.css"/>
     <!--     Fonts and icons     -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" >
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' type='text/css'>
     <link rel="shortcut icon" href="favicon.ico">
 </head>
-
 <body>
     <div class="wrapper">
         <div class="sidebar" data-color="blue" data-image="<?php echo base_url(); ?>assets/img/sidebar-0.jpg">
@@ -102,12 +100,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
+                        <a class="navbar-brand" href="#"> </a>
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
                                 <li>
-                                    <p class="title">Hi, User 1</p>
+                                    <p class="title">Hi, <?php $username = $this->session->userdata('username'); print_r($username); ?></p>
                                 </li>
                                 <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="material-icons">person</i>
@@ -124,7 +123,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <a href="<?php echo base_url(); ?>inventoryActivityLogs">Activity Logs</a>
                                     </li>
                                     <li>
-                                        <a href="#">Logout</a>
+                                        <a href="<?php echo base_url('Login/logout');  ?>">Logout</a>
                                     </li>
                                 </ul>
                             </li>
@@ -135,7 +134,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-sm-12">
                             <div class="card card-nav-tabs">
                                 <div class="card-header" data-background-color="blue">
                                     <div class="nav-tabs-navigation">
@@ -148,30 +147,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
-                                                <span></span>
-                                                <li class="">
+                                                <li>
                                                     <a href="<?php echo base_url(); ?>inventoryBlends">
                                                         <i class="material-icons">opacity</i>Blends
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
-                                                <span></span>
                                                 <li>
                                                     <a href="<?php echo base_url(); ?>inventoryPackaging">
                                                         <i class="material-icons">local_mall</i>Packaging
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
-                                                <span></span>
-                                                <li class="">
+                                                <li>
                                                     <a href="<?php echo base_url(); ?>inventoryStickers">
                                                         <i class="material-icons">wallpaper</i>Stickers
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
-                                                <span></span>
                                                 <li class="active">
-                                                    <a href="<?php echo base_url(); ?>inventoryMachines">
+                                                    <a href="#invmachines" data-toggle="tab">
                                                         <i class="material-icons">local_laundry_service</i>Machines
                                                         <div class="ripple-container"></div>
                                                     </a>
@@ -181,36 +176,40 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </div>
                                 </div>
                                 <div class="card-content">
-                                    <table id="example" class="table hover order-column" cellspacing="0" width="100%">
-                                        <thead>
-                                            <th><b class="pull-left">Machine No.</b></th>
-                                            <th><b class="pull-left">Machine</b></th>
-                                            <th><b class="pull-left">Type</b></th>
-                                            <th><b class="pull-left">Reorder Level (per pc)</b></th>
-                                            <th><b class="pull-left">Stock Limit (per pc)</b></th>
-                                            <th><b class="pull-left">Supplier</b></th>
-                                            <th><b class="pull-left">Number of Stocks (per pc)</b></th>
-                                            <th><b class="pull-left">Cue Card</b></th>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                                if($fetch_data->num_rows() > 0){
-                                                    foreach ($fetch_data -> result() as $row)
-                                            {
-                                            ?>
-                                            <tr>
-                                                <td><?php echo $row->mach_id; ?></td>
-                                                <td><?php echo $row->brewer; ?></td>
-                                                <td><?php echo $row->brewer_type; ?></td>
-                                                <td><?php echo $row->mach_reorder; ?></td>
-                                                <td><?php echo $row->mach_limit; ?></td>
-                                                <td><?php echo $row->sup_company; ?></td>
-                                                <td><b><?php echo $row->mach_stocks; ?></b></td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#<?php echo $row->mach_id; ?>">Details</button>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="invmachines">
+                                            <br>
+                                            <br>
+                                             <table id="" class="table hover order-column" cellspacing="0" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th><b class="pull-left">Machine No.</b></th>
+                                                    <th><b class="pull-left">Machine</b></th>
+                                                    <th><b class="pull-left">Type</b></th>
+                                                    <th><b class="pull-left">Reorder Level (per pc)</b></th>
+                                                    <th><b class="pull-left">Stock Limit (per pc)</b></th>
+                                                    <th><b class="pull-left">Supplier</b></th>
+                                                    <th><b class="pull-left">Number of Stocks (per pc)</b></th>
+                                                    <th><b class="pull-left">Cue Card</b></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php 
+                                                    if($fetch_data->num_rows() > 0){
+                                                        foreach ($fetch_data -> result() as $row)
+                                                    {
+                                                ?>
+                                                <tr>
+                                                    <td><?php echo $row->mach_id; ?></td>
+                                                    <td><?php echo $row->brewer; ?></td>
+                                                    <td><?php echo $row->brewer_type; ?></td>
+                                                    <td><?php echo $row->mach_reorder; ?></td>
+                                                    <td><?php echo $row->mach_limit; ?></td>
+                                                    <td><?php echo $row->sup_company; ?></td>
+                                                    <td><b><?php echo $row->mach_stocks; ?></b></td>
+                                                    <td><a class="btn btn-info" data-toggle="modal" data-target="#<?php echo $row->mach_id; ?>" data-original-title style="float: right">View</a>
 
-                                                <!-- Modal -->
+                                                        <!-- Modal -->
                                                 <div class="modal fade" id="<?php echo $row->mach_id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                   <div class="modal-dialog modal-lg">
                                                     <div class="panel panel-primary">
@@ -261,7 +260,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         ?>  
 
                                         <?php
-                                              $retrieveDetails2 ="SELECT * FROM jhcs.client_machreturn NATURAL JOIN contracted_client where mach_id = '$row->mach_id';" ;
+                                              $retrieveDetails2 ="SELECT * FROM jhcs.client_machreturn NATURAL JOIN contracted_client WHERE mach_id = '$row->mach_id';" ;
                                               $query = $this->db->query($retrieveDetails2);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
@@ -277,6 +276,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                               }
                                             }
                                         ?>  
+
+                                        <?php
+                                              $retrieveDetails3 ="SELECT coService_id, mach_id, client_company, coService_date, mach_qty FROM jhcs.coffeeservice NATURAL JOIN machine NATURAL JOIN contracted_client WHERE mach_id = '$row->mach_id';" ;
+                                              $query = $this->db->query($retrieveDetails3);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td>'  . $object->client_company  . '</td>' ,
+                                                '<td>'  . $object->coService_date  . '</td>' ,
+                                                '<td>'  . $object->mach_qty  . '</td>' ;
+                                                ?>
+                                                    <td>Coffee Services</td>
+                                                    <td>OUT</td>
+                                                 <?php   
+                                                '</tr>' ;
+                                              }
+                                            }
+                                        ?>
                                                           
                                                         </tbody>
                                                       </table><hr>
@@ -285,19 +302,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 <div class="form-group">
                                                                     <label class="col-md-4 control">Total In :</label>
                                                                     <div class="col-md-4">
-                                                                        <p>- pieces</p>
+                                                                        <?php
+                                              $retrieveDetails3 ="SELECT SUM(mach_returnQty) AS totalQty FROM (SELECT * FROM jhcs.client_machreturn NATURAL JOIN contracted_client WHERE mach_id = '$row->mach_id') AS stickerIn;" ;
+                                              $query = $this->db->query($retrieveDetails3);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<p>'  . $object->totalQty  . ' pieces</p>' ;
+                                           }
+                                            }
+                                                ?>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="col-md-4 control">Total Out :</label>
                                                                     <div class="col-md-7">
-                                                                        <p>- pieces</p>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-4 control">Ending Inventory :</label>
-                                                                    <div class="col-md-5">
-                                                                        <p>- pieces</p>
+                                                                        <?php
+                                              $retrieveDetails4 ="SELECT SUM(mach_qty) AS totalQty FROM (SELECT * FROM jhcs.machine_out NATURAL JOIN machine NATURAL JOIN contracted_client where mach_id = '$row->mach_id') AS stickerOut;" ;
+                                              $query = $this->db->query($retrieveDetails4);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<p>'  . $object->totalQty  . ' pieces</p>' ;
+                                           }
+                                            }
+                                                ?>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -333,9 +360,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     </div>
                                                   </div>
                                                 </div>
-                                                </td>
-                                            </tr>
-                                            <?php
+                                            </td>
+                                                </tr>
+                                                <?php
                                                                 }
 
                                                             }
@@ -348,17 +375,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         }
 
                                                     ?>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                            </tbody>
+                                        </table>
+                                        </div>
+                                    </div>
+                                </div> 
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
 </body>
 <!--   Core JS Files   -->
+<!--
+    <script src="../assets/js/jquery-1.12.4.js" type="text/javascript"></script>
+-->
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/material.min.js" type="text/javascript"></script>
@@ -380,20 +417,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?php echo base_url(); ?>assets/js/jquery.datatables.js"></script>
 <script>
 $(document).ready(function() {
-    $('#fresh-datatables').DataTable({
+    $('table.table').DataTable({
         select: {
             style: 'single'
         }
 
     });
-    $('#datePicker')
-        .datepicker({
-            format: 'mm/dd/yyyy'
-        })
-        .on('changeDate', function(e) {
-            // Revalidate the date field
-            $('#eventForm').formValidation('revalidateField', 'date');
-        });
 });
 </script>
 <script>
@@ -419,5 +448,5 @@ $(document).ready(function() {
     
     }
 </script> 
-
+ 
 </html>

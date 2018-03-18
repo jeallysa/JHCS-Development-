@@ -208,7 +208,7 @@ thead th {
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
                                 <li>
-                                    <p class="title">Hi, Player!</p>
+                                    <p class="title">Hi, <?php $username = $this->session->userdata('username'); print_r($username); ?></p>
                                 </li>
                                 <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="material-icons">person</i>
@@ -411,8 +411,9 @@ thead th {
                                                 <th><b>Address</b></th>
                                                 <th><b>Email</b></th>
                                                 <th><b>Telephone No.</b></th>
-                                                <th><b class="pull-left">Actions</b></th>
+                                                
                                                 <th class="disabled-sorting"><b>Edit</b></th>
+                                                <th><b class="pull-left">Actions</b></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -433,6 +434,12 @@ thead th {
                                                     <td><?php echo $row->sup_address; ?></td>
                                                     <td><?php echo $row->sup_email; ?></td>
                                                     <td><?php echo $row->sup_contact; ?></td>
+                                                        
+                                                        
+                                                     <td>
+
+                                                            <a class="btn btn-warning btn-sm" href="#" onclick="edit_book(<?php echo $row->sup_id;?>)" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
+                                                    </td>
                                                      <td>
                                                     <div class="onoffswitch">
                                                         <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
@@ -442,10 +449,6 @@ thead th {
                                                         </label>
                                                     </div>
                                                 </td>
-                                                     <td>
-
-                                                            <a class="btn btn-warning btn-sm" href="#" onclick="edit_book(<?php echo $row->sup_id;?>)" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
-                                                    </td>
                                                 </tr>
                                                 <?php
                                                  }

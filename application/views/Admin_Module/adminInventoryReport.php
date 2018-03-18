@@ -91,7 +91,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
                                 <li>
-                                    <p class="title">Hi, Player!</p>
+                                    <p class="title">Hi, <?php $username = $this->session->userdata('username'); print_r($username); ?></p>
                                 </li>
                                 <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="material-icons">person</i>
@@ -283,6 +283,8 @@
                                                 $conntitle->close();
                                                 ?>
                                                 <th><b> Packaging </b> </th>
+                                                <th><b> Machines </b> </th>
+                                                <th><b> Stickers </b> </th>
                                                 <th class="disabled-sorting"><b>Edit</b></th>
                                             </tr>
                                         </thead>
@@ -332,6 +334,8 @@
                                                 <td>3000 g</td>
                                                 <td>7000 g</td> -->
                                                 <td><?php echo $row->packaging; ?></td>
+                                                <td><?php echo $row->machines; ?></td>
+                                                <td><?php echo $row->stickers; ?></td>
                                                 <td>
                                                         <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
                                                 </td>
@@ -421,19 +425,19 @@
 		buttons: [
             { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                    columns: [0, 1, 2, 3, 4, 5, 6, 7, 8]
                 }
             },
             
 			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                    columns: [0, 1, 2, 3, 4, 5, 6, 7, 8]
                 }
             },
             
 			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                    columns: [0, 1, 2, 3, 4, 5, 6, 7 ,8]
                 }
             }
         ]

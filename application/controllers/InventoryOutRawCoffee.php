@@ -8,9 +8,14 @@
 		
 		public function index()
 		{ 
-			$this->load->model('InventoryOutRawCoffee_model');
-            $data['rawcoffeeout'] = $this->InventoryOutRawCoffee_model->get_rawcoffeeout();
-            $this->load->view('Inventory_Module/inventoryOutRawCoffee', $data);
+			if ($this->session->userdata('username') != '')
+			{
+				$this->load->model('InventoryOutRawCoffee_model');
+            	$data['rawcoffeeout'] = $this->InventoryOutRawCoffee_model->get_rawcoffeeout();
+            	$this->load->view('Inventory_Module/inventoryOutRawCoffee', $data);
+            } else {
+            	redirect('login');
+            }
 		}
 
 	}

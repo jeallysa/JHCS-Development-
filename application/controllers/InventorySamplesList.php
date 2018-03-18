@@ -8,12 +8,17 @@
 		
 		public function index()
 		{ 
-			$this->load->model("InventorySamplesList_Model");
-			$smpl_data["fetch_data"] = $this->InventorySamplesList_Model->fetch_data();
-			$data1['get_drnumber'] = $this->InventorySamplesList_Model->get_drnumber();
-			$data2['get_packaging'] = $this->InventorySamplesList_Model->get_packaging();
-			$data3['get_sticker'] = $this->InventorySamplesList_Model->get_sticker();
-			$this->load->view('Inventory_Module/inventorySamplesList', ['smpl_data' => $smpl_data, 'data1' => $data1, 'data2' => $data2, 'data3' => $data3] );
+			if ($this->session->userdata('username') != '')
+            {
+            	$this->load->model("InventorySamplesList_Model");
+				$smpl_data["fetch_data"] = $this->InventorySamplesList_Model->fetch_data();
+				$data1['get_drnumber'] = $this->InventorySamplesList_Model->get_drnumber();
+				$data2['get_packaging'] = $this->InventorySamplesList_Model->get_packaging();
+				$data3['get_sticker'] = $this->InventorySamplesList_Model->get_sticker();
+				$this->load->view('Inventory_Module/inventorySamplesList', ['smpl_data' => $smpl_data, 'data1' => $data1, 'data2' => $data2, 'data3' => $data3] );
+			} else {
+				redirect('login');
+			}
 		}
 
 		public function insert()
