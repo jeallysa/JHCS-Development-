@@ -10,7 +10,7 @@
 		{ 
 			if ($this->session->userdata('username') != '')
 			{
-				$this->load->view('Admin_Module/adminChangePassword');
+				$this->load->view('adminChangePassword');
 			} else {
 				redirect('login');
 			}
