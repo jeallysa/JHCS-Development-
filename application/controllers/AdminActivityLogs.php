@@ -1,5 +1,5 @@
 <?php
-
+ 
 	class AdminActivityLogs extends CI_Controller
 	{
 		function __construct(){
@@ -10,7 +10,9 @@
 		{ 
 			if ($this->session->userdata('username') != '')
 			{
-				$this->load->view('Admin_Module/adminActivityLogs');
+				$this->load->model('AdminActivityLogs_Model');
+				$actvlg_data["fetch_data"] = $this->AdminActivityLogs_Model->fetch_data();
+				$this->load->view('Admin_Module/adminActivityLogs', $actvlg_data);
 			} else {
 				redirect('login');
 			}
