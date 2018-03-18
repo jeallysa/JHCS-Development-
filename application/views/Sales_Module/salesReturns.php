@@ -88,6 +88,7 @@
 		.select-pane {
         display: none;
     	}
+	
 		
 
 		
@@ -252,7 +253,7 @@
                                                         <td>--</td>
                                                         <td><?php echo $row->coff_remarks; ?></td>
                                                         <td>
-                                                            <button class="btn btn-danger btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#resolve_coffee">Resolve</button>
+                                                            <button class="btn btn-danger btn-sm viewCoffeeReturns" style="margin-top: 0px" data-toggle="modal" data-target="#resolve_coffee" id="getDetails" data-id="<?php echo $row->client_id; ?>"> Resolve</button>
                                                         </td>
                                                     </tr>
                                                     <?php
@@ -292,7 +293,7 @@
                                                         <td><?php echo $row->brewer; ?></td>
                                                         <td><?php echo $row->mach_remarks; ?></td>
                                                         <td>
-                                                            <button class="btn btn-danger btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#resolve_coffee">Resolve</button>
+                                                            <button class="btn btn-danger btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#resolve_machine">Resolve</button>
                                                         </td>
                                                     </tr>
                                                     <?php
@@ -388,28 +389,32 @@
                 </div>
             </div>
 		<!--modal for coffee returns-->
-			 <div class="modal fade" id="resolve_coffee" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-							<div class="modal-dialog modal-md">
-								<div class="panel panel-primary">
+			 <div class="modal fade displaycontent" id="resolve_coffee" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+				 <div class="modal-dialog modal-md">
+					 <div class="panel panel-primary">
 									<div class="panel-heading">
 										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-										<h4 class="panel-title" id="contactLabel"><center>Refolve Coffee Returns</center></h4>
+										<h4 class="panel-title" id="contactLabel"><center>Resolve Coffee Returns</center></h4>
 									</div>
-									<form action="#" method="post" accept-charset="utf-8">
-										<div class="modal-body" style="padding: 5px;">
+									
+										<div class="modal-body" style="padding: 10px;">
+
+											
                                         <div class="row">
                                             <div class="col-lg-7">
+
 												<div class="row">
 													<div class="form-group">
 														<label class="col-md-5 control">Coffee Blend :</label>
-														<div class="col-md-7">
-															<p><b>SUMATRA NIGHT</b></p>
+														<div class="col-md-7" >
+															<p ><b> <input name="blendName" class="form-control no-border" type="disabled"  readonly></b></p>
+													
 														</div>
 													</div>
 													<div class="form-group">
 														<label class="col-md-5 control">Size :</label>
 														<div class="col-md-5">
-															<p><b>500g</b></p>
+															<p><b><input name="size" class="form-control" type="disabled"  readonly></b></p>
 														</div>
 													</div>
 												</div>
@@ -417,33 +422,43 @@
 													<div class="form-group">
 														<label class="col-md-5 control">Bag :</label>
 														<div class="col-md-6">
-															<p><b>Clear</b></p>
+															<p><b><input name="bagType" class="form-control" type="disabled"  readonly></b></p>
 														</div>
 													</div>
 													<div class="form-group">
 														<label class="col-md-5 control">Quantity :</label>
 														<div class="col-md-6">
-															<p><b>3</b></p>
+															<p><input name="quantity" id="Originalquantity" class="form-control" type="disabled"  readonly></p>
 														</div>
 													</div>
 												</div>
+													
+												
                                             </div>
                                         </div>
+											
                                         <hr>
+										<?php echo form_open('SalesReturns/addReturns', array('method'=>'POST')); ?>
+											
+											<div class="alert alert-danger print-error-msg" style="display:none">
+												</div>
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label class="col-md-6 control">Delivery Receipt No :</label>
                                                     <div class="col-md-6">
-                                                        <p class="form-control" contenteditable="true">DR0123</p>
+                                                        <!--<p class="form-control" contenteditable="true" name="delivery_receipt">DR0123</p>-->
+														<?php echo form_input(['name'=>'DRReturns','id'=>'deliveryReceipt', 'class'=>'form-control','type'=>'text']); ?>
                                                     </div>
                                                 </div>
                                             </div>
+											
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label class="col-md-6 control">Date of Delivery :</label>
                                                     <div class="col-md-6">
-                                                        <input class="form-control" name="coffeeType" placeholder="Date" type="date" required />
+                                                        <!--<input class="form-control" name="delivery_date" placeholder="Date" type="date" required />-->
+														<?php echo form_input(['name'=>'delivery_date','id'=>'DateDelivered','placeholder'=>'Date', 'class'=>'form-control','type'=>'date']); ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -453,7 +468,8 @@
                                                 <div class="form-group">
                                                     <label class="col-md-5 control">Received by :</label>
                                                     <div class="col-md-7">
-                                                        <input id="" name="name" type="text" class="form-control">
+                                                        <!--<input id="" name="receiver" type="text" class="form-control">-->
+														<?php echo form_input(['name'=>'receiver','id'=>'receiver', 'class'=>'form-control','type'=>'text']); ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -461,22 +477,37 @@
                                                 <div class="form-group">
                                                     <label class="col-md-6 control">Delivery status:</label>
                                                     <div class="col-md-6">
-                                                        <select class="form-control nav">
-                                                            <option value="">Full Deivery</option>
-                                                            <option value="delivery">Partial Delivery</option>
+                                                        <select class="form-control nav" name="delivery_status">
+															<option value="">Choose Delivery Status</option>
+                                                            <option value="full_delivery">Full Deivery</option>
+                                                            <option value="partial_delivery">Partial Delivery</option>
                                                         </select>
+														
                                                     </div>
                                                 </div>
                                             </div>
 										</div>
-                                        <div class="row">
+											<div class="row">
                                             <div class="col-lg-2 col-md-2 col-sm-2"></div>
                                             <div class="col-lg-8 col-md-8 col-sm-8 ">
-                                                <div class="select-pane " id="delivery">
+                                                <div class="select-pane " id="full_delivery">
                                                     <div class="form-group">
                                                         <label class="col-md-6 control">Quantity Delivered:</label>
                                                         <div class="col-md-5">
-                                                            <input class="form-control" type="text" name="" placeholder="2">
+                                                            <input name="quantity" class="form-control" type="text" id="quantity">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+											</div>
+                                        <div class="row">
+                                            <div class="col-lg-2 col-md-2 col-sm-2"></div>
+                                            <div class="col-lg-8 col-md-8 col-sm-8 ">
+                                                <div class="select-pane " id="partial_delivery">
+                                                    <div class="form-group">
+                                                        <label class="col-md-6 control">Quantity Delivered:</label>
+                                                        <div class="col-md-5">
+                                                            <input id="deliveredCoffee" class="form-control" type="text" name="quantity_delivered">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -485,36 +516,43 @@
 										<div class="row">
                                             <div class="col-lg-2 col-md-2 col-sm-2"></div>
                                             <div class="col-lg-8 col-md-8 col-sm-8 ">
-                                                <div class="select-pane" id="delivery">
+                                                <div class="select-pane" id="partial_delivery">
                                                     <div class="form-group">
                                                         <label class="col-md-6 control">Remaining Quantity: </label>
                                                         <div class="col-md-5">
-                                                            <p><b>1</b></p>
+                                                            <p><input name="remaining_quantity" id="subt" class="form-control" type="text" name="subt" ></p>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 										<div class="row">
-											<div class="col-lg-6">
+											<div class="col-lg-10">
                                                 <div class="form-group">
                                                     <label class="col-md-5 control">Remarks :</label>
-                                                    <div class="col-md-7">
-                                                        <input id="" name="name" type="text" class="form-control">
+                                                    <div class="col-md-8">
+                                                        <!--<input id="" name="coffee_returns_remarks" type="text" class="form-control">-->
+														<?php echo form_input(['name'=>'remarksReturns','id'=>'remarksReturns', 'class'=>'form-control','type'=>'text']); ?>
+														
                                                     </div>
                                                     </div>
                                                 </div>
                                             </div>
+										</div><br>
+										<div class="modal-footer">
+											<!--<button type="submit" class="btn btn-primary" name="submit">Save changes</button>-->
+											<?php echo form_submit(['name'=>'ResolveReturn', 'value'=>'Resolve','class'=>'btn btn-primary']) ?>
+											
 										</div>
-                                    </div>
-										<div class="panel-footer" align="center">
-											<input type="submit" class="btn btn-success" value="Add" />
-											<input type="reset" class="btn btn-warning" value="Clear" />
-										</div>
-							</form>
+									<?php echo form_close(); ?>
 						</div>
+						 
 					</div>
-				</div>
+</div>
+				
+
+					</div>
+				
 		<!--modal for machine returns-->
 				<div class="modal fade" id="resolve_machine" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
 							<div class="modal-dialog modal-md">
@@ -632,7 +670,7 @@
 				</div>
 		<!--modal for add coffee returns-->
 				<div class="modal fade" id="add_coffee_return" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-									<div class="modal-dialog modal-md">
+							<div class="modal-dialog modal-md">
 										<div class="panel panel-primary">
 											<div class="panel-heading">
 												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -719,7 +757,7 @@
 												</div>
 									</form>
 								</div>
-							</div>
+							</div>		
 						</div>
 			<!--modal for add machine returns-->
 						<div class="modal fade" id="add_machine_return" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
@@ -796,10 +834,11 @@
 							</div>
 						</div>
         </div>
-    </div>
+
+
 </body>
 <!--   Core JS Files   -->
-<script src="../assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
 <script src="../assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
 <script src="../assets/js/datepicker.js" type="text/javascript"></script>
@@ -826,22 +865,59 @@ $(document).ready(function() {
         scrollCollapse: true,
 		
     } );
-
-
-	$('table tbody tr  td').on('click', function() {
-		$("#myModal").modal("show");
-		$("#txtfname").val($(this).closest('tr').children()[0].textContent);
-		$("#txtlname").val($(this).closest('tr').children()[1].textContent);
+	
+	difference();
+	$("#Originalquantity, #deliveredCoffee").on("keydown keyup", function() {
+		 difference();
+    });
 	});
-	$('#datePicker')
-		.datepicker({
-			format: 'mm/dd/yyyy'
-		})
-		.on('changeDate', function(e) {
-			$('#eventForm').formValidation('revalidateField', 'date');
-		});
-});
 
+	function difference() {
+            var num1 = document.getElementById('Originalquantity').value;
+            var num2 = document.getElementById('deliveredCoffee').value;
+			/*var result = parseInt(num1) + parseInt(num2);*/
+			var result = parseInt(num1) - parseInt(num2);
+            if (!isNaN(result)) {
+                /*document.getElementById('sum').value = result;*/
+				document.getElementById('subt').value = result;
+            }
+        }
+	
+	
+
+
+</script>
+<script>
+$(document).ready(function(){  
+    $(document).on('click', '#getDetails', function(e){   
+        e.preventDefault();
+        var id = $(this).data('id');   // it will get id of clicked row
+  
+        jQuery.ajax({
+            method: 'GET',
+            type: 'ajax',
+			dataType: 'json',
+            url: '<?=base_url()?>SalesReturns/getDetails/' + id ,			
+			success: function(data)
+				{
+					 $('[name="blendName"]').val(data.blend);
+					$('[name="size"]').val(data.package_size);
+					$('[name="quantity"]').val(data.contractPO_qty);
+					$('[name="bagType"]').val(data.package_type);
+					$('[name="DRReturns"]').val(data.client_dr);
+					
+					$('#resolve_coffee').modal('show');
+					/*$('#blendName').html(blend);*/
+
+
+				},
+			error: function (jqXHR, textStatus, errorThrown)
+				{
+					alert('Error get data from ajax');
+				}         
+                });        
+    });   
+});
 
 </script>
 <script type="text/javascript">
