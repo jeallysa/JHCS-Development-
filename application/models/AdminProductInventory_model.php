@@ -17,7 +17,7 @@ class AdminProductInventory_model extends CI_MODEL
     }
 
 	function getProducts(){
-		$query=$this->db->query("SELECT sup_company, raw_id, raw_coffee, raw_reorder, raw_limit, sup_company, raw_stock FROM raw_coffee NATURAL JOIN supplier");
+		$query=$this->db->query("SELECT sup_company, raw_id, raw_coffee, raw_reorder, raw_limit, sup_company, raw_stock FROM raw_coffee  NATURAL JOIN supplier WHERE raw_activation = 1");
 		return $query->result();
 	}
     
@@ -41,6 +41,10 @@ class AdminProductInventory_model extends CI_MODEL
 
 		$this->db->where('raw_id', $id);
 		$this->db->update('raw_coffee', $data);
+	}
+
+	function activation($id){
+		$this->db->query("UPDATE raw_coffee SET raw_activation = IF(raw_activation=1, 0, 1) WHERE raw_id = ".$id."");
 	}
 
 }

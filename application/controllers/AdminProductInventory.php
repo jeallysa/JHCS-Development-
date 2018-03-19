@@ -51,5 +51,15 @@
 			$this->index();
 		}
 
+		function activation(){
+			
+			$this->load->model('AdminProductInventory_model');
+			$id = $this->input->post("deact_id");
+			$this->AdminProductInventory_model->activation($id);
+			echo "<script>alert('Deactivation successful!');</script>";
+			redirect('adminProductInventory', 'refresh');
+
+		}
+
 	}
 ?>
