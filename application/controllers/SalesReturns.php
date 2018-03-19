@@ -9,16 +9,7 @@
 		
 		public function index()
 		{ 
-<<<<<<< HEAD
 
-			$data1['coffee'] = $this->SalesReturns_model->get_coffee_return();
-			$data2['machine'] = $this->SalesReturns_model->get_machine_return();
-			$data3['resolved_coffee'] = $this->SalesReturns_model->get_resolved_coffee();
-			$data4['resolved_machine'] = $this->SalesReturns_model->get_resolved_machine();
-			
-			
-			$this->load->view('Sales_Module/salesReturns', ['data1' => $data1, 'data2' => $data2, 'data3' => $data3, 'data4' => $data4]);
-=======
 			if ($this->session->userdata('username') != '')
             {
             	$this->load->model('SalesReturns_model');
@@ -30,8 +21,9 @@
 			} else {
 				redirect('login');
 			}
->>>>>>> 7a4ff242e7f68f2a166cecaf46f647d535969dad
+
 		}
+		//Get Coffee Details
 		function getDetails()
 		{
 			/*$id=$this->input->post('id');*/
@@ -45,31 +37,34 @@
 			
 			  echo json_encode($data);		
 		}
+		//Get Machine Details
+		function getMachineDetails()
+		{
+			$id = $this->uri->segment(3,1);
+			$data = $this->SalesReturns_model->getDetailsMachine($id);
+			  echo json_encode($data);		
+		}
 
 		function addReturns()
 		{
 			$this->form_validation->set_rules('delivery_date','Delivery Date','required');
 			$this->form_validation->set_rules('receiver','Receiver','required');
-			/*$this->form_validation->set_rules('DRReturns','Delivery Receipt','required|callback_DRCheck');*/
-			/*$this->form_validation->set_rules('delivery_status','Delivery Status','required');*/
+			$this->form_validation->set_rules('DRReturns','Delivery Receipt','required');
+			$this->form_validation->set_rules('quantity_delivered','Delivered Quantity','required|integer');
 			$this->form_validation->set_rules('remarksReturns','Remarks','required');
 			if ($this->form_validation->run())
 				{
 					echo 'A new return has been resolved';
-				 		// post values
-					  $name = $this->input->post('delivery_date');
-					  $username = $this->input->post('receiver');
-					  $email = $this->input->post('DRReturns');
-					  $password = $this->input->post('delivery_status');
-					  // set post values
-					  $this->user->setName($name);
-					  $this->user->setUserName($username);
-					  $this->user->setEmail($email);
-					  $this->user->setPassword(MD5($password));
-					  $this->user->setStatus(1);
-					  // insert values in database
-					  $this->user->createUser();
-					  redirect('users/index');
+					  
+					   $date = $this->input->post('delivery_date');
+					  $receiver = $this->input->post('receiver');
+					  $dr = $this->input->post('DRReturns');
+					  $quantity = $this->input->post('quantity_delivered');
+						$remarks = $this->input->post('remarksReturns');
+				
+					
+					  $this->SalesReturns_model->ResolveCoffeeReturns($date, $receiver, $dr, $quantity, $remarks);
+					  redirect('SalesReturns/index');
 				}
 				else
 				{

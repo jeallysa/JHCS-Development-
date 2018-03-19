@@ -396,7 +396,7 @@ thead th {
                                      </h4>
                             </div>
                         <div class="card-content table-responsive">
-                              <a href="<?php echo base_url(); ?>adminNewSuppliers" class="btn btn-success" data-original-title style="float: right"> Create New Account</a>
+                              <a href="<?php echo base_url(); ?>adminNewSuppliers" class="btn btn-success" data-original-title style="float: right"> Create New Supplier</a>
                             <div class="col-md-12 col-md-offset-0">
                                 <div class="fresh-datatables">
                                     <!--  Available colors for the full background: full-color-blue, full-color-azure, full-color-purple, full-color-red, full-color-orange, full-color-purple, full-color-gray
@@ -438,7 +438,7 @@ thead th {
                                                         
                                                      <td>
 
-                                                            <a class="btn btn-warning btn-sm" href="#" onclick="edit_book(<?php echo $row->sup_id;?>)" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
+                                                        <a class="btn btn-warning btn-sm" href="#" style="margin-top: 0px" data-toggle="modal" data-target="#edit<?php echo $row->sup_id; ?>">Edit</a>
                                                     </td>
                                                      <td>
                                                     <div class="onoffswitch">
@@ -449,6 +449,89 @@ thead th {
                                                         </label>
                                                     </div>
                                                 </td>
+                                                <div class="modal fade" id="edit<?php echo $row->sup_id; ?>" tabindex="1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="panel panel-primary">
+                                                            <div class="panel-heading">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                                <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign" ></span> Edit Supplier Information</h4>
+                                                            </div>
+                                                            <form action="<?php echo base_url(); ?>AdminSupplier/update" id="modalUpdate" method="post" accept-charset="utf-8">
+                                                                  <div class="modal-body" style="padding-left: 100px;">
+                                                                    <input type="hidden" value="" name="sup_id"/>
+                                                                     <div class="form-group row">
+                                                                        <div for="example-number-input" class="col-2 col-form-label">
+                                                                            <label for="type">Supplier</label>
+                                                                            <input name="sup_company" class="form-control" type="textarea" value="<?php echo $row->sup_company; ?>" id="example-number-input">
+                                                                            <input name="sup_id" class="form-control" type="hidden" value="<?php echo $row->sup_id; ?>" id="example-number-input">
+                                                                        </div>
+                                                                    </div>
+                                                                        
+                                                                         <p><div class="form-group row">
+                                                                        <div for="example-number-input" class="col-2 col-form-label">
+                                                                            <label for="type">Address</label>
+                                                                            <input name="sup_address" class="form-control" type="textarea" value="<?php echo $row->sup_address; ?>" id="example-number-input">
+                                                                        </div>
+                                                                    </div>
+                                                                        <div class="form-group row">
+                                                                        <div for="example-number-input" class="col-2 col-form-label">
+                                                                            <label for="type">Email</label>
+                                                                            <input name="sup_email" class="form-control" type="textarea" value="<?php echo $row->sup_email; ?>" id="example-number-input">
+                                                                        </div>
+                                                                    </div>
+                                                                        <div class="form-group row">
+                                                                        <div for="example-number-input" class="col-2 col-form-label">
+                                                                            <label for="type">Telephone Number</label>
+                                                                            <input name="sup_contact" class="form-control" type="number" value="<?php echo $row->sup_contact; ?>" id="example-number-input">
+                                                                        </div>
+                                                                    </div>
+                                                                       <div class="col-md-6">
+                                                                            <label class="control-label">Product</label>
+                                                                            <select class="form-control" name="Category" placeholder="Category" type="text" required>
+                                                                                <option>Brown Bag</option>
+                                                                                <option>Clear Bag</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    <div class="form-group row">
+                                                                         
+                                                                         <div class="col-md-6">
+                                                                            <label for="example-number-input" class="col-2 col-form-label">Position</label>
+                                                                            <div class="col-10">
+                                                                                <input name="sup_position" class="form-control" type="textarea" value="<?php echo $row->sup_position; ?>" id="example-number-input">
+                                                                            </div>
+                                                                        </div>
+                                                                     
+                                                                    </div>
+                                                                    <h6> Contact Personnel </h6>
+                                                                    <div class="form-group row">
+                                                                        <div class="col-md-6">
+                                                                            
+                                                                            <label for="example-number-input" class="col-2 col-form-label">First Name</label>
+                                                                            <div class="col-10">
+                                                                                <input name="sup_fname" class="form-control" type="textarea" value="<?php echo $row->sup_fname; ?>" id="example-number-input">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <label for="example-number-input" class="col-2 col-form-label">Last Name</label>
+                                                                            <div class="col-10">
+                                                                                <input name="sup_lname" class="form-control" type="textarea" value="<?php echo $row->sup_lname; ?>" id="example-number-input">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row">
+                                                                        <div class="panel-footer" style="margin-bottom:-14px;">
+                                                                            <input type="submit" class="btn btn-success" value="Add" style="float: right;" />
+                                                                            <!--<span class="glyphicon glyphicon-ok"></span>-->
+                                                                            <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
+                                                                        </div>
+                                                                    </div>
+                                                                      
+                                                                    </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 </tr>
                                                 <?php
                                                  }
@@ -472,88 +555,7 @@ thead th {
                 </div>
             </div>
         </div>
-                        <div class="modal fade" id="edit" tabindex="1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="panel panel-primary">
-                                            <div class="panel-heading">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign" ></span> Edit Item Information</h4>
-                                            </div>
-                                            <form action="#" id="modalUpdate" method="post" accept-charset="utf-8">
-                                                  <div class="modal-body" style="padding-left: 100px;">
-                                                    <input type="hidden" value="" name="sup_id"/>
-                                                     <div class="form-group row">
-                                                        <div for="example-number-input" class="col-2 col-form-label">
-                                                            <label for="type">Supplier</label>
-                                                            <input name="sup_company" class="form-control" type="textarea" value="" id="example-number-input">
-                                                        </div>
-                                                    </div>
-                                                        
-                                                         <p><div class="form-group row">
-                                                        <div for="example-number-input" class="col-2 col-form-label">
-                                                            <label for="type">Address</label>
-                                                            <input name="sup_address" class="form-control" type="textarea" value="Legarda" id="example-number-input">
-                                                        </div>
-                                                    </div>
-                                                        <div class="form-group row">
-                                                        <div for="example-number-input" class="col-2 col-form-label">
-                                                            <label for="type">Email</label>
-                                                            <input name="sup_email" class="form-control" type="textarea" value="lafestive@gmail.com" id="example-number-input">
-                                                        </div>
-                                                    </div>
-                                                        <div class="form-group row">
-                                                        <div for="example-number-input" class="col-2 col-form-label">
-                                                            <label for="type">Telephone Number</label>
-                                                            <input name="sup_contact" class="form-control" type="number" value="442-1234" id="example-number-input">
-                                                        </div>
-                                                    </div>
-                                                       <div class="col-md-6">
-                                                            <label class="control-label">Product</label>
-                                                            <select class="form-control" name="Category" placeholder="Category" type="text" required>
-                                                                <option>Brown Bag</option>
-                                                                <option>Clear Bag</option>
-                                                            </select>
-                                                        </div>
-                                                    <div class="form-group row">
-                                                         
-                                                         <div class="col-md-6">
-                                                            <label for="example-number-input" class="col-2 col-form-label">Position</label>
-                                                            <div class="col-10">
-                                                                <input name="sup_position" class="form-control" type="textarea" value="Manager" id="example-number-input">
-                                                            </div>
-                                                        </div>
-                                                     
-                                                    </div>
-                                                    <h6> Contact Personnel </h6>
-                                                    <div class="form-group row">
-                                                        <div class="col-md-6">
-                                                            
-                                                            <label for="example-number-input" class="col-2 col-form-label">First Name</label>
-                                                            <div class="col-10">
-                                                                <input name="sup_fname" class="form-control" type="textarea" value="" id="example-number-input">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label for="example-number-input" class="col-2 col-form-label">Last Name</label>
-                                                            <div class="col-10">
-                                                                <input name="sup_lname" class="form-control" type="textarea" value="" id="example-number-input">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="panel-footer" style="margin-bottom:-14px;">
-                                                            <input type="submit" class="btn btn-success" value="Add" style="float: right;" />
-                                                            <!--<span class="glyphicon glyphicon-ok"></span>-->
-                                                            <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
-                                                        </div>
-                                                    </div>
-                                                      
-                                                    </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+                        
 </body>
 <!--   Core JS Files   -->
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
@@ -616,44 +618,7 @@ $(document).ready(function() {
     });
 });
 </script>
-<script type="text/javascript">
-    var save_method; //for save method string
-    var table;
-    function edit_book(id)
-    {
-      save_method = 'update';
-      $('#modalUpdate')[0].reset(); // reset form on modals
- 
-      //Ajax Load data from ajax
-      $.ajax({
-        url : "<?php echo site_url('index.php/AdminSupplier/ajax_edit/')?>/" + id,
-        type: "GET",
-        dataType: "JSON",
-        success: function(data)
-        {
- 
-            $('[name="sup_company"]').val(data.sup_company);
-            $('[name="sup_address"]').val(data.sup_address);
-            $('[name="sup_email"]').val(data.sup_email);
-            $('[name="sup_contact"]').val(data.sup_contact);
-            $('[name="sup_position"]').val(data.sup_position);
-            $('[name="sup_lname"]').val(data.sup_lname);
-            $('[name="sup_fname"]').val(data.sup_fname);
- 
- 
-            $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
-            $('.modal-title').text('Edit Book'); // Set title to Bootstrap modal title
- 
-        },
-        error: function (jqXHR, textStatus, errorThrown)
-        {
-            alert('Error get data from ajax');
-        }
-    });
-    }
 
-
-</script>
 <script>
 $(function() {
     $('#toggle-two').bootstrapToggle({
