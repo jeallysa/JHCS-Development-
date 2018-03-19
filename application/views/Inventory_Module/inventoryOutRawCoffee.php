@@ -26,6 +26,71 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' type='text/css'>
     <link rel="shortcut icon" href="favicon.ico">
 </head>
+<style>
+    /*
+		td.highlight {
+			background-color: whitesmoke !important;
+		}
+*/
+.title {
+    font-size: large;
+}
+		.table thead,
+		thead th {
+			text-align: center;
+		}
+		.table tbody, tbody td{
+			text-align: center;
+		}
+		.navbar-default { 
+			text-align: center !important;
+			
+		}
+		.navbar-default > li.active > a, .navbar-default > li.active > a:focus, .navbar-default > li.active > a:hover {
+			border-top: 1px solid #75DAE2 !important;
+			border-right: 1px solid #75DAE2 !important;
+			border-left: 1px solid #75DAE2 !important;
+			border-bottom: transparent !important;
+			background-color: #75DAE2 !important;
+			color: white !important;
+		}
+		.navbar-default > li.active > a {
+			color: white!important; 
+			float: none !important;
+			display: inline-block!important;
+		}
+		.navbar-default > li > a, .navbar-default > li > a:hover {
+			border: none;
+			color: #75DAE2 !important; 
+			background: transparent; 
+		}
+		.navbar-default > li > a::after {
+			content: "";
+			background: transparent; 
+			height: 2px; 
+			position: absolute; 
+			width: 100%; 
+			left: 0px;
+			bottom: -1px;
+			transition: all 250ms ease 0s;
+			transform: scale(0); 
+			color: white;
+		}
+		.navbar-default > li.active > a::after, .navbar-default > li:hover > a::after {
+			transform: scale(1); 
+		}
+		.tab-nav > li > a::after {
+			background: #21527d none repeat scroll 0% 0%; color: #fff;
+		}
+		.tab-pane { 
+			padding: 15px 0;
+		}
+		.tab-color{	
+			padding:20px;
+			border-top: 3px solid #75DAE2;
+			border-left: 2px solid #75DAE2;
+		}
+    </style>
 
 <body>
     <div class="wrapper">
@@ -95,6 +160,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="main-panel">
             <nav class="navbar navbar-transparent navbar-absolute">
                 <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#"> </a>
+                    </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
@@ -104,7 +178,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="material-icons">person</i>
                                         <p class="hidden-lg hidden-md">Profile</p>
-                                </a>
+                                    </a>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a href="<?php echo base_url(); ?>inventoryUser">User Profile</a>
@@ -127,7 +201,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-sm-12">
                             <div class="card card-nav-tabs">
                                 <div class="card-header" data-background-color="blue">
                                     <div class="nav-tabs-navigation">
@@ -135,22 +209,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <span class="nav-tabs-title"> </span>
                                             <ul class="nav nav-tabs" data-tabs="tabs">
                                                 <li class="active">
-                                                    <a href="<?php echo base_url(); ?>inventoryOutRawCoffee">
+                                                    <a href="#coffeeout" data-toggle="tab">
                                                         <i class="material-icons">local_cafe</i> Coffee
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
-                                                <span></span>
                                                 <li class="">
-                                                    <a href="<?php echo base_url(); ?>inventoryOutPackaging">
-                                                        <i class="material-icons">branding_watermark</i> Packaging
-                                                        <div class="ripple-container"></div>
-                                                    </a>
-                                                </li>
-                                                <span></span>
-                                                <li class="">
-                                                    <a href="<?php echo base_url(); ?>inventoryOutMachine">
-                                                        <i class="material-icons">gradient</i> Machines
+                                                    <a href="#machineout" data-toggle="tab">
+                                                        <i class="material-icons">gradient</i> Machine
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
@@ -158,41 +224,113 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-content ">
-                                    <br>
-                                    <table id="example" class="table hover order-column" cellspacing="0" width="100%">
-                                        <thead>
-                                            <th><b>Delivery Receipt No.</b></th>
-                                            <th><b>Date Delivered</b></th>
-                                            <th><b>Client</b></th>
-                                            <th><b>Coffee Blend</b></th>
-                                            <th><b>Bag</b></th>
-                                            <th><b>Size</b></th>
-                                            <th><b>Quantity</b></th>
-                                            <th><b>Received By</b></th>
-                                        </thead>
-                                        <tbody>
-                                            <?php 
-                                                foreach($rawcoffeeout as $row)
-                                                {
-                                            ?>
-                                            <tr>
-                                                <td><?php echo $row->client_dr; ?></td>
-                                                <td><?php echo $row->client_deliverDate; ?></td>
-                                                <td><?php echo $row->client_company; ?></td>
-                                                <td>--</td>
-                                                <td>--</td>
-                                                <td>--</td>
-                                                <td><?php echo $row->contractPO_qty; ?></td>
-                                                <td><?php echo $row->client_receive; ?></td>
-                                            </tr>
-
-                                            <?php
-                                                }
-                                            ?>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                <div class="card-content">
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="coffeeout">
+                                            <ul class="nav nav-tabs navbar-default justify-content-center" id="coffeeout" >
+                                                <li class="active"><a href="#walkin" data-toggle="tab" >Walk-In Client</a></li>
+                                                <li><a href="#contracted" data-toggle="tab">Contracted Client</a></li>
+                                            </ul>
+                                            <div class="tab-content tab-color">
+                                                <div class="tab-pane active" id="walkin">
+                                                    <table id="walkin" class="table hover order-column" cellspacing="0" width="100%">
+                                                        <thead>
+                                                            <tr>
+                                                                <th><b>Item Code</b></th>
+                                                                <th><b>Date</b></th>
+                                                                <th><b>Client</b></th>
+                                                                <th><b>Coffee</b></th>
+                                                                <th><b>Bag</b></th>
+                                                                <th><b>Size</b></th>
+                                                                <th><b>Quantity</b></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php 
+                                                        foreach($data1['coffeeoutwalkin'] as $row)
+                                                        {
+                                                    ?>
+                                                            <tr>
+                                                                <td><?php echo $row->blend_id; ?></td>
+                                                                 <td><?php echo $row->walkin_date; ?></td>
+                                                                 <td><?php echo $row->Client; ?></td>
+                                                                 <td><?php echo $row->blend; ?></td>
+                                                                 <td><?php echo $row->package_type; ?></td>
+                                                                 <td><?php echo $row->package_size; ?></td>
+                                                                 <td><?php echo $row->walkin_qty; ?></td>
+                                                            </tr>
+                                                            <?php
+                                                        }
+                                                    ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="tab-pane fade" id="contracted">
+                                                    <table id="contracted" class="table hover order-column" cellspacing="0" width="100%">
+                                                        <thead>
+                                                            <tr>
+                                                                <th><b>Delivery Receipt No.</b></th>
+                                                                <th><b>Date Delivered</b></th>
+                                                                <th><b>Client</b></th>
+                                                                <th><b>Coffee Blend</b></th>
+                                                                <th><b>Bag</b></th>
+                                                                <th><b>Size</b></th>
+                                                                <th><b>Quantity</b></th>
+                                                                <th><b>Received By</b></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php 
+                                                        foreach($data2['coffeeoutcontracted'] as $row)
+                                                        {
+                                                    ?>
+                                                            <tr>
+                                                                <td><?php echo $row->client_dr; ?></td>
+                                                                <td><?php echo $row->client_deliverDate; ?></td>
+                                                                <td><?php echo $row->client_company; ?></td>
+                                                                <td>--</td>
+                                                                <td>--</td>
+                                                                <td>--</td>
+                                                                <td><?php echo $row->contractPO_qty; ?></td>
+                                                                <td><?php echo $row->client_receive; ?></td>
+                                                            </tr>
+                                                            <?php
+                                                        }
+                                                    ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="machineout">
+                                             <table id="" class="table hover order-column" cellspacing="0" width="100%">
+                                            <thead>
+                                                <th><b>Item Code</b></th>
+                                                <th><b>Date</b></th>
+                                                <th><b>Client</b></th>
+                                                <th><b>Machine</b></th>
+                                                <th><b>No. of machines installed</b></th>
+                                            </thead>
+                                            <tbody>
+                                                <?php 
+                                                    foreach($data3['machineout'] as $row)
+                                                    {
+                                                ?>
+                                                <tr>
+                                                     <td><?php echo $row->mach_id; ?></td>
+                                                     <td><?php echo $row->date; ?></td>
+                                                     <td><?php echo $row->client_company; ?></td>
+                                                     <td><?php echo $row->brewer; ?></td>
+                                                     <td><?php echo $row->mach_qty; ?></td>
+                                                </tr>
+                                                <?php
+                                                    }
+                                                ?>
+                                            </tbody>
+                                        </table>
+                                        </div>
+                                    </div>
+                                </div> 
                             </div>
                         </div>
                     </div>
@@ -200,8 +338,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
         </div>
     </div>
+    </div>
+    </div>
+    </div>
+    </div>
 </body>
 <!--   Core JS Files   -->
+<!--
+    <script src="../assets/js/jquery-1.12.4.js" type="text/javascript"></script>
+-->
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/material.min.js" type="text/javascript"></script>
@@ -221,15 +366,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.datatables.js"></script>
-<script type="text/javascript">
+<script>
 $(document).ready(function() {
-    var table = $('table.table').DataTable({
+    $('table.table').DataTable({
         select: {
             style: 'single'
         }
-    });
 
+    });
 });
 </script>
-
+ 
 </html>
