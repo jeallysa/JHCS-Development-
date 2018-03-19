@@ -8,9 +8,14 @@
 		
 		public function index()
 		{ 
-			$this->load->model('AdminDeliveryReport_model');
-			$data['delivery']=$this->AdminDeliveryReport_model->getDelivery();
-			$this->load->view('Admin_Module/adminDeliveryReport', $data);
+			if ($this->session->userdata('username') != '')
+			{
+				$this->load->model('AdminDeliveryReport_model');
+				$data['delivery']=$this->AdminDeliveryReport_model->getDelivery();
+				$this->load->view('Admin_Module/adminDeliveryReport', $data);
+			} else {
+				redirect('login');
+			}
 		}
 
 	}

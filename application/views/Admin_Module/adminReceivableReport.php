@@ -51,7 +51,7 @@
                     <li >
                         <a href="<?php echo base_url(); ?>adminAccounts">
                             <i class="material-icons">account_circle</i>
-                            <p>User Accounts</p>
+                            <p>Accounts</p>
                         </a>
                     </li>
                     <li>
@@ -91,7 +91,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
                                 <li>
-                                    <p class="title">Hi, Player!</p>
+                                    <p class="title">Hi, <?php $username = $this->session->userdata('username'); print_r($username); ?></p>
                                 </li>
                                 <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="material-icons">person</i>
@@ -129,7 +129,7 @@
                         </div>
                         <div class="content">
                             <div class="container-fluid">
-                                <div class="row">
+                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="card">
                                             <div class="card-header" data-background-color="green">
@@ -141,20 +141,19 @@
                                                         Sales Report
                                                         <div class="ripple-container"></div>
                                                     </a>
-                                                            </li>
-                                                            <span></span>
-                                                            <li class="active">
-                                                                <a href="<?php echo base_url(); ?>adminReceivableReport">
-                                                        Accounts Receivables Report
-                                                        <div class="ripple-container"></div>
-                                                    </a>
-                                                            </li>
+                                                            </li> 
                                                             <span></span>
                                                             <li class="">
                                                                 <a href="<?php echo base_url(); ?>adminCollectionReport">
                                                         Collection Report
                                                         <div class="ripple-container"></div>
                                                     </a>
+                                                            </li>
+                                                            <li class="">
+                                                                <a href="<?php echo base_url(); ?>adminDeliveryReport">
+                                                        Delivery Report
+                                                        <div class="ripple-container"></div>
+                                                   </a>
                                                             </li>
                                                             <span></span>
                                                             <li class="">
@@ -171,11 +170,11 @@
                                                     </a>
                                                             </li>
                                                             <span></span>
-                                                            <li class="">
-                                                                <a href="<?php echo base_url(); ?>adminDeliveryReport">
-                                                        Delivery Report
+                                                            <li class="active">
+                                                                <a href="<?php echo base_url(); ?>adminReceivableReport">
+                                                        Accounts Receivables Report
                                                         <div class="ripple-container"></div>
-                                                   </a>
+                                                    </a>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -322,9 +321,23 @@ $(document).ready(function() {
         "lengthChange": false,
         "info":     false,
 		buttons: [
-            { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs' },
-			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs' },
-			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs' }
+            { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs',
+                exportOptions: {
+                    columns: [0, 1]
+                }
+            },
+            
+			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs',
+                exportOptions: {
+                    columns: [0, 1]
+                }
+            },
+            
+			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs',
+                exportOptions: {
+                    columns: [0, 1]
+                }
+            }
         ]
     });
 

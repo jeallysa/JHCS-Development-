@@ -8,9 +8,14 @@
 		
 		public function index()
 		{ 
-			$this->load->model("Admin_SalesReport_Model");
-			$salesdata["fetch_data"] = $this->Admin_SalesReport_Model->fetch_data();
-			$this->load->view('Admin_Module/adminSalesReport', $salesdata);
+			if ($this->session->userdata('username') != '')
+			{
+				$this->load->model("Admin_SalesReport_Model");
+				$salesdata["fetch_data"] = $this->Admin_SalesReport_Model->fetch_data();
+				$this->load->view('Admin_Module/adminSalesReport', $salesdata);
+			} else {
+				redirect('login');
+			}
 		}
 
 	}

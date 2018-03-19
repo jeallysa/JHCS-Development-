@@ -19,7 +19,7 @@
   
   
   function retrieveTransactions(){
-      $query = $this->db->query('SELECT * from test_supp_po  join test_transac_history using(supp_po_id) join supplier on sup_id = supp_id');
+      $query = $this->db->query('SELECT * from supp_po  join transac_history using(supp_po_id) join supplier on sup_id = supp_id');
             
       if($query->num_rows() > 0){
           return $query-> result();

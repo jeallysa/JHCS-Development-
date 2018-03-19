@@ -10,24 +10,13 @@
                                             <span class="nav-tabs-title"> </span>
                                             <ul class="nav nav-tabs" data-tabs="tabs">
                                                 
-                                                <li class="active">
+                                                <li class= "active">
                                                     <a href="<?php echo base_url(); ?>inventoryItemList">
                                                         <i class="material-icons">list</i> Items
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
-                                                <li class="">
-                                                    <a href="<?php echo base_url(); ?>inventorySupplierList">
-                                                        <i class="material-icons">local_shipping</i> Supplier
-                                                        <div class="ripple-container"></div>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="<?php echo base_url(); ?>inventoryList">
-                                                        <i class="material-icons">bubble_chart</i> Category and Type
-                                                        <div class="ripple-container"></div>
-                                                    </a>
-                                                </li>
+                                      
                                                 
                                             </ul>
                                         </div>

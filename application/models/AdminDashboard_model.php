@@ -33,6 +33,8 @@ class AdminDashboard_model extends CI_MODEL
         $query = $this->db->query('SELECT SUM(mach_stocks) as "machinestock" FROM machine');
         return $query->result();
     }
+
+
     
 }
 

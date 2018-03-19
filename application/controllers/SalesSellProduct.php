@@ -8,12 +8,17 @@
 		
 		public function index()
 		{ 
-			$this->load->model('sellProduct_model');
-			$data1['sellCoffee']=$this->sellProduct_model->getSoldCoffee();
-			$data2['sellMachine']=$this->sellProduct_model->getSoldMachine();
-			$this->load->view('Sales_Module/salesSellProduct', ['data1' => $data1, 'data2' => $data2]);
-			$this->load->library('session');
-			echo $this->session->flashdata('success');
+			if ($this->session->userdata('username') != '')
+            {
+            	$this->load->model('sellProduct_model');
+				$data1['sellCoffee']=$this->sellProduct_model->getSoldCoffee();
+				$data2['sellMachine']=$this->sellProduct_model->getSoldMachine();
+				$this->load->view('Sales_Module/salesSellProduct', ['data1' => $data1, 'data2' => $data2]);
+				$this->load->library('session');
+				echo $this->session->flashdata('success');
+			} else {
+				redirect('login');
+			}
 		}
 		public function salesMachine()
 		{ 

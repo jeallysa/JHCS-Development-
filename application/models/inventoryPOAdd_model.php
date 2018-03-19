@@ -10,14 +10,14 @@
 
   
   function insertChosenSupplier($dataInsert){
-      $this->db->insert("test_supp_temp_po" , $dataInsert);
+      $this->db->insert("supp_temp_po" , $dataInsert);
   }
    
       
   function insertOrder($data){
       
-      $this->db->insert_batch("test_supp_po_ordered" , $data);
-      $this->db->empty_table("test_supp_temp_po"); 
+      $this->db->insert_batch("supp_po_ordered" , $data);
+      $this->db->empty_table("supp_temp_po"); 
   }    
       
       
@@ -35,7 +35,7 @@
       
   function retrieveItems(){
    
-      $query = $this->db->query('SELECT * from test_items join supplier on supplier_id = sup_id join test_supp_temp_po on sup_company = supp_name ');      
+      $query = $this->db->query('SELECT * from items join supplier on supplier_id = sup_id join supp_temp_po on sup_company = supp_name ');      
       if($query->num_rows() > 0){
           return $query-> result();
       }else
@@ -44,7 +44,7 @@
       
   function retrieveTruckingFee(){
    
-      $query = $this->db->query('SELECT * from test_supp_temp_po');      
+      $query = $this->db->query('SELECT * from supp_temp_po');      
       if($query->num_rows() > 0){
           return $query-> result();
       }else
@@ -53,7 +53,7 @@
       
     function retrieveTemp(){
    
-    $query = $this->db->query('select * from test_supp_temp_po join supplier on supp_name = sup_company');      
+    $query = $this->db->query('select * from supp_temp_po join supplier on supp_name = sup_company');      
       if($query->num_rows() > 0){
           return $query-> result();
       }else
@@ -61,12 +61,12 @@
   }
       
    function insertPO($datax){
-       $this->db->insert_batch("test_supp_po" , $datax);
+       $this->db->insert_batch("supp_po" , $datax);
    }   
       
    
 function singleLineRetrieveLastPO(){
-    $query = $this->db->query("SELECT distinct  supp_po_id from test_supp_po order by 1 desc limit  1");
+    $query = $this->db->query("SELECT distinct  supp_po_id from supp_po order by 1 desc limit  1");
     if($query->num_rows() > 0){
           return $query->result();
       }else

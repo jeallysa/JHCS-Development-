@@ -12,22 +12,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         
 		public function index(){ 
            
-            $this->load->view('layout/header');
-           
+            if ($this->session->userdata('username') != '')
+            {
+                $this->load->view('layout/header');  
+                $data['suppliers'] = $this->inventoryPOAdd_model ->retrieveSuppliers();
+                $data['suppliersItem'] = $this->inventoryPOAdd_model ->retrieveItems();
+                $data['truckingFee'] = $this->inventoryPOAdd_model->retrieveTruckingFee();
             
-            $data['suppliers'] = $this->inventoryPOAdd_model ->retrieveSuppliers();
-            $data['suppliersItem'] = $this->inventoryPOAdd_model ->retrieveItems();
-            $data['truckingFee'] = $this->inventoryPOAdd_model->retrieveTruckingFee();
-            
-			$this->load->view('Inventory_Module/inventoryPOAdd', $data);
+		        $this->load->view('inventoryPOAdd', $data);
+            } else {
+                redirect('login');
+            }
             
 		}
+        
+        
+        
+        
 //put inside the form validation. dito muna to.
      public function insertSupplierToTemp(){
          $dataInsert = array("supp_name" => $this->input->post("dropdown"),
                              "date" => $this->input->post("date"),
                              "trucking_fee" => $this->input->post("truckingFee"),
-                             "credit_term" => $this->input->post("creditTerms")
+                             "credit_term" => $this->input->post("creditTerms"),
                             );
          
          $this->inventoryPOAdd_model->insertChosenSupplier($dataInsert);
@@ -35,7 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          
          
          
-         redirect(base_url('Inventory_Module/inventoryPOAdd'));
+         redirect(base_url('inventoryPOAdd'));
      }   
     
       
@@ -93,7 +100,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $this->inventoryPOAdd_model->insertOrder($data);
     }
          
-          redirect(base_url('Inventory_Module/inventoryPOAdd'));
+          redirect(base_url('inventoryPOAdd'));
 
       
 }

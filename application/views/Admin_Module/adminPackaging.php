@@ -3,25 +3,22 @@
 
 <head>
     <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url(); ?>assets/img/apple-icon.png" />
-    <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/img/favicon.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Packaging</title>
+    <title>package Inventory Stocks</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
     <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/css/dataTables.bootstrap.min.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/css/jquery.dataTable.min.css" rel="stylesheet" />
-    <link href="<?php echo base_url(); ?>assets/FileExport/buttons.dataTables.min.css" rel="stylesheet" />
-    <link href="<?php echo base_url(); ?>assets/FileExport/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/bootstrap-datepicker3.min.css" rel="stylesheet">
     <!--  Material Dashboard CSS    -->
     <link href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="<?php echo base_url(); ?>assets/css/demo.css" rel="stylesheet" />
     <!--     Fonts and icons     -->
-    <link href="css.css" rel="stylesheet" />
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
 </head>
@@ -158,7 +155,7 @@
                     <li >
                         <a href="<?php echo base_url(); ?>adminAccounts">
                             <i class="material-icons">account_circle</i>
-                            <p>User Accounts</p>
+                            <p>Accounts</p>
                         </a>
                     </li>
                     <li>
@@ -198,7 +195,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
                                 <li>
-                                    <p class="title">Hi, Player!</p>
+                                    <p class="title">Hi, <?php $username = $this->session->userdata('username'); print_r($username); ?></p>
                                 </li>
                                 <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="material-icons">person</i>
@@ -228,7 +225,7 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign" ></span> Add New Packaging</h4>
+                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign" ></span> Add New package</h4>
                         </div>
                         <form action="AdminPackaging/insert" method="post" accept-charset="utf-8">
                             <div class="modal-body" style="padding: 5px;">
@@ -291,74 +288,7 @@
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="updatepackaging" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading" >
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span> Update Packaging</h4>
-                        </div>
-                        <form action="#" method="post" accept-charset="utf-8">
-                            <div class="modal-body" style="padding: 5px;">
-                                <div class="row">
-                                    <div class="col-md-6 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="email">Type</label>
-                                            <input class="form-control" type="text" name="type" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="email">Size</label>
-                                            <input class="form-control" type="text" name="size" required>
-                                        </div>
-                                    </div>
-                                     <div class="col-lg-6 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="email">Reorder Level</label>
-                                            <input class="form-control" type="number" name="reorder" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="email">Stock Limit</label>
-                                            <input class="form-control" type="number" name="stocklimit" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="email">Number of Stocks</label>
-                                            <input class="form-control" type="number" name="stocks" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                           <div class="form-group label-floating">
-                                            <label for="email">Supplier</label>
-                                            <select class="form-control" name="sup_company" required>
-                                                <option disabled selected value> -- select an item -- </option>
-                                                <?php 
-
-                                                    foreach($data1['getSupplier'] as $row)
-                                                    { 
-                                                        echo '<option value="'.$row->sup_id.'">'.$row->sup_company.'</option>';
-                                                    }
-                                                 ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel-footer" style="margin-bottom:-14px;">
-                                <input type="submit" class="btn btn-success" value="Update" />
-                                <!--<span class="glyphicon glyphicon-ok"></span>-->
-                                <input type="reset" class="btn btn-danger" value="Clear" />
-                                <!--<span class="glyphicon glyphicon-remove"></span>-->
-                                <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+        
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -370,7 +300,7 @@
                                             <ul class="nav nav-tabs" data-tabs="tabs" data-background-color="green">
                                                 <li class="">
                                                     <a href="<?php echo base_url(); ?>adminProductInventory">
-                                                        Raw Coffee
+                                                        package Coffee
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
@@ -390,7 +320,7 @@
                                                 <span></span>
                                                 <li class="active">
                                                     <a href="<?php echo base_url(); ?>adminPackaging">
-                                                        Packaging
+                                                        package
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
@@ -413,7 +343,7 @@
                                     </div>
                                 </div>
                                 <div class="card-content">
-                                    <a class="btn btn-success" data-toggle="modal" data-target="#stock" data-original-title style="float: right">Add New Packaging</a>
+                                    <a class="btn btn-success" data-toggle="modal" data-target="#stock" data-original-title style="float: right">Add New package</a>
                                     <table id="example" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
                                             <th><b class="pull-left">Type</b></th>
@@ -422,7 +352,7 @@
                                             <th><b class="pull-left">Reorder Level (pc)</b></th>
                                             <th><b class="pull-left">Stock Limit (pc)</b></th>
                                             <th><b class="pull-left">Number of stocks (pc)</b></th>    
-                                            <th><b class="pull-left">Change Details</b></th>
+                                            <th><b class="pull-left">Edit</b></th>
                                             <th><b class="pull-left">Activation</b></th>
 
                                         </thead>
@@ -438,7 +368,7 @@
                                                  <td><?php echo $row->package_limit; ?></td>
                                                  <td><?php echo $row->package_stock; ?></td>
                                                 <td>
-                                                    <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#updatepackaging">Edit Info</a>
+                                                    <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#updatepackaging<?php echo $row->package_id;?>">Edit Info</a>
                                                 </td>
                                                 <td>
                                                     <div class="onoffswitch">
@@ -449,7 +379,92 @@
                                                         </label>
                                                     </div>
                                                 </td>
+                                                 
+                                                 <div class="modal fade" id="updatepackaging<?php echo $row->package_id;?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="panel panel-primary">
+                                                        <div class="panel-heading" >
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span> Update Packaging</h4>
+                                                        </div>
+                                                        <form action="<?php echo base_url(); ?>AdminPackaging/update" method="post" accept-charset="utf-8">
+                                                            <div class="modal-body" style="padding: 5px;">
+                                                                
+                                                                 <div class="row">
+                                                                    <div class="col-md-12 form-group">
+                                                                        <div class="form-group label-floating">
+                                                                            <label for="email">Type</label>
+                                                                            <input class="form-control" type="text" name="type" value="<?php echo $row->package_type; ?>" required>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                 <div class="row">
+                                                                    <div class="col-md-12 form-group">
+                                                                        <div class="form-group label-floating">
+                                                                            <label for="email">Size</label>
+                                                                            <input class="form-control" type="text" name="size" value="<?php echo $row->package_size; ?>" required>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-12 form-group">
+                                                                        <div class="form-group label-floating">
+                                                                            
+                                                                            <input class="form-control" type="hidden" name="package_id" value="<?php echo $row->package_id; ?>" required>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                     <div class="col-lg-6 form-group">
+                                                                        <div class="form-group label-floating">
+                                                                            <label for="email">Reorder Level</label>
+                                                                            <input class="form-control" value="<?php echo $row->package_reorder; ?>" type="number" name="reorder" required>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6 form-group">
+                                                                        <div class="form-group label-floating">
+                                                                            <label for="email">Stock Limit</label>
+                                                                            <input class="form-control" value="<?php echo $row->package_limit; ?>" type="number" name="stocklimit" required>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6 form-group">
+                                                                        <div class="form-group label-floating">
+                                                                            <label for="email">Number of Stocks</label>
+                                                                            <input class="form-control" value="<?php echo $row->package_stock; ?>" type="number" name="stocks" required>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6 form-group">
+                                                                           <div class="form-group label-floating">
+                                                                            <label for="email">Supplier</label>
+                                                                            <select class="form-control" name="sup_company" required>
+                                                                                <option disabled selected value> -- select an item -- </option>
+                                                                                <?php 
+
+                                                                                    foreach($data1['getSupplier'] as $row)
+                                                                                    { 
+                                                                                        echo '<option value="'.$row->sup_id.'">'.$row->sup_company.'</option>';
+                                                                                    }
+                                                                                 ?>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="panel-footer" style="margin-bottom:-14px;">
+                                                                <input type="submit" class="btn btn-success" value="Update" />
+                                                                <!--<span class="glyphicon glyphicon-ok"></span>-->
+                                                                <input type="reset" class="btn btn-danger" value="Clear" />
+                                                                <!--<span class="glyphicon glyphicon-remove"></span>-->
+                                                                <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
                                              </tr>
+                                             
                                              <?php 
                                                 }
                                               ?>
@@ -464,7 +479,6 @@
             </div>
         </div>
 </body>
-<!--   Core JS Files   -->
 <!--   Core JS Files   -->
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
@@ -500,9 +514,23 @@ $(document).ready(function() {
         "lengthChange": false,
         "info":     false,
 		buttons: [
-            { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print' },
-			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel'},
-			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF'}
+            { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs',
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4, 5]
+                }
+            },
+            
+			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs',
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4, 5]
+                }
+            },
+            
+			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs',
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4, 5]
+                }
+            }
         ]
     });
 });

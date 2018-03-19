@@ -48,7 +48,7 @@
                     <li >
                         <a href="<?php echo base_url(); ?>adminAccounts">
                             <i class="material-icons">account_circle</i>
-                            <p>User Accounts</p>
+                            <p>Accounts</p>
                         </a>
                     </li>
                     <li>
@@ -88,7 +88,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
                                 <li>
-                                    <p class="title">Hi, Player!</p>
+                                    <p class="title">Hi, <?php $username = $this->session->userdata('username'); print_r($username); ?></p>
                                 </li>
                                 <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="material-icons">person</i>
@@ -105,7 +105,7 @@
                                         <a href="<?php echo base_url(); ?>adminActivityLogs">Activity Logs</a>
                                     </li>
                                     <li>
-                                        <a href="#">Logout</a>
+                                        <a href="<?php echo site_url('Login/logout'); ?>">Logout</a>
                                     </li>
                                 </ul>
                             </li>
@@ -174,6 +174,7 @@
                                         <i class="material-icons">date_range</i> Details
                                     </div>
                                 </div>
+                                </a>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6">

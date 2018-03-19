@@ -67,7 +67,7 @@
                     <li >
                         <a href="<?php echo base_url(); ?>adminAccounts">
                             <i class="material-icons">account_circle</i>
-                            <p>User Accounts</p>
+                            <p>Accounts</p>
                         </a>
                     </li>
                     <li class="active">
@@ -107,7 +107,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
                                 <li>
-                                    <p class="title">Hi, Player!</p>
+                                    <p class="title">Hi, <?php $username = $this->session->userdata('username'); print_r($username); ?></p>
                                 </li>
                                 <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="material-icons">person</i>
@@ -259,7 +259,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <h4>Machine Specifications:</h4>
+                                                <h4>Machine:</h4>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4">
@@ -271,52 +271,6 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label>Type</label>
-                                                        <input class="form-control" name="" type="text" required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group label-floating">
-                                                        <label>Storage Capacity</label>
-                                                        <input class="form-control" name="" type="text" required />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="form-group label-floating">
-                                                        <label>No. of Cups before refilling</label>
-                                                        <input class="form-control" name="" type="text" required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group label-floating">
-                                                        <label>Dimension</label>
-                                                        <input class="form-control" name="" type="text" required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group label-floating">
-                                                        <label>Weight</label>
-                                                        <input class="form-control" name="" type="text" required />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="form-group label-floating">
-                                                        <label>Voltage</label>
-                                                        <input class="form-control" name="" type="text" required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group label-floating">
-                                                        <label>Watts</label>
-                                                        <input class="form-control" name="" type="text" required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group label-floating">
-                                                        <label>User Interface: </label>
                                                         <input class="form-control" name="" type="text" required />
                                                     </div>
                                                 </div>

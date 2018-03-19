@@ -19,7 +19,7 @@
   
   
   function retrieveOrder(){
-      $query = $this->db->query('SELECT * FROM test_supp_po join supplier on supp_id = sup_id where (delivery_stat) = 0 and (payment_stat = 0)');
+      $query = $this->db->query('SELECT * FROM supp_po join supplier on supp_id = sup_id where (delivery_stat) = 0 and (payment_stat = 0)');
             
       if($query->num_rows() > 0){
           return $query-> result();
@@ -28,34 +28,75 @@
   }
       
       
-   function details(){
-      $query = $this->db->query('SELECT * FROM test_supp_po_ordered where supp_PO_id = 3;');
+   
+      
+      
+  
+      
+
+      
+      
+     function insertORDER($data){
+         
+      $this->db->insert_batch("supp_delivery" , $data);
+         
+  }  
+      
+      
+      
+      function updateOrderStatus($data2, $supp_po_id){
+          
+         foreach($data2 as $object ){
             
-      if($query->num_rows() > 0){
-          return $query-> result();
-      }else
-          return NULL;
-  }   
-      
-      
-   function full(){
-      $query = $this->db->query('SELECT * FROM test_supp_po join supplier on supp_id = sup_id where (delivery_stat) = 0 and (payment_stat = 0)');
-            
-      if($query->num_rows() > 0){
-          return $query-> result();
-      }else
-          return NULL;
-  }      
-      
-      
-   function partial(){
-      $query = $this->db->query('SELECT * FROM test_supp_po join supplier on supp_id = sup_id where (delivery_stat) = 0 and (payment_stat = 0)');
-            
-      if($query->num_rows() > 0){
-          return $query-> result();
-      }else
-          return NULL;
+            $data =array(
+                'delivery_stat' => 1
+            );
+             
+           $this->db->where('supp_po_ordered_id', $object['supp_po_ordered_id']);
+           $this->db->update('supp_po_ordered', $data); 
+         }
+
+      $query = $this->db->query('SELECT * FROM items join supp_po_ordered  on item = item_name join supp_po using (supp_po_id) where supp_PO_id ='.$supp_po_id.
+                ' and supp_po_ordered.delivery_stat = 0');
+          
+    if($query->num_rows() > 0){
+         
+    }else{
+        
+         $data =array(
+                'delivery_stat' => 1
+            );
+        
+          $this->db->where('supp_po_id', $supp_po_id);
+          $this->db->update('supp_po', $data);
+    }
+         
   } 
+          
+          
+          
+          
+           
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
       
       
       

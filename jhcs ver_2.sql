@@ -1,8 +1,10 @@
+CREATE DATABASE  IF NOT EXISTS `jhcs` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `jhcs`;
 -- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
 -- Host: localhost    Database: jhcs
 -- ------------------------------------------------------
--- Server version	5.6.17
+-- Server version	5.7.14
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -293,7 +295,7 @@ CREATE TABLE `inv_transact` (
   PRIMARY KEY (`trans_id`),
   KEY `sup_inv_idx` (`supplier_id`),
   CONSTRAINT `sup_inv` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`sup_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -302,7 +304,7 @@ CREATE TABLE `inv_transact` (
 
 LOCK TABLES `inv_transact` WRITE;
 /*!40000 ALTER TABLE `inv_transact` DISABLE KEYS */;
-INSERT INTO `inv_transact` VALUES (1,'2017-01-10',1),(2,'2017-02-02',2),(3,'2017-06-07',1),(4,'2017-12-12',2),(5,'2018-01-18',2),(6,'2018-01-31',1),(7,'2018-02-06',2);
+INSERT INTO `inv_transact` VALUES (1,'2017-01-10',1),(2,'2017-02-02',2),(3,'2017-06-07',1),(4,'2017-12-12',2),(5,'2018-01-18',2),(6,'2018-01-31',1),(7,'2018-02-06',2),(8,'2018-10-10',1),(9,'2019-01-01',2);
 /*!40000 ALTER TABLE `inv_transact` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -912,6 +914,36 @@ INSERT INTO `test_transac_history` VALUES (1,'1','2018-02-02','2018-02-28'),(2,'
 UNLOCK TABLES;
 
 --
+-- Table structure for table `trans_pack`
+--
+
+DROP TABLE IF EXISTS `trans_pack`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `trans_pack` (
+  `tp_id` int(11) NOT NULL AUTO_INCREMENT,
+  `trans_id` int(11) NOT NULL,
+  `package_id` int(11) NOT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  PRIMARY KEY (`tp_id`),
+  KEY `t_pack_idx` (`package_id`),
+  KEY `t_pack_transact_idx` (`trans_id`),
+  CONSTRAINT `t_pack` FOREIGN KEY (`package_id`) REFERENCES `packaging` (`package_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `t_pack_transact` FOREIGN KEY (`trans_id`) REFERENCES `inv_transact` (`trans_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `trans_pack`
+--
+
+LOCK TABLES `trans_pack` WRITE;
+/*!40000 ALTER TABLE `trans_pack` DISABLE KEYS */;
+INSERT INTO `trans_pack` VALUES (1,1,2,200),(2,1,3,300),(3,1,4,600),(4,1,6,100),(5,2,1,450),(6,2,3,800),(7,3,2,650),(8,4,2,700),(9,5,3,200),(10,5,4,350),(11,6,1,400),(12,6,5,500),(13,6,6,500),(14,7,1,100),(15,8,1,NULL),(16,9,6,200);
+/*!40000 ALTER TABLE `trans_pack` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `trans_raw`
 --
 
@@ -922,13 +954,13 @@ CREATE TABLE `trans_raw` (
   `tr_id` int(11) NOT NULL AUTO_INCREMENT,
   `trans_id` int(11) NOT NULL,
   `raw_coffeeid` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL,
+  `quantity` int(11) DEFAULT NULL,
   PRIMARY KEY (`tr_id`),
   KEY `transact_idx` (`trans_id`),
   KEY `raw_idx` (`raw_coffeeid`),
   CONSTRAINT `t_raw` FOREIGN KEY (`raw_coffeeid`) REFERENCES `raw_coffee` (`raw_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `t_transact` FOREIGN KEY (`trans_id`) REFERENCES `inv_transact` (`trans_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -937,7 +969,7 @@ CREATE TABLE `trans_raw` (
 
 LOCK TABLES `trans_raw` WRITE;
 /*!40000 ALTER TABLE `trans_raw` DISABLE KEYS */;
-INSERT INTO `trans_raw` VALUES (1,1,1,2000),(2,1,2,4300),(3,1,5,4500),(4,2,4,10000),(5,2,6,12000),(7,3,1,8000),(8,3,3,5000),(9,3,4,15000),(10,4,2,1200),(11,4,4,14000),(12,4,6,12000),(14,5,4,8500),(15,6,6,8100),(17,7,2,6500);
+INSERT INTO `trans_raw` VALUES (1,1,1,2000),(2,1,2,4300),(3,1,5,4500),(4,2,4,10000),(5,2,6,12000),(7,3,1,8000),(8,3,3,5000),(9,3,4,15000),(10,4,2,1200),(11,4,4,14000),(12,4,6,12000),(14,5,4,8500),(15,6,6,8100),(18,7,1,5000),(19,8,1,5000),(20,8,5,1000),(21,9,1,NULL);
 /*!40000 ALTER TABLE `trans_raw` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1000,6 +1032,14 @@ LOCK TABLES `walkin_sales` WRITE;
 INSERT INTO `walkin_sales` VALUES (1,'Michael','Torres','2018-02-15',2,2),(2,'Alcantara','Danica','2018-02-15',3,3);
 /*!40000 ALTER TABLE `walkin_sales` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'jhcs'
+--
+
+--
+-- Dumping routines for database 'jhcs'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -1010,4 +1050,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-07 21:20:41
+-- Dump completed on 2018-03-12 20:48:39

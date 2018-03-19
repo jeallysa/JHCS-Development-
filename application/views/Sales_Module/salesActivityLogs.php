@@ -94,7 +94,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
                                 <li>
-                                    <p class="title">Hi, User 1</p>
+                                    <p class="title">Hi, <?php $username = $this->session->userdata('username'); print_r($username); ?></p>
                                 </li>
                                 <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="material-icons">person</i>
@@ -137,41 +137,40 @@
                                                             <!--  Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange, full-color-purple, full-color-gray
                                     Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange, toolbar-color-purple, toolbar-color-gray -->
                                                             <table id="fresh-datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th><b>Date & Time</b></th>
-                                                                        <th><b>User</b></th>
-                                                                        <th><b>Activity</b></th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td>Oct 3, 2017 9:11:00</td>
-                                                                        <td>Lani</td>
-                                                                        <td>Activity 1</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>Oct 7, 2017 11:28:00</td>
-                                                                        <td>Lani</td>
-                                                                        <td>Activity 2</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>Oct 11, 2017 13:35:00</td>
-                                                                        <td>Lani</td>
-                                                                        <td>Activity 3</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>Oct 15, 2017 15:49:00</td>
-                                                                        <td>Lani</td>
-                                                                        <td>Activity 4</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>Oct 18, 2017 16:59:00</td>
-                                                                        <td>Lani</td>
-                                                                        <td>Activity 5</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
+                                        <thead>
+                                            <tr>
+                                                <th><b>Date & Time</b></th>
+                                                <th><b>User</b></th>
+                                                <th><b>Activity</b></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                                if($fetch_data->num_rows() > 0){
+                                                    foreach ($fetch_data -> result() as $row) 
+                                                {
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $row->timestamp; ?></td>
+                                                <td><?php echo $row->name; ?></td>
+                                                <td><?php echo $row->message; ?></td>
+                                            </tr>
+
+                                            <?php
+                                                    }
+
+                                                }
+                                                else{
+                                                ?>
+                                                    <tr>
+                                                        <td colspan = 9 style = "text-align: center;"> <h3>No logs found</h3> </td>
+                                                    </tr>
+                                                <?php
+                                                }
+
+                                                ?>
+                                       </tbody>
+                                    </table>
                                                         </div>
                                                     </div>
                                                 </div>

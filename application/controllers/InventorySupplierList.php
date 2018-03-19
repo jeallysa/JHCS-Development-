@@ -9,14 +9,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 		public function index()
 		{ 
-            $this->load->view('layout/header');
-            
-            
-            $this->load->model('inventorySupplierList_model');
-            $data['supplier'] = $this->inventorySupplierList_model ->retrieveSupplier();
-            
-            
-			$this->load->view('Inventory_Module/inventorySupplierList' ,$data);
+            if ($this->session->userdata('username') != '')
+            {
+            	$this->load->view('layout/header');
+	            $this->load->model('inventorySupplierList_model');
+	            $data['supplier'] = $this->inventorySupplierList_model ->retrieveSupplier();
+				$this->load->view('inventorySupplierList' ,$data);
+			} else {
+				redirect('login');
+			}
             
             
             

@@ -8,9 +8,14 @@
 		
 		public function index()
 		{ 
-			$this->load->model('AdminCollectionReport_model');
-			$data['collections']=$this->AdminCollectionReport_model->getCollections();
-			$this->load->view('Admin_Module/adminCollectionReport', $data);
+			if ($this->session->userdata('username') != '')
+			{
+				$this->load->model('AdminCollectionReport_model');
+				$data['collections']=$this->AdminCollectionReport_model->getCollections();
+				$this->load->view('Admin_Module/adminCollectionReport', $data);
+			} else {
+				redirect('login');
+			}
 		}
 
 	}
