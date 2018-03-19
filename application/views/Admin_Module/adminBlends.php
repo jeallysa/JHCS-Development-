@@ -507,7 +507,7 @@
                                                         die("Connection failed: " . $conntitle->connect_error);
                                                     } 
                                                     $sql="SELECT * FROM raw_coffee";
-                                                    $result = $conntitle->query($sql);
+                                                    $result = $conntitle->query($sql); 
                                                     if ($result->num_rows > 0) {
                                                         while($row = $result->fetch_assoc()) {
                                                 ?>
@@ -545,9 +545,9 @@
                                                       }
                                                       mysqli_close($con);
 
-                                                    if($fetch_data->num_rows() > 0){
+                                                    if($fetch_data_eb->num_rows() > 0){
 
-                                                        foreach($fetch_data -> result() as $row)
+                                                        foreach($fetch_data_eb -> result() as $row)
                                                         {
                                                 ?>
                                             <tr>

@@ -10,7 +10,9 @@
 		{ 
 			if ($this->session->userdata('username') != '')
 			{
-				$this->load->view('Admin_Module/adminClientBlends');
+				$this->load->model('Admin_Blends_Model');
+				$blend_data["fetch_data_cb"] = $this->Admin_Blends_Model->fetch_data_cb();
+				$this->load->view('Admin_Module/adminClientBlends', $blend_data);
 			} else {
 				redirect('login');
 			}
