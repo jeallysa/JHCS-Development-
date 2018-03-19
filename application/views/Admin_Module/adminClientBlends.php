@@ -480,44 +480,79 @@
                                     <table id="example" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
                                             <th><b class="pull-left">Blend Name</b></th>
-                                            <th><b class="pull-left">Blend Information</b></th>
-                                            <th><b class="pull-left">Attributed To</b></th>
-                                            <th><b class="pull-left">Price Per Unit (gram)</b></th>
+                                            <?php
+                                                    $conntitle=mysqli_connect("localhost","root","","jhcs");
+                                                    if ($conntitle->connect_error) {
+                                                        die("Connection failed: " . $conntitle->connect_error);
+                                                    } 
+                                                    $sql="SELECT * FROM raw_coffee";
+                                                    $result = $conntitle->query($sql); 
+                                                    if ($result->num_rows > 0) {
+                                                        while($row = $result->fetch_assoc()) {
+                                                ?>
+                                                <th><b><?php echo $row["raw_coffee"]; ?></b></th>
+                                                <?php
+                                                    }
+                                                } else {
+                                                    echo "0 results";
+                                                }
+                                                $conntitle->close();
+                                                ?>
                                             <th><b class="pull-left">Size</b></th>
                                             <th><b class="pull-left">Packaging</b></th>
-                                            
+                                            <th><b class="pull-left">Price Per Unit</b></th>
+                                           
                                             <th><b class="pull-left">Edit</b></th>
                                             <th><b class="pull-left">Activation</b></th>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>The Manor Blend</td>
-                                                <td>Guatamela - 30</td>
-                                                <td>The Manor</td>
-                                                <td>300</td>
-                                                <td>250</td>
-                                                <td>Clear Bag</td>
-                                               
-                                                <td>
-                                                    <a class="btn btn-warning btn-sm" data-toggle="modal" style="margin-top: 0px" data-toggle="modal" data-target="#updateblend" data-original-title>Edit</a>
-                                                </td>
-                                                <td>
-                                                    <div class="onoffswitch">
-                                                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                                                        <label class="onoffswitch-label" for="myonoffswitch">
-                                                            <span class="onoffswitch-inner"></span>
-                                                            <span class="onoffswitch-switch"></span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                                 <?php
+                                                    $con=mysqli_connect("localhost","root","","jhcs");
+                                                    if (mysqli_connect_errno())
+                                                      {
+                                                      echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                                                      }
+                                                    $sql="SELECT * FROM raw_coffee";
+
+                                                    if ($result=mysqli_query($con,$sql))
+                                                      {
+
+                                                      $rowcount=mysqli_num_rows($result);
+                                                      mysqli_free_result($result);
+                                                      }
+                                                      mysqli_close($con);
+
+                                                    if($fetch_data_cb->num_rows() > 0){
+
+                                                        foreach($fetch_data_cb -> result() as $row)
+                                                        {
+                                                ?>
                                             <tr>
-                                                <td>Pizza Volante Blend</td>
-                                                <td>Guatamela - 80</td>
-                                                <td>Pizza Volante</td>                                                
-                                                <td>300</td>
-                                                <td>500</td>
-                                                <td>Clear Bag</td>
+                                                <td><?php echo $row->blend; ?></td>
+
+                                                
+                                                <?php
+                                                for ($i = 1; $i <= $rowcount; $i++){
+                                                    $colname = "per" . $i?>
+                                                        <td><?php echo $row->$colname; ?></td>
+                                                <?php
+
+                                                }
+                                                
+                                                ?>
+                                                <td><?php echo $row->package_size; ?></td>
+                                                <td><?php echo $row->package_type; ?></td>
+                                                <td><?php echo $row->blend_price; ?></td>
+
+                                                <!--
+                                                <td>Blend A</td>
+                                                <td>Guatamela - 30%</td>
+                                                <td>250</td>
+                                                <td>Clear</td>
+                                                <td>350</td>
+                                                </td>
+                                                -->
                                                 
                                                 <td>
                                                     <a class="btn btn-warning btn-sm" data-toggle="modal" style="margin-top: 0px" data-toggle="modal" data-target="#updateblend" data-original-title>Edit</a>
@@ -532,6 +567,20 @@
                                                     </div>
                                                 </td>
                                             </tr>
+
+                                            <?php
+                                                    }
+
+                                                }
+                                                else{
+                                                ?>
+                                                    <tr>
+                                                        <td colspan = 11 style = "text-align: center;"> <h3>No clients found</h3> </td>
+                                                    </tr>
+                                                <?php
+                                                }
+
+                                                ?>
                                         </tbody>
                                     </table>
                                 </div>
