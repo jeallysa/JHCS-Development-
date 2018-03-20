@@ -304,6 +304,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                               }
                                             }
                                         ?>
+
+                                        <?php
+                                              $retrieveDetails4 ="SELECT item, qty, date_received, yield_weight, sup_company FROM jhcs.supp_po_ordered INNER JOIN supp_delivery ON supp_po_ordered.supp_po_ordered_id = supp_delivery.supp_po_ordered_id INNER JOIN supp_po ON supp_po.supp_po_id = supp_po_ordered.supp_po_id INNER JOIN supplier ON supplier.sup_id = supp_po.supp_id WHERE item = '$row->brewer_type';" ;
+                                              $query = $this->db->query($retrieveDetails4);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td>'  . $object->sup_company  . '</td>' ,
+                                                '<td>'  . $object->date_received  . '</td>' ,
+                                                '<td>'  . $object->yield_weight  . '</td>' ;
+                                                ?>
+                                                    <td>Company Delivery</td>
+                                                    <td>IN</td>
+                                                 <?php   
+                                                '</tr>' ;
+                                              }
+                                            }
+                                        ?> 
                                                           
                                                         </tbody>
                                                       </table><hr>
@@ -313,8 +331,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     <label class="col-md-4 control">Total In :</label>
                                                                     <div class="col-md-4">
                                                                         <?php
-                                              $retrieveDetails3 ="SELECT SUM(mach_returnQty) AS totalQty FROM (SELECT * FROM jhcs.client_machreturn NATURAL JOIN contracted_client WHERE mach_id = '$row->mach_id') AS stickerIn;" ;
-                                              $query = $this->db->query($retrieveDetails3);
+                                              $retrieveDetails5 ="SELECT SUM(mach_returnQty) AS totalQty FROM (SELECT * FROM jhcs.client_machreturn NATURAL JOIN contracted_client WHERE mach_id = '$row->mach_id') AS stickerIn;" ;
+                                              $query = $this->db->query($retrieveDetails5);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
                                            echo '<p>'  . $object->totalQty  . ' pieces</p>' ;
@@ -327,8 +345,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     <label class="col-md-4 control">Total Out :</label>
                                                                     <div class="col-md-7">
                                                                         <?php
-                                              $retrieveDetails4 ="SELECT SUM(mach_qty) AS totalQty FROM (SELECT * FROM jhcs.machine_out NATURAL JOIN machine NATURAL JOIN contracted_client where mach_id = '$row->mach_id') AS stickerOut;" ;
-                                              $query = $this->db->query($retrieveDetails4);
+                                              $retrieveDetails6 ="SELECT SUM(mach_qty) AS totalQty FROM (SELECT * FROM jhcs.machine_out NATURAL JOIN machine NATURAL JOIN contracted_client where mach_id = '$row->mach_id') AS stickerOut;" ;
+                                              $query = $this->db->query($retrieveDetails6);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
                                            echo '<p>'  . $object->totalQty  . ' pieces</p>' ;

@@ -304,14 +304,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         ?>  
 
                                         <?php
-                                              $retrieveDetails4 = "SELECT package_id, trans_id, sup_company, transact_date, quantity FROM jhcs.trans_pack NATURAL JOIN inv_transact NATURAL JOIN packaging NATURAL JOIN supplier WHERE package_id = '$row->package_id';" ;
+                                              $retrieveDetails4 ="SELECT item, qty, date_received, yield_weight, sup_company FROM jhcs.supp_po_ordered INNER JOIN supp_delivery ON supp_po_ordered.supp_po_ordered_id = supp_delivery.supp_po_ordered_id INNER JOIN supp_po ON supp_po.supp_po_id = supp_po_ordered.supp_po_id INNER JOIN supplier ON supplier.sup_id = supp_po.supp_id WHERE item = '$row->package_name';" ;
                                               $query = $this->db->query($retrieveDetails4);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
                                            echo '<tr>' ,
                                                 '<td>'  . $object->sup_company  . '</td>' ,
-                                                '<td>'  . $object->transact_date  . '</td>' ,
-                                                '<td>'  . $object->quantity  . '</td>' ;
+                                                '<td>'  . $object->date_received  . '</td>' ,
+                                                '<td>'  . $object->yield_weight  . '</td>' ;
                                                 ?>
                                                     <td>Company Delivery</td>
                                                     <td>IN</td>
@@ -319,7 +319,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 '</tr>' ;
                                               }
                                             }
-                                        ?>
+                                        ?> 
                                                         </tbody>
                                                       </table><hr>
                                                           <div class="row">
