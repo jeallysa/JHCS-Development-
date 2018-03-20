@@ -59,10 +59,13 @@
                                                                 <div class="col-md-12">
                                                                     <div class="form-group label-floating">
                                                                         <label class="control-label">Supplier's Name</label>
-                                                                        <select class="form-control" id="sel1" name = "dropdown">
-                                                                            <option>-- --</option>
+                                                                        
+                                                                        <select class="form-control" id="sel1" name = "dropdown" >
+                                                                         
                                            <?php
-                                                                          
+                                                         if(!empty($tempExisting)){
+                                                            echo '<option>'  .$tempExisting[0]->supp_name . '</option>' ; 
+                                                         }else                  
                                                          foreach($suppliers as $object){ 
                                                             echo '<option>'  . $object->sup_company . '</option>' ;
                                
@@ -76,8 +79,9 @@
                                                             <div class="row">
                                                                 <div class="col-md-12">
                                                                     <div class="form-group label-floating">
-                                                                      <label for="email">Ordered Date:</label>
-                                                                       <input class="form-control" type="date" name="date">
+                                                                      <label for="email">Order Date:</label>
+                                                                       <input class="form-control" type="date" name="date" value="<?php if(!empty($tempExisting)){
+                                                                                                                                      echo $tempExisting[0]->date; } ?>" required>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -85,19 +89,22 @@
                                                                 <div class="col-md-6">
                                                                     <div class="form-group label-floating">
                                                                         <label class="control-label">Credit Terms:</label>
-                                                                        <input type="text" class="form-control" name="creditTerms">
+                                                        <input type="number" class="form-control" name="creditTerms" min="1" max = "30"  value="<?php if(!empty($tempExisting)){
+                                                                                                                                                echo $tempExisting[0]->credit_term; } ?>" required>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="form-group label-floating">
-                                                                        <label class="control-label">Trucking Fee</label>
-                                                                        <input type="text" class="form-control" name = "truckingFee">
+                                                              <label class="control-label">Trucking Fee</label>
+                                                         <input type="number" class="form-control"  min="1"  name = "truckingFee" value = "<?php if(!empty($tempExisting)){
+                                                                                                                                           echo $tempExisting[0]->trucking_fee; } ?>" required>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
                                                                 <div align="center">
-                                                                    <button type="submit" name = "insert"  value ="Insert" class="btn btn-success accept">Add</button>
+                                                                    <button type="submit" name = "cancel"  value ="submit" class="btn btn-success accept">Add</button>
+                                                                    <button type="submit" name = "cancel"  formaction="<?php echo base_url(); ?>InventoryPOAdd/cancelOrder" value ="cancel" class="btn btn-danger decline">Cancel</button>
                                                                     <div class="clearfix"></div>
                                                                 </div>
                                                             </div>
@@ -105,8 +112,9 @@
                                                         
                                                         
                                                     </div>
-                                                </div>
+                                                </div> 
                                             </div>
+                                            
                                             <div class="col-md-8">
                                                 <button class ="print pull-right"> Generate PDF</button>
                                                 <form method = "post" action ="InventoryPOAdd/insertOrder" id ="toBePrinted"> 
@@ -114,8 +122,11 @@
                                                    
                                                     <div >
                                                         <h1>List of Order/s</h1>
-                                                        <h3>PO #1</h3>
-                                                        <p>Date of Recording: January 25, 2018
+                                                         <?php $last = $lastPO[0]->supp_po_id;
+                                                                $new = $last + 1;
+                                                        echo '<h3> PO#' .$new  .'</h3>' ?>
+                                                            
+                                                        <p><?php echo "Date Of Recording " . date('m-d-Y') ?>
                                                         
                                                     </div>
                                                    
@@ -136,23 +147,36 @@
                                                                     
                                                                  
                                                                     <td class="col-sm-4">
-                                                                          <select class="form-control" name= "<?php echo "item[]" ?>" id="item">
-                                                                            <option>-- --</option>
+                                                                          <select class="form-control" name= "<?php echo "item[]" ?>" id="item"  required>
+                                                                           
                                                                               
                                                                               
-                                                <?php
-                                                                
-                                                         foreach($suppliersItem as $object){ 
-                                                            echo '<option>'  . $object->item_name . '</option>' ;
-                               
-                                 
-                                                          }  
-                                                ?> 
-                                                                              
-                                                                        </select>
+                                                  <?php
+                                                 
+                                                          
+                                                    for($i=0; $i <= 3 ; $i++){ 
+                                                        if(!empty($suppliersItem[$i])){
+                                                         foreach($suppliersItem[$i] as $object){ 
+                                                             if($i==0){
+                                                           echo '<option>'  . $object->raw_coffee . '</option>' ;
+                                                           }
+                                                                if($i==1){
+                                                            echo '<option>'  . $object->sticker . '</option>' ;
+                                                                 }
+                                                               if($i==2){
+                                                            echo '<option>'  . $object->package_name. '</option>' ;
+                                                            }
+                                                               if($i==3){
+                                                            echo '<option>'  . $object->brewer_type . '</option>' ;
+                                                            }
+                                                          } 
+                                                     }
+                                                }
+                                            ?>        
+                                                           </select>
                                                                     </td>
                                                                     <td class="col-sm-3">
-                                                                        <input type="number" class="form-control" min='1' name=" <?php echo "qty[]" ?>"  />
+                                                                        <input type="number" class="form-control" min='1' name=" <?php echo "qty[]" ?>" required />
                                                                     </td>
                                                                     <td class="col-sm-3">
                                                                         <input type="text" class="form-control" name=""  id="" readonly/>
@@ -178,23 +202,16 @@
                                                                 <td><b>Trucking Fee</b></td>
                                                                     
                                                                     <td>    
-                                                                              
-                                                                              
+                                                                                      
                                                 <?php
                                                       if(!empty($truckingFee)) { 
                                                               foreach($truckingFee as $object) {
                                                                 echo $object->trucking_fee;
                                                                  }
-                                                                 }
-                                                             
-                                                      
-                                                 
+                                                             }
                                                      ?>                         
                                                                   </td>   
                                                              
-                                                                    
-                                                                    
-                                                                    
                                                                     <td></td>
                                                                     <td><center><b><input type="text"  class="form-control" name="" id="" readonly value="xxx"/></b></center></td>
                                                                 </tr>
@@ -225,8 +242,8 @@
                                                             </tfoot>
                                                         </table>
                                                         <div align="center">
-                                                            <button type="submit" name = "submit"  value ="Insert" class="btn btn-success accept">Save</button>
-                                                            <button type="button" class="btn btn-danger decline">Cancel</button>
+                                                            <button type="submit" name = "submit"  value ="insert" class="btn btn-success accept">Save</button>
+                                                            <button type="reset" name = "cancel"   class="btn btn-danger decline" formaction="InventoryPOAdd/cancelOrder">Reset</button>
                                                             <div class="clearfix"></div>
                                                         </div>
                                                     </div>
@@ -304,6 +321,8 @@
 
 
 
+
+
 <script type="text/javascript">
     $(document).ready(function () {
     var counter = 2;
@@ -313,7 +332,29 @@
         var cols = "";
      
         
-cols +='<td><select class="form-control" name= "item[]"> <option>-- --</option><?php foreach($suppliersItem as $object){  echo '<option>'  . $object->item_name . '</option>' ;}?></select></td>';
+cols +='<td><select class="form-control" name= "item[]"> <?php
+                                                        for($i=0; $i < 4 ; $i++){       
+                                                          if(!empty($suppliersItem[$i])){
+                                                         foreach($suppliersItem[$i] as $object){
+                                                               if($i==0){
+                                                          echo '<option>'  . $object->raw_coffee . '</option>' ;
+                                                           }
+                                                             
+                                                                if($i==1){
+                                                            echo '<option>'  . $object->sticker . '</option>' ;
+                                                            }
+                                                               if($i==2){
+                                                            echo '<option>'  . $object->package_name. '</option>' ;
+                                                            }
+                                                            
+                                                               if($i==3){
+                                                            echo '<option>'  . $object->brewer_type . '</option>' ;
+                                                            }
+                                                            
+                                                          }
+                                                        }
+                                                     }
+                                                ?> </select></td>';
         cols += '<td><input type="text" class="form-control" name="qty[]"/></td>';
         cols += '<td><input type="text" class="form-control" name=""/></td>';
         cols += '<td><input type="text" class="form-control" name=""/></td>';
@@ -330,6 +371,12 @@ cols +='<td><select class="form-control" name= "item[]"> <option>-- --</option><
         counter -= 1
     });
 
+        
+        
+        
+        
+        
+        
  /*       
    $('#save').click(function(){
       var item = [];

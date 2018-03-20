@@ -15,7 +15,7 @@
                                 
 <?php
            $i = 1;
-                                        
+        if(!empty($Transactions)) {                                  
            foreach($Transactions as $object){
             $temp =  $object->supp_po_id;
 
@@ -80,7 +80,8 @@
         <?php                       
                    $i++;
                                
-                            }      
+                            }  
+        }
  ?>                      
                                 
                                 
@@ -149,6 +150,7 @@
                                             
                                             
                                             <?php
+                                                      if(!empty($Transactions)) {
                                                             $i = 1;
                                                             $details = 'details';
                                                                  foreach($Transactions as $object ){ 
@@ -164,7 +166,8 @@
                                                                   <?php         '</tr>' ; 
                                                                          
                                                                        $i++;
-                                                                 }           
+                                                                 }  
+                                                      }
                                             ?>
                                                  
                                                 

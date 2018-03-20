@@ -1,13 +1,19 @@
 <?php
-           $x = 1;
-                                        
+           $full = 1;
+                                            
+                                                
+                                                     
+                                                      
+                                                 
+           if(!empty($order)) {                                                                           
            foreach($order as $object){
-            $temp =  $object->supp_po_id;
+           $temp =  $object->supp_po_id;
+           
 
 ?>
 
 
-            <div class="modal fade" id="<?php echo "full" . $x   ?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+            <div class="modal fade" id="<?php echo "full" . $full   ?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="panel panel-primary">
                         
@@ -18,22 +24,34 @@
                                     <div class="table-responsive">
                                         <center><b>Record Full Delivery</b>
                                             <br>
-                                            <b>Current Date: 1/31/18</b></center>
+                                            <b> <?php echo date('m-d-Y') ?></b></center>
                                         
                                             <div class="row">
                                                 <div class="col-md-6 form-group">
                                                     <div class="form-group label-floating">
                                                         <label>Date Received:</label>
-                                                         <input type="date" class="form-control" name="date[]">
+                                                         <input type="date" class="form-control" name="date[]" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 form-group">
                                                     <div class="form-group label-floating">
                                                         <label>Received By: </label>
                                                         <select class="form-control" name="receivedBy[]" required>
-                                                            <option>Ms. A</option>
-                                                            <option>Mr. B</option>
-                                                            <option>Mr. C</option>
+                                                            
+                                                            
+                                      <?php
+                                                if(!empty($user)){ 
+                                                   
+                                                         foreach($user as $object){ 
+                                                           echo '<option>'  .$object->u_fname ." ".  $object->u_lname.  '</option>' ;
+                                                           }
+                                                             
+                                                }
+                                            ?>
+                                                            
+                                                            
+                                                            
+                                                            
                                                         </select>
                                                     </div>
                                                 </div>
@@ -51,39 +69,62 @@
                                                 <tbody>
                                                     
                                                     
-                                              <?php
-                                              $retrieveDetails ="SELECT * FROM items join supp_po_ordered  on item= item_name join supp_po using (supp_po_id) where supp_PO_id = $temp 
-                and supp_po_ordered.delivery_stat = 0" ;
+              
+              <?php
+                $i = 1;
+                 $arrayItem = array("raw_coffee","sticker","packaging","machine");
+                 $arrayOn = array("raw_coffee","sticker","package_name","brewer_type");
+                   for($table = 0 ; $table < 4 ; $table++){
+                          
+                             $retrieveDetails ="SELECT * FROM ".$arrayItem[$table]." join supp_po_ordered  on ".$arrayOn[$table] ." = item join supp_po using (supp_po_id) where supp_PO_id = $temp" ;  
+                       
                                               $query = $this->db->query($retrieveDetails);
+                       
                                               if ($query->num_rows() > 0) {
+                                                  
                                               foreach ($query->result() as $object) {
                                               
                                               $tempItemId = $object->supp_po_ordered_id;
-                                              $tempItemName = $object->item;
-                                           ?>
+                                             
+                                        
                                                   
                                                   
-                                         <?php         
-                                           echo '<tr>' ,
-                                                '<td>'  . $object->item_name. '</td>' ,
-                                                '<td>'  . $object->type  . '</td>' ,
-                                                '<td>'  . $object->qty  . '</td>' ;
-                                                ?>
+                                                 
+                                           echo        
+                                                '<tr>' ;
+                                             ?>
+                                                
+                                                <td>
+                                                      <input type="text" class="form-control" name="item[]" value="<?php echo $object->item ?>" readonly> 
+                                                </td> 
+                                                    
+                                             <?php       
+                                                echo '<td>'  . $object->type  . '</td>' ;
+                                        
+                                                ?>      
+                                                    
+                                                <td>
+                                            <input type="number" class="form-control" name="qty[]" id ="<?php echo "qty".$i?>" value="<?php echo $object->qty ?>" readonly> <!-- name of id=qty-->
+                                                  </td>
                                                     
                                                   <td>
-                                                            <input type="number" class="form-control" name="yield_weight[]">
-                                                  </td>   
-                                                  <td>00.00</td>  
+                                            <input type="number" class="form-control" name="yield_weight[]" id="<?php echo "yield_weight".$i?>" required>
+                                                  </td>  
+                                                    
+                                                 <td>
+                                             <input type="number" class="form-control" name="yield[]" id="<?php echo "yield".$i?>" readonly></td>  
                                                     
                                                     
-                                  <!--          <input type="hidden" class="form-control" name="itemName[]"  value = "<?php echo $tempItemName ?>"> -->
-                                                 <input type="hidden" class="form-control" name="itemId[]"  value = "<?php echo $tempItemId ?>" >  
+                                  
+                                            <input type="hidden" class="form-control" name="itemId[]"  value = "<?php echo $tempItemId ?>" >  
                                                  <?php   
                                                     
                                                   
                                                 '</tr>' ;
+                                                   $i++;
                                               }
                                             }
+                   }
                                         ?>                      
                                                     
                                                 
@@ -95,17 +136,19 @@
                             </div>
                             
                             <div class="panel-footer" align="center" style="margin-bottom:-14px;">
+                                 <button type="submit" class="btn btn-success accept">Save</button>
                                 <button type="button" class="btn btn-default btn-close" data-dismiss="modal">CLOSE</button>
-                                <button type="submit" class="btn btn-success accept">Save</button>
+                        
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         <?php                       
-                   $x++;
+                   $full++;
                                
-                                         }      
+           }                          
+        }      
  ?>
 
 
@@ -119,15 +162,15 @@
 
 
    <?php
-           $c = 1;
-                                        
+      $partial = 1;
+        if(!empty($order)) {                                
            foreach($order as $object){
             $temp =  $object->supp_po_id;
            
 
 ?>
         
-            <div class="modal fade" id="<?php echo "partial" . $c   ?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+            <div class="modal fade" id="<?php echo "partial" . $partial   ?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="panel panel-primary">
                         
@@ -138,7 +181,7 @@
                                     <div class="table-responsive">
                                         <center><b>Partial Delivery</b>
                                             <br>
-                                            <b>Current Date: 1/31/18</b></center>
+                                            <b><?php echo date('m-d-Y') ?></b></center>
                                         
                                             <table class="table table-striped" id="table-mutasi">
                                                 <thead>
@@ -154,49 +197,93 @@
                                                 </thead>
                                                 <tbody>
                                                   
-                                          <?php
-                                              $retrieveDetails ="SELECT * FROM items join supp_po_ordered  on item= item_name join supp_po using (supp_po_id) where supp_PO_id = $temp 
-                and supp_po_ordered.delivery_stat = 0" ;
-                                              $query = $this->db->query($retrieveDetails);
+                                          
+              <?php
+               
+
+             $i = 1;  
+                 $arrayItem = array("raw_coffee","sticker","packaging","machine");
+                 $arrayOn = array("raw_coffee","sticker","package_name","brewer_type");
+                 for($table = 0 ; $table < 4 ; $table++){
+                          
+                     $retrievePartial ="SELECT * FROM ".$arrayItem[$table]." join supp_po_ordered  on ".$arrayOn[$table] ." = item join supp_po using (supp_po_id) where supp_PO_id = ".$temp ." and supp_po_ordered.delivery_stat = 0";                   
+                                                    
+                         
+                                              $query = $this->db->query($retrievePartial);
+                       
                                               if ($query->num_rows() > 0) {
-                                              foreach ($query->result() as $object) {
-                                              
-                                              $tempItemId = $object->supp_po_ordered_id;
-                                              $tempItemName = $object->item;
-                                           ?>
+                                                               
                                                   
-                                          <?php      
+                                                  //used for the id counter in qty,yield_weild,yield
+                                              foreach ($query->result() as $object) {
+                                              $tempItemId = $object->supp_po_ordered_id;
+                                              
+                                           
+                                                  
+                                               
                                                 echo        
-                                                '<tr>' ,
-                                                '<td>'  . $object->item_name. '</td>' ,
-                                                '<td>'  . $object->type  . '</td>' ,
-                                                '<td>'  . $object->qty  . '</td>' ;
+                                                '<tr>' ;
+                                             ?>
+                                               
+                                                    
+                                                <td>
+                                                      <input type="text" class="form-control" name="item[]" value="<?php echo $object->item ?>" readonly> 
+                                                </td> 
+                                                    
+                                             <?php 
+                                                 
+                                               echo '<td>'  . $object->type  . '</td>' ;
+                                        
                                                 ?>      
-                                                        
+                                                   <td>
+                                                      <input type="number" class="form-control" name="qty[]" id ="<?php echo "qtyp".$i?>" value="<?php echo $object->qty ?>" readonly> <!-- name of id=qty-->
+                                                  </td>        
                                                   <td>
-                                                            <input type="number" class="form-control" name="yield_weight[]" >
+                                                      <input  type="number" class="form-control" maxlength="4" name="yield_weight[]" id ="<?php echo "yield_weight".$i?>"> <!-- name of id=yield_weight-->
                                                   </td>   
-                                                  <td>00.00</td>  
+                                                  <td><input type="number" class="form-control"  name="yield[]" id ="<?php echo "yield".$i?>" readonly></td>  <!-- name of id=yield-->
+                                                    
                                                   <td>
-                                                            <input type="date" class="form-control" name="date[]" >
+                                                            <input type="date" class="form-control" name="date[]"  >
                                                  </td>
                                                  <td>
                                                             <select            class="form-control" name="receivedBy[]" >
-                                                                <option>Ms. A</option>
-                                                                <option>Mr. B</option>
-                                                                <option>Mr. C</option>
+                                                                
+                                                                
+                                          <?php
+                                                if(!empty($user)){ 
+                                                   
+                                                         foreach($user as $object){ 
+                                                           echo '<option>'  .$object->u_fname ." ".  $object->u_lname.  '</option>' ;
+                                                           }
+                                                             
+                                                }
+                                            ?> 
+                                                              
+                                                                
+                                                                
+                                                                            
+                                                        
+                                                                
+                                                                
+                                                                
+                                                                
                                                             </select>
+                                                     
+                                                     
                                                    </td> 
                                                       
-                             <!--             <input type="hidden" class="form-control" name="itemName[]"  value = "<?php echo $tempItemName ?>"> -->
+                             
                                                  <input type="hidden" class="form-control" name="itemId[]"  value = "<?php echo $tempItemId ?>" > 
                                                     
                                                  <?php  
-                                                '</tr>';  ?>
-                                              
-                                        <?php           
+                                                '</tr>';  
+                                                              $i++;
+                                        
+                                                 
                                               }
                                             }
+                   }
                                         ?>   
                                      
                                                 </tbody>
@@ -220,9 +307,9 @@
                 </div>
             </div>
   <?php                       
-                   $c++;
-                               
-                                         }      
+                   $partial++;
+              }
+           }      
  ?>      
          <!----------------------------------------------------------END     OF     MODAL -------------------------------------->
         
@@ -231,15 +318,15 @@
 
 
 <?php
-           $i = 1;
-                                        
+           $details = 1; //used to map the Modal.  //put here because if not. the if returns false the i becomes 1 again 
+      if(!empty($order)) {                                     
            foreach($order as $object){
-            $temp =  $object->supp_po_id;
-
+            $temp =  $object->supp_po_id; //dynamic query WHERE.
+           
 ?>
                                              
          <!-----------------------------------------------------------------------  MODAL DETAILS -------------------------------------->
-            <div class="modal fade" id="<?php echo "details" . $i   ?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+            <div class="modal fade" id="<?php echo "details" . $details   ?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="panel panel-primary">
                         <form action="#" method="post" accept-charset="utf-8">
@@ -251,7 +338,7 @@
                                             <thead>
                                                 <tr>
                                                     
-                                                    <th>Credit Terms</th>
+                                                   
                                                     <th>Item Name</th>
                                                     <th>Type</th>
                                                     <th>Quantity/ Weight(g)</th>
@@ -263,14 +350,19 @@
                                                 
                                                 
                                                 
-                                            <?php
-                                              $retrieveDetails ="SELECT * FROM items join supp_po_ordered  on item= item_name join supp_po using (supp_po_id) where supp_PO_id = $temp" ;
+          <?php
+                 
+            $arrayItem = array("raw_coffee","sticker","packaging","machine");
+             $arrayOn = array("raw_coffee","sticker","package_name","brewer_type");
+                   for($table = 0 ; $table < 4 ; $table++){
+                          
+                     $retrieveDetails ="SELECT * FROM ".$arrayItem[$table]." join supp_po_ordered  on ".$arrayOn[$table] ." = item join supp_po using (supp_po_id) where supp_PO_id = $temp" ; 
                                               $query = $this->db->query($retrieveDetails);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
                                            echo '<tr>' ,
-                                                '<td>'  . $object->supp_creditTerm. '</td>' ,
-                                                '<td>'  . $object->item_name   . '</td>' ,
+                                               
+                                                '<td>'  . $object->item   . '</td>' ,
                                                 '<td>'  . $object->type  . '</td>' ,
                                                 '<td>'  . $object->qty  . '</td>' ,
                                                 '<td>'  . $object->unitPrice  . '</td>' ,
@@ -278,7 +370,14 @@
                                                 '</tr>' ;
                                               }
                                             }
-                                        ?>                      
+                                           }
+                                        ?>    
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
                                                 
                                             </tbody>
                                         </table>
@@ -293,9 +392,10 @@
                 </div>
             </div>
 <?php                       
-                   $i++;
+                   $details++;
                                
-                                         }      
+              }
+           }      
  ?>
         <!----------------------------------------------------------END     OF     MODAL -------------------------------------->
 
@@ -363,6 +463,7 @@
                                     <table id="example" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
                                             <th><b class="pull-left">PO #</b></th>
+                                            <th><b class="pull-left">PO Credit Term</b></th>
                                             <th><b class="pull-left">Date Ordered</b></th>
                                             <th><b class="pull-left">Supplier</b></th>
                                             <th><b class="pull-left">See Details</b></th>
@@ -373,7 +474,8 @@
                                             
                                             
                   <?php
-                                      $i = 1;
+                              if(!empty($order)) {                  
+                                      $mapModal = 1;
                                       $details = 'details';
                                       $partial = 'partial';
                                       $full    = 'full';       
@@ -381,20 +483,23 @@
                                              
                                             
                                            echo '<tr>' ,
+                                                
                                                 '<td>'  . $object->supp_po_id . '</td>' ,
+                                                '<td>'  . $object->supp_creditTerm. '</td>' ,
                                                 '<td>'  . $object->suppPO_date   . '</td>' ,
                                                 '<td>'  . $object->sup_company  . '</td>' ;
                                         		                      
                                         ?>
                                                                               
-                                               <td><a class="btn btn-info btn-sm" data-toggle="modal" data-target="#<?php echo $details . $i   ?>">Details</a></td>
-                                               <td><a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#<?php echo $partial . $i   ?>">Partial</a><a class="btn btn-success btn-sm" data-toggle="modal" data-target="#<?php echo $full . $i   ?>">Full</a> </td>
+                                               <td><a class="btn btn-info btn-sm" data-toggle="modal" data-target="#<?php echo $details . $mapModal  ?>">Details</a></td>
+                                               <td><a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#<?php echo $partial . $mapModal  ?>">Partial</a><a class="btn btn-success btn-sm" data-toggle="modal" data-target="#<?php echo $full . $mapModal   ?>">Full</a> </td>
                                             
                                             
                                             
                 <?php                          '</tr>' ; 
-                           $i++;
-                                         }      
+                           $mapModal++;
+                                         }  
+                              }
                ?>
                                             
                                             
@@ -455,18 +560,77 @@ $(document).ready(function() {
     });
 
 });
+ 
+    
+        
+                                                  
+      <?php
+           
+           $c = 1; 
+          
+    foreach($order as $object){
+       $temp =  $object->supp_po_id;
+          
+         
+        
+        
+         $i = 1; //after every PO it returns to 1
+         $arrayItem = array("raw_coffee","sticker","packaging","machine");
+         $arrayOn   = array("raw_coffee","sticker","package_name","brewer_type");
+        
+        
+        
+                for($table = 0 ; $table < 4 ; $table++){
+                        $retrieveDetails ="SELECT * FROM ".$arrayItem[$table]." join supp_po_ordered  on ".$arrayOn[$table] ." = item join supp_po using (supp_po_id) where supp_PO_id = $temp" ; 
+                                    
+                        $query = $this->db->query($retrieveDetails);
+                                       
+                    
+                       if ($query->num_rows() > 0){
+                              foreach ($query->result() as $object){
+               ?>                               
+                                                  
+    
+  $(document).ready(function(){                
+           $(<?php echo "'#partial".$c." input[id=yield_weight".$i."]'"?>).keyup(function(){
+            var y = parseFloat($(this).val());
+			var x = parseFloat($(<?php echo "'#partial".$c." input[id=qtyp".$i."]'"?>).val());
+			var res = x - y ;
+			$(<?php echo "'#partial".$c." input[id=yield".$i."]'"?>).val(res);
+});      
+});     
     
     
-$('#update-modal input[name=sellprice]').keyup(function(){
-			var sellprice = parseFloat($(this).val());
-			var buyprice = parseFloat($('#update-modal input[name=buyprice]').val());
-			var profit = sellprice - buyprice;
-			$('#update-modal input[name=profitDisplay]').val("P " + numeral(profit).format('0,0.00'));
-			$('#update-modal input[name=profit]').val(profit);
-});  
+      $(document).ready(function(){                               
+            $(<?php echo "'#full".$c." input[id=yield_weight".$i."]'"?>).keyup(function(){
+            var y = parseFloat($(this).val());
+			var x = parseFloat($(<?php echo "'#full".$c." input[id=qty".$i."]'"?>).val());
+			var res = x - y ;
+			$(<?php echo "'#full".$c." input[id=yield".$i."]'"?>).val(res);
+});      
+});   
     
     
+    
+<?php                                                  
+                                                  
+                            $i++;
+                      }
+                       
+                 }
+                       
+            }
+       $c++;
+     }
+               
+?>
+    
+    
+
+    
+    
+    
+
     
 </script>
-
 </html>

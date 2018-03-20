@@ -11,7 +11,7 @@
                                 
 <?php
            $x = 1;
-                                        
+        if(!empty($unpaid)) {                                
            foreach($unpaid as $object){
             $temp =  $object->supp_po_id;
 
@@ -114,7 +114,8 @@
     <?php                       
                    $x++;
                                
-                                         }      
+                                         } 
+        }
  ?>                                
                                     
                                 
@@ -127,7 +128,7 @@
                                     
       <?php
            $c = 1;
-                                        
+     if(!empty($unpaid)) {                                
            foreach($unpaid as $object){
             $temp =  $object->supp_po_id;
 
@@ -200,7 +201,8 @@
           <?php                       
                    $c++;
                                
-                                         }      
+                                         }  
+     }
  ?>                               
                                       
                                     
@@ -216,7 +218,7 @@
                                    
     <?php
            $i = 1;
-                                        
+           if(!empty($unpaid)) {                               
            foreach($unpaid as $object){
             $temp =  $object->supp_po_id;
 
@@ -287,7 +289,8 @@
      <?php                       
                    $i++;
                                
-                                         }      
+                                         }
+           }
  ?>                               
                                     
                                     
@@ -360,6 +363,7 @@
                                             $details = 'details';
                                             $partial = 'partial';
                                             $full    = 'full'; 
+                                    if(!empty($unpaid)) {  
                                           foreach($unpaid as $object){ 
                                              
                                             
@@ -381,7 +385,8 @@
                                     <?php                          
                                             '</tr>' ; 
                                                   $i++;
-                                         }           
+                                         } 
+                                 }
                ?>
                                      
                                             
