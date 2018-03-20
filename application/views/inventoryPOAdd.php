@@ -120,12 +120,21 @@
                                                 <form method = "post" action ="InventoryPOAdd/insertOrder" id ="toBePrinted"> 
                                                     
                                                    
+                                                    
+                                                    
                                                     <div >
                                                         <h1>List of Order/s</h1>
-                                                         <?php $last = $lastPO[0]->supp_po_id;
+                                                        
+                                                         <?php if(!empty($lastPO[0])){
+                                                                $last = $lastPO[0]->supp_po_id;
                                                                 $new = $last + 1;
-                                                        echo '<h3> PO#' .$new  .'</h3>' ?>
-                                                            
+                                                                echo '<h3> PO#' .$new  .'</h3>';
+                                                               } 
+                                                        ?>
+                                                        
+                                                        
+                                                        
+                                                        
                                                         <p><?php echo "Date Of Recording " . date('m-d-Y') ?>
                                                         
                                                     </div>
