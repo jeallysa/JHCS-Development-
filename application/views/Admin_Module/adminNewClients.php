@@ -164,7 +164,7 @@
                                 </div>
                                  <div class="row">
                                     <div class="col-lg-12 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <input class="form-control" name="tel_number" placeholder="Telephone Number" type="text" required />
+                                        <input class="form-control" name="tel_number" placeholder="Cellphone Number" type="text" required />
                                     </div>
                                 </div>
                                 

@@ -140,32 +140,6 @@
                                 <div class="card-header" data-background-color="green">
                                     <h3 class="title"><center>Add New Contract</center></h3>
                                 </div>
-                                <div class="col-xs-4">
-                                    <div class="card card-profile">
-                                        <div class="content">
-                                            <h3 class="card-title">The Legend Villas</h3>
-                                            <h6 class="category text-gray">Jesselyn Amagan - General Manager</h6>
-                                            <table class="card-content" cellspacing="0" width="50%" align="center">
-                                                <tbody>
-                                                    <tr>
-                                                        <td><b>Address:</b></td>
-                                                        <td align="left">Mandaluyong City</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Tel:</b></td>
-                                                        <td align="left">+444 444 444</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Email:</b></td>
-                                                        <td align="left">chef22@manor.com</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <br>
-                                            <br>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="col-xs-8">
                                     <div class="card-content">
                                         <form>
@@ -174,12 +148,6 @@
                                                     <div class="form-group label-floating">
                                                         <label for="email">Date Started:</label>
                                                         <input class="form-control" type="date" name="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group label-floating">
-                                                        <label for="email">Credit Term:</label>
-                                                        <input class="form-control" type="text" name="" required/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -214,12 +182,6 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-2">
-                                                    <div class="form-group label-floating">
-                                                        <label>Quantity</label>
-                                                        <input class="form-control" name="coffeeType" type="number" required />
-                                                    </div>
-                                                </div>
                                             </div>
                                             <!----modal for add new coffee blend ---->
                                             <div class="modal fade" id="addnew" tabindex="-1" role="dialog" aria-labelledby="addnew" aria-hidden="true">
@@ -242,12 +204,6 @@
                                                                     <div class="col-md-2">
                                                                         <label>Size:</label>
                                                                     </div>
-                                                                    <div class="col-md-2">
-                                                                        <label>Qty:</label>
-                                                                    </div>
-                                                                    <div class="col-md-2">
-                                                                        <label>Add Another:</label>
-                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -259,23 +215,15 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <h4>Machine:</h4>
-                                            </div>
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
-                                                        <label>Brewer</label>
-                                                        <input class="form-control" name="" type="text" required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group label-floating">
-                                                        <label>Type</label>
+                                                        <label>Brewer:</label>
                                                         <input class="form-control" name="" type="text" required />
                                                     </div>
                                                 </div>
                                             </div>
-                                            <a href="<?php echo base_url(); ?>adminContract" class="btn btn-success btn-round">Save Contract</a>
+                                            <a href="<?php echo base_url(); ?>adminClients" class="btn btn-success btn-round">Save Contract</a>
                                             <a href="<?php echo base_url(); ?>adminClients" class="btn btn-default btn-round">Back</a>
                                         </form>
                                     </div>

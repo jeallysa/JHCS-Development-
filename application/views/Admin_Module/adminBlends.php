@@ -581,7 +581,7 @@
                                                 <td>
                                                     <a class="btn btn-warning btn-sm" data-toggle="modal" style="margin-top: 0px" data-toggle="modal" data-target="#updateblend" data-original-title>Edit</a>
                                                 </td>
-                                                <td>
+                                                   <td>
                                                     <div class="onoffswitch">
                                                         <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
                                                         <label class="onoffswitch-label" for="myonoffswitch">
