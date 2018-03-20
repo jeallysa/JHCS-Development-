@@ -48,6 +48,15 @@
 			$this->AdminStickers_model->insert_data($data);
 			$this->index();
 		}
+        
+        function activation(){
+			
+			$this->load->model('AdminStickers_model');
+			$id = $this->input->post("deact_id");
+			$this->AdminStickers_model->activation($id);
+			redirect('adminStickers');
+
+		}
 
 	}
 ?>

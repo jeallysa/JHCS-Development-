@@ -33,5 +33,13 @@
 			redirect('adminClients', 'refresh');
 		}
 
+        function activation(){
+			
+			$this->load->model('Admin_Clients_Model');
+			$id = $this->input->post("deact_id");
+			$this->Admin_Clients_Model->activation($id);
+			redirect('adminClients');
+
+		}
 	}
 ?>

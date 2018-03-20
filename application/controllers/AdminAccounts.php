@@ -31,6 +31,15 @@
 			echo "<script>alert('Update successful!');</script>";
 			$this->index();
 		}
+        
+        	function activation(){
+			
+			$this->load->model('Admin_Accounts_model');
+			$id = $this->input->post("deact_id");
+			$this->Admin_Accounts_model->activation($id);
+			redirect('adminAccounts');
+
+		}
 
 	}
 ?>
