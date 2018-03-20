@@ -304,6 +304,8 @@
                                                 <label class="col-md-6 control">Sales Invoice No. :</label>
                                                 <div class="col-md-5">
                                                     <input id="" name="invoice" type="text" class="form-control">
+                                                   
+													
                                                 </div>
                                             </div>
                                         </div>
@@ -317,8 +319,8 @@
                                         </div>
                                     </div>
                                     <div class="panel-footer" align="center">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-success">Save</button>
+                                        <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                                        <button type="submit" class="btn btn-success">Save Delivery</button>
                                     </div>
                             </form>
                         </div>
@@ -402,6 +404,7 @@
                                                                     <div class="form-group label-floating">
                                                                         <label for="email">Remarks:</label>
                                                                         <input class="form-control" type="text" name="remarks">
+																		 <input name="deliveryID" type="hidden" class="form-control" value="<?php echo $row2->client_deliveryID; ?>" >
                                                                     </div>
                                                                 </div>
                                                             </div>

@@ -88,6 +88,10 @@
 		.select-pane {
         display: none;
     	}
+		
+		.no-border{
+			border: none !important;
+		}
 	
 		
 
@@ -248,9 +252,9 @@
                                                         <td><?php echo $row->coff_returnDate; ?></td>
                                                         <td><?php echo $row->coff_returnQty; ?></td>
                                                         <td><?php echo $row->client_company; ?></td>
-                                                        <td>--</td>
-                                                        <td>--</td>
-                                                        <td>--</td>
+                                                        <td><?php echo $row->blend; ?></td>
+                                                        <td><?php echo $row->package_type; ?></td>
+                                                        <td><?php echo $row->package_size; ?></td>
                                                         <td><?php echo $row->coff_remarks; ?></td>
                                                         <td>
                                                             <button class="btn btn-danger btn-sm viewCoffeeReturns" style="margin-top: 0px" data-toggle="modal" data-target="#resolve_coffee" id="getDetails" data-id="<?php echo $row->client_id; ?>"> Resolve</button>
@@ -402,19 +406,20 @@
 											
                                         <div class="row">
                                             <div class="col-lg-7">
-
+												
 												<div class="row">
 													<div class="form-group">
 														<label class="col-md-5 control">Coffee Blend :</label>
 														<div class="col-md-7" >
-															<p ><b> <input name="blendName" class="form-control no-border" type="disabled"  readonly></b></p>
+
+															<p><b> <input name="blendName" class="no-border" type="disabled"  readonly></b></p>
 													
 														</div>
 													</div>
 													<div class="form-group">
 														<label class="col-md-5 control">Size :</label>
 														<div class="col-md-5">
-															<p><b><input name="size" class="form-control" type="disabled"  readonly></b></p>
+															<p><b><input name="size" class="no-border" type="disabled"  readonly></b></p>
 														</div>
 													</div>
 												</div>
@@ -422,20 +427,24 @@
 													<div class="form-group">
 														<label class="col-md-5 control">Bag :</label>
 														<div class="col-md-6">
-															<p><b><input name="bagType" class="form-control" type="disabled"  readonly></b></p>
+															<p><b><input name="bagType" class="no-border" type="disabled"  readonly></b></p>
 														</div>
 													</div>
 													<div class="form-group">
 														<label class="col-md-5 control">Quantity :</label>
 														<div class="col-md-6">
-															<p><input name="quantity" id="Originalquantity" class="form-control" type="disabled"  readonly></p>
+															<p><b><input name="quantity" id="Originalquantity" class="no-border" type="disabled"  readonly></b></p>
 														</div>
 													</div>
 												</div>
+												
+												
 													
 												
                                             </div>
                                         </div>
+											
+										<?php echo form_open('SalesReturns/resolveReturns', array('method'=>'POST')); ?>
 											<?php if(validation_errors()) { ?>
 											  <div class="alert alert-danger">
 												<?php echo validation_errors(); ?>
@@ -443,10 +452,10 @@
 											<?php } ?>
 											
                                         <hr>
-										<?php echo form_open('SalesReturns/addReturns', array('method'=>'POST')); ?>
 											
-											<div class="alert alert-danger print-error-msg" style="display:none">
-												</div>
+											<input type="hidden" name="deliveryID" readonly />
+											<input type="hidden" name="PO_ID" readonly />
+											<input type="hidden" name="client_id" readonly />
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group">
@@ -456,6 +465,7 @@
 														<?php echo form_input(['name'=>'DRReturns','id'=>'deliveryReceipt', 'class'=>'form-control','type'=>'text']); ?>
                                                     </div>
                                                 </div>
+												
                                             </div>
 											
                                             <div class="col-lg-6">
@@ -469,38 +479,32 @@
                                             </div>
                                         </div>
 											<div class="row">
-                                            <div class="col-lg-2 col-md-2 col-sm-2"></div>
-                                            <div class="col-lg-8 col-md-8 col-sm-8 ">
-                                               <!-- <div class="select-pane " id="partial_delivery" >-->
+                                            <div class="col-lg-6">
+												<div class="form-group">
+                                                    <label class="col-md-6 control">Sales Invoice No :</label>
+                                                    <div class="col-md-6">
+                                                        <!--<p class="form-control" contenteditable="true" name="delivery_receipt">DR0123</p>-->
+														<?php echo form_input(['name'=>'SINo', 'class'=>'form-control','type'=>'text']); ?>
+                                                    </div>
+                                                </div>
+											</div>
+                                            <!--<div class="col-lg-6">
+
                                                     <div class="form-group">
-                                                        <label class="col-md-6 control">Quantity Delivered:</label>
-                                                        <div class="col-md-5">
-                                                            <input id="deliveredCoffee" class="form-control" type="text" name="quantity_delivered">
+                                                        <label class="col-md-6 control">QTY Returned:</label>
+                                                        <div class="col-md-6">
+                                                            <input id="deliveredCoffee" class="form-control" type="text" name="quantity_returned">
                                                         </div>
                                                     </div>
-                                               <!-- </div>-->
-                                            </div>
+                                            </div>-->
 											</div>
 										<div class="row">
-                                            <div class="col-lg-2 col-md-2 col-sm-2"></div>
-                                            <div class="col-lg-8 col-md-8 col-sm-8 ">
-                                                <!--<div class="select-pane" id="partial_delivery">-->
-                                                    <div class="form-group">
-                                                        <label class="col-md-6 control">Remaining Quantity: </label>
-                                                        <div class="col-md-5">
-                                                            <p><input name="remaining_quantity" id="subt" class="form-control" type="text" name="subt" ></p>
-                                                        </div>
-                                                    </div>
-                                               <!-- </div>-->
-                                            </div>
-                                        </div>
-										<div class="row">
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-9">
                                                 <div class="form-group">
-                                                    <label class="col-md-5 control">Received by :</label>
-                                                    <div class="col-md-7">
+                                                    <!--<label class="col-md-5 control">Received by :</label>-->
+                                                    <div class="col-md-9">
                                                         <!--<input id="" name="receiver" type="text" class="form-control">-->
-														<?php echo form_input(['name'=>'receiver','id'=>'receiver', 'class'=>'form-control','type'=>'text']); ?>
+														<?php echo form_input(['name'=>'receiver','id'=>'receiver', 'class'=>'form-control','type'=>'text','placeholder'=>'Name of the Receiver']); ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -521,14 +525,13 @@
 											
                                         
 										<div class="row">
-											<div class="col-lg-10">
+											<div class="col-lg-9">
                                                 <div class="form-group">
-                                                    <label class="col-md-5 control">Remarks :</label>
+                                                    <!--<label class="col-md-3 control">Remarks :</label>-->
                                                     <div class="col-md-8">
                                                         <!--<input id="" name="coffee_returns_remarks" type="text" class="form-control">-->
-														<?php echo form_input(['name'=>'remarksReturns','id'=>'remarksReturns', 'class'=>'form-control','type'=>'text']); ?>
+														<?php echo form_input(['name'=>'remarksReturns','id'=>'remarksReturns', 'class'=>'form-control','type'=>'text', 'placeholder'=>'Remarks']); ?>
 														
-                                                    </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -727,16 +730,18 @@ $(document).ready(function(){
             url: '<?=base_url()?>SalesReturns/getDetails/' + id ,			
 			success: function(data)
 				{
-					 $('[name="blendName"]').val(data.blend);
+					$('[name="PO_ID"]').val(data.contractPO_id);
+					$('[name="client_id"]').val(data.client_id);
+					$('[name="blendName"]').val(data.blend);
 					$('[name="size"]').val(data.package_size);
-					$('[name="quantity"]').val(data.contractPO_qty);
+					$('[name="quantity"]').val(data.coff_returnQty);
 					$('[name="bagType"]').val(data.package_type);
 					$('[name="DRReturns"]').val(data.client_dr);
-					
+					$('[name="deliveryID"]').val(data.client_deliveryID);
 					$('#resolve_coffee').modal('show');
-					/*$('#blendName').html(blend);*/
-
-
+					
+					/*$('#blendDetails').html(data);
+*/
 				},
 			error: function (jqXHR, textStatus, errorThrown)
 				{

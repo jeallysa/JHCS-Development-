@@ -6,7 +6,7 @@
 		}
 		
 		public function get_delivery_list(){
-			$query = $this->db->query("SELECT * FROM contracted_po NATURAL JOIN contracted_client NATURAL JOIN coffee_blend NATURAL JOIN packaging WHERE delivery_stat = 'pending'");
+			$query = $this->db->query("SELECT * FROM contracted_client NATURAL JOIN contracted_po NATURAL JOIN coffee_blend NATURAL JOIN packaging WHERE contracted_po.delivery_stat = 'pending' ");
 			return $query->result();
 			
 		}

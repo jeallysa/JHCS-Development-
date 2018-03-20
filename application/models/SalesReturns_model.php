@@ -11,12 +11,12 @@
 			
 		}
 		public function get_coffee_return(){
-			$query = $this->db->query("SELECT * FROM client_coffreturn NATURAL JOIN client_delivery NATURAL JOIN contracted_client NATURAL JOIN contracted_po NATURAL JOIN coffee_blend WHERE client_delivery.return='Yes' ");
+			$query = $this->db->query("SELECT * FROM client_coffreturn NATURAL JOIN client_delivery  NATURAL JOIN contracted_client NATURAL JOIN contracted_po NATURAL JOIN coffee_blend NATURAL JOIN packaging WHERE client_delivery.return='Yes' AND client_coffreturn.resolved = 'No' ");
 			return $query->result();
 			
 		}
 		public function get_resolved_coffee(){
-			$query = $this->db->query("SELECT * FROM client_coffreturn NATURAL JOIN client_delivery NATURAL JOIN contracted_client WHERE returned_back='Yes' AND coff_returnAction IS NOT NULL OR coff_returnAction='' ");
+			$query = $this->db->query("SELECT * FROM client_coffreturn NATURAL JOIN client_delivery NATURAL JOIN contracted_client WHERE client_coffreturn.resolved='Yes' ");
 			return $query->result();
 			
 		}
@@ -26,7 +26,7 @@
 			
 		}
 		public function getDetailsCoffee($id){
-			$query = $this->db->query("SELECT * FROM contracted_client NATURAL JOIN client_delivery NATURAL JOIN contracted_po NATURAL JOIN coffee_blend NATURAL JOIN packaging WHERE client_id='$id' ");
+			$query = $this->db->query("SELECT * FROM client_coffreturn NATURAL JOIN client_delivery NATURAL JOIN contracted_po NATURAL JOIN coffee_blend NATURAL JOIN packaging WHERE client_id='$id' ");
 			 return $query->row();
 			
 		
@@ -45,17 +45,29 @@
 		
 		
 		
-		public function ResolveCoffeeReturns( $date, $receiver, $dr, $quantity, $remarks){
+		public function ResolveCoffeeReturnsA( $date, $receiver, $dr, $SI, $client_id,$po){
 			
-			$data = array(
+			$dataA = array(
 				'client_dr' => $dr,
-				'coff_returnDate' => $date,
-				'coff_returnedReceiver' => $receiver,
-				'coff_returnQTY' => $quantity,
-				'coff_returnAction' => $remarks
+				'client_deliverDate' => $date,
+				'client_receive' => $receiver,
+				'client_id' => $client_id,
+				'client_invoice' => $SI,
+				'contractPO_id' => $po
 			);
-			$this->db->set('returned_back', 'yes');
-			$this->db->insert('client_coffreturn', $data);
+		
+			$this->db->insert('client_delivery', $dataA);
+			
+			
+			
+		}
+		public function ResolveCoffeeReturnsB( $remarks,$id, $resolved ){
+			$dataB = array(
+				'coff_returnAction' => $remarks,
+				'resolved' => $resolved
+			);
+			$this->db->where('client_deliveryID', $id);
+			$this->db->update('client_coffreturn', $dataB);
 			
 		}
 		

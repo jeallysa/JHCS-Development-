@@ -34,6 +34,9 @@
         text-align: center;
         font-size: 120%;
     }
+		.no-border{
+			border: none !important;
+		}
 
     </style>
 </head>
@@ -41,11 +44,6 @@
 <body>
     <div class="wrapper">
         <div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
-            <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
-
-        Tip 2: you can also add an image using data-image tag
-    -->
             <div class="logo">
                 <img src="<?php echo base_url(); ?>assets/img/logo.png" alt="image1" width="250px" height="150px">
             </div>
@@ -160,7 +158,7 @@
                                                     <td><?php echo $row->client_company; ?></td>
                                                     <td><?php echo $row->client_type; ?></td>
                                                     <td><a href="<?php echo base_url(); ?>salesClients/salesClientsInfo" class="btn btn-primary btn-round btn-sm">View Details<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></td>
-                                                    <td><div class="btn btn-primary btn-sm" data-background-color="green" data-toggle="modal" data-target="#PurchaseOrder"> Purchase Order</div></td>
+                                                    <td><div class="btn btn-primary btn-sm" data-background-color="green" data-toggle="modal" data-target="#PurchaseOrder" data-id="<?php echo $row->client_id; ?>" id="getDetails"> Purchase Order</div></td>
                                                 </tr>
                                                 <?php
                                                     }
@@ -185,11 +183,12 @@
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                             <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span> Add New Purchase Order</h4>
                         </div>
-                        <form action="#" method="post" accept-charset="utf-8">
+                        <?php echo form_open('SalesClients/addClientPO', array('method'=>'POST')); ?>
                             <div class="modal-body" style="padding: 5px;">
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
-                                        <h3><b>The Legend Villas</b></h3>
+                                        <h3><b><input name="Name" class="no-border" type="disabled" readonly /></b></h3>
+										<input name="client_id" class="no-border" type="hidden" readonly /> 
                                     </div>
                                 </div>
                                 <hr>
@@ -198,59 +197,65 @@
                                         <div class="form-group">
                                             <label class="col-md-4 control">Item Code :</label>
                                             <div class="col-md-4">
-                                                <p><b>I0001</b></p>
+                                                <p><b><input name="ItemCode" class="no-border" type="disabled" readonly /> </b></p>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-4 control">Coffee Blend :</label>
                                             <div class="col-md-7">
-                                                <p><b>Farmer's Blend Coffee</b></p>
+                                                <p><b><input name="CoffeeBlend" class="no-border" type="disabled" readonly /> </b></p>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-4 control">Bag :</label>
                                             <div class="col-md-5">
-                                                <p><b>Clear</b></p>
+                                                <p><b><input name="Bag" class="no-border" type="disabled" readonly /></b></p>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-4 control">Size :</label>
                                             <div class="col-md-5">
-                                                <p><b>500g</b></p>
+                                                <p><b><input name="Size" class="no-border" type="disabled" readonly /></b></p>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-4 control">Unit Price :</label>
-                                            <div class="col-md-6">
-                                                <p><b>Php 320.00</b></p>
+                                            <div class="col-md-7">
+                                                <p><b>Php <input name="UnitPrice" id="UnitPrice" class="no-border" type="disabled" readonly /></b></p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-sm-6">
-                                            <div class="form-group">
+                                            <!--<div class="form-group">
                                                 <label class="col-md-6 control">Purchase Order no. :</label>
                                                 <div class="col-md-4">
                                                     <input id="" name="name" type="text" class="form-control">
                                                 </div>
-                                            </div>
+                                            </div>-->
                                             <div class="form-group">
-                                                <label class="col-md-6 control">Date of Purchase :</label>
+                                                <label class="col-md-5 control">Date of Purchase :</label>
                                                 <div class="col-md-4">
-                                                    <input id="" name="name" type="date" class="form-control">
+                                                    <input id="" name="date" type="date" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-md-6 control">Quantity :</label>
+                                                <label class="col-md-5 control">Quantity :</label>
                                                 <div class="col-md-4">
-                                                    <input type="number" placeholder="80" class="form-control">
+                                                    <input type="number" name="quantity" id="quantityAvailed" class="form-control">
+                                                </div>
+                                            </div><br><br>
+											 <div class="form-group">
+                                                <label class="col-md-3 control">Total Price :</label>
+                                                <div class="col-md-9">
+                                                    <h5><b>Php <input name="TotalPrice" type="number" value="quantity" id="product" class="no-border" type="disabled" readonly /></b></h5>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <hr>
-                                <div class="col-md-">
+                               <!-- <div class="col-md-">
                                     <p>
                                         <center><a class="btn btn-primary" data-toggle="collapse" href="#collapseBlend" aria-expanded="false" aria-controls="collapseExample">Add New Blend</a></center>
                                     </p>
@@ -323,13 +328,13 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                </div>
+                                </div>-->
                             </div>
                             <div class="panel-footer" align="right">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-success">Save Purchase Order</button>
+                                <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                                <?php echo form_submit(['name'=>'AddPO', 'value'=>'Add Purchase Order','class'=>'btn btn-primary']) ?>
                             </div>
-                        </form>
+                        <?php echo form_close(); ?>
                     </div>
                 </div>
             </div>
@@ -363,7 +368,22 @@
 <script type="text/javascript">
 $(document).ready(function() {
     var table = $('#example').DataTable();
+	
+	product();
+	$("#UnitPrice, #quantityAvailed").on("keydown keyup", function() {
+		 product();
+    });
 
+	function product() {
+            var num1 = document.getElementById('UnitPrice').value;
+            var num2 = document.getElementById('quantityAvailed').value;
+			/*var result = parseInt(num1) + parseInt(num2);*/
+			var result = parseInt(num1) * parseInt(num2);
+            if (!isNaN(result)) {
+                /*document.getElementById('sum').value = result;*/
+				document.getElementById('product').value = result;
+            }
+        }
 
 });
 </script>
@@ -405,6 +425,39 @@ $(document).ready(function() {
 
 
 });
+</script>
+
+<script>
+		$(document).ready(function(){  
+			$(document).on('click', '#getDetails', function(e){   
+				e.preventDefault();
+				var id = $(this).data('id');   // it will get id of clicked row
+
+				jQuery.ajax({
+					method: 'GET',
+					type: 'ajax',
+					dataType: 'json',
+					url: '<?=base_url()?>SalesClients/salesClientDetails/' + id ,			
+					success: function(data)
+						{
+							$('[name="client_id"]').val(data.client_id);
+							$('[name="Name"]').val(data.client_company);
+							$('[name="ItemCode"]').val(data.blend_id);
+							$('[name="CoffeeBlend"]').val(data.contract_blend);
+							$('[name="Bag"]').val(data.contract_bag);
+							$('[name="Size"]').val(data.contract_size);
+							$('[name="QTY"]').val(data.contractPO_qty);
+							$('[name="UnitPrice"]').val(data.blend_price);
+							/*$('#resolve_coffee').modal('show');*/			
+						},
+					error: function (jqXHR, textStatus, errorThrown)
+						{
+							alert('Error get data from ajax');
+						}         
+						});        
+			});   
+		});
+
 </script>
 
 </html>
