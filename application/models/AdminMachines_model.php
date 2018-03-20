@@ -9,7 +9,7 @@ class AdminMachines_model extends CI_MODEL
 	}
 
 	function getMachines(){
-		$query=$this->db->query("SELECT mach_id, mach_serial, brewer, brewer_type, mach_price, mach_reorder, mach_limit, sup_company, mach_stocks FROM machine NATURAL JOIN supplier");
+		$query=$this->db->query("SELECT mach_id, mach_serial, brewer, brewer_type, mach_price, mach_reorder, mach_limit, sup_company, mach_stocks,mach_activation FROM machine NATURAL JOIN supplier");
 		return $query->result();
 	}
     
@@ -36,6 +36,10 @@ class AdminMachines_model extends CI_MODEL
 
 		$this->db->where('mach_id', $id);
 		$this->db->update('machine', $data);
+	}
+    
+    function activation($id){
+		$this->db->query("UPDATE machine SET mach_activation = IF(mach_activation=1, 0, 1) WHERE mach_id = ".$id."");
 	}
 }
 ?>
