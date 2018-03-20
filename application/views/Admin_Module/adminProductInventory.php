@@ -411,7 +411,21 @@ input[type=checkbox].toggle-switch:checked::after {
                                                 </td>
                                                  <td>
                                                     <div class="onoffswitch">
+                                                    <?php
+                                                        if($row->raw_activation == 1){
+
+                                                    ?>
                                                         <input type="checkbox" id="button<?php echo $row->raw_id;?>" class="toggle-switch" data-toggle="modal" data-target="#deactivate<?php echo $row->raw_id;?>" checked>
+                                                    <?php
+                                                        }else{
+
+                                                    ?>
+
+                                                        <input type="checkbox" id="button<?php echo $row->raw_id;?>" class="toggle-switch" data-toggle="modal" data-target="#deactivate<?php echo $row->raw_id;?>">
+                                                    <?php
+                                                        }
+
+                                                    ?>
                                                     </div>
                                                 </td>
                                                 <div class="modal fade" id="deactivate<?php echo $row->raw_id;?>" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
@@ -419,13 +433,13 @@ input[type=checkbox].toggle-switch:checked::after {
                                                         <div class="panel panel-primary">
                                                             <div class="panel-heading" >
                                                                 <button type="button" class="close" data-dismiss="modal" onclick="document.getElementById('button<?php echo $row->raw_id;?>').click()" aria-hidden="true">×</button>
-                                                                <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-warning-sign"></span> Deactivation </h4>
+                                                                <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-warning-sign"></span> Activation/Deactivation </h4>
                                                             </div>
                                                             <form action="<?php echo base_url(); ?>AdminProductInventory/activation" method="post" accept-charset="utf-8">
                                                                 <div class="modal-body" style="padding: 5px;">
                                                                     <div class="row" style="text-align: center">
                                                                         <br>
-                                                                        <h4> Are you sure you want to deactivate this blend?</h4>
+                                                                        <h4> Are you sure you want to activate/deactivate this blend?</h4>
                                                                         <br>
                                                                     </div>
                                                                     <div class="row">
