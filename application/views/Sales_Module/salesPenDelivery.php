@@ -159,8 +159,7 @@
                                                 </li>
                                                 <li class="">
                                                     <a href="#payment" data-toggle="tab">
-                                                        <i class="material-icons">assignment_turned_in</i> Paid Items
-                                                        <div class="ripple-container"></div>
+                                                        <i class="material-icons">assignment_turned_in</i>Transaction History                                                        <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
                                             </ul>

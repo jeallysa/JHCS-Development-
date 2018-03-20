@@ -22,7 +22,7 @@ class AddClient_model extends CI_model
 			'client_email' => $email,
 			'client_contact' => $tel_number,
 			'client_type' => $cli_type,
-			'client_status' => 'enabled'
+			'client_activation' => '1'
 
 		);
 		

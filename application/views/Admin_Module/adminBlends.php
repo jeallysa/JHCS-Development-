@@ -36,6 +36,7 @@
     }
     /* Custom Style */
 
+    
     .onoffswitch {
         position: relative;
         width: 110px;
@@ -122,6 +123,7 @@
     .onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-switch {
         right: 0px;
     }
+    
 
     .navbar {
         background-color: chartreuse;
@@ -506,7 +508,7 @@
                                                     if ($conntitle->connect_error) {
                                                         die("Connection failed: " . $conntitle->connect_error);
                                                     } 
-                                                    $sql="SELECT * FROM raw_coffee";
+                                                    $sql="SELECT * FROM raw_coffee WHERE raw_activation = 1";
                                                     $result = $conntitle->query($sql); 
                                                     if ($result->num_rows > 0) {
                                                         while($row = $result->fetch_assoc()) {
@@ -535,7 +537,7 @@
                                                       {
                                                       echo "Failed to connect to MySQL: " . mysqli_connect_error();
                                                       }
-                                                    $sql="SELECT * FROM raw_coffee";
+                                                    $sql="SELECT * FROM raw_coffee WHERE raw_activation = 1";
 
                                                     if ($result=mysqli_query($con,$sql))
                                                       {
@@ -579,7 +581,7 @@
                                                 <td>
                                                     <a class="btn btn-warning btn-sm" data-toggle="modal" style="margin-top: 0px" data-toggle="modal" data-target="#updateblend" data-original-title>Edit</a>
                                                 </td>
-                                                <td>
+                                                   <td>
                                                     <div class="onoffswitch">
                                                         <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
                                                         <label class="onoffswitch-label" for="myonoffswitch">
@@ -675,7 +677,6 @@ $('table tbody tr  td').on('click', function() {
     $("#txtlname").val($(this).closest('tr').children()[1].textContent);
 });
 </script>
-
 <script>
 $(function() {
     $('#toggle-two').bootstrapToggle({

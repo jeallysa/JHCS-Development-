@@ -10,14 +10,14 @@
                                 
                                 
 <?php
-           $x = 1;
-                                        
+           $full = 1;
+        if(!empty($unpaid)) {                                
            foreach($unpaid as $object){
             $temp =  $object->supp_po_id;
 
 ?>
                                 
-                                <div class="modal fade" id="<?php echo "full" . $x   ?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                                <div class="modal fade" id="<?php echo "full" . $full   ?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="panel panel-primary">
                                             <div class="panel-heading">
@@ -37,19 +37,28 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                           <?php
-                                              $retrieveDetails ="SELECT * FROM supp_delivery join supp_po_ordered using(supp_po_ordered_id) join items on item = item_name  where supp_po_ordered.supp_po_id = $temp" ;
+            <?php
+                 //$i = 1;
+                 $arrayItem = array("raw_coffee","sticker","packaging","machine");
+                 $arrayOn = array("raw_coffee","sticker","package_name","brewer_type");
+                   for($table = 0 ; $table < 4 ; $table++){
+                          
+                             $retrieveDetails ="SELECT * FROM supp_delivery  join supp_po_ordered using(supp_po_ordered_id)  join ".$arrayItem[$table]." on   item =  ".$arrayOn[$table] ." where supp_po_ordered.supp_po_id = $temp"  ;  
+                       
                                               $query = $this->db->query($retrieveDetails);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
                                            echo '<tr>' ,
-                                                '<td>'  . $object->item_name   . '</td>' ,
+                                                '<td>'  . $object->item   . '</td>' ,
                                                 '<td>'  . $object->type  . '</td>' ,
                                                 '<td>'  . $object->yield_weight. '</td>' ,
                                                 '<td>'  . $object->amount  . '</td>' ,
                                                 '</tr>' ;
+                                                  
+                                                   $tempItemId = $object->supp_po_ordered_id;
                                               }
                                             }
+                        } 
                                         ?>  
                                                     </tbody>
                                                 </table>
@@ -112,9 +121,11 @@
                                     
                                     
     <?php                       
-                   $x++;
-                               
-                                         }      
+                  
+                         
+                $full++;
+        }
+    }
  ?>                                
                                     
                                 
@@ -126,8 +137,8 @@
                                     
                                     
       <?php
-           $c = 1;
-                                        
+     $partial = 1;
+     if(!empty($unpaid)) {                                
            foreach($unpaid as $object){
             $temp =  $object->supp_po_id;
 
@@ -135,7 +146,7 @@
                                     
                                <!--------------------------- MODAL Partial Payment ------------------------------->
                                 
-                                <div class="modal fade" id="<?php echo "partial" . $c   ?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                                <div class="modal fade" id="<?php echo "partial" . $partial   ?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="panel panel-primary modal-content">
                                             <div class="panel-heading">
@@ -158,25 +169,34 @@
                                                     </thead>
                                                     <tbody>
                                                                          
-                                            <?php
-                                              $retrieveDetails ="SELECT * FROM supp_delivery left join supp_po_ordered using(supp_po_ordered_id) left join items on item= item_name 
-                                              where supp_po_ordered.supp_po_id = $temp" ;
-               
+               <?php
+                                               //$i = 1;
+                 $arrayItem = array("raw_coffee","sticker","packaging","machine");
+                 $arrayOn = array("raw_coffee","sticker","package_name","brewer_type");
+                   for($table = 0 ; $table < 4 ; $table++){
+                          
+                             $retrieveDetails ="SELECT * FROM supp_delivery  join supp_po_ordered using(supp_po_ordered_id)  join ".$arrayItem[$table]." on   item =  ".$arrayOn[$table] ." where supp_po_ordered.supp_po_id = $temp"  ;  
+                       
                                               $query = $this->db->query($retrieveDetails);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
+                                                  $tempItemId = $object->supp_po_ordered_id;
                                            echo '<tr>' ,
-                                                '<td>'  . $object->item_name   . '</td>' ,
+                                                '<td>'  . $object->item   . '</td>' ,
                                                 '<td>'  . $object->type  . '</td>' ,
                                                 '<td>'  . $object->yield_weight. '</td>' ,
-                                                '<td>'  . $object->amount  . '</td>' ;
+                                                '<td>'  . $object->amount  . '</td>' ,
+                                                '</tr>' ;
+                                                  
+                                                   
                                             ?>                      
-                                                <td><input class="form-control" type="number" name=""></td>
-                                                <td><input class="form-control" type="date" name=""></td>
+                                              <td><input class="form-control" type="number" name=""></td>
+                                               <td><input class="form-control" type="date" name=""></td>
                                           <?php 
                                                    '</tr>' ;
                                               }
                                             }
+                                         } 
                                             ?>
                                                             
                                                     </tbody>
@@ -198,9 +218,10 @@
                                 </div>                  
                                 
           <?php                       
-                   $c++;
+                   $partial++;
                                
-                                         }      
+           }  
+     }
  ?>                               
                                       
                                     
@@ -215,15 +236,15 @@
                                     
                                    
     <?php
-           $i = 1;
-                                        
+           $details = 1;
+           if(!empty($unpaid)) {                               
            foreach($unpaid as $object){
             $temp =  $object->supp_po_id;
 
 ?>
                                                       
                                     
-                                <div class="modal fade" id="<?php echo "details" . $i   ?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                                <div class="modal fade" id="<?php echo "details" . $details   ?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg" role="document">
                                         <div class="panel panel-primary modal-content">
                                             <form action="#" method="post" accept-charset="utf-8">
@@ -247,16 +268,28 @@
                                                                 </thead>
                                                                 <tbody>
     
-                                            <?php
-                                              $retrieveDetails ="SELECT * FROM supp_delivery left join supp_po_ordered using(supp_po_ordered_id) left join items  on item= item_name  
-                                              where supp_po_ordered.supp_po_id = $temp" ;
+                                                                    
+                                                                    
+                                 
+        <?php
+                                                                
+      //$i = 1;                                                             
+            
+                 $arrayItem = array("raw_coffee","sticker","packaging","machine");
+                 $arrayOn = array("raw_coffee","sticker","package_name","brewer_type");
+                   for($table = 0 ; $table < 4 ; $table++){
+                          
+                             $retrieveDetails ="SELECT * FROM supp_delivery  join supp_po_ordered using(supp_po_ordered_id)  join ".$arrayItem[$table]." on   item =  ".$arrayOn[$table] ." where supp_po_ordered.supp_po_id = $temp"  ;  
                
                                               $query = $this->db->query($retrieveDetails);
-                                              if ($query->num_rows() > 0) {
+                                           if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
+                                                  
+                                                   // $tempItemId = $object->supp_po_ordered_id;    can use later
+                                                  
                                            echo '<tr>' ,
                                                 '<td>'  . $object->date_received   . '</td>' ,
-                                                '<td>'  . $object->item_name   . '</td>' ,
+                                                '<td>'  . $object->item  . '</td>' ,
                                                 '<td>'  . $object->type  . '</td>' ,
                                                 '<td>'  . $object->qty  . '</td>' ,
                                                 '<td>'  . $object->yield_weight. '</td>' ,
@@ -264,6 +297,7 @@
                                                 '<td>'  . $object->unitPrice  . '</td>' ,
                                                 '<td>'  . $object->amount  . '</td>' ,
                                                 '</tr>' ;
+                                                }
                                               }
                                             }
                                         ?>                      
@@ -285,9 +319,10 @@
                                     
                                     
      <?php                       
-                   $i++;
+                   $details++;
                                
-                                         }      
+                 }
+           }
  ?>                               
                                     
                                     
@@ -360,6 +395,7 @@
                                             $details = 'details';
                                             $partial = 'partial';
                                             $full    = 'full'; 
+                                    if(!empty($unpaid)) {  
                                           foreach($unpaid as $object){ 
                                              
                                             
@@ -381,7 +417,8 @@
                                     <?php                          
                                             '</tr>' ; 
                                                   $i++;
-                                         }           
+                                         } 
+                                 }
                ?>
                                      
                                             

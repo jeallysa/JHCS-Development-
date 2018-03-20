@@ -192,80 +192,6 @@
                                     </div>
                                 </div>
                                 
-                                    <div class="modal fade" id="edit" tabindex="1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="panel panel-primary">
-                                            <div class="panel-heading">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign" ></span> Edit Item Information</h4>
-                                            </div>
-                                            <form action="#" method="post" accept-charset="utf-8">
-                                                <div class="modal-body" style="padding-left: 100px;">
-                                                    <div class="form-group row">
-                                                        <div for="example-number-input" class="col-2 col-form-label">
-                                                            <label for="type">Date</label>
-                                                            <input class="form-control" type="textarea" value="October 1, 2017" id="example-number-input">
-                                                        </div>
-                                                    </div>
-                                                     <div class="form-group row">
-                                                        <div for="example-number-input" class="col-2 col-form-label">
-                                                            <label for="type">Client</label>
-                                                            <input class="form-control" type="textarea" value="Lazada" id="example-number-input">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <div class="col-md-6">
-                                                            <label class="control-label">Coffee</label>
-                                                            <select class="form-control" name="Type" placeholder="Type" type="text" required>
-                                                                <option>Bloomfield Beans</option>
-                                                                <option>Fiesta Blend Ground</option>
-                                                                <option>Guatamela</option>
-                                                                <option>Sumatra</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label class="control-label">Bag</label>
-                                                            <select class="form-control" name="Category" placeholder="Category" type="text" required>
-                                                                <option>Brown Bag</option>
-                                                                <option>Clear Bag</option>
-                                                            </select>
-                                                        </div>
-                                                         <div class="col-md-6">
-                                                            <label class="control-label">Size</label>
-                                                            <select class="form-control" name="Category" placeholder="Category" type="text" required>
-                                                                <option>1000 Grams</option>
-                                                                <option>500 Grams</option>
-                                                                <option>250 Grams</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                         <div class="col-md-6">
-                                                            <label for="example-number-input" class="col-2 col-form-label">Quantity</label>
-                                                            <div class="col-10">
-                                                                <input class="form-control" type="number" value="1" id="example-number-input">
-                                                            </div>
-                                                        </div>
-                                                         <div class="col-md-6">
-                                                            <label for="example-number-input" class="col-2 col-form-label">Remarks</label>
-                                                            <div class="col-10">
-                                                                <input class="form-control" type="textarea" value="Retail" id="example-number-input">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="panel-footer" style="margin-bottom:-14px;">
-                                                            <input type="submit" class="btn btn-success" value="Add" style="float: right;" />
-                                                            <!--<span class="glyphicon glyphicon-ok"></span>-->
-                                                            <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                
                                 <div class="card-content">
                                     <table id="example" class="display  hover order-column" cellspacing="0" width="100%" style="font-size: 11px">
                                         <thead>
@@ -280,8 +206,6 @@
                                                 <th><b>Quantity</b></th>
                                                 <th><b>Unit Price</b></th>
                                                 <th><b>Total Amount</b></th>
-                                                
-                                                <th class="disabled-sorting">Edit</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -302,10 +226,6 @@
                                                 <td><?php echo $row->contractPO_qty; ?></td>
                                                 <td><?php echo $row->blend_price; ?></td>
                                                 <td><?php echo $row->total_amount; ?></td>
-                                                
-                                                <td>
-                                                                <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
-                                                </td>
                                             </tr>
 
                                             <?php

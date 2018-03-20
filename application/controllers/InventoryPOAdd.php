@@ -12,17 +12,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         
 		public function index(){ 
            
-            if ($this->session->userdata('username') != '')
-            {
-                $this->load->view('layout/header');  
-                $data['suppliers'] = $this->inventoryPOAdd_model ->retrieveSuppliers();
-                $data['suppliersItem'] = $this->inventoryPOAdd_model ->retrieveItems();
-                $data['truckingFee'] = $this->inventoryPOAdd_model->retrieveTruckingFee();
+            $this->load->view('layout/header');
+           
             
-		        $this->load->view('inventoryPOAdd', $data);
-            } else {
-                redirect('login');
-            }
+            $data['suppliers'] = $this->inventoryPOAdd_model ->retrieveSuppliers();
+            $data['suppliersItem'] = $this->inventoryPOAdd_model ->retrieveItems();
+            $data['truckingFee'] = $this->inventoryPOAdd_model->retrieveTruckingFee();
+            $data['lastPO'] = $this->inventoryPOAdd_model->RetrieveLastPO();
+            $data['tempExisting'] = $this->inventoryPOAdd_model->checkIfTempIsEmpty();
+            
+			$this->load->view('inventoryPOAdd', $data);
             
 		}
         
@@ -31,7 +30,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         
 //put inside the form validation. dito muna to.
      public function insertSupplierToTemp(){
-         $dataInsert = array("supp_name" => $this->input->post("dropdown"),
+         $this->inventoryPOAdd_model->emptyTemp();   
+         $dataInsert = array("id_supp_temp_PO" => 1,
+                             "supp_name" => $this->input->post("dropdown"),
                              "date" => $this->input->post("date"),
                              "trucking_fee" => $this->input->post("truckingFee"),
                              "credit_term" => $this->input->post("creditTerms"),
@@ -44,16 +45,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          
          redirect(base_url('inventoryPOAdd'));
      }   
-    
+        
+        
+      public function cancelPO(){
+        $this->inventoryPOAdd_model->cancelOrder();
+        redirect(base_url('inventoryPOAdd'));
+        }
+  
       
               
-              
+//   $data['check']$this->inventoryPOAdd_model->checkIfTempIsEmpty();  //check if the tempPO has a existing chosen supplier.
+ //        if(empty($data['check']))
+                        
    
         
       public function insertOrder(){
-                
-          
-  //Populate the supplier Puchase Order.       
+            
+  //Populate First The supplier supp_po.       
         $data['tempPO'] = $this->inventoryPOAdd_model->retrieveTemp();
         $datax = array();
             
@@ -74,10 +82,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                
    
    //get from data from view.       
-       if ($_POST)  {
-           
-        $lastPO = $this->inventoryPOAdd_model->singleLineRetrieveLastPO(); //single line query to determine the last PO number
-           
+       if ($_POST)  {   //---- FROM the Dynamic Insert
+        $lastPO = $this->inventoryPOAdd_model->RetrieveLastPO(); //return  1 row from the temp_po. the last PO.
         $itemv=$this->input->post('item');
         $qtyv=$this->input->post('qty');
       //  $unitPricev=$this->input->post('unitPrice');
@@ -91,7 +97,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 'item' => $itemv[$i],
                 'qty' => $qtyv[$i],
              //   'unitPrice' => $unitPricev[$i],
-            //    'amount' => $amountv[$i],
+             //    'amount' => $amountv[$i],
                 'supp_po_id' =>$lastPO[0]->supp_po_id,
                
             );
@@ -104,8 +110,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
       
 }
-        
-  
+      
         
         
     }

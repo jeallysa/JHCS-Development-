@@ -13,7 +13,7 @@ class InventoryBlends_Model extends CI_model
 	}
 
 	function fetch_data(){
-		$query = $this->db->query("SELECT blend_id, blend, package_type, package_size, blend_qty, blend_price FROM jhcs.coffee_blend NATURAL JOIN packaging;");
+		$query = $this->db->query("SELECT blend_id, blend, package_type, package_size, blend_qty, blend_price FROM jhcs.coffee_blend NATURAL JOIN packaging WHERE blend_activation = '1';");
 		return $query;
 	}
 

@@ -7,7 +7,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		function __construct(){
 			parent::__construct();
             
-            
+            $this->load->model('inventoryPOOrder_model');
+            $this->load->helper('date');
 		}
 		
         
@@ -15,15 +16,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         
         
 		public function index(){ 
-            if ($this->session->userdata('username') != '')
-            {
-                $this->load->model('inventoryPOOrder_model');
-                $this->load->view('layout/header'); 
-                $data['order'] = $this->inventoryPOOrder_model ->retrieveOrder();
-    			$this->load->view('inventoryPOOrder' , $data);
-            } else {
-                redirect('login');
-            }
+           $this->load->view('layout/header');
+            
+            
+            $data['order'] = $this->inventoryPOOrder_model ->retrieveOrder();
+            $data['user'] = $this->inventoryPOOrder_model ->retrieveUsers();
+            
+            
+			$this->load->view('inventoryPOOrder' , $data);
 		}
         
         
@@ -31,8 +31,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         public function insertPartial($temp){
 
         $itemIdv=$this->input->post('itemId');
-        //$itemNamev=$this->input->post('itemName');
+        $itemNamev=$this->input->post('item');
         $yield_weightv=$this->input->post('yield_weight');
+        $yieldsv = $this->input->post('yield');
         $datev=$this->input->post('date');
         $receivedByv=$this->input->post('receivedBy');
         $supp_po_id = $temp;
@@ -44,12 +45,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         for ($i = 0; $i < count($this->input->post('itemId')); $i++){
           if(!empty($yield_weightv[$i])){
               
+              $data3[$i] = array(
+                                    "item" => $itemNamev[$i],
+                                    "supp_po_ordered_id" => $itemIdv[$i],
+                                    "yield_weight" => $yield_weightv[$i],
+                                    "date_received" => $datev[$i],
+                                    "received_by" =>$receivedByv[$i],
+                                    "supp_po_id"    => $temp,
+            );
+            
                              $data2[$i] = array('supp_po_ordered_id' => $itemIdv[$i],  //To map what product in a particular PO
                                                 
                               );
                                 $data[$i] = array(
                                     'supp_po_ordered_id' => $itemIdv[$i],
                                     'yield_weight' => $yield_weightv[$i],
+                                    'yields' => $yieldsv[$i],
                                     'date_received' => $datev[$i],
                                     'received_by' =>$receivedByv[$i],
                                     'supp_po_id'    => $temp,
@@ -62,7 +73,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $this->inventoryPOOrder_model->insertORDER($data);
             
         $this->inventoryPOOrder_model->updateOrderStatus($data2, $supp_po_id); //updating the status first before refreshing.
-       
+        $this->inventoryPOOrder_model->updateStock($data3, $supp_po_id); 
 	}
             
             
@@ -79,7 +90,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         public function insertFull($temp){
 
         $itemIdv=$this->input->post('itemId');
-        //$itemNamev=$this->input->post('itemName');
+        $itemNamev=$this->input->post('item');
+        $itemNamev=$this->input->post('itemName');
         $yield_weightv=$this->input->post('yield_weight');
         $datev=$this->input->post('date');
         $receivedByv=$this->input->post('receivedBy');
@@ -89,8 +101,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $data2 = array(); 
             
         if ($_POST)  {
-        for ($i = 0; $i < count($this->input->post('itemId')); $i++){
-         
+        for ($i = 0; $i < count($this->input->post('itemId')); $i++){       //to have a length used the itemID
+                             
+                            
+            $data3[$i] = array(
+                                    'item' => $itemNamev[$i],
+                                    'supp_po_ordered_id' => $itemIdv[$i],
+                                    'yield_weight' => $yield_weightv[$i],
+                                    'date_received' => $datev[$i],
+                                    'received_by' =>$receivedByv[$i],
+                                    'supp_po_id'    => $temp,
+            );
+            
+            
+                   
               
                              $data2[$i] = array('supp_po_ordered_id' => $itemIdv[$i],  //To map what product in a particular PO
                                                 
@@ -108,10 +132,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                            
     }
         $this->inventoryPOOrder_model->insertORDER($data);
-            
         $this->inventoryPOOrder_model->updateOrderStatus($data2, $supp_po_id);  //updating the status first before refreshing.
+            
+            
+        $this->inventoryPOOrder_model->updateStock($data3, $supp_po_id);    
        
-	}
+}
             
             
             

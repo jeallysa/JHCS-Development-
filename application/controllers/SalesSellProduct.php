@@ -39,17 +39,14 @@
 		public function record()
 		{
 			$this->load->model('sellProduct_model');
-			$data4 = array(
-				"walkin_fname" =>$this->input->post("fname"),
-				"walkin_lname" =>$this->input->post("lname"),
-				"walkin_date" =>$this->input->post("date"),
-                "walkin_qty" =>$this->input->post("qty"),
-                "blend_id" =>$this->input->post("blend_id")
-        
-			);
-			$data4 = $this->security->xss_clean($data4);
-			$this->sellProduct_model->record_data($data4);
-            redirect ('salesSellProduct');
+
+			$date =  $this->input->post("date");
+            $quantity = $this->input->post("qty");
+            $blend_id = $this->input->post("blend_id");
+
+			$this->sellProduct_model->record_data($date, $quantity, $blend_id);
+			echo "<script>alert('Client order has been saved!');</script>";
+			$this->salesWalkin();
 		}
 
 		public function add()

@@ -31,8 +31,8 @@
 			$stocks = $this->input->post("stocks");
 			$sup_id = $this->input->post("sup_company");
 			$this->AdminProductInventory_model->update($id, $name, $reorder, $stocks, $stocklimit, $sup_id);
-			echo "<script>alert('Update successful!');</script>";
-			$this->index();
+            echo "<script>alert('Update successful!');</script>";
+			redirect('adminProductInventory');
 		}
         
         function insert()
@@ -49,6 +49,15 @@
 			$data = $this->security->xss_clean($data);
 			$this->AdminProductInventory_model->insert_data($data);
 			$this->index();
+		}
+
+		function activation(){
+			
+			$this->load->model('AdminProductInventory_model');
+			$id = $this->input->post("deact_id");
+			$this->AdminProductInventory_model->activation($id);
+			redirect('adminProductInventory');
+
 		}
 
 	}
