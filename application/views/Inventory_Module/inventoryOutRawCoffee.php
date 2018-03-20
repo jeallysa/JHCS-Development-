@@ -282,7 +282,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 <th><b>Delivery Receipt No.</b></th>
                                                                 <th><b>Date Delivered</b></th>
                                                                 <th><b>Client</b></th>
-                                                                <th><b>Coffee Blend</b></th>
+                                                                <th><b>Coffee</b></th>
                                                                 <th><b>Bag</b></th>
                                                                 <th><b>Size</b></th>
                                                                 <th><b>Quantity</b></th>
@@ -298,9 +298,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 <td><?php echo $row->client_dr; ?></td>
                                                                 <td><?php echo $row->client_deliverDate; ?></td>
                                                                 <td><?php echo $row->client_company; ?></td>
-                                                                <td>--</td>
-                                                                <td>--</td>
-                                                                <td>--</td>
+                                                                <td><?php echo $row->blend; ?></td>
+                                                                <td><?php echo $row->package_type; ?></td>
+                                                                <td><?php echo $row->package_size; ?></td>
                                                                 <td><?php echo $row->contractPO_qty; ?></td>
                                                                 <td><?php echo $row->client_receive; ?></td>
                                                             </tr>

@@ -10,7 +10,7 @@ class InventoryOutRawCoffee_model extends CI_Model {
     }
      public function get_coffeeoutcontracted(){
         
-        $query = $this->db->query("SELECT * FROM contracted_po NATURAL JOIN client_delivery NATURAL JOIN contracted_client");
+        $query = $this->db->query("SELECT client_dr, client_deliverDate, client_company, blend, package_type, package_size, contractPO_qty, client_receive FROM contracted_po NATURAL JOIN client_delivery NATURAL JOIN contracted_client NATURAL JOIN coffee_blend NATURAL JOIN packaging where delivery_stat='delivered'");
         return $query->result();
     }
     public function get_machineout(){

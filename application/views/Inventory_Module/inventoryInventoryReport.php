@@ -190,8 +190,6 @@ input {
                                         <input type="date" name="">
                                         <label> to </label>
                                         <input type="date" name=""><br><br>
-                                    <hr>
-                                    <h4>Generate Inventory  Report</h4>
                                     <table id="example" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
@@ -215,13 +213,14 @@ input {
                                                 }
                                                 $conntitle->close();
                                                 ?>
-                                                <th><b>Packaging</b></th>
-                                                <th><b>Sticker</b></th>
-                                                <th><b>Machine</b></th>
+                                                <th><b> Packaging </b> </th>
+                                                <th><b> Stickers </b> </th>
+                                                <th><b> Machines </b> </th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php
+
+                                             <?php
                                                     $con=mysqli_connect("localhost","root","","jhcs");
                                                     if (mysqli_connect_errno())
                                                       {
@@ -250,12 +249,15 @@ input {
                                                 <?php
                                                 for ($i = 1; $i <= $rowcount; $i++){
                                                     $colname = "coff" . $i?>
-                                                        <td><?php echo $row->$colname; ?>
+                                                        <td><?php echo $row->$colname; ?> </td>
                                                 <?php
 
                                                 }
                                                 
                                                 ?>
+                                                <td><?php echo $row->packaging; ?></td>
+                                                <td><?php echo $row->stickers; ?></td>
+                                                <td><?php echo $row->machines; ?></td>
                                             </tr>
                                             <?php
                                                     }
@@ -264,7 +266,7 @@ input {
                                                 else{
                                                 ?>
                                                     <tr>
-                                                        <td colspan = 11 style = "text-align: center;"> <h3>No data found</h3> </td>
+                                                        <td colspan = 11 style = "text-align: center;"> <h3>No clients found</h3> </td>
                                                     </tr>
                                                 <?php
                                                 }
