@@ -26,7 +26,7 @@
 			
 		}
 		public function get_coffee(){
-			$query = $this->db->query("SELECT raw_coffee, raw_id FROM jhcs.raw_coffee;");
+			$query = $this->db->query("SELECT raw_coffee, raw_id FROM jhcs.raw_coffee WHERE raw_activation = '1';");
 			return $query->result();
 			
 		}

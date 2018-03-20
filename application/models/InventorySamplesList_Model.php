@@ -21,11 +21,11 @@ class InventorySamplesList_Model extends CI_model
 		return $query->result();	
 	}
 	public function get_packaging(){
-		$query = $this->db->query("SELECT package_id, CONCAT(package_type,' ',package_size) AS package FROM jhcs.packaging;");
+		$query = $this->db->query("SELECT package_id, CONCAT(package_type,' ',package_size) AS package FROM jhcs.packaging WHERE pack_activation = '1';");
 		return $query->result();	
 	}
 	public function get_sticker(){
-		$query = $this->db->query("SELECT sticker_id, sticker FROM jhcs.sticker;");
+		$query = $this->db->query("SELECT sticker_id, sticker FROM jhcs.sticker WHERE sticker_activation = '1';");
 		return $query->result();	
 	}
 	function insert_data($data){ 

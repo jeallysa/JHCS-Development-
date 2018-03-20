@@ -13,7 +13,7 @@ class InventoryStickers_Model extends CI_model
 	}
 
 	function fetch_data(){
-		$query = $this->db->query("SELECT * FROM jhcs.sticker NATURAL JOIN supplier;");
+		$query = $this->db->query("SELECT * FROM jhcs.sticker NATURAL JOIN supplier WHERE sticker_activation = '1';");
 		return $query;
 	}
 
