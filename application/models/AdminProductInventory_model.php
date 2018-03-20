@@ -17,7 +17,7 @@ class AdminProductInventory_model extends CI_MODEL
     }
 
 	function getProducts(){
-		$query=$this->db->query("SELECT sup_company, raw_id, raw_coffee, raw_reorder, raw_limit, sup_company, raw_stock, raw_activation FROM raw_coffee NATURAL JOIN supplier");
+		$query=$this->db->query("SELECT sup_company, raw_id, raw_coffee, raw_reorder, raw_limit, sup_company, raw_stock, raw_activation FROM raw_coffee  NATURAL JOIN supplier");
 		return $query->result();
 	}
     

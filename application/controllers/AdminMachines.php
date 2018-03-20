@@ -54,5 +54,13 @@
 			redirect('adminMachines', 'refresh');
 		}
 
+        function activation(){
+			
+			$this->load->model('AdminMachines_model');
+			$id = $this->input->post("deact_id");
+			$this->AdminMachines_model->activation($id);
+			redirect('adminMachines');
+
+		}
 	}
 ?>

@@ -184,80 +184,6 @@
                                     </div>
                                 </div>
                                 
-                                <div class="modal fade" id="edit" tabindex="1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="panel panel-primary">
-                                            <div class="panel-heading">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign" ></span> Edit Item Information</h4>
-                                            </div>
-                                            <form action="#" method="post" accept-charset="utf-8">
-                                                <div class="modal-body" style="padding-left: 100px;">
-                                                    <div class="form-group row">
-                                                        <div for="example-number-input" class="col-2 col-form-label">
-                                                            <label for="type">Date In</label>
-                                                            <input class="form-control" type="textarea" value="October 1, 2017" id="example-number-input">
-                                                        </div>
-                                                    </div>
-                                                     <div class="form-group row">
-                                                        <div for="example-number-input" class="col-2 col-form-label">
-                                                            <label for="type">Supplier</label>
-                                                            <input class="form-control" type="textarea" value="Gourmet Farms" id="example-number-input">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                         <div class="col-md-6">
-                                                            <label for="example-number-input" class="col-2 col-form-label">Coffee A</label>
-                                                            <div class="col-10">
-                                                                <input class="form-control" type="number" value="2000 g" id="example-number-input">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label for="example-number-input" class="col-2 col-form-label">Coffee B</label>
-                                                            <div class="col-10">
-                                                                <input class="form-control" type="number" value="2000 g" id="example-number-input">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label for="example-number-input" class="col-2 col-form-label">Coffee C</label>
-                                                            <div class="col-10">
-                                                                <input class="form-control" type="number" value="2000 g" id="example-number-input">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label for="example-number-input" class="col-2 col-form-label">Coffee D</label>
-                                                            <div class="col-10">
-                                                                <input class="form-control" type="number" value="2000 g" id="example-number-input">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label for="example-number-input" class="col-2 col-form-label">Coffee E</label>
-                                                            <div class="col-10">
-                                                                <input class="form-control" type="number" value="2000 g" id="example-number-input">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label for="example-number-input" class="col-2 col-form-label">Coffee F</label>
-                                                            <div class="col-10">
-                                                                <input class="form-control" type="number" value="2000 g" id="example-number-input">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="panel-footer" style="margin-bottom:-14px;">
-                                                            <input type="submit" class="btn btn-success" value="Add" style="float: right;" />
-                                                            <!--<span class="glyphicon glyphicon-ok"></span>-->
-                                                            <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                
-                                
                                 <div class="card-content">
                                     <table id="example" class="display  hover order-column table table-responsive" cellspacing="0" width="100%">
                                         <thead>
@@ -285,7 +211,6 @@
                                                 <th><b> Packaging </b> </th>
                                                 <th><b> Machines </b> </th>
                                                 <th><b> Stickers </b> </th>
-                                                <th class="disabled-sorting"><b>Edit</b></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -336,9 +261,6 @@
                                                 <td><?php echo $row->packaging; ?></td>
                                                 <td><?php echo $row->machines; ?></td>
                                                 <td><?php echo $row->stickers; ?></td>
-                                                <td>
-                                                        <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
-                                                </td>
                                             </tr>
                                             <?php
                                                     }

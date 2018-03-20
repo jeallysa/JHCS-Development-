@@ -26,151 +26,52 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
 </head>
-<style>
-    
-/*
-        td.highlight {
-            background-color: whitesmoke !important;
-        }
-*/
+    <style>
+        
+    .table thead,
+    thead th {
+        text-align: center;
+        font-size: 120%;
+    }
 
-.table thead,
-thead th {
-    text-align: center;
-    font-size: 120%;
-}
+    input[type=checkbox].toggle-switch {
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        width: 4em;
+        height: 2em;
+        border-radius: 2em;
+        background-color: #ddd;
+        outline: 0;
+        cursor: pointer;
+        transition: background-color 0.09s ease-in-out;
+        position: relative;
+    }
 
+    input[type=checkbox].toggle-switch:checked {
+        background-color: #3af;
+    }
 
-/* Custom Style */
+    input[type=checkbox].toggle-switch::after {
+        content: '';
+        width: 2em;
+        height: 2em;
+        background-color: white;
+        border-radius: 2em;
+        position: absolute;
+        transform: scale(0.7);
+        left: 0;
+        transition: left 0.09s ease-in-out;
+        box-shadow: 0 0.1em rgba(0, 0, 0, 0.5);
+    }
 
-/*
-.onoffswitch {
-    position: relative;
-    width: 110px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-}
-
-.onoffswitch-checkbox {
-    display: none;
-}
-
-.onoffswitch-label {
-    display: block;
-    overflow: hidden;
-    cursor: pointer;
-    border: 2px solid #999999;
-    border-radius: 20px;
-}
-
-.onoffswitch-inner {
-    display: block;
-    width: 200%;
-    margin-left: -100%;
-    -moz-transition: margin 0.3s ease-in 0s;
-    -webkit-transition: margin 0.3s ease-in 0s;
-    -o-transition: margin 0.3s ease-in 0s;
-    transition: margin 0.3s ease-in 0s;
-}
-
-.onoffswitch-inner:before,
-.onoffswitch-inner:after {
-    display: block;
-    float: left;
-    width: 50%;
-    height: 30px;
-    padding: 0;
-    line-height: 30px;
-    font-size: 14px;
-    color: white;
-    font-family: Trebuchet, Arial, sans-serif;
-    font-weight: bold;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-.onoffswitch-inner:before {
-    content: " Enabled";
-    padding-left: 10px;
-    background-color: #2FCCFF;
-    color: #FFFFFF;
-}
-
-.onoffswitch-inner:after {
-    content: "Disabled";
-    padding-right: 10px;
-    background-color: #EEEEEE;
-    color: #999999;
-    text-align: right;
-}
-
-.onoffswitch-switch {
-    display: block;
-    width: 18px;
-    margin: 7px;
-    background: #FFFFFF;
-    border: 2px solid #999999;
-    border-radius: 20px;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 70px;
-    -moz-transition: all 0.3s ease-in 0s;
-    -webkit-transition: all 0.3s ease-in 0s;
-    -o-transition: all 0.3s ease-in 0s;
-    transition: all 0.3s ease-in 0s;
-}
-
-.onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-inner {
-    margin-left: 0;
-}
-
-.onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-switch {
-    right: 0px;
-}
-
-
-*/
-input[type=checkbox].toggle-switch {
-    appearance: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    width: 4em;
-    height: 2em;
-    border-radius: 2em;
-    background-color: #ddd;
-    outline: 0;
-    cursor: pointer;
-    transition: background-color 0.09s ease-in-out;
-    position: relative;
-}
-
-input[type=checkbox].toggle-switch:checked {
-    background-color: #3af;
-}
-
-input[type=checkbox].toggle-switch::after {
-    content: '';
-    width: 2em;
-    height: 2em;
-    background-color: white;
-    border-radius: 2em;
-    position: absolute;
-    transform: scale(0.7);
-    left: 0;
-    transition: left 0.09s ease-in-out;
-    box-shadow: 0 0.1em rgba(0, 0, 0, 0.5);
-}
-
-input[type=checkbox].toggle-switch:checked::after {
-    left: 2em;
-}
-.navbar {
-    background-color: chartreuse;
-}
-</style>
+    input[type=checkbox].toggle-switch:checked::after {
+        left: 2em;
+    }
+    .navbar {
+        background-color: chartreuse;
+    }
+    </style>
 <body>
     <div class="wrapper">
         <div class="sidebar" data-color="green" data-image="<?php echo base_url(); ?>assets/img/sidebar-1.jpg">
@@ -411,11 +312,11 @@ input[type=checkbox].toggle-switch:checked::after {
                                                 </td>
                                                  <td>
                                                     <div class="onoffswitch">
-                                                    <?php
+                                                         <?php
                                                         if($row->raw_activation == 1){
 
                                                     ?>
-                                                        <input type="checkbox" id="button<?php echo $row->raw_id;?>" class="toggle-switch" data-toggle="modal" data-target="#deactivate<?php echo $row->raw_id;?>" checked>
+                                                         <input type="checkbox" id="button<?php echo $row->raw_id;?>" class="toggle-switch" data-toggle="modal" data-target="#deactivate<?php echo $row->raw_id;?>" checked>
                                                     <?php
                                                         }else{
 
@@ -439,7 +340,7 @@ input[type=checkbox].toggle-switch:checked::after {
                                                                 <div class="modal-body" style="padding: 5px;">
                                                                     <div class="row" style="text-align: center">
                                                                         <br>
-                                                                        <h4> Are you sure you want to activate/deactivate this blend?</h4>
+                                                                        <h4> Are you sure you want to activate/deactivate this raw coffee?</h4>
                                                                         <br>
                                                                     </div>
                                                                     <div class="row">
@@ -507,24 +408,20 @@ input[type=checkbox].toggle-switch:checked::after {
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6 form-group">
-                                                                           <div class="form-group label-floating">
-                                                                            <label for="email">Supplier</label>
-                                                                            <select class="form-control" name="sup_company" required>
-                                                                                <option disabled selected value> -- select an item -- </option>
-                                                                                <!--
-                                                                                <?php 
-                                                                                /*
+                                                                               <div class="form-group label-floating">
+                                                                                <label for="email">Supplier</label>
+                                                                                <select class="form-control" name="sup_company" required>
+                                                                                    <option disabled selected value> -- select an item -- </option>
+                                                                                    <?php 
 
-                                                                                    foreach($data1['getSupplier'] as $row)
-                                                                                    { 
-                                                                                        echo '<option value="'.$row->sup_id.'">'.$row->sup_company.'</option>';
-                                                                                    }
-                                                                                */
-                                                                                 ?>
-                                                                                -->
-                                                                            </select>
+                                                                                        foreach($data1['getSupplier'] as $row)
+                                                                                        { 
+                                                                                            echo '<option value="'.$row->sup_id.'">'.$row->sup_company.'</option>';
+                                                                                        }
+                                                                                     ?>
+                                                                                </select>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
                                                                 </div>
 
                                                             </div>

@@ -300,6 +300,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                               }
                                             }
                                         ?> 
+
+                                        <?php
+                                              $retrieveDetails4 ="SELECT item, qty, date_received, yield_weight, sup_company FROM jhcs.supp_po_ordered INNER JOIN supp_delivery ON supp_po_ordered.supp_po_ordered_id = supp_delivery.supp_po_ordered_id INNER JOIN supp_po ON supp_po.supp_po_id = supp_po_ordered.supp_po_id INNER JOIN supplier ON supplier.sup_id = supp_po.supp_id WHERE item = '$row->sticker';" ;
+                                              $query = $this->db->query($retrieveDetails4);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td>'  . $object->sup_company  . '</td>' ,
+                                                '<td>'  . $object->date_received  . '</td>' ,
+                                                '<td>'  . $object->yield_weight  . '</td>' ;
+                                                ?>
+                                                    <td>Company Delivery</td>
+                                                    <td>IN</td>
+                                                 <?php   
+                                                '</tr>' ;
+                                              }
+                                            }
+                                        ?> 
                                                     </tbody>
                                                       </table><hr>
                                                           <div class="row">

@@ -166,7 +166,7 @@
                                 
                                  <div class="row">
                                     <div class="col-lg-12 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <input class="form-control" name="tel_number" placeholder="Telephone Number" type="text" required />
+                                        <input class="form-control" name="tel_number" placeholder="Cellphone Number" type="text" required />
                                     </div>
                                 </div>
                                 
@@ -174,9 +174,11 @@
                                 <div class="row">
                                     <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
                                         <select class="form-control" name="product" placeholder="Position" type="text" required>
-                                            <option>Brown Bag</option>
-                                            <option>Clear Bag</option>
                                             <option>Raw Coffee</option>
+                                            <option>Packaging</option>
+                                            <option>Sticker</option>
+                                            <option>Machine</option>
+                                            
                                         </select>
                                     </div>
                                 </div>

@@ -3,14 +3,17 @@
 
 <head>
     <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url(); ?>assets/img/apple-icon.png" />
-    <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/img/favicon.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>Admin Dashboard</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
     <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/jquery.dataTable.min.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/bootstrap-datepicker3.min.css" rel="stylesheet">
     <!--  Material Dashboard CSS    -->
     <link href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
@@ -74,7 +77,7 @@
         </div>
         <div class="main-panel">
             <nav class="navbar navbar-transparent navbar-absolute">
-                <div class="container-fluid">
+                <div class="container-fluid" >
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse">
                             <span class="sr-only">Toggle navigation</span>
@@ -198,9 +201,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="row">
+                    
+                    <div class="row">
                 <div class="col-lg-12 col-md-12">
                     <div class="card">
                         <div class="card-header" data-background-color="green">
@@ -208,7 +210,7 @@
                             <p class="category">December 2017</p>
                         </div>
                         <div class="card-content table-responsive">
-                            <table class="table table-hover">
+                            <table id=example class="table table-hover">
                                <thead>
                                             <tr>
                                                 <th><b>Delivery Receipt No.</b></th>
@@ -229,16 +231,16 @@
                                              <?php 
                                                 foreach ($data5['sales'] as $row) {
                                              ?>
-                                             <tr>
+                                            <tr>
                                                  <td><?php echo $row->client_dr; ?></td>
                                                  <td><?php echo $row->client_invoice; ?></td>
                                                  <td><?php echo $row->client_deliverDate; ?></td>
                                                  <td><?php echo $row->client_company; ?></td>
-                                                 <td>wala pa</td>
-                                                 <td>wala pa</td>
-                                                 <td>wala pa</td>
+                                                 <td><?php echo $row->blend; ?></td>
+                                                 <td><?php echo $row->package_type; ?></td>
+                                                 <td><?php echo $row->package_size; ?></td>
                                                  <td><?php echo $row->contractPO_qty; ?></td>
-                                                 <td>wala pa</td>
+                                                 <td><?php echo $row->blend_price; ?></td>
                                                  <td><?php echo $row->client_balance; ?></td>
                                                  <td><?php echo $row->client_type; ?></td>
                                              </tr>
@@ -251,51 +253,28 @@
                     </div>
                 </div>
             </div>
+                    
+                </div>
+            </div>
+            
         </div>
-    </div>
-     <footer class="footer">
-                        <div class="container-fluid">
-                            <nav class="pull-left">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                    Home
-                                </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                    Company
-                                </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                    Portfolio
-                                </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                    Blog
-                                </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                            <p class="copyright pull-right">
-                                &copy;
-                                <script>
-                                document.write(new Date().getFullYear())
-                                </script>
-                                <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-                            </p>
-                        </div>
-                    </footer>
 </body>
 <!--   Core JS Files   -->
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/dataTables.buttons.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.flash.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.Html5.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.print.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/jszip.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/pdfmake.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/vfs_fonts.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/datepicker.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/material.min.js" type="text/javascript"></script>
 <!--  Charts Plugin -->
 <script src="<?php echo base_url(); ?>assets/js/chartist.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/canvasjs.min.js"></script>
 <!--  Dynamic Elements plugin -->
 <script src="<?php echo base_url(); ?>assets/js/arrive.min.js"></script>
 <!--  PerfectScrollbar Library -->
@@ -310,28 +289,46 @@
 <script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-    // Javascript method's body can be found in assets/js/demos.js
-    demo.initDashboardPageCharts();
+    $('#example').DataTable({
+        "dom":' fBrtip',
+        "lengthChange": false,
+        "info":     false,
+		buttons: [
+            { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs',
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                }
+            },
+            
+			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs',
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                }
+            },
+            
+			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs',
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                }
+            }
+        ]
+    });
+});
+
+$('table tbody tr  td').on('click', function() {
+    $("#myModal").modal("show");
+    $("#txtfname").val($(this).closest('tr').children()[0].textContent);
+    $("#txtlname").val($(this).closest('tr').children()[1].textContent);
 });
 </script>
+
 <script>
-window.onload = function() {
-    var chart = new CanvasJS.Chart("chartContainer", {
-        animationEnabled: true,
-        data: [{
-            type: "pie",
-            startAngle: 60,
-            yValueFormatString: "##0\"%\"",
-            indexLabel: "{label} {y}",
-            dataPoints: [
-                { y: 50, label: "Le Chef" },
-                { y: 28, label: "Manila Sales" },
-                { y: 22, label: "The Manor" }
-            ]
-        }]
+$(function() {
+    $('#toggle-two').bootstrapToggle({
+        on: 'Enabled',
+        off: 'Disabled'
     });
-    chart.render();
-}
+})
 </script>
 
 </html>

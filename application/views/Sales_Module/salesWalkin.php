@@ -146,22 +146,10 @@
                                     <div class="card-content">
                                         <div class="modal-body" style="padding: 5px;">
                                                 <div class="row">
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-12">
                                                         <div class="form-group label-floating">
                                                             <label for="email">Date</label>
-                                                            <input class="form-control" type="date" name="date" required="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group label-floating">
-                                                            <label for="email">First Name:</label>
-                                                            <input type="text" class="form-control" name="fname" required="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group label-floating">
-                                                            <label for="email">Last Name:</label>
-                                                            <input type="text" class="form-control" name="lname" required="">
+                                                            <input class="form-control" type="date" name="date" value="<?php echo date("Y-m-d");?>" required="">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -202,22 +190,17 @@
                                                   <div class="input-group">
                                                     <input type="number" class="form-control" id="qty" name="qty" value="qty" placeholder="qty" required="">
                                                         <div class="input-group-btn">
-                                                            <button class="btn btn-success" type="button"  onclick="education_fields();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
                                                       </div>
                                                   </div>
                                               </div>
                                             </div>
                                     </div>
-                                    <br><br>                                <br>
-                                <br>
-                                <br>
-                                <br>
-                                <br>
-                                <br>
-                                <br>
+                                <br><br><br>
+                                <br><br><br>
+                                <br><br><br>
                                     <div class="text-center" data-toggle="modal" data-target="#verify">
                                         <button type="submit" class="btn btn-success">
-                                          Save
+                                          Next Order
                                         </button>
                                         <a href="<?php echo base_url(); ?>salesSellProduct" class="btn btn-danger"> Cancel</a>
                                     </div>
@@ -228,60 +211,7 @@
                 </div>
             </div>
 
-                        
-
-
-
-            <!--modal for verification-->
-          <!--   <div class="modal fade" id="verify" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="panel-title" id="contactLabel"><center>Verify Order</center> </h4>
-                        </div>
-                        <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h4>Client: Juanito Perez</h4>
-                            </div>
-                            <div class="col-md-6">
-                                <h4>Date: January 22, 2018</h4>
-                            </div>
-                        </div>
-                        <hr>
-                        
-                         <table class="table">
-                            <thead>
-                                <tr>
-                                    <th><b>Coffee</b></th>
-                                    <th><b>Bag</b></th>
-                                    <th><b>Size</b></th>
-                                    <th><b>Qty</b></th>
-                                    <th><b>Price</b></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Fiesta Blend Ground</td>
-                                    <td>brown</td>
-                                    <td>250 g</td>
-                                    <td>2</td>
-                                    <td>350</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <hr>
-                        <h3>Total Amount: Php 700.00</h3>
-                      </div>
-                      <div align="center">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-success">Save</button>
-                      </div>
-                    </div>
-                    </div>
-                </div> -->
+       
              </div>
     </div>
 </body>
@@ -309,46 +239,7 @@
 <script src="../assets/js/demo.js"></script>
 
 
-<!-- <script type="text/javascript">
-    var room = 1;
-    function education_fields() {
-     
-        room++;
-        var objTo = document.getElementById('education_fields')
-        var divtest = document.createElement("div");
-        divtest.setAttribute("class", "form-group removeclass"+room);
-        var rdiv = 'removeclass'+room;
-        divtest.innerHTML = '<div class="col-sm-6 nopadding"><div class="form-group"><select class="selectpicker" data-live-search="true" name="blend_id"> <?php foreach($data3['blends'] as $row){ echo '<option value="'.$row->blend_id.'">'.$row->blend." ".$row->bag." ".$row->size.'</option>'; } ?> </select></div></div><div class="col-sm-6 nopadding"><div class="form-group"><div class="input-group"><input type="number" class="form-control" id="qty" name="qty" value="qty" placeholder="qty" required><div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields('+ room +');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div>';
-        
-        objTo.appendChild(divtest)
-    }
-   function remove_education_fields(rid) {
-       $('.removeclass'+rid).remove();
-   }
-</script> -->
 
-<script type="text/javascript">
-    var room = 1;
-    function education_fields() {
-     
-        room++;
-        var objTo = document.getElementById('education_fields')
-        var divtest = document.createElement("div");
-        divtest.setAttribute("class", "form-group removeclass"+room);
-        var rdiv = 'removeclass'+room;
-        divtest.innerHTML = '<div class="col-sm-3 nopadding"><div class="form-group"><select class="form-control" id="educationDate" name="educationDate[]"><option value="Guatemala">Guatemala Rainforest</option><option value="Sunrise">Cordillera Sunrise</option><option value="Sumatra">Sumatra Night</option><option value="Espresso">Espresso</option></select></div></div><div class="col-sm-3 nopadding"><div class="form-group"><select class="form-control" id="educationDate" name="educationDate[]"><option value="clear">clear bag</option><option value="brown">brown bag</option></select></div></div><div class="col-sm-3 nopadding"><div class="form-group"><select class="form-control" id="educationDate" name="educationDate[]"><option value="250">250 g</option><option value="500">500 g</option><option value="1000">1000 g</option></select></div></div><div class="col-sm-3 nopadding"><div class="form-group"><div class="input-group"><input type="number" class="form-control" id="Degree" name="Degree[]" value="" placeholder="qty"><div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields('+ room +');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div>';
-        
-        objTo.appendChild(divtest)
-    }
-
-
-    
-   function remove_education_fields(rid) {
-       $('.removeclass'+rid).remove();
-   }
-</script>
-
-<!-- https://bootsnipp.com/snippets/AXVrV -->
 
 </html>
 

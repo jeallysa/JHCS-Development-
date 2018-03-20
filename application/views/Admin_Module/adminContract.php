@@ -5,15 +5,19 @@
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url(); ?>assets/img/apple-icon.png" />
     <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/img/favicon.png" />
+    <link rel="shortcut icon" type="image/png" href="../assets/img/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>Contract</title>
+    <!--   Style   -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/fresh-datatables.css">
+    <!--   Fonts   -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
     <!-- Bootstrap core CSS     -->
     <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="<?php echo base_url(); ?>assets/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-    <link href="<?php echo base_url(); ?>assets/css/jquery.dataTable.min.css" rel="stylesheet" />
-    <link href="<?php echo base_url(); ?>assets/css/bootstrap-datepicker3.min.css" rel="stylesheet">
     <!--  Material Dashboard CSS    -->
     <link href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
@@ -21,18 +25,12 @@
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
-    <style>
-    .table thead,
-    thead th {
-        text-align: center;
-        font-size: 140%;
-    }
+    <!--   Style   -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/fresh-datatables.css">
+    <!--   Fonts   -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 
-    .table tbody,
-    tbody td {
-        text-align: right;
-    }
-    </style>
 </head>
 
 <body>
@@ -207,115 +205,133 @@
                                     </div>
                                 </div>
         
-            <div class="content">
-                <a href="<?php echo base_url(); ?>adminClients" class="btn btn-success navbar-btn pull-left">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-      </a>
+           
+            <div class="content" style="margin-top: 0px;">
                 <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-">
-                            <div class="card">
-                                <div class="card-header " data-background-color="green">
-                                <h4 class="title">List of Clients
-                                     <a class="btn btn-info btn-lg" data-toggle="modal" data-target="#edit" data-original-title style="float: right; margin-right: 30px; margin-top: -12px; ">
-                                    Edit Contract</a></h4>
+                    <div class="card">
+                         <div class="card-header " data-background-color="green">
+                                <h4 class="title">Contract
+                                    </h4>
                             </div>
-                                <div class="col-xs-4">
-                                    <div class="card card-profile">
-                                        <div class="content">
-                                            <h3 class="card-title">The Legend Villas</h3>
-                                            <h6 class="category text-gray">Jesselyn Amagan - General Manager</h6>
-                                            <table class="card-content" cellspacing="0" width="50%" align="center">
-                                                <tbody>
+                        <div class="card-content table-responsive">
+                               <div class="col-md-12 col-md-offset-0">
+                                <div class="fresh-datatables">
+                                    <!--  Available colors for the full background: full-color-blue, full-color-azure, full-color-purple, full-color-red, full-color-orange, full-color-purple, full-color-gray
+                                    Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-purple, toolbar-color-red, toolbar-color-orange, toolbar-color-purple, toolbar-color-gray -->
+                                    <table id="fresh-datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th><b>Company</b></th>
+                                                <th><b>Date Started</b></th>
+                                                <th><b>Coffee Blend</b></th>
+                                                <th><b>Bag</b></th>
+                                                <th><b>Size</b></th>
+                                                <th><b>Brewer</b></th>
+                                                <th class="disabled-sorting"><b>Edit</b></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                            
+                                                <?php
+                                                    if($fetch_data->num_rows() > 0){
+
+                                                        foreach($fetch_data -> result() as $row)
+                                                        {
+                                                ?>
+                                                <tr>
+                                                <td><?php echo $row->client_company; ?></td>
+                                                <td><?php echo $row->date_started; ?></td>
+                                                <td><?php echo $row->contract_blend; ?></td>
+                                                <td><?php echo $row->contract_bag; ?></td>
+                                                <td><?php echo $row->contract_size; ?></td>
+                                                <td><?php echo $row->contract_machine; ?></td>
+                                                     <td>
+                                                                <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit<?php echo $row->contract_id; ?>">Edit</a>
+                                                </td>
+                                                    
+                                                    
+                                                    <div class="modal fade" id="edit<?php echo $row->contract_id; ?>" tabindex="1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="panel panel-primary">
+                                                                    <div class="panel-heading">
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                                        <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign" ></span> Edit Contract Information</h4>
+                                                                    </div>
+                                                                    <form action="<?php echo base_url(); ?>AdminContract/update" method="post" accept-charset="utf-8">
+                                                                          <div class="modal-body" style="padding: 5px;">
+                                                                
+                                                                 <div class="row">
+                                                                    <div class="col-md-6 form-group">
+                                                                        <div class="form-group label-floating">
+                                                                            <label for="email">Date Started</label>
+                                                                            <input class="form-control" type="date" name="date_started" value="<?php echo $row->date_started; ?>" required>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                               <div class="row">
+                                                                    <div class="col-md-12 form-group">
+                                                                        <div class="form-group label-floating">
+                                                                            <input class="form-control" type="hidden" name="contract_id" value="<?php echo $row->contract_id; ?>" required>
+                                                                        </div>
+                                                                    </div>
+                                                                              </div>
+                                                                <div class="row">
+                                                                     <div class="col-lg-6 form-group">
+                                                                        <div class="form-group label-floating">
+                                                                            <label for="email">Coffee Blend</label>
+                                                                            <input class="form-control" value="<?php echo $row->contract_blend; ?>" type="text" name="contract_blend" required>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6 form-group">
+                                                                        <div class="form-group label-floating">
+                                                                            <label for="email">Bag</label>
+                                                                            <input class="form-control" value="<?php echo $row->contract_bag; ?>" type="text" name="contract_bag" required>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6 form-group">
+                                                                        <div class="form-group label-floating">
+                                                                            <label for="email">Size</label>
+                                                                            <input class="form-control" value="<?php echo $row->contract_size; ?>" type="number" name="contract_size" required>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6 form-group">
+                                                                        <div class="form-group label-floating">
+                                                                            <label for="email">Machine</label>
+                                                                            <input class="form-control" value="<?php echo $row->contract_machine; ?>" type="text" name="contract_machine" required>
+                                                                        </div>
+                                                                    </div>
+                                                                    </div>
+                                                            </div>
+                                                                        <div class="panel-footer" style="margin-bottom:-14px;">
+                                                                <input type="submit" class="btn btn-success" value="Update" />
+                                                                <!--<span class="glyphicon glyphicon-ok"></span>-->
+                                                                <input type="reset" class="btn btn-danger" value="Clear" />
+                                                                <!--<span class="glyphicon glyphicon-remove"></span>-->
+                                                                <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                            </tr>
+
+                                            <?php
+                                                    }
+
+                                                }
+                                                else{
+                                                ?>
                                                     <tr>
-                                                        <td><b>Address:</b></td>
-                                                        <td align="left">Mandaluyong City</td>
+                                                        <td colspan = 11 style = "text-align: center;"> <h3>No clients found</h3> </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td><b>Tel:</b></td>
-                                                        <td align="left">+444 444 444</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Email:</b></td>
-                                                        <td align="left">chef22@manor.com</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <br>
-                                            <br>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-4">
-                                    <div class="card card-profile">
-                                        <div class="content">
-                                            <table class="card-content" cellspacing="0" width="80%" align="left">
-                                                <h6 class="card-title">Coffee Details</h6>
-                                                <tbody>
-                                                    <tr>
-                                                        <td><b>Client Type:</b></td>
-                                                        <td align="right">Coffee Service</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Date Started</b></td>
-                                                        <td align="left">December 28, 2017</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Credit Term:</b></td>
-                                                        <td align="left">30 days</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Coffee Blend:</b></td>
-                                                        <td align="left">Sumatra Night</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Bag:</b></td>
-                                                        <td align="left">Brown</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Size:</b></td>
-                                                        <td align="left">500g</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Quantity:</b></td>
-                                                        <td align="left">300</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <br>
-                                            <br>
-                                            <table class="card-content" cellspacing="0" width="50%" align="center">
-                                            </table>
-                                            <br>
-                                            <br>
-                                            <br>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-4">
-                                    <div class="card card-profile">
-                                        <div class="content">
-                                            <table class="card-content" cellspacing="0" width="90%" align="center">
-                                                <h6 class="card-title">Machine:</h6>
-                                                <tbody>
-                                                    <tr>
-                                                        <td><b>Brewer:</b></td>
-                                                        <td align="left">Saeco</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Type:</b></td>
-                                                        <td align="left">Double Cup Espresso</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <br>
-                                            <br>
-                                            <table class="card-content" cellspacing="0" width="50%" align="center">
-                                            </table>
-                                            <br>
-                                            <br>
-                                        </div>
-                                    </div>
+                                                <?php
+                                                }
+
+                                                ?>
+                                            
+                                   </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -324,11 +340,9 @@
             </div>
         </div>
 </body>
+
 <!--   Core JS Files   -->
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/js/datepicker.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/material.min.js" type="text/javascript"></script>
 <!--  Charts Plugin -->
@@ -345,52 +359,49 @@
 <script src="<?php echo base_url(); ?>assets/js/material-dashboard.js?v=1.2.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-    $('#example').DataTable();
-});
+<script src="<?php echo base_url(); ?>assets/js/jquery.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/jquery.datatables.js"></script>
+<script>
 
-$('table tbody tr  td').on('click', function() {
-    $("#myModal").modal("show");
-    $("#txtfname").val($(this).closest('tr').children()[0].textContent);
-    $("#txtlname").val($(this).closest('tr').children()[1].textContent);
-});
-$('#datePicker')
-    .datepicker({
-        format: 'mm/dd/yyyy'
-    })
-    .on('changeDate', function(e) {
-        // Revalidate the date field
-        $('#eventForm').formValidation('revalidateField', 'date');
+$(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip();   
+
+    $('#fresh-datatables').DataTable({
+        "pagingType": "full_numbers",
+        "lengthMenu": [
+            [10, 25, 50, -1],
+            [10, 25, 50, "All"]
+        ],
+        responsive: true,
+        language: {
+            search: "_INPUT_",
+            searchPlaceholder: "Search records",
+        }
+
     });
 
-$('#eventForm').formValidation({
-    framework: 'bootstrap',
-    icon: {
-        valid: 'glyphicon glyphicon-ok',
-        invalid: 'glyphicon glyphicon-remove',
-        validating: 'glyphicon glyphicon-refresh'
-    },
-    fields: {
-        name: {
-            validators: {
-                notEmpty: {
-                    message: 'The name is required'
-                }
-            }
-        },
-        date: {
-            validators: {
-                notEmpty: {
-                    message: 'The date is required'
-                },
-                date: {
-                    format: 'MM/DD/YYYY',
-                    message: 'The date is not a valid'
-                }
-            }
-        }
-    }
+
+    var table = $('#fresh-datatables').DataTable();
+
+    // Edit record
+    table.on('click', '.edit', function() {
+        $tr = $(this).closest('tr');
+
+        var data = table.row($tr).data();
+        alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+    });
+
+    // Delete a record
+    table.on('click', '.remove', function(e) {
+        $tr = $(this).closest('tr');
+        table.row($tr).remove().draw();
+        e.preventDefault();
+    });
+
+    //Like record
+    table.on('click', '.like', function() {
+        alert('You clicked on Like button');
+    });
 });
 </script>
 
