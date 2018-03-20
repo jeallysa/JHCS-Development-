@@ -28,15 +28,40 @@ class sellProduct_model extends CI_MODEL
 		return $query4->result();
 	}
 
-	Public function getClient(){
+	public function getClient(){
 		$query5=$this->db->query("SELECT * FROM contracted_client where client_activation = '1'");
 		return $query5->result();
 	}
 
 
 
-	function record_data($data4){ 
-		$this->db->insert('walkin_sales', $data4);
+	function record_data($date, $quantity, $blend_id){
+		$query = $this->db->query('SELECT c.percentage, c.raw_id, d.package_size FROM coffee_blend b JOIN proportions c JOIN packaging d ON b.blend_id = c.blend_id AND b.package_id = d.package_id WHERE c.blend_id ='.$blend_id.';');		
+		$data = array(
+			'walkin_date' => $date,
+			'walkin_qty' => $quantity,
+			'blend_id' => $blend_id
+		);
+
+		$this->db->insert('walkin_sales', $data);
+		$inserted_id = $this->db->insert_id();
+		
+		foreach ($query->result() as $row)
+		{
+		        $raw_guide = $row->raw_id;
+		        $percentage = $row->percentage;
+		        $package = $row->package_size;
+		        $this->db->query('UPDATE raw_coffee SET raw_stock = raw_stock - '.$quantity*($package*($percentage * 0.01)).' WHERE raw_id ='.$raw_guide.';'); 
+		        $data_for = array(
+		        	'walkin_id' => $inserted_id,
+		        	'raw_id' => $raw_guide,
+		        	'amount' => $quantity*($package*($percentage * 0.01))
+		        );
+		        $this->db->insert('walkin_raw', $data_for);
+		            
+		}
+
+		
 	}
 
 	function add_data($data7){ 
