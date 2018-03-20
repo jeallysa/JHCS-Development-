@@ -213,7 +213,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
                                             <label for="email">Delivery Receipt No.</label>
-                                            <select class="form-control" name="drnumber" required>
+                                            <select class="form-control" name="drnumber">
                                                 <option disabled selected value> -- select an item -- </option>
                                                 <?php 
 
@@ -256,7 +256,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <table id="fresh-datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                                                     <thead>
                                                         <tr>
-                                                            <th><b>#</b></th>
+                                                            <th><b>Delivery Receipt No.</b></th>
                                                             <th><b>Date Released</b></th>
                                                             <th><b>Type</b></th>
                                                             <th><b>Recipient</b></th>
@@ -271,7 +271,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     {
                                                 ?>
                                                         <tr>
-                                                            <td><?php echo $row->sample_id; ?></td>
+                                                            <td><?php echo $row->client_dr; ?></td>
+                                                            <td><?php echo $row->sample_date; ?></td>
+                                                            <td><?php echo $row->sample_type; ?></td>
+                                                            <td><?php echo $row->sample_recipient; ?></td>
+                                                            <td><?php echo $row->package_type; ?> bag</td>
+                                                            <td><?php echo $row->package_size; ?> g</td>
+                                                            <td><?php echo $row->sticker; ?></td>
+                                                        </tr>
+                                                        <?php
+                                                        }
+                                                    ?>
+
+                                                    <?php 
+                                                    foreach($smpl_data2['fetch_data2'] as $row)
+                                                    {
+                                                ?>
+                                                        <tr>
+                                                            <td> n/a </td>
                                                             <td><?php echo $row->sample_date; ?></td>
                                                             <td><?php echo $row->sample_type; ?></td>
                                                             <td><?php echo $row->sample_recipient; ?></td>
