@@ -19,7 +19,7 @@ class sellProduct_model extends CI_MODEL
 	}
 
 	Public function getBlends(){
-		$query3=$this->db->query("SELECT * FROM coffee_blend NATURAL JOIN packaging where blend_activation = 1");
+		$query3=$this->db->query("SELECT * FROM coffee_blend NATURAL JOIN packaging where blend_activation = 1 AND pack_activation = 1");
 		return $query3->result();
 	}
 
@@ -29,7 +29,7 @@ class sellProduct_model extends CI_MODEL
 	}
 
 	Public function getClient(){
-		$query5=$this->db->query("SELECT * FROM contracted_client where client_status = 'enabled'");
+		$query5=$this->db->query("SELECT * FROM contracted_client where client_activation = '1'");
 		return $query5->result();
 	}
 
