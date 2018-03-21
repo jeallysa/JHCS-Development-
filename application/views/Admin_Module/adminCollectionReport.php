@@ -192,76 +192,6 @@
                                     </div>
                                 </div>
                                 
-                                  <div class="modal fade" id="edit" tabindex="1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="panel panel-primary">
-                                            <div class="panel-heading">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign" ></span> Edit Item Information</h4>
-                                            </div>
-                                            <form action="#" method="post" accept-charset="utf-8">
-                                                <div class="modal-body" style="padding-left: 100px;">
-                                                    <div class="form-group row">
-                                                        <div for="example-number-input" class="col-2 col-form-label">
-                                                            <label for="type">Client</label>
-                                                            <input class="form-control" type="textarea" value="Mario's" id="example-number-input">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <div for="example-number-input" class="col-2 col-form-label">
-                                                            <label for="type">Date Paid</label>
-                                                            <input class="form-control" type="textarea" value="October 02, 2017" id="example-number-input">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <div class="col-md-6">
-                                                            <label class="control-label">Mode of Payment</label>
-                                                            <select class="form-control" name="Type" placeholder="Type" type="text" required>
-                                                                <option>Cash on Hand</option>
-                                                                <option>Bank Deposit</option>
-                                                                <option>Cheque</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                         <div class="col-md-6">
-                                                            <label for="example-number-input" class="col-2 col-form-label">Amount</label>
-                                                            <div class="col-10">
-                                                                <input class="form-control" type="number" value="25,000.00" id="example-number-input">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label for="example-number-input" class="col-2 col-form-label">Gross Amount</label>
-                                                            <div class="col-10">
-                                                                <input class="form-control" type="number" value="30,000.00" id="example-number-input">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label for="example-number-input" class="col-2 col-form-label">Withheld</label>
-                                                            <div class="col-10">
-                                                                <input class="form-control" type="number" value="5.000.00" id="example-number-input">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label for="example-number-input" class="col-2 col-form-label">Remarks</label>
-                                                            <div class="col-10">
-                                                                <input class="form-control" type="textarea" value="Tax Withheld" id="example-number-input">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="panel-footer" style="margin-bottom:-14px;">
-                                                            <input type="submit" class="btn btn-success" value="Add" style="float: right;" />
-                                                            <!--<span class="glyphicon glyphicon-ok"></span>-->
-                                                            <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                
                                 <div class="card-content">
                                    <table id="example" class="display  hover order-column" cellspacing="0" width="100%">
                                         <thead>
@@ -274,8 +204,6 @@
                                             <th><b>Gross Amount</b></th>
                                             <th><b>Withheld</b></th>
                                             <th><b>Remarks</b></th>
-                                            
-                                            <th class="disabled-sorting">Edit</th>
                                         </thead>
                                         <tbody>
                                             
@@ -292,9 +220,6 @@
                                                  <td><?php echo $row->client_balance; ?></td>
                                                  <td><?php echo $row->withheld; ?></td>
                                                  <td><?php echo $row->payment_remarks; ?></td>
-                                                <td>
-                                                                <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit">Edit</a>
-                                                </td>
                                              </tr>
                                              <?php 
                                                 }

@@ -52,5 +52,14 @@
 			$this->index();
 		}
 
+        function activation(){
+			
+			$this->load->model('AdminPackaging_model');
+			$id = $this->input->post("deact_id");
+			$this->AdminPackaging_model->activation($id);
+			redirect('adminPackaging');
+
+		}
+        
 	}
 ?>

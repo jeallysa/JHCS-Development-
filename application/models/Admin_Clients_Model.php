@@ -13,7 +13,7 @@ class Admin_Clients_Model extends CI_model
 	}
 
 	function fetch_data(){
-		$query = $this->db->query("SELECT client_id, client_company, client_fname, client_lname, CONCAT(client_fname, ' ', client_lname) AS contact_personnel, client_position, client_email, client_address, client_contact, client_type FROM contracted_client");
+		$query = $this->db->query("SELECT client_id, client_company, client_fname, client_lname, CONCAT(client_fname, ' ', client_lname) AS contact_personnel, client_position, client_email, client_address, client_contact, client_type,client_activation FROM contracted_client");
 		return $query;
 	}
 
@@ -30,6 +30,10 @@ class Admin_Clients_Model extends CI_model
 
 		$this->db->where('client_id', $id);
 		$this->db->update('contracted_client', $data);
+	}
+    
+    function activation($id){
+		$this->db->query("UPDATE contracted_client SET client_activation = IF(client_activation=1, 0, 1) WHERE client_id = ".$id."");
 	}
 
 }

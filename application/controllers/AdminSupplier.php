@@ -32,10 +32,17 @@
 			$sup_lname = $this->input->post("sup_lname");
 			$this->Admin_Suppliers_Model->update($id, $sup_company, $sup_address, $sup_email, $sup_contact, $sup_position, $sup_fname, $sup_lname);
 			echo "<script>alert('Update successful!');</script>";
-			redirect('adminSupplier', 'refresh');
+			redirect('adminSupplier');
 		}
 
+        function activation(){
+			
+			$this->load->model('Admin_Suppliers_Model');
+			$id = $this->input->post("deact_id");
+			$this->Admin_Suppliers_Model->activation($id);
+			redirect('adminSupplier');
 
+		}
 
 		
 

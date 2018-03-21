@@ -9,7 +9,7 @@ class AdminPackaging_model extends CI_MODEL
 	}
 
 	function getPackaging(){
-		$query=$this->db->query("SELECT package_id, package_type, sup_company, package_size, package_reorder, package_limit, package_stock FROM packaging NATURAL JOIN supplier");
+		$query=$this->db->query("SELECT package_id, package_type, sup_company, package_size, package_reorder, package_limit, package_stock, pack_activation FROM packaging NATURAL JOIN supplier");
 		return $query->result();
 	}
     
@@ -34,6 +34,10 @@ class AdminPackaging_model extends CI_MODEL
 
 		$this->db->where('package_id', $id);
 		$this->db->update('packaging', $data);
+	}
+    
+    function activation($id){
+		$this->db->query("UPDATE packaging SET pack_activation = IF(pack_activation=1, 0, 1) WHERE package_id = ".$id."");
 	}
 }
 ?>
