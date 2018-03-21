@@ -157,7 +157,6 @@
                                                     <tr>
                                                         <th><b>Item Code</b></th>
                                                         <th><b>Date</b></th>
-														<th><b>Client</b></th>
 														<th><b>Coffee</b></th>
 														<th><b>Bag</b></th>
 														<th><b>Size</b></th>
@@ -173,7 +172,6 @@
                                                      <tr>
                                                          <td><?php echo $row->blend_id; ?></td>
                                                          <td><?php echo $row->walkin_date; ?></td>
-                                                         <td><?php echo $row->Client; ?></td>
                                                          <td><?php echo $row->blend; ?></td>
                                                          <td><?php echo $row->package_type; ?></td>
                                                          <td><?php echo $row->package_size; ?></td>

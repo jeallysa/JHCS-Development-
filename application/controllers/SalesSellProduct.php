@@ -49,7 +49,8 @@
 			);
 			$data4 = $this->security->xss_clean($data4);
 			$this->sellProduct_model->record_data($data4);
-            redirect ('salesSellProduct');
+			echo "<script>alert('Client order has been saved!');</script>";
+			$this->salesWalkin();
 		}
 
 		public function add()
