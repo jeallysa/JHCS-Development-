@@ -152,18 +152,6 @@
                                                             <input class="form-control" type="date" name="date" value="<?php echo date("Y-m-d");?>" required="">
                                                         </div>
                                                     </div>
-                                    <!--                 <div class="col-md-4">
-                                                        <div class="form-group label-floating">
-                                                            <label for="email">First Name:</label>
-                                                            <input type="text" class="form-control" name="fname" required="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group label-floating">
-                                                            <label for="email">Last Name:</label>
-                                                            <input type="text" class="form-control" name="lname" required="">
-                                                        </div>
-                                                    </div> -->
                                                 </div>
                                             </div>
                                     </div><hr>  
