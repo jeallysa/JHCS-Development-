@@ -83,6 +83,7 @@ class sellProduct_model extends CI_MODEL
 		);
 		$this->db->insert('trans_pack', $data_pack);
 		$this->db->query('INSERT INTO trans_stick (trans_id) VALUES ('.$trans_id.')');
+		$this->db->query('INSERT INTO trans_mach (trans_id) VALUES ('.$trans_id.')');
 
 		
 	}

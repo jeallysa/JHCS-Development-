@@ -194,7 +194,6 @@ input {
                                         <thead>
                                             <tr>
                                                 <th><b>Date In</b></th>
-                                                <th><b>Supplier</b></th>
                                                 <?php
                                                     $conntitle=mysqli_connect("localhost","root","","jhcs");
                                                     if ($conntitle->connect_error) {
@@ -243,8 +242,6 @@ input {
                                                 ?>
                                             <tr>
                                                 <td><?php echo $row->transact_date; ?></td>
-
-                                                <td><?php echo $row->sup_company; ?></td>
                                                 
                                                 <?php
                                                 for ($i = 1; $i <= $rowcount; $i++){
