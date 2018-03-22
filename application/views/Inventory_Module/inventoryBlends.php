@@ -302,23 +302,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             }
                                         ?> 
 
-                                        <?php
-                                              $retrieveDetails4 ="SELECT * FROM jhcs.client_coffreturn NATURAL JOIN jhcs.client_delivery NATURAL JOIN jhcs.contracted_client WHERE blend_id = '$row->blend_id';" ;
-                                              $query = $this->db->query($retrieveDetails4);
-                                              if ($query->num_rows() > 0) {
-                                              foreach ($query->result() as $object) {
-                                           echo '<tr>' ,
-                                                '<td>'  . $object->client_company  . '</td>' ,
-                                                '<td>'  . $object->coff_returnDate  . '</td>' ,
-                                                '<td>'  . $object->coff_returnQty  . '</td>' ;
-                                                ?>
-                                                    <td>Client Returns</td>
-                                                    <td>IN</td>
-                                                 <?php   
-                                                '</tr>' ;
-                                              }
-                                            }
-                                        ?> 
+                                        
                                                     </tbody>
                                                       </table>
                                                         </div>
