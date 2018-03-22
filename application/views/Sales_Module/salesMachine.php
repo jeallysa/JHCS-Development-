@@ -214,9 +214,6 @@
                                           <div class="form-group">
                                               <div class="input-group">
                                                 <input type="number" class="form-control" id="qty" name="qty" value="qty" placeholder="qty" required="">
-                                                    <div class="input-group-btn">
-                                                        <button class="btn btn-success" type="button"  onclick="education_fields();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
-                                                  </div>
                                               </div>
                                           </div>
                                         </div>
@@ -243,52 +240,6 @@
             </div>
         </div>
 
-        <!--modal for verification-->
-      <!--   <div class="modal fade" id="verify" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="panel-title" id="contactLabel"><center>Verify Order</center> </h4>
-                    </div>
-                    <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h4>Client: Juanito Perez</h4>
-                        </div>
-                        <div class="col-md-6">
-                            <h4>Date: January 22, 2018</h4>
-                        </div>
-                    </div>
-                    <hr>
-                    
-                     <table class="table">
-                        <thead>
-                            <tr>
-                                <th><b>Machine</b></th>
-                                <th><b>Quantity</b></th>
-                                <th><b>Price</b></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Saeco A</td>
-                                <td>2</td>
-                                <td>Php 10,000.00</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <hr>
-                    <h3>Total Amount: Php 20,000.00</h3>
-                  </div>
-                  <div align="center">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success">Save</button>
-                  </div>
-                </div>
-                </div>
-            </div> -->
             </div>
         </div>
     </div>
@@ -368,25 +319,7 @@ $(document).ready(function() {
         }
     });
 </script>
-<script type="text/javascript">
-    var room = 1;
-    function education_fields() {
-     
-        room++;
-        var objTo = document.getElementById('education_fields')
-        var divtest = document.createElement("div");
-        divtest.setAttribute("class", "form-group removeclass"+room);
-        var rdiv = 'removeclass'+room;
-        divtest.innerHTML = '<div class="col-sm-5 nopadding"><div class="form-group"><select class="form-control" id="educationDate" name="educationDate[]"><option value="">Saeco A</option><option value="2015">Saeco B</option><option value="2016">Saeco C</option><option value="2017">Saeco C</option><option value="2018">Saeco A</option> </select></div></div><div class="clear"></div><div class="col-sm-5 nopadding"><div class="form-group"><div class="input-group"><input type="number" class="form-control" id="Degree" name="Degree[]" value="" placeholder="qty"><div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields('+ room +');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div>';
-        
-        objTo.appendChild(divtest)
-    }
-   function remove_education_fields(rid) {
-       $('.removeclass'+rid).remove();
-   }
-</script>
 
-<!-- https://bootsnipp.com/snippets/AXVrV -->
 
 </html>
 

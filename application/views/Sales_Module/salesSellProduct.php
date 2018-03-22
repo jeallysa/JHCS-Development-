@@ -212,11 +212,11 @@
                                                          <td><?php echo $row->client_company; ?></td>
                                                          <td><?php echo $row->brewer; ?></td>
                                                          <td><?php echo $row->mach_qty; ?></td>
-                                                         <td><?php echo $row->mach_price; ?></td>
+                                                         <td>Php <?php echo number_format($row->mach_price,2); ?></td>
                                                          <td><?php 
                                                                 $price = $row->mach_price;
                                                                 $qty = $row->mach_qty;
-                                                                echo $price * $qty;
+                                                                echo 'Php' .number_format($price * $qty, 2);
                                                              ?>
                                                          </td>
                                                      </tr>

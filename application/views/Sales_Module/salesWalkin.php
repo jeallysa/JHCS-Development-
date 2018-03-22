@@ -200,7 +200,7 @@
                                 <br><br><br>
                                     <div class="text-center" data-toggle="modal" data-target="#verify">
                                         <button type="submit" class="btn btn-success">
-                                          Next Order
+                                          Save
                                         </button>
                                         <a href="<?php echo base_url(); ?>salesSellProduct" class="btn btn-danger"> Cancel</a>
                                     </div>
