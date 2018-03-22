@@ -38,7 +38,7 @@
 			$this->SalesDelivery_model->insert_data($data);
 			$this->SalesDelivery_model->update($deliver, $po_id);
 			echo "<script>alert('Delivery successful!');</script>";
-			$this->index();
+			redirect('SalesDelivery', 'refresh');
 		}
 
         function insert1()
@@ -57,7 +57,7 @@
 			$this->SalesDelivery_model->insert_dataA($dataA);
 			$this->SalesDelivery_model->updateA($return, $dr);
 			echo "<script>alert('Item Returned!');</script>";
-			redirect('SalesDelivery/index');
+			redirect('SalesDelivery', 'refresh');
 		}
 
         function insert2()
@@ -77,7 +77,7 @@
 			$dr = $this->input->post("client_dr");
 			$this->SalesDelivery_model->insert_dataB($dataB);
 			$this->SalesDelivery_model->updateB($pay, $dr);
-			$this->index();
+			redirect('SalesDelivery', 'refresh');
 		}
 
 	}
