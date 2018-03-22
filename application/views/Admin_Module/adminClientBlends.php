@@ -476,7 +476,7 @@
                                     </div>
                                 </div>
                                 <div class="card-content">
-                                    <a class="btn btn-success" data-toggle="modal" data-target="#newblend" data-original-title style="float: right">Add New Blend</a>
+                                    <a href="<?php echo base_url(); ?>AdminBlends/add_show" class="btn btn-success" style="float: right">Add New Blend</a>
                                     <table id="example" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
                                             <th><b class="pull-left">Blend Name</b></th>
@@ -555,7 +555,7 @@
                                                 -->
                                                 
                                                 <td>
-                                                    <a class="btn btn-warning btn-sm" data-toggle="modal" style="margin-top: 0px" data-toggle="modal" data-target="#updateblend" data-original-title>Edit</a>
+                                                    <a href="<?php echo base_url(); ?>AdminBlends/edit_show" class="btn btn-warning btn-sm" style="float: right">Edit</a>
                                                 </td>
                                                 <td>
                                                     <div class="onoffswitch">

@@ -7,7 +7,7 @@
 		}
 		
 		public function index()
-		{ 
+		{  
 			if ($this->session->userdata('username') != '')
 			{
 				$this->load->model('Admin_Blends_Model');

@@ -222,186 +222,6 @@
                     </div>
                 </div>
             </nav>
-            <div class="modal fade" id="stock" tabindex="1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign" ></span> Adjust Stock Limit</h4>
-                        </div>
-                        <form action="#" method="post" accept-charset="utf-8">
-                            <div class="modal-body" style="padding-left: 100px;">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group label-floating">
-                                            <label for="type">(Item Name)</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="example-number-input" class="col-2 col-form-label">Stock Limit</label>
-                                    <div class="col-10">
-                                        <input class="form-control" type="number" value="100" id="example-number-input">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="example-number-input" class="col-2 col-form-label">Reorder Level</label>
-                                    <div class="col-10">
-                                        <input class="form-control" type="number" value="1000" id="example-number-input">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="panel-footer" style="margin-bottom:-14px;">
-                                        <input type="submit" class="btn btn-success" value="Add" style="float: right;" />
-                                        <!--<span class="glyphicon glyphicon-ok"></span>-->
-                                        <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="modal fade" id="newblend" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading" >
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span> Add New Blend </h4>
-                        </div>
-                        <form action="#" method="post" accept-charset="utf-8">
-                            <div class="modal-body" style="padding: 5px;">
-                                <div class="row">
-                                    <div class="col-md-6 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="email">Blend Name</label>
-                                            <input class="form-control" type="text" name="" placeholder="" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="email">Price Per Unit</label>
-                                            <input class="form-control" type="number" name="" placeholder="" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="email">Stock Limit</label>
-                                            <input class="form-control" type="text" name="" placeholder="" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="email">Reorder Level</label>
-                                            <input class="form-control" type="number" name="" placeholder="" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div id="field">
-                                    <div class="input" id="field1">
-                                        <div class="col-md-6">
-                                            <select class="form-control" name="coffee">
-                                                <option value="">Guatemala Rainforest</option>
-                                                <option value="">Cordillera Sunrise</option>
-                                                <option value="">Sumatra Night</option>
-                                                <option value="">Espresso</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <input class="form-control" type="number" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <button id="b1" class="btn btn-success add-more " type="button">+</button>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                </div>
-                            </div>
-                            <div class="panel-footer" style="margin-bottom:-14px;">
-                                <input type="submit" class="btn btn-success" value="Add" />
-                                <!--<span class="glyphicon glyphicon-ok"></span>-->
-                                <input type="reset" class="btn btn-danger" value="Clear" />
-                                <!--<span class="glyphicon glyphicon-remove"></span>-->
-                                <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="modal fade" id="updateblend" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading" >
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span> Update Blend </h4>
-                        </div>
-                        <form action="#" method="post" accept-charset="utf-8">
-                            <div class="modal-body" style="padding: 5px;">
-                                <div class="row">
-                                    <div class="col-md-6 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="email">Blend Name</label>
-                                            <input class="form-control" type="text" name="" placeholder="" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="email">Price Per Unit</label>
-                                            <input class="form-control" type="number" name="" placeholder="" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="email">Size</label>
-                                            <input class="form-control" type="text" name="" placeholder="" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="email">Packaging</label>
-                                            <input class="form-control" type="number" name="" placeholder="" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div id="field">
-                                    <div class="input" id="field1">
-                                        <div class="col-md-6">
-                                            <select class="form-control" name="coffee">
-                                                <option value="">Guatemala Rainforest</option>
-                                                <option value="">Cordillera Sunrise</option>
-                                                <option value="">Sumatra Night</option>
-                                                <option value="">Espresso</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <input class="form-control" type="number" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <button id="b1" class="btn btn-success add-more " type="button">+</button>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                </div>
-                            </div>
-                            <div class="panel-footer" style="margin-bottom:-14px;">
-                                <input type="submit" class="btn btn-success" value="Add" />
-                                <!--<span class="glyphicon glyphicon-ok"></span>-->
-                                <input type="reset" class="btn btn-danger" value="Clear" />
-                                <!--<span class="glyphicon glyphicon-remove"></span>-->
-                                <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -499,7 +319,7 @@
                                     </div>
                                 </div> 
                                 <div class="card-content">
-                                    <a class="btn btn-success" data-toggle="modal" data-target="#newblend" data-original-title style="float: right">Add New Blend</a>
+                                    <a href="<?php echo base_url(); ?>AdminBlends/add_show" class="btn btn-success" style="float: right">Add New Blend</a>
                                     <table id="example" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
                                             <th><b class="pull-left">Blend Name</b></th>
@@ -579,7 +399,7 @@
                                                 -->
                                                 
                                                 <td>
-                                                    <a class="btn btn-warning btn-sm" data-toggle="modal" style="margin-top: 0px" data-toggle="modal" data-target="#updateblend" data-original-title>Edit</a>
+                                                    <a href="<?php echo base_url(); ?>AdminBlends/edit_show" class="btn btn-warning btn-sm" style="float: right">Edit</a>
                                                 </td>
                                                    <td>
                                                     <div class="onoffswitch">
