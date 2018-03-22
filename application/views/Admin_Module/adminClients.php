@@ -264,9 +264,6 @@
                                                                             <div class="form-group label-floating">
                                                                                 <input class="form-control" type="hidden" name="deact_id" value="<?php echo $row->client_id; ?>" required>
                                                                             </div>
-                                                                            <div class="form-group label-floating">
-                                                                                <input class="form-control" type="hidden" name="comp_name" value="<?php echo $row->client_company; ?>" required>
-                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -281,7 +278,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <td><a href="<?php echo base_url(); ?>adminContract" class="btn btn-sm btn-round" size="25">Contract</a></td>
+                                                <td><a href="<?php echo base_url(); ?>adminContract?p=<?php echo $row->client_id; ?>" class="btn btn-sm btn-round" size="25">Contract</a></td>
                                                     
                                                 <div class="modal fade" id="edit<?php echo $row->client_id; ?>" tabindex="1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
                                                             <div class="modal-dialog">

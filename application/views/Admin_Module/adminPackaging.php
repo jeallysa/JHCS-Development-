@@ -309,7 +309,7 @@
                                                  <td><?php echo $row->package_limit; ?></td>
                                                  <td><?php echo $row->package_stock; ?></td>
                                                 <td>
-                                                    <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#updatepackaging<?php echo $row->package_id;?>">Edit Info</a>
+                                                    <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#updatepackaging<?php echo $row->package_id;?>">Edit</a>
                                                 </td>
                                                  <td>
                                                      <div class="onoffswitch">

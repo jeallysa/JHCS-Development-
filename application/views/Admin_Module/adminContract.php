@@ -265,7 +265,7 @@
                                                                     <div class="col-md-6 form-group">
                                                                         <div class="form-group label-floating">
                                                                             <label for="email">Date Started</label>
-                                                                            <input class="form-control" type="date" name="date_started" value="<?php echo $row->date_started; ?>" required>
+                                                                            <input class="form-control" type="text" name="date_started" value="<?php echo $row->date_started; ?>" required>
                                                                         </div>
                                                                     </div>
                                                                 </div>

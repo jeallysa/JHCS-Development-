@@ -164,7 +164,7 @@
                                 </div>
                                  <div class="row">
                                     <div class="col-lg-12 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <input class="form-control" name="tel_number" placeholder="Cellphone Number" type="text" required />
+                                        <input class="form-control" name="tel_number" placeholder="Telephone Number" type="text" required />
                                     </div>
                                 </div>
                                 
@@ -177,7 +177,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <a href="<?php echo base_url(); ?>adminNewClients/insert" class="btn btn-success btn-round">Save Contract</a>
+                                <input type="submit" class="btn btn-success" value="Add" />
                                 <!--<span class="glyphicon glyphicon-ok"></span>-->
                                 <input type="reset" class="btn btn-danger" value="Clear" />
                                 <!--<span class="glyphicon glyphicon-remove"></span>-->
