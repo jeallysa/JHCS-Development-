@@ -40,7 +40,8 @@
 			$this->AdminMachines_model->activity_logs('admin', "Inserted: '".$brewer.", ".$type."'");
 			$data = $this->security->xss_clean($data);
 			$this->AdminMachines_model->insert_data($data);
-			$this->index();
+			echo "<script>alert('Update successful!');</script>";
+			redirect('adminMachines', 'refresh');
 		}
 
 		function update(){

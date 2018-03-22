@@ -29,7 +29,7 @@
 			$cell_no = $this->input->post("cell_no");
 			$this->Admin_Accounts_Model->update($id, $l_name, $f_name, $position, $address, $email, $cell_no);
 			echo "<script>alert('Update successful!');</script>";
-			$this->index();
+			redirect('adminAccounts', 'refresh');
 		}
         
         	function activation(){
