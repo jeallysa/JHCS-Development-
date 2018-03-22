@@ -35,6 +35,22 @@ class AdminPackaging_model extends CI_MODEL
 		$this->db->where('package_id', $id);
 		$this->db->update('packaging', $data);
 	}
+
+	function activity_logs($module, $activity){
+		$username = $this->session->userdata('username');
+        $query = $this->db->query("SELECT user_no from jhcs.user where username ='".$username."';");
+        foreach ($query ->result() as $row) {
+        	$id = $row->user_no;
+        }
+
+        $data = array(
+            'user_no' => $id,
+            'timestamp' => date('Y\-m\-d\ H:i:s A'),
+            'message' => $activity,
+            'type' => $module
+        );
+        $this->db->insert('activitylogs', $data);
+    }
     
     function activation($id){
 		$this->db->query("UPDATE packaging SET pack_activation = IF(pack_activation=1, 0, 1) WHERE package_id = ".$id."");

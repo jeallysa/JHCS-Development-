@@ -348,6 +348,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                             <div class="form-group label-floating">
                                                                                 <input class="form-control" type="hidden" name="deact_id" value="<?php echo $row->raw_id; ?>" required>
                                                                             </div>
+                                                                            <div class="form-group label-floating">
+                                                                                <input class="form-control" type="hidden" name="name" value="<?php echo $row->raw_coffee; ?>" required>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>

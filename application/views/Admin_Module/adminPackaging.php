@@ -351,6 +351,20 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12 form-group">
+                                                                            <div class="form-group label-floating">
+                                                                                <input class="form-control" type="hidden" name="type" value="<?php echo $row->package_type; ?>" required>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12 form-group">
+                                                                            <div class="form-group label-floating">
+                                                                                <input class="form-control" type="hidden" name="size" value="<?php echo $row->package_size; ?>" required>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                                 <div class="panel-footer" style="margin-bottom:-14px;">
                                                                     <input type="submit" class="btn btn-danger" value="Yes" />
