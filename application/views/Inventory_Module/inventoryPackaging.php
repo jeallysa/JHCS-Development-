@@ -243,7 +243,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                           <tr>
                                                             <th><b>Client/Supplier</b></th>
                                                             <th><b>Date</b></th>
-                                                            <th><b>Quantity</b></th>
+                                                            <th><b>Quantity (per pc)</b></th>
                                                             <th><b>Remarks</b></th>
                                                             <th><b>Type</b></th>
                                                           </tr>
@@ -257,7 +257,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                            echo '<tr>' ,
                                                 '<td>'  . $object->customer  . '</td>' ,
                                                 '<td>'  . $object->walkin_date  . '</td>' ,
-                                                '<td>'  . $object->walkin_qty  . ' pc/s</td>' ;
+                                                '<td>'  . $object->walkin_qty  . '</td>' ;
                                                 ?>
                                                     <td>Walkin Sales</td>
                                                     <td>Out</td>
@@ -275,7 +275,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                            echo '<tr>' ,
                                                 '<td>'  . $object->client_company  . '</td>' ,
                                                 '<td>'  . $object->contractPO_date  . '</td>' ,
-                                                '<td>'  . $object->contractPO_qty  . ' pc/s</td>' ;
+                                                '<td>'  . $object->contractPO_qty  . '</td>' ;
                                                 ?>
                                                     <td>Sales</td>
                                                     <td>Out</td>
@@ -293,7 +293,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                            echo '<tr>' ,
                                                 '<td>'  . $object->client_company  . '</td>' ,
                                                 '<td>'  . $object->retail_date  . '</td>' ,
-                                                '<td>'  . $object->retail_qty  . ' pc/s</td>' ;
+                                                '<td>'  . $object->retail_qty  . '</td>' ;
                                                 ?>
                                                     <td>Retail Sales</td>
                                                     <td>Out</td>
@@ -363,7 +363,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         </div>
                                                       </div>
                                                       <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-success">OK</button>
                                                           <button style="float: right;" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                       </div>
                                                     </div>
