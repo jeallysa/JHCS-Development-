@@ -177,7 +177,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <input type="submit" class="btn btn-success" value="Add" />
+                                <a href="<?php echo base_url(); ?>adminNewClients/insert" class="btn btn-success btn-round">Save Contract</a>
                                 <!--<span class="glyphicon glyphicon-ok"></span>-->
                                 <input type="reset" class="btn btn-danger" value="Clear" />
                                 <!--<span class="glyphicon glyphicon-remove"></span>-->

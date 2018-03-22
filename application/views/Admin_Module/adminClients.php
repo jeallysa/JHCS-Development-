@@ -264,6 +264,9 @@
                                                                             <div class="form-group label-floating">
                                                                                 <input class="form-control" type="hidden" name="deact_id" value="<?php echo $row->client_id; ?>" required>
                                                                             </div>
+                                                                            <div class="form-group label-floating">
+                                                                                <input class="form-control" type="hidden" name="comp_name" value="<?php echo $row->client_company; ?>" required>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
