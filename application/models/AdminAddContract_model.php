@@ -11,22 +11,33 @@ class AdminAddContract_model extends CI_model
 	function test_main(){
 		echo "Sample function";
 	}
-
-	function add_data($date_started, $contract_blend, $contract_bag, $contract_size, $contract_machine){
-		$data = array(
-			'date_started' => $date_started,
-			'contract_blend' => $contract_blend,
-			'contract_bag' => $contract_bag,
-			'contract_size' => $contract_size,
-			'contract_machine' => $contract_machine
-		);
-		
-		$this->db->insert('contract', $data);
-		
-		
-		echo "<script>alert('You have inserted a new contract!');
-		window.location.href='" . base_url() . "adminAddContract';
-		</script>";
+    
+    function getBlend(){
+		$query = $this->db->query("SELECT blend_id, blend FROM jhcs.coffee_blend;");
+		return $query->result();	
+	}
+    
+     function getBag(){
+		$query = $this->db->query("SELECT package_id, package_type FROM jhcs.packaging;");
+		return $query->result();	
+	}
+    
+     function getMachine(){
+		$query = $this->db->query("SELECT mach_id, brewer FROM jhcs.machine;");
+		return $query->result();	
+	}
+    
+     function getName(){
+		$query = $this->db->query("SELECT client_id, client_company FROM jhcs.contracted_client;");
+		return $query->result();	
 	}
 
+
+	 function insert_data($data){ 
+		$this->db->insert('contract', $data);
+         
+         echo "<script>alert('You have inserted a new contract!');
+		window.location.href='" . base_url() . "adminClients';
+		</script>";
+	}
 }
