@@ -36,10 +36,7 @@
 			  echo json_encode($data);
 		}
 		public function addClientPO(){
-			$this->form_validation->set_rules('date','Date of Delivery','required');
-			$this->form_validation->set_rules('quantity','Delivered Quantity','required|integer');
-			if ($this->form_validation->run())
-				{
+
 					echo 'A new Purchase Order has been Added';
 						$id = $this->input->post('client_id');
 					  $date = $this->input->post('date');
@@ -48,11 +45,7 @@
 				
 					  $this->SalesClients_model->addClientPO( $date, $QTY, $id, $blend_id);
 					  redirect('SalesClients/index');
-				}
-				else
-				{
-					echo validation_errors();
-				}
+
 		}
 
 	}

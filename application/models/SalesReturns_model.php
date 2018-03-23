@@ -61,12 +61,12 @@
 			
 			
 		}
-		public function ResolveCoffeeReturnsB( $remarks,$id, $resolved ){
+		public function ResolveCoffeeReturnsB($RID, $remarks, $resolved ){
 			$dataB = array(
 				'coff_returnAction' => $remarks,
 				'resolved' => $resolved
 			);
-			$this->db->where('client_deliveryID', $id);
+			$this->db->where('client_coffReturnID', $RID);
 			$this->db->update('client_coffreturn', $dataB);
 			
 		}

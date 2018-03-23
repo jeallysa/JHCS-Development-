@@ -11,8 +11,9 @@
 			if ($this->session->userdata('username') != '')
 			{
 				$this->load->model('InventoryInventoryReportOut_Model');
-				$data["get_inventoryout"] = $this->InventoryInventoryReportOut_Model->get_inventoryout();
-				$this->load->view('Inventory_Module/inventoryInventoryReport2', $data);
+				$data1["inventoryout"] = $this->InventoryInventoryReportOut_Model->get_inventoryout();
+                $data2["machineout"] = $this->InventoryInventoryReportOut_Model->get_machineout();
+				$this->load->view('Inventory_Module/inventoryInventoryReport2', ['data1' => $data1, 'data2' => $data2]);
 			} else {
 				redirect('login');
 			}
