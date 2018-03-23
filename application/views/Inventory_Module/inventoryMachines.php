@@ -382,6 +382,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         </div>
                                                       </div>
                                                       <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-success accept">OK</button>
                                                           <button style="float: right;" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                       </div>
                                                     </div>

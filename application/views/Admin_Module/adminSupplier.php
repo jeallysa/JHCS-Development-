@@ -329,6 +329,11 @@
                                                                                 <input class="form-control" type="hidden" name="deact_id" value="<?php echo $row->sup_id; ?>" required>
                                                                             </div>
                                                                         </div>
+                                                                        <div class="col-md-12 form-group">
+                                                                            <div class="form-group label-floating">
+                                                                                <input class="form-control" type="hidden" name="sup_company" value="<?php echo $row->sup_company; ?>" required>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="panel-footer" style="margin-bottom:-14px;">

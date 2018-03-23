@@ -7,11 +7,12 @@
 		}
 		
 		public function index()
-		{ 
+		{
+            $id = $this->input->get('p');
 			if ($this->session->userdata('username') != '')
 			{
 				$this->load->model('AdminContract_model');
-				$cli_data["fetch_data"] = $this->AdminContract_model->fetch_data();
+				$cli_data["fetch_data"] = $this->AdminContract_model->fetch_data($id);
 				$this->load->view('Admin_Module/adminContract', $cli_data);
 			} else {
 				redirect('login');

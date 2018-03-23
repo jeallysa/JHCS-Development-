@@ -12,8 +12,8 @@ class AdminContract_model extends CI_model
 		echo "Sample function";
 	}
 
-	function fetch_data(){
-		$query = $this->db->query("SELECT client_company, contract_id, date_started, contract_blend, contract_bag, contract_size, contract_machine FROM contract NATURAL JOIN contracted_client");
+	function fetch_data($id){
+		$query = $this->db->query("SELECT client_company, contract_id, date_started, contract_blend, contract_bag, contract_size, contract_machine FROM contract NATURAL JOIN contracted_client WHERE client_id='".$id."';");
 		return $query;
 	}
 

@@ -33,7 +33,7 @@
 			$this->AdminPackaging_model->activity_logs('admin', "Updated Packaging: '".$type." bag, ".$size."g'");
 			$this->AdminPackaging_model->update($id, $type, $size, $reorder, $stocks, $stocklimit, $sup_id);
 			echo "<script>alert('Update successful!');</script>";
-			$this->index();
+			redirect('adminPackaging', 'refresh');
 		}
         
         function insert()
@@ -53,7 +53,8 @@
 			$this->AdminPackaging_model->activity_logs('admin', "Inserted New Packaging: '".$type." bag, ".$size."g'");
 			$data = $this->security->xss_clean($data);
 			$this->AdminPackaging_model->insert_data($data);
-			$this->index();
+			echo "<script>alert('Update successful!');</script>";
+			redirect('adminPackaging', 'refresh');
 		}
 
         function activation(){

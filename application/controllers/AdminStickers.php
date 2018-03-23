@@ -32,7 +32,7 @@
 			$this->AdminStickers_model->activity_logs('admin', "Updated Sticker: '".$name."'");	
 			$this->AdminStickers_model->update($id, $name, $reorder, $stocks, $stocklimit, $sup_id);
 			echo "<script>alert('Update successful!');</script>";
-			$this->index();
+			redirect('adminStickers', 'refresh');
 		}
         
          function insert()
@@ -49,7 +49,8 @@
 			$this->AdminStickers_model->activity_logs('admin', "Inserted Sticker: '".$name."'");	
 			$data = $this->security->xss_clean($data);
 			$this->AdminStickers_model->insert_data($data);
-			$this->index();
+			echo "<script>alert('Update successful!');</script>";
+			redirect('adminStickers', 'refresh');
 		}
         
         function activation(){

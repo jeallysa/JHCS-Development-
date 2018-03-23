@@ -247,14 +247,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <th><b>Type</b></th>
                                                           </tr>
                                                         </thead>
-                                                        <tbody>
+                                                        <tbody><!--, CONCAT(walkin_fname,' ',walkin_lname) AS customer-->
                                                             <?php
-                                              $retrieveDetails1 ="SELECT walkin_id, blend_id, CONCAT(walkin_fname,' ',walkin_lname) AS customer, walkin_date, walkin_qty FROM jhcs.walkin_sales NATURAL JOIN coffee_blend WHERE blend_id = '$row->blend_id';" ;
+                                              $retrieveDetails1 ="SELECT walkin_id, blend_id, walkin_date, walkin_qty FROM jhcs.walkin_sales NATURAL JOIN coffee_blend WHERE blend_id = '$row->blend_id';" ;
                                               $query = $this->db->query($retrieveDetails1);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
                                            echo '<tr>' ,
-                                                '<td>'  . $object->customer  . '</td>' ,
+                                                '<td> </td>' ,
                                                 '<td>'  . $object->walkin_date  . '</td>' ,
                                                 '<td>'  . $object->walkin_qty  . ' </td>' ;
                                                 ?>
