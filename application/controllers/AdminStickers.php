@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 	class AdminStickers extends CI_Controller
 	{
@@ -29,9 +29,10 @@
 			$stocklimit = $this->input->post("stocklimit");
 			$stocks = $this->input->post("stocks");
 			$sup_id = $this->input->post("sup_company");
+			$this->AdminStickers_model->activity_logs('admin', "Updated Sticker: '".$name."'");	
 			$this->AdminStickers_model->update($id, $name, $reorder, $stocks, $stocklimit, $sup_id);
 			echo "<script>alert('Update successful!');</script>";
-			$this->index();
+			redirect('adminStickers', 'refresh');
 		}
         
          function insert()
@@ -44,17 +45,28 @@
                 "sticker_stock" =>$this->input->post("stocks"),
                 "sup_id" =>$this->input->post("sup_company")
 			);
+			$name = $this->input->post("name");
+			$this->AdminStickers_model->activity_logs('admin', "Inserted Sticker: '".$name."'");	
 			$data = $this->security->xss_clean($data);
 			$this->AdminStickers_model->insert_data($data);
-			$this->index();
+			echo "<script>alert('Update successful!');</script>";
+			redirect('adminStickers', 'refresh');
 		}
         
         function activation(){
 			
 			$this->load->model('AdminStickers_model');
 			$id = $this->input->post("deact_id");
-			$this->AdminStickers_model->activation($id);
-			redirect('adminStickers');
+			$name = $this->input->post("name");
+			if ($id == 1){
+				$this->AdminStickers_model->activity_logs('admin', "Activated: '".$name."'");	
+				$this->AdminStickers_model->activation($id);
+				redirect('adminStickers');
+			}else{	
+				$this->AdminStickers_model->activity_logs('admin', "Deactivated: '".$name."'");	
+				$this->AdminStickers_model->activation($id);
+				redirect('adminStickers');
+			}
 
 		}
 

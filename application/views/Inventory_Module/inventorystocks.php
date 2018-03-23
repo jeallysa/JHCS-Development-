@@ -241,7 +241,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                           <tr>
                                                             <th><b>Client/Supplier</b></th>
                                                             <th><b>Date</b></th>
-                                                            <th><b>Quantity/Weight</b></th>
+                                                            <th><b>Weight(grams)</b></th>
                                                             <th><b>Remarks</b></th>
                                                             <th><b>Type</b></th>
                                                           </tr>
@@ -290,11 +290,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     <label class="col-md-4 control">Total In :</label>
                                                                     <div class="col-md-4">
                                                                     <?php
-                                              $retrieveDetails5 ="SELECT SUM(quantity) AS totalQty FROM (SELECT raw_coffee, quantity FROM jhcs.trans_raw INNER JOIN raw_coffee ON raw_coffeeid = raw_id WHERE raw_coffee = '$row->raw_coffee') AS coffetrans;" ;
+                                              $retrieveDetails5 ="SELECT SUM(qty) AS totalQty FROM (SELECT item, qty, date_received, yield_weight, sup_company FROM jhcs.supp_po_ordered INNER JOIN supp_delivery ON supp_po_ordered.supp_po_ordered_id = supp_delivery.supp_po_ordered_id INNER JOIN supp_po ON supp_po.supp_po_id = supp_po_ordered.supp_po_id INNER JOIN supplier ON supplier.sup_id = supp_po.supp_id WHERE item = '$row->raw_coffee') AS coffetrans;" ;
                                               $query = $this->db->query($retrieveDetails5);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
-                                           echo '<p>'  . $object->totalQty  . ' grams</p>' ;
+                                           echo '<p>'  . $object->totalQty  . ' gram/s</p>' ;
                                            }
                                             }
                                                 ?>
@@ -309,7 +309,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                               $query = $this->db->query($retrieveDetails6);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
-                                           echo '<p>'  . $object->totalQty  . ' grams</p>' ;
+                                           echo '<p>'  . $object->totalQty  . ' gram/s</p>' ;
                                            }
                                             }
                                                 ?>

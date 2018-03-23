@@ -174,7 +174,7 @@
                                     <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
                                             <label for="email">Machine Serial Number</label>
-                                            <input class="form-control" type="text" name="mach_serial" required>
+                                            <input class="form-control" type="number" name="mach_serial" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6 form-group">
@@ -205,6 +205,12 @@
                                         <div class="form-group label-floating">
                                             <label for="email">Number of Stocks</label>
                                             <input class="form-control" type="number" name="stocks" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Price Per Unit</label>
+                                            <input class="form-control" type="number" name="price" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6 form-group">
@@ -359,6 +365,12 @@
                                                                             <div class="form-group label-floating">
                                                                                 <input class="form-control" type="hidden" name="deact_id" value="<?php echo $row->mach_id; ?>" required>
                                                                             </div>
+                                                                            <div class="form-group label-floating">
+                                                                                <input class="form-control" type="hidden" name="brewer" value="<?php echo $row->brewer; ?>" required>
+                                                                            </div>
+                                                                            <div class="form-group label-floating">
+                                                                                <input class="form-control" type="hidden" name="type" value="<?php echo $row->brewer_type; ?>" required>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -387,7 +399,7 @@
                                                                          <div class="col-md-6 form-group">
                                                                             <div class="form-group label-floating">
                                                                                 <label for="email">Machine Serial Number</label>
-                                                                                <input class="form-control" type="text" name="mach_serial" value="<?php echo $row->mach_serial; ?>" required>
+                                                                                <input class="form-control" type="number" name="mach_serial" value="<?php echo $row->mach_serial; ?>" required>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6 form-group">
@@ -429,7 +441,6 @@
                                                                             
                                                                             </div>
                                                                         </div>
-                                                                        
                                                                         <div class="col-md-6 form-group">
                                                                                <div class="form-group label-floating">
                                                                                 <label for="email">Supplier</label>

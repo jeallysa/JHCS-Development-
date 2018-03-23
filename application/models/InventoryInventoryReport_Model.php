@@ -4,8 +4,13 @@ class InventoryInventoryReport_model extends CI_Model {
     
     public function get_coffeein(){
 		$count = $this->db->count_all_results('raw_coffee');
+<<<<<<< HEAD
 		$query_append = "SELECT a.* FROM
                             (SELECT c.trans_id AS main_id, c.type AS type, c.transact_date AS transact_date, c.dr_supplier as dr_no";
+=======
+		$query_append = "SELECT a.*, b.*, c.*, d.* FROM
+							(SELECT c.trans_id AS main_id, c.transact_date AS transact_date, c.type AS type";
+>>>>>>> c9fa05be48c5f3638c8f390044752fa50b294c8f
 
 		for ($i = 0; $i <= $count; $i++){
 			$query_append .= ", SUM(CASE
@@ -13,7 +18,11 @@ class InventoryInventoryReport_model extends CI_Model {
 							        ELSE NULL
 							    END) AS coff".$i."";
 		}
+<<<<<<< HEAD
 		$query_append .= " FROM raw_coffee a JOIN trans_raw b JOIN inv_transact c ON a.raw_id = b.raw_coffeeid AND b.trans_id = c.trans_id GROUP BY c.trans_id) a WHERE type = 'IN' GROUP BY a.main_id;";
+=======
+		$query_append .= " FROM raw_coffee a JOIN trans_raw b JOIN inv_transact c  ON a.raw_id = b.raw_coffeeid AND b.trans_id = c.trans_id GROUP BY c.trans_id) a JOIN (SELECT a.trans_id AS main_id, SUM(CASE a.quantity WHEN NULL THEN NULL ELSE a.quantity END) AS packaging FROM trans_pack a JOIN packaging b ON a.package_id = b.package_id GROUP BY a.trans_id) b JOIN (SELECT a.trans_id AS main_id, SUM(CASE a.quantity WHEN NULL THEN NULL ELSE a.quantity END) AS machines FROM trans_mach a JOIN machine b ON a.mach_id = b.mach_id GROUP BY a.trans_id) c JOIN (SELECT a.trans_id AS main_id, SUM(CASE a.quantity WHEN NULL THEN NULL ELSE a.quantity END) AS stickers FROM trans_stick a JOIN sticker b ON a.sticker_id = b.sticker_id GROUP BY a.trans_id) d ON a.main_id = b.main_id AND a.main_id = c.main_id AND a.main_id = d.main_id WHERE type = 'IN' GROUP BY a.main_id;";
+>>>>>>> c9fa05be48c5f3638c8f390044752fa50b294c8f
 
 		$query = $this->db->query($query_append);
 		return $query;

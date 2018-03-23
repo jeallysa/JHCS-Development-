@@ -30,7 +30,7 @@
 
     .table tbody,
     tbody td {
-        text-align: right;
+        text-align: center;
     }
 
     .col-centered {
@@ -141,11 +141,12 @@
                                 </div>
                                 <div class="card-content">
                                     <h4>Generate Receivables Report</h4>
-                                    <table id="example" class="table hover order-column" cellspacing="0" width="100%">
+                                    <table id="example" class="table hover order-column">
                                         <thead>
                                             <tr>
                                                 <th><b>Client</b></th>
                                                 <th><b>Total Receivable</b></th>
+                                                <th><b>Action</b></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -154,57 +155,26 @@
                                              ?>
                                              <tr>
                                                  <td><?php echo $row->client_company; ?></td>
-                                                 <td><?php echo $row->client_balance; ?></td>
+                                                 <td><?php echo 'Php '.number_format($row->client_balance,2); ?></td>
+                                                 <td><a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#receivable<?php echo $row->client_id?>">Breakdown</a></td>
+                                                 <!--modal for reveivales-->
+                                                <div class="modal fade" id="receivable<?php echo $row->client_id;?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="panel panel-primary">
+                                                            <div class="panel-heading">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                                <h4 class="panel-title" id="contactLabel"><center><?php echo $row->client_company ?> Recievables</center></h4>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
                                              </tr>
                                              <?php 
                                                 }
                                               ?>
                                         </tbody>
                                     </table>
-                                    <div class="modal fade" id="myModal">
-                                        <div class="modal-dialog modal-lg">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                    <h4 class="modal-title">Bloomfield</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <table class="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Total Amount</th>
-                                                                <th>Current Month (November)</th>
-                                                                <th>Oct</th>
-                                                                <th>Sept</th>
-                                                                <th>Aug</th>
-                                                                <th>Jul</th>
-                                                                <th>Jun</th>
-                                                                <th>April</th>
-                                                                <th>March</th>
-                                                                <th>Feb</th>
-                                                                <th>Jan</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <td>0.00</td>
-                                                            <td>0.00</td>
-                                                            <td>0.00</td>
-                                                            <td>0.00</td>
-                                                            <td>0.00</td>
-                                                            <td>0.00</td>
-                                                            <td>0.00</td>
-                                                            <td>0.00</td>
-                                                            <td>0.00</td>
-                                                            <td>0.00</td>
-                                                            <td>0.00</td>
-                                                        </tbody>
-                                                    </table>
-                                                    <hr>
-                                                    <br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -254,12 +224,6 @@ $(document).ready(function() {
 			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs' }
         ]
     });
-});
-
-$('table tbody tr  td').on('click', function() {
-    $("#myModal").modal("show");
-    $("#txtfname").val($(this).closest('tr').children()[0].textContent);
-    $("#txtlname").val($(this).closest('tr').children()[1].textContent);
 });
 
 </script>

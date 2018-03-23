@@ -38,13 +38,14 @@
 			$this->SalesDelivery_model->insert_data($data);
 			$this->SalesDelivery_model->update($deliver, $po_id);
 			echo "<script>alert('Delivery successful!');</script>";
-			$this->index();
+			redirect('SalesDelivery', 'refresh');
 		}
 
         function insert1()
 		{
 			$this->load->model('SalesDelivery_model');
 			$dataA = array(
+				"client_deliveryID" =>$this->input->post("deliveryID"),
 				"client_dr" =>$this->input->post("client_dr"),
 				"coff_returnDate" =>$this->input->post("date_returned"),
 				"coff_returnQty" =>$this->input->post("qty_returned"),
@@ -56,7 +57,7 @@
 			$this->SalesDelivery_model->insert_dataA($dataA);
 			$this->SalesDelivery_model->updateA($return, $dr);
 			echo "<script>alert('Item Returned!');</script>";
-			$this->index();
+			redirect('SalesDelivery', 'refresh');
 		}
 
         function insert2()
@@ -76,7 +77,7 @@
 			$dr = $this->input->post("client_dr");
 			$this->SalesDelivery_model->insert_dataB($dataB);
 			$this->SalesDelivery_model->updateB($pay, $dr);
-			$this->index();
+			redirect('SalesDelivery', 'refresh');
 		}
 
 	}

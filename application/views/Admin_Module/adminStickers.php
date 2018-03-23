@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en"> 
 
 <head>
     <meta charset="utf-8" />
@@ -342,6 +342,9 @@
                                                                         <div class="col-md-12 form-group">
                                                                             <div class="form-group label-floating">
                                                                                 <input class="form-control" type="hidden" name="deact_id" value="<?php echo $row->sticker_id; ?>" required>
+                                                                            </div>
+                                                                            <div class="form-group label-floating">
+                                                                                <input class="form-control" type="hidden" name="name" value="<?php echo $row->sticker; ?>" required>
                                                                             </div>
                                                                         </div>
                                                                     </div>

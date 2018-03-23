@@ -196,141 +196,77 @@ label {
                                         <thead>
                                             <tr>
                                                 <th><b>Date Out</b></th>
-                                                <th><b>Client</b></th>
-                                                <th><b>Grams</b></th>
-                                                <th><b>Qty/Bag</b></th>
-                                                <th><b>Total</b></th>
-                                                <th><b>Coffee A</b></th>
-                                                <th><b>Coffee B</b></th>
-                                                <th><b>Coffee C</b></th>
-                                                <th><b>Coffee D</b></th>
-                                                <th><b>Coffee E</b></th>
-                                                <th><b>Coffee F</b></th>
-                                                <th><b>Packaging</b></th>
-                                                <th><b>Type of Service</b></th>
+
+                                                <?php
+                                                    $conntitle=mysqli_connect("localhost","root","","jhcs");
+                                                    if ($conntitle->connect_error) {
+                                                        die("Connection failed: " . $conntitle->connect_error);
+                                                    } 
+                                                    $sql="SELECT * FROM raw_coffee";
+                                                    $result = $conntitle->query($sql);
+                                                    if ($result->num_rows > 0) {
+                                                        while($row = $result->fetch_assoc()) {
+                                                ?>
+                                                <th><b><?php echo $row["raw_coffee"]; ?></b></th>
+                                                <?php
+                                                    }
+                                                } else {
+                                                    echo "0 results";
+                                                }
+                                                $conntitle->close();
+                                                ?>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody>
+
+                                             <?php
+                                                    $con=mysqli_connect("localhost","root","","jhcs");
+                                                    if (mysqli_connect_errno())
+                                                      {
+                                                      echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                                                      }
+                                                    $sql="SELECT * FROM raw_coffee";
+
+                                                    if ($result=mysqli_query($con,$sql))
+                                                      {
+
+                                                      $rowcount=mysqli_num_rows($result);
+                                                      mysqli_free_result($result);
+                                                      }
+                                                      mysqli_close($con);
+
+                                                    if($get_inventoryout->num_rows() > 0){
+
+                                                        foreach($get_inventoryout -> result() as $row)
+                                                        {
+                                                ?>
                                             <tr>
-                                                <td>10/02/2017</td>
-                                                <td>Client 1</td>
-                                                <td>500</td>
-                                                <td>50</td>
-                                                <td>-25000</td>
-                                                <td>-</td>
-                                                <td>-10000</td>
-                                                <td>-2500</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-12500</td>
-                                                <td>Clear Bag</td>
-                                                <td>Retail</td>
+                                                <td><?php echo $row->transact_date; ?></td>
+                                                
+                                                <?php
+                                                for ($i = 1; $i <= $rowcount; $i++){
+                                                    $colname = "coff" . $i?>
+                                                        <td><?php echo $row->$colname; ?> </td>
+                                                <?php
+
+                                                }
+                                                
+                                                ?>
                                             </tr>
-                                            <tr>
-                                                <td>10/02/2017</td>
-                                                <td>Client 2</td>
-                                                <td>500</td>
-                                                <td>1</td>
-                                                <td>-500</td>
-                                                <td>-51</td>
-                                                <td>-376</td>
-                                                <td>-</td>
-                                                <td>-73</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>Clear Bag</td>
-                                                <td>-</td>
-                                            </tr>
-                                            <tr>
-                                                <td>10/02/2017</td>
-                                                <td>Client 3</td>
-                                                <td>500</td>
-                                                <td>2</td>
-                                                <td>-1000</td>
-                                                <td>-</td>
-                                                <td>-700</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-300</td>
-                                                <td>Clear</td>
-                                                <td>Coffee Service</td>
-                                            </tr>
-                                            <tr>
-                                                <td>10/03/2017</td>
-                                                <td>Client 4</td>
-                                                <td>250</td>
-                                                <td>6</td>
-                                                <td>-1500</td>
-                                                <td>-300</td>
-                                                <td>-1200</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>Brown Bag</td>
-                                                <td>Retail</td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Total</b></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>-351</td>
-                                                <td>-12276</td>
-                                                <td>-2500</td>
-                                                <td>-73</td>
-                                                <td>-</td>
-                                                <td>-12800</td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Ending Inventory</b></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>6649</td>
-                                                <td>1724</td>
-                                                <td>7500</td>
-                                                <td>7927</td>
-                                                <td>9000</td>
-                                                <td>2200</td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
+                                            <?php
+                                                    }
+
+                                                }
+                                                else{
+                                                ?>
+                                                    <tr>
+                                                        <td colspan = 11 style = "text-align: center;"> <h3>No clients found</h3> </td>
+                                                    </tr>
+                                                <?php
+                                                }
+
+                                                ?>
                                         </tbody>
                                     </table>
                                 </div>

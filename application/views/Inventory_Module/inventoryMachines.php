@@ -245,7 +245,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                           <tr>
                                                             <th><b>Client/Supplier</b></th>
                                                             <th><b>Date</b></th>
-                                                            <th><b>Quantity</b></th>
+                                                            <th><b>Quantity (per pc)</b></th>
                                                             <th><b>Remarks</b></th>
                                                             <th><b>Type</b></th>
                                                           </tr>
@@ -382,7 +382,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         </div>
                                                       </div>
                                                       <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-success accept">OK</button>
                                                           <button style="float: right;" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                       </div>
                                                     </div>

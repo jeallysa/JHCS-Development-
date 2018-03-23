@@ -9,7 +9,7 @@ class Receivable_model extends CI_MODEL
 	}
 
 	Public function getReceivable(){
-		$query=$this->db->query("SELECT client_company, client_balance from payment_contracted RIGHT JOIN client_delivery ON payment_contracted.client_dr = client_delivery.client_dr NATURAL JOIN contracted_client WHERE payment_contracted.client_dr IS NULL");
+		$query=$this->db->query("SELECT client_company, client_balance, client_id from payment_contracted RIGHT JOIN client_delivery ON payment_contracted.client_dr = client_delivery.client_dr NATURAL JOIN contracted_client WHERE payment_contracted.client_dr IS NULL");
 		return $query->result();
 	}
 }

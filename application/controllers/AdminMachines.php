@@ -25,17 +25,23 @@
 		{
 			$this->load->model('AdminMachines_model');
 			$data = array(
+				"mach_serial" =>$this->input->post("mach_serial"),
                 "brewer" =>$this->input->post("brewer"),
 				"brewer_type" =>$this->input->post("type"),
+				"mach_price" =>$this->input->post("price"),
 				"mach_reorder" =>$this->input->post("reorder"),
 				"mach_limit" =>$this->input->post("stocklimit"),
                 "mach_stocks" =>$this->input->post("stocks"),
                 "sup_id" =>$this->input->post("sup_company")
         
 			);
+			$brewer = $this->input->post("brewer");
+			$type = $this->input->post("type");
+			$this->AdminMachines_model->activity_logs('admin', "Inserted: '".$brewer.", ".$type."'");
 			$data = $this->security->xss_clean($data);
 			$this->AdminMachines_model->insert_data($data);
-			$this->index();
+			echo "<script>alert('Update successful!');</script>";
+			redirect('adminMachines', 'refresh');
 		}
 
 		function update(){
@@ -55,12 +61,19 @@
 		}
 
         function activation(){
-			
 			$this->load->model('AdminMachines_model');
 			$id = $this->input->post("deact_id");
-			$this->AdminMachines_model->activation($id);
-			redirect('adminMachines');
-
+			$brewer = $this->input->post("brewer");
+			$type = $this->input->post("type");
+			if ($id == 1){
+				$this->AdminMachines_model->activity_logs('admin', "Activated: '".$brewer.", ".$type."'");
+				$this->AdminMachines_model->activation($id);
+				redirect('adminMachines');
+			}else{	
+				$this->AdminMachines_model->activity_logs('admin', "Deactivated: '".$brewer.", ".$type."'");
+				$this->AdminMachines_model->activation($id);
+				redirect('adminMachines');
+			}
 		}
 	}
 ?>

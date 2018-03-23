@@ -32,7 +32,7 @@
 			$sup_id = $this->input->post("sup_company");
 			$this->AdminProductInventory_model->update($id, $name, $reorder, $stocks, $stocklimit, $sup_id);
             echo "<script>alert('Update successful!');</script>";
-			redirect('adminProductInventory');
+			redirect('adminProductInventory', 'refresh');
 		}
         
         function insert()
@@ -48,7 +48,8 @@
 			);
 			$data = $this->security->xss_clean($data);
 			$this->AdminProductInventory_model->insert_data($data);
-			$this->index();
+			echo "<script>alert('Update successful!');</script>";
+			redirect('adminProductInventory', 'refresh');
 		}
 
 		function activation(){

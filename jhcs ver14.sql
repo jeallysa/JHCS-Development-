@@ -84,9 +84,10 @@ CREATE TABLE `client_coffreturn` (
   `coff_returnQty` int(11) NOT NULL,
   `coff_remarks` varchar(50) NOT NULL,
   `coff_returnAction` varchar(50) NOT NULL,
-  `returned` enum('Yes','No') NOT NULL DEFAULT 'No',
+  `resolved` enum('Yes','No') NOT NULL DEFAULT 'No',
+  `client_deliveryID` int(11) DEFAULT NULL,
   PRIMARY KEY (`client_coffReturnID`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,7 +96,7 @@ CREATE TABLE `client_coffreturn` (
 
 LOCK TABLES `client_coffreturn` WRITE;
 /*!40000 ALTER TABLE `client_coffreturn` DISABLE KEYS */;
-INSERT INTO `client_coffreturn` VALUES (1,'dr123','2018-02-28',100,'damaged','sample','Yes'),(2,'dr124','2018-02-19',100,'spoiled','redeliver','Yes'),(5,'dr124','2018-03-16',10,'dirty','','No'),(8,'dr125','2018-03-09',100,'spoilage','','No');
+INSERT INTO `client_coffreturn` VALUES (9,'dr1q1','2018-03-14',100,'kulang','','No',18),(10,'dr222','2018-03-29',200,'Damaged','','No',16),(11,'dr362','2018-03-23',120,'Spoiled','','No',19);
 /*!40000 ALTER TABLE `client_coffreturn` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -119,7 +120,7 @@ CREATE TABLE `client_delivery` (
   `return` varchar(10) NOT NULL DEFAULT 'No',
   PRIMARY KEY (`client_deliveryID`),
   UNIQUE KEY `client_dr` (`client_dr`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -128,7 +129,7 @@ CREATE TABLE `client_delivery` (
 
 LOCK TABLES `client_delivery` WRITE;
 /*!40000 ALTER TABLE `client_delivery` DISABLE KEYS */;
-INSERT INTO `client_delivery` VALUES (1,1,'dr123','233','2018-02-13',10000,'Mark De Vera',1,'paid','No'),(2,2,'dr124','234','2018-02-12',13000,'Leah Ramos',2,'unpaid','Yes'),(3,3,'dr125','235','2018-03-09',10000,'Henry Gumabay',3,'unpaid','Yes'),(4,4,'dr126','236','2018-03-16',12000,'Jenny Go',4,'paid','No'),(13,5,'dr555','si555','2018-03-05',35000,'Johny Bravo',1,'unpaid','No'),(15,7,'dr666','si666','2018-03-05',140000,'Avy Dimakulangan',3,'paid','No'),(16,8,'dr222','si222','2018-02-26',255000,'Leni Roberto',4,'unpaid','No');
+INSERT INTO `client_delivery` VALUES (1,1,'dr123','233','2018-02-13',10000,'Mark De Vera',1,'paid','No'),(2,2,'dr124','234','2018-02-12',13000,'Leah Ramos',2,'unpaid','Yes'),(3,3,'dr125','235','2018-03-09',10000,'Henry Gumabay',3,'unpaid','Yes'),(4,4,'dr126','236','2018-03-16',12000,'Jenny Go',4,'paid','No'),(13,5,'dr555','si555','2018-03-05',35000,'Johny Bravo',1,'unpaid','No'),(15,7,'dr666','si666','2018-03-05',140000,'Avy Dimakulangan',3,'paid','No'),(16,8,'dr222','si222','2018-02-26',255000,'Leni Roberto',4,'unpaid','Yes'),(18,9,'dr1q1','sikkk','2018-03-05',61500,'aeneid',2,'unpaid','Yes'),(19,10,'dr362','si953','2018-03-29',3075,'Jan June',2,'unpaid','Yes'),(20,11,'dr623','si000','2018-03-31',256250,'Den Fad',1,'unpaid','No');
 /*!40000 ALTER TABLE `client_delivery` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -306,7 +307,7 @@ CREATE TABLE `contracted_client` (
 
 LOCK TABLES `contracted_client` WRITE;
 /*!40000 ALTER TABLE `contracted_client` DISABLE KEYS */;
-INSERT INTO `contracted_client` VALUES (1,'Eurotel','Amagan','Jesselyn','General Manager','jesselyn22@gmail.com','#118 Liwanag Loakan, Baguio City','09176253445','Retail',1),(2,'De Vera Inn','Calpito','Annyssa','Manager','maecalpito@gmail.com','#52 Green Valley, Baguio City','0962736554','Coffee Service',1),(3,'Bloomfield Hotel','Andrew','Garcia','manager','bloom@gmail.com','Mabini Street, Baguio City','09678543778','Retail',0),(4,'TrueBlends','Ally','Benjamin','CEO','trueb@yahoo.com','Bonifacio Rd, Baguio City','09568798767','Coffee Service',0);
+INSERT INTO `contracted_client` VALUES (1,'Eurotel','Amagan','Jesselyn','General Manager','jesselyn22@gmail.com','#118 Liwanag Loakan, Baguio City','09176253445','Retail',1),(2,'De Vera Inn','Calpito','Annyssa','Manager','maecalpito@gmail.com','#52 Green Valley, Baguio City','0962736554','Coffee Service',1),(3,'Bloomfield Hotel','Andrew','Garcia','manager','bloom@gmail.com','Mabini Street, Baguio City','09678543778','Retail',1),(4,'TrueBlends','Ally','Benjamin','CEO','trueb@yahoo.com','Bonifacio Rd, Baguio City','09568798767','Coffee Service',1);
 /*!40000 ALTER TABLE `contracted_client` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -326,7 +327,7 @@ CREATE TABLE `contracted_po` (
   `contractPO_qty` int(11) NOT NULL,
   `delivery_stat` varchar(20) NOT NULL DEFAULT 'pending',
   PRIMARY KEY (`contractPO_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -335,7 +336,7 @@ CREATE TABLE `contracted_po` (
 
 LOCK TABLES `contracted_po` WRITE;
 /*!40000 ALTER TABLE `contracted_po` DISABLE KEYS */;
-INSERT INTO `contracted_po` VALUES (1,1,1,1,'2018-02-14',300,'delivered'),(2,2,2,2,'2018-02-08',300,'delivered'),(3,3,6,1,'2018-03-04',200,'delivered'),(4,4,7,1,'2018-03-14',300,'delivered'),(5,1,6,1,'2018-03-06',100,'delivered'),(7,3,6,1,'2018-03-07',400,'delivered'),(8,4,7,1,'2018-03-16',300,'delivered');
+INSERT INTO `contracted_po` VALUES (1,1,1,1,'2018-02-14',300,'delivered'),(2,2,2,2,'2018-02-08',300,'delivered'),(3,3,6,1,'2018-03-04',200,'delivered'),(4,4,7,1,'2018-03-14',300,'delivered'),(5,1,6,1,'2018-03-06',100,'delivered'),(7,3,6,1,'2018-03-07',400,'delivered'),(8,4,7,1,'2018-03-16',300,'delivered'),(9,2,2,NULL,'2018-03-12',100,'delivered'),(10,2,2,NULL,'2018-03-13',5,'delivered'),(11,1,1,NULL,'2018-03-29',250,'delivered');
 /*!40000 ALTER TABLE `contracted_po` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -349,11 +350,11 @@ DROP TABLE IF EXISTS `inv_transact`;
 CREATE TABLE `inv_transact` (
   `trans_id` int(11) NOT NULL AUTO_INCREMENT,
   `transact_date` date NOT NULL,
-  `supplier_id` int(11) NOT NULL,
-  PRIMARY KEY (`trans_id`),
-  KEY `sup_inv_idx` (`supplier_id`),
-  CONSTRAINT `sup_inv` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`sup_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+  `po_client` int(11) DEFAULT NULL,
+  `po_supplier` int(11) DEFAULT NULL,
+  `type` varchar(45) NOT NULL DEFAULT 'IN',
+  PRIMARY KEY (`trans_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -362,7 +363,7 @@ CREATE TABLE `inv_transact` (
 
 LOCK TABLES `inv_transact` WRITE;
 /*!40000 ALTER TABLE `inv_transact` DISABLE KEYS */;
-INSERT INTO `inv_transact` VALUES (1,'2017-01-10',1),(2,'2017-02-02',2),(3,'2017-06-07',1),(4,'2017-12-12',2),(5,'2018-01-18',2),(6,'2018-01-31',1),(7,'2018-02-06',2),(8,'2018-10-10',1),(9,'2019-01-01',2);
+INSERT INTO `inv_transact` VALUES (1,'2017-01-10',1,NULL,'IN'),(2,'2017-02-02',2,NULL,'IN'),(3,'2017-06-07',1,NULL,'IN'),(4,'2017-12-12',2,NULL,'IN'),(5,'2018-01-18',2,NULL,'IN'),(6,'2018-01-31',1,NULL,'IN'),(7,'2018-02-06',2,NULL,'IN'),(8,'2018-10-10',1,NULL,'IN'),(9,'2019-01-01',2,NULL,'IN'),(11,'2019-01-01',NULL,NULL,'OUT'),(12,'2018-03-22',NULL,NULL,'OUT');
 /*!40000 ALTER TABLE `inv_transact` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -415,7 +416,7 @@ CREATE TABLE `machine` (
   `sup_id` varchar(11) NOT NULL,
   `mach_activation` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`mach_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -483,7 +484,7 @@ CREATE TABLE `packaging` (
 
 LOCK TABLES `packaging` WRITE;
 /*!40000 ALTER TABLE `packaging` DISABLE KEYS */;
-INSERT INTO `packaging` VALUES (1,'clear','1000',50,200,60,12,1,1,'clear bag 1000'),(2,'clear','500',50,200,70,23,2,1,'clear bag 500'),(3,'clear','250',50,200,90,12,1,1,'clear bag 250'),(4,'brown','1000',50,200,102,32,2,1,'brown bag 1000'),(5,'brown','500',50,200,95,12,1,1,'brown bag 500'),(6,'brown','250',50,200,145,12,2,1,'brown bag 250');
+INSERT INTO `packaging` VALUES (1,'clear','1000',50,200,60,12,1,1,'clear bag 1000'),(2,'clear','500',50,200,70,23,2,1,'clear bag 500'),(3,'clear','250',50,200,90,12,1,1,'clear bag 250'),(4,'brown','1000',50,200,102,32,2,1,'brown bag 1000'),(5,'brown','500',50,200,95,12,1,1,'brown bag 500'),(6,'brown','250',50,200,139,12,2,1,'brown bag 250');
 /*!40000 ALTER TABLE `packaging` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -504,7 +505,7 @@ CREATE TABLE `payment_contracted` (
   `withheld` int(11) NOT NULL,
   `remarks` varchar(20) NOT NULL,
   PRIMARY KEY (`paid_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -600,7 +601,7 @@ CREATE TABLE `raw_coffee` (
 
 LOCK TABLES `raw_coffee` WRITE;
 /*!40000 ALTER TABLE `raw_coffee` DISABLE KEYS */;
-INSERT INTO `raw_coffee` VALUES (1,'GUATEMALA',5000,10000,79300,80,1,0),(2,'SUMATRA',3200,7001,8000,70,2,1),(3,'ROBUSTA',1000,8500,500,60,2,1),(4,'BENGUET',1500,9000,3000,80,1,1),(5,'COLOMBIA',2000,10000,801,90,1,1),(6,'BARAKO',2500,10500,8000,76,1,1);
+INSERT INTO `raw_coffee` VALUES (1,'GUATEMALA',5000,10000,77600,80,1,1),(2,'SUMATRA',3200,7001,7600,70,2,1),(3,'ROBUSTA',1000,8500,500,60,2,1),(4,'BENGUET',1500,9000,-900,80,1,1),(5,'COLOMBIA',2000,10000,-6999,90,1,1),(6,'BARAKO',2500,10500,6800,76,1,1);
 /*!40000 ALTER TABLE `raw_coffee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -645,11 +646,11 @@ CREATE TABLE `sample` (
   `sample_date` date DEFAULT NULL,
   `sample_recipient` varchar(50) NOT NULL,
   `sample_type` varchar(50) NOT NULL,
-  `client_coffReturnID` int(11) NOT NULL,
+  `client_coffReturnID` int(11) DEFAULT NULL,
   `package_id` int(11) NOT NULL,
   `sticker_id` int(11) NOT NULL,
   PRIMARY KEY (`sample_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -658,7 +659,7 @@ CREATE TABLE `sample` (
 
 LOCK TABLES `sample` WRITE;
 /*!40000 ALTER TABLE `sample` DISABLE KEYS */;
-INSERT INTO `sample` VALUES (1,'2018-02-21','Walkin Client','freebies',1,4,1),(2,'2018-02-22','The Manor','free taste',2,5,2);
+INSERT INTO `sample` VALUES (1,'2018-02-21','Walkin Client','freebies',1,4,1),(2,'2018-02-22','The Manor','free taste',NULL,5,2),(3,'2018-03-21','sfdasd','sadad',NULL,3,1);
 /*!40000 ALTER TABLE `sample` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -708,7 +709,7 @@ CREATE TABLE `supp_delivery` (
   `yields` double NOT NULL,
   `received_by` varchar(45) NOT NULL,
   PRIMARY KEY (`supp_delivery_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -717,6 +718,7 @@ CREATE TABLE `supp_delivery` (
 
 LOCK TABLES `supp_delivery` WRITE;
 /*!40000 ALTER TABLE `supp_delivery` DISABLE KEYS */;
+INSERT INTO `supp_delivery` VALUES (11,22,12,'2018-03-21',5,0,'Jomari Julhusin'),(12,23,13,'2018-03-21',100,0,'Tin Caguioa'),(13,24,14,'2018-03-21',56,0,'Tin Caguioa'),(14,25,15,'2018-03-21',6399,0,'Tin Caguioa');
 /*!40000 ALTER TABLE `supp_delivery` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -739,7 +741,7 @@ CREATE TABLE `supp_po` (
   `payment_stat` varchar(45) DEFAULT '0',
   `payment` decimal(11,0) DEFAULT NULL,
   PRIMARY KEY (`supp_po_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -748,6 +750,7 @@ CREATE TABLE `supp_po` (
 
 LOCK TABLES `supp_po` WRITE;
 /*!40000 ALTER TABLE `supp_po` DISABLE KEYS */;
+INSERT INTO `supp_po` VALUES (12,1,'2018-03-20',69,'21',0,0,'1','0',NULL),(13,1,'2018-03-21',4343,'30',0,0,'1','0',NULL),(14,1,'2018-03-21',55,'12',0,0,'1','0',NULL),(15,1,'2018-03-21',12,'30',0,0,'1','0',NULL);
 /*!40000 ALTER TABLE `supp_po` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -769,7 +772,7 @@ CREATE TABLE `supp_po_ordered` (
   `payment_stat` varchar(45) DEFAULT '0',
   `payment` decimal(11,0) DEFAULT NULL,
   PRIMARY KEY (`supp_po_ordered_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -778,6 +781,7 @@ CREATE TABLE `supp_po_ordered` (
 
 LOCK TABLES `supp_po_ordered` WRITE;
 /*!40000 ALTER TABLE `supp_po_ordered` DISABLE KEYS */;
+INSERT INTO `supp_po_ordered` VALUES (22,12,'Double Cup Espresso',5,0,'Type','1','0',NULL),(23,13,'clear bag 1000',100,0,'Type','1','0',NULL),(24,14,'Marios',56,0,'Type','1','0',NULL),(25,15,'COLOMBIA',6399,0,'Type','1','0',NULL);
 /*!40000 ALTER TABLE `supp_po_ordered` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -900,6 +904,37 @@ INSERT INTO `supplier_po` VALUES (1,1,'2018-02-21',10000,50,'30 days',1,5050,'pe
 UNLOCK TABLES;
 
 --
+-- Table structure for table `trans_mach`
+--
+
+DROP TABLE IF EXISTS `trans_mach`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `trans_mach` (
+  `tmach_id` int(11) NOT NULL AUTO_INCREMENT,
+  `mach_id` int(11) DEFAULT NULL,
+  `trans_id` int(11) NOT NULL,
+  `quantity` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`tmach_id`),
+  KEY `mach_trans_idx` (`mach_id`),
+  KEY `mach_to_mtm_idx` (`mach_id`),
+  KEY `mach_trans_idx1` (`trans_id`),
+  CONSTRAINT `mach_trans` FOREIGN KEY (`trans_id`) REFERENCES `inv_transact` (`trans_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `mach_trans2` FOREIGN KEY (`mach_id`) REFERENCES `machine` (`mach_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `trans_mach`
+--
+
+LOCK TABLES `trans_mach` WRITE;
+/*!40000 ALTER TABLE `trans_mach` DISABLE KEYS */;
+INSERT INTO `trans_mach` VALUES (1,1,1,'2'),(2,1,2,'5'),(3,1,3,'3'),(4,1,4,'4'),(5,1,5,'2'),(6,1,6,'5'),(7,1,7,'3'),(8,1,8,'1');
+/*!40000 ALTER TABLE `trans_mach` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `trans_pack`
 --
 
@@ -909,14 +944,12 @@ DROP TABLE IF EXISTS `trans_pack`;
 CREATE TABLE `trans_pack` (
   `tp_id` int(11) NOT NULL AUTO_INCREMENT,
   `trans_id` int(11) NOT NULL,
-  `package_id` int(11) NOT NULL,
+  `package_id` int(11) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL,
   PRIMARY KEY (`tp_id`),
   KEY `t_pack_idx` (`package_id`),
-  KEY `t_pack_transact_idx` (`trans_id`),
-  CONSTRAINT `t_pack` FOREIGN KEY (`package_id`) REFERENCES `packaging` (`package_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `t_pack_transact` FOREIGN KEY (`trans_id`) REFERENCES `inv_transact` (`trans_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+  KEY `t_pack_transact_idx` (`trans_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -925,7 +958,7 @@ CREATE TABLE `trans_pack` (
 
 LOCK TABLES `trans_pack` WRITE;
 /*!40000 ALTER TABLE `trans_pack` DISABLE KEYS */;
-INSERT INTO `trans_pack` VALUES (1,1,2,200),(2,1,3,300),(3,1,4,600),(4,1,6,100),(5,2,1,450),(6,2,3,800),(7,3,2,650),(8,4,2,700),(9,5,3,200),(10,5,4,350),(11,6,1,400),(12,6,5,500),(13,6,6,500),(14,7,1,100),(15,8,1,100),(16,9,6,200);
+INSERT INTO `trans_pack` VALUES (1,1,2,200),(2,1,3,300),(3,1,4,600),(4,1,6,100),(5,2,1,450),(6,2,3,800),(7,3,2,650),(8,4,2,700),(9,5,3,200),(10,5,4,350),(11,6,1,400),(12,6,5,500),(13,6,6,500),(14,7,1,100),(15,8,1,100),(16,9,6,200),(17,11,6,2),(18,12,6,2);
 /*!40000 ALTER TABLE `trans_pack` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -939,14 +972,12 @@ DROP TABLE IF EXISTS `trans_raw`;
 CREATE TABLE `trans_raw` (
   `tr_id` int(11) NOT NULL AUTO_INCREMENT,
   `trans_id` int(11) NOT NULL,
-  `raw_coffeeid` int(11) NOT NULL,
+  `raw_coffeeid` int(11) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL,
   PRIMARY KEY (`tr_id`),
   KEY `transact_idx` (`trans_id`),
-  KEY `raw_idx` (`raw_coffeeid`),
-  CONSTRAINT `t_raw` FOREIGN KEY (`raw_coffeeid`) REFERENCES `raw_coffee` (`raw_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `t_transact` FOREIGN KEY (`trans_id`) REFERENCES `inv_transact` (`trans_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+  KEY `raw_idx` (`raw_coffeeid`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -955,8 +986,36 @@ CREATE TABLE `trans_raw` (
 
 LOCK TABLES `trans_raw` WRITE;
 /*!40000 ALTER TABLE `trans_raw` DISABLE KEYS */;
-INSERT INTO `trans_raw` VALUES (1,1,1,2000),(2,1,2,4300),(3,1,5,4500),(4,2,4,10000),(5,2,6,12000),(7,3,1,8000),(8,3,3,5000),(9,3,4,15000),(10,4,2,1200),(11,4,4,14000),(12,4,6,12000),(14,5,4,8500),(15,6,6,8100),(18,7,1,5000),(19,8,1,5000),(20,8,5,1000),(21,9,1,NULL);
+INSERT INTO `trans_raw` VALUES (1,1,1,2000),(2,1,2,4300),(3,1,5,4500),(4,2,4,10000),(5,2,6,12000),(7,3,1,8000),(8,3,3,5000),(9,3,4,15000),(10,4,2,1200),(11,4,4,14000),(12,4,6,12000),(14,5,4,8500),(15,6,6,8100),(18,7,1,5000),(19,8,1,5000),(20,8,5,1000),(21,9,1,NULL),(22,11,1,50),(23,11,4,150),(24,11,5,300),(25,12,1,50),(26,12,4,150),(27,12,5,300);
 /*!40000 ALTER TABLE `trans_raw` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `trans_stick`
+--
+
+DROP TABLE IF EXISTS `trans_stick`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `trans_stick` (
+  `tstick_id` int(11) NOT NULL AUTO_INCREMENT,
+  `sticker_id` int(11) DEFAULT NULL,
+  `trans_id` int(11) NOT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  PRIMARY KEY (`tstick_id`),
+  KEY `stick_trans_idx` (`sticker_id`),
+  KEY `stick_trans2_idx` (`trans_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `trans_stick`
+--
+
+LOCK TABLES `trans_stick` WRITE;
+/*!40000 ALTER TABLE `trans_stick` DISABLE KEYS */;
+INSERT INTO `trans_stick` VALUES (1,1,1,100),(2,2,2,50),(3,1,3,30),(4,1,4,110),(5,2,5,20),(6,1,6,150),(7,2,7,100),(8,2,8,200),(9,NULL,11,NULL),(10,NULL,12,NULL);
+/*!40000 ALTER TABLE `trans_stick` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1031,10 +1090,8 @@ CREATE TABLE `walkin_raw` (
   `amount` int(11) NOT NULL,
   PRIMARY KEY (`wiraw_id`),
   KEY `raw_wiraw_idx` (`raw_id`),
-  KEY `walk_wiraw_idx` (`walkin_id`),
-  CONSTRAINT `raw_wiraw` FOREIGN KEY (`raw_id`) REFERENCES `raw_coffee` (`raw_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `walk_wiraw` FOREIGN KEY (`walkin_id`) REFERENCES `walkin_sales` (`walkin_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+  KEY `walk_wiraw_idx` (`walkin_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1043,7 +1100,7 @@ CREATE TABLE `walkin_raw` (
 
 LOCK TABLES `walkin_raw` WRITE;
 /*!40000 ALTER TABLE `walkin_raw` DISABLE KEYS */;
-INSERT INTO `walkin_raw` VALUES (1,43,1,100),(2,43,4,300),(3,43,5,600),(4,44,1,100),(5,44,4,300),(6,44,5,600),(7,45,1,200),(8,45,4,600),(9,45,5,1200);
+INSERT INTO `walkin_raw` VALUES (10,46,1,1200),(11,46,4,3600),(12,46,5,7200),(13,47,1,400),(14,47,2,400),(15,47,6,1200);
 /*!40000 ALTER TABLE `walkin_raw` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1056,14 +1113,12 @@ DROP TABLE IF EXISTS `walkin_sales`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `walkin_sales` (
   `walkin_id` int(11) NOT NULL AUTO_INCREMENT,
-  `walkin_fname` varchar(50) NOT NULL,
-  `walkin_lname` varchar(50) NOT NULL,
   `walkin_date` date NOT NULL,
   `walkin_qty` int(11) NOT NULL,
   `blend_id` int(11) NOT NULL,
   `sticker_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`walkin_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1072,7 +1127,7 @@ CREATE TABLE `walkin_sales` (
 
 LOCK TABLES `walkin_sales` WRITE;
 /*!40000 ALTER TABLE `walkin_sales` DISABLE KEYS */;
-INSERT INTO `walkin_sales` VALUES (1,'Michael','Torres','2018-02-15',2,2,1),(2,'Alcantara','Danica','2018-02-15',3,3,2),(43,'','','2018-03-20',2,2,NULL),(44,'','','2018-03-20',1,1,NULL),(45,'','','2018-03-20',2,1,NULL);
+INSERT INTO `walkin_sales` VALUES (1,'2018-02-15',2,2,1),(2,'2018-02-15',3,3,2),(46,'2018-03-21',12,1,NULL),(47,'2018-03-21',2,10,NULL),(50,'2018-03-22',2,3,NULL),(51,'2018-03-22',2,3,NULL);
 /*!40000 ALTER TABLE `walkin_sales` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1093,4 +1148,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-21  3:37:40
+-- Dump completed on 2018-03-23  0:04:59

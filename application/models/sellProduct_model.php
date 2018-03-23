@@ -36,7 +36,7 @@ class sellProduct_model extends CI_MODEL
 
 
 	function record_data($date, $quantity, $blend_id){
-		$query = $this->db->query('SELECT c.percentage, c.raw_id, d.package_size FROM coffee_blend b JOIN proportions c JOIN packaging d ON b.blend_id = c.blend_id AND b.package_id = d.package_id WHERE c.blend_id ='.$blend_id.';');		
+		$query = $this->db->query('SELECT c.percentage, c.raw_id, d.package_id, d.package_size FROM coffee_blend b JOIN proportions c JOIN packaging d ON b.blend_id = c.blend_id AND b.package_id = d.package_id WHERE c.blend_id ='.$blend_id.';');		
 		$data = array(
 			'walkin_date' => $date,
 			'walkin_qty' => $quantity,
@@ -45,21 +45,45 @@ class sellProduct_model extends CI_MODEL
 
 		$this->db->insert('walkin_sales', $data);
 		$inserted_id = $this->db->insert_id();
+
+		$ret = $query->row();
+		$pack_id = $ret->package_id;
+		//$stick_id = $ret->sticker_id;
+		$this->db->query('UPDATE packaging SET package_stock = package_stock - '.$quantity.' WHERE package_id ='.$pack_id.';');
+		//$this->db->query('UPDATE sticker SET sticker_stock = sticker_stock - '.$quantity.' WHERE sticker_id ='.$sticker_id.';');
+		$data_trans = array(
+					'transact_date' => $date,
+		        	'type' => "OUT"
+		);
+		$this->db->insert('inv_transact', $data_trans);
+		$trans_id = $this->db->insert_id();
 		
 		foreach ($query->result() as $row)
 		{
+
 		        $raw_guide = $row->raw_id;
 		        $percentage = $row->percentage;
 		        $package = $row->package_size;
 		        $this->db->query('UPDATE raw_coffee SET raw_stock = raw_stock - '.$quantity*($package*($percentage * 0.01)).' WHERE raw_id ='.$raw_guide.';'); 
+		        
 		        $data_for = array(
-		        	'walkin_id' => $inserted_id,
-		        	'raw_id' => $raw_guide,
-		        	'amount' => $quantity*($package*($percentage * 0.01))
+		        	'trans_id' => $trans_id,
+		        	'raw_coffeeid' => $raw_guide,
+		        	'quantity' => $quantity*($package*($percentage * 0.01))
 		        );
-		        $this->db->insert('walkin_raw', $data_for);
+		        $this->db->insert('trans_raw', $data_for);
+		        
 		            
 		}
+
+		$data_pack = array(
+		        	'trans_id' => $trans_id,
+		        	'package_id' => $pack_id,
+		        	'quantity' => $quantity
+		);
+		$this->db->insert('trans_pack', $data_pack);
+		$this->db->query('INSERT INTO trans_stick (trans_id) VALUES ('.$trans_id.')');
+		$this->db->query('INSERT INTO trans_mach (trans_id) VALUES ('.$trans_id.')');
 
 		
 	}

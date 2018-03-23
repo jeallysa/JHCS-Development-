@@ -302,7 +302,9 @@
                                             <div class="form-group">
                                                 <label class="col-md-6 control">Sales Invoice No. :</label>
                                                 <div class="col-md-5">
-                                                    <input id="" name="invoice" type="text" class="form-control">
+                                                    <input id="" name="invoice" type="text" class="form-control" required>
+                                                   
+													
                                                 </div>
                                             </div>
                                         </div>
@@ -316,8 +318,8 @@
                                         </div>
                                     </div>
                                     <div class="panel-footer" align="center">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-success">Save</button>
+                                        <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                                        <button type="submit" class="btn btn-success">Save Delivery</button>
                                     </div>
                             </form>
                         </div>
@@ -401,6 +403,7 @@
                                                                     <div class="form-group label-floating">
                                                                         <label for="email">Remarks:</label>
                                                                         <input class="form-control" type="text" name="remarks">
+																		 <input name="deliveryID" type="hidden" class="form-control" value="<?php echo $row2->client_deliveryID; ?>" >
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -439,14 +442,14 @@
                                                                 <div class="col-md-8">
                                                                     <div class="form-group label-floating">
                                                                         <label for="email">Date Paid:</label>
-                                                                        <input class="form-control" type="date" name="date_paid">
+                                                                        <input class="form-control" type="date" name="date_paid" required>
                                                                         <input class="form-control" type="hidden" name="client_dr" value="<?php echo $row2->client_dr; ?>" required>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-4">
                                                                     <div class="form-group label-floating">
                                                                         <label for="email">Collection Receipt No.:</label>
-                                                                        <input class="form-control" type="text" name="cr">
+                                                                        <input class="form-control" type="text" name="cr" required>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -454,7 +457,7 @@
                                                                 <div class="col-md-5">
                                                                     <div class="form-group label-floating">
                                                                         <label>Amount:</label>
-                                                                        <input class="form-control" type="number" name="amount">
+                                                                        <input class="form-control" type="number" name="amount" max="<?php echo $amount; ?>" required>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-5">
@@ -529,9 +532,9 @@
                 <td><?php echo $row->client_company; ?></td>
                 <td><?php echo $row->payment_mode; ?></td>
                 <td><?php echo $row->paid_date; ?></td>
-                <td><?php echo $row->paid_amount; ?></td>
-                <td><?php echo $row->client_balance; ?></td>
-                <td><?php echo $row->withheld; ?></td>
+                <td><?php echo 'Php '.number_format($row->paid_amount,2); ?></td>
+                <td><?php echo 'Php '.number_format($row->client_balance,2); ?></td>
+                <td><?php echo 'Php '.number_format($row->withheld,2); ?></td>
                 <td><?php echo $row->payment_remarks; ?></td>
             </tr>
             <?php 

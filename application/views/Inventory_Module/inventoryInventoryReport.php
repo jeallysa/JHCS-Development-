@@ -199,7 +199,6 @@ input {
                                             <tr>
                                                 <th><b>D.R. No.</b></th>
                                                 <th><b>Date In</b></th>
-                                                <th><b>Supplier</b></th>
                                                 <?php
                                                     $conntitle=mysqli_connect("localhost","root","","jhcs");
                                                     if ($conntitle->connect_error) {
@@ -246,8 +245,11 @@ input {
                                             <tr>
                                                 <td>DR-<?php echo $row->dr_no; ?></td>
                                                 <td><?php echo $row->transact_date; ?></td>
+<<<<<<< HEAD
 
                                                 <td>Supplier 1</td>
+=======
+>>>>>>> c9fa05be48c5f3638c8f390044752fa50b294c8f
                                                 
                                                 <?php
                                                 for ($i = 1; $i <= $rowcount; $i++){

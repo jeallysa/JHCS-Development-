@@ -242,7 +242,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                           <tr>
                                                             <th><b>Client</b></th>
                                                             <th><b>Date</b></th>
-                                                            <th><b>Quantity</b></th>
+                                                            <th><b>Quantity (per pc)</b></th>
                                                             <th><b>Remarks</b></th>
                                                             <th><b>Type</b></th>
                                                           </tr>
@@ -256,7 +256,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                            echo '<tr>' ,
                                                 '<td>'  . $object->customer  . '</td>' ,
                                                 '<td>'  . $object->walkin_date  . '</td>' ,
-                                                '<td>'  . $object->walkin_qty  . ' pc/s</td>' ;
+                                                '<td>'  . $object->walkin_qty  . ' </td>' ;
                                                 ?>
                                                     <td>Walkin Sales</td>
                                                     <td>OUT</td>
@@ -274,7 +274,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                            echo '<tr>' ,
                                                 '<td>'  . $object->client_company  . '</td>' ,
                                                 '<td>'  . $object->contractPO_date  . '</td>' ,
-                                                '<td>'  . $object->contractPO_qty  . ' pc/s</td>' ;
+                                                '<td>'  . $object->contractPO_qty  . ' </td>' ;
                                                 ?>
                                                     <td>Sales</td>
                                                     <td>OUT</td>
@@ -302,23 +302,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             }
                                         ?> 
 
-                                        <?php
-                                              $retrieveDetails4 ="SELECT * FROM jhcs.client_coffreturn NATURAL JOIN jhcs.client_delivery NATURAL JOIN jhcs.contracted_client WHERE blend_id = '$row->blend_id';" ;
-                                              $query = $this->db->query($retrieveDetails4);
-                                              if ($query->num_rows() > 0) {
-                                              foreach ($query->result() as $object) {
-                                           echo '<tr>' ,
-                                                '<td>'  . $object->client_company  . '</td>' ,
-                                                '<td>'  . $object->coff_returnDate  . '</td>' ,
-                                                '<td>'  . $object->coff_returnQty  . '</td>' ;
-                                                ?>
-                                                    <td>Client Returns</td>
-                                                    <td>IN</td>
-                                                 <?php   
-                                                '</tr>' ;
-                                              }
-                                            }
-                                        ?> 
+                                        
                                                     </tbody>
                                                       </table>
                                                         </div>
