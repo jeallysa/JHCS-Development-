@@ -20,7 +20,10 @@
 		}
 		public function salesClientsInfo()
 		{
-			$this->load->view('Sales_Module/salesClientsInfo');
+			$id = $this->input->get('id');
+			$this->load->model('SalesClients_model');
+			$data["cli_data"] = $this->SalesClients_model->load_POClient($id);
+			$this->load->view('Sales_Module/salesClientsInfo', $data);
 		}
 		public function salesContract()
 		{
