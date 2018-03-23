@@ -8,34 +8,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <head>
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url(); ?>assets/img/apple-icon.png"/>
-    <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/img/favicon.png" >
+    <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/img/favicon.png"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>Inventory Report</title>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/dataTables.bootstrap.min.css"/>
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.dataTable.min.css"/>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-datepicker3.min.css">
     <!--  Material Dashboard CSS    -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0"/>
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/demo.css"/>
     <!--     Fonts and icons     -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-    <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' type='text/css'>
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' type='text/css'>
+    <link rel="shortcut icon" href="favicon.ico">
 </head>
 
 <style type="text/css">
+label,
+input {
+    color: black;
+}
 
 .title {
     font-size: large;
 
-}
-
-label {
-    color: black;
 }
 </style>
 
@@ -167,16 +167,16 @@ label {
                                                 <span class="nav-tabs-title"> </span>
                                                 <ul class="nav nav-tabs" data-tabs="tabs">
                                                     <span></span>
-                                                    <li>
+                                                    <li class="">
                                                         <a href="<?php echo base_url(); ?>inventoryInventoryReport">
-                                                            <i class="material-icons">call_received</i>Date In
+                                                            Date In
                                                             <div class="ripple-container"></div>
                                                         </a>
                                                     </li>
                                                     <span></span>
                                                     <li class="active">
                                                         <a href="<?php echo base_url(); ?>inventoryInventoryReport2">
-                                                            <i class="material-icons">call_made</i>Date Out
+                                                            Date Out
                                                             <div class="ripple-container"></div>
                                                         </a>
                                                     </li>
@@ -185,14 +185,20 @@ label {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-content">
-                                      <label>Set Date from </label>
-                                        <input type="date" name="">
-                                        <label> to </label>
-                                        <input type="date" name=""><br><br>
-                                    <hr>
-                                    <h4>Generate Inventory  Report</h4>
-                                    <table id="example" class="table hover order-column" cellspacing="0" width="100%">
+                        <div class="card-content">
+                            <div class="row">
+                                <div class="card-content table-responsive">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
+                                    <h4><b>COFFEE</b></h4></div>
+                                      <div class="form-group col-xs-3">
+                                    <label>Filter By:</label>
+                                        <div class="input-group input-daterange">
+                                            <input type="text" id="min" class="form-control" value="2000-01-01" >
+                                            <span class="input-group-addon">to</span>
+                                            <input type="text" id="max" class="form-control" value="<?php   echo date("Y-m-d") ?>" >
+                                        </div>
+                                    </div>
+                                    <table id="table-mutasi" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
                                                 <th><b>Date Out</b></th>
@@ -236,9 +242,9 @@ label {
                                                       }
                                                       mysqli_close($con);
 
-                                                    if($get_inventoryout->num_rows() > 0){
+                                                    if($data1["inventoryout"]->num_rows() > 0){
 
-                                                        foreach($get_inventoryout -> result() as $row)
+                                                        foreach($data1["inventoryout"] -> result() as $row)
                                                         {
                                                 ?>
                                             <tr>
@@ -270,6 +276,165 @@ label {
                                         </tbody>
                                     </table>
                                 </div>
+                                </div><hr>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                <div class="card-content table-responsive">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
+                                    <h4><b>PACKAGING</b></h4></div>
+                                      <div class="form-group col-xs-3">
+                                    <label>Filter By:</label>
+                                        <div class="input-group input-daterange">
+                                            <input type="text" id="min" class="form-control" value="2000-01-01" >
+                                            <span class="input-group-addon">to</span>
+                                            <input type="text" id="max" class="form-control" value="<?php   echo date("Y-m-d") ?>" >
+                                        </div>
+                                    </div>
+                                    <table id="" class="table hover order-column" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th><b>Date Out</b></th>
+                                                <th><b>Client</b></th>
+                                                <th><b>Bag</b></th>
+                                                <th><b>Size</b></th>
+                                                <th><b>Quantity</b></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                              $walkin ="SELECT walkin_date, package_type, package_size, walkin_qty, FROM walkin_sales NATURAL JOIN coffee_blend NATURAL JOIN packaging;" ;
+                                              $query = $this->db->query($walkin);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td>'  . $object->walkin_date  . '</td>' ,
+                                                '<td>  Walk-in </td>' ,
+                                                '<td>'  . $object->package_type  . '</td>' ,
+                                                '<td>'  . $object->package_size  . '</td>' ,
+                                                '<td>'  . $object->walkin_qty  . '</td>' ,
+                                                '</tr>' ;
+                                              }
+                                            }
+                                        ?>
+                                                            
+                                                            <?php
+                                              $contracted ="SELECT client_deliverDate, client_company, package_type, package_size, contractPO_qty FROM contracted_po NATURAL JOIN client_delivery NATURAL JOIN contracted_client NATURAL JOIN coffee_blend NATURAL JOIN packaging where delivery_stat='delivered';";
+                                              $query = $this->db->query($contracted);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td>'  . $object->client_deliverDate  . '</td>' ,
+                                                '<td>'  . $object->client_company  . '</td>' ,
+                                                '<td>'  . $object->package_type  . '</td>' ,
+                                                '<td>'  . $object->package_size  . '</td>' ,
+                                                '<td>'  . $object->contractPO_qty  . '</td>' ,
+                                                '</tr>' ;
+                                              }
+                                            }
+                                        ?> 
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                                <div class="col-sm-6">
+                                <div class="card-content table-responsive">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
+                                    <h4><b>STICKER</b></h4></div>
+                                      <div class="form-group col-xs-3">
+                                    <label>Filter By:</label>
+                                        <div class="input-group input-daterange">
+                                            <input type="text" id="min" class="form-control" value="2000-01-01" >
+                                            <span class="input-group-addon">to</span>
+                                            <input type="text" id="max" class="form-control" value="<?php   echo date("Y-m-d") ?>" >
+                                        </div>
+                                    </div>
+                                    <table id="" class="table hover order-column" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th><b>Date Out</b></th>
+                                                <th><b>Client</b></th>
+                                                <th><b>Sticker</b></th>
+                                                <th><b>Quantity</b></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                              $walkin1 ="SELECT walkin_date, sticker, walkin_qty from walkin_sales JOIN sticker on walkin_sales.sticker_id = sticker.sticker_id;;" ;
+                                              $query = $this->db->query($walkin1);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td>'  . $object->walkin_date  . '</td>' ,
+                                                '<td>  Walk-in </td>' ,
+                                                '<td>'  . $object->sticker  . '</td>' ,
+                                                '<td>'  . $object->walkin_qty  . '</td>' ,
+                                                '</tr>' ;
+                                              }
+                                            }
+                                        ?>
+                                                            
+                                                            <?php
+                                              $contracted1 ="SELECT client_deliverDate, client_company, package_type, package_size, contractPO_qty FROM contracted_po NATURAL JOIN client_delivery NATURAL JOIN contracted_client NATURAL JOIN coffee_blend NATURAL JOIN packaging where delivery_stat='delivered';";
+                                              $query = $this->db->query($contracted1);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td>'  . $object->client_deliverDate  . '</td>' ,
+                                                '<td>'  . $object->client_company  . '</td>' ,
+                                                '<td>'  . $object->package_type  . '</td>' ,
+                                                '<td>'  . $object->package_size  . '</td>' ,
+                                                '<td>'  . $object->contractPO_qty  . '</td>' ,
+                                                '</tr>' ;
+                                              }
+                                            }
+                                        ?> 
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                                </div><hr>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                <div class="card-content table-responsive">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
+                                    <h4><b>MACHINE</b></h4></div>
+                                      <div class="form-group col-xs-3">
+                                    <label>Filter By:</label>
+                                        <div class="input-group input-daterange">
+                                            <input type="text" id="min" class="form-control" value="2000-01-01" >
+                                            <span class="input-group-addon">to</span>
+                                            <input type="text" id="max" class="form-control" value="<?php   echo date("Y-m-d") ?>" >
+                                        </div>
+                                    </div>
+                                    <table id="" class="table hover order-column" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th><b>Date In</b></th>
+                                                <th><b>Supplier</b></th>
+                                                <th><b>Machine</b></th>
+                                                <th><b>Quantity</b></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php 
+                                                foreach($data2["machineout"] as $row)
+                                                {
+                                            ?>
+                                                    <tr>
+                                                        <td><?php echo $row->date_received; ?></td>
+                                                         <td><?php echo $row->sup_company; ?></td>
+                                                         <td><?php echo $row->machine; ?></td>
+                                                         <td><?php echo $row->qty; ?></td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            </div><hr>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -277,19 +442,20 @@ label {
             </div>
         </div>
     </div>
-    </div>
+</div>
 </body>
 <!--   Core JS Files   -->
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/FileExport/buttons.flash.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/dataTables.buttons.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/FileExport/buttons.php5.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.flash.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.Html5.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/buttons.print.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/jszip.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/pdfmake.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/vfs_fonts.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/datepicker.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/material.min.js" type="text/javascript"></script>
 <!--  Charts Plugin -->
@@ -306,12 +472,17 @@ label {
 <script src="<?php echo base_url(); ?>assets/js/material-dashboard.js?v=1.2.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
+
 <script>
 $(document).ready(function() {
-    $('#example').DataTable({
-        dom: 'Bfrtip',
-        buttons: [
-            'excel', 'pdf', 'print'
+    $('table.table').DataTable({
+        "dom":' fBrtip',
+        "lengthChange": false,
+        "info":     false,
+		buttons: [
+            { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs' },
+			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs' },
+			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs' }
         ]
     });
     $('#datePicker')
@@ -327,4 +498,59 @@ $(document).ready(function() {
 });
 </script>
 
+<!--<script>   
+    
+    
+    $.fn.dataTableExt.afnFiltering.push(
+        function(oSettings, aData, iDataIndex){
+            var dateStart = parseDateValue($("#min").val());
+            var dateEnd = parseDateValue($("#max").val());
+            var evalDate= parseDateValue(aData[2]);
+
+            if (evalDate >= dateStart && evalDate <= dateEnd) {
+                return true;
+            }
+            else {
+                return false;
+            }
+    });
+    //Date Converter
+    function parseDateValue(rawDate) {
+        var month = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+        var dateArray = rawDate.split(" ");
+        var parsedDate = dateArray[2] + month + dateArray[0];
+        return parsedDate;
+    }
+
+    var oTable = $('#table-mutasi').dataTable({ 
+        "dom":' fBrtip',
+        "lengthChange": false,
+        "info":     false,
+		buttons: [
+            { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs' },
+			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs' },
+			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs' }
+        ]
+    });
+
+    $('#min,#max').datepicker({
+        format: "yyyy-mm-dd",
+        weekStart: 1,
+        daysOfWeekHighlighted: "0",
+        autoclose: true,
+        todayHighlight: true
+    });
+
+    // Event Listeners
+    $("#min").datepicker().on( 'changeDate', function() {
+        oTable.fnDraw(); 
+    });
+    $("#max").datepicker().on( 'changeDate', function() { 
+        oTable.fnDraw(); 
+    });
+    
+
+
+</script>
+-->
 </html>
