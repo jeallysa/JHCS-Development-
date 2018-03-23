@@ -35,7 +35,7 @@
 				"sup_returnRemarks" =>$this->input->post("remarks")
 			);
 			$this->InventoryReturnsList_Model->insert_data($data);
-			$this->index();
+			redirect('inventoryReturnsList', 'refresh');
 		}
 
 	}

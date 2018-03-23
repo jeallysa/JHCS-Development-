@@ -246,14 +246,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <th><b>Delivery</b></th>
                                                           </tr>
                                                         </thead>
-                                                        <tbody>
+                                                        <tbody> <!--, CONCAT(walkin_fname,' ',walkin_lname) AS customer -->
                                                           <?php
-                                              $retrieveDetails1 ="SELECT walkin_id, sticker_id, CONCAT(walkin_fname,' ',walkin_lname) AS customer, walkin_date, walkin_qty FROM jhcs.walkin_sales NATURAL JOIN coffee_blend WHERE sticker_id = '$row->sticker_id';" ;
+                                              $retrieveDetails1 ="SELECT walkin_id, sticker_id, walkin_date, walkin_qty FROM jhcs.walkin_sales NATURAL JOIN coffee_blend WHERE sticker_id = '$row->sticker_id';" ;
                                               $query = $this->db->query($retrieveDetails1);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
                                            echo '<tr>' ,
-                                                '<td>'  . $object->customer  . '</td>' ,
+                                                '<td> </td>' ,
                                                 '<td>'  . $object->walkin_date  . '</td>' ,
                                                 '<td>'  . $object->walkin_qty  . '</td>' ;
                                                 ?>
@@ -361,6 +361,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         </div>
                                                       </div>
                                                       <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-success">OK</button>
                                                           <button style="float: right;" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                       </div>
                                                     </div>

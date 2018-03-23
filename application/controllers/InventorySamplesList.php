@@ -34,7 +34,7 @@
 				"sticker_id" =>$this->input->post("sticker")
 			);
 			$this->InventorySamplesList_Model->insert_data($data);
-			$this->index();
+			redirect('inventorySamplesList', 'refresh');
 		}
 
 	}
