@@ -158,7 +158,7 @@
                                                     <td><?php echo $row->client_company; ?></td>
                                                     <td><?php echo $row->client_type; ?></td>
                                                     <td><a href="<?php echo base_url(); ?>salesClients/salesClientsInfo" class="btn btn-primary btn-round btn-sm">View Details<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></td>
-                                                    <td><div class="btn btn-primary btn-sm" data-background-color="green" data-toggle="modal" data-target="#PurchaseOrder" data-id="<?php echo $row->client_id; ?>" id="getDetails"> Purchase Order</div></td>
+                                                    <td><div class="btn btn-primary btn-sm" data-background-color="green" data-toggle="modal" data-target="#PurchaseOrder" data-id="<?php echo $row->client_id; ?>" id="getDetails" > Purchase Order</div></td>
                                                 </tr>
                                                 <?php
                                                     }
@@ -176,7 +176,7 @@
                 </div>
             </div>
 <!--modal for add purchase-->
-            <div class="modal fade" id="PurchaseOrder" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+            <div class="modal fade" id="PurchaseOrder" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true"  >
                 <div class="modal-dialog modal-lg">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
@@ -192,7 +192,7 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <div class="row">
+                                <div class="row" >
                                     <div class="col-lg-6 col-md-6 col-offset-6">
                                         <div class="form-group">
                                             <label class="col-md-4 control">Item Code :</label>
@@ -236,19 +236,19 @@
                                             <div class="form-group">
                                                 <label class="col-md-5 control">Date of Purchase :</label>
                                                 <div class="col-md-4">
-                                                    <input id="" name="date" type="date" class="form-control">
+                                                    <input id="date" name="date" type="date" class="no-border" value="<?php echo date("Y-m-d");?>" data-validate="required" message="A Date of Purchase is recquired! min="<?=date('Y-m-d')?>" max="<?=date('Y-m-d',strtotime(date('Y-m-d').'+1 days'))?>"">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-md-5 control">Quantity :</label>
                                                 <div class="col-md-4">
-                                                    <input type="number" name="quantity" id="quantityAvailed" class="form-control">
+                                                    <input type="number" name="quantity" id="quantityAvailed" class="form-control" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" >
                                                 </div>
                                             </div><br><br>
 											 <div class="form-group">
                                                 <label class="col-md-3 control">Total Price :</label>
                                                 <div class="col-md-9">
-                                                    <h5><b>Php <input name="TotalPrice" type="number" value="quantity" id="product" class="no-border" type="disabled" readonly /></b></h5>
+                                                    <h5><b>Php <input name="TotalPrice" type="number" value="quantity" id="product" class="no-border number" type="disabled" readonly /></b></h5>
                                                 </div>
                                             </div>
                                         </div>
@@ -332,7 +332,7 @@
                             </div>
                             <div class="panel-footer" align="right">
                                 <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-                                <?php echo form_submit(['name'=>'AddPO', 'value'=>'Add Purchase Order','class'=>'btn btn-primary']) ?>
+                                <?php echo form_submit(['name'=>'AddPO', 'value'=>'Add Purchase Order','class'=>'btn btn-primary','id'=>'subButton']) ?>
                             </div>
                         <?php echo form_close(); ?>
                     </div>
@@ -369,10 +369,12 @@
 $(document).ready(function() {
     var table = $('#example').DataTable();
 	
+	
 	product();
 	$("#UnitPrice, #quantityAvailed").on("keydown keyup", function() {
 		 product();
     });
+	
 
 	function product() {
             var num1 = document.getElementById('UnitPrice').value;
@@ -383,9 +385,17 @@ $(document).ready(function() {
                 /*document.getElementById('sum').value = result;*/
 				document.getElementById('product').value = result;
             }
-        }
-
-});
+      }
+	
+	
+	
+	
+	});
+function numberWithCommas(x) {
+    var parts = x.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+}
 </script>
 <script>
 $(function() {
@@ -394,6 +404,7 @@ $(function() {
         off: 'Disabled'
     });
 })
+
 </script>
 
 <script type="text/javascript">

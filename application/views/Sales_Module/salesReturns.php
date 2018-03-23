@@ -92,6 +92,9 @@
 		.no-border{
 			border: none !important;
 		}
+		$body-color{
+			 #111;
+		}
 	
 		
 
@@ -102,7 +105,7 @@
 
 <body>
     <div class="wrapper">
-        <div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
+        <div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-0.pg">
             <div class="logo">
                 <img src="../assets/img/logo.png" alt="image1" width="250px" height="150px">
             </div>
@@ -445,24 +448,21 @@
                                         </div>
 											
 										<?php echo form_open('SalesReturns/resolveReturns', array('method'=>'POST')); ?>
-											<?php if(validation_errors()) { ?>
-											  <div class="alert alert-danger">
-												<?php echo validation_errors(); ?>
-											  </div>
-											<?php } ?>
 											
                                         <hr>
 											
 											<input type="hidden" name="deliveryID" readonly />
 											<input type="hidden" name="PO_ID" readonly />
 											<input type="hidden" name="client_id" readonly />
+											<input type="hidden" name="SINo" readonly />
+											<input type="hidden" name="RID" readonly />
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label class="col-md-6 control">Delivery Receipt No :</label>
                                                     <div class="col-md-6">
                                                         <!--<p class="form-control" contenteditable="true" name="delivery_receipt">DR0123</p>-->
-														<?php echo form_input(['name'=>'DRReturns','id'=>'deliveryReceipt', 'class'=>'form-control','type'=>'text']); ?>
+														<?php echo form_input(['name'=>'DRReturns','id'=>'deliveryReceipt', 'class'=>'form-control','type'=>'text', 'maxlength'=>'5','value'=>'dr']); ?>
                                                     </div>
                                                 </div>
 												
@@ -470,24 +470,16 @@
 											
                                             <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label class="col-md-6 control">Date of Delivery :</label>
-                                                    <div class="col-md-6">
-                                                        <!--<input class="form-control" name="delivery_date" placeholder="Date" type="date" required />-->
-														<?php echo form_input(['name'=>'delivery_date','id'=>'DateDelivered','placeholder'=>'Date', 'class'=>'form-control','type'=>'date']); ?>
+                                                    <label class="col-md-5 control">Delivery Date:</label>
+                                                    <div class="col-md-7">
+                                                        <input class="no-border" name="delivery_date" placeholder="Date" type="date" value="<?php echo date("Y-m-d");?>" data-validate="required" message="A Date of Purchase is recquired! min="<?=date('Y-m-d')?>" max="<?=date('Y-m-d',strtotime(date('Y-m-d').'+1 days'))?>"" required />
+														
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 											<div class="row">
-                                            <div class="col-lg-6">
-												<div class="form-group">
-                                                    <label class="col-md-6 control">Sales Invoice No :</label>
-                                                    <div class="col-md-6">
-                                                        <!--<p class="form-control" contenteditable="true" name="delivery_receipt">DR0123</p>-->
-														<?php echo form_input(['name'=>'SINo', 'class'=>'form-control','type'=>'text']); ?>
-                                                    </div>
-                                                </div>
-											</div>
+                                          
                                             <!--<div class="col-lg-6">
 
                                                     <div class="form-group">
@@ -501,10 +493,10 @@
 										<div class="row">
                                             <div class="col-lg-9">
                                                 <div class="form-group">
-                                                    <!--<label class="col-md-5 control">Received by :</label>-->
-                                                    <div class="col-md-9">
+                                                    <label class="col-md-3 control">Receiver :</label>
+                                                    <div class="col-md-8">
                                                         <!--<input id="" name="receiver" type="text" class="form-control">-->
-														<?php echo form_input(['name'=>'receiver','id'=>'receiver', 'class'=>'form-control','type'=>'text','placeholder'=>'Name of the Receiver']); ?>
+														<?php echo form_input(['name'=>'receiver','id'=>'receiver', 'class'=>'form-control','type'=>'text']); ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -527,10 +519,10 @@
 										<div class="row">
 											<div class="col-lg-9">
                                                 <div class="form-group">
-                                                    <!--<label class="col-md-3 control">Remarks :</label>-->
+                                                    <label class="col-md-3 control">Remarks :</label>
                                                     <div class="col-md-8">
                                                         <!--<input id="" name="coffee_returns_remarks" type="text" class="form-control">-->
-														<?php echo form_input(['name'=>'remarksReturns','id'=>'remarksReturns', 'class'=>'form-control','type'=>'text', 'placeholder'=>'Remarks']); ?>
+														<?php echo form_input(['name'=>'remarksReturns','id'=>'remarksReturns', 'class'=>'form-control','type'=>'text']); ?>
 														
                                                     </div>
                                                 </div>
@@ -736,8 +728,10 @@ $(document).ready(function(){
 					$('[name="size"]').val(data.package_size);
 					$('[name="quantity"]').val(data.coff_returnQty);
 					$('[name="bagType"]').val(data.package_type);
-					$('[name="DRReturns"]').val(data.client_dr);
+					/*$('[name="DRReturns"]').val(data.client_dr);*/
 					$('[name="deliveryID"]').val(data.client_deliveryID);
+					$('[name="SINo"]').val(data.client_invoice);
+					$('[name="RID"]').val(data.client_coffReturnID);
 					$('#resolve_coffee').modal('show');
 					
 					/*$('#blendDetails').html(data);
