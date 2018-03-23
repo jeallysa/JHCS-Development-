@@ -185,14 +185,19 @@ input {
                                         </div>
                                     </div>
                                 </div>
+                        <div class="card-content">
+                            <div class="row">
                                 <div class="card-content table-responsive">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
+                                    <h4><b>COFFEE</b></h4></div>
                                       <label>Set Date from </label>
                                         <input type="date" name="">
                                         <label> to </label>
                                         <input type="date" name=""><br><br>
-                                    <table id="example" class="table hover order-column" cellspacing="0" width="100%">
+                                    <table id="" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
+                                                <th><b>D.R. No.</b></th>
                                                 <th><b>Date In</b></th>
                                                 <th><b>Supplier</b></th>
                                                 <?php
@@ -213,9 +218,6 @@ input {
                                                 }
                                                 $conntitle->close();
                                                 ?>
-                                                <th><b> Packaging </b> </th>
-                                                <th><b> Stickers </b> </th>
-                                                <th><b> Machines </b> </th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -236,15 +238,16 @@ input {
                                                       }
                                                       mysqli_close($con);
 
-                                                    if($get_inventoryin->num_rows() > 0){
+                                                    if($data1['coffeein']->num_rows() > 0){
 
-                                                        foreach($get_inventoryin -> result() as $row)
+                                                        foreach($data1['coffeein'] -> result() as $row)
                                                         {
                                                 ?>
                                             <tr>
+                                                <td>DR-<?php echo $row->dr_no; ?></td>
                                                 <td><?php echo $row->transact_date; ?></td>
 
-                                                <td><?php echo $row->sup_company; ?></td>
+                                                <td>Supplier 1</td>
                                                 
                                                 <?php
                                                 for ($i = 1; $i <= $rowcount; $i++){
@@ -255,9 +258,6 @@ input {
                                                 }
                                                 
                                                 ?>
-                                                <td><?php echo $row->packaging; ?></td>
-                                                <td><?php echo $row->stickers; ?></td>
-                                                <td><?php echo $row->machines; ?></td>
                                             </tr>
                                             <?php
                                                     }
@@ -275,6 +275,125 @@ input {
                                         </tbody>
                                     </table>
                                 </div>
+                                </div><hr>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                <div class="card-content table-responsive">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
+                                    <h4><b>PACKAGING</b></h4></div>
+                                      <label>Set Date from </label>
+                                        <input type="date" name="">
+                                        <label> to </label>
+                                        <input type="date" name=""><br><br>
+                                    <table id="" class="table hover order-column" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th><b>D.R. No.</b></th>
+                                                <th><b>Date In</b></th>
+                                                <th><b>Supplier</b></th>
+                                                <th><b>Bag</b></th>
+                                                <th><b>Size</b></th>
+                                                <th><b>Quantity</b></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php 
+                                                foreach($data2["packagein"] as $row)
+                                                {
+                                            ?>
+                                                    <tr>
+                                                        <td>DR-<?php echo $row->supp_delivery_id; ?></td>
+                                                        <td><?php echo $row->date_received; ?></td>
+                                                         <td><?php echo $row->sup_company; ?></td>
+                                                         <td><?php echo $row->bag; ?></td>
+                                                         <td><?php echo $row->size; ?></td>
+                                                         <td><?php echo $row->qty; ?></td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                                <div class="col-sm-6">
+                                <div class="card-content table-responsive">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
+                                    <h4><b>STICKER</b></h4></div>
+                                      <label>Set Date from </label>
+                                        <input type="date" name="">
+                                        <label> to </label>
+                                        <input type="date" name=""><br><br>
+                                    <table id="" class="table hover order-column" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th><b>D.R. No.</b></th>
+                                                <th><b>Date In</b></th>
+                                                <th><b>Supplier</b></th>
+                                                <th><b>Sticker</b></th>
+                                                <th><b>Quantity</b></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php 
+                                                foreach($data3["stickerin"] as $row)
+                                                {
+                                            ?>
+                                                    <tr>
+                                                        <td>DR-<?php echo $row->supp_delivery_id; ?></td>
+                                                        <td><?php echo $row->date_received; ?></td>
+                                                         <td><?php echo $row->sup_company; ?></td>
+                                                         <td><?php echo $row->sticker; ?></td>
+                                                         <td><?php echo $row->qty; ?></td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                                </div><hr>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                <div class="card-content table-responsive">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
+                                    <h4><b>MACHINE</b></h4></div>
+                                      <label>Set Date from </label>
+                                        <input type="date" name="">
+                                        <label> to </label>
+                                        <input type="date" name=""><br><br>
+                                    <table id="" class="table hover order-column" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th><b>D.R. No.</b></th>
+                                                <th><b>Date In</b></th>
+                                                <th><b>Supplier</b></th>
+                                                <th><b>Machine</b></th>
+                                                <th><b>Quantity</b></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php 
+                                                foreach($data4["machinein"] as $row)
+                                                {
+                                            ?>
+                                                    <tr>
+                                                        <td>DR-<?php echo $row->supp_delivery_id; ?></td>
+                                                        <td><?php echo $row->date_received; ?></td>
+                                                         <td><?php echo $row->sup_company; ?></td>
+                                                         <td><?php echo $row->machine; ?></td>
+                                                         <td><?php echo $row->qty; ?></td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            </div><hr>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -282,7 +401,7 @@ input {
             </div>
         </div>
     </div>
-    </div>
+</div>
 </body>
 <!--   Core JS Files   -->
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
@@ -314,7 +433,7 @@ input {
 <script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
 <script>
 $(document).ready(function() {
-    $('#example').DataTable({
+    $('table.table').DataTable({
         "dom":' fBrtip',
         "lengthChange": false,
         "info":     false,
