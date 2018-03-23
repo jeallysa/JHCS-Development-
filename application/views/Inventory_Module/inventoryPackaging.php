@@ -212,7 +212,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <tr>
                                                     <td><?php echo $row->package_id; ?></td>
                                                     <td><?php echo $row->package_type; ?> bag</td>
-                                                    <td><?php echo $row->package_size; ?> g</td>
+                                                    <td><?php echo $row->package_size; ?></td>
                                                     <td><?php echo $row->package_reorder; ?></td>
                                                     <td><?php echo $row->package_limit; ?></td>
                                                     <td><?php echo $row->sup_company; ?></td>
@@ -248,14 +248,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <th><b>Type</b></th>
                                                           </tr>
                                                         </thead>
-                                                        <tbody>
+                                                        <tbody><!--, CONCAT(walkin_fname,' ',walkin_lname) AS customer -->
                                                             <?php
-                                              $retrieveDetails1 ="SELECT walkin_id, package_id, CONCAT(walkin_fname,' ',walkin_lname) AS customer, walkin_date, walkin_qty FROM jhcs.walkin_sales NATURAL JOIN coffee_blend NATURAL JOIN packaging WHERE package_id = '$row->package_id';" ;
+                                              $retrieveDetails1 ="SELECT walkin_id, package_id, walkin_date, walkin_qty FROM jhcs.walkin_sales NATURAL JOIN coffee_blend NATURAL JOIN packaging WHERE package_id = '$row->package_id';" ;
                                               $query = $this->db->query($retrieveDetails1);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
                                            echo '<tr>' ,
-                                                '<td>'  . $object->customer  . '</td>' ,
+                                                '<td> </td>' ,
                                                 '<td>'  . $object->walkin_date  . '</td>' ,
                                                 '<td>'  . $object->walkin_qty  . '</td>' ;
                                                 ?>
@@ -363,6 +363,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         </div>
                                                       </div>
                                                       <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-success">OK</button>
                                                           <button style="float: right;" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                       </div>
                                                     </div>
