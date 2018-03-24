@@ -128,39 +128,39 @@
                                     <p class="category">Fill the form</p>
                                 </div>
                                 <div class="card-content">
-                                    <form>
+                                    <form role="form" action="<?php echo base_url();?>addAccounts/insertAccounts" method="post">
                                           <h6> Personal Information </h6>
                                 <div class="row">
                                     <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <input class="form-control" name="firstname" placeholder="First Name" type="text" required autofocus />
+                                        <input class="form-control" name="u_fname" placeholder="First Name" type="text" required autofocus />
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <input class="form-control" name="lastname" placeholder="Last Name" type="text" required />
+                                        <input class="form-control" name="u_lname" placeholder="Last Name" type="text" required />
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div>
                                         <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                            <input class="form-control" name="email" placeholder="E-mail" type="text" required />
+                                            <input class="form-control" name="u_email" placeholder="E-mail" type="text" required />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <input class="form-control" name="cp number" placeholder="Cellphone Number" type="text" required />
+                                        <input class="form-control" name="u_contact" placeholder="Cellphone Number" type="text" required />
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-10 col-md-12 col-sm-12">
-                                        <textarea style="resize:vertical;" class="form-control" placeholder="Address" rows="2" name="address" required></textarea>
+                                        <textarea style="resize:vertical;" class="form-control" placeholder="Address" rows="2" name="u_address" required></textarea>
                                     </div>
                                 </div>
                                 <h6> Position </h6>
                                 <div class="row">
                                     <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <select class="form-control" name="position" placeholder="Position" type="text" required>
+                                        <select class="form-control" name="u_type" placeholder="Position" type="text" required>
                                             <option>Sales Clerk</option>
                                             <option>Inventory Custodian</option>
                                             <option>Manager</option>
@@ -188,7 +188,8 @@
                                 <!--<span class="glyphicon glyphicon-ok"></span>-->
                                 <input type="reset" class="btn btn-danger" value="Clear" />
                                 <!--<span class="glyphicon glyphicon-remove"></span>-->
-                                <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
+                                <a href="<?php echo base_url(); ?>adminAccounts" style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</a>
+                                        
                                     </form>
                                 </div>
                             </div>
