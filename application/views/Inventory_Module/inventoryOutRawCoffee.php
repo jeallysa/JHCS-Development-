@@ -246,7 +246,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <table id="walkin" class="table hover order-column" cellspacing="0" width="100%">
                                                         <thead>
                                                             <tr>
-                                                                <th><b>Item Code</b></th>
+                                                                <th><b>Sales ID</b></th>
                                                                 <th><b>Date</b></th>
                                                                 <th><b>Client</b></th>
                                                                 <th><b>Coffee</b></th>
@@ -261,9 +261,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         {
                                                     ?>
                                                             <tr>
-                                                                <td><?php echo $row->blend_id; ?></td>
+                                                                <td><?php echo $row->walkin_id; ?></td>
                                                                  <td><?php echo $row->walkin_date; ?></td>
-                                                                 <td><?php echo $row->Client; ?></td>
+                                                                 <td>Walk-in</td>
                                                                  <td><?php echo $row->blend; ?></td>
                                                                  <td><?php echo $row->package_type; ?></td>
                                                                  <td><?php echo $row->package_size; ?></td>
@@ -315,7 +315,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <div class="tab-pane" id="machineout">
                                              <table id="" class="table hover order-column" cellspacing="0" width="100%">
                                             <thead>
-                                                <th><b>Item Code</b></th>
+                                                <th><b>Sales ID</b></th>
                                                 <th><b>Date</b></th>
                                                 <th><b>Client</b></th>
                                                 <th><b>Machine</b></th>
@@ -327,7 +327,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     {
                                                 ?>
                                                 <tr>
-                                                     <td><?php echo $row->mach_id; ?></td>
+                                                     <td><?php echo $row->mach_salesID; ?></td>
                                                      <td><?php echo $row->date; ?></td>
                                                      <td><?php echo $row->client_company; ?></td>
                                                      <td><?php echo $row->brewer; ?></td>

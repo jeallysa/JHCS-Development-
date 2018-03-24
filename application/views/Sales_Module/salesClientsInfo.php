@@ -130,24 +130,33 @@
                                             <a href="<?php echo base_url() ?>salesClients" class="btn btn-primary navbar-btn pull-left">
                                                 <span class="glyphicon glyphicon-chevron-left"></span>
                                             </a>
-                                            <h3 class="card-title">The Legend Villas</h3>
-                                            <h6 class="category text-gray">Jesselyn Amagan - General Manager</h6>
+                                            <?php 
+                                                $row = $cli_data->row();
+
+                                            ?>
+                                            <h3 class="card-title"><?php echo $row->client_company; ?></h3>
+                                            <h6 class="category text-gray"><?php echo $row->client_fname; ?> <?php echo $row->client_lname; ?> - <?php echo $row->client_position; ?></h6>
                                             <table align="center">
                                                 <tbody>
                                                     <tr>
-                                                        <td><b>Address:</b></td>
-                                                        <td align="left">Mandaluyong City</td>
+                                                        <td><b>Address: </b></td>
+                                                        <td align="left"> <?php echo $row->client_address; ?></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><b>Tel:</b></td>
-                                                        <td align="left">+444 444 444</td>
+                                                        <td><b>Tel: </b></td>
+                                                        <td align="left"> <?php echo $row->client_contact; ?></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><b>Email:</b></td>
-                                                        <td align="left">chef22@manor.com</td>
+                                                        <td><b>Email: </b></td>
+                                                        <td align="left"> <?php echo $row->client_email; ?></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
+                                            <?php
+
+                                                
+
+                                            ?>
                                             <br>
                                             <br>
                                             <a href="<?php echo base_url(); ?>salesClients/salesContract" class="btn btn-warning btn-round">View Contract</a>
@@ -205,8 +214,12 @@
                                                     <th><b class="pull-left">Delivery Status</b></th>
                                                 </thead>
                                                 <tbody>
+                                                <?php 
+                                                    foreach ($cli_data->result() as $row){
+
+                                                ?>
                                                     <tr>
-                                                        <td>PO2563</td>
+                                                        <td><?php echo $row->contractPO_id; ?></td>
                                                         <td>F11489</td>
                                                         <td>Farmer's Blend Ground Coffee</td>
                                                         <td>Clear</td>
@@ -217,31 +230,11 @@
                                                         <td>November 24, 2017</td>
                                                         <td>pending</td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>PO2564</td>
-                                                        <td>F11489</td>
-                                                        <td>Farmer's Blend Ground Coffee</td>
-                                                        <td>Clear</td>
-                                                        <td>500 g</td>
-                                                        <td>80</td>
-                                                        <td>320.00</td>
-                                                        <td>25,600.00</td>
-                                                        <td>November 24, 2017</td>
-                                                        <td>partial</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>PO2565</td>
-                                                        <td>F11489</td>
-                                                        <td>Farmer's Blend Ground Coffee</td>
-                                                        <td>Clear</td>
-                                                        <td>500 g</td>
-                                                        <td>80</td>
-                                                        <td>320.00</td>
-                                                        <td>25,600.00</td>
-                                                        <td>November 24, 2017</td>
-                                                        <td>Delivered</td>
-                                                    </tr>
+                                                <?php 
+                                                    }
+                                                 ?>
                                                 </tbody>
+
                                             </table>
                                         </div>
                                         <div class="tab-pane" id="deliveries">

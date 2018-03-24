@@ -19,6 +19,11 @@ class InventoryInventoryReportOut_model extends CI_Model {
 		return $query;
 
 	}
+    public function get_machineout(){
+        
+        $query = $this->db->query("Select * from machine_out NATURAL JOIN contracted_client NATURAL JOIN machine");
+        return $query->result();
+    }
     
 }
 

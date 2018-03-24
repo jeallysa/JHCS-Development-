@@ -181,7 +181,7 @@
                                 <!--<span class="glyphicon glyphicon-ok"></span>-->
                                 <input type="reset" class="btn btn-danger" value="Clear" />
                                 <!--<span class="glyphicon glyphicon-remove"></span>-->
-                                <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
+                                 <a href="<?php echo base_url(); ?>adminClients" style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</a>
                             
                                     </form>
                                 </div>

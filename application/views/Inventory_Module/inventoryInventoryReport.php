@@ -190,14 +190,17 @@ input {
                                 <div class="card-content table-responsive">
                                     <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
                                     <h4><b>COFFEE</b></h4></div>
-                                      <label>Set Date from </label>
-                                        <input type="date" name="">
-                                        <label> to </label>
-                                        <input type="date" name=""><br><br>
-                                    <table id="" class="table hover order-column" cellspacing="0" width="100%">
+                                      <div class="form-group col-xs-3">
+                                    <label>Filter By:</label>
+                                        <div class="input-group input-daterange">
+                                            <input type="text" id="min" class="form-control" value="2000-01-01" >
+                                            <span class="input-group-addon">to</span>
+                                            <input type="text" id="max" class="form-control" value="<?php   echo date("Y-m-d") ?>" >
+                                        </div>
+                                    </div>
+                                    <table id="table-mutasi" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
-                                                <th><b>D.R. No.</b></th>
                                                 <th><b>Date In</b></th>
                                                 <?php
                                                     $conntitle=mysqli_connect("localhost","root","","jhcs");
@@ -243,13 +246,7 @@ input {
                                                         {
                                                 ?>
                                             <tr>
-                                                <td>DR-<?php echo $row->dr_no; ?></td>
                                                 <td><?php echo $row->transact_date; ?></td>
-<<<<<<< HEAD
-
-                                                <td>Supplier 1</td>
-=======
->>>>>>> c9fa05be48c5f3638c8f390044752fa50b294c8f
                                                 
                                                 <?php
                                                 for ($i = 1; $i <= $rowcount; $i++){
@@ -283,14 +280,17 @@ input {
                                 <div class="card-content table-responsive">
                                     <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
                                     <h4><b>PACKAGING</b></h4></div>
-                                      <label>Set Date from </label>
-                                        <input type="date" name="">
-                                        <label> to </label>
-                                        <input type="date" name=""><br><br>
+                                      <div class="form-group col-xs-3">
+                                    <label>Filter By:</label>
+                                        <div class="input-group input-daterange">
+                                            <input type="text" id="min" class="form-control" value="2000-01-01" >
+                                            <span class="input-group-addon">to</span>
+                                            <input type="text" id="max" class="form-control" value="<?php   echo date("Y-m-d") ?>" >
+                                        </div>
+                                    </div>
                                     <table id="" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
-                                                <th><b>D.R. No.</b></th>
                                                 <th><b>Date In</b></th>
                                                 <th><b>Supplier</b></th>
                                                 <th><b>Bag</b></th>
@@ -304,7 +304,6 @@ input {
                                                 {
                                             ?>
                                                     <tr>
-                                                        <td>DR-<?php echo $row->supp_delivery_id; ?></td>
                                                         <td><?php echo $row->date_received; ?></td>
                                                          <td><?php echo $row->sup_company; ?></td>
                                                          <td><?php echo $row->bag; ?></td>
@@ -322,14 +321,17 @@ input {
                                 <div class="card-content table-responsive">
                                     <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
                                     <h4><b>STICKER</b></h4></div>
-                                      <label>Set Date from </label>
-                                        <input type="date" name="">
-                                        <label> to </label>
-                                        <input type="date" name=""><br><br>
+                                      <div class="form-group col-xs-3">
+                                    <label>Filter By:</label>
+                                        <div class="input-group input-daterange">
+                                            <input type="text" id="min" class="form-control" value="2000-01-01" >
+                                            <span class="input-group-addon">to</span>
+                                            <input type="text" id="max" class="form-control" value="<?php   echo date("Y-m-d") ?>" >
+                                        </div>
+                                    </div>
                                     <table id="" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
-                                                <th><b>D.R. No.</b></th>
                                                 <th><b>Date In</b></th>
                                                 <th><b>Supplier</b></th>
                                                 <th><b>Sticker</b></th>
@@ -342,7 +344,6 @@ input {
                                                 {
                                             ?>
                                                     <tr>
-                                                        <td>DR-<?php echo $row->supp_delivery_id; ?></td>
                                                         <td><?php echo $row->date_received; ?></td>
                                                          <td><?php echo $row->sup_company; ?></td>
                                                          <td><?php echo $row->sticker; ?></td>
@@ -361,14 +362,17 @@ input {
                                 <div class="card-content table-responsive">
                                     <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
                                     <h4><b>MACHINE</b></h4></div>
-                                      <label>Set Date from </label>
-                                        <input type="date" name="">
-                                        <label> to </label>
-                                        <input type="date" name=""><br><br>
+                                      <div class="form-group col-xs-3">
+                                    <label>Filter By:</label>
+                                        <div class="input-group input-daterange">
+                                            <input type="text" id="min" class="form-control" value="2000-01-01" >
+                                            <span class="input-group-addon">to</span>
+                                            <input type="text" id="max" class="form-control" value="<?php   echo date("Y-m-d") ?>" >
+                                        </div>
+                                    </div>
                                     <table id="" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
-                                                <th><b>D.R. No.</b></th>
                                                 <th><b>Date In</b></th>
                                                 <th><b>Supplier</b></th>
                                                 <th><b>Machine</b></th>
@@ -381,7 +385,6 @@ input {
                                                 {
                                             ?>
                                                     <tr>
-                                                        <td>DR-<?php echo $row->supp_delivery_id; ?></td>
                                                         <td><?php echo $row->date_received; ?></td>
                                                          <td><?php echo $row->sup_company; ?></td>
                                                          <td><?php echo $row->machine; ?></td>
@@ -433,6 +436,7 @@ input {
 <script src="<?php echo base_url(); ?>assets/js/material-dashboard.js?v=1.2.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
+
 <script>
 $(document).ready(function() {
     $('table.table').DataTable({
@@ -440,9 +444,9 @@ $(document).ready(function() {
         "lengthChange": false,
         "info":     false,
 		buttons: [
-            { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print' },
-			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel' },
-			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF' }
+            { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs' },
+			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs' },
+			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs' }
         ]
     });
     $('#datePicker')
@@ -458,4 +462,59 @@ $(document).ready(function() {
 });
 </script>
 
+<!--<script>   
+    
+    
+    $.fn.dataTableExt.afnFiltering.push(
+        function(oSettings, aData, iDataIndex){
+            var dateStart = parseDateValue($("#min").val());
+            var dateEnd = parseDateValue($("#max").val());
+            var evalDate= parseDateValue(aData[2]);
+
+            if (evalDate >= dateStart && evalDate <= dateEnd) {
+                return true;
+            }
+            else {
+                return false;
+            }
+    });
+    //Date Converter
+    function parseDateValue(rawDate) {
+        var month = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+        var dateArray = rawDate.split(" ");
+        var parsedDate = dateArray[2] + month + dateArray[0];
+        return parsedDate;
+    }
+
+    var oTable = $('#table-mutasi').dataTable({ 
+        "dom":' fBrtip',
+        "lengthChange": false,
+        "info":     false,
+		buttons: [
+            { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs' },
+			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs' },
+			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs' }
+        ]
+    });
+
+    $('#min,#max').datepicker({
+        format: "yyyy-mm-dd",
+        weekStart: 1,
+        daysOfWeekHighlighted: "0",
+        autoclose: true,
+        todayHighlight: true
+    });
+
+    // Event Listeners
+    $("#min").datepicker().on( 'changeDate', function() {
+        oTable.fnDraw(); 
+    });
+    $("#max").datepicker().on( 'changeDate', function() { 
+        oTable.fnDraw(); 
+    });
+    
+
+
+</script>
+-->
 </html>

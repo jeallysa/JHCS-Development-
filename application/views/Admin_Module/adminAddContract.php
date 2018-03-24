@@ -145,7 +145,7 @@
                                         </div>
                                         <div class="form-group label-floating">
                                             <label for="email">Date</label>
-                                            <input class="form-control" type="text" name="date_started" required>
+                                            <input class="form-control" name="date_started" type="date" class="no-border" value="<?php echo date("Y-m-d");?>" data-validate="required" message="A Date of Purchase is recquired! min="<?=date('Y-m-d')?>" max="<?=date('Y-m-d',strtotime(date('Y-m-d').'+1 days'))?>"">
                                         </div>
                                     </div>
                                 </div>
@@ -208,7 +208,7 @@
                                 <!--<span class="glyphicon glyphicon-ok"></span>-->
                                 <input type="reset" class="btn btn-danger" value="Clear" />
                                 <!--<span class="glyphicon glyphicon-remove"></span>-->
-                                <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
+                                 <a href="<?php echo base_url(); ?>adminClients" style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</a>
                             </div>
                         </form>
                                 </div>

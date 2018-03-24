@@ -23,6 +23,14 @@
 			);
 			$this->db->insert('contracted_po', $data);
 		}
+
+		public function load_POClient($id){
+			$query = $this->db->query("SELECT * FROM contracted_client NATURAL JOIN contracted_po NATURAL JOIN coffee_blend NATURAL JOIN packaging WHERE client_id = '$id' ");
+
+			return $query;
+		}
+
+		
 	}
 
 ?>
