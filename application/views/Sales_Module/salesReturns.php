@@ -92,9 +92,13 @@
 		.no-border{
 			border: none !important;
 		}
-		$body-color{
-			 #111;
+		.sidebar{
+			background-color: bisque !important;
 		}
+		.sidebar.active{
+			background-color: bisque !important;
+		}
+		
 	
 		
 
