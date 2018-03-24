@@ -14,14 +14,13 @@ class AddAccounts_model extends CI_model
 
 	function add_data($user_no, $u_lname, $u_fname, $u_type, $u_address, $u_email, $u_contact){
 		$data = array(
-            'user_no' => $u_lname,
+            'user_no' => $user_no,
 			'u_lname' => $u_lname,
 			'u_fname' => $u_fname,
             'u_type' => $u_type,
 			'u_address' => $u_address,
             'u_email' => $u_email,
-			'u_contact' => $u_contact,
-			'u_activation' => '1'
+			'u_contact' => $u_contact
 
 		);
 		
