@@ -31,7 +31,7 @@
             
 			$this->AdminContract_model->update($id, $date_started, $contract_blend, $contract_bag, $contract_size, $contract_machine);
 			echo "<script>alert('Update successful!');</script>";
-			$this->index();
+			redirect('adminClients', 'refresh');
 		}
         
     }
