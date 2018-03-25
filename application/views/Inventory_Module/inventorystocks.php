@@ -199,6 +199,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <th><b class="pull-left">Stock Limit (grams)</b></th>
                                                     <th><b class="pull-left">Supplier</b></th>
                                                     <th><b class="pull-left">Number of Stocks (grams)</b></th>
+                                                    <th><b class="pull-left">Physical Count (grams)</b></th>
                                                     <th><b class="pull-left">Cue Card</b></th>
                                                 </tr>
                                             </thead>
@@ -211,10 +212,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <tr>
                                                     <td><?php echo $row->raw_id; ?></td>
                                                     <td><?php echo $row->raw_coffee; ?></td>
-                                                    <td><?php echo $row->raw_reorder; ?> g</td>
-                                                    <td><?php echo $row->raw_limit; ?> g</td>
+                                                    <td><?php echo $row->raw_reorder; ?></td>
+                                                    <td><?php echo $row->raw_limit; ?></td>
                                                     <td><?php echo $row->sup_company; ?></td>
-                                                    <td><b><?php echo $row->raw_stock; ?> g</b></td>
+                                                    <td><b><?php echo $row->raw_stock; ?></b></td>
+                                                    <td><b><?php echo $row->raw_physcount; ?></b></td>
                                                     <td><a class="btn btn-info" data-toggle="modal" data-target="#<?php echo $row->raw_coffee; ?>" data-original-title style="float: right">View</a>
 
                                                         <!-- Modal -->
@@ -334,6 +336,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                         <label class="col-md-6 control">Remarks :</label>
                                                                         <div class="col-md-10">
                                                                             <textarea style="resize:vertical;" class="form-control" rows="2" name="remarks"></textarea>
+                                                                            <button style="float: right;" type="submit" class="btn btn-success">Save</button>
                                                                         </div>
                                                                     </div>
                                                                 </div>

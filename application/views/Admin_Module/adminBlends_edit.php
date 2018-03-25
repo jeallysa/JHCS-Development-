@@ -37,92 +37,7 @@
     /* Custom Style */
 
     
-    .onoffswitch {
-        position: relative;
-        width: 110px;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-    }
-
-    .onoffswitch-checkbox {
-        display: none;
-    }
-
-    .onoffswitch-label {
-        display: block;
-        overflow: hidden;
-        cursor: pointer;
-        border: 2px solid #999999;
-        border-radius: 20px;
-    }
-
-    .onoffswitch-inner {
-        display: block;
-        width: 200%;
-        margin-left: -100%;
-        -moz-transition: margin 0.3s ease-in 0s;
-        -webkit-transition: margin 0.3s ease-in 0s;
-        -o-transition: margin 0.3s ease-in 0s;
-        transition: margin 0.3s ease-in 0s;
-    }
-
-    .onoffswitch-inner:before,
-    .onoffswitch-inner:after {
-        display: block;
-        float: left;
-        width: 50%;
-        height: 30px;
-        padding: 0;
-        line-height: 30px;
-        font-size: 14px;
-        color: white;
-        font-family: Trebuchet, Arial, sans-serif;
-        font-weight: bold;
-        -moz-box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-    }
-
-    .onoffswitch-inner:before {
-        content: " Enabled";
-        padding-left: 10px;
-        background-color: #2FCCFF;
-        color: #FFFFFF;
-    }
-
-    .onoffswitch-inner:after {
-        content: "Disabled";
-        padding-right: 10px;
-        background-color: #EEEEEE;
-        color: #999999;
-        text-align: right;
-    }
-
-    .onoffswitch-switch {
-        display: block;
-        width: 18px;
-        margin: 7px;
-        background: #FFFFFF;
-        border: 2px solid #999999;
-        border-radius: 20px;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        right: 70px;
-        -moz-transition: all 0.3s ease-in 0s;
-        -webkit-transition: all 0.3s ease-in 0s;
-        -o-transition: all 0.3s ease-in 0s;
-        transition: all 0.3s ease-in 0s;
-    }
-
-    .onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-inner {
-        margin-left: 0;
-    }
-
-    .onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-switch {
-        right: 0px;
-    }
+    
     
 
     .navbar {
@@ -231,37 +146,69 @@
                                     <h3 class="title"><center>Edit Blends</center></h3>
                                 </div>
 
-                                <form action="record" method="post" accept-charset="utf-8">
+                                <form action="<?php echo base_url(); ?>AdminBlends/edit_trial" method="post" accept-charset="utf-8">
                                     <div class="card-content">
                                         <div class="modal-body" style="padding: 5px;">
+                                                
                                                 <div class="row">
+                                                    <?php
+                                                            $id = $this->input->get('id');
+                                                            foreach($edit_page->result() as $row){
+                                                    ?>
                                                     <div class="col-md-3">
                                                         <div class="form-group label-floating">
                                                             <label for="email">Blend Name</label>
-                                                            <input class="form-control" type="text" name="date" required="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group label-floating">
-                                                            <label for="email">Size(g)</label>
-                                                            <input type="number" class="form-control" name="fname" required="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group label-floating">
-                                                            <label for="email">Packaging</label>
-                                                            <input type="text" class="form-control" name="packaging" required="">
+                                                            <input class="form-control" type="text" name="blend_name" value="<?php echo $row->blend;?>" required="">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group label-floating">
                                                             <label for="email">Price Per Unit</label>
-                                                            <input type="number" class="form-control" name="price" required="">
+                                                            <input type="number" class="form-control" name="price" value="<?php echo $row->blend_price;?>" required="">
                                                         </div>
                                                     </div>
-                                                </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group label-floating">
+                                                            
+                                                            <label for="sel1">Package and Size:</label>
+
+                                                              <select class="form-control" id="sel1" name="package_id">
+                                                                <?php
+                                                                    $pack = $this->db->query('SELECT * FROM packaging');
+                                                                    foreach($pack->result() as $row5){
+
+                                                                ?>
+                                                                    <option value="<?php echo $row5->package_id; ?>"> <?php echo $row5->package_type; ?> <?php echo $row5->package_size; ?>g </option>
+                                                                    <?php
+                                                                    }
+                                                                ?>
+                                                              </select>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group label-floating">
+                                                                
+                                                            <input type="hidden" class="form-control" name="id" value="<?php echo $id;?>" required="">
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                
                                             </div>
-                                    </div><hr>  
+                                            <?php
+
+                                                }
+                                                   
+                                            ?>
+                                                
+                                    </div><hr>
+                                    <h3 style="text-align: center;"> PROPORTIONS </h3>  
                                     <table class="table table-striped" id="table-mutasi">
                                 <thead>
                                     <tr>
@@ -287,21 +234,21 @@
                                 </thead>
                                 <tbody>
                                     <tr>
+                                        <?php
+
+                                                $qcount = $this->db->query('SELECT * FROM raw_coffee');
+                                                foreach($edit_page->result() as $row){
+                                                        foreach($qcount->result() as $row2){
+                                                            $colname = "per" . $row2->raw_id;
+                                        ?>
                                         <td>
-                                            <input type="number" class="form-control">
+                                            <input type="number" name="per[<?php echo $row2->raw_id;?>]" value="<?php echo $row->$colname; ?>" class="form-control">
                                         </td>
-                                        <td>
-                                            <input type="number" class="form-control">
-                                        </td>
-                                        <td>
-                                            <input type="number" class="form-control">
-                                        </td>
-                                        <td>
-                                            <input type="number" class="form-control">
-                                        </td>
-                                        <td>
-                                            <input type="number" class="form-control">
-                                        </td>
+                                        <?php
+                                                }
+                                            }
+                                        ?>
+                                        
                                     </tr>
                                 </tbody>
                             </table>

@@ -128,7 +128,8 @@
                 </div>
             </nav>
             <div class="content">
-                <a href="<?php echo base_url() ?>salesClients/salesClientsInfo" class="btn btn-primary navbar-btn pull-left">
+                <?php $id = $this->input->get('id'); ?>
+                <a href="<?php echo base_url() ?>salesClients/salesClientsInfo?id=<?php echo $id ?>" class="btn btn-primary navbar-btn pull-left">
         <span class="glyphicon glyphicon-chevron-left"></span>
       </a>
                 <div class="container-fluid">

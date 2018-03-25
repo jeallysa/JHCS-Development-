@@ -252,7 +252,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-5 control">Quantity :</label>
                                                 <div class="col-md-4">
-                                                    <input type="number" name="quantity" id="quantityAvailed" class="form-control" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" >
+                                                    <input type="number" name="quantity" id="quantityAvailed" class="form-control" min="1" oninput="validity.valid||(value='');" data-validate="required" max="" >
                                                 </div>
                                             </div><br><br>
 											 <div class="form-group">
