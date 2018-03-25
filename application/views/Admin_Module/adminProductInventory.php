@@ -179,7 +179,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <div class="col-md-12 form-group">
                                         <div class="form-group label-floating">
                                             <label for="email">Name</label>
-                                            <input class="form-control" type="text" name="name" required>
+                                            <input class="form-control" type="text" name="name" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Name should only countain letters" >
                                         </div>
                                     </div>
                                 </div>
@@ -187,19 +187,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                      <div class="col-lg-6 form-group">
                                         <div class="form-group label-floating">
                                             <label for="email">Reorder Level</label>
-                                            <input class="form-control" type="number" name="reorder" required>
+                                            <input class="form-control" type="number" name="reorder" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
                                             <label for="email">Stock Limit</label>
-                                            <input class="form-control" type="number" name="stocklimit" required>
+                                            <input class="form-control" type="number" name="stocklimit" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
                                             <label for="email">Number of Stocks</label>
-                                            <input class="form-control" type="number" name="stocks" required>
+                                            <input class="form-control" type="number" name="stocks" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6 form-group">
@@ -379,7 +379,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     <div class="col-md-12 form-group">
                                                                         <div class="form-group label-floating">
                                                                             <label for="email">Name</label>
-                                                                            <input class="form-control" type="text" name="name" value="<?php echo $row->raw_coffee; ?>" required>
+                                                                            <input class="form-control" type="text" name="name" value="<?php echo $row->raw_coffee; ?>" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Name should only countain letters">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -395,19 +395,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                      <div class="col-lg-6 form-group">
                                                                         <div class="form-group label-floating">
                                                                             <label for="email">Reorder Level</label>
-                                                                            <input class="form-control" value="<?php echo $row->raw_reorder; ?>" type="number" name="reorder" required>
+                                                                            <input class="form-control" value="<?php echo $row->raw_reorder; ?>" type="number" name="reorder" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6 form-group">
                                                                         <div class="form-group label-floating">
                                                                             <label for="email">Stock Limit</label>
-                                                                            <input class="form-control" value="<?php echo $row->raw_limit; ?>" type="number" name="stocklimit" required>
+                                                                            <input class="form-control" value="<?php echo $row->raw_limit; ?>" type="number" name="stocklimit" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6 form-group">
                                                                         <div class="form-group label-floating">
                                                                             <label for="email">Number of Stocks</label>
-                                                                            <input class="form-control" value="<?php echo $row->raw_stock; ?>" type="number" name="stocks" required>
+                                                                            <input class="form-control" value="<?php echo $row->raw_stock; ?>" type="number" name="stocks" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6 form-group">

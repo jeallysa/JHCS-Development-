@@ -133,7 +133,7 @@
                                        
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 15px;">
-                                        <input class="form-control" name="supplier" placeholder="Supplier" type="text" required autofocus />
+                                        <input class="form-control" name="supplier" placeholder="Supplier" type="text" required autofocus required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Supplier should only countain letters"/>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -146,40 +146,36 @@
                                 <h6> Personal Information (Contact Personnel) </h6>
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <input class="form-control" name="cpfname" placeholder="First Name" type="text" required />
+                                        <input class="form-control" name="cpfname" placeholder="First Name" type="text" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="First Name should only countain letters" />
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <input class="form-control" name="cplname" placeholder="Last Name" type="text" required />
+                                        <input class="form-control" name="cplname" placeholder="Last Name" type="text" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Last Name should only countain letters" />
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div>
                                         <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                            <input class="form-control" name="position" placeholder="Position" type="text" required />
+                                            <input class="form-control" name="position" placeholder="Position" type="text" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Position should only countain letters" />
                                         </div>
                                     </div>
                                 
                                     <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <input class="form-control" name="email" placeholder="Email" type="text" required />
+                                        <input class="form-control" name="email" placeholder="Email" type="text" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required title="You have entered an invalid E-mail address. Please try again." />
                                     </div>
                                 </div>
                                 
                                  <div class="row">
-                                    <div class="col-lg-12 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <input class="form-control" name="tel_number" placeholder="Cellphone Number" type="text" required />
+                                    <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 15px;">
+                                        <input class="form-control" name="tel_number" placeholder="Cellphone Number" type="number"  min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required />
                                     </div>
                                 </div>
                                 
                                 <h6> Product </h6>
                                 <div class="row">
-                                    <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <select class="form-control" name="product" placeholder="Position" type="text" required>
-                                            <option>Raw Coffee</option>
-                                            <option>Packaging</option>
-                                            <option>Sticker</option>
-                                            <option>Machine</option>
-                                            
-                                        </select>
+                                    <div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 15px;">
+                                            <input class="form-control" name="product" placeholder="Product" type="text" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Product should only countain letters" />
+                                        </div>
                                     </div>
                                 </div>
                             

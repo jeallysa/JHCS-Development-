@@ -146,7 +146,6 @@
                                             <tr>
                                                 <th><b>Client</b></th>
                                                 <th><b>Total Receivable</b></th>
-                                                <th><b>Action</b></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -156,19 +155,6 @@
                                              <tr>
                                                  <td><?php echo $row->client_company; ?></td>
                                                  <td><?php echo 'Php '.number_format($row->client_balance,2); ?></td>
-                                                 <td><a class="btn btn-info btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#receivable<?php echo $row->client_id?>">Breakdown</a></td>
-                                                 <!--modal for reveivales-->
-                                                <div class="modal fade" id="receivable<?php echo $row->client_id;?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="panel panel-primary">
-                                                            <div class="panel-heading">
-                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                                <h4 class="panel-title" id="contactLabel"><center><?php echo $row->client_company ?> Recievables</center></h4>
-                                                            </div>
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </div>
                                              </tr>
                                              <?php 
                                                 }

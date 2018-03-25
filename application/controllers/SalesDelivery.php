@@ -52,7 +52,7 @@
                 "coff_remarks" =>$this->input->post("remarks")    
 			);
 			$dataA = $this->security->xss_clean($dataA);
-			$return = 'Yes';
+			$return = 'Returned';
 			$dr = $this->input->post("client_dr");
 			$this->SalesDelivery_model->insert_dataA($dataA);
 			$this->SalesDelivery_model->updateA($return, $dr);

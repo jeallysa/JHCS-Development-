@@ -24,9 +24,11 @@
 			$u_email = $this->input->post('u_email');
 			$tel_number = $this->input->post('tel_number');
 			$u_contact = $this->input->post('u_contact');
+            $username = $this->input->post('username');
+			$password = $this->input->post('password');
 
 
-			$this->AddAccounts_model->add_data($user_no, $u_lname, $u_fname, $u_type, $u_address, $u_email, $u_contact);
+			$this->AddAccounts_model->add_data($user_no, $u_lname, $u_fname, $u_type, $u_address, $u_email, $u_contact, $username, $password);
 			
 			
 			

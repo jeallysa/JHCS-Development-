@@ -188,7 +188,7 @@
                                             <div class="col-sm-6 nopadding">
                                               <div class="form-group">
                                                   <div class="input-group">
-                                                    <input type="number" class="form-control" id="qty" name="qty" value="qty" placeholder="qty" required="">
+                                                    <input type="number" class="form-control" id="qty" name="qty" value="qty" placeholder="qty" required="" min="1">
                                                         <div class="input-group-btn">
                                                       </div>
                                                   </div>

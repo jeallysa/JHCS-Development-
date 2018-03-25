@@ -177,30 +177,24 @@
                                                      <div class="form-group row">
                                                         <div for="example-number-input" class="col-2 col-form-label">
                                                             <label for="type">Date Started</label>
-                                                            <input class="form-control" type="textarea" value="December 28, 2017" id="example-number-input">
-                                                        </div>
-                                                    </div>
-                                                      <p><div class="form-group row">
-                                                        <div for="example-number-input" class="col-2 col-form-label">
-                                                            <label for="type">Credit Term</label>
-                                                            <input class="form-control" type="textarea" value="30 Days" id="example-number-input">
+                                                            <input class="form-control" type="textarea" value="December 28, 2017" id="example-number-input" required>
                                                         </div>
                                                     </div>
                                                         <div class="form-group row">
                                                         <div for="example-number-input" class="col-2 col-form-label">
                                                             <label for="type">Quantity</label>
-                                                            <input class="form-control" type="number" value="300" id="example-number-input">
+                                                            <input class="form-control" type="number" value="300" id="example-number-input" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                                         </div>
                                                     </div>
                                                       <div class="form-group row">
                                                         <div for="example-number-input" class="col-2 col-form-label">
                                                             <label for="type">Size</label>
-                                                            <input class="form-control" type="number" value="500g" id="example-number-input">
+                                                            <input class="form-control" type="number" value="500g" id="example-number-input" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                                         </div>
                                                     </div>
                                                        <div class="col-md-6">
                                                             <label class="control-label">Coffee Blend</label>
-                                                            <select class="form-control" name="Category" placeholder="Category" type="text" required>
+                                                            <select class="form-control" name="Category" placeholder="Category" type="text" required required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Coffee should only countain letters">
                                                                 <option>Sumatra Night</option>
                                                                 <option>Guatamela Rainforest</option>
                                                                 <option>Cordillera Sunshine</option>
@@ -209,7 +203,7 @@
                                                         </div>
                                                        <div class="col-md-6">
                                                             <label class="control-label">Bag</label>
-                                                            <select class="form-control" name="Category" placeholder="Category" type="text" required>
+                                                            <select class="form-control" name="Category" placeholder="Category" type="text" required required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Bag should only countain letters">
                                                                 <option>Clear</option>
                                                                 <option>Brown</option>
                                                             </select>
@@ -219,13 +213,7 @@
                                                      <div class="form-group row">
                                                         <div for="example-number-input" class="col-2 col-form-label">
                                                             <label for="type">Brewer</label>
-                                                            <input class="form-control" type="textarea" value="Saeco" id="example-number-input">
-                                                        </div>
-                                                    </div>
-                                                      <p><div class="form-group row">
-                                                        <div for="example-number-input" class="col-2 col-form-label">
-                                                            <label for="type">Type</label>
-                                                            <input class="form-control" type="textarea" value="Double Cup Espresso" id="example-number-input">
+                                                            <input class="form-control" type="textarea" value="Saeco" id="example-number-input" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Brewer should only countain letters">
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -260,8 +248,8 @@
                                                 <th><b>Date Started</b></th>
                                                 <th><b>Coffee Blend</b></th>
                                                 <th><b>Bag</b></th>
-                                                <th><b>Size</b></th>
                                                 <th><b>Brewer</b></th>
+                                                <th><b>Required Quantity</b></th>
                                                 <th class="disabled-sorting"><b>Edit</b></th>
                                             </tr>
                                         </thead>
@@ -277,10 +265,12 @@
                                                 <tr>
                                                 <td><?php echo $row->client_company; ?></td>
                                                 <td><?php echo $row->date_started; ?></td>
-                                                <td><?php echo $row->contract_blend; ?></td>
-                                                <td><?php echo $row->contract_bag; ?></td>
-                                                <td><?php echo $row->contract_size; ?></td>
-                                                <td><?php echo $row->contract_machine; ?></td>
+                                                <td><?php echo $row->blend_id; ?></td>
+                                                <td><?php echo $row->package_id; ?></td>
+                                                <td><?php echo $row->mach_id; ?></td>
+                                                 <td><?php echo $row->required_qty; ?></td>
+                                                
+
                                                      <td>
                                                                 <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit<?php echo $row->contract_id; ?>">Edit</a>
                                                 </td>
@@ -326,14 +316,14 @@
                                                                     </div>
                                                                     <div class="col-md-6 form-group">
                                                                         <div class="form-group label-floating">
-                                                                            <label for="email">Size</label>
-                                                                            <input class="form-control" value="<?php echo $row->contract_size; ?>" type="number" name="contract_size" required>
+                                                                            <label for="email">Machine</label>
+                                                                            <input class="form-control" value="<?php echo $row->contract_machine; ?>" type="text" name="contract_machine" required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6 form-group">
                                                                         <div class="form-group label-floating">
-                                                                            <label for="email">Machine</label>
-                                                                            <input class="form-control" value="<?php echo $row->contract_machine; ?>" type="text" name="contract_machine" required>
+                                                                            <label for="email">Required Quantity</label>
+                                                                            <input class="form-control" value="<?php echo $row->contract_qty; ?>" type="number" name="contract_qty" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                                                         </div>
                                                                     </div>
                                                                     </div>

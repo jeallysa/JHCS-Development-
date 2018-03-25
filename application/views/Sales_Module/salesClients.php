@@ -37,6 +37,13 @@
 		.no-border{
 			border: none !important;
 		}
+		.space1{
+			margin-bottom: 1%;
+			margin-top: 2%;
+		}
+		.space2{
+			margin-top: 1%;
+		}
 
     </style>
 </head>
@@ -159,10 +166,9 @@
                                                     <td><?php echo $row->client_type; ?></td>
 
                                                     <td><a href="<?php echo base_url(); ?>salesClients/salesClientsInfo?id=<?php echo $row->client_id;?>" class="btn btn-primary btn-round btn-sm">View Details<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></td>
-                                                    <td><div class="btn btn-primary btn-sm" data-background-color="green" data-toggle="modal" data-target="#PurchaseOrder" data-id="<?php echo $row->client_id; ?>" id="getDetails"> Purchase Order</div></td>
-
-                                                   
-
+                                                    <td><div class="btn btn-primary btn-sm space1" data-background-color="green" data-toggle="modal" data-target="#PurchaseOrder" data-id="<?php echo $row->client_id; ?>" id="getDetails" > Purchase Order</div><br>
+													<a class="btn btn-primary btn-sm space2" href="<?php echo base_url(); ?>salesClients/salesMultipleOrders?id=<?php echo $row->client_id;?>">Other Order</a>
+													</td>
                                                 </tr>
                                                 <?php
                                                     }
@@ -190,13 +196,13 @@
                         <?php echo form_open('SalesClients/addClientPO', array('method'=>'POST')); ?>
                             <div class="modal-body" style="padding: 5px;">
                                 <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
-                                        <h3><b><input name="Name" class="no-border" type="disabled" readonly /></b></h3>
-										<input name="client_id" class="no-border" type="hidden" readonly /> 
+                                    <div class="col-lg-12 col-md-12 col-sm-12 text-center" >
+												<h3><b><input name="Name" class="no-border" type="disabled" readonly /></b></h3>
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="row" >
+									<input name="client_id" class="no-border" type="hidden" readonly /> 
                                     <div class="col-lg-6 col-md-6 col-offset-6">
                                         <div class="form-group">
                                             <label class="col-md-4 control">Item Code :</label>
@@ -246,7 +252,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-5 control">Quantity :</label>
                                                 <div class="col-md-4">
-                                                    <input type="number" name="quantity" id="quantityAvailed" class="form-control" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" >
+                                                    <input type="number" name="quantity" id="quantityAvailed" class="form-control" min="1" oninput="validity.valid||(value='');" data-validate="required" max="" placeholder="reqQty" >
                                                 </div>
                                             </div><br><br>
 											 <div class="form-group">
@@ -458,10 +464,11 @@ $(document).ready(function() {
 							$('[name="client_id"]').val(data.client_id);
 							$('[name="Name"]').val(data.client_company);
 							$('[name="ItemCode"]').val(data.blend_id);
-							$('[name="CoffeeBlend"]').val(data.contract_blend);
-							$('[name="Bag"]').val(data.contract_bag);
-							$('[name="Size"]').val(data.contract_size);
-							$('[name="QTY"]').val(data.contractPO_qty);
+							$('[name="CoffeeBlend"]').val(data.blend);
+							$('[name="Bag"]').val(data.package_type);
+							$('[name="Size"]').val(data.package_size);
+                            $('[name="QTY"]').val(data.contractPO_qty);
+							$('[placeholder="reqQty"]').val(data.required_qty);
 							$('[name="UnitPrice"]').val(data.blend_price);
 							/*$('#resolve_coffee').modal('show');*/			
 						},
