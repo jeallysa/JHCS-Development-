@@ -51,16 +51,20 @@
                         		<div class="form-top-left">
                         			<h3>JHCS Login Form </h3>
                             		<p>Enter your username and password to log on:</p>
-                                    <?php
-                                        $error = $this->session->flashdata('error');
-                                        if(!empty($error)){
-                                          echo $error;
-                                        }
-                                      ?>
-                        		</div>
+                                </div>
+                                       
+                                
                         		<div class="form-top-right">
                         			<i class="fa fa-lock"></i>
                         		</div>
+                                <?php
+                                        $error = $this->session->flashdata('error');
+                                        if(!empty($error)){
+                                            ?>
+                                            <div class="alert alert-danger" style="margin-top: 100px;  text-align: center; ">
+                                                <strong><?php echo $error; ?></strong> 
+                                            </div>
+                                      <?php } ?> 
                             </div>
                             <div class="form-bottom">
 			                    <form role="form" action="<?php echo site_url('login/validate');?>" method="post" class="login-form validate-form">

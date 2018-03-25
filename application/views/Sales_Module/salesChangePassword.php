@@ -54,13 +54,13 @@
                             <p>Clients</p>
                         </a>
                     </li>
-					<li>
+                    <li>
                         <a href="<?php echo base_url(); ?>salesReturns">
                             <i class="material-icons">assignment_return</i>
                             <p>Returns</p>
                         </a>
                     </li>
-					<li >
+                    <li >
                         <a href="<?php echo base_url(); ?>salesDelivery">
                             <i class="material-icons">local_shipping</i>
                             <p>Deliveries</p>
@@ -137,15 +137,29 @@
                                     <h4 class="title"><i class="material-icons">lock_outline</i> Change Password</h4>
                                     <p class="category">It's a good idea to use a strong password that you're not using elsewhere</p>
                                 </div>
+                                <?php
+                                    $error = $this->session->flashdata('error');
+                                    $success = $this->session->flashdata('success');
+                                    if(!empty($error)){
+                                        ?>
+                                        <div class="alert alert-danger" style="margin: 20px; text-align: center; ">
+                                            <strong><?php echo $error; ?></strong> 
+                                        </div>
+                                  <?php } else if(!empty($success)){ ?>
+                                        <div class="alert alert-success" style="margin: 20px; text-align: center; ">
+                                            <strong><?php echo $success; ?></strong> 
+                                        </div>
+                                  <?php } ?> 
                                 <div class="card-content">
-                                    <form action="#" method="post" accept-charset="utf-8">
+                                    <?php echo form_open('salesChangePassword/updatePwd') ?>
+                                    <!-- <form action="#" method="post" accept-charset="utf-8"> -->
                                         <div class="modal-body" style="padding: 5px;">
                                             <div class="row">
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group label-floating">
                                                             <label for="email">Current Password:</label>
-                                                            <input class="form-control" type="text" name="" required/>
+                                                            <?php echo form_password(['name' => 'password', 'id' => 'inputPassword', 'placeholder' => 'Password', 'class' => 'form-control']); ?>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -153,24 +167,24 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group label-floating">
                                                             <label for="email">New Password:</label>
-                                                            <input class="form-control" type="text" name="" required/>
+                                                            <?php echo form_password(['name' => 'newpassword', 'id' => 'inputPassword', 'placeholder' => 'New Password', 'class' => 'form-control']); ?>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group label-floating">
-                                                            <label for="email">Re-type New Password:</label>
-                                                            <input class="form-control" type="text" name="" required/>
+                                                            <label for="email">Confirm New Password:</label>
+                                                            <?php echo form_password(['name' => 'confpassword', 'id' => 'inputPassword', 'placeholder' => 'Password Confirmation', 'class' => 'form-control']); ?>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="panel-footer" style="margin-bottom:-14px;" align="center">
-                                            <input type="submit" class="btn btn-primary" value="Save Changes" />
+                                            <?php echo form_submit(['name' => 'submit', 'value' => 'Update Password', 'class' => 'btn btn-primary' ]); ?>
                                         </div>
-                                    </form>
+                                    <?php echo form_close(); ?>
                                 </div>
                             </div>
                         </div>
