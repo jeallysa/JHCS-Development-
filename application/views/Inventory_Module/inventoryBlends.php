@@ -198,7 +198,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <th><b class="pull-left">Bag</b></th>
                                                     <th><b class="pull-left">Size (in grams)</b></th>
                                                     <th><b class="pull-left">Number of Stocks (per pc)</b></th>
-                                                    <th><b class="pull-left">Price</b></th>
+                                                    <th><b class="pull-left">Physical Count (per pc)</b></th>
                                                     <th><b class="pull-left">Cue Card</b></th>
                                                 </tr>
                                             </thead>
@@ -214,7 +214,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <td><?php echo $row->package_type; ?></td>
                                                     <td><?php echo $row->package_size; ?></td>
                                                     <td><b><?php echo $row->blend_qty; ?></b></td>
-                                                    <td>Php <?php echo $row->blend_price; ?></td>
+                                                    <td><b><?php echo $row->blend_physcount; ?></b></td>
                                                     <td><a class="btn btn-info" data-toggle="modal" data-target="#<?php echo $row->blend_id; ?>" data-original-title style="float: right">View</a>
 
                                                         <!-- Modal -->
@@ -302,9 +302,50 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             }
                                         ?> 
 
+                                        <?php
+                                              $retrieveDetails4 ="SELECT blend_id, client_company, coff_returnDate, coff_returnQty FROM jhcs.client_coffreturn NATURAL JOIN client_delivery NATURAL JOIN contracted_client NATURAL JOIN contracted_po NATURAL JOIN coffee_blend WHERE blend_id = '$row->blend_id';" ;
+                                              $query = $this->db->query($retrieveDetails4);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td>'  . $object->client_company  . '</td>' ,
+                                                '<td>'  . $object->coff_returnDate  . '</td>' ,
+                                                '<td>'  . $object->coff_returnQty  . '</td>' ;
+                                                ?>
+                                                    <td>Return</td>
+                                                    <td>IN</td>
+                                                 <?php   
+                                                '</tr>' ;
+                                              }
+                                            }
+                                        ?> 
+
                                         
                                                     </tbody>
                                                       </table>
+                                                      <div class="row">
+                                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-6 control">Physical Count :</label>
+                                                                        <div class="col-md-4">
+                                                                            <input id="" name="count" type="number" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-6 control">Discrepancy :</label>
+                                                                        <div class="col-md-4">
+                                                                            <input placeholder="0 grams" class="form-control" disabled />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-6 control">Remarks :</label>
+                                                                        <div class="col-md-10">
+                                                                            <textarea style="resize:vertical;" class="form-control" rows="2" name="remarks"></textarea>
+                                                                            <button style="float: right;" type="submit" class="btn btn-success">Save</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                       </div>
                                                       <div class="modal-footer">
