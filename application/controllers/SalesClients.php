@@ -47,6 +47,22 @@
 					  redirect('SalesClients/index');
 
 		}
+		
+		public function salesMultipleOrders(){
+			$this->load->view('Sales_Module/salesMultipleOrders');
+		}
+		
+		
+		/*public function addMultipleOrders(){
+			$blendName = $this->input->post('blendName');
+			$typeBag = $this->input->post('typeBag');
+			$sizeBag = $this->input->post('sizeBag');
+			$quantity = $this->input->post('quantity');
+			
+			$array = $this->SalesClient_model->AddMultipleOrders($blendName, $typeBag, $sizeBag, $quantity);
+			echo json_encode($array);
+			
+		}*/
 
 	}
 

@@ -29,6 +29,15 @@
 
 			return $query;
 		}
+		
+		
+		/*public function AddMultipleOrders($blendName, $typeBag, $sizeBag, $quantity){
+			
+			$data = array(
+
+			);
+			
+		}*/
 
 		
 	}
