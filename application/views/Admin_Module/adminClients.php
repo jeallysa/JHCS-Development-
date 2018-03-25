@@ -281,44 +281,44 @@
                                                                              <div class="form-group row">
                                                                                 <div for="example-number-input" class="col-2 col-form-label">
                                                                                     <label for="type">Company Name</label>
-                                                                                    <input class="form-control" name="comp_name" type="text" value="<?php echo $row->client_company; ?>" id="example-number-input">
+                                                                                    <input class="form-control" name="comp_name" type="text" value="<?php echo $row->client_company; ?>" id="example-number-input" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Company Name should only countain letters">
                                                                                 </div>
                                                                             </div>
                                                                                 
                                                                                  <p><div class="form-group row">
                                                                                 <div for="example-number-input" class="col-2 col-form-label">
                                                                                     <label for="type">Client Type</label>
-                                                                                    <input class="form-control" name="cli_type" type="text" value="<?php echo $row->client_type; ?>" id="example-number-input">
+                                                                                    <input class="form-control" name="cli_type" type="text" value="<?php echo $row->client_type; ?>" id="example-number-input" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Client Type should only countain letters">
                                                                                 </div>
                                                                             </div>
                                                                             <h5> Contact Personnel </h5>
                                                                                 <div class="form-group row">
                                                                                 <div for="example-number-input" class="col-2 col-form-label">
                                                                                     <label for="type">Last Name</label>
-                                                                                    <input class="form-control" name="last_name" type="text" value="<?php echo $row->client_lname; ?>" id="example-number-input">
+                                                                                    <input class="form-control" name="last_name" type="text" value="<?php echo $row->client_lname; ?>" id="example-number-input" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Last Name should only countain letters">
                                                                                 </div>
                                                                                 <div for="example-number-input" class="col-2 col-form-label">
                                                                                     <label for="type">First Name</label>
-                                                                                    <input class="form-control" name="first_name" type="text" value="<?php echo $row->client_fname; ?>" id="example-number-input">
+                                                                                    <input class="form-control" name="first_name" type="text" value="<?php echo $row->client_fname; ?>" id="example-number-input" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="First Name should only countain letters">
                                                                                 </div>
                                                                             </div>
                                                                                 <div class="form-group row">
                                                                                 <div for="example-number-input" class="col-2 col-form-label">
                                                                                     <label for="type">Address</label>
-                                                                                    <input class="form-control" name="address" type="text" value="<?php echo $row->client_address; ?>" id="example-number-input">
+                                                                                    <input class="form-control" name="address" type="text" value="<?php echo $row->client_address; ?>" id="example-number-input" required>
                                                                                 </div>
                                                                             </div>
                                                                                 <div class="form-group row">
                                                                                 <div for="example-number-input" class="col-2 col-form-label">
                                                                                     <label for="type">Email</label>
-                                                                                    <input class="form-control" name="email" type="text" value="<?php echo $row->client_email; ?>" id="example-number-input">
+                                                                                    <input class="form-control" name="email" type="text" value="<?php echo $row->client_email; ?>" id="example-number-input" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required title="You have entered an invalid E-mail address. Please try again.">
                                                                                 </div>
                                                                             </div>
                                                                               
                                                                                 <div class="form-group row">
                                                                                 <div for="example-number-input" class="col-2 col-form-label">
                                                                                     <label for="type">Cellphone Number</label>
-                                                                                    <input class="form-control" name="cell_no" type="number" value="<?php echo $row->client_contact; ?>" id="example-number-input">
+                                                                                    <input class="form-control" name="cell_no" type="number" value="<?php echo $row->client_contact; ?>" id="example-number-input" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                                                                 </div>
                                                                             </div>
 

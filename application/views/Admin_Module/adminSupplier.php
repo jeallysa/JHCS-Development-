@@ -163,73 +163,7 @@
                     </div>
                 </div>
             </nav>
-        
-            <div class="modal fade" id="contact" tabindex="1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign" ></span> Create New Account</h4>
-                        </div>
-                        <form action="#" method="post" accept-charset="utf-8">
-                            <div class="modal-body" style="padding-left: 100px;">
-                                <h6> Personal Information </h6>
-                                <div class="row">
-                                    <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <input class="form-control" name="supplier" placeholder="Supplier" type="text" required autofocus />
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <input class="form-control" name="contactpersonnel" placeholder="Contact Personnel" type="text" required />
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div>
-                                        <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                            <input class="form-control" name="position " placeholder="Position" type="text" required />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <input class="form-control" name="email" placeholder="Email" type="text" required />
-                                    </div>
-                                </div>
-                                 <div class="row">
-                                    <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <input class="form-control" name="tel number" placeholder="Telephone Number" type="text" required />
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-10 col-md-12 col-sm-12">
-                                        <textarea style="resize:vertical;" class="form-control" placeholder="Address" rows="2" name="address" required></textarea>
-                                    </div>
-                                </div>
-                                <h6> Product </h6>
-                                <div class="row">
-                                    <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <select class="form-control" name="position" placeholder="Position" type="text" required>
-                                            <option>Brown Bag</option>
-                                            <option>Clear Bag</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel-footer" style="margin-bottom:-14px;">
-                                <input type="submit" class="btn btn-success" value="Add" />
-                                <!--<span class="glyphicon glyphicon-ok"></span>-->
-                                <input type="reset" class="btn btn-danger" value="Clear" />
-                                <!--<span class="glyphicon glyphicon-remove"></span>-->
-                                <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-                
-             
-        
+    
            <div class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -351,31 +285,31 @@
                                                                         <div for="example-number-input" class="col-2 col-form-label">
                                                                             <label for="type">Supplier</label>
                                                                             <input name="sup_company" class="form-control" type="textarea" value="<?php echo $row->sup_company; ?>" id="example-number-input">
-                                                                            <input name="sup_id" class="form-control" type="hidden" value="<?php echo $row->sup_id; ?>" id="example-number-input">
+                                                                            <input name="sup_id" class="form-control" type="hidden" value="<?php echo $row->sup_id; ?>" id="example-number-input" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Supplier should only countain letters">
                                                                         </div>
                                                                     </div>
                                                                         
                                                                          <p><div class="form-group row">
                                                                         <div for="example-number-input" class="col-2 col-form-label">
                                                                             <label for="type">Address</label>
-                                                                            <input name="sup_address" class="form-control" type="textarea" value="<?php echo $row->sup_address; ?>" id="example-number-input">
+                                                                            <input name="sup_address" class="form-control" type="textarea" value="<?php echo $row->sup_address; ?>" id="example-number-input" required>
                                                                         </div>
                                                                     </div>
                                                                         <div class="form-group row">
                                                                         <div for="example-number-input" class="col-2 col-form-label">
                                                                             <label for="type">Email</label>
-                                                                            <input name="sup_email" class="form-control" type="textarea" value="<?php echo $row->sup_email; ?>" id="example-number-input">
+                                                                            <input name="sup_email" class="form-control" type="textarea" value="<?php echo $row->sup_email; ?>" id="example-number-input" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required title="You have entered an invalid E-mail address. Please try again.">
                                                                         </div>
                                                                     </div>
                                                                         <div class="form-group row">
                                                                         <div for="example-number-input" class="col-2 col-form-label">
-                                                                            <label for="type">Telephone Number</label>
-                                                                            <input name="sup_contact" class="form-control" type="number" value="<?php echo $row->sup_contact; ?>" id="example-number-input">
+                                                                            <label for="type">Cellphone Number</label>
+                                                                            <input name="sup_contact" class="form-control" type="number" value="<?php echo $row->sup_contact; ?>" id="example-number-input" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                                                         </div>
                                                                     </div>
                                                                        <div class="col-md-6">
                                                                             <label class="control-label">Product</label>
-                                                                            <select class="form-control" name="Category" placeholder="Category" type="text" required>
+                                                                            <select class="form-control" name="Category" placeholder="Category" type="text" required required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Product should only countain letters">
                                                                                 <option>Brown Bag</option>
                                                                                 <option>Clear Bag</option>
                                                                             </select>
@@ -385,7 +319,7 @@
                                                                          <div class="col-md-6">
                                                                             <label for="example-number-input" class="col-2 col-form-label">Position</label>
                                                                             <div class="col-10">
-                                                                                <input name="sup_position" class="form-control" type="textarea" value="<?php echo $row->sup_position; ?>" id="example-number-input">
+                                                                                <input name="sup_position" class="form-control" type="textarea" value="<?php echo $row->sup_position; ?>" id="example-number-input" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Position should only countain letters">
                                                                             </div>
                                                                         </div>
                                                                      
@@ -396,13 +330,13 @@
                                                                             
                                                                             <label for="example-number-input" class="col-2 col-form-label">First Name</label>
                                                                             <div class="col-10">
-                                                                                <input name="sup_fname" class="form-control" type="textarea" value="<?php echo $row->sup_fname; ?>" id="example-number-input">
+                                                                                <input name="sup_fname" class="form-control" type="textarea" value="<?php echo $row->sup_fname; ?>" id="example-number-input" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="First Name should only countain letters">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
                                                                             <label for="example-number-input" class="col-2 col-form-label">Last Name</label>
                                                                             <div class="col-10">
-                                                                                <input name="sup_lname" class="form-control" type="textarea" value="<?php echo $row->sup_lname; ?>" id="example-number-input">
+                                                                                <input name="sup_lname" class="form-control" type="textarea" value="<?php echo $row->sup_lname; ?>" id="example-number-input" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Last Name should only countain letters">
                                                                             </div>
                                                                         </div>
                                                                     </div>
