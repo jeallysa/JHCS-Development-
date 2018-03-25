@@ -135,7 +135,8 @@
                             <div class="card">
                                 <div class="card-header" data-background-color="purple">
                                     <h4 class="title"><i class="material-icons">lock_outline</i> Change Password</h4>
-                                    <p class="category">It's a good idea to use a strong password that you're not using elsewhere</p>
+                                    <p class="category">It's a good idea to use a strong password that you're not using elsewhere</p><br>
+                                    <p>Note: if you are only going to change your Username, you are still required to fill the Password for confirmation. Thank you!</p>
                                 </div>
                                 <?php
                                     $error = $this->session->flashdata('error');
@@ -158,7 +159,19 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group label-floating">
-                                                            <label for="email">Current Password:</label>
+                                                            <?php 
+                                                                $u_name = $this->session->userdata('username');
+                                                            ?>
+
+                                                            <label for="email">Username:</label>
+                                                            <?php echo form_input(['name' => 'u_name', 'id' => 'Username', 'placeholder' => 'Username', 'value' => $u_name, 'class' => 'form-control']); ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group label-floating">
+                                                            <label for="email">Password:</label>
                                                             <?php echo form_password(['name' => 'password', 'id' => 'inputPassword', 'placeholder' => 'Password', 'class' => 'form-control']); ?>
                                                         </div>
                                                     </div>

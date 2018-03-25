@@ -11,7 +11,12 @@ class Changepassword_Model extends CI_model
 	function test_main(){
 		echo "Sample function";
 	}
-
+	function getUserid($username){
+        $query = $this->db->query("SELECT user_no from jhcs.user where username ='".$username."';");
+        foreach ($query ->result() as $row) {
+        	return $row->user_no;
+        }
+	}
 	function getCurrPassword($userid){
 		$query = $this->db->where(['user_no' => $userid])
 							->get('user');
@@ -20,8 +25,17 @@ class Changepassword_Model extends CI_model
 		} 
 	}
 
-	function updatePassword($new_password, $userid ){
+	function updateUsername($u_name, $userid){
 		$data = array(
+			'username' => $u_name
+		);
+		return $this->db->where('user_no', $userid)
+		->update('user', $data);
+	}
+
+	function updatePassword($u_name, $new_password, $userid ){
+		$data = array(
+			'username' => $u_name,
 			'password' => $new_password
 		);
 		return $this->db->where('user_no', $userid)

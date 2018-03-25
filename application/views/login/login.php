@@ -59,11 +59,15 @@
                         		</div>
                                 <?php
                                         $error = $this->session->flashdata('error');
+                                        $success = $this->session->flashdata('success');
                                         if(!empty($error)){
                                             ?>
                                             <div class="alert alert-danger" style="margin-top: 100px;  text-align: center; ">
                                                 <strong><?php echo $error; ?></strong> 
                                             </div>
+                                      <?php } else if(!empty($success)){ ?>
+                                            <div class="alert alert-success" style="margin-top: 100px;  text-align: center; ">
+                                                <strong><?php echo $success; ?></strong> 
                                       <?php } ?> 
                             </div>
                             <div class="form-bottom">
