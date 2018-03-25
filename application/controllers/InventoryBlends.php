@@ -18,6 +18,17 @@
 			}
 		}
 
+		function update(){
+			$this->load->model('InventoryBlends_Model');
+			$blendid = $this->input->post("blendid");
+			$count = $this->input->post("count");
+			$discrepancy = $this->input->post("discrepancy");
+			$remarks = $this->input->post("remarks");
+			$this->InventoryBlends_Model->update($blendid, $count, $discrepancy, $remarks);
+			echo "<script>alert('Update successful!');</script>";
+			redirect('inventoryBlends', 'refresh');
+		}
+
 	}
 
 ?>

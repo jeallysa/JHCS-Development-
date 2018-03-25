@@ -200,7 +200,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <th><b class="pull-left">Supplier</b></th>
                                                     <th><b class="pull-left">Number of Stocks (grams)</b></th>
                                                     <th><b class="pull-left">Physical Count (grams)</b></th>
-                                                    <th><b class="pull-left">Cue Card</b></th>
+                                                    <th><b class="pull-left">Remarks</b></th>
+                                                    <th><b class="pull-left">Stock Card</b></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -217,23 +218,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <td><?php echo $row->sup_company; ?></td>
                                                     <td><b><?php echo $row->raw_stock; ?></b></td>
                                                     <td><b><?php echo $row->raw_physcount; ?></b></td>
-                                                    <td><a class="btn btn-info" data-toggle="modal" data-target="#<?php echo $row->raw_coffee; ?>" data-original-title style="float: right">View</a>
+                                                    <td><?php echo $row->raw_remarks; ?></td>
+                                                    <td><a class="btn btn-info" data-toggle="modal" data-target="#<?php echo $row->raw_id; ?>" data-original-title style="float: right">View</a>
 
                                                         <!-- Modal -->
-                                                <div class="modal fade" id="<?php echo $row->raw_coffee; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                <div class="modal fade" id="<?php echo $row->raw_id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                   <div class="modal-dialog modal-lg">
                                                     <div class="panel panel-primary">
                                                         <div class="panel-heading">
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span>Cue Card Details</h4>
+                                                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span>Stock Card Details</h4>
                                                         </div>
                                                       <div class="modal-body" style="padding: 5px;">
                                                           <label>Set Date from </label>
                                                             <input type="date" name="">
                                                             <label> to </label>
                                                             <input type="date" name="">
-                                                          <button style="float: right;" onclick="printDiv('toBePrinted<?php echo $row->raw_coffee; ?>')"><i class="material-icons">print</i></button>
-                                                        <div id="toBePrinted<?php echo $row->raw_coffee; ?>">
+                                                          <button style="float: right;" onclick="printDiv('toBePrinted<?php echo $row->raw_id; ?>')"><i class="material-icons">print</i></button>
+                                                        <div id="toBePrinted<?php echo $row->raw_id; ?>">
                                                             <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
                                                                 <h3><b><?php echo $row->raw_coffee; ?></b></h3>
                                                                 <hr>
@@ -318,29 +320,45 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <form action="<?php echo base_url(); ?>InventoryStocks/update" method="post" accept-charset="utf-8">
+                                                                <?php $c = $row->raw_id?>
                                                             <div class="row">
                                                                 <div class="col-lg-6 col-md-6 col-sm-6">
+                                                                    
                                                                     <div class="form-group">
                                                                         <label class="col-md-6 control">Physical Count :</label>
                                                                         <div class="col-md-4">
-                                                                            <input id="" name="count" type="number" class="form-control">
+                                                                            <input id="count" name="count" type="number" class="form-control"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="type"></label>
+                                                                        <div class="col-md-4">
+                                                                            <input value="<?php echo $row->raw_stock; ?>" class="form-control" id="stock" name="stock" type="hidden" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label class="col-md-6 control">Discrepancy :</label>
                                                                         <div class="col-md-4">
-                                                                            <input placeholder="0 grams" class="form-control" disabled />
+                                                                            <input value="0" id="discrepancy" name="discrepancy" readonly="" class="form-control" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="type"></label>
+                                                                        <div class="col-md-4">
+                                                                            <input value="<?php echo $row->raw_id; ?>" class="form-control" name="rawid" type="hidden" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label class="col-md-6 control">Remarks :</label>
                                                                         <div class="col-md-10">
                                                                             <textarea style="resize:vertical;" class="form-control" rows="2" name="remarks"></textarea>
-                                                                            <button style="float: right;" type="submit" class="btn btn-success">Save</button>
                                                                         </div>
+                                                                        <button style="float: right;" type="submit" class="btn btn-success">Save</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            </form>
                                                         </div>
                                                         </div>
                                                       </div>
@@ -359,7 +377,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         else{
                                                          ?>
                                                         <tr>
-                                                            <td colspan = 9 style = "text-align: center;"> <h3>No data found</h3> </td>
+                                                            <td colspan = 9 style = "text-align: center;"> <h3>No raw coffees found</h3> </td>
                                                         </tr>
                                                         <?php
                                                         }
@@ -438,5 +456,15 @@ $(document).ready(function() {
     
     }
 </script> 
+
+<script>
+    $('#count').on('keyup', function() {
+   if($.trim(this.value).length) {
+     var discrepancy = parseFloat($('#stock').val()).toFixed(2) - 
+                   parseFloat(this.value).toFixed(2);
+     $('#discrepancy').val(discrepancy);
+   }
+});
+</script>
  
 </html>

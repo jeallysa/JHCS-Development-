@@ -18,6 +18,17 @@
 			}
 		}
 
+		function update(){
+			$this->load->model('InventoryStocks_Model');
+			$rawid = $this->input->post("rawid");
+			$count = $this->input->post("count");
+			$discrepancy = $this->input->post("discrepancy");
+			$remarks = $this->input->post("remarks");
+			$this->InventoryStocks_Model->update($rawid, $count, $discrepancy, $remarks);
+			echo "<script>alert('Update successful!');</script>";
+			redirect('inventoryStocks', 'refresh');
+		}
+
 	}
 
 ?>

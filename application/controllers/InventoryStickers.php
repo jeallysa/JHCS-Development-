@@ -18,6 +18,17 @@
 			}
 		}
 
+		function update(){
+			$this->load->model('InventoryStickers_Model');
+			$stickerid = $this->input->post("stickerid");
+			$count = $this->input->post("count");
+			$discrepancy = $this->input->post("discrepancy");
+			$remarks = $this->input->post("remarks");
+			$this->InventoryStickers_Model->update($stickerid, $count, $discrepancy, $remarks);
+			echo "<script>alert('Update successful!');</script>";
+			redirect('inventoryStickers', 'refresh');
+		}
+
 	}
 
 ?>
