@@ -39,7 +39,7 @@
 			
 		}
 		public function getDetailsMachine($id){
-			$query = $this->db->query("SELECT * FROM contracted_client NATURAL JOIN client_delivery NATURAL JOIN contracted_po NATURAL JOIN coffee_blend NATURAL JOIN packaging WHERE client_id='$id' ");
+			$query = $this->db->query("SELECT * FROM client_machreturn INNER JOIN machine ON client_machreturn.mach_id = machine.mach_id WHERE client_id='$id' ");
 			 return $query->row();
 		}
 		

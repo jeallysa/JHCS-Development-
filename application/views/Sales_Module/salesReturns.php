@@ -699,10 +699,8 @@ $(document).ready(function() {
 	function difference() {
             var num1 = document.getElementById('Originalquantity').value;
             var num2 = document.getElementById('deliveredCoffee').value;
-			/*var result = parseInt(num1) + parseInt(num2);*/
 			var result = parseInt(num1) - parseInt(num2);
             if (!isNaN(result)) {
-                /*document.getElementById('sum').value = result;*/
 				document.getElementById('subt').value = result;
             }
         }
@@ -715,7 +713,7 @@ $(document).ready(function() {
 $(document).ready(function(){  
     $(document).on('click', '#getDetails', function(e){   
         e.preventDefault();
-        var id = $(this).data('id');   // it will get id of clicked row
+        var id = $(this).data('id');  
   
         jQuery.ajax({
             method: 'GET',
@@ -735,9 +733,7 @@ $(document).ready(function(){
 					$('[name="SINo"]').val(data.client_invoice);
 					$('[name="RID"]').val(data.client_coffReturnID);
 					$('#resolve_coffee').modal('show');
-					
-					/*$('#blendDetails').html(data);
-*/
+
 				},
 			error: function (jqXHR, textStatus, errorThrown)
 				{
@@ -752,7 +748,7 @@ $(document).ready(function(){
 $(document).ready(function(){  
     $(document).on('click', '#getMachineDetails', function(e){   
         e.preventDefault();
-        var id = $(this).data('id');   // it will get id of clicked row
+        var id = $(this).data('id');   
   
         jQuery.ajax({
             method: 'GET',
@@ -761,9 +757,8 @@ $(document).ready(function(){
             url: '<?=base_url()?>SalesReturns/getMachineDetails/' + id ,			
 			success: function(data)
 				{
-
+					$('[name="PO_ID"]').val(data.contractPO_id);
 					$('#resolve_machine').modal('show');
-					/*$('#blendName').html(blend);*/
 
 
 				},

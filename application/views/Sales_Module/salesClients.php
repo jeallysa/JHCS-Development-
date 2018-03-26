@@ -44,6 +44,9 @@
 		.space2{
 			margin-top: 1%;
 		}
+		.table td {
+		   text-align: center;   
+		}
 
     </style>
 </head>
@@ -164,7 +167,7 @@
                                                     <td><?php echo $row->client_company; ?></td>
                                                     <td><?php echo $row->client_type; ?></td>
 
-                                                    <td class="pull-right">
+                                                    <td>
                                                     <a href="<?php echo base_url(); ?>salesClients/salesClientsInfo?id=<?php echo $row->client_id;?>" class="btn btn-primary btn-round btn-sm">View Details<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
                                                     <div class="btn btn-primary btn-sm" data-background-color="green" data-toggle="modal" data-target="#PurchaseOrder" data-id="<?php echo $row->client_id; ?>" id="getDetails" > Purchase Order</div>
 													<a class="btn btn-warning btn-sm" href="<?php echo base_url(); ?>salesClients/salesMultipleOrders/<?php echo $row->client_id;?>">Other Order</a>
