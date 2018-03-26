@@ -62,13 +62,30 @@
 		}
 		
 
-		/*public function AddMultipleOrders($blendName, $typeBag, $sizeBag, $quantity){
+		public function addMultipleOrders($data){
 			
-			$data = array(
-
-			);
+			for($x = 0; $x < count($data); $x++){
+				$orders[] = array(
+					'client_id' => $data[$x]['id'],
+					'contractPO_date' => $data[$x]['dateO'],
+					'blend_id' => $data[$x]['blend'],
+					'contractPO_qty' => $data[$x]['quantity'],
+				);
+			}
 			
-		}*/
+			try{
+				
+				for($x = 0; $x<count($data);$x++){
+					$this->db->insert('contracted_po', $orders[$x]);
+				}
+				
+				return 'success';
+				
+			}catch(Exception $e){
+				return 'failed';
+			}
+			
+		}
 
 		public function load_PayClient($id){
 			$query = $this->db->query("SELECT * FROM contracted_client NATURAL JOIN contracted_po NATURAL JOIN client_delivery NATURAL JOIN payment_contracted WHERE client_id='$id'");

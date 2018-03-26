@@ -92,14 +92,14 @@
 		.no-border{
 			border: none !important;
 		}
-		.sidebar .nav i,
+		/*.sidebar .nav i,
 		.off-canvas-sidebar .nav i{
-			color: #315aaa;
+			color: white;
 		}
 		.sidebar .sidebar-background:after,
 		.off-canvas-sidebar .sidebar-background:after{
-			background-color: bisque;
-		}
+			background-color: #8a6144;
+		}*/
 		
 
 		
@@ -474,7 +474,7 @@
                                                 <div class="form-group">
                                                     <label class="col-md-5 control">Delivery Date:</label>
                                                     <div class="col-md-7">
-                                                        <input class="no-border" name="delivery_date" placeholder="Date" type="date" value="<?php echo date("Y-m-d");?>" data-validate="required" message="A Date of Purchase is recquired! min="<?=date('Y-m-d')?>" max="<?=date('Y-m-d',strtotime(date('Y-m-d').'+1 days'))?>"" required />
+                                                        <input class="no-border" name="delivery_date" placeholder="Date" type="date" value="<?php echo date("Y-m-d");?>" data-validate="required" message="A Date of Delivery is recquired! min="<?=date('Y-m-d')?>" max="<?=date('Y-m-d',strtotime(date('Y-m-d').'+1 days'))?>"" required />
 														
                                                     </div>
                                                 </div>

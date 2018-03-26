@@ -42,6 +42,10 @@
 			float: none;
 			margin: 0 auto;
 		}
+		.table td {
+		   text-align: center;   
+		}
+		
 		.btn-group.open>.dropdown-toggle.btn,
 		.btn-group.open>.dropdown-toggle.btn.btn-default,
 		.btn-group-vertical.open>.dropdown-toggle.btn,
@@ -164,7 +168,7 @@
 										<?php foreach($data['info'] as $row){ ?>
 											<br>
 											<p style="font-size: 180%; font-weight: bold;" ><?php echo $row->client_company; ?> </p>
-											<input value="<?php echo $row->client_id ?>" type="hidden" />
+											<input id="client_id" value="<?php echo $row->client_id ?>" type="hidden" />
 										
 										<?php
 										
@@ -172,13 +176,16 @@
 										
 										<hr>
 										
-										<div class="col-sm-10 col-md-10 col-md-offset-1 well well-sm coll-centered" >
+										<div class="col-sm-11 col-md-11 col-md-offset-1 well well-sm coll-centered" >
 											<legend><span class="glyphicon glyphicon-shopping-cart"></span> Order</legend><hr>
 											<div class="row">
-											<div class="col-md-5 col-md-offset-1">
+											<div class="col-md-2 col-md-offset-1">
+												<input class="form-control" id="date" type="date" value="<?php echo date("Y-m-d");?>" data-validate="required" message="A Date of Delivery is recquired! min="<?=date('Y-m-d')?>" max="<?=date('Y-m-d',strtotime(date('Y-m-d').'+1 days'))?>"" required />
+											</div>
+											<div class="col-md-4 ">
 														<select class="form-control selectpicker" id="blend" data-live-search="true" multiple title="Choose Coffee Blend...">
 															<?php foreach($data1['blends'] as $row){ ?>
-															<option value='<?php $row->blend_id ?><?php echo $row->blend ?>/<?php echo $row->package_type ?>/<?php echo $row->package_size ?>' ><?php echo $row->blend ?>/<?php echo $row->package_type ?>/<?php echo $row->package_size ?></option>
+															<option value='<?php echo $row->blend_id ?>/<?php echo $row->blend ?>/<?php echo $row->package_type ?>/<?php echo $row->package_size ?>' ><?php echo $row->blend ?>/<?php echo $row->package_type ?>/<?php echo $row->package_size ?></option>
                                                             <?php 
 															} ?>
                                                          </select>
@@ -194,6 +201,8 @@
 										<div class="col-sm-10 col-md-10 col-md-offset-2 well well-sm coll-centered" >
 												<table class="table" id="data_table">
 													<thead class="text-primary">
+														<th></th>
+														<th>Date of Order</th>
 														<th>Coffee Blend/Type of Bag/Size of Bag</th>
 <!--														<th>Type of Bag</th>
 														<th>Size of Bag</th>-->
@@ -204,7 +213,7 @@
 														
 													</tbody>
 												</table>
-												<button class="btn btn-primary btn-sm" type="button" name="AddPO" id="AddPO">Add Purchase Order/s</button>
+												<button class="btn btn-primary btn-sm" type="submit" name="AddPO" id="AddPO">Add Purchase Order/s</button>
 												
 											</div>
 											<div class="col-xs-7 col-7" style="margin-left:15px; margin-top:150px;">
@@ -308,6 +317,8 @@
 	
 	var count = 0;
 	$("#append_data").click(function(){
+		var id = $('#client_id').val();
+		var dateO = $('#date').val();
 		var blend = $('#blend').val();
 		/*var typeBag = $('#type').val();
 		var sizeBag = $('#size').val();*/
@@ -315,6 +326,8 @@
 		
 		count = count + 1;
 		var newRow = '<tr id="row'+count+'">'+
+				'<td contenteditable="true" class="blendName">'+id+'</td>'+
+				'<td contenteditable="true" class="blendName">'+dateO+'</td>'+
 			 	'<td contenteditable="true" class="blendName">'+blend+'</td>'+
 /*			 	'<td contenteditable="true" class="typeBag">'+typeBag+'</td>'+
 			 	'<td contenteditable="true" class="sizeBag">'+sizeBag+'</td>'+*/
@@ -338,37 +351,42 @@
 	});
 	
 	$('#AddPO').click(function(){
-		var blendName=[];
-		var typeBag=[];
-		var sizeBag=[];
-		var quantity=[];
 		
-		$('.blendName').each(function(){
-			blendName.push($(this).text());
-		});
-		$('.typeBag').each(function(){
-			typeBag.push($(this).text());
-		});
-		$('.sizeBag').each(function(){
-			sizeBag.push($(this).text());
-		});
-		$('.quantity').each(function(){
-			quantity.push($(this).text());
+		var table_data = [];
+		
+		$('#data_table tr').each(function(row,tr){
+		
+			if($(tr).find('td:eq(0)').text() == ""){
+
+			}else{
+				var sub = {
+					'id' : $(tr).find('td:eq(0)').text(),
+					'dateO' : $(tr).find('td:eq(1)').text(),
+					'blend' : $(tr).find('td:eq(2)').text(),
+					'quantity' : $(tr).find('td:eq(3)').text(),
+				}
+
+				table_data.push(sub);
+			}
+
 		});
 		
-		/*$.ajax({
+		$.ajax({
 			
 			url:'<?=base_url()?>SalesClients/addMultipleOrders/',
 			method: 'POST',
-			data: {blendName:blendName,typeBag:typeBag,sizeBag:sizeBag,quantity:quantity},
+			data: {table_data:table_data},
+			crossOrigin: false,
 			success:function(data){
 				$("td[contentEditable='true']").text("");
-				for(var i=1; i<=count; 1++){
+				for(var i=1; i<=count; i++){
 					$('tr#'+i+'').remove();
 				}
+				console.log(data.check)
+				location.reload();  
 			}
 			
-		});*/
+		});
 	});
 </script>
 

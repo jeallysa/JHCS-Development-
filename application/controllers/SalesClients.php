@@ -85,16 +85,14 @@
 		}
 		
 		
-		/*public function addMultipleOrders(){
-			$blendName = $this->input->post('blendName');
-			$typeBag = $this->input->post('typeBag');
-			$sizeBag = $this->input->post('sizeBag');
-			$quantity = $this->input->post('quantity');
+		public function addMultipleOrders(){
+			$data = $this->input->post('table_data');
+			$this->SalesClients_model->AddMultipleOrders($data);
+			$this->output->set_content_type('application/json');
+			echo json_encode(array('check'=>'check'));
 			
-			$array = $this->SalesClient_model->AddMultipleOrders($blendName, $typeBag, $sizeBag, $quantity);
-			echo json_encode($array);
-			
-		}*/
+			redirect('SalesClients/salesMultipleOrders');
+		}
 
 	}
 
