@@ -97,6 +97,39 @@
 			*/
 			
 		}
+
+		public function insertion(){
+			$blend_name = $this->input->post('blend_name');
+			$price = $this->input->post('price');
+			$packaging = $this->input->post('package_id');
+			$type = $this->input->post('type');
+			$qty = $this->input->post('quantity');
+			$data_blend = array(
+				'blend' => $blend_name,
+				'package_id' => $packaging,
+				'blend_price' => $price,
+				'blend_qty' => $qty,
+				'blend_type' => $type
+			);
+
+			$this->db->insert('coffee_blend', $data_blend);
+			$id = $this->db->insert_id();
+			$query = $this->db->query("SELECT * FROM raw_coffee;");
+			foreach($query->result() as $row){
+				$prop = $this->input->post("per[".$row->raw_id."]");
+				$data_for = array(
+			        	'blend_id' => $id,
+			        	'raw_id' => $row->raw_id,
+			        	'percentage' => $prop
+			        );
+			    $this->db->insert('proportions', $data_for);
+
+			}
+			echo "<script>alert('Update successful!');</script>";
+			redirect('adminBlends', 'refresh');
+
+
+		}
         
 
 	}

@@ -173,6 +173,7 @@
                                                 <div class="col-md-5">
                                                     <div class="form-group label-floating">
                                                         <input class="form-control" type="date" name="date" required="">
+                                                        <input type="hidden" name="sold" value="sold"> 
                                                     </div>
                                                 </div>
                                             </div>
@@ -187,7 +188,10 @@
                                                 <div class="col-md-5">
                                                     <label>Machine</label>
                                                 </div>
-                                                <div class="col-md-5">
+                                                <div class="col-md-4">
+                                                    <label>Serial No.</label>
+                                                </div>
+                                                <div class="col-md-3">
                                                     <label>Quantity</label>
                                                 </div>
                                             </div>
@@ -210,7 +214,14 @@
                                           </div>
                                         </div>
 
-                                        <div class="col-sm-5 nopadding">
+                                        <div class="col-sm-4 nopadding">
+                                          <div class="form-group">
+                                              <div class="input-group">
+                                                <input type="text" class="form-control" id="serial" name="serial" value="" required="" min="1">
+                                              </div>
+                                          </div>
+                                        </div>
+                                        <div class="col-sm-3 nopadding">
                                           <div class="form-group">
                                               <div class="input-group">
                                                 <input type="number" class="form-control" id="qty" name="qty" value="qty" placeholder="qty" required="" min="1">

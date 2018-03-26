@@ -147,8 +147,15 @@
                                             <label for="email">Date</label>
                                             <input class="form-control" name="date_started" type="date" class="no-border" value="<?php echo date("Y-m-d");?>" data-validate="required" message="A Date of Purchase is recquired! min="<?=date('Y-m-d')?>" max="<?=date('Y-m-d',strtotime(date('Y-m-d').'+1 days'))?>"">
                                         </div>
+                                         <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Credit Term</label>
+                                            <input class="form-control" type="text" name="contract_term" required>
+                                        </div>
+                                    </div>
                                     </div>
                                 </div>
+                                
                                 <div class="row">
                                      <div class="col-md-6 form-group">
                                            <div class="form-group label-floating">
@@ -166,6 +173,12 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Blends Required Quantity</label>
+                                            <input class="form-control" type="number" name="contract_bqty" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-group">
                                            <div class="form-group label-floating">
                                             <label for="email">Bag</label>
                                             <select class="form-control" name="contract_bag" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Bag should only countain letters">
@@ -180,6 +193,22 @@
                                             </select>
                                         </div>
                                     </div>
+                                     <div class="col-md-6 form-group">
+                                           <div class="form-group label-floating">
+                                            <label for="email">Size</label>
+                                            <select class="form-control" name="contract_size" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Bag should only countain letters">
+                                                <option disabled selected value> -- select an item -- </option>
+                                                <?php 
+
+                                                    foreach($data5['getPackage'] as $row)
+                                                    { 
+                                                        echo '<option value="'.$row->package_id.'">'.$row->package_size.'</option>';
+                                                    }
+                                                 ?>
+                                            </select>
+                                        </div>
+                                    </div> 
+                                    <!--
                                    <div class="col-md-6 form-group">
                                            <div class="form-group label-floating">
                                             <label for="email">Machine</label>
@@ -197,12 +226,19 @@
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
-                                            <label for="email">Required Quantity</label>
-                                            <input class="form-control" type="number" name="contract_qty" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
+                                            <label for="email">Machine Required Quantity</label>
+                                            <input class="form-control" type="number" name="contract_mqty" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Machine Serial Number</label>
+                                            <input class="form-control" type="number" name="contract_serial" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
+                                        </div>
+                                    </div> 
+                                   
+                                </div> 
+                            </div> -->
                             <div class="panel-footer" style="margin-bottom:-14px;">
                                 <input type="submit" class="btn btn-success" value="Add" />
                                 <!--<span class="glyphicon glyphicon-ok"></span>-->

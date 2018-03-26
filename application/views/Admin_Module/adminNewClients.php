@@ -171,7 +171,10 @@
                                 <h6> Type: </h6>
                                 <div class="row">
                                     <div class="col-lg-12 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <input class="form-control" name="cli_type" placeholder="Client Type" type="text" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Client Type should only countain letters" required />
+                                        <select class="form-control" name="cli_type" placeholder="Client Type" type="text" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Client Type should only countain letters" required >
+                                                  <option value="Retail">Retail</option>
+                                                  <option value="Coffee Service">Coffee Service</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <input type="submit" class="btn btn-success" value="Add" />
