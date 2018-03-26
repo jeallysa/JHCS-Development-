@@ -53,7 +53,7 @@
 		}*/
 
 		public function load_PayClient($id){
-			$query = $this->db->query("SELECT * FROM contract NATURAL JOIN contracted_client INNER JOIN coffee_blend ON contract.blend_id = coffee_blend.blend_id INNER JOIN packaging ON contract.package_id = packaging.package_id INNER JOIN machine ON contract.mach_id = machine.mach_id WHERE client_id='$id'");
+			$query = $this->db->query("SELECT * FROM contracted_client NATURAL JOIN contracted_po NATURAL JOIN client_delivery NATURAL JOIN payment_contracted WHERE client_id='$id'");
 			return $query->result();
 		}
 		
