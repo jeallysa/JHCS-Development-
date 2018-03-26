@@ -27,6 +27,7 @@
 		}
 		public function salesContract()
 		{
+			
 			$this->load->view('Sales_Module/salesContract');
 		}
 		
@@ -38,7 +39,7 @@
 		public function addClientPO(){
 
 					echo 'A new Purchase Order has been Added';
-						$id = $this->input->post('client_id');
+					  $id = $this->input->post('client_id');
 					  $date = $this->input->post('date');
 					  $QTY = $this->input->post('quantity');
 						$blend_id = $this->input->post('ItemCode');

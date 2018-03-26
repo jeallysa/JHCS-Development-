@@ -61,7 +61,7 @@
                         </a>
                     </li>
 					<li >
-                        <a href="<?php echo base_url(); ?>salesPenDelivery">
+                        <a href="<?php echo base_url(); ?>salesDelivery">
                             <i class="material-icons">local_shipping</i>
                             <p>Deliveries</p>
                         </a>
@@ -159,7 +159,7 @@
                                             ?>
                                             <br>
                                             <br>
-                                            <a href="<?php echo base_url(); ?>salesClients/salesContract" class="btn btn-warning btn-round">View Contract</a>
+                                            <a href="<?php echo base_url(); ?>salesClients/salesContract?id=<?php echo $row->client_id;?>" class="btn btn-warning btn-round">View Contract</a>
                                             <button type="button" class="btn btn-success btn-round" data-toggle="modal" data-target="#balance">Check Balance</button>
                                         </div>
                                     </div>
@@ -220,15 +220,19 @@
                                                 ?>
                                                     <tr>
                                                         <td><?php echo $row->contractPO_id; ?></td>
-                                                        <td>F11489</td>
-                                                        <td>Farmer's Blend Ground Coffee</td>
-                                                        <td>Clear</td>
-                                                        <td>500 g</td>
-                                                        <td>80</td>
-                                                        <td>320.00</td>
-                                                        <td>25,600.00</td>
-                                                        <td>November 24, 2017</td>
-                                                        <td>pending</td>
+                                                        <td><?php echo $row->blend_id; ?></td>
+                                                        <td><?php echo $row->blend; ?></td>
+                                                        <td><?php echo $row->package_type; ?></td>
+                                                        <td><?php echo $row->package_size; ?></td>
+                                                        <td><?php echo $row->contractPO_qty; ?></td>
+                                                        <td>Php <?php echo number_format($row->blend_price,2); ?></td>
+                                                        <td><?php 
+                                                        $qty = $row->contractPO_qty;
+                                                        $Price = $row->blend_price;
+                                                        $Amount = $qty * $Price;
+                                                        echo 'Php '.number_format($Amount,2); ?></td>
+                                                        <td><?php echo $row->contractPO_date; ?></td>
+                                                        <td><?php echo $row->delivery_stat; ?></td>
                                                     </tr>
                                                 <?php 
                                                     }
@@ -310,59 +314,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--modal for edit client's info-->
-                    <div class="modal fade" id="editinfo" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                    <h4 class="panel-title" id="contactLabel"><center>Edit Clients Info</center></h4>
-                                </div>
-                                <form action="#" method="post" accept-charset="utf-8">
-                                    <div class="modal-body" style="padding: 5px;">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 10px;">
-                                                <input class="form-control" name="client" placeholder="Company Name" type="text" required />
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
-                                                <input class="form-control" name="firstname" placeholder="Firstname" type="text" required autofocus />
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
-                                                <input class="form-control" name="lastname" placeholder="Lastname" type="text" required />
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
-                                                <input class="form-control" name="position" placeholder="Position" type="text" required />
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
-                                                <input class="form-control" name="email" placeholder="E-mail" type="text" required />
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
-                                                <input class="form-control" name="TelNo" placeholder="Tel. No." type="text" required />
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
-                                                <input class="form-control" name="type" placeholder="Client Type" type="text" required />
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                                <textarea style="resize:vertical;" class="form-control" placeholder="Address" rows="3" name="address" required></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="panel-footer" align="center">
-                                        <input type="submit" class="btn btn-success" value="Add" />
-                                        <input type="reset" class="btn btn-warning" value="Clear" />
-                                    </div>
-                                </form>
                             </div>
                         </div>
                     </div>
