@@ -123,7 +123,13 @@
                                 </div>
                                 <div class="card-content">
                                     <p class="category">Sales</p>
-                                    <h3 class="title">128,000
+                                    <h3 class="title"><?php 
+											if(!empty($data['sum'])){
+												  echo "NULL DATA";
+											  }else{
+												echo $data['sum']->client_balance; 
+											}
+										 ?>
                                     </h3>
                                 </div>
                                 <div class="card-footer">
