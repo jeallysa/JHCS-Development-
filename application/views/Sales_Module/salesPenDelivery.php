@@ -384,10 +384,13 @@
                                 <div class="card-block">
                                      <form action="<?php echo base_url(); ?>SalesDelivery/insert1" method="post" accept-charset="utf-8">
                                         <div class="modal-body" style="padding: 5px;">
+                            <h3 class="pull-center"><?php echo $row2->client_company; ?></h3>
+                                            
                                             <div class="row">
                                                 <div class="col-lg-12" style="padding-bottom: 20px;">
                                                     <div class="form-group label-floating">
                                                         <div class="form-group">
+
                                     <div class="row">
                                         <div class="col-lg-7">
                                              <div class="form-group">

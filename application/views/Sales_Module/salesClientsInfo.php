@@ -130,9 +130,10 @@
                                             <a href="<?php echo base_url() ?>salesClients" class="btn btn-primary navbar-btn pull-left">
                                                 <span class="glyphicon glyphicon-chevron-left"></span>
                                             </a>
-                                            <?php 
-                                                $row = $cli_data->row();
-
+                                            <?php
+                                                foreach($data1['cli_det'] as $row)
+                                                {
+                                                    
                                             ?>
                                             <h3 class="card-title"><?php echo $row->client_company; ?></h3>
                                             <h6 class="category text-gray"><?php echo $row->client_fname; ?> <?php echo $row->client_lname; ?> - <?php echo $row->client_position; ?></h6>
@@ -154,7 +155,7 @@
                                             </table>
                                             <?php
 
-                                                
+                                                }
 
                                             ?>
                                             <br>
@@ -214,9 +215,10 @@
                                                     <th><b class="pull-left">Delivery Status</b></th>
                                                 </thead>
                                                 <tbody>
-                                                <?php 
-                                                    foreach ($cli_data->result() as $row){
-
+                                                <?php
+                                                    foreach($data['cli_data'] as $row)
+                                                    {
+                                                        
                                                 ?>
                                                     <tr>
                                                         <td><?php echo $row->contractPO_id; ?></td>
@@ -248,30 +250,40 @@
                                                     <th><b class="pull-left">Sales Invoice No.</b></th>
                                                     <th><b class="pull-left">Purchase Order No.</b></th>
                                                     <th><b class="pull-left">Date Delivered</b></th>
-                                                    <th><b class="pull-left">Coffee Blend</b></th>
-                                                    <th><b class="pull-left">Bag</b></th>
-                                                    <th><b class="pull-left">Size</b></th>
+                                                    <th><b class="pull-left">Coffee</b></th>
                                                     <th><b class="pull-left">Quantity</b></th>
                                                     <th><b class="pull-left">Unit Price</b></th>
                                                     <th><b class="pull-left">Total Amount</b></th>
                                                     <th><b>Received By</b></th>
+                                                    <th>Payment Status</th>
                                                     <th>Remarks</th>
                                                 </thead>
                                                 <tbody>
+                                                <?php
+                                                    foreach($data2['del_data'] as $row)
+                                                    {
+                                                        
+                                                ?>                    
                                                     <tr>
-                                                        <td>1946</td>
-                                                        <td>3246</td>
-                                                        <td>PO2562</td>
-                                                        <td>03-Nov-16</td>
-                                                        <td>Farmers Ground</td>
-                                                        <td>Brown</td>
-                                                        <td>250g</td>
-                                                        <td>175</td>
-                                                        <td>160</td>
-                                                        <td>Php 28,000.00</td>
-                                                        <td>Robin Hod</td>
-                                                        <td>Unpaid</td>
+                                                        <td><?php echo $row->client_dr; ?></td>
+                                                        <td><?php echo $row->client_invoice; ?></td>
+                                                        <td><?php echo $row->contractPO_id; ?></td>
+                                                        <td><?php echo $row->client_deliverDate; ?></td>
+                                                        <td><?php echo $row->blend.'/ '.$row->package_type.'/ '.$row->package_size; ?> g</td>
+                                                        <td><?php echo $row->contractPO_qty; ?></td>
+                                                        <td>Php <?php echo number_format($row->blend_price,2); ?></td>
+                                                        <td><?php 
+                                                        $qty = $row->contractPO_qty;
+                                                        $Price = $row->blend_price;
+                                                        $Amount = $qty * $Price;
+                                                        echo 'Php '.number_format($Amount,2); ?></td>
+                                                        <td><?php echo $row->client_receive; ?></td>
+                                                        <td><?php echo $row->payment_remarks; ?></td>
+                                                        <td><?php echo $row->return; ?></td>
                                                     </tr>
+                                               <?php 
+                                                    }
+                                                ?>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -289,26 +301,24 @@
                                                     <th><b class="pull-left">Remarks</b></th>
                                                 </thead>
                                                 <tbody>
+                                                <?php
+                                                    foreach($data3['pay_data'] as $row)
+                                                    {
+                                                        
+                                                ?>  
                                                     <tr>
-                                                        <td>CR0502</td>
-                                                        <td>DR0502</td>
-                                                        <td>Bank Deposit</td>
-                                                        <td>11/02/2017</td>
-                                                        <td>48,000.00</td>
-                                                        <td>50,000.00</td>
-                                                        <td>2,000.00</td>
-                                                        <td>Tax Withheld</td>
+                                                        <td><?php echo $row->collection_no; ?></td>
+                                                        <td><?php echo $row->client_dr; ?></td>
+                                                        <td><?php echo $row->payment_mode; ?></td>
+                                                        <td><?php echo $row->paid_date; ?></td>
+                                                        <td>Php <?php echo number_format($row->paid_amount,2); ?></td>
+                                                        <td>Php <?php echo number_format($row->client_balance,2); ?></td>
+                                                        <td>Php <?php echo number_format($row->withheld,2); ?></td>
+                                                        <td><?php echo $row->remarks; ?></td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>CR0503</td>
-                                                        <td>DR0503</td>
-                                                        <td>Cheque</td>
-                                                        <td>Pending</td>
-                                                        <td>50,000.00</td>
-                                                        <td>50,000.00</td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
+                                                    <?php 
+                                                        }
+                                                     ?>
                                                 </tbody>
                                             </table>
                                         </div>

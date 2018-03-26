@@ -246,7 +246,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-5 control">Quantity :</label>
                                                 <div class="col-md-4">
-                                                    <input type="number" name="quantity" id="quantityAvailed" class="form-control" min="1" oninput="validity.valid||(value='');" data-validate="required" max="" >
+                                                    <input type="number" name="quantity" id="quantityAvailed" class="form-control" min="1" oninput="validity.valid||(value='');" data-validate="required" max="" placeholder="reqQty" >
                                                 </div>
                                             </div><br><br>
 											 <div class="form-group">
@@ -458,10 +458,11 @@ $(document).ready(function() {
 							$('[name="client_id"]').val(data.client_id);
 							$('[name="Name"]').val(data.client_company);
 							$('[name="ItemCode"]').val(data.blend_id);
-							$('[name="CoffeeBlend"]').val(data.contract_blend);
-							$('[name="Bag"]').val(data.contract_bag);
-							$('[name="Size"]').val(data.contract_size);
-							$('[name="QTY"]').val(data.contractPO_qty);
+							$('[name="CoffeeBlend"]').val(data.blend);
+							$('[name="Bag"]').val(data.package_type);
+							$('[name="Size"]').val(data.package_size);
+                            $('[name="QTY"]').val(data.contractPO_qty);
+							$('[placeholder="reqQty"]').val(data.required_qty);
 							$('[name="UnitPrice"]').val(data.blend_price);
 							/*$('#resolve_coffee').modal('show');*/			
 						},
