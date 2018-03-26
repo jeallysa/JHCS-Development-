@@ -28,6 +28,10 @@
 		}
 */
 
+    h3 {
+        text-align: center !important;
+    }
+
     .table thead,
     thead th {
         text-align: center;
@@ -162,7 +166,7 @@
 														<th><b>Size</b></th>
 														<th><b>Qty</b></th>
 														<th><b>Price</b></th>
-														<th><b>Total Amount</b></th>
+                                                        <th><b>Total Amount</b></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -201,6 +205,7 @@
 														<th><b>Quantity</b></th>
 														<th><b>Unit Price</b></th>
 														<th><b>Total Amount</b></th>
+                                                        <th><b>Action</b></th>
 													</thead>
 													<tbody>
                                                     <?php 
@@ -219,6 +224,110 @@
                                                                 echo 'Php' .number_format($price * $qty, 2);
                                                              ?>
                                                          </td>
+                                                         <td><button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#return<?php echo $row->mach_salesID; ?>">Return</button>
+                                                         </td>
+                <!-- modal machine returns -->
+                <div class="modal fade" id="return<?php echo $row->mach_salesID; ?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h4 class="panel-title" id="contactLabel"><center>Return Delivered Item/s</center> </h4>
+                            </div>
+                            <div class="modal-body" style="padding: 5px;">
+                                <div class="card-block">
+                                     <form action="<?php echo base_url(); ?>SalesDelivery/insert1" method="post" accept-charset="utf-8">
+                                        <div class="modal-body" style="padding: 5px;">
+                            <h3 class="pull-center"><?php echo $row->client_company; ?></h3>
+                                            
+                                            <div class="row">
+                                                <div class="col-lg-12" style="padding-bottom: 20px;">
+                                                    <div class="form-group label-floating">
+                                                        <div class="form-group">
+
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                             <div class="form-group">
+                                                <label class="col-md-5 control">Date Intalled: </label>
+                                                <div class="col-md-7">
+                                                    <p><b><?php echo $row->date;
+                                                    ?></b></p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-5 control">Brewer: </label>
+                                                <div class="col-md-5">
+                                                    <p><b><?php echo $row->brewer;
+                                                    ?></b></p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-5 control">Quantity :</label>
+                                                <div class="col-md-7">
+                                                    <p><b><?php echo $row->mach_qty; ?></b></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="col-md-6 control">Machine Price: </label>
+                                                    <div class="col-md-3">
+                                                        <p><b>Php <?php echo number_format($price,2); ?></b></p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-6 control">Total Amount: </label>
+                                                    <div class="col-md-3">
+                                                        <p><b><?php echo 'Php' .number_format($price * $qty, 2) ?></b></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-6 control">Date Returned:</label>
+                                                                        <input class="form-control col-md-3" type="date" name="date_returned" required="">
+                                                                        <input type="hidden" name="mach_id" value="<?php echo $row->mach_id; ?>" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-7 control">Quantity Returned:</label>
+                                                                        <input class="form-control col-md-3" type="number" name="qty_returned" min="1" max="<?php echo $row->mach_qty;?>" required="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+        
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-3 control">Remarks:</label>
+                                                                        <input class="form-control col-md-3" type="text" name="remarks" required="">
+                                                                         <input name="serial" type="hidden" class="form-control" value="<?php echo $row->mach_serial; ?>" >
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <center>
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-success">Save</button>
+                                                    </center>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                                                      </tr>
                                                      <?php 
                                                         }
