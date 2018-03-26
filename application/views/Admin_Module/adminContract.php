@@ -3,21 +3,17 @@
 
 <head>
     <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url(); ?>assets/img/apple-icon.png" />
-    <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/img/favicon.png" />
-    <link rel="shortcut icon" type="image/png" href="../assets/img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>Contract</title>
-    <!--   Style   -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/fresh-datatables.css">
-    <!--   Fonts   -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
-    <meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
     <!-- Bootstrap core CSS     -->
     <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/jquery.dataTable.min.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/bootstrap-datepicker3.min.css" rel="stylesheet">
     <!--  Material Dashboard CSS    -->
     <link href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
@@ -25,13 +21,54 @@
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
-    <!--   Style   -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/fresh-datatables.css">
-    <!--   Fonts   -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-
 </head>
+
+ <style>
+        
+    .table thead,
+    thead th {
+        text-align: center;
+        font-size: 120%;
+    }
+
+    input[type=checkbox].toggle-switch {
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        width: 4em;
+        height: 2em;
+        border-radius: 2em;
+        background-color: #ddd;
+        outline: 0;
+        cursor: pointer;
+        transition: background-color 0.09s ease-in-out;
+        position: relative;
+    }
+
+    input[type=checkbox].toggle-switch:checked {
+        background-color: #3af;
+    }
+
+    input[type=checkbox].toggle-switch::after {
+        content: '';
+        width: 2em;
+        height: 2em;
+        background-color: white;
+        border-radius: 2em;
+        position: absolute;
+        transform: scale(0.7);
+        left: 0;
+        transition: left 0.09s ease-in-out;
+        box-shadow: 0 0.1em rgba(0, 0, 0, 0.5);
+    }
+
+    input[type=checkbox].toggle-switch:checked::after {
+        left: 2em;
+    }
+    .navbar {
+        background-color: chartreuse;
+    }
+    </style>
 
 <body>
     <div class="wrapper">
@@ -140,30 +177,24 @@
                                                      <div class="form-group row">
                                                         <div for="example-number-input" class="col-2 col-form-label">
                                                             <label for="type">Date Started</label>
-                                                            <input class="form-control" type="textarea" value="December 28, 2017" id="example-number-input">
-                                                        </div>
-                                                    </div>
-                                                      <p><div class="form-group row">
-                                                        <div for="example-number-input" class="col-2 col-form-label">
-                                                            <label for="type">Credit Term</label>
-                                                            <input class="form-control" type="textarea" value="30 Days" id="example-number-input">
+                                                            <input class="form-control" type="textarea" value="December 28, 2017" id="example-number-input" required>
                                                         </div>
                                                     </div>
                                                         <div class="form-group row">
                                                         <div for="example-number-input" class="col-2 col-form-label">
                                                             <label for="type">Quantity</label>
-                                                            <input class="form-control" type="number" value="300" id="example-number-input">
+                                                            <input class="form-control" type="number" value="300" id="example-number-input" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                                         </div>
                                                     </div>
                                                       <div class="form-group row">
                                                         <div for="example-number-input" class="col-2 col-form-label">
                                                             <label for="type">Size</label>
-                                                            <input class="form-control" type="number" value="500g" id="example-number-input">
+                                                            <input class="form-control" type="number" value="500g" id="example-number-input" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                                         </div>
                                                     </div>
                                                        <div class="col-md-6">
                                                             <label class="control-label">Coffee Blend</label>
-                                                            <select class="form-control" name="Category" placeholder="Category" type="text" required>
+                                                            <select class="form-control" name="Category" placeholder="Category" type="text" required required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Coffee should only countain letters">
                                                                 <option>Sumatra Night</option>
                                                                 <option>Guatamela Rainforest</option>
                                                                 <option>Cordillera Sunshine</option>
@@ -172,7 +203,7 @@
                                                         </div>
                                                        <div class="col-md-6">
                                                             <label class="control-label">Bag</label>
-                                                            <select class="form-control" name="Category" placeholder="Category" type="text" required>
+                                                            <select class="form-control" name="Category" placeholder="Category" type="text" required required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Bag should only countain letters">
                                                                 <option>Clear</option>
                                                                 <option>Brown</option>
                                                             </select>
@@ -182,13 +213,7 @@
                                                      <div class="form-group row">
                                                         <div for="example-number-input" class="col-2 col-form-label">
                                                             <label for="type">Brewer</label>
-                                                            <input class="form-control" type="textarea" value="Saeco" id="example-number-input">
-                                                        </div>
-                                                    </div>
-                                                      <p><div class="form-group row">
-                                                        <div for="example-number-input" class="col-2 col-form-label">
-                                                            <label for="type">Type</label>
-                                                            <input class="form-control" type="textarea" value="Double Cup Espresso" id="example-number-input">
+                                                            <input class="form-control" type="textarea" value="Saeco" id="example-number-input" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Brewer should only countain letters">
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -206,27 +231,25 @@
                                 </div>
         
            
-            <div class="content" style="margin-top: 0px;">
+            <div class="content">
                 <div class="container-fluid">
-                    <div class="card">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
                          <div class="card-header " data-background-color="green">
                                 <h4 class="title">Contract
                                     </h4>
                             </div>
                         <div class="card-content table-responsive">
-                               <div class="col-md-12 col-md-offset-0">
-                                <div class="fresh-datatables">
-                                    <!--  Available colors for the full background: full-color-blue, full-color-azure, full-color-purple, full-color-red, full-color-orange, full-color-purple, full-color-gray
-                                    Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-purple, toolbar-color-red, toolbar-color-orange, toolbar-color-purple, toolbar-color-gray -->
-                                    <table id="fresh-datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                               <table id="example" class="table hover order-column" cellspacing="0" width="100%" style="font-size: 13px">
                                         <thead>
                                             <tr>
                                                 <th><b>Company</b></th>
                                                 <th><b>Date Started</b></th>
                                                 <th><b>Coffee Blend</b></th>
                                                 <th><b>Bag</b></th>
-                                                <th><b>Size</b></th>
                                                 <th><b>Brewer</b></th>
+                                                <th><b>Required Quantity</b></th>
                                                 <th class="disabled-sorting"><b>Edit</b></th>
                                             </tr>
                                         </thead>
@@ -242,10 +265,12 @@
                                                 <tr>
                                                 <td><?php echo $row->client_company; ?></td>
                                                 <td><?php echo $row->date_started; ?></td>
-                                                <td><?php echo $row->contract_blend; ?></td>
-                                                <td><?php echo $row->contract_bag; ?></td>
-                                                <td><?php echo $row->contract_size; ?></td>
-                                                <td><?php echo $row->contract_machine; ?></td>
+                                                <td><?php echo $row->blend_id; ?></td>
+                                                <td><?php echo $row->package_id; ?></td>
+                                                <td><?php echo $row->mach_id; ?></td>
+                                                 <td><?php echo $row->required_qty; ?></td>
+                                                
+
                                                      <td>
                                                                 <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit<?php echo $row->contract_id; ?>">Edit</a>
                                                 </td>
@@ -291,14 +316,14 @@
                                                                     </div>
                                                                     <div class="col-md-6 form-group">
                                                                         <div class="form-group label-floating">
-                                                                            <label for="email">Size</label>
-                                                                            <input class="form-control" value="<?php echo $row->contract_size; ?>" type="number" name="contract_size" required>
+                                                                            <label for="email">Machine</label>
+                                                                            <input class="form-control" value="<?php echo $row->contract_machine; ?>" type="text" name="contract_machine" required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6 form-group">
                                                                         <div class="form-group label-floating">
-                                                                            <label for="email">Machine</label>
-                                                                            <input class="form-control" value="<?php echo $row->contract_machine; ?>" type="text" name="contract_machine" required>
+                                                                            <label for="email">Required Quantity</label>
+                                                                            <input class="form-control" value="<?php echo $row->contract_qty; ?>" type="number" name="contract_qty" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                                                         </div>
                                                                     </div>
                                                                     </div>
@@ -332,17 +357,26 @@
                                             
                                    </tbody>
                                     </table>
-                                </div>
-                            </div>
                         </div>
+                    </div>
+                </div>
                     </div>
                 </div>
             </div>
         </div>
 </body>
-
 <!--   Core JS Files   -->
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/dataTables.buttons.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.flash.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.Html5.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.print.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/jszip.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/pdfmake.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/vfs_fonts.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/datepicker.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/material.min.js" type="text/javascript"></script>
 <!--  Charts Plugin -->
@@ -359,49 +393,38 @@
 <script src="<?php echo base_url(); ?>assets/js/material-dashboard.js?v=1.2.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/jquery.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/jquery.datatables.js"></script>
-<script>
-
+<script type="text/javascript">
 $(document).ready(function() {
-    $('[data-toggle="tooltip"]').tooltip();   
-
-    $('#fresh-datatables').DataTable({
-        "pagingType": "full_numbers",
-        "lengthMenu": [
-            [10, 25, 50, -1],
-            [10, 25, 50, "All"]
-        ],
-        responsive: true,
-        language: {
-            search: "_INPUT_",
-            searchPlaceholder: "Search records",
-        }
-
+    $('#example').DataTable({
+        "dom":' fBrtip',
+        "lengthChange": false,
+        "info":     false,
+		buttons: [
+            { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs',
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4, 5]
+                }
+            },
+            
+			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs',
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4, 5]
+                }
+            },
+            
+			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs',
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4, 5]
+                }
+            }
+        ]
     });
+});
 
-
-    var table = $('#fresh-datatables').DataTable();
-
-    // Edit record
-    table.on('click', '.edit', function() {
-        $tr = $(this).closest('tr');
-
-        var data = table.row($tr).data();
-        alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-    });
-
-    // Delete a record
-    table.on('click', '.remove', function(e) {
-        $tr = $(this).closest('tr');
-        table.row($tr).remove().draw();
-        e.preventDefault();
-    });
-
-    //Like record
-    table.on('click', '.like', function() {
-        alert('You clicked on Like button');
-    });
+$('table tbody tr  td').on('click', function() {
+    $("#myModal").modal("show");
+    $("#txtfname").val($(this).closest('tr').children()[0].textContent);
+    $("#txtlname").val($(this).closest('tr').children()[1].textContent);
 });
 </script>
 

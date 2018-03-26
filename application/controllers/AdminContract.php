@@ -24,14 +24,14 @@
 			$id = $this->input->post("contract_id");
             
 			$date_started = $this->input->post("date_started");
-			$contract_blend = $this->input->post("contract_blend");
-			$contract_bag = $this->input->post("contract_bag");
-			$contract_size = $this->input->post("contract_size");
-			$contract_machine = $this->input->post("contract_machine");
+			$blend_id = $this->input->post("contract_blend");
+			$package_id = $this->input->post("contract_bag");
+			$mach_id = $this->input->post("contract_machine");
+			$required_qty = $this->input->post("contract_qty");
             
-			$this->AdminContract_model->update($id, $date_started, $contract_blend, $contract_bag, $contract_size, $contract_machine);
+			$this->AdminContract_model->update($id, $date_started, $blend_id, $package_id, $mach_id, $required_qty);
 			echo "<script>alert('Update successful!');</script>";
-			$this->index();
+			redirect('adminClients', 'refresh');
 		}
         
     }

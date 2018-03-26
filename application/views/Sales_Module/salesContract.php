@@ -128,7 +128,8 @@
                 </div>
             </nav>
             <div class="content">
-                <a href="<?php echo base_url() ?>salesClients/salesClientsInfo" class="btn btn-primary navbar-btn pull-left">
+                <?php $id = $this->input->get('id'); ?>
+                <a href="<?php echo base_url() ?>salesClients/salesClientsInfo?id=<?php echo $id ?>" class="btn btn-primary navbar-btn pull-left">
         <span class="glyphicon glyphicon-chevron-left"></span>
       </a>
                 <div class="container-fluid">
@@ -141,24 +142,32 @@
                                 <div class="col-xs-4">
                                     <div class="card card-profile">
                                         <div class="content">
-                                            <h3 class="card-title">The Legend Villas</h3>
-                                            <h6 class="category text-gray">Jesselyn Amagan - General Manager</h6>
-                                            <table class="card-content" cellspacing="0" width="50%" align="center">
+                                            <?php
+                                                foreach($data1['cli_det'] as $row)
+                                                {
+                                                    
+                                            ?>
+                                            <h3 class="card-title"><?php echo $row->client_company; ?></h3>
+                                            <h6 class="category text-gray"><?php echo $row->client_fname; ?> <?php echo $row->client_lname; ?> - <?php echo $row->client_position; ?></h6>
+                                            <table align="center">
                                                 <tbody>
                                                     <tr>
-                                                        <td><b>Address:</b></td>
-                                                        <td align="left">Mandaluyong City</td>
+                                                        <td><b>Address: </b></td>
+                                                        <td align="left"> <?php echo $row->client_address; ?></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><b>Tel:</b></td>
-                                                        <td align="left">+444 444 444</td>
+                                                        <td><b>Tel: </b></td>
+                                                        <td align="left"> <?php echo $row->client_contact; ?></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><b>Email:</b></td>
-                                                        <td align="left">chef22@manor.com</td>
+                                                        <td><b>Email: </b></td>
+                                                        <td align="left"> <?php echo $row->client_email; ?></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
+                                            <?php
+                                                }
+                                            ?>
                                             <br>
                                             <br>
                                         </div>
@@ -170,34 +179,42 @@
                                             <table class="card-content" cellspacing="0" width="80%" align="left">
                                                 <h6 class="card-title">Coffee Details</h6>
                                                 <tbody>
+                                                <?php
+                                                    foreach($data2["cli_coff"] as $row)
+                                                    {
+                                                        
+                                                ?>   
                                                     <tr>
                                                         <td><b>Client Type:</b></td>
-                                                        <td align="right">Coffee Service</td>
+                                                        <td><?php echo $row->client_type; ?></td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Date Started</b></td>
-                                                        <td align="left">December28, 2017</td>
+                                                        <td><?php echo $row->date_started; ?></td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Credit Term:</b></td>
-                                                        <td align="left">30 days</td>
+                                                        <td><?php echo $row->credit_term; ?></td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Coffee Blend:</b></td>
-                                                        <td align="left">Sumatra Night</td>
+                                                        <td><?php echo $row->blend; ?></td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Bag:</b></td>
-                                                        <td align="left">Brown</td>
+                                                        <td><?php echo $row->package_type; ?></td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Size:</b></td>
-                                                        <td align="left">500g</td>
+                                                        <td><?php echo $row->package_size; ?> g</td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Quantity:</b></td>
-                                                        <td align="left">300</td>
+                                                        <td><?php echo $row->required_qty; ?></td>
                                                     </tr>
+                                                    <?php 
+                                                        }
+                                                     ?>
                                                 </tbody>
                                             </table>
                                             <br>
@@ -216,42 +233,30 @@
                                             <table class="card-content" cellspacing="0" width="90%" align="center">
                                                 <h6 class="card-title">Machine Specifications</h6>
                                                 <tbody>
+                                                <?php
+                                                    foreach($data2["cli_coff"] as $row)
+                                                    {
+                                                        
+                                                ?> 
+                                                    <tr>
+                                                        <td><b>Tagging No.:</b></td>
+                                                        <td><?php echo $row->mach_serial; ?></td>
+                                                    </tr> 
                                                     <tr>
                                                         <td><b>Brewer:</b></td>
-                                                        <td align="left">Saeco</td>
+                                                        <td><?php echo $row->brewer; ?></td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Type:</b></td>
-                                                        <td align="left">Double Cup Espresso</td>
+                                                        <td><?php echo $row->brewer_type; ?></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><b>Storage Capacity:</b></td>
-                                                        <td align="left">300g</td>
+                                                        <td><b>Price</b></td>
+                                                        <td>Php <?php echo number_format($row->mach_price,2); ?></td>
                                                     </tr>
-                                                    <tr>
-                                                        <td><b>No. of Cups before refilling</b></td>
-                                                        <td align="left">30-35</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Dimension:</b></td>
-                                                        <td align="left">300 x 395 x 455 mm</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Weight:</b></td>
-                                                        <td align="left">15kg</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Voltage:</b></td>
-                                                        <td align="left">220V -240V</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Watts:</b></td>
-                                                        <td align="left">1600 W</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>User Interface:</b></td>
-                                                        <td align="left">LCD Digital Display</td>
-                                                    </tr>
+                                                    <?php 
+                                                        }
+                                                     ?>
                                                 </tbody>
                                             </table>
                                             <br>

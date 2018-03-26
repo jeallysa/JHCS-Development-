@@ -11,7 +11,7 @@
 			
 		}
 		public function get_delivered(){
-			$query = $this->db->query("SELECT * FROM contracted_po NATURAL JOIN client_delivery NATURAL JOIN contracted_client NATURAL JOIN coffee_blend NATURAL JOIN packaging WHERE delivery_stat = 'delivered' AND payment_remarks='unpaid' AND client_delivery.return='No'");
+			$query = $this->db->query("SELECT * FROM contracted_po NATURAL JOIN client_delivery NATURAL JOIN contracted_client NATURAL JOIN coffee_blend NATURAL JOIN packaging WHERE delivery_stat = 'delivered' AND payment_remarks='unpaid' AND client_delivery.return='Received'");
 			return $query->result();
 			
 		}

@@ -3,21 +3,17 @@
 
 <head>
     <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url(); ?>assets/img/apple-icon.png" />
-    <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/img/favicon.png" />
-    <link rel="shortcut icon" type="image/png" href="<?php echo base_url(); ?>assets/img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>Accounts</title>
-    <!--   Style   -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/fresh-datatables.css">
-    <!--   Fonts   -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
-    <meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
     <!-- Bootstrap core CSS     -->
     <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/jquery.dataTable.min.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/bootstrap-datepicker3.min.css" rel="stylesheet">
     <!--  Material Dashboard CSS    -->
     <link href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
@@ -25,13 +21,10 @@
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
-    <!--   Style   -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/fresh-datatables.css">
-    <!--   Fonts   -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+</head>
     
-     <style>
+      <style>
+        
     .table thead,
     thead th {
         text-align: center;
@@ -76,7 +69,6 @@
         background-color: chartreuse;
     }
     </style>
-</head>
 
 <body>
     <div class="wrapper">
@@ -174,18 +166,17 @@
         
                         
             
-            <div class="content" style="margin-top: 0px;">
+            <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="card">
+                        <div class="col-sm-12">
+                            <div class="card">
                             <div class="card-header " data-background-color="green">
                                 <h4 class="title">List of Employee Accounts</h4>
                             </div>
                             <div class="card-content table-responsive">
                                 <a href="<?php echo base_url(); ?>adminNewAccounts" class="btn btn-success" data-original-title style="float: right"> Create New Account</a>
-                                <div class="col-md-12 col-md-offset-0">
-                                    <div class="fresh-datatables">
-                                        <table id="fresh-datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                                <table id="example" class="table hover order-column" cellspacing="0" width="100%">
                                             <thead>
                                                 <tr>
                                                     <th><b>Employee No.</b></th>
@@ -283,39 +274,39 @@
                                                                              <div class="form-group row">
                                                                                 <div for="example-number-input" class="col-2 col-form-label">
                                                                                     <label for="type">Last Name</label>
-                                                                                    <input class="form-control" name="l_name" type="textarea" value="<?php echo $row->u_lname; ?>" id="example-number-input">
+                                                                                    <input class="form-control" name="l_name" type="textarea" value="<?php echo $row->u_lname; ?>" id="example-number-input" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Last Name should only countain letters">
                                                                                 </div>
                                                                             </div>
                                                                                 
                                                                                  <p><div class="form-group row">
                                                                                 <div for="example-number-input" class="col-2 col-form-label">
                                                                                     <label for="type">First Name</label>
-                                                                                    <input class="form-control" name="f_name" type="textarea" value="<?php echo $row->u_fname; ?>" id="example-number-input">
+                                                                                    <input class="form-control" name="f_name" type="textarea" value="<?php echo $row->u_fname; ?>" id="example-number-input" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="First Name should only countain letters">
                                                                                 </div>
                                                                             </div>
                                                                                 <div class="form-group row">
                                                                                 <div for="example-number-input" class="col-2 col-form-label">
                                                                                     <label for="type">Position</label>
-                                                                                    <input class="form-control" name="position" type="textarea" value="<?php echo $row->u_type; ?>" id="example-number-input">
+                                                                                    <input class="form-control" name="position" type="textarea" value="<?php echo $row->u_type; ?>" id="example-number-input" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Position should only countain letters">
                                                                                 </div>
                                                                             </div>
                                                                                 <div class="form-group row">
                                                                                 <div for="example-number-input" class="col-2 col-form-label">
                                                                                     <label for="type">Address</label>
-                                                                                    <input class="form-control" name="address" type="textarea" value="<?php echo $row->u_address; ?>" id="example-number-input">
+                                                                                    <input class="form-control" name="address" type="textarea" value="<?php echo $row->u_address; ?>" id="example-number-input" required>
                                                                                 </div>
                                                                             </div>
                                                                                 <div class="form-group row">
                                                                                 <div for="example-number-input" class="col-2 col-form-label">
                                                                                     <label for="type">Email</label>
-                                                                                    <input class="form-control" name="email" type="textarea" value="<?php echo $row->u_email; ?>" id="example-number-input">
+                                                                                    <input class="form-control" name="email" type="textarea" value="<?php echo $row->u_email; ?>" id="example-number-input" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required title="You have entered an invalid E-mail address. Please try again.">
                                                                                 </div>
                                                                             </div>
                                                                               
                                                                                 <div class="form-group row">
                                                                                 <div for="example-number-input" class="col-2 col-form-label">
                                                                                     <label for="type">Cellphone Number</label>
-                                                                                    <input class="form-control" name="cell_no" type="number" value="<?php echo $row->u_contact; ?>" id="example-number-input">
+                                                                                    <input class="form-control" name="cell_no" type="number" value="<?php echo $row->u_contact; ?>" id="example-number-input" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                                                                 </div>
                                                                             </div>
 
@@ -356,18 +347,26 @@
                                                 
                                             </tbody>
                                         </table>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
+        </div>
         </div>
 </body>
 <!--   Core JS Files   -->
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/dataTables.buttons.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.flash.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.Html5.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.print.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/jszip.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/pdfmake.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/vfs_fonts.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/datepicker.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/material.min.js" type="text/javascript"></script>
 <!--  Charts Plugin -->
@@ -384,62 +383,39 @@
 <script src="<?php echo base_url(); ?>assets/js/material-dashboard.js?v=1.2.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/jquery.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/jquery.datatables.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-    // Javascript method's body can be found in assets/js/demos.js
-    demo.initDashboardPageCharts();
-});
-</script>
-<script>
-$(document).ready(function() {
-    $('[data-toggle="tooltip"]').tooltip(); 
-    $('#fresh-datatables').DataTable({
-        "pagingType": "full_numbers",
-        "lengthMenu": [
-            [10, 25, 50, -1],
-            [10, 25, 50, "All"]
-        ],
-        responsive: true,
-        language: {
-            search: "_INPUT_",
-            searchPlaceholder: "Search records",
-        }
-
-    });
-
-
-    var table = $('#fresh-datatables').DataTable();
-
-    // Edit record
-    table.on('click', '.edit', function() {
-        $tr = $(this).closest('tr');
-
-        var data = table.row($tr).data();
-        alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-    });
-
-    // Delete a record
-    table.on('click', '.remove', function(e) {
-        $tr = $(this).closest('tr');
-        table.row($tr).remove().draw();
-        e.preventDefault();
-    });
-
-    //Like record
-    table.on('click', '.like', function() {
-        alert('You clicked on Like button');
+    $('#example').DataTable({
+        "dom":' fBrtip',
+        "lengthChange": false,
+        "info":     false,
+		buttons: [
+            { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs',
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4, 5, 6]
+                }
+            },
+            
+			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs',
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4, 5, 6]
+                }
+            },
+            
+			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs',
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4, 5, 6]
+                }
+            }
+        ]
     });
 });
-</script>
-<script>
-$(function() {
-    $('#toggle-two').bootstrapToggle({
-        on: 'Enabled',
-        off: 'Disabled'
-    });
-})
+
+$('table tbody tr  td').on('click', function() {
+    $("#myModal").modal("show");
+    $("#txtfname").val($(this).closest('tr').children()[0].textContent);
+    $("#txtlname").val($(this).closest('tr').children()[1].textContent);
+});
 </script>
 
 </html>

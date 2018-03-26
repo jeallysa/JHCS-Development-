@@ -198,8 +198,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <th><b class="pull-left">Bag</b></th>
                                                     <th><b class="pull-left">Size (in grams)</b></th>
                                                     <th><b class="pull-left">Number of Stocks (per pc)</b></th>
-                                                    <th><b class="pull-left">Price</b></th>
-                                                    <th><b class="pull-left">Cue Card</b></th>
+                                                    <th><b class="pull-left">Physical Count (per pc)</b></th>
+                                                    <th><b class="pull-left">Remarks</b></th>
+                                                    <th><b class="pull-left">Stock Card</b></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -214,7 +215,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <td><?php echo $row->package_type; ?></td>
                                                     <td><?php echo $row->package_size; ?></td>
                                                     <td><b><?php echo $row->blend_qty; ?></b></td>
-                                                    <td>Php <?php echo $row->blend_price; ?></td>
+                                                    <td><b><?php echo $row->blend_physcount; ?></b></td>
+                                                    <td><?php echo $row->blend_remarks; ?></td>
                                                     <td><a class="btn btn-info" data-toggle="modal" data-target="#<?php echo $row->blend_id; ?>" data-original-title style="float: right">View</a>
 
                                                         <!-- Modal -->
@@ -223,7 +225,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <div class="panel panel-primary">
                                                         <div class="panel-heading">
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span>Cue Card Details</h4>
+                                                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span>Stock Card Details</h4>
                                                         </div>
                                                       <div class="modal-body" style="padding: 5px;">
                                                           <label>Set Date from </label>
@@ -302,9 +304,64 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             }
                                         ?> 
 
+                                        <?php
+                                              $retrieveDetails4 ="SELECT blend_id, client_company, coff_returnDate, coff_returnQty FROM jhcs.client_coffreturn NATURAL JOIN client_delivery NATURAL JOIN contracted_client NATURAL JOIN contracted_po NATURAL JOIN coffee_blend WHERE blend_id = '$row->blend_id';" ;
+                                              $query = $this->db->query($retrieveDetails4);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td>'  . $object->client_company  . '</td>' ,
+                                                '<td>'  . $object->coff_returnDate  . '</td>' ,
+                                                '<td>'  . $object->coff_returnQty  . '</td>' ;
+                                                ?>
+                                                    <td>Return</td>
+                                                    <td>IN</td>
+                                                 <?php   
+                                                '</tr>' ;
+                                              }
+                                            }
+                                        ?> 
+
                                         
                                                     </tbody>
                                                       </table>
+                                                      <form action="<?php echo base_url(); ?>InventoryBlends/update" method="post" accept-charset="utf-8">
+                                                      <div class="row">
+                                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-6 control">Physical Count :</label>
+                                                                        <div class="col-md-4">
+                                                                            <input id="count" name="count" type="number" class="form-control"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="type"></label>
+                                                                        <div class="col-md-4">
+                                                                            <input value="<?php echo $row->blend_qty; ?>" class="form-control" id="stock" name="stock" type="hidden" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-6 control">Discrepancy :</label>
+                                                                        <div class="col-md-4">
+                                                                            <input value="0" id="discrepancy" name="discrepancy" readonly="" class="form-control" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="type"></label>
+                                                                        <div class="col-md-4">
+                                                                            <input value="<?php echo $row->blend_id; ?>" class="form-control" name="blendid" type="hidden" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-6 control">Remarks :</label>
+                                                                        <div class="col-md-10">
+                                                                            <textarea style="resize:vertical;" class="form-control" rows="2" name="remarks"></textarea>
+                                                                        </div>
+                                                                        <button style="float: right;" type="submit" class="btn btn-success">Save</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
                                                         </div>
                                                       </div>
                                                       <div class="modal-footer">
@@ -322,7 +379,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         else{
                                                          ?>
                                                         <tr>
-                                                            <td colspan = 9 style = "text-align: center;"> <h3>No data found</h3> </td>
+                                                            <td colspan = 9 style = "text-align: center;"> <h3>No blends found</h3> </td>
                                                         </tr>
                                                         <?php
                                                         }
@@ -402,4 +459,14 @@ $(document).ready(function() {
     }
 </script> 
  
+ <script>
+    $('#count').on('keyup', function() {
+   if($.trim(this.value).length) {
+     var discrepancy = parseFloat($('#stock').val()).toFixed(2) - 
+                   parseFloat(this.value).toFixed(2);
+     $('#discrepancy').val(discrepancy);
+   }
+});
+</script>
+
 </html>

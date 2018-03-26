@@ -128,67 +128,64 @@
                                     <p class="category">Fill the form</p>
                                 </div>
                                 <div class="card-content">
-                                    <form>
+                                    <form role="form" action="<?php echo base_url();?>addAccounts/insertAccounts" method="post">
                                           <h6> Personal Information </h6>
                                 <div class="row">
                                     <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <input class="form-control" name="firstname" placeholder="First Name" type="text" required autofocus />
+                                        <input class="form-control" name="u_fname" placeholder="First Name" type="text" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="First Name should only countain letters" />
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <input class="form-control" name="lastname" placeholder="Last Name" type="text" required />
+                                        <input class="form-control" name="u_lname" placeholder="Last Name" type="text" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Last Name should only countain letters" />
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div>
                                         <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                            <input class="form-control" name="email" placeholder="E-mail" type="text" required />
+                                            <input class="form-control" name="u_email" placeholder="E-mail" type="text" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required title="You have entered an invalid E-mail address. Please try again." />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <input class="form-control" name="cp number" placeholder="Cellphone Number" type="text" required />
+                                        <input class="form-control" name="u_contact" placeholder="Cellphone Number" type="number" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required />
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-10 col-md-12 col-sm-12">
-                                        <textarea style="resize:vertical;" class="form-control" placeholder="Address" rows="2" name="address" required></textarea>
+                                        <textarea style="resize:vertical;" class="form-control" placeholder="Address" rows="2" name="u_address" required></textarea>
                                     </div>
                                 </div>
                                 <h6> Position </h6>
                                 <div class="row">
-                                    <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <select class="form-control" name="position" placeholder="Position" type="text" required>
-                                            <option>Sales Clerk</option>
-                                            <option>Inventory Custodian</option>
-                                            <option>Manager</option>
-                                            <option>Delivery Man</option>
-                                        </select>
+                                    <div class="col-lg-10 col-md-12 col-sm-12">
+                                        <textarea style="resize:vertical;" class="form-control" placeholder="Position" rows="2" name="u_type" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Position should only countain letters" ></textarea>
                                     </div>
                                 </div>
                                 <h6> User Credentials </h6>
                                 <div class="row">
                                     <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <input class="form-control" name="username" placeholder="Username" type="text" required />
+                                        <input class="form-control" name="username" placeholder="Username" type="text" required pattern="[a-zA-Z][a-zA-Z0-9\s]*" title="Alphanumeric characters only" required />
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <input class="form-control" name="password" placeholder="Password" type="password" required />
+                                        <input class="form-control" name="password" placeholder="Password" type="password"  onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');
+                                             if(this.checkValidity()) form.confirm_password.pattern = this.value;" required />
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <input class="form-control" name="cpassword" placeholder="Confirm Password" type="password" required />
+                                        <input class="form-control" name="cpassword" placeholder="Confirm Password" type="cpassword" onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');" required />
                                     </div>
                                 </div>
                                         <input type="submit" class="btn btn-success" value="Add" />
                                 <!--<span class="glyphicon glyphicon-ok"></span>-->
                                 <input type="reset" class="btn btn-danger" value="Clear" />
                                 <!--<span class="glyphicon glyphicon-remove"></span>-->
-                                <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
+                                <a href="<?php echo base_url(); ?>adminAccounts" style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</a>
+                                        
                                     </form>
                                 </div>
                             </div>

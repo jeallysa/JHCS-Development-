@@ -76,6 +76,7 @@ $route['login'] = 'Login_Controller/login';
 	$route['getSalesWalkin'] = 'salesSellProduct/salesWalkin';
 	$route['getSalesClientsInfo'] = 'salesClients/salesClientsInfo';
 	$route['getSalesContract'] = 'salesClients/salesContract';
+	$route['getMultipleOrders'] = 'salesClients/salesMultipleOrders';
  /*Inventory Module Routes*/
  	$route['getInventoryActivityLogs'] = 'inventoryActivityLogs';
 	$route['getInventoryBlends'] = 'inventoryBlends';

@@ -28,10 +28,10 @@
 			$data = array(
                 "client_id" =>$this->input->post("client_company"),
 				"date_started" =>$this->input->post("date_started"),
-				"contract_blend" =>$this->input->post("contract_blend"),
-				"contract_bag" =>$this->input->post("contract_bag"),
-                "contract_size" =>$this->input->post("contract_size"),
-                "contract_machine" =>$this->input->post("contract_machine")
+				"blend_id" =>$this->input->post("contract_blend"),
+				"package_id" =>$this->input->post("contract_bag"),
+				"mach_id" =>$this->input->post("contract_bag"),
+                "required_qty" =>$this->input->post("contract_qty")
                 
 			);
 			$data = $this->security->xss_clean($data);
