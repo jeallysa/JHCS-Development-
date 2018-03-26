@@ -132,7 +132,7 @@
                                     <div class="col-md-12 form-group">
                                          <div class="form-group label-floating">
                                             <label for="email">Company Name</label>
-                                            <select class="form-control" name="client_company" required>
+                                            <select class="form-control" name="client_company" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Company Name should only countain letters">
                                                 <option disabled selected value> -- select an item -- </option>
                                                 <?php 
 
@@ -153,13 +153,13 @@
                                      <div class="col-md-6 form-group">
                                            <div class="form-group label-floating">
                                             <label for="email">Blends</label>
-                                            <select class="form-control" name="contract_blend" required>
+                                            <select class="form-control" name="contract_blend" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Blends should only countain letters">
                                                 <option disabled selected value> -- select an item -- </option>
                                                 <?php 
 
                                                     foreach($data1['getBlend'] as $row)
                                                     { 
-                                                        echo '<option value="'.$row->blend.'">'.$row->blend.'</option>';
+                                                        echo '<option value="'.$row->blend_id.'">'.$row->blend.'</option>';
                                                     }
                                                  ?>
                                             </select>
@@ -168,13 +168,28 @@
                                     <div class="col-md-6 form-group">
                                            <div class="form-group label-floating">
                                             <label for="email">Bag</label>
-                                            <select class="form-control" name="contract_bag" required>
+                                            <select class="form-control" name="contract_bag" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Bag should only countain letters">
                                                 <option disabled selected value> -- select an item -- </option>
                                                 <?php 
 
                                                     foreach($data2['getBag'] as $row)
                                                     { 
-                                                        echo '<option value="'.$row->package_type.'">'.$row->package_type.'</option>';
+                                                        echo '<option value="'.$row->package_id.'">'.$row->package_type.'</option>';
+                                                    }
+                                                 ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                   <div class="col-md-6 form-group">
+                                           <div class="form-group label-floating">
+                                            <label for="email">Machine</label>
+                                            <select class="form-control" name="contract_machine" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Machine should only countain letters">
+                                                <option disabled selected value> -- select an item -- </option>
+                                                <?php 
+
+                                                    foreach($data3['getMachine'] as $row)
+                                                    { 
+                                                        echo '<option value="'.$row->mach_id.'">'.$row->brewer.'</option>';
                                                     }
                                                  ?>
                                             </select>
@@ -182,23 +197,8 @@
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
-                                            <label for="email">Size</label>
-                                            <input class="form-control" type="number" name="contract_size" required>
-                                        </div>
-                                    </div>
-                                   <div class="col-md-6 form-group">
-                                           <div class="form-group label-floating">
-                                            <label for="email">Machine</label>
-                                            <select class="form-control" name="contract_machine" required>
-                                                <option disabled selected value> -- select an item -- </option>
-                                                <?php 
-
-                                                    foreach($data3['getMachine'] as $row)
-                                                    { 
-                                                        echo '<option value="'.$row->brewer.'">'.$row->brewer.'</option>';
-                                                    }
-                                                 ?>
-                                            </select>
+                                            <label for="email">Required Quantity</label>
+                                            <input class="form-control" type="number" name="contract_qty" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                         </div>
                                     </div>
                                 </div>

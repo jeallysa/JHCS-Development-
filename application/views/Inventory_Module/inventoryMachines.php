@@ -200,6 +200,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <th><b class="pull-left">Stock Limit (per pc)</b></th>
                                                     <th><b class="pull-left">Number of Stocks (per pc)</b></th>
                                                     <th><b class="pull-left">Physical Count (per pc)</b></th>
+                                                    <th><b class="pull-left">Remarks</b></th>
                                                     <th><b class="pull-left">Cue Card</b></th>
                                                 </tr>
                                             </thead>
@@ -217,6 +218,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <td><?php echo $row->mach_limit; ?></td>
                                                     <td><b><?php echo $row->mach_stocks; ?></b></td>
                                                     <td><b><?php echo $row->mach_physcount; ?></b></td>
+                                                    <td><?php echo $row->mach_remarks; ?></td>
                                                     <td><a class="btn btn-info" data-toggle="modal" data-target="#<?php echo $row->mach_id; ?>" data-original-title style="float: right">View</a>
 
                                                         <!-- Modal -->
@@ -225,7 +227,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <div class="panel panel-primary">
                                                         <div class="panel-heading">
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span>Cue Card Details</h4>
+                                                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span>Stock Card Details</h4>
                                                         </div>
                                                           
                                                       <div class="modal-body" style="padding: 5px;">
@@ -356,29 +358,43 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <form action="<?php echo base_url(); ?>InventoryMachines/update" method="post" accept-charset="utf-8">
                                                             <div class="row">
                                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                                     <div class="form-group">
                                                                         <label class="col-md-6 control">Physical Count :</label>
                                                                         <div class="col-md-4">
-                                                                            <input class="form-control" type="number" name="count" required />
+                                                                            <input id="count" name="count" type="number" class="form-control"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="type"></label>
+                                                                        <div class="col-md-4">
+                                                                            <input value="<?php echo $row->mach_stocks; ?>" class="form-control" id="stock" name="stock" type="hidden" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label class="col-md-6 control">Discrepancy :</label>
                                                                         <div class="col-md-4">
-                                                                            <input placeholder="" class="form-control" disabled />
+                                                                            <input value="0" id="discrepancy" name="discrepancy" readonly="" class="form-control" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="type"></label>
+                                                                        <div class="col-md-4">
+                                                                            <input value="<?php echo $row->mach_id; ?>" class="form-control" name="machid" type="hidden" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label class="col-md-6 control">Remarks :</label>
                                                                         <div class="col-md-10">
                                                                             <textarea style="resize:vertical;" class="form-control" rows="2" name="remarks"></textarea>
-                                                                            <button style="float: right;" type="submit" class="btn btn-success">Save</button>
                                                                         </div>
+                                                                        <button style="float: right;" type="submit" class="btn btn-success">Save</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                        </form>
                                                         </div>
                                                         </div>
                                                       </div>
@@ -397,7 +413,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         else{
                                                          ?>
                                                         <tr>
-                                                            <td colspan = 9 style = "text-align: center;"> <h3>No data found</h3> </td>
+                                                            <td colspan = 9 style = "text-align: center;"> <h3>No machines found</h3> </td>
                                                         </tr>
                                                         <?php
                                                         }
@@ -476,5 +492,17 @@ $(document).ready(function() {
     
     }
 </script> 
+
+</script> 
+
+<script>
+    $('#count').on('keyup', function() {
+   if($.trim(this.value).length) {
+     var discrepancy = parseFloat($('#stock').val()).toFixed(2) - 
+                   parseFloat(this.value).toFixed(2);
+     $('#discrepancy').val(discrepancy);
+   }
+});
+</script>
  
 </html>

@@ -174,43 +174,43 @@
                                     <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
                                             <label for="email">Machine Serial Number</label>
-                                            <input class="form-control" type="number" name="mach_serial" required>
+                                            <input class="form-control" type="number" name="mach_serial" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
                                             <label for="email">Brewer</label>
-                                            <input class="form-control" type="text" name="brewer" required>
+                                            <input class="form-control" type="text" name="brewer" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Brewer should only countain letters">
                                         </div>
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
                                             <label for="email">Type</label>
-                                            <input class="form-control" type="text" name="type" required>
+                                            <input class="form-control" type="text" name="type" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Type should only countain letters">
                                         </div>
                                     </div>
                                      <div class="col-lg-6 form-group">
                                         <div class="form-group label-floating">
                                             <label for="email">Reorder Level</label>
-                                            <input class="form-control" type="number" name="reorder" required>
+                                            <input class="form-control" type="number" name="reorder" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
                                             <label for="email">Stock Limit</label>
-                                            <input class="form-control" type="number" name="stocklimit" required>
+                                            <input class="form-control" type="number" name="stocklimit" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
                                             <label for="email">Number of Stocks</label>
-                                            <input class="form-control" type="number" name="stocks" required>
+                                            <input class="form-control" type="number" name="stocks" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
                                             <label for="email">Price Per Unit</label>
-                                            <input class="form-control" type="number" name="price" required>
+                                            <input class="form-control" type="number" name="price" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6 form-group">
@@ -399,45 +399,43 @@
                                                                          <div class="col-md-6 form-group">
                                                                             <div class="form-group label-floating">
                                                                                 <label for="email">Machine Serial Number</label>
-                                                                                <input class="form-control" type="number" name="mach_serial" value="<?php echo $row->mach_serial; ?>" required>
+                                                                                <input class="form-control" type="number" name="mach_serial" value="<?php echo $row->mach_serial; ?>" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6 form-group">
                                                                             <div class="form-group label-floating">
                                                                                 <label for="email">Brewer</label>
-                                                                                <input class="form-control" type="text" name="brewer" value="<?php echo $row->brewer; ?>" required>
+                                                                                <input class="form-control" type="text" name="brewer" value="<?php echo $row->brewer; ?>" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Brwewer should only countain letters">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6 form-group">
                                                                             <div class="form-group label-floating">
                                                                                 <label for="email">Type</label>
-                                                                                <input class="form-control" type="text" name="type" value="<?php echo $row->brewer_type; ?>" required>
+                                                                                <input class="form-control" type="text" name="type" value="<?php echo $row->brewer_type; ?>" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Type should only countain letters">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-lg-6 form-group">
                                                                             <div class="form-group label-floating">
                                                                                 <label for="email">Price</label>
-                                                                                <input class="form-control" type="number" name="price" value="<?php echo $row->mach_price; ?>" required>
+                                                                                <input class="form-control" type="number" name="price" value="<?php echo $row->mach_price; ?>" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                                                             </div>
                                                                         </div>
                                                                          <div class="col-lg-6 form-group">
                                                                             <div class="form-group label-floating">
                                                                                 <label for="email">Reorder Level</label>
-                                                                                <input class="form-control" type="number" name="reorder" value="<?php echo $row->mach_reorder; ?>" required>
+                                                                                <input class="form-control" type="number" name="reorder" value="<?php echo $row->mach_reorder; ?>" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6 form-group">
                                                                             <div class="form-group label-floating">
                                                                                 <label for="email">Stock Limit</label>
-                                                                                <input class="form-control" type="number" name="stocklimit" value="<?php echo $row->mach_limit; ?>" required>
+                                                                                <input class="form-control" type="number" name="stocklimit" value="<?php echo $row->mach_limit; ?>" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6 form-group">
                                                                             <div class="form-group label-floating">
                                                                                 <label for="email">Number of Stocks</label>
-                                                                                <input class="form-control" type="number" name="stocks" value="<?php echo $row->mach_stocks; ?>" required>
-
-                                                                                <input class="form-control" type="hidden" name="id" value="<?php echo $row->mach_id; ?>" required>
+                                                                                <input class="form-control" type="number" name="stocks" value="<?php echo $row->mach_stocks; ?>" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                                                             
                                                                             </div>
                                                                         </div>

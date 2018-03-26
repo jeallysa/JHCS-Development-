@@ -62,6 +62,25 @@
 			$this->sellProduct_model->add_data($data7);
             redirect ('salesSellProduct');
 		}
+
+        function return_machine()
+		{
+			$this->load->model('sellProduct_model');
+			$dataA = array(
+				"mach_returnDate" =>$this->input->post("deliveryID"),
+				"mach_returnQty" =>$this->input->post("client_dr"),
+				"client_id" =>$this->input->post("date_returned"),
+				"mach_id" =>$this->input->post("qty_returned"),
+                "mach_remarks" =>$this->input->post("remarks")    
+			);
+			$dataA = $this->security->xss_clean($dataA);
+			$return = 'Returned';
+			$dr = $this->input->post("client_dr");
+			$this->SalesDelivery_model->insert_dataA($dataA);
+			$this->SalesDelivery_model->updateA($return, $dr);
+			echo "<script>alert('Item Returned!');</script>";
+			redirect('SalesDelivery', 'refresh');
+		}
 		
 
 	}

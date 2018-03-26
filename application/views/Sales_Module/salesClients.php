@@ -151,10 +151,9 @@
                                     <div class="card-content">
                                         <table id="example" class="table hover order-column" cellspacing="0" width="100%">
                                             <thead>
-                                                <th><b class="pull-left">Client</b></th>
-                                                <th><b class="pull-left"> Client Type</b></th>
-                                                <th></th>
-                                                <th></th>
+                                                <th><b class="pull-center">Client</b></th>
+                                                <th><b class="pull-center">Client Type</b></th>
+                                                <th><b class="pull-center">Actions</b></th>
                                             </thead>
                                             <tbody>
                                             <?php
@@ -165,9 +164,10 @@
                                                     <td><?php echo $row->client_company; ?></td>
                                                     <td><?php echo $row->client_type; ?></td>
 
-                                                    <td><a href="<?php echo base_url(); ?>salesClients/salesClientsInfo?id=<?php echo $row->client_id;?>" class="btn btn-primary btn-round btn-sm">View Details<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></td>
-                                                    <td><div class="btn btn-primary btn-sm space1" data-background-color="green" data-toggle="modal" data-target="#PurchaseOrder" data-id="<?php echo $row->client_id; ?>" id="getDetails" > Purchase Order</div><br>
-													<a class="btn btn-primary btn-sm space2" href="<?php echo base_url(); ?>salesClients/salesMultipleOrders?id=<?php echo $row->client_id;?>">Other Order</a>
+                                                    <td class="pull-right">
+                                                    <a href="<?php echo base_url(); ?>salesClients/salesClientsInfo?id=<?php echo $row->client_id;?>" class="btn btn-primary btn-round btn-sm">View Details<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
+                                                    <div class="btn btn-primary btn-sm" data-background-color="green" data-toggle="modal" data-target="#PurchaseOrder" data-id="<?php echo $row->client_id; ?>" id="getDetails" > Purchase Order</div>
+													<a class="btn btn-warning btn-sm" href="<?php echo base_url(); ?>salesClients/salesMultipleOrders?id=<?php echo $row->client_id;?>">Other Order</a>
 													</td>
                                                 </tr>
                                                 <?php
@@ -252,7 +252,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-5 control">Quantity :</label>
                                                 <div class="col-md-4">
-                                                    <input type="number" name="quantity" id="quantityAvailed" class="form-control" min="1" oninput="validity.valid||(value='');" data-validate="required" max="" >
+                                                    <input type="number" name="quantity" id="quantityAvailed" class="form-control" min="1" oninput="validity.valid||(value='');" data-validate="required" max="" placeholder="reqQty" >
                                                 </div>
                                             </div><br><br>
 											 <div class="form-group">
@@ -464,10 +464,11 @@ $(document).ready(function() {
 							$('[name="client_id"]').val(data.client_id);
 							$('[name="Name"]').val(data.client_company);
 							$('[name="ItemCode"]').val(data.blend_id);
-							$('[name="CoffeeBlend"]').val(data.contract_blend);
-							$('[name="Bag"]').val(data.contract_bag);
-							$('[name="Size"]').val(data.contract_size);
-							$('[name="QTY"]').val(data.contractPO_qty);
+							$('[name="CoffeeBlend"]').val(data.blend);
+							$('[name="Bag"]').val(data.package_type);
+							$('[name="Size"]').val(data.package_size);
+                            $('[name="QTY"]').val(data.contractPO_qty);
+							$('[placeholder="reqQty"]').val(data.required_qty);
 							$('[name="UnitPrice"]').val(data.blend_price);
 							/*$('#resolve_coffee').modal('show');*/			
 						},
