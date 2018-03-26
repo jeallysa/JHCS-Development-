@@ -22,19 +22,23 @@ class AdminAddContract_model extends CI_model
 		return $query->result();	
 	}
     
-     function getMachine(){
+    /* function getMachine(){
 		$query = $this->db->query("SELECT mach_id, brewer FROM jhcs.machine;");
 		return $query->result();	
-	}
+	}*/
     
      function getName(){
 		$query = $this->db->query("SELECT client_id, client_company FROM jhcs.contracted_client;");
 		return $query->result();	
 	}
-
+	function getPackage(){
+		$query = $this->db->query("SELECT package_id, package_size FROM jhcs.packaging;");
+		return $query->result();	
+	}
 
 	 function insert_data($data){ 
 		$this->db->insert('contract', $data);
+
          
          echo "<script>alert('You have inserted a new contract!');
 		window.location.href='" . base_url() . "adminClients';

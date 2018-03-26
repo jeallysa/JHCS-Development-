@@ -9,7 +9,7 @@ class AdminMachines_model extends CI_MODEL
 	}
 
 	function getMachines(){
-		$query=$this->db->query("SELECT mach_id, mach_serial, brewer, brewer_type, mach_price, mach_reorder, mach_limit, sup_company, mach_stocks,mach_activation FROM machine NATURAL JOIN supplier");
+		$query=$this->db->query("SELECT mach_id, mach_serial, brewer, brewer_type, mach_price, mach_reorder, mach_limit, sup_company, mach_stocks, mach_activation FROM machine NATURAL JOIN supplier");
 		return $query->result();
 	}
     
