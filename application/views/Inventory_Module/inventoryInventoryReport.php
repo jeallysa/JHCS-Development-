@@ -198,7 +198,7 @@ input {
                                             <input type="text" id="max" class="form-control" value="<?php   echo date("Y-m-d") ?>" >
                                         </div>
                                     </div>
-                                    <table id="table-mutasi" class="table hover order-column" cellspacing="0" width="100%">
+                                    <table id="coffee" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
                                                 <th><b>Date In</b></th>
@@ -272,6 +272,65 @@ input {
 
                                                 ?>
                                         </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Total</th>
+                                                <?php
+                                              $coffee1 ="SELECT raw_coffeeid, sum(quantity) as total from trans_raw NATURAL JOIN inv_transact where raw_coffeeid = '1' and type = 'IN';" ;
+                                              $query = $this->db->query($coffee1);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<th>'  . $object->total  . '</th>' ;
+                                           }
+                                            }
+                                                ?>
+                                                <?php
+                                              $coffee2 ="SELECT raw_coffeeid, sum(quantity) as total from trans_raw NATURAL JOIN inv_transact where raw_coffeeid = '2' and type = 'IN';" ;
+                                              $query = $this->db->query($coffee2);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<th>'  . $object->total  . '</th>' ;
+                                           }
+                                            }
+                                                ?>
+                                                <?php
+                                              $coffee3 ="SELECT raw_coffeeid, sum(quantity) as total from trans_raw NATURAL JOIN inv_transact where raw_coffeeid = '3' and type = 'IN';" ;
+                                              $query = $this->db->query($coffee3);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<th>'  . $object->total  . '</th>' ;
+                                           }
+                                            }
+                                                ?>
+                                                <?php
+                                              $coffee4 ="SELECT raw_coffeeid, sum(quantity) as total from trans_raw NATURAL JOIN inv_transact where raw_coffeeid = '4' and type = 'IN';" ;
+                                              $query = $this->db->query($coffee4);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<th>'  . $object->total  . '</th>' ;
+                                           }
+                                            }
+                                                ?>
+                                                <?php
+                                              $coffee5 ="SELECT raw_coffeeid, sum(quantity) as total from trans_raw NATURAL JOIN inv_transact where raw_coffeeid = '5' and type = 'IN';" ;
+                                              $query = $this->db->query($coffee5);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<th>'  . $object->total  . '</th>' ;
+                                           }
+                                            }
+                                                ?>
+                                                <?php
+                                              $coffee6 ="SELECT raw_coffeeid, sum(quantity) as total from trans_raw NATURAL JOIN inv_transact where raw_coffeeid = '6' and type = 'IN';" ;
+                                              $query = $this->db->query($coffee6);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<th>'  . $object->total  . '</th>' ;
+                                           }
+                                            }
+                                                ?>
+                                            </tr>
+                                        </tfoot>
                                     </table>
                                 </div>
                                 </div><hr>
@@ -280,7 +339,7 @@ input {
                                 <div class="card-content table-responsive">
                                     <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
                                     <h4><b>PACKAGING</b></h4></div>
-                                      <div class="form-group col-xs-3">
+                                      <div class="form-group col-xs-6">
                                     <label>Filter By:</label>
                                         <div class="input-group input-daterange">
                                             <input type="text" id="min" class="form-control" value="2000-01-01" >
@@ -288,7 +347,7 @@ input {
                                             <input type="text" id="max" class="form-control" value="<?php   echo date("Y-m-d") ?>" >
                                         </div>
                                     </div>
-                                    <table id="" class="table hover order-column" cellspacing="0" width="100%">
+                                    <table id="package" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
                                                 <th><b>Date In</b></th>
@@ -321,7 +380,7 @@ input {
                                 <div class="card-content table-responsive">
                                     <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
                                     <h4><b>STICKER</b></h4></div>
-                                      <div class="form-group col-xs-3">
+                                      <div class="form-group col-xs-6">
                                     <label>Filter By:</label>
                                         <div class="input-group input-daterange">
                                             <input type="text" id="min" class="form-control" value="2000-01-01" >
@@ -329,7 +388,7 @@ input {
                                             <input type="text" id="max" class="form-control" value="<?php   echo date("Y-m-d") ?>" >
                                         </div>
                                     </div>
-                                    <table id="" class="table hover order-column" cellspacing="0" width="100%">
+                                    <table id="sticker" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
                                                 <th><b>Date In</b></th>
@@ -362,7 +421,7 @@ input {
                                 <div class="card-content table-responsive">
                                     <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
                                     <h4><b>MACHINE</b></h4></div>
-                                      <div class="form-group col-xs-3">
+                                      <div class="form-group col-xs-6">
                                     <label>Filter By:</label>
                                         <div class="input-group input-daterange">
                                             <input type="text" id="min" class="form-control" value="2000-01-01" >
@@ -370,7 +429,7 @@ input {
                                             <input type="text" id="max" class="form-control" value="<?php   echo date("Y-m-d") ?>" >
                                         </div>
                                     </div>
-                                    <table id="" class="table hover order-column" cellspacing="0" width="100%">
+                                    <table id="machine" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
                                                 <th><b>Date In</b></th>
@@ -438,6 +497,7 @@ input {
 <script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
 
 <script>
+
 $(document).ready(function() {
     $('table.table').DataTable({
         "dom":' fBrtip',
@@ -447,8 +507,10 @@ $(document).ready(function() {
             { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs' },
 			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs' },
 			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs' }
-        ]
+        ],
+      
     });
+    
     $('#datePicker')
         .datepicker({
             format: 'mm/dd/yyyy'
