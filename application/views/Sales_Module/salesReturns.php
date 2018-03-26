@@ -92,14 +92,14 @@
 		.no-border{
 			border: none !important;
 		}
-		.sidebar{
-			background-color: bisque !important;
+		.sidebar .nav i,
+		.off-canvas-sidebar .nav i{
+			color: #315aaa;
 		}
-		.sidebar.active{
-			background-color: bisque !important;
+		.sidebar .sidebar-background:after,
+		.off-canvas-sidebar .sidebar-background:after{
+			background-color: bisque;
 		}
-		
-	
 		
 
 		
@@ -109,7 +109,7 @@
 
 <body>
     <div class="wrapper">
-        <div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-0.pg">
+        <div class="sidebar sidebar-color" data-color="purple" data-image="../assets/img/sidebar-0.pg">
             <div class="logo">
                 <img src="../assets/img/logo.png" alt="image1" width="250px" height="150px">
             </div>

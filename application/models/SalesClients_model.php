@@ -44,6 +44,16 @@
 			return $query->result();
 		}
 		
+		public function getClientInfo($id){
+			$query = $this->db->query("SELECT * FROM contracted_client WHERE client_id='$id'");
+			return $query->result();
+		}
+		
+		public function getBlends(){
+			$query = $this->db->query("SELECT * FROM coffee_blend NATURAL JOIN packaging");
+			return $query->result();
+		}
+		
 		/*public function AddMultipleOrders($blendName, $typeBag, $sizeBag, $quantity){
 			
 			$data = array(

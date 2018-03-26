@@ -56,7 +56,10 @@
 		}
 		
 		public function salesMultipleOrders(){
-			$this->load->view('Sales_Module/salesMultipleOrders');
+			$id = $this->uri->segment(3);
+			$data['info'] =  $this->SalesClients_model->getClientInfo($id);
+			$data1['blends'] =  $this->SalesClients_model->getBlends();
+			$this->load->view('Sales_Module/salesMultipleOrders', ['data' => $data, 'data1' => $data1 ]);
 		}
 		
 		
