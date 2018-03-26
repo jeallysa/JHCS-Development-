@@ -246,10 +246,14 @@
                                             <tr>
                                                 <th><b>Company</b></th>
                                                 <th><b>Date Started</b></th>
+                                                <th><b>Credit Term</b></th>
                                                 <th><b>Coffee Blend</b></th>
                                                 <th><b>Bag</b></th>
-                                                <th><b>Brewer</b></th>
-                                                <th><b>Required Quantity</b></th>
+                                                <th><b>Size</b></th>
+                                                <th><b>Coffee Required Quantity</b></th>
+                                                <th><b>Machine</b></th>
+                                                <th><b>Machine Required Quantity</b></th>
+                                                <th><b>Machine Serial Number</b></th>
                                                 <th class="disabled-sorting"><b>Edit</b></th>
                                             </tr>
                                         </thead>
@@ -265,10 +269,13 @@
                                                 <tr>
                                                 <td><?php echo $row->client_company; ?></td>
                                                 <td><?php echo $row->date_started; ?></td>
+                                                 <td><?php echo $row->credit_term; ?></td>
                                                 <td><?php echo $row->blend_id; ?></td>
+                                                <td><?php echo $row->package_id; ?></td>
                                                 <td><?php echo $row->package_id; ?></td>
                                                 <td><?php echo $row->mach_id; ?></td>
                                                  <td><?php echo $row->required_qty; ?></td>
+                                                  <td><?php echo $row->mach_qty; ?></td>
                                                 
 
                                                      <td>
@@ -324,6 +331,12 @@
                                                                         <div class="form-group label-floating">
                                                                             <label for="email">Required Quantity</label>
                                                                             <input class="form-control" value="<?php echo $row->contract_qty; ?>" type="number" name="contract_qty" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6 form-group">
+                                                                        <div class="form-group label-floating">
+                                                                            <label for="email">Credit Term</label>
+                                                                            <input class="form-control" value="<?php echo $row->contract_term; ?>" type="number" name="contract_term" required>
                                                                         </div>
                                                                     </div>
                                                                     </div>

@@ -288,7 +288,10 @@
                                                                                  <p><div class="form-group row">
                                                                                 <div for="example-number-input" class="col-2 col-form-label">
                                                                                     <label for="type">Client Type</label>
-                                                                                    <input class="form-control" name="cli_type" type="text" value="<?php echo $row->client_type; ?>" id="example-number-input" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Client Type should only countain letters">
+                                                                                <select class="form-control" name="cli_type" type="text" value="<?php echo $row->client_type; ?>" id="example-number-input" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Client Type should only countain letters">
+                                                                                     <option value="Retail">Retail</option>
+                                                                                     <option value="Coffee Service">Coffee Service</option>
+                                                                                 </select>
                                                                                 </div>
                                                                             </div>
                                                                             <h5> Contact Personnel </h5>
