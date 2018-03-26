@@ -57,6 +57,8 @@
 				"date" =>$this->input->post("date"),
 				"mach_qty" =>$this->input->post("qty"),
                 "client_id" =>$this->input->post("client_id"),
+                "mach_serial" =>$this->input->post("serial"),
+                "status" =>$this->input->post("sold")
 			);
 			$data7 = $this->security->xss_clean($data7);
 			$this->sellProduct_model->add_data($data7);
@@ -67,19 +69,20 @@
 		{
 			$this->load->model('sellProduct_model');
 			$dataA = array(
-				"mach_returnDate" =>$this->input->post("deliveryID"),
-				"mach_returnQty" =>$this->input->post("client_dr"),
-				"client_id" =>$this->input->post("date_returned"),
-				"mach_id" =>$this->input->post("qty_returned"),
+				"mach_returnDate" =>$this->input->post("date_returned"),
+				"mach_returnQty" =>$this->input->post("qty_returned"),
+				"client_id" =>$this->input->post("client_id"),
+				"mach_id" =>$this->input->post("mach_id"),
+				"mach_serial" =>$this->input->post("serial"),
                 "mach_remarks" =>$this->input->post("remarks")    
 			);
 			$dataA = $this->security->xss_clean($dataA);
 			$return = 'Returned';
-			$dr = $this->input->post("client_dr");
-			$this->SalesDelivery_model->insert_dataA($dataA);
-			$this->SalesDelivery_model->updateA($return, $dr);
-			echo "<script>alert('Item Returned!');</script>";
-			redirect('SalesDelivery', 'refresh');
+			$id = $this->input->post("sales_id");
+			$this->sellProduct_model->insert_dataA($dataA);
+			$this->sellProduct_model->updateA($return, $id);
+			echo "<script>alert('Machine Returned!');</script>";
+			redirect('salesSellProduct', 'refresh');
 		}
 		
 

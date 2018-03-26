@@ -6,12 +6,12 @@
 		}
 		
 		public function get_machine_return(){
-			$query = $this->db->query("SELECT * FROM contracted_client NATURAL JOIN client_machreturn NATURAL JOIN machine ");
+			$query = $this->db->query("SELECT *, client_machreturn.mach_remarks FROM contracted_client NATURAL JOIN client_machreturn  INNER JOIN machine on client_machreturn.mach_id = machine.mach_id");
 			return $query->result();
 			
 		}
 		public function get_coffee_return(){
-			$query = $this->db->query("SELECT * FROM client_coffreturn NATURAL JOIN client_delivery  NATURAL JOIN contracted_client NATURAL JOIN contracted_po NATURAL JOIN coffee_blend NATURAL JOIN packaging WHERE client_delivery.return='Returned' AND client_coffreturn.resolved = 'No' ");
+			$query = $this->db->query("SELECT * FROM client_coffreturn NATURAL JOIN client_delivery  NATURAL JOIN contracted_client NATURAL JOIN contracted_po NATURAL JOIN coffee_blend NATURAL JOIN packaging WHERE client_delivery.return='Returned' AND client_coffreturn.resolved = 'No'");
 			return $query->result();
 			
 		}

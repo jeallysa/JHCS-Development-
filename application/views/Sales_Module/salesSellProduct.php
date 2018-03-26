@@ -198,7 +198,8 @@
                                                 <a href="<?php echo base_url(); ?>salesSellProduct/salesMachine" class="btn btn-success btn-md" style="float: right">Add Sales</a>
 												<table id="masales" class="display table-striped table-hover cell-border" cellspacing="0" width="100%">
 													<thead>
-														<th><b>Item Code</b></th>
+                                                        <th><b>Item Code</b></th>
+														<th><b>Serial No.</b></th>
 														<th><b>Date</b></th>
 														<th><b>Client</b></th>
 														<th><b>Machine</b></th>
@@ -213,6 +214,7 @@
                                                      ?>
                                                      <tr>
                                                          <td><?php echo $row->mach_id; ?></td>
+                                                         <td><?php echo $row->mach_serial; ?></td>
                                                          <td><?php echo $row->date; ?></td>
                                                          <td><?php echo $row->client_company; ?></td>
                                                          <td><?php echo $row->brewer; ?></td>
@@ -235,7 +237,7 @@
                             </div>
                             <div class="modal-body" style="padding: 5px;">
                                 <div class="card-block">
-                                     <form action="<?php echo base_url(); ?>SalesDelivery/insert1" method="post" accept-charset="utf-8">
+                                     <form action="<?php echo base_url(); ?>salesSellProduct/return_machine" method="post" accept-charset="utf-8">
                                         <div class="modal-body" style="padding: 5px;">
                             <h3 class="pull-center"><?php echo $row->client_company; ?></h3>
                                             
@@ -309,6 +311,10 @@
                                                                         <label class="col-md-3 control">Remarks:</label>
                                                                         <input class="form-control col-md-3" type="text" name="remarks" required="">
                                                                          <input name="serial" type="hidden" class="form-control" value="<?php echo $row->mach_serial; ?>" >
+                                                                         <input name="client_id" type="hidden" class="form-control" value="<?php echo $row->client_id; ?>
+                                                                         " >
+                                                                         <input name="sales_id" type="hidden" class="form-control" value="<?php echo $row->mach_salesID; ?>
+                                                                         " >
                                                                     </div>
                                                                 </div>
                                                             </div>

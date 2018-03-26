@@ -14,7 +14,7 @@ class sellProduct_model extends CI_MODEL
 	}
 
 	Public function getSoldMachine(){
-		$query2=$this->db->query("SELECT * FROM machine_out NATURAL JOIN contracted_client NATURAL JOIN machine");
+		$query2=$this->db->query("SELECT * FROM machine_out NATURAL JOIN contracted_client NATURAL JOIN machine where status = 'sold' AND remarks='Received'");
 		return $query2->result();
 	}
 
@@ -90,6 +90,18 @@ class sellProduct_model extends CI_MODEL
 
 	function add_data($data7){ 
 		$this->db->insert('machine_out', $data7);
+	}
+
+	function insert_dataA($dataA){ 
+		$this->db->insert('client_machreturn', $dataA);
+	}
+	function updateA($return, $id){
+		$data2 = array(
+	        'remarks' => $return
+		);
+
+		$this->db->where('mach_salesID', $id);
+		$this->db->update('machine_out', $data2);
 	}
 }
 

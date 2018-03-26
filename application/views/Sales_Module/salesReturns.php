@@ -236,7 +236,6 @@
                                                  <table id="fresh-datatables" class="display table-striped table-hover cell-border" cellspacing="0" width="100%" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th><b>Client Return No.</b></th>
                                                         <th><b>Delivery Receipt No.</b></th>
                                                         <th><b>Date of Return</b></th>
                                                         <th><b>Quantity Returned</b></th>
@@ -254,7 +253,6 @@
                                                         {
                                                     ?>
                                                     <tr>
-                                                        <td><?php echo $row->client_coffReturnID; ?></td>
                                                         <td><?php echo $row->client_dr; ?></td>
                                                         <td><?php echo $row->coff_returnDate; ?></td>
                                                         <td><?php echo $row->coff_returnQty; ?></td>
@@ -282,7 +280,7 @@
                                                 <table id="fresh-datatables" class="display table-striped table-hover cell-border" cellspacing="0" width="100%" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th><b>Client Return No.</b></th>
+                                                        <th><b>Serial No.</b></th>
                                                         <th><b>Date of Return</b></th>
                                                         <th><b>Quantity Returned</b></th>
                                                         <th><b>Client</b></th>
@@ -297,7 +295,7 @@
                                                         {
                                                     ?>
                                                     <tr>
-                                                        <td><?php echo $row->client_machReturnID; ?></td>
+                                                        <td><?php echo $row->mach_serial; ?></td>
                                                         <td><?php echo $row->mach_returnDate; ?></td>
                                                         <td><?php echo $row->mach_returnQty; ?></td>
                                                         <td><?php echo $row->client_company; ?></td>
