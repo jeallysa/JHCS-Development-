@@ -30,8 +30,11 @@
 		}
 		public function salesContract()
 		{
-			
-			$this->load->view('Sales_Module/salesContract');
+			$id = $this->input->get('id');
+			$this->load->model('SalesClients_model');
+			$data1["cli_det"] = $this->SalesClients_model->load_Client_det($id);
+			$data2["cli_coff"] = $this->SalesClients_model->load_Client_coff($id);
+			$this->load->view('Sales_Module/salesContract', ['data1' => $data1, 'data2' => $data2]);
 		}
 		
 		public function salesClientDetails(){
