@@ -38,6 +38,15 @@
 			$query = $this->db->query("SELECT * FROM contracted_client NATURAL JOIN contracted_po NATURAL JOIN coffee_blend NATURAL JOIN packaging NATURAL JOIN client_delivery WHERE client_id = '$id' ");
 			return $query->result();
 		}
+		
+		
+		/*public function AddMultipleOrders($blendName, $typeBag, $sizeBag, $quantity){
+			
+			$data = array(
+
+			);
+			
+		}*/
 
 		public function load_PayClient($id){
 			$query = $this->db->query("SELECT * FROM contracted_client NATURAL JOIN contracted_po NATURAL JOIN payment_contracted NATURAL JOIN client_delivery WHERE client_id = '$id' ");

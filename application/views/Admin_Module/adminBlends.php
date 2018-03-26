@@ -352,20 +352,7 @@
                                             <tr>
 
                                                 <?php
-                                                    $con=mysqli_connect("localhost","root","","jhcs");
-                                                    if (mysqli_connect_errno())
-                                                      {
-                                                      echo "Failed to connect to MySQL: " . mysqli_connect_error();
-                                                      }
-                                                    $sql="SELECT * FROM raw_coffee WHERE raw_activation = 1";
-
-                                                    if ($result=mysqli_query($con,$sql))
-                                                      {
-
-                                                      $rowcount=mysqli_num_rows($result);
-                                                      mysqli_free_result($result);
-                                                      }
-                                                      mysqli_close($con);
+                                                    $qcount = $this->db->query('SELECT * FROM raw_coffee');
 
                                                     if($fetch_data_eb->num_rows() > 0){
 
@@ -377,8 +364,8 @@
 
                                                 
                                                 <?php
-                                                for ($i = 1; $i <= $rowcount; $i++){
-                                                    $colname = "per" . $i?>
+                                                foreach($qcount->result() as $row2){
+                                                    $colname = "per" . $row2->raw_id?>
                                                         <td><?php echo $row->$colname; ?></td>
                                                 <?php
 
@@ -399,7 +386,7 @@
                                                 -->
                                                 
                                                 <td>
-                                                    <a href="<?php echo base_url(); ?>AdminBlends/edit_show" class="btn btn-warning btn-sm" style="float: right">Edit</a>
+                                                    <a href="<?php echo base_url(); ?>AdminBlends/edit_show?id=<?php echo $row->main_id; ?>" class="btn btn-warning btn-sm" style="float: right">Edit</a>
                                                 </td>
                                                    <td>
                                                     <div class="onoffswitch">
