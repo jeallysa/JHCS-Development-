@@ -22,10 +22,10 @@ class AdminAddContract_model extends CI_model
 		return $query->result();	
 	}
     
-    /* function getMachine(){
+     function getMachine(){
 		$query = $this->db->query("SELECT mach_id, brewer FROM jhcs.machine;");
 		return $query->result();	
-	}*/
+	}	
     
      function getName(){
 		$query = $this->db->query("SELECT client_id, client_company FROM jhcs.contracted_client;");
@@ -36,6 +36,15 @@ class AdminAddContract_model extends CI_model
 		return $query->result();	
 	}
 
+	 function insert_data($data, $data_mach){ 
+		$this->db->insert('contract', $data);
+		$this->db->insert('machine_out', $data_mach);
+         
+         echo "<script>alert('You have inserted a new contract!');
+		window.location.href='" . base_url() . "adminClients';
+		</script>";
+	}
+	/**
 	 function insert_data($data){ 
 		$this->db->insert('contract', $data);
 
@@ -44,4 +53,5 @@ class AdminAddContract_model extends CI_model
 		window.location.href='" . base_url() . "adminClients';
 		</script>";
 	}
+	*/
 }
