@@ -67,6 +67,22 @@
 
 		}
 		
+		function resolveMachines(){
+			$c_id= $this->input->post('client_id');
+			$m_id= $this->input->post('mach_id');
+			$date= $this->input->post('delivery_date');
+			$serial= $this->input->post('serial');
+			$qty= $this->input->post('qty');
+			$MRID= $this->input->post('MRID');
+
+			$remarks = 'Received';
+
+			$this->SalesReturns_model->ResolveMachineReturnsA($c_id, $m_id, $date, $remarks, $serial, $qty);
+			$resolved = 'Yes';
+			$this->SalesReturns_model->ResolveMachineReturnsB($MRID, $resolved);
+			redirect('SalesReturns/index');
+		}
+		
 		
 	}
 

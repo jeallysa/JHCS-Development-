@@ -86,20 +86,19 @@
 		}
 		
 		.select-pane {
-        display: none;
+        	display: none;
     	}
 		
 		.no-border{
 			border: none !important;
+			font-weight: bold;
 		}
-		/*.sidebar .nav i,
-		.off-canvas-sidebar .nav i{
-			color: white;
+		.ClientName{
+			font-size: 150%;
+			font-weight: bold;
+			border: none !important;
+			
 		}
-		.sidebar .sidebar-background:after,
-		.off-canvas-sidebar .sidebar-background:after{
-			background-color: #8a6144;
-		}*/
 		
 
 		
@@ -302,7 +301,7 @@
                                                         <td><?php echo $row->brewer; ?></td>
                                                         <td><?php echo $row->mach_remarks; ?></td>
                                                         <td>
-                                                            <button class="btn btn-danger btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#resolve_machine" data-id="<?php echo $row->client_id; ?>" id="getMachineDetails">Resolve</button>
+                                                            <button class="btn btn-danger btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#resolve_machine" id="getMachineDetails" data-id="<?php echo $row->client_id; ?>">Resolve</button>
                                                         </td>
                                                     </tr>
                                                     <?php
@@ -373,11 +372,11 @@
                                                                 ?>
                                                                 <tr>
                                                                     <td><?php echo $row->client_machReturnID; ?> </td>
-                                                                    <td><?php echo $row->mach_returnDate; ?> </td>
-                                                                    <td><?php echo $row->mach_returnQty; ?> </td>
+                                                                    <td><?php echo $row->date; ?> </td>
+                                                                    <td><?php echo $row->mach_qty; ?> </td>
                                                                     <td><?php echo $row->client_company; ?> </td>
                                                                     <td><?php echo $row->brewer; ?> </td>
-                                                                    <td><?php echo $row->mach_returnAction; ?> </td>
+                                                                    <td><?php echo $row->status; ?> </td>
                                                                 </tr>
                                                                 <?php
                                                                     }
@@ -408,7 +407,7 @@
 									
 										<div class="modal-body" style="padding: 10px;">
 
-											
+											<?php echo form_open('SalesReturns/resolveReturns', array('method'=>'POST')); ?>
                                         <div class="row">
                                             <div class="col-lg-7">
 												
@@ -449,7 +448,7 @@
                                             </div>
                                         </div>
 											
-										<?php echo form_open('SalesReturns/resolveReturns', array('method'=>'POST')); ?>
+										
 											
                                         <hr>
 											
@@ -463,7 +462,6 @@
                                                 <div class="form-group">
                                                     <label class="col-md-6 control">Delivery Receipt No :</label>
                                                     <div class="col-md-6">
-                                                        <!--<p class="form-control" contenteditable="true" name="delivery_receipt">DR0123</p>-->
 														<?php echo form_input(['name'=>'DRReturns','id'=>'deliveryReceipt', 'class'=>'form-control','type'=>'text', 'maxlength'=>'5','value'=>'dr']); ?>
                                                     </div>
                                                 </div>
@@ -539,7 +537,7 @@
 						</div>
 						 
 					</div>
-</div>
+				 </div></div>
 				
 
 				
@@ -551,35 +549,48 @@
 										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 										<h4 class="panel-title" id="contactLabel"><center>Resolve Machine Returns</center></h4>
 									</div>
-									<form action="#" method="post" accept-charset="utf-8">
+									<?php echo form_open('SalesReturns/resolveMachines', array('method'=>'POST')); ?>
 										<div class="modal-body" style="padding: 5px;">
                                         <div class="row">
+											<br><br>
+											<input type="hidden" name="mach_id" readonly />
+											<input  type="hidden" name="client_id" readonly />
+											<input  type="hidden" name="MRID" readonly />
+											<input  type="hidden" name="serial" readonly />
+											<input  type="hidden" name="qty" readonly />
                                             <div class="col-lg-7">
 												<div class="row">
+													<label class="col-md-5 control">Client :</label>
+													<div class="col-md-7">
+													<input class="ClientName" type="text" name="company" readonly />
+													</div>
+												</div>
+												
+												<div class="row">
 													<div class="form-group">
-														<label class="col-md-5 control">Coffee Blend :</label>
+														<label class="col-md-5 control">Machine :</label>
 														<div class="col-md-7">
-															<p><b>SUMATRA NIGHT</b></p>
+															<input class="no-border" type="text" name="brewer" readonly />
 														</div>
 													</div>
 													<div class="form-group">
-														<label class="col-md-5 control">Size :</label>
+														<label class="col-md-5 control">Brewer Type :</label>
 														<div class="col-md-5">
-															<p><b>500g</b></p>
+															<input class="no-border" type="text" name="type" readonly />
 														</div>
 													</div>
 												</div>
 												<div class="row">
 													<div class="form-group">
-														<label class="col-md-5 control">Bag :</label>
+														<label class="col-md-5 control">Unit Price :</label>
 														<div class="col-md-6">
-															<p><b>Clear</b></p>
+															<input class="no-border" type="text" name="uprice" readonly />
 														</div>
 													</div>
 													<div class="form-group">
 														<label class="col-md-5 control">Quantity :</label>
 														<div class="col-md-6">
-															<p><b>3</b></p>
+															<input class="no-border" type="text" name="qty" readonly />
 														</div>
 													</div>
 												</div>
@@ -587,74 +598,20 @@
                                         </div>
                                         <hr>
                                         <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="col-md-6 control">Delivery Receipt No :</label>
-                                                    <div class="col-md-6">
-                                                        <p class="form-control" contenteditable="true">DR0123</p>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label class="col-md-6 control">Date of Delivery :</label>
                                                     <div class="col-md-6">
-                                                        <input class="form-control" name="coffeeType" placeholder="Date" type="date" required />
+                                                        <input class="no-border" name="delivery_date" placeholder="Date" type="date" value="<?php echo date("Y-m-d");?>" data-validate="required" message="A Date of Delivery is recquired! min="<?=date('Y-m-d')?>" max="<?=date('Y-m-d',strtotime(date('Y-m-d').'+1 days'))?>"" required />
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-										<div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="col-md-5 control">Received by :</label>
-                                                    <div class="col-md-7">
-                                                        <input id="" name="name" type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="col-md-6 control">Delivery status:</label>
-                                                    <div class="col-md-6">
-                                                        <select class="form-control nav">
-                                                            <option value="">Full Deivery</option>
-                                                            <option value="delivery">Partial Delivery</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
+										<div class="modal-footer">
+											<button type="submit" class="btn btn-success">Resolve Machine Return</button>
 										</div>
-                                        <div class="row">
-                                            <div class="col-lg-2 col-md-2 col-sm-2"></div>
-                                            <div class="col-lg-8 col-md-8 col-sm-8 ">
-                                                <div class="select-pane " id="delivery">
-                                                    <div class="form-group">
-                                                        <label class="col-md-6 control">Quantity Delivered:</label>
-                                                        <div class="col-md-5">
-                                                            <input class="form-control" type="text" name="" placeholder="2">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-2 col-md-2 col-sm-2"></div>
-                                            <div class="col-lg-8 col-md-8 col-sm-8 ">
-                                                <div class="select-pane" id="delivery">
-                                                    <div class="form-group">
-                                                        <label class="col-md-6 control">Remaining Quantity: </label>
-                                                        <div class="col-md-5">
-                                                            <p><b>1</b></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-										<div class="panel-footer" align="center">
-											<input type="submit" class="btn btn-success" value="Add" />
-											<input type="reset" class="btn btn-warning" value="Clear" />
-										</div>
-							</form>
+							<?php echo form_close(); ?>
 						</div>
 					</div>
 				</div>
@@ -689,8 +646,9 @@ $(document).ready(function() {
      
     $('table.display').DataTable( {		
     } );
+});
 	
-	difference();
+/*	difference();
 	$("#Originalquantity, #deliveredCoffee").on("keydown keyup", function() {
 		 difference();
     });
@@ -704,7 +662,7 @@ $(document).ready(function() {
 				document.getElementById('subt').value = result;
             }
         }
-	
+	*/
 	
 
 
@@ -757,8 +715,16 @@ $(document).ready(function(){
             url: '<?=base_url()?>SalesReturns/getMachineDetails/' + id ,			
 			success: function(data)
 				{
-					$('[name="PO_ID"]').val(data.contractPO_id);
-					$('#resolve_machine').modal('show');
+					$('[name="company"]').val(data.client_company);
+					$('[name="brewer"]').val(data.brewer);
+					$('[name="type"]').val(data.brewer_type);
+					$('[name="uprice"]').val(data.unitPrice);
+					$('[name="qty"]').val(data.mach_returnQty);
+					$('[name="mach_id"]').val(data.mach_id);
+					$('[name="client_id"]').val(data.client_id);
+					$('[name="MRID"]').val(data.client_machReturnID);
+					$('[name="serial"]').val(data.mach_serial);
+					/*$('#resolve_machine').modal('show');*/
 
 
 				},
