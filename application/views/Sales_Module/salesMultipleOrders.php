@@ -17,6 +17,7 @@
     <link href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="<?php echo base_url(); ?>assets/css/demo.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/bootstrap-select.min.css" rel="stylesheet" />
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
@@ -37,6 +38,23 @@
 		.no-border{
 			border: none !important;
 		}
+		.coll-centered{
+			float: none;
+			margin: 0 auto;
+		}
+		.btn-group.open>.dropdown-toggle.btn,
+		.btn-group.open>.dropdown-toggle.btn.btn-default,
+		.btn-group-vertical.open>.dropdown-toggle.btn,
+		.btn-group-vertical.open>.dropdown-toggle.btn.btn-default {
+			background-color: #b15b5b;
+			color: white;
+		}
+		
+		.btn, .btn:hover, .btn:focus, .btn:active, .btn.active, .btn:active:focus, .btn:active:hover, .btn.active:focus, .btn.active:hover, .open > .btn.dropdown-toggle, .open > .btn.dropdown-toggle:focus, .open > .btn.dropdown-toggle:hover, .btn.btn-default, .btn.btn-default:hover, .btn.btn-default:focus, .btn.btn-default:active, .btn.btn-default.active, .btn.btn-default:active:focus, .btn.btn-default:active:hover, .btn.btn-default.active:focus, .btn.btn-default.active:hover, .open > .btn.btn-default.dropdown-toggle, .open > .btn.btn-default.dropdown-toggle:focus, .open > .btn.btn-default.dropdown-toggle:hover, .navbar .navbar-nav > li > a.btn, .navbar .navbar-nav > li > a.btn:hover, .navbar .navbar-nav > li > a.btn:focus, .navbar .navbar-nav > li > a.btn:active, .navbar .navbar-nav > li > a.btn.active, .navbar .navbar-nav > li > a.btn:active:focus, .navbar .navbar-nav > li > a.btn:active:hover, .navbar .navbar-nav > li > a.btn.active:focus, .navbar .navbar-nav > li > a.btn.active:hover, .open > .navbar .navbar-nav > li > a.btn.dropdown-toggle, .open > .navbar .navbar-nav > li > a.btn.dropdown-toggle:focus, .open > .navbar .navbar-nav > li > a.btn.dropdown-toggle:hover, .navbar .navbar-nav > li > a.btn.btn-default, .navbar .navbar-nav > li > a.btn.btn-default:hover, .navbar .navbar-nav > li > a.btn.btn-default:focus, .navbar .navbar-nav > li > a.btn.btn-default:active, .navbar .navbar-nav > li > a.btn.btn-default.active, .navbar .navbar-nav > li > a.btn.btn-default:active:focus, .navbar .navbar-nav > li > a.btn.btn-default:active:hover, .navbar .navbar-nav > li > a.btn.btn-default.active:focus, .navbar .navbar-nav > li > a.btn.btn-default.active:hover, .open > .navbar .navbar-nav > li > a.btn.btn-default.dropdown-toggle, .open > .navbar .navbar-nav > li > a.btn.btn-default.dropdown-toggle:focus, .open > .navbar .navbar-nav > li > a.btn.btn-default.dropdown-toggle:hover {
+			background-color: white;
+			color: black;
+		}
+
 
     </style>
 </head>
@@ -142,14 +160,66 @@
                                         <h2 class="title"><center>Other Orders</center></h2>
                                     </div>
                                     <div class="card-content">
-										<div class="row">
+										
+										<?php foreach($data['info'] as $row){ ?>
+											<br>
+											<p style="font-size: 180%; font-weight: bold;" ><?php echo $row->client_company; ?> </p>
+											<input value="<?php echo $row->client_id ?>" type="hidden" />
+										
+										<?php
+										
+										}?>
+										
+										<hr>
+										
+										<div class="col-sm-10 col-md-10 col-md-offset-1 well well-sm coll-centered" >
+											<legend><span class="glyphicon glyphicon-shopping-cart"></span> Order</legend><hr>
+											<div class="row">
+											<div class="col-md-5 col-md-offset-1">
+														<select class="form-control selectpicker" id="blend" data-live-search="true" multiple title="Choose Coffee Blend...">
+															<?php foreach($data1['blends'] as $row){ ?>
+															<option value='<?php $row->blend_id ?><?php echo $row->blend ?>/<?php echo $row->package_type ?>/<?php echo $row->package_size ?>' ><?php echo $row->blend ?>/<?php echo $row->package_type ?>/<?php echo $row->package_size ?></option>
+                                                            <?php 
+															} ?>
+                                                         </select>
+												</div>
+												<div class="col-md-2">
+													<input class="form-control" name="" id="qty" placeholder="Quantity" type="number" min="0" oninput="validity.valid||(value='');" data-validate="required" />
+												</div>
+												<input class="btn btn-lg btn-primary btn-sm" type="text" id="append_data" value="Add to Table" readonly>
+												</div>
+											</div><br>
+											<br>
+										
+										<div class="col-sm-10 col-md-10 col-md-offset-2 well well-sm coll-centered" >
+												<table class="table" id="data_table">
+													<thead class="text-primary">
+														<th>Coffee Blend/Type of Bag/Size of Bag</th>
+<!--														<th>Type of Bag</th>
+														<th>Size of Bag</th>-->
+														<th>Quantity</th>
+														<th></th>
+													</thead>
+													<tbody>
+														
+													</tbody>
+												</table>
+												<button class="btn btn-primary btn-sm" type="button" name="AddPO" id="AddPO">Add Purchase Order/s</button>
+												
+											</div>
+											<div class="col-xs-7 col-7" style="margin-left:15px; margin-top:150px;">
+												<hr>
+												
+											</div>
+										
+										<!--<div class="row">
 											<div class="col-xs-4 col-md-4 well well-sm" style="margin-left:20px; margin-top:20px;" ><br>
 												<legend><span class="glyphicon glyphicon-shopping-cart"></span> Order</legend><hr>
 												<form action="#" method="post" class="form" role="form">
 												<div class="row">
 													<div class="col-md-7 col-md-offset-2">
 														<select class="form-control" id="blend" label="Select Coffee Blend">
-															<!--<option selected disabled>Select Coffee Blend</option>-->
+															<option selected disabled>Select Coffee Blend</option>
                                                             <option value="Guatemala Rainforest">Guatemala Rainforest</option>
                                                             <option value="Cordillera Sunrise">Cordillera Sunrise</option>
                                                             <option value="Sumatra Night">Sumatra Night</option>
@@ -201,7 +271,7 @@
 												<hr>
 												
 											</div>
-    									</div>
+    									</div>-->
 										
                                     </div>
 								</center>
@@ -228,20 +298,26 @@
 <script src="<?php echo base_url(); ?>assets/js/material-dashboard.js?v=1.2.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/bootstrap-select.min.js"></script>
 
 <script type="text/javascript">
+	
+	$('.selectpicker').selectpicker({ 
+	});
+
+	
 	var count = 0;
 	$("#append_data").click(function(){
 		var blend = $('#blend').val();
-		var typeBag = $('#type').val();
-		var sizeBag = $('#size').val();
+		/*var typeBag = $('#type').val();
+		var sizeBag = $('#size').val();*/
 		var qty = $('#qty').val();
 		
 		count = count + 1;
 		var newRow = '<tr id="row'+count+'">'+
 			 	'<td contenteditable="true" class="blendName">'+blend+'</td>'+
-			 	'<td contenteditable="true" class="typeBag">'+typeBag+'</td>'+
-			 	'<td contenteditable="true" class="sizeBag">'+sizeBag+'</td>'+
+/*			 	'<td contenteditable="true" class="typeBag">'+typeBag+'</td>'+
+			 	'<td contenteditable="true" class="sizeBag">'+sizeBag+'</td>'+*/
 			 	'<td contenteditable="true" class="quantity">'+qty+'</td>'+
 				'<td><button class="btn btn-danger btn-xs remove" data-row="row'+count+'">-</button></td>'+
 			'</tr>';
@@ -249,8 +325,8 @@
 		$("#data_table tbody:last-child").append(newRow);
 		
 		$('#blend').val('');
-		$('#type').val('');
-		$('#size').val('');
+/*		$('#type').val('');
+		$('#size').val('');*/
 		$('#qty').val('');
 		
 	});

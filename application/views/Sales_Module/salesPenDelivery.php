@@ -41,6 +41,9 @@
 	.select-pane {
         display: none;
     }
+		.no-border{
+			border: none !important;
+		}
     </style>
 </head>
 
@@ -384,7 +387,7 @@
                                 <div class="card-block">
                                      <form action="<?php echo base_url(); ?>SalesDelivery/insert1" method="post" accept-charset="utf-8">
                                         <div class="modal-body" style="padding: 5px;">
-                            <h3 class="pull-center"><?php echo $row2->client_company; ?></h3>
+											<h3><center><?php echo $row2->client_company; ?></center></h3>
                                             
                                             <div class="row">
                                                 <div class="col-lg-12" style="padding-bottom: 20px;">
@@ -392,33 +395,33 @@
                                                         <div class="form-group">
 
                                     <div class="row">
-                                        <div class="col-lg-7">
+                                        <div class="col-lg-6">
                                              <div class="form-group">
-                                                <label class="col-md-5 control">DR/SI No.</label>
-                                                <div class="col-md-7">
+                                                <label class="col-md-6 control">DR/SI No.:</label>
+                                                <div class="col-md-6">
                                                     <p><b><?php echo $row2->client_dr.' / '.$row2->client_invoice;
                                                     ?></b></p>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-md-5 control">Date Delivered</label>
+                                                <label class="col-md-6 control">Date Delivered:</label>
                                                 <div class="col-md-5">
                                                     <p><b><?php echo $row2->client_deliverDate;
                                                     ?></b></p>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-md-5 control">Quantity :</label>
-                                                <div class="col-md-7">
+                                                <label class="col-md-6 control">Quantity :</label>
+                                                <div class="col-md-6">
                                                     <p><b><?php echo $row2->contractPO_qty; ?></b></p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-5">
+                                            <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label class="col-md-9 control">Coffee Blend</label>
-                                                    <div class="col-md-9">
+                                                    <label class="col-md-5 control">Coffee Blend</label>
+                                                    <div class="col-md-7">
                                                         <p><b><?php echo "$row2->blend/ $row2->package_type/ $row2->package_size g"; ?></b></p>
                                                     </div>
                                                 </div>
@@ -430,16 +433,18 @@
                                                                 <div class="col-md-6">
 
                                                                     <div class="form-group">
-                                                                        <label class="col-md-3 control">Date Returned:</label>
-                                                                        <input class="form-control col-md-3" type="date" name="date_returned" required="">
+                                                                        <label class="col-md-6 control">Date of Return:</label>
+                                                                        <input class="no-border" type="date" name="date_returned" value="<?php echo date("Y-m-d");?>" data-validate="required" message="A Date of Purchase is recquired! min="<?=date('Y-m-d')?>" max="<?=date('Y-m-d',strtotime(date('Y-m-d')))?>"">
                                                                         <input type="hidden" name="client_dr" value="<?php echo $row2->client_dr; ?>" required>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
 
                                                                     <div class="form-group">
-                                                                        <label class="col-md-3 control">Quantity Returned:</label>
-                                                                        <input class="form-control col-md-3" type="number" name="qty_returned" min="1" max="<?php echo $row2->contractPO_qty;?>" required="">
+                                                                        <label class="col-md-7 control">Quantity Returned:</label>
+																		<div class="col-md-5">
+                                                                        <input class="form-control" type="number" name="qty_returned" min="1" max="<?php echo $row2->contractPO_qty;?>" required="" oninput="validity.valid||(value='');" >
+																		</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -448,8 +453,10 @@
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label class="col-md-3 control">Remarks:</label>
+																		<div class="col-md-9">
                                                                         <input class="form-control col-md-3" type="text" name="remarks" required="">
                                                                          <input name="deliveryID" type="hidden" class="form-control" value="<?php echo $row2->client_deliveryID; ?>" >
+																		</div>
                                                                     </div>
                                                                 </div>
                                                             </div>

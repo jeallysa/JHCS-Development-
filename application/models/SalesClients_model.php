@@ -44,10 +44,23 @@
 			return $query->result();
 		}
 		
+
 		public function load_Client_mach($id){
 			$query = $this->db->query("SELECT * FROM machine_out NATURAL JOIN contracted_client NATURAL JOIN machine where status = 'rented' AND client_id='$id' AND (machine_out.remarks='Received' OR machine_out.remarks='Returned')");
 			return $query->result();
 		}
+
+
+		public function getClientInfo($id){
+			$query = $this->db->query("SELECT * FROM contracted_client WHERE client_id='$id'");
+			return $query->result();
+		}
+		
+		public function getBlends(){
+			$query = $this->db->query("SELECT * FROM coffee_blend NATURAL JOIN packaging");
+			return $query->result();
+		}
+		
 
 		/*public function AddMultipleOrders($blendName, $typeBag, $sizeBag, $quantity){
 			

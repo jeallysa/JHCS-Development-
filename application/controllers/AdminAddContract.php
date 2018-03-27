@@ -13,9 +13,10 @@
                 $this->load->model('AdminAddContract_model');
 	            $data1['getBlend'] = $this->AdminAddContract_model->getBlend();
                 $data2['getBag'] = $this->AdminAddContract_model->getBag();
-                $data3['getMachine'] = $this->AdminAddContract_model->getMachine();
+              	/* $data3['getMachine'] = $this->AdminAddContract_model->getMachine(); */
                 $data4['getName'] = $this->AdminAddContract_model->getName();
-				$this->load->view('Admin_Module/adminAddContract', ['data1' => $data1,'data2' => $data2,'data3' => $data3,'data4' => $data4]);
+                $data5['getPackage'] = $this->AdminAddContract_model->getPackage();
+				$this->load->view('Admin_Module/adminAddContract', ['data1' => $data1,'data2' => $data2,/*'data3' => $data3,*/'data4' => $data4,'data5' => $data5]);
                 
 			} else {
 				redirect('login');
@@ -28,10 +29,15 @@
 			$data = array(
                 "client_id" =>$this->input->post("client_company"),
 				"date_started" =>$this->input->post("date_started"),
+				"credit_term" =>$this->input->post("contract_term"),
 				"blend_id" =>$this->input->post("contract_blend"),
 				"package_id" =>$this->input->post("contract_bag"),
+				"required_qty" =>$this->input->post("contract_bqty"),
+				"package_id" =>$this->input->post("contract_size")/*,
 				"mach_id" =>$this->input->post("contract_bag"),
-                "required_qty" =>$this->input->post("contract_qty")
+                "mach_qty" =>$this->input->post("contract_mqty"),
+                "mach_serial" =>$this->input->post("contract_serial")*/
+				
                 
 			);
 			$data = $this->security->xss_clean($data);

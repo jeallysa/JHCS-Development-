@@ -24,15 +24,19 @@
 			$id = $this->input->post("contract_id");
             
 			$date_started = $this->input->post("date_started");
+			$credit_term = $this->input->post("contract_term");
 			$blend_id = $this->input->post("contract_blend");
 			$package_id = $this->input->post("contract_bag");
-			$mach_id = $this->input->post("contract_machine");
-			$required_qty = $this->input->post("contract_qty");
+			$package_id = $this->input->post("contract_size");
+			$required_qty = $this->input->post("contract_bqty");
+			/*$mach_id = $this->input->post("contract_bag");
+			$mach_qty = $this->input->post("contract_mqty");
+			$mach_serial = $this->input->post("contract_serial");*/
             
-			$this->AdminContract_model->update($id, $date_started, $blend_id, $package_id, $mach_id, $required_qty);
+			$this->AdminContract_model->update($id, $date_started, $credit_term, $blend_id, $package_id, $required_qty /*, $mach_id, $mach_qty, $mach_serial*/);
 			echo "<script>alert('Update successful!');</script>";
 			redirect('adminClients', 'refresh');
 		}
-        
+
     }
 ?>
