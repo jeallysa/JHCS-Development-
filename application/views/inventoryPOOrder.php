@@ -8,7 +8,7 @@
            if(!empty($order)) {                                                                           
            foreach($order as $object){
            $temp =  $object->supp_po_id;
-           
+           $sup_id = $object->sup_id;   
 
 ?>
 
@@ -76,7 +76,8 @@
                  $arrayOn = array("raw_coffee","sticker","package_name","brewer_type");
                    for($table = 0 ; $table < 4 ; $table++){
                           
-                             $retrieveDetails ="SELECT * FROM ".$arrayItem[$table]." join supp_po_ordered  on ".$arrayOn[$table] ." = item join supp_po using (supp_po_id) where supp_PO_id = $temp" ;  
+                             $retrieveDetails ="SELECT * FROM ".$arrayItem[$table]." join supp_po_ordered  on ".$arrayOn[$table] ." = item join supp_po using (supp_po_id) where supp_PO_id =".$temp."
+                                 and supp_po_ordered.delivery_stat = 0 and sup_id = ".$sup_id;  
                        
                                               $query = $this->db->query($retrieveDetails);
                        
@@ -99,7 +100,7 @@
                                                 </td> 
                                                     
                                              <?php       
-                                                echo '<td>'  . $object->type  . '</td>' ;
+                                                echo '<td >'  . $object->type  . '</td>' ;
                                         
                                                 ?>      
                                                     
@@ -107,12 +108,12 @@
                                             <input type="number" class="form-control" name="qty[]" id ="<?php echo "qty".$i?>" value="<?php echo $object->qty ?>" readonly> <!-- name of id=qty-->
                                                   </td>
                                                     
-                                                  <td>
-                                            <input type="number" class="form-control" name="yield_weight[]" id="<?php echo "yield_weight".$i?>" required>
+                                                  <td >
+                                            <input type="number" class="form-control" name="yield_weight[]"  min="0" id="<?php echo "yield_weight".$i?>"  required>
                                                   </td>  
                                                     
                                                  <td>
-                                             <input type="number" class="form-control" name="yield[]" id="<?php echo "yield".$i?>" readonly></td>  
+                                             <input type="number" class="form-control" name="yield[]"  min="0"  id="<?php echo "yield".$i?>" readonly></td>  
                                                     
                                                     
                                   
@@ -166,6 +167,7 @@
         if(!empty($order)) {                                
            foreach($order as $object){
             $temp =  $object->supp_po_id;
+            $sup_id = $object->sup_id;   
            
 
 ?>
@@ -206,7 +208,7 @@
                  $arrayOn = array("raw_coffee","sticker","package_name","brewer_type");
                  for($table = 0 ; $table < 4 ; $table++){
                           
-                     $retrievePartial ="SELECT * FROM ".$arrayItem[$table]." join supp_po_ordered  on ".$arrayOn[$table] ." = item join supp_po using (supp_po_id) where supp_PO_id = ".$temp ." and supp_po_ordered.delivery_stat = 0";                   
+                     $retrievePartial ="SELECT * FROM ".$arrayItem[$table]." join supp_po_ordered  on ".$arrayOn[$table] ." = item join supp_po using (supp_po_id) where supp_PO_id = ".$temp ." and supp_po_ordered.delivery_stat = 0 and sup_id = ".$sup_id ;                
                                                     
                          
                                               $query = $this->db->query($retrievePartial);
@@ -227,7 +229,7 @@
                                                
                                                     
                                                 <td>
-                                                      <input type="text" class="form-control" name="item[]" value="<?php echo $object->item ?>" readonly> 
+                                                      <input type="text" class="form-control" name="item[]" value="<?php echo $object->item ?>" readonly required/> 
                                                 </td> 
                                                     
                                              <?php 
@@ -236,18 +238,19 @@
                                         
                                                 ?>      
                                                    <td>
-                                                      <input type="number" class="form-control" name="qty[]" id ="<?php echo "qtyp".$i?>" value="<?php echo $object->qty ?>" readonly> <!-- name of id=qty-->
-                                                  </td>        
-                                                  <td>
-                                                      <input  type="number" class="form-control" maxlength="4" name="yield_weight[]" id ="<?php echo "yield_weight".$i?>"> <!-- name of id=yield_weight-->
-                                                  </td>   
-                                                  <td><input type="number" class="form-control"  name="yield[]" id ="<?php echo "yield".$i?>" readonly></td>  <!-- name of id=yield-->
+                                                      <input type="number" class="form-control" name="qty[]" id ="<?php echo "qtyp".$i?>" value="<?php echo $object->qty ?>" readonly required/>
+                                                       <!-- name of id=qty-->
+                                                    </td>        
+                                                <td>
+                                                      <input  type="number" class="form-control" maxlength="4" name="yield_weight[]" min="0" id ="<?php echo "yield_weight".$i?>"> <!-- name of id=yield_weight-->
+                                                </td>   
+                                                <td><input type="number" class="form-control"  name="yield[]" id ="<?php echo "yield".$i?>" min="0" readonly required/></td>  <!-- name of id=yield-->
                                                     
-                                                  <td>
-                                                            <input type="date" class="form-control" name="date[]"  >
-                                                 </td>
-                                                 <td>
-                                                            <select            class="form-control" name="receivedBy[]" >
+                                                <td >
+                                                            <input type="date" class="form-control" name="date[]"  required/>
+                                                </td>
+                                                <td>
+                                                         <select            class="form-control" name="receivedBy[]" >
                                                                 
                                                                 
                                           <?php
@@ -259,16 +262,7 @@
                                                              
                                                 }
                                             ?> 
-                                                              
-                                                                
-                                                                
-                                                                            
-                                                        
-                                                                
-                                                                
-                                                                
-                                                                
-                                                            </select>
+                                                          </select>
                                                      
                                                      
                                                    </td> 
@@ -318,10 +312,11 @@
 
 
 <?php
-           $details = 1; //used to map the Modal.  //put here because if not. the if returns false the i becomes 1 again 
+        $details = 1; 
       if(!empty($order)) {                                     
            foreach($order as $object){
-            $temp =  $object->supp_po_id; //dynamic query WHERE.
+            $temp =  $object->supp_po_id; 
+             $sup_id = $object->sup_id;   
            
 ?>
                                              
@@ -356,7 +351,7 @@
              $arrayOn = array("raw_coffee","sticker","package_name","brewer_type");
                    for($table = 0 ; $table < 4 ; $table++){
                           
-                     $retrieveDetails ="SELECT * FROM ".$arrayItem[$table]." join supp_po_ordered  on ".$arrayOn[$table] ." = item join supp_po using (supp_po_id) where supp_PO_id = $temp" ; 
+                     $retrieveDetails ="SELECT * FROM ".$arrayItem[$table]." join supp_po_ordered  on ".$arrayOn[$table] ." = item join supp_po using (supp_po_id) where supp_PO_id =".$temp." and sup_id = ".$sup_id ; 
                                               $query = $this->db->query($retrieveDetails);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {

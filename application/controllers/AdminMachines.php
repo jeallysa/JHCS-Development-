@@ -25,7 +25,6 @@
 		{
 			$this->load->model('AdminMachines_model');
 			$data = array(
-				"mach_serial" =>$this->input->post("mach_serial"),
                 "brewer" =>$this->input->post("brewer"),
 				"brewer_type" =>$this->input->post("type"),
 				"mach_price" =>$this->input->post("price"),
@@ -47,7 +46,6 @@
 		function update(){
 			$this->load->model('AdminMachines_Model');
 			$id = $this->input->post("mach_id");
-			$serial = $this->input->post("serial");
 			$brewer = $this->input->post("brewer");
 			$type = $this->input->post("type");
 			$price = $this->input->post("price");
@@ -55,7 +53,7 @@
 			$limit = $this->input->post("limit");
 			$stock_level = $this->input->post("stock_level");
 			$sup_id = $this->input->post("sup_company");
-			$this->AdminMachines_Model->update($id, $serial, $brewer, $type, $price, $reorder, $limit, $stock_level, $sup_id);
+			$this->AdminMachines_Model->update($id, $brewer, $type, $price, $reorder, $limit, $stock_level, $sup_id);
 			echo "<script>alert('Update successful!');</script>";
 			redirect('adminMachines', 'refresh');
 		}

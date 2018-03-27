@@ -7,15 +7,80 @@
      parent::_construnct();
   }
   
+      
+       /*
+        public function querySelected($item_name){
+            $arrayItem = array("raw_coffee","sticker","packaging","machine");
+             $arrayOn = array("raw_coffee","sticker","package_name","brewer_type");
+                   for($table = 0 ; $table < 4 ; $table++){
+                          
+               $retrieveDetails ="SELECT unitPrice FROM ".$arrayItem[$table]." where ".$arrayOn[$table] ." = .$item_name."; 
+                       
+ $retrieveDetails ="SELECT unitPrice FROM raw_coffee where raw_coffee = 'GUATEMALA'";        
+               $query = $this->db->query($retrieveDetails);
+                      if ($query->num_rows() > 0) {
+                         return $query->result();     
+                           }
+                   
+                  //   }
+         }        
+      */
+   
+      public function querySelectedAmount($item_name, $sup_id){
+            $arrayTable = array("raw_coffee","sticker","packaging","machine");
+            $arrayOn = array("raw_coffee","sticker","package_name","brewer");
+                   for($table = 0 ; $table < 4 ; $table++){
+                          
+             $retrieveDetails ="SELECT unitPrice FROM ".$arrayTable[$table]." where ".$arrayOn[$table] ." = '".$item_name."' AND sup_id =".$sup_id; 
+             $query = $this->db->query($retrieveDetails);
+                      if ($query->num_rows() > 0) {
+                         return $query->row();      // im expecting only 1 row
+                           }
+                   
+                   }
+         } 
+     
+      /*
+      public function querySelectedType($item_name, $sup_id){
+            $arrayTable = array("raw_coffee","sticker","packaging","machine");
+            $arrayOn = array("raw_coffee","sticker","package_name","brewer");
+                   for($table = 0 ; $table < 4 ; $table++){
+                          
+             $retrieveDetails ="SELECT * FROM ".$arrayTable[$table]." where ".$arrayOn[$table] ." = '".$item_name."' AND sup_id =".$sup_id; 
+             $query = $this->db->query($retrieveDetails);
+                      if ($query->num_rows() > 0) {
+                         return $query->result();      // im expecting only 1 row
+                           }
+                   
+                   }
+         }   
+      */
+    
+      
+      
+     function displayOrderedTemp(){
+      $query = $this->db->query('SELECT * FROM supp_temp_po_order order by idsupp_temp_po_order desc ');      
+      if($query->num_rows() > 0){
+          return $query-> result();
+      }else
+          return NULL;
+  
+  }  
+      
+              
+      
   function checkIfTempIsEmpty(){
-      $query = $this->db->query('select * from supp_temp_po');      
+      $query = $this->db->query('select *  from supp_temp_po left join supplier on supp_name = sup_company');      
       if($query->num_rows() > 0){
           return $query-> result();
       }else
           return NULL;
   
   }
-    function emptyTemp($dataInsert){
+      
+      
+      
+    function emptyTemp($dataInsert){  //diko sure kung kelangan pa to dito eh nalimutan ko na.
        $this->db->empty_table("supp_temp_po"); 
   }   
       
@@ -24,6 +89,13 @@
   function insertChosenSupplier($dataInsert){
       $this->db->insert("supp_temp_po" , $dataInsert);
   }
+      
+  function insertTempOrder($dataInsert){ 
+      $this->db->insert("supp_temp_po_order" , $dataInsert);
+         
+  }     
+      
+      
    
       
       
@@ -31,14 +103,22 @@
       
       $this->db->insert_batch("supp_po_ordered" , $data);
       $this->db->empty_table("supp_temp_po"); 
+      $this->db->empty_table("supp_temp_po_order");
   }  
   
+
+      
       
       
    function cancelPO(){
-      
       $this->db->empty_table("supp_temp_po"); 
+      $this->db->empty_table("supp_temp_po_order"); 
   } 
+      
+    function resetOrder(){
+      $this->db->empty_table("supp_temp_po_order"); 
+  } 
+      
       
       
       
@@ -85,7 +165,7 @@
   }
       
     function retrieveTemp(){
-   
+     // I think this should be moofied with Supplier is deactivated/
     $query = $this->db->query('select * from supp_temp_po join supplier on supp_name = sup_company');      
       if($query->num_rows() > 0){
           return $query-> result();

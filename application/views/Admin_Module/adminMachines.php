@@ -173,12 +173,6 @@
                                <div class="row">
                                     <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
-                                            <label for="email">Machine Serial Number</label>
-                                            <input class="form-control" type="number" name="mach_serial" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <div class="form-group label-floating">
                                             <label for="email">Brewer</label>
                                             <input class="form-control" type="text" name="brewer" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Brewer should only countain letters">
                                         </div>
@@ -299,7 +293,7 @@
                                     <a class="btn btn-success" data-toggle="modal" data-target="#stock" data-original-title style="float: right">Add New Machine</a>
                                     <table id="example" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
-                                            <th><b class="pull-left">Machine Serial Number</b></th>
+                                            <th><b class="pull-left">Machine Number</b></th>
                                             <th><b class="pull-left">Machine</b></th>
                                             <th><b class="pull-left">Type</b></th>
                                             <th><b class="pull-left">Price</b></th>
@@ -316,7 +310,7 @@
                                                 foreach ($data['machines'] as $row) {
                                              ?>
                                              <tr>
-                                                 <td><?php echo $row->mach_serial; ?></td>
+                                                 <td><?php echo $row->mach_id; ?></td>
                                                  <td><?php echo $row->brewer; ?></td>
                                                  <td><?php echo $row->brewer_type; ?></td>
                                                  <td><?php echo $row->mach_price; ?></td>
@@ -398,8 +392,8 @@
 
                                                                          <div class="col-md-6 form-group">
                                                                             <div class="form-group label-floating">
-                                                                                <label for="email">Machine Serial Number</label>
-                                                                                <input class="form-control" type="number" name="serial" value="<?php echo $row->mach_serial; ?>" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
+                                                                                <label for="email">Machine Number</label>
+                                                                                <input class="form-control" type="number" name="id" value="<?php echo $row->mach_id; ?>" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" disabled >
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6 form-group">

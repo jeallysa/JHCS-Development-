@@ -5,27 +5,34 @@
                         <div class="col-md-12">
                         <div class="col-md-12">
                             <div class="card card-nav-tabs" >
-                                <!--------------------------- MODAL Full Payment ------------------------------->
                                 
                                 
                                 
-<?php
-           $x = 1;
-                                        
+                                
+                                
+                                
+                                
+                            
+                                
+ <?php
+     $full = 1;
+     if(!empty($unpaid)) {                                
            foreach($unpaid as $object){
             $temp =  $object->supp_po_id;
-
-?>
+            $sup_id = $object->sup_id;
+?>                                 
+                                    
+                               <!--------------------------- MODAL Full Payment ------------------------------->
                                 
-                                <div class="modal fade" id="<?php echo "full" . $x   ?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                                <div class="modal fade" id="<?php echo "full" . $full   ?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
                                     <div class="modal-dialog">
-                                        <div class="panel panel-primary">
+                                        <div class="panel panel-primary modal-content">
                                             <div class="panel-heading">
                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                                 <h4 class="panel-title" id="contactLabel"><center>Balance</center> </h4>
                                             </div>
 
-                                            <form action="#" method="post" accept-charset="utf-8">
+                                            <form action="InventoryPOUnpaidDelivery/insertFullPayment/<?php echo $temp ?>" method="post" accept-charset="utf-8">
                                             <div class="modal-body" style="padding: 0px;">
                                                 <table class="table table-striped" id="table-mutasi">
                                                     <thead>
@@ -37,85 +44,87 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                           <?php
-                                              $retrieveDetails ="SELECT * FROM supp_delivery join supp_po_ordered using(supp_po_ordered_id) join items on item = item_name  where supp_po_ordered.supp_po_id = $temp" ;
-                                              $query = $this->db->query($retrieveDetails);
+                                                                         
+               <?php
+                 //$i = 1;
+                 $arrayItem = array("raw_coffee","sticker","packaging","machine");
+                 $arrayOn = array("raw_coffee","sticker","package_name","brewer_type");
+                   for($table = 0 ; $table < 4 ; $table++){
+                          
+                             $retrieveDetails ="SELECT * FROM supp_delivery  join supp_po_ordered using(supp_po_ordered_id)  join ".$arrayItem[$table]." on   item =  ".$arrayOn[$table] ." where supp_po_ordered.supp_po_id =".$temp." and sup_id =".$sup_id ;  
+                            $query = $this->db->query($retrieveDetails);
+                       
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
+                                                  $tempItemId = $object->supp_po_ordered_id;
                                            echo '<tr>' ,
-                                                '<td>'  . $object->item_name   . '</td>' ,
+                                                '<td>'  . $object->item   . '</td>' ,
                                                 '<td>'  . $object->type  . '</td>' ,
                                                 '<td>'  . $object->yield_weight. '</td>' ,
                                                 '<td>'  . $object->amount  . '</td>' ,
                                                 '</tr>' ;
+                                                  
                                               }
                                             }
-                                        ?>  
+                                         } 
+                                            ?>
+                                                            
                                                     </tbody>
                                                 </table>
                                                 <div class="container"  >
                                                     <div class="row justify-content-end"  >
                                                         <div class="col-md-6 form-group" >
                                                             <div class="form-group label-floating">
-                                                                <label for="email">Total Balance:</label>
-                                                                <input class="form-control" type="text" value="  P34,000.00   " id="example-number-input" disabled="" />
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <div class="form-group label-floating">
+                                                                            <label>Total Balance:</label>
+                                                           <input class="form-control" type="text" value="" id="" disabled="" />
+                                                                             </div>
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-md-4">
+                                                                             <div class="form-group label-floating">
+                                                                            <label>Remaining Balance</label>
+                                                                             <input class="form-control" type="text" id="" disabled="" />
+                                                                             </div>
+                                                                        </div>    
+                                                                   </div>      
+                                                                 <div class="row">
+                                                                            <div class="col-md-4">
+                                                                                <div class="form-group label-floating">
+                                                                                  <label>Date of Payment:</label>
+                                                                                  <input class="form-control" type="date" name="date" required>
+                                                                                </div>
+                                                                            </div>
+                                                                          
+                                                                            <div class="col-md-4">
+                                                                                <div class="form-group label-floating">
+                                                                                  <label>Bank:</label>
+                                                                                  <input class="form-control" type="text" name="bank" required>
+                                                                                </div>
+                                                                            </div>
+                                                                 </div>
+                                                                        <div class="row">
+                                                                        </div>
+                                                                    
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div><center>
-                                                <a class="btn btn-primary" data-toggle="collapse" href="#collapsePayment" aria-expanded="false" aria-controls="collapseExample" data-background-color="red">
-                                                Add Payment
-                                                </a></center>
-                                                <div class="collapse" id="collapsePayment">
-                                                    <div class="card-block">
-                                                        <form action="#" method="post" accept-charset="utf-8">
-                                                            <div class="modal-body" style="padding: 5px;">
-                                                                <div class="form-group label-floating">
-                                                                    <div class="form-group">
-                                                                        <div class="row">
-                                                                            <div class="col-md-4">
-                                                                                <div class="form-group label-floating">
-                                                                                  <label for="email">Date of Payment:</label>
-                                                                                  <input class="form-control" type="date" name="">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-4">
-                                                                                <div class="form-group label-floating">
-                                                                                  <label>Amount:</label>
-                                                                                  <input class="form-control" type="number" name="">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-4">
-                                                                                <div class="form-group label-floating">
-                                                                                  <label>Bank:</label>
-                                                                                  <input class="form-control" type="text" name="">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="panel-footer">
-                                                                <input type="submit" class="btn btn-success" value="Add" />
-                                                                <input type="reset" class="btn btn-danger" value="Clear" />
-                                                                <button style="float: right;" type="button" class="btn btn-danger btn-close" data-dismiss="modal">Close</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
+                                                <button type="submit" class="btn btn-success accept">Record Payment</button></center>
                                             </div>
+                                            </form>    
                                         </div>
                                     </div>
-                                </div>           
-                                    
-                                    
-    <?php                       
-                   $x++;
+                                </div>                  
+                                
+          <?php                       
+                   $full++;
                                
-                                         }      
- ?>                                
+           }  
+     }
+ ?>                               
                                     
                                 
                                <!---- END MODAL PO BALANCE 1 ------> 
@@ -126,16 +135,16 @@
                                     
                                     
       <?php
-           $c = 1;
-                                        
+     $partial = 1;
+     if(!empty($unpaid)) {                                
            foreach($unpaid as $object){
             $temp =  $object->supp_po_id;
-
+            $sup_id = $object->sup_id;
 ?>                                 
                                     
                                <!--------------------------- MODAL Partial Payment ------------------------------->
                                 
-                                <div class="modal fade" id="<?php echo "partial" . $c   ?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                                <div class="modal fade" id="<?php echo "partial" . $partial   ?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="panel panel-primary modal-content">
                                             <div class="panel-heading">
@@ -143,7 +152,7 @@
                                                 <h4 class="panel-title" id="contactLabel"><center>Balance</center> </h4>
                                             </div>
 
-                                            <form action="#" method="post" accept-charset="utf-8">
+                                            <form action="InventoryPOUnpaidDelivery/insertPartialPayment/<?php echo $temp ?>" method="post" accept-charset="utf-8">
                                             <div class="modal-body" style="padding: 0px;">
                                                 <table class="table table-striped" id="table-mutasi">
                                                     <thead>
@@ -152,31 +161,32 @@
                                                             <th>Type</th>
                                                             <th>Yield Weight(g)</th>
                                                             <th>Amount</th>
-                                                            <th>Payment</th>
-                                                            <th>Payment Date</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                                          
-                                            <?php
-                                              $retrieveDetails ="SELECT * FROM supp_delivery left join supp_po_ordered using(supp_po_ordered_id) left join items on item= item_name 
-                                              where supp_po_ordered.supp_po_id = $temp" ;
-               
+               <?php
+                                               //$i = 1;
+                 $arrayItem = array("raw_coffee","sticker","packaging","machine");
+                 $arrayOn = array("raw_coffee","sticker","package_name","brewer_type");
+                   for($table = 0 ; $table < 4 ; $table++){
+                          
+                             $retrieveDetails ="SELECT * FROM supp_delivery  join supp_po_ordered using(supp_po_ordered_id)  join ".$arrayItem[$table]." on   item =  ".$arrayOn[$table] ." where supp_po_ordered.supp_po_id =".$temp." and sup_id =".$sup_id ;  
+                       
                                               $query = $this->db->query($retrieveDetails);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
+                                                  $tempItemId = $object->supp_po_ordered_id;
                                            echo '<tr>' ,
-                                                '<td>'  . $object->item_name   . '</td>' ,
+                                                '<td>'  . $object->item   . '</td>' ,
                                                 '<td>'  . $object->type  . '</td>' ,
                                                 '<td>'  . $object->yield_weight. '</td>' ,
-                                                '<td>'  . $object->amount  . '</td>' ;
-                                            ?>                      
-                                                <td><input class="form-control" type="number" name=""></td>
-                                                <td><input class="form-control" type="date" name=""></td>
-                                          <?php 
-                                                   '</tr>' ;
+                                                '<td>'  . $object->amount  . '</td>' ,
+                                                '</tr>' ;
+                                                  
                                               }
                                             }
+                                         } 
                                             ?>
                                                             
                                                     </tbody>
@@ -185,22 +195,60 @@
                                                     <div class="row justify-content-end"  >
                                                         <div class="col-md-6 form-group" >
                                                             <div class="form-group label-floating">
-                                                                <label for="email">Total Balance:</label>
-                                                                <input class="form-control" type="text" value="  P34,000.00   " id="example-number-input" disabled="" />
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <div class="form-group label-floating">
+                                                                            <label>Total Balance:</label>
+                                                                             <input class="form-control" type="number"  id="total" disabled="" />
+                                                                             </div>
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-md-4">
+                                                                             <div class="form-group label-floating">
+                                                                            <label>Remaining Balance</label>
+                                                                             <input class="form-control" type="number"  id="remaining" disabled="" />
+                                                                             </div>
+                                                                        </div>    
+                                                                   </div>      
+                                                                 <div class="row">
+                                                                            <div class="col-md-4">
+                                                                                <div class="form-group label-floating">
+                                                                                  <label>Date of Payment:</label>
+                                                                                  <input class="form-control" type="date" name="date" required>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-4">
+                                                                                <div class="form-group label-floating">
+                                                                                  <label>Amount:</label>
+                                                                                  <input class="form-control" type="number" min="1" name="amount" required>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-4">
+                                                                                <div class="form-group label-floating">
+                                                                                  <label>Bank:</label>
+                                                                                  <input class="form-control" type="text" name="bank" required>
+                                                                                </div> 
+                                                                            </div>
+                                                                 </div>
+                                                                        <div class="row">
+                                                                        </div>
+                                                                    
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div><center>
                                                 <button type="submit" class="btn btn-success accept">Record Payment</button></center>
                                             </div>
+                                            </form>    
                                         </div>
                                     </div>
                                 </div>                  
                                 
           <?php                       
-                   $c++;
+                   $partial++;
                                
-                                         }      
+           }  
+     }
  ?>                               
                                       
                                     
@@ -215,15 +263,15 @@
                                     
                                    
     <?php
-           $i = 1;
-                                        
+           $details = 1;
+           if(!empty($unpaid)) {                               
            foreach($unpaid as $object){
             $temp =  $object->supp_po_id;
 
 ?>
                                                       
                                     
-                                <div class="modal fade" id="<?php echo "details" . $i   ?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                                <div class="modal fade" id="<?php echo "details" . $details   ?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg" role="document">
                                         <div class="panel panel-primary modal-content">
                                             <form action="#" method="post" accept-charset="utf-8">
@@ -247,16 +295,28 @@
                                                                 </thead>
                                                                 <tbody>
     
-                                            <?php
-                                              $retrieveDetails ="SELECT * FROM supp_delivery left join supp_po_ordered using(supp_po_ordered_id) left join items  on item= item_name  
-                                              where supp_po_ordered.supp_po_id = $temp" ;
+                                                                    
+                                                                    
+                                 
+        <?php
+                                                                
+      //$i = 1;                                                             
+            
+                 $arrayItem = array("raw_coffee","sticker","packaging","machine");
+                 $arrayOn = array("raw_coffee","sticker","package_name","brewer_type");
+                   for($table = 0 ; $table < 4 ; $table++){
+                          
+                             $retrieveDetails ="SELECT * FROM supp_delivery  join supp_po_ordered using(supp_po_ordered_id)  join ".$arrayItem[$table]." on   item =  ".$arrayOn[$table] ." where supp_po_ordered.supp_po_id = $temp"  ;  
                
                                               $query = $this->db->query($retrieveDetails);
-                                              if ($query->num_rows() > 0) {
+                                           if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
+                                                  
+                                                   // $tempItemId = $object->supp_po_ordered_id;    can use later
+                                                  
                                            echo '<tr>' ,
                                                 '<td>'  . $object->date_received   . '</td>' ,
-                                                '<td>'  . $object->item_name   . '</td>' ,
+                                                '<td>'  . $object->item  . '</td>' ,
                                                 '<td>'  . $object->type  . '</td>' ,
                                                 '<td>'  . $object->qty  . '</td>' ,
                                                 '<td>'  . $object->yield_weight. '</td>' ,
@@ -264,6 +324,7 @@
                                                 '<td>'  . $object->unitPrice  . '</td>' ,
                                                 '<td>'  . $object->amount  . '</td>' ,
                                                 '</tr>' ;
+                                                }
                                               }
                                             }
                                         ?>                      
@@ -285,9 +346,10 @@
                                     
                                     
      <?php                       
-                   $i++;
+                   $details++;
                                
-                                         }      
+                 }
+           }
  ?>                               
                                     
                                     
@@ -339,6 +401,8 @@
                                         </div>
                                     </div>
                                 </div>
+                                
+                                
                                 <div class="card-content ">
                                     <br>
                                     <table id="example" class="table hover order-column" cellspacing="0" width="100%">
@@ -360,6 +424,7 @@
                                             $details = 'details';
                                             $partial = 'partial';
                                             $full    = 'full'; 
+                                    if(!empty($unpaid)) {  
                                           foreach($unpaid as $object){ 
                                              
                                             
@@ -381,7 +446,8 @@
                                     <?php                          
                                             '</tr>' ; 
                                                   $i++;
-                                         }           
+                                         } 
+                                 }
                ?>
                                      
                                             
@@ -432,6 +498,11 @@ $(document).ready(function() {
     });
 
 });
+    
+    
+      
+    
 </script>
+
 
 </html>
