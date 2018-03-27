@@ -34,7 +34,8 @@
 			$this->load->model('SalesClients_model');
 			$data1["cli_det"] = $this->SalesClients_model->load_Client_det($id);
 			$data2["cli_coff"] = $this->SalesClients_model->load_Client_coff($id);
-			$this->load->view('Sales_Module/salesContract', ['data1' => $data1, 'data2' => $data2]);
+			$data3["cli_mach"] = $this->SalesClients_model->load_Client_mach($id);
+			$this->load->view('Sales_Module/salesContract', ['data1' => $data1, 'data2' => $data2, 'data3' => $data3]);
 		}
 		
 		public function salesClientDetails(){
@@ -57,6 +58,27 @@
 		
 		public function salesMultipleOrders(){
 			$this->load->view('Sales_Module/salesMultipleOrders');
+		}
+
+        function return_machine()
+		{
+			$this->load->model('sellProduct_model');
+			$dataA = array(
+				"mach_returnDate" =>$this->input->post("date_returned"),
+				"mach_returnQty" =>$this->input->post("qty_returned"),
+				"client_id" =>$this->input->post("client_id"),
+				"mach_id" =>$this->input->post("mach_id"),
+				"mach_serial" =>$this->input->post("serial"),
+                "mach_remarks" =>$this->input->post("remarks")    
+			);
+			$dataA = $this->security->xss_clean($dataA);
+			$return = 'Returned';
+			$id = $this->input->post("sales_id");
+			$cli_id = $this->input->post("cli_id");
+			$this->sellProduct_model->insert_dataA($dataA);
+			$this->sellProduct_model->updateA($return, $id);
+			echo "<script>alert('Machine Returned!');</script>";
+			redirect('salesClients/salesContract?id='.$cli_id.'', 'refresh');
 		}
 		
 		

@@ -11,7 +11,7 @@
 			
 		}
 		public function getClientsDetails($id){
-			$query = $this->db->query("SELECT * FROM contract NATURAL JOIN contracted_client INNER JOIN coffee_blend ON contract.blend_id = coffee_blend.blend_id INNER JOIN packaging ON contract.package_id = packaging.package_id INNER JOIN machine ON contract.mach_id = machine.mach_id WHERE client_id='$id'");
+			$query = $this->db->query("SELECT * FROM contract NATURAL JOIN contracted_client INNER JOIN coffee_blend ON contract.blend_id = coffee_blend.blend_id INNER JOIN packaging ON contract.package_id = packaging.package_id WHERE client_id='$id'");
 			 return $query->row();
 		}
 		public function addClientPO( $date, $QTY, $id, $blend_id){		
@@ -40,10 +40,15 @@
 		}
 
 		public function load_Client_coff($id){
-			$query = $this->db->query("SELECT * FROM contract NATURAL JOIN contracted_client INNER JOIN coffee_blend ON contract.blend_id = coffee_blend.blend_id INNER JOIN packaging ON contract.package_id = packaging.package_id INNER JOIN machine ON contract.mach_id = machine.mach_id WHERE client_id='$id'");
+			$query = $this->db->query("SELECT * FROM contract NATURAL JOIN contracted_client INNER JOIN coffee_blend ON contract.blend_id = coffee_blend.blend_id INNER JOIN packaging ON contract.package_id = packaging.package_id WHERE contracted_client.client_id='$id'");
 			return $query->result();
 		}
 		
+		public function load_Client_mach($id){
+			$query = $this->db->query("SELECT * FROM machine_out NATURAL JOIN contracted_client NATURAL JOIN machine where status = 'rented' AND client_id='$id' AND (machine_out.remarks='Received' OR machine_out.remarks='Returned')");
+			return $query->result();
+		}
+
 		/*public function AddMultipleOrders($blendName, $typeBag, $sizeBag, $quantity){
 			
 			$data = array(
