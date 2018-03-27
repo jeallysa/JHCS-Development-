@@ -208,7 +208,7 @@
                                             </select>
                                         </div>
                                     </div> 
-                                    <!--
+                                    
                                    <div class="col-md-6 form-group">
                                            <div class="form-group label-floating">
                                             <label for="email">Machine</label>
@@ -238,7 +238,7 @@
                                     </div> 
                                    
                                 </div> 
-                            </div> -->
+                            </div>
                             <div class="panel-footer" style="margin-bottom:-14px;">
                                 <input type="submit" class="btn btn-success" value="Add" />
                                 <!--<span class="glyphicon glyphicon-ok"></span>-->

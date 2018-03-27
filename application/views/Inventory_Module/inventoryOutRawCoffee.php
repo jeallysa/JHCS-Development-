@@ -320,6 +320,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <th><b>Client</b></th>
                                                 <th><b>Machine</b></th>
                                                 <th><b>No. of machines installed</b></th>
+                                                <th><b>Remarks</b></th>
                                             </thead>
                                             <tbody>
                                                 <?php 
@@ -332,6 +333,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                      <td><?php echo $row->client_company; ?></td>
                                                      <td><?php echo $row->brewer; ?></td>
                                                      <td><?php echo $row->mach_qty; ?></td>
+                                                     <td><?php echo $row->status; ?></td>
                                                 </tr>
                                                 <?php
                                                     }
