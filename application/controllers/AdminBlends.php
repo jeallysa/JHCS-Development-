@@ -130,6 +130,13 @@
 
 
 		}
+
+		public function activation(){
+			$this->load->model('Admin_Blends_model');
+			$id = $this->input->post("deact_id");
+			$this->Admin_Blends_model->activation($id);
+			redirect('adminBlends');
+		}
         
 
 	}

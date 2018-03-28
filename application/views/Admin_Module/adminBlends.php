@@ -37,91 +37,39 @@
     /* Custom Style */
 
     
-    .onoffswitch {
-        position: relative;
-        width: 110px;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-    }
-
-    .onoffswitch-checkbox {
-        display: none;
-    }
-
-    .onoffswitch-label {
-        display: block;
-        overflow: hidden;
+    input[type=checkbox].toggle-switch {
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        width: 4em;
+        height: 2em;
+        border-radius: 2em;
+        background-color: #ddd;
+        outline: 0;
         cursor: pointer;
-        border: 2px solid #999999;
-        border-radius: 20px;
+        transition: background-color 0.09s ease-in-out;
+        position: relative;
     }
 
-    .onoffswitch-inner {
-        display: block;
-        width: 200%;
-        margin-left: -100%;
-        -moz-transition: margin 0.3s ease-in 0s;
-        -webkit-transition: margin 0.3s ease-in 0s;
-        -o-transition: margin 0.3s ease-in 0s;
-        transition: margin 0.3s ease-in 0s;
+    input[type=checkbox].toggle-switch:checked {
+        background-color: #3af;
     }
 
-    .onoffswitch-inner:before,
-    .onoffswitch-inner:after {
-        display: block;
-        float: left;
-        width: 50%;
-        height: 30px;
-        padding: 0;
-        line-height: 30px;
-        font-size: 14px;
-        color: white;
-        font-family: Trebuchet, Arial, sans-serif;
-        font-weight: bold;
-        -moz-box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-    }
-
-    .onoffswitch-inner:before {
-        content: " Enabled";
-        padding-left: 10px;
-        background-color: #2FCCFF;
-        color: #FFFFFF;
-    }
-
-    .onoffswitch-inner:after {
-        content: "Disabled";
-        padding-right: 10px;
-        background-color: #EEEEEE;
-        color: #999999;
-        text-align: right;
-    }
-
-    .onoffswitch-switch {
-        display: block;
-        width: 18px;
-        margin: 7px;
-        background: #FFFFFF;
-        border: 2px solid #999999;
-        border-radius: 20px;
+    input[type=checkbox].toggle-switch::after {
+        content: '';
+        width: 2em;
+        height: 2em;
+        background-color: white;
+        border-radius: 2em;
         position: absolute;
-        top: 0;
-        bottom: 0;
-        right: 70px;
-        -moz-transition: all 0.3s ease-in 0s;
-        -webkit-transition: all 0.3s ease-in 0s;
-        -o-transition: all 0.3s ease-in 0s;
-        transition: all 0.3s ease-in 0s;
+        transform: scale(0.7);
+        left: 0;
+        transition: left 0.09s ease-in-out;
+        box-shadow: 0 0.1em rgba(0, 0, 0, 0.5);
     }
 
-    .onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-inner {
-        margin-left: 0;
-    }
-
-    .onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-switch {
-        right: 0px;
+    input[type=checkbox].toggle-switch:checked::after {
+        left: 2em;
     }
     
 
@@ -390,13 +338,57 @@
                                                 </td>
                                                    <td>
                                                     <div class="onoffswitch">
-                                                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                                                        <label class="onoffswitch-label" for="myonoffswitch">
-                                                            <span class="onoffswitch-inner"></span>
-                                                            <span class="onoffswitch-switch"></span>
-                                                        </label>
+                                                         <?php
+                                                        if($row->blend_activation == 1){
+
+                                                    ?>
+                                                         <input type="checkbox" id="button<?php echo $row->main_id;?>" class="toggle-switch" data-toggle="modal" data-target="#deactivate<?php echo $row->main_id;?>" checked>
+                                                    <?php
+                                                        }else{
+
+                                                    ?>
+
+                                                        <input type="checkbox" id="button<?php echo $row->main_id;?>" class="toggle-switch" data-toggle="modal" data-target="#deactivate<?php echo $row->main_id;?>">
+                                                    <?php
+                                                        }
+
+                                                    ?>
                                                     </div>
                                                 </td>
+                                                <div class="modal fade" id="deactivate<?php echo $row->main_id;?>" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="panel panel-primary">
+                                                            <div class="panel-heading" >
+                                                                <button type="button" class="close" data-dismiss="modal" onclick="document.getElementById('button<?php echo $row->main_id;?>').click()" aria-hidden="true">×</button>
+                                                                <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-warning-sign"></span> Activation/Deactivation </h4>
+                                                            </div>
+                                                            <form action="<?php echo base_url(); ?>AdminBlends/activation" method="post" accept-charset="utf-8">
+                                                                <div class="modal-body" style="padding: 5px;">
+                                                                    <div class="row" style="text-align: center">
+                                                                        <br>
+                                                                        <h4> Are you sure you want to activate/deactivate this blend?</h4>
+                                                                        <br>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12 form-group">
+                                                                            <div class="form-group label-floating">
+                                                                                <input class="form-control" type="hidden" name="deact_id" value="<?php echo $row->main_id; ?>" required>
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="panel-footer" style="margin-bottom:-14px;">
+                                                                    <input type="submit" class="btn btn-danger" value="Yes" />
+                                                                    <!--<span class="glyphicon glyphicon-ok"></span>-->
+                                                                    
+                                                                    <!--<span class="glyphicon glyphicon-remove"></span>-->
+                                                                    <button type="button" class="btn btn-success btn-close" onclick="document.getElementById('button<?php echo $row->main_id;?>').click()" data-dismiss="modal">No</button>
+                                                                </div>
+                                                                </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </tr>
 
                                             <?php
