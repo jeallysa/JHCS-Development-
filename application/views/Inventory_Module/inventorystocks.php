@@ -195,11 +195,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <tr>
                                                     <th><b class="pull-left">Raw Coffee No.</b></th>
                                                     <th><b class="pull-left">Name</b></th>
-                                                    <th><b class="pull-left">Reorder Level (grams)</b></th>
-                                                    <th><b class="pull-left">Stock Limit (grams)</b></th>
+                                                    <th><b class="pull-left">Reorder Level</b></th>
+                                                    <th><b class="pull-left">Stock Limit</b></th>
                                                     <th><b class="pull-left">Supplier</b></th>
-                                                    <th><b class="pull-left">Number of Stocks (grams)</b></th>
-                                                    <th><b class="pull-left">Physical Count (grams)</b></th>
+                                                    <th><b class="pull-left">Number of Stocks</b></th>
+                                                    <th><b class="pull-left">Physical Count</b></th>
                                                     <th><b class="pull-left">Remarks</b></th>
                                                     <th><b class="pull-left">Stock Card</b></th>
                                                 </tr>
@@ -213,11 +213,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <tr>
                                                     <td><?php echo $row->raw_id; ?></td>
                                                     <td><?php echo $row->raw_coffee; ?></td>
-                                                    <td><?php echo $row->raw_reorder; ?></td>
-                                                    <td><?php echo $row->raw_limit; ?></td>
+                                                    <td><?php echo number_format($row->raw_reorder); ?> g</td>
+                                                    <td><?php echo number_format($row->raw_limit); ?> g</td>
                                                     <td><?php echo $row->sup_company; ?></td>
-                                                    <td><b><?php echo $row->raw_stock; ?></b></td>
-                                                    <td><b><?php echo $row->raw_physcount; ?></b></td>
+                                                    <td><b><?php echo number_format($row->raw_stock); ?> g</b></td>
+                                                    <td><b><?php echo number_format($row->raw_physcount); ?> g</b></td>
                                                     <td><?php echo $row->raw_remarks; ?></td>
                                                     <td><a class="btn btn-info" data-toggle="modal" data-target="#<?php echo $row->raw_id; ?>" data-original-title style="float: right">View</a>
 
@@ -245,7 +245,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                           <tr>
                                                             <th><b>Client/Supplier</b></th>
                                                             <th><b>Date</b></th>
-                                                            <th><b>Weight(grams)</b></th>
+                                                            <th><b>Weight</b></th>
                                                             <th><b>Remarks</b></th>
                                                             <th><b>Type</b></th>
                                                           </tr>
@@ -259,7 +259,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                            echo '<tr>' ,
                                                 '<td>'  . $object->sup_company  . '</td>' ,
                                                 '<td>'  . $object->sup_returnDate  . '</td>' ,
-                                                '<td>'  . $object->sup_returnQty  . '</td>' ;
+                                                '<td>'  . number_format($object->sup_returnQty)  . ' g</td>' ;
                                                 ?>
                                                     <td>Company Return</td>
                                                     <td>Out</td>
@@ -277,7 +277,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                            echo '<tr>' ,
                                                 '<td>'  . $object->sup_company  . '</td>' ,
                                                 '<td>'  . $object->date_received  . '</td>' ,
-                                                '<td>'  . $object->yield_weight  . '</td>' ;
+                                                '<td>'  . number_format($object->yield_weight)  . ' g</td>' ;
                                                 ?>
                                                     <td>Company Delivery</td>
                                                     <td>IN</td>
@@ -298,7 +298,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                               $query = $this->db->query($retrieveDetails5);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
-                                           echo '<p>'  . $object->totalQty  . ' gram/s</p>' ;
+                                           echo '<p>'  . number_format($object->totalQty)  . ' gram/s</p>' ;
                                            }
                                             }
                                                 ?>
@@ -313,7 +313,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                               $query = $this->db->query($retrieveDetails6);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
-                                           echo '<p>'  . $object->totalQty  . ' gram/s</p>' ;
+                                           echo '<p>'  . number_format($object->totalQty)  . ' gram/s</p>' ;
                                            }
                                             }
                                                 ?>
@@ -354,7 +354,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                         <div class="col-md-10">
                                                                             <textarea style="resize:vertical;" class="form-control" rows="2" name="remarks"></textarea>
                                                                         </div>
-                                                                        <button style="float: right;" type="submit" class="btn btn-success">Save</button>
+                                                                        <button type="submit" class="btn btn-success">Save</button>
+                                                                        <input type="reset" class="btn btn-danger" value="Clear" />
                                                                     </div>
                                                                 </div>
                                                             </div>
