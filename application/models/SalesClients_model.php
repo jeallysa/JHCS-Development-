@@ -92,6 +92,10 @@
 			return $query->result();
 		}
 		
+		public function getBalances($id){
+			$query = $this->db->query("SELECT * FROM client_delivery NATURAL JOIN contracted_po WHERE payment_remarks='unpaid'");
+			return $query->result();
+		}
 	}
 
 ?>
