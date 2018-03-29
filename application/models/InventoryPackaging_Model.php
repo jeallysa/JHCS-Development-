@@ -13,7 +13,7 @@ class InventoryPackaging_Model extends CI_model
 	}
 
 	function fetch_data(){
-		$query = $this->db->query("SELECT * FROM jhcs.packaging NATURAL JOIN supplier WHERE pack_activation = '1';");
+		$query = $this->db->query("SELECT * FROM packaging NATURAL JOIN supplier WHERE pack_activation = '1';");
 		return $query;
 	}
 

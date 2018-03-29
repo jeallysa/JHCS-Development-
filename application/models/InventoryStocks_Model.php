@@ -13,7 +13,7 @@ class InventoryStocks_Model extends CI_model
 	}
 
 	function fetch_data(){
-		$query = $this->db->query("SELECT * FROM jhcs.raw_coffee NATURAL JOIN supplier WHERE raw_activation = '1';");
+		$query = $this->db->query("SELECT * FROM raw_coffee NATURAL JOIN supplier WHERE raw_activation = '1';");
 		return $query;
 	}
 	

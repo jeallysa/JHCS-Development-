@@ -212,8 +212,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 ?>
                                                 <tr>
                                                     <td><?php echo $row->package_id; ?></td>
-                                                    <td><?php echo $row->package_type; ?> bag</td>
-                                                    <td><?php echo number_format($row->package_size); ?> g</td>
+                                                    <td><?php echo $row->name; ?></td>
+                                                    <td><?php echo number_format($row->type); ?> g</td>
                                                     <td><?php echo number_format($row->package_reorder); ?> pc/s</td>
                                                     <td><?php echo number_format($row->package_limit); ?> pc/s</td>
                                                     <td><b><?php echo number_format($row->package_stock); ?> pc/s</b></td>
@@ -237,7 +237,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                           <button style="float: right;" onclick="printDiv('toBePrinted<?php echo $row->package_id; ?>')"><i class="material-icons">print</i></button>
                                                         <div id="toBePrinted<?php echo $row->package_id; ?>">
                                                             <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
-                                                                <h3><b><?php echo $row->package_type; ?> bag (<?php echo $row->package_size; ?> g)</b></h3>
+                                                                <h3><b><?php echo $row->name; ?> (<?php echo $row->type; ?> g)</b></h3>
                                                                 <hr>
                                                             </div>
                                                         <table id="fresh-datatables" class="table table-striped table-hover responsive" cellspacing="0" width="100%">

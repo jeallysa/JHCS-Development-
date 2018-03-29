@@ -212,7 +212,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 ?>
                                                 <tr>
                                                     <td><?php echo $row->raw_id; ?></td>
-                                                    <td><?php echo $row->raw_coffee; ?></td>
+                                                    <td><?php echo $row->name; ?></td>
                                                     <td><?php echo number_format($row->raw_reorder); ?> g</td>
                                                     <td><?php echo number_format($row->raw_limit); ?> g</td>
                                                     <td><?php echo $row->sup_company; ?></td>
@@ -237,7 +237,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                           <button style="float: right;" onclick="printDiv('toBePrinted<?php echo $row->raw_id; ?>')"><i class="material-icons">print</i></button>
                                                         <div id="toBePrinted<?php echo $row->raw_id; ?>">
                                                             <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
-                                                                <h3><b><?php echo $row->raw_coffee; ?></b></h3>
+                                                                <h3><b><?php echo $row->name; ?></b></h3>
                                                                 <hr>
                                                             </div>
                                                         <table id="fresh-datatables" class="table table-striped table-hover responsive" cellspacing="0" width="100%">
@@ -270,7 +270,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         ?>
                                                             
                                                             <?php
-                                              $retrieveDetails4 ="SELECT item, qty, date_received, yield_weight, sup_company FROM jhcs.supp_po_ordered INNER JOIN supp_delivery ON supp_po_ordered.supp_po_ordered_id = supp_delivery.supp_po_ordered_id INNER JOIN supp_po ON supp_po.supp_po_id = supp_po_ordered.supp_po_id INNER JOIN supplier ON supplier.sup_id = supp_po.supp_id WHERE item = '$row->raw_coffee';" ;
+                                              $retrieveDetails4 ="SELECT item, qty, date_received, yield_weight, sup_company FROM jhcs.supp_po_ordered INNER JOIN supp_delivery ON supp_po_ordered.supp_po_ordered_id = supp_delivery.supp_po_ordered_id INNER JOIN supp_po ON supp_po.supp_po_id = supp_po_ordered.supp_po_id INNER JOIN supplier ON supplier.sup_id = supp_po.supp_id WHERE item = '$row->name';" ;
                                               $query = $this->db->query($retrieveDetails4);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
@@ -294,7 +294,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     <label class="col-md-4 control">Total In :</label>
                                                                     <div class="col-md-4">
                                                                     <?php
-                                              $retrieveDetails5 ="SELECT SUM(qty) AS totalQty FROM (SELECT item, qty, date_received, yield_weight, sup_company FROM jhcs.supp_po_ordered INNER JOIN supp_delivery ON supp_po_ordered.supp_po_ordered_id = supp_delivery.supp_po_ordered_id INNER JOIN supp_po ON supp_po.supp_po_id = supp_po_ordered.supp_po_id INNER JOIN supplier ON supplier.sup_id = supp_po.supp_id WHERE item = '$row->raw_coffee') AS coffetrans;" ;
+                                              $retrieveDetails5 ="SELECT SUM(qty) AS totalQty FROM (SELECT item, qty, date_received, yield_weight, sup_company FROM jhcs.supp_po_ordered INNER JOIN supp_delivery ON supp_po_ordered.supp_po_ordered_id = supp_delivery.supp_po_ordered_id INNER JOIN supp_po ON supp_po.supp_po_id = supp_po_ordered.supp_po_id INNER JOIN supplier ON supplier.sup_id = supp_po.supp_id WHERE item = '$row->name') AS coffetrans;" ;
                                               $query = $this->db->query($retrieveDetails5);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {

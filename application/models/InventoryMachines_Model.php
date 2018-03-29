@@ -13,7 +13,7 @@ class InventoryMachines_Model extends CI_model
 	}
 
 	function fetch_data(){
-		$query = $this->db->query("SELECT * FROM jhcs.machine NATURAL JOIN supplier WHERE mach_activation = '1';");
+		$query = $this->db->query("SELECT * FROM machine NATURAL JOIN supplier WHERE mach_activation = '1';");
 		return $query;
 	}
 
