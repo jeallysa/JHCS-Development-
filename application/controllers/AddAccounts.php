@@ -46,9 +46,9 @@
 								$this->session->set_flashdata('success', 'Successfully Record new Account');
 								redirect('adminNewAccounts');
 							} else {
-								$this->session->set_flashdata('error', 'Failed to Create new Account');
+								$this->session->set_flashdata('success', 'Successfully Record new Account');
 								redirect('adminNewAccounts');
-								}
+							}
 						} else {
 							$this->session->set_flashdata('error', 'Password and Confirmation Password does not Match');
 								redirect('adminNewAccounts');

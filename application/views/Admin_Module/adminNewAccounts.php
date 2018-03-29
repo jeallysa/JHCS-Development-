@@ -144,7 +144,7 @@
                                     <?php echo form_open('addAccounts/insertAccounts') ?>
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                                <?php echo form_input(['name' => 'u_fname', 'id' => 'firstname', 'placeholder' => 'First Name', 'value' => set_value('u_fname') , 'class' => 'form-control']); ?>
+                                                <?php echo form_input(['name' => 'u_fname', 'id' => 'firstname', 'placeholder' => 'First Name', 'value' => isset($_POST['u_fname']) ? $_POST['u_fname'] : '' , 'class' => 'form-control']); ?>
                                             
                                             <!-- <input class="form-control" name="u_fname" placeholder="First Name" type="text" pattern="[a-zA-Z][a-zA-Z\s]*" required title="First Name should only countain letters" required /> -->
                                             </div>
