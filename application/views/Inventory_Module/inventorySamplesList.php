@@ -204,7 +204,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                                                     foreach($data3['get_sticker'] as $row)
                                                     { 
-                                                        echo '<option value="'.$row->sticker_id.'">'.$row->name.'</option>';
+                                                        echo '<option value="'.$row->sticker_id.'">'.$row->sticker.'</option>';
                                                     }
                                                  ?>
                                             </select>
@@ -275,9 +275,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <td><?php echo $row->sample_date; ?></td>
                                                             <td><?php echo $row->sample_type; ?></td>
                                                             <td><?php echo $row->sample_recipient; ?></td>
-                                                            <td><?php echo $row->packagingName; ?></td>
-                                                            <td><?php echo $row->packagingType; ?> g</td>
-                                                            <td><?php echo $row->stickerName; ?></td>
+                                                            <td><?php echo $row->package_type; ?> bag</td>
+                                                            <td><?php echo number_format($row->package_size); ?> g</td>
+                                                            <td><?php echo $row->sticker; ?></td>
                                                         </tr>
                                                         <?php
                                                         }
@@ -292,9 +292,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <td><?php echo $row->sample_date; ?></td>
                                                             <td><?php echo $row->sample_type; ?></td>
                                                             <td><?php echo $row->sample_recipient; ?></td>
-                                                            <td><?php echo $row->packagingName; ?></td>
-                                                            <td><?php echo $row->packagingType; ?></td>
-                                                            <td><?php echo $row->stickerName; ?></td>
+                                                            <td><?php echo $row->package_type; ?> bag</td>
+                                                            <td><?php echo number_format($row->package_size); ?></td>
+                                                            <td><?php echo $row->sticker; ?></td>
                                                         </tr>
                                                         <?php
                                                         }

@@ -261,7 +261,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <td><?php echo $row->sup_returnDate; ?></td>
                                                     <td><?php echo $row->sup_company; ?></td>
                                                     <td><?php echo number_format($row->sup_returnQty); ?> g</td>
-                                                    <td><?php echo $row->name; ?></td>
+                                                    <td><?php echo $row->raw_coffee; ?></td>
                                                     <td><?php echo $row->sup_returnRemarks; ?></td>
                                                 </tr>
                                                 <?php
@@ -321,6 +321,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 <th><b>Quantity</b></th>
                                                                 <th><b>Remarks</b></th>
                                                                 <th><b>Action Taken</b></th>
+                                                                <th><b>Status</b></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -330,7 +331,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     ?>
                                                             <tr>
                                                                 <td><?php echo $row->client_machReturnID; ?></td>
-                                                                <td> </td>
+                                                                <td><?php echo $row->client_dr; ?></td>
                                                                 <td><?php echo $row->mach_returnDate; ?></td>
                                                                 <td><?php echo $row->client_company; ?></td>
                                                                 <td><?php echo $row->machine; ?></td>
@@ -395,7 +396,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                                                     foreach($data5['get_coffee'] as $row)
                                                     { 
-                                                        echo '<option value="'.$row->raw_id.'">'.$row->name.'</option>';
+                                                        echo '<option value="'.$row->raw_id.'">'.$row->raw_coffee.'</option>';
                                                     }
                                                  ?>
                                             </select>
