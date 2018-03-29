@@ -195,10 +195,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <tr>
                                                     <th><b class="pull-left">Sticker No.</b></th>
                                                     <th><b class="pull-left">Sticker</b></th>
-                                                    <th><b class="pull-left">Reorder Level (per pc)</b></th>
-                                                    <th><b class="pull-left">Stock Limit (per pc)</b></th>
-                                                    <th><b class="pull-left">Number of Stocks (per pc)</b></th>
-                                                    <th><b class="pull-left">Physical Count (per pc)</b></th>
+                                                    <th><b class="pull-left">Reorder Level</b></th>
+                                                    <th><b class="pull-left">Stock Limit</b></th>
+                                                    <th><b class="pull-left">Number of Stocks</b></th>
+                                                    <th><b class="pull-left">Physical Count</b></th>
                                                     <th><b class="pull-left">Remarks</b></th>
                                                     <th><b class="pull-left">Stock Card</b></th>
                                                 </tr>
@@ -212,10 +212,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <tr>
                                                     <td><?php echo $row->sticker_id; ?></td>
                                                     <td><?php echo $row->sticker; ?></td>
-                                                    <td><?php echo $row->sticker_reorder; ?></td>
-                                                    <td><?php echo $row->sticker_limit; ?></td>
-                                                    <td><b><?php echo $row->sticker_stock; ?></b></td>
-                                                    <td><b><?php echo $row->sticker_physcount; ?></b></td>
+                                                    <td><?php echo number_format($row->sticker_reorder); ?> pc/s</td>
+                                                    <td><?php echo number_format($row->sticker_limit); ?> pc/s</td>
+                                                    <td><b><?php echo number_format($row->sticker_stock); ?> pc/s</b></td>
+                                                    <td><b><?php echo number_format($row->sticker_physcount); ?> pc/s</b></td>
                                                     <td><?php echo $row->sticker_remarks; ?></td>
                                                     <td><a class="btn btn-info" data-toggle="modal" data-target="#<?php echo $row->sticker_id; ?>" data-original-title style="float: right">View</a>
 
@@ -243,7 +243,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                           <tr>
                                                             <th><b>Client/Supplier</b></th>
                                                             <th><b>Date</b></th>
-                                                            <th><b>Quantity (per pc)</b></th>
+                                                            <th><b>Quantity</b></th>
                                                             <th><b>Remarks</b></th>
                                                             <th><b>Delivery</b></th>
                                                           </tr>
@@ -257,7 +257,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                            echo '<tr>' ,
                                                 '<td> </td>' ,
                                                 '<td>'  . $object->walkin_date  . '</td>' ,
-                                                '<td>'  . $object->walkin_qty  . '</td>' ;
+                                                '<td>'  . number_format($object->walkin_qty)  . ' pc/s</td>' ;
                                                 ?>
                                                     <td>Walkin Sales</td>
                                                     <td>Out</td>
@@ -275,7 +275,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                            echo '<tr>' ,
                                                 '<td>'  . $object->client_company  . '</td>' ,
                                                 '<td>'  . $object->contractPO_date  . '</td>' ,
-                                                '<td>'  . $object->contractPO_qty  . '</td>' ;
+                                                '<td>'  . number_format($object->contractPO_qty)  . ' pc/s</td>' ;
                                                 ?>
                                                     <td>Sales</td>
                                                     <td>Out</td>
@@ -293,7 +293,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                            echo '<tr>' ,
                                                 '<td>'  . $object->client_company  . '</td>' ,
                                                 '<td>'  . $object->retail_date  . '</td>' ,
-                                                '<td>'  . $object->retail_qty  . '</td>' ;
+                                                '<td>'  . number_format($object->retail_qty)  . ' pc/s</td>' ;
                                                 ?>
                                                     <td>Retail Sales</td>
                                                     <td>Out</td>
@@ -311,7 +311,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                            echo '<tr>' ,
                                                 '<td>'  . $object->sup_company  . '</td>' ,
                                                 '<td>'  . $object->date_received  . '</td>' ,
-                                                '<td>'  . $object->yield_weight  . '</td>' ;
+                                                '<td>'  . number_format($object->yield_weight)  . ' pc/s</td>' ;
                                                 ?>
                                                     <td>Company Delivery</td>
                                                     <td>IN</td>
@@ -369,7 +369,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                         <div class="col-md-10">
                                                                             <textarea style="resize:vertical;" class="form-control" rows="2" name="remarks"></textarea>
                                                                         </div>
-                                                                        <button style="float: right;" type="submit" class="btn btn-success">Save</button>
+                                                                        <button type="submit" class="btn btn-success">Save</button>
+                                                                        <input type="reset" class="btn btn-danger" value="Clear" />
                                                                     </div>
                                                                 </div>
                                                             </div>

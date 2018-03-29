@@ -206,7 +206,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td><b>Size:</b></td>
-                                                        <td><?php echo $row->package_size; ?> g</td>
+                                                        <td><?php echo number_format($row->package_size); ?> g</td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Quantity:</b></td>

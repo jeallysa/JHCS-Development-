@@ -21,7 +21,11 @@ class InventorySamplesList_Model extends CI_model
 		return $query->result();
 	}
 	public function get_drnumber(){
+<<<<<<< HEAD
 		$query = $this->db->query("SELECT client_coffReturnID, client_dr FROM jhcs.sample NATURAL JOIN jhcs.client_coffreturn WHERE coff_returnAction = 'sample' OR coff_returnAction = 'Sample' ");
+=======
+		$query = $this->db->query("SELECT client_coffReturnID, client_delivery.client_dr FROM jhcs.client_coffreturn INNER JOIN client_delivery ON client_coffreturn.client_deliveryID = client_delivery.client_deliveryID WHERE lower(coff_returnAction) = 'sample';");
+>>>>>>> 71f36a2663734706cb99a6ed8a0846f3bc9400bf
 		return $query->result();	
 	}
 	public function get_packaging(){

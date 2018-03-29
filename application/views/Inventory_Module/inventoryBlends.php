@@ -193,13 +193,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                              <table id="" class="table hover order-column" cellspacing="0" width="100%">
                                             <thead>
                                                 <tr>
-                                                    <th><b class="pull-left">Blend No.</b></th>
-                                                    <th><b class="pull-left">Name</b></th>
-                                                    <th><b class="pull-left">Bag</b></th>
-                                                    <th><b class="pull-left">Size (in grams)</b></th>
-                                                    <th><b class="pull-left">Number of Stocks (per pc)</b></th>
-                                                    <th><b class="pull-left">Physical Count (per pc)</b></th>
-                                                    <th><b class="pull-left">Remarks</b></th>
+                                                    <th><b class="pull-left">No.</b></th>
+                                                    <th><b class="pull-left">Blend</b></th>
+                                                    <th><b class="pull-left">Packaging</b></th>
+                                                    <th><b class="pull-left">Size</b></th>
+                                                    <th><b class="pull-left">Number of Stocks</b></th>
                                                     <th><b class="pull-left">Stock Card</b></th>
                                                 </tr>
                                             </thead>
@@ -212,11 +210,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <tr>
                                                     <td><?php echo $row->blend_id; ?></td>
                                                     <td><?php echo $row->blend; ?></td>
-                                                    <td><?php echo $row->package_type; ?></td>
-                                                    <td><?php echo $row->package_size; ?></td>
-                                                    <td><b><?php echo $row->blend_qty; ?></b></td>
-                                                    <td><b><?php echo $row->blend_physcount; ?></b></td>
-                                                    <td><?php echo $row->blend_remarks; ?></td>
+                                                    <td><?php echo $row->package_type; ?> bag</td>
+                                                    <td><?php echo number_format($row->package_size); ?> g</td>
+                                                    <td><b><?php echo number_format($row->blend_qty); ?> pc/s</b></td>
                                                     <td><a class="btn btn-info" data-toggle="modal" data-target="#<?php echo $row->blend_id; ?>" data-original-title style="float: right">View</a>
 
                                                         <!-- Modal -->
@@ -258,7 +254,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                            echo '<tr>' ,
                                                 '<td> </td>' ,
                                                 '<td>'  . $object->walkin_date  . '</td>' ,
-                                                '<td>'  . $object->walkin_qty  . ' </td>' ;
+                                                '<td>'  . number_format($object->walkin_qty)  . ' </td>' ;
                                                 ?>
                                                     <td>Walkin Sales</td>
                                                     <td>OUT</td>
@@ -276,7 +272,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                            echo '<tr>' ,
                                                 '<td>'  . $object->client_company  . '</td>' ,
                                                 '<td>'  . $object->contractPO_date  . '</td>' ,
-                                                '<td>'  . $object->contractPO_qty  . ' </td>' ;
+                                                '<td>'  . number_format($object->contractPO_qty)  . ' </td>' ;
                                                 ?>
                                                     <td>Sales</td>
                                                     <td>OUT</td>
@@ -294,7 +290,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                            echo '<tr>' ,
                                                 '<td>'  . $object->client_company  . '</td>' ,
                                                 '<td>'  . $object->coService_date  . '</td>' ,
-                                                '<td>'  . $object->coService_qty  . '</td>' ;
+                                                '<td>'  . number_format($object->coService_qty)  . '</td>' ;
                                                 ?>
                                                     <td>Coffee Services</td>
                                                     <td>OUT</td>
@@ -312,7 +308,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                            echo '<tr>' ,
                                                 '<td>'  . $object->client_company  . '</td>' ,
                                                 '<td>'  . $object->coff_returnDate  . '</td>' ,
-                                                '<td>'  . $object->coff_returnQty  . '</td>' ;
+                                                '<td>'  . number_format($object->coff_returnQty)  . '</td>' ;
                                                 ?>
                                                     <td>Return</td>
                                                     <td>IN</td>
@@ -325,43 +321,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         
                                                     </tbody>
                                                       </table>
-                                                      <form action="<?php echo base_url(); ?>InventoryBlends/update" method="post" accept-charset="utf-8">
-                                                      <div class="row">
-                                                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                                                    <div class="form-group">
-                                                                        <label class="col-md-6 control">Physical Count :</label>
-                                                                        <div class="col-md-4">
-                                                                            <input id="count" name="count" type="number" class="form-control"/>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="type"></label>
-                                                                        <div class="col-md-4">
-                                                                            <input value="<?php echo $row->blend_qty; ?>" class="form-control" id="stock" name="stock" type="hidden" />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label class="col-md-6 control">Discrepancy :</label>
-                                                                        <div class="col-md-4">
-                                                                            <input value="0" id="discrepancy" name="discrepancy" readonly="" class="form-control" />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="type"></label>
-                                                                        <div class="col-md-4">
-                                                                            <input value="<?php echo $row->blend_id; ?>" class="form-control" name="blendid" type="hidden" />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label class="col-md-6 control">Remarks :</label>
-                                                                        <div class="col-md-10">
-                                                                            <textarea style="resize:vertical;" class="form-control" rows="2" name="remarks"></textarea>
-                                                                        </div>
-                                                                        <button style="float: right;" type="submit" class="btn btn-success">Save</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </form>
                                                         </div>
                                                       </div>
                                                       <div class="modal-footer">

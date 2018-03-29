@@ -11,23 +11,25 @@ class InventoryStocks_Model extends CI_model
 	function test_main(){
 		echo "Sample function";
 	}
+    
+    function retrieveCoffee(){
+      $query = $this->db->query("SELECT * FROM raw_coffee NATURAL JOIN supplier WHERE raw_activation = '1';");
+            
+      if($query->num_rows() > 0){
+          return $query-> result();
+      }else
+          return NULL;
+  }
 
-	function fetch_data(){
-		$query = $this->db->query("SELECT * FROM jhcs.raw_coffee NATURAL JOIN supplier WHERE raw_activation = '1';");
-		return $query;
-	}
-	
-	function update($rawid, $count, $discrepancy, $remarks){
-		$data = array(
-	        
-	        'raw_physcount' => $count,
-	        'raw_remarks' => $remarks,
-	        'raw_discrepancy' => $discrepancy
-	        
-		);
 
-		$this->db->where('raw_id', $rawid);
-		$this->db->update('raw_coffee', $data);
-	}
+	function update($data, $coffee_id){
+               
+    $this->db->where('raw_id', $res->coffee_id ); 
+    $this->db->update('raw_coffee', $data);    
+   
+                
+  }
+      
+      
 
 }
