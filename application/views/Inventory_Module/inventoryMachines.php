@@ -212,8 +212,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 ?>
                                                 <tr>
                                                     <td><?php echo $row->mach_id; ?></td>
-                                                    <td><?php echo $row->name; ?></td>
-                                                    <td><?php echo $row->type; ?></td>
+                                                    <td><?php echo $row->brewer; ?></td>
+                                                    <td><?php echo $row->brewer_type; ?></td>
                                                     <td><?php echo number_format($row->mach_reorder); ?> pc/s</td>
                                                     <td><?php echo number_format($row->mach_limit); ?> pc/s</td>
                                                     <td><b><?php echo number_format($row->mach_stocks); ?> pc/s</b></td>
@@ -238,8 +238,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                           <button style="float: right;" onclick="printDiv('toBePrinted<?php echo $row->mach_id; ?>')"><i class="material-icons">print</i></button>
                                                         <div id="toBePrinted<?php echo $row->mach_id; ?>">
                                                             <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
-                                                                <h3><b><?php echo $row->name; ?></b></h3>
-                                                                <h4><?php echo $row->type; ?></h4>
+                                                                <h3><b><?php echo $row->brewer; ?></b></h3>
+                                                                <h4><?php echo $row->brewer_type; ?></h4>
                                                                 <hr>
                                                             </div>
                                                         <table id="fresh-datatables" class="table table-striped table-hover responsive" cellspacing="0" width="100%">
@@ -308,7 +308,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         ?>
 
                                         <?php
-                                              $retrieveDetails4 ="SELECT item, qty, date_received, yield_weight, sup_company FROM jhcs.supp_po_ordered INNER JOIN supp_delivery ON supp_po_ordered.supp_po_ordered_id = supp_delivery.supp_po_ordered_id INNER JOIN supp_po ON supp_po.supp_po_id = supp_po_ordered.supp_po_id INNER JOIN supplier ON supplier.sup_id = supp_po.supp_id WHERE item = '$row->type';" ;
+                                              $retrieveDetails4 ="SELECT item, qty, date_received, yield_weight, sup_company FROM jhcs.supp_po_ordered INNER JOIN supp_delivery ON supp_po_ordered.supp_po_ordered_id = supp_delivery.supp_po_ordered_id INNER JOIN supp_po ON supp_po.supp_po_id = supp_po_ordered.supp_po_id INNER JOIN supplier ON supplier.sup_id = supp_po.supp_id WHERE item = '$row->brewer_type';" ;
                                               $query = $this->db->query($retrieveDetails4);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {

@@ -210,8 +210,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <tr>
                                                     <td><?php echo $row->blend_id; ?></td>
                                                     <td><?php echo $row->blend; ?></td>
-                                                    <td><?php echo $row->name; ?></td>
-                                                    <td><?php echo number_format($row->type); ?> g</td>
+                                                    <td><?php echo $row->package_type; ?> bag</td>
+                                                    <td><?php echo number_format($row->package_size); ?> g</td>
                                                     <td><b><?php echo number_format($row->blend_qty); ?> pc/s</b></td>
                                                     <td><a class="btn btn-info" data-toggle="modal" data-target="#<?php echo $row->blend_id; ?>" data-original-title style="float: right">View</a>
 
@@ -232,7 +232,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         <div id="toBePrinted<?php echo $row->blend_id; ?>">
                                                             <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
                                                                 <h3><b><?php echo $row->blend; ?></b></h3>
-                                                                <h4><?php echo $row->name; ?> (<?php echo $row->type; ?>g)</h4>
+                                                                <h4><?php echo $row->package_type; ?> bag (<?php echo $row->package_size; ?>g)</h4>
                                                                 <hr>
                                                             </div>
                                                         <table id="fresh-datatables" class="table table-striped table-hover responsive" cellspacing="0" width="100%">
