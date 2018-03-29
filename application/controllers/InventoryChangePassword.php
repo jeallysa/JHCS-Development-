@@ -33,18 +33,18 @@
 				$u_name = $this->input->post('u_name');
 				$curr_password = $this->input->post('password');
 				$new_password = $this->input->post('newpassword');
-				$conf_password = $this->input->post('confpassword');
+				$conf_password = $this->input->post('confpassword'); 
 				$this->load->model('Changepassword_Model');
 
 				$username = $this->session->userdata('username');
 				$userid = $this->Changepassword_Model->getUserid($username); /* 1 */
 				$psword = $this->Changepassword_Model->getCurrPassword($userid);
 
-				$error = $this->db->error();
-				if ($this->db->_error_number()=='1062') {
-					$this->session->set_flashdata('error', 'Duplicate Username!');
-					redirect('inventoryChangePassword');
-				}else {
+				if($this->db->query("SELECT IF (EXISTS (SELECT * FROM user WHERE username = '".$username."'), 1,  0) AS result")->row()->result == 1){
+					$this->session->set_flashdata('error', 'Username already exist');
+								redirect('inventoryChangePassword');
+								
+				}else{
 					if (!empty($new_password)) {
 						if ($psword->password == $curr_password) {
 							if ($new_password == $conf_password) {
