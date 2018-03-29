@@ -153,13 +153,13 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group label-floating">
                                                             <label for="email">Blend Name</label>
-                                                            <input class="form-control" type="text" name="blend_name" required="">
+                                                            <input class="form-control" type="text" name="blend_name"  required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Name should only countain letters">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group label-floating">
                                                             <label for="email">Price Per Unit</label>
-                                                            <input type="number" class="form-control" name="price" required="">
+                                                            <input type="number" class="form-control" name="price"  min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
@@ -181,7 +181,7 @@
                                                             
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-2">
+                                                    <div class="col-md-3">
                                                         <div class="form-group label-floating">
                                                             
                                                             <label for="sel1">Blend Type:</label>
@@ -195,12 +195,7 @@
                                                             
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-1">
-                                                        <div class="form-group label-floating">
-                                                            <label for="email">Quantity</label>
-                                                            <input type="number" class="form-control" name="quantity" required="">
-                                                        </div>
-                                                    </div>
+
                                                 </div>
 
                                                     <div class="row">
@@ -247,7 +242,7 @@
                                                             $colname = "per" . $row2->raw_id;
                                         ?>
                                         <td>
-                                            <input type="number" name="per[<?php echo $row2->raw_id;?>]" class="form-control">
+                                            <input type="number" name="per[<?php echo $row2->raw_id;?>]" class="form-control" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                         </td>
                                         <?php
                                                 }

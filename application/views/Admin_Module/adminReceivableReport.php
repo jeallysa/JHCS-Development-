@@ -125,13 +125,8 @@
             <div class="content" style="margin-top: -100px;">
                 <div class="container-fluid">
                     <div class="card">
-                        <div class="card-content">
-                        </div>
                         <div class="content">
                             <div class="container-fluid">
-                                 <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="card">
                                             <div class="card-header" data-background-color="green">
                                                 <div class="nav-tabs-navigation">
                                                     <div class="nav-tabs-wrapper">
@@ -180,9 +175,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 
                                 <div class="card-content">
                                     <table id="example" class="display  hover order-column" cellspacing="0" width="100%">
@@ -199,7 +191,7 @@
                                              ?>
                                              <tr>
                                                  <td><?php echo $row->client_company; ?></td>
-                                                 <td><?php echo $row->client_balance; ?></td>
+                                                 <td>Php<?php echo number_format($row->client_balance,2); ?></td>
                                              </tr>
                                              <?php 
                                                 }

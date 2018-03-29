@@ -261,7 +261,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <th><b>Type</b></th>
                                                             <th><b>Recipient</b></th>
                                                             <th><b>Packaging</b></th>
-                                                            <th><b>Size (in grams)</b></th>
+                                                            <th><b>Size</b></th>
                                                             <th><b>Stickers</b></th>
                                                         </tr>
                                                     </thead>
@@ -276,7 +276,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <td><?php echo $row->sample_type; ?></td>
                                                             <td><?php echo $row->sample_recipient; ?></td>
                                                             <td><?php echo $row->package_type; ?> bag</td>
-                                                            <td><?php echo $row->package_size; ?></td>
+                                                            <td><?php echo number_format($row->package_size); ?> g</td>
                                                             <td><?php echo $row->sticker; ?></td>
                                                         </tr>
                                                         <?php
@@ -288,12 +288,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     {
                                                 ?>
                                                         <tr>
-                                                            <td> n/a </td>
+                                                            <td>  </td>
                                                             <td><?php echo $row->sample_date; ?></td>
                                                             <td><?php echo $row->sample_type; ?></td>
                                                             <td><?php echo $row->sample_recipient; ?></td>
                                                             <td><?php echo $row->package_type; ?> bag</td>
-                                                            <td><?php echo $row->package_size; ?></td>
+                                                            <td><?php echo number_format($row->package_size); ?></td>
                                                             <td><?php echo $row->sticker; ?></td>
                                                         </tr>
                                                         <?php

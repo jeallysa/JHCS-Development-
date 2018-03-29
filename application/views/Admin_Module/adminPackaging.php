@@ -196,16 +196,10 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="email">Number of Stocks</label>
-                                            <input class="form-control" type="number" name="stocks" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 form-group">
                                            <div class="form-group label-floating">
                                             <label for="email">Supplier</label>
                                             <select class="form-control" name="sup_company" required>
-                                                <option disabled selected value> -- select an item -- </option>
+                                                <option disabled selected value> -- select a supplier -- </option>
                                                 <?php 
 
                                                     foreach($data1['getSupplier'] as $row)
@@ -248,7 +242,7 @@
                                                 <span></span>
                                                 <li>
                                                     <a href="<?php echo base_url(); ?>adminBlends">
-                                                        Existing Blends
+                                                        Company Blends
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
@@ -287,12 +281,12 @@
                                     <a class="btn btn-success" data-toggle="modal" data-target="#stock" data-original-title style="float: right">Add New Packaging</a>
                                     <table id="example" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
-                                            <th><b class="pull-left">Type</b></th>
+                                            <th><b class="pull-left">Packaging</b></th>
                                             <th><b class="pull-left">Supplier</b></th>
                                             <th><b class="pull-left">Size</b></th>
-                                            <th><b class="pull-left">Reorder Level (pc)</b></th>
-                                            <th><b class="pull-left">Stock Limit (pc)</b></th>
-                                            <th><b class="pull-left">Number of stocks (pc)</b></th>    
+                                            <th><b class="pull-left">Reorder Level</b></th>
+                                            <th><b class="pull-left">Stock Limit</b></th>
+                                            <th><b class="pull-left">Number of Stocks</b></th>    
                                             <th><b class="pull-left">Edit</b></th>
                                             <th><b class="pull-left">Activation</b></th>
 
@@ -367,11 +361,11 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="panel-footer" style="margin-bottom:-14px;">
-                                                                    <input type="submit" class="btn btn-danger" value="Yes" />
+                                                                    <input type="submit" class="btn btn-success" value="Yes" />
                                                                     <!--<span class="glyphicon glyphicon-ok"></span>-->
                                                                     
                                                                     <!--<span class="glyphicon glyphicon-remove"></span>-->
-                                                                    <button type="button" class="btn btn-success btn-close" onclick="document.getElementById('button<?php echo $row->package_id;?>').click()" data-dismiss="modal">No</button>
+                                                                    <button type="button" class="btn btn-danger btn-close" onclick="document.getElementById('button<?php echo $row->package_id;?>').click()" data-dismiss="modal">No</button>
                                                                 </div>
                                                                 </form>
                                                         </div>
@@ -431,21 +425,23 @@
                                                                             <input class="form-control" value="<?php echo $row->package_stock; ?>" type="number" name="stocks" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-md-6 form-group">
-                                                                           <div class="form-group label-floating">
-                                                                            <label for="email">Supplier</label>
-                                                                            <select class="form-control" name="sup_company" required>
-                                                                                <option disabled selected value> -- select an item -- </option>
-                                                                                <?php 
+                                                                     <div class="col-md-6 form-group">
+                                                                               <div class="form-group label-floating">
+                                                                                <label for="email">Supplier</label>
+                                                                                <select class="form-control" name="sup_company" required>
+                                                                                    <option disabled selected value> -- select a supplier -- </option>
+                                                                                    <?php 
 
-                                                                                    foreach($data1['getSupplier'] as $row)
-                                                                                    { 
-                                                                                        echo '<option value="'.$row->sup_id.'">'.$row->sup_company.'</option>';
-                                                                                    }
-                                                                                 ?>
-                                                                            </select>
+                                                                                        foreach($data1['getSupplier'] as $row2)
+                                                                                        { 
+                                                                                        ?>
+                                                                                        <option value="<?php echo $row2->sup_id;?>" <?php if ($row->sup_id==$row2->sup_id) { ?> selected="selected" <?php } ?> ><?php echo $row2->sup_company; ?></option>
+                                                                                    <?php
+                                                                                        }
+                                                                                     ?>
+                                                                                </select>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
                                                                 </div>
 
                                                             </div>

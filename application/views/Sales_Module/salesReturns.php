@@ -241,7 +241,7 @@
                                                         <th><b>Client</b></th>
                                                         <th><b>Coffee</b></th>
                                                         <th><b>Bag</b></th>
-                                                        <th><b>Grams</b></th>
+                                                        <th><b>Size</b></th>
                                                         <th><b>Remarks</b></th>
                                                         <th><b>Action</b></th>
                                                     </tr>
@@ -258,7 +258,7 @@
                                                         <td><?php echo $row->client_company; ?></td>
                                                         <td><?php echo $row->blend; ?></td>
                                                         <td><?php echo $row->package_type; ?></td>
-                                                        <td><?php echo $row->package_size; ?></td>
+                                                        <td><?php echo number_format($row->package_size); ?> g</td>
                                                         <td><?php echo $row->coff_remarks; ?></td>
                                                         <td>
                                                             <button class="btn btn-danger btn-sm viewCoffeeReturns" style="margin-top: 0px" data-toggle="modal" data-target="#resolve_coffee" id="getDetails" data-id="<?php echo $row->client_id; ?>"> Resolve</button>
@@ -280,7 +280,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th><b>Serial No.</b></th>
-                                                        <th><b>Date of Return</b></th>
+                                                        <th><b>Date Returned</b></th>
                                                         <th><b>Quantity Returned</b></th>
                                                         <th><b>Client</b></th>
                                                         <th><b>Machine</b></th>
@@ -321,7 +321,7 @@
                                                             <thead>
                                                                 <th><b>Client Return No.</b></th>
                                                                 <th><b class="pull-left">Delivery Receipt No.</b></th>
-                                                                <th><b class="pull-left">Date Delivered</b></th>
+                                                                <th><b class="pull-left">Delivery Date</b></th>
                                                                 <th><b class="pull-left">Coffee</b></th>
                                                                 <th><b class="pull-left">Bag</b></th>
                                                                 <th><b class="pull-left">Size</b></th>
@@ -359,7 +359,7 @@
                                                         <table id="myTable2" class="display hover order-column cell-border" cellspacing="0" width="100%">
                                                             <thead>
                                                                <th><b>Client Return No.</b></th>
-                                                                <th><b>Date Delivered</b></th>
+                                                                <th><b>Delivery Date</b></th>
                                                                 <th><b>Quantity Delivered</b></th>
                                                                 <th><b>Client</b></th>
                                                                 <th><b>Machine</b></th>
@@ -601,7 +601,7 @@
                                             
                                             <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label class="col-md-6 control">Date of Delivery :</label>
+                                                    <label class="col-md-6 control">Delivery Date:</label>
                                                     <div class="col-md-6">
                                                         <input class="no-border" name="delivery_date" placeholder="Date" type="date" value="<?php echo date("Y-m-d");?>" data-validate="required" message="A Date of Delivery is recquired! min="<?=date('Y-m-d')?>" max="<?=date('Y-m-d',strtotime(date('Y-m-d').'+1 days'))?>"" required />
                                                     </div>

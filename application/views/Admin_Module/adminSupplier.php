@@ -261,11 +261,11 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="panel-footer" style="margin-bottom:-14px;">
-                                                                    <input type="submit" class="btn btn-danger" value="Yes" />
+                                                                    <input type="submit" class="btn btn-success" value="Yes" />
                                                                     <!--<span class="glyphicon glyphicon-ok"></span>-->
                                                                     
                                                                     <!--<span class="glyphicon glyphicon-remove"></span>-->
-                                                                    <button type="button" class="btn btn-success btn-close" onclick="document.getElementById('button<?php echo $row->sup_id;?>').click()" data-dismiss="modal">No</button>
+                                                                    <button type="button" class="btn btn-danger btn-close" onclick="document.getElementById('button<?php echo $row->sup_id;?>').click()" data-dismiss="modal">No</button>
                                                                 </div>
                                                                 </form>
                                                         </div>
