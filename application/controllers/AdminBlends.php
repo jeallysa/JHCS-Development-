@@ -103,12 +103,10 @@
 			$price = $this->input->post('price');
 			$packaging = $this->input->post('package_id');
 			$type = $this->input->post('type');
-			$qty = $this->input->post('quantity');
 			$data_blend = array(
 				'blend' => $blend_name,
 				'package_id' => $packaging,
 				'blend_price' => $price,
-				'blend_qty' => $qty,
 				'blend_type' => $type
 			);
 

@@ -240,7 +240,11 @@
                                 <h4 class="title">Contract
                                     </h4>
                             </div>
+                            <?php
+                                $id = $this->input->get('p');
+                            ?>
                         <div class="card-content table-responsive">
+                              <a href="<?php echo base_url(); ?>adminAddContract?p=<?php echo $id; ?>" class="btn btn-success" data-original-title style="float: right"> Create New Contract</a>
                                <table id="example" class="table hover order-column" cellspacing="0" width="100%" style="font-size: 13px">
                                         <thead>
                                             <tr>
@@ -270,12 +274,13 @@
                                                 <td><?php echo $row->client_company; ?></td>
                                                 <td><?php echo $row->date_started; ?></td>
                                                  <td><?php echo $row->credit_term; ?></td>
-                                                <td><?php echo $row->blend_id; ?></td>
-                                                <td><?php echo $row->package_id; ?></td>
-                                                <td><?php echo $row->package_id; ?></td>
-                                                <td><?php echo $row->mach_id; ?></td>
+                                                <td><?php echo $row->blend; ?></td>
+                                                <td><?php echo $row->package_type; ?></td>
+                                                <td><?php echo $row->package_size; ?></td>
+                                                <td><?php echo $row->brewer; ?></td>
                                                  <td><?php echo $row->required_qty; ?></td>
                                                   <td><?php echo $row->mach_qty; ?></td>
+                                                  <td><?php echo $row->mach_serial; ?></td>
                                                 
 
                                                      <td>
@@ -293,11 +298,18 @@
                                                                     <form action="<?php echo base_url(); ?>AdminContract/update" method="post" accept-charset="utf-8">
                                                                           <div class="modal-body" style="padding: 5px;">
                                                                 
+                                                               
                                                                  <div class="row">
                                                                     <div class="col-md-6 form-group">
                                                                         <div class="form-group label-floating">
                                                                             <label for="email">Date Started</label>
-                                                                            <input class="form-control" type="text" name="date_started" value="<?php echo $row->date_started; ?>" required>
+                                                                            <input class="form-control" type="date" name="date_started" value="<?php echo $row->date_started; ?>" required>
+                                                                        </div>
+                                                                    </div>
+                                                                       <div class="col-md-6 form-group">
+                                                                        <div class="form-group label-floating">
+                                                                            <label for="email">Credit Term</label>
+                                                                            <input class="form-control" value="<?php echo $row->credit_term; ?>" type="text" name="contract_term" required>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -312,33 +324,47 @@
                                                                      <div class="col-lg-6 form-group">
                                                                         <div class="form-group label-floating">
                                                                             <label for="email">Coffee Blend</label>
-                                                                            <input class="form-control" value="<?php echo $row->contract_blend; ?>" type="text" name="contract_blend" required>
+                                                                            <input class="form-control" value="<?php echo $row->blend; ?>" type="text" name="contract_blend" required>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3 form-group">
+                                                                        <div class="form-group label-floating">
+                                                                            <label for="email">Bag Size</label>
+                                                                            <input class="form-control" value="<?php echo $row->package_size; ?>" type="number" name="contract_size" required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6 form-group">
                                                                         <div class="form-group label-floating">
-                                                                            <label for="email">Bag</label>
-                                                                            <input class="form-control" value="<?php echo $row->contract_bag; ?>" type="text" name="contract_bag" required>
+                                                                            <label for="email">Packaging</label>
+                                                                            <input class="form-control" value="<?php echo $row->package_type; ?>" type="text" name="contract_bag" required>
+                                                                        </div>
+                                                                    </div>
+                                                                           <div class="col-md-6 form-group">
+                                                                        <div class="form-group label-floating">
+                                                                            <label for="email">Coffee Required Quantity</label>
+                                                                            <input class="form-control" value="<?php echo $row->required_qty; ?>" type="number" name="contract_bqty" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6 form-group">
                                                                         <div class="form-group label-floating">
                                                                             <label for="email">Machine</label>
-                                                                            <input class="form-control" value="<?php echo $row->contract_machine; ?>" type="text" name="contract_machine" required>
+                                                                            <input class="form-control" value="<?php echo $row->brewer; ?>" type="text" name="contract_machine" required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6 form-group">
                                                                         <div class="form-group label-floating">
-                                                                            <label for="email">Required Quantity</label>
-                                                                            <input class="form-control" value="<?php echo $row->contract_qty; ?>" type="number" name="contract_qty" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
+                                                                            <label for="email">Machine Required Quantity</label>
+                                                                            <input class="form-control" value="<?php echo $row->mach_qty; ?>" type="number" name="contract_mqty" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6 form-group">
                                                                         <div class="form-group label-floating">
-                                                                            <label for="email">Credit Term</label>
-                                                                            <input class="form-control" value="<?php echo $row->contract_term; ?>" type="number" name="contract_term" required>
+                                                                            <label for="email">Machine Serial Number</label>
+                                                                            <input class="form-control" value="<?php echo $row->mach_serial; ?>" type="text" name="contract_serial" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                                                         </div>
                                                                     </div>
+                                                             
+                                                                 
                                                                     </div>
                                                             </div>
                                                                         <div class="panel-footer" style="margin-bottom:-14px;">
@@ -415,19 +441,19 @@ $(document).ready(function() {
 		buttons: [
             { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5]
+                    columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
                 }
             },
             
 			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5]
+                    columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
                 }
             },
             
 			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5]
+                    columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
                 }
             }
         ]
@@ -440,5 +466,4 @@ $('table tbody tr  td').on('click', function() {
     $("#txtlname").val($(this).closest('tr').children()[1].textContent);
 });
 </script>
-
 </html>
