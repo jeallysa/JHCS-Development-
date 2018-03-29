@@ -17,4 +17,17 @@ class InventoryBlends_Model extends CI_model
 		return $query;
 	}
 
+	function update($blendid, $count, $discrepancy, $remarks){
+		$data = array(
+	        
+	        'blend_physcount' => $count,
+	        'blend_remarks' => $remarks,
+	        'blend_discrepancy' => $discrepancy
+	        
+		);
+
+		$this->db->where('blend_id', $blendid);
+		$this->db->update('coffee_blend', $data);
+	}
+
 }

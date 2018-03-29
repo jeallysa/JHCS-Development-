@@ -197,10 +197,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         </div>
                                     </div>
                                     <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Number of Stocks</label>
+                                            <input class="form-control" type="number" name="stocks" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-group">
                                            <div class="form-group label-floating">
                                             <label for="email">Supplier</label>
                                             <select class="form-control" name="sup_company" required>
-                                                <option disabled selected value> -- select a supplier -- </option>
+                                                <option disabled selected value> -- select an item -- </option>
                                                 <?php 
 
                                                     foreach($data1['getSupplier'] as $row)
@@ -209,12 +215,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     }
                                                  ?>
                                             </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="email">Price/kg</label>
-                                            <input class="form-control" type="number" name="price" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                         </div>
                                     </div>
                                 </div>
@@ -249,7 +249,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <span></span>
                                                 <li>
                                                     <a href="<?php echo base_url(); ?>adminBlends">
-                                                        Company Blends
+                                                        Existing Blends
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
@@ -288,12 +288,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <a class="btn btn-success" data-toggle="modal" data-target="#newrawcoffee" data-original-title style="float: right">Add New Raw Coffee</a>
                                     <table id="example" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
-                                            <th><b class="pull-left">Raw Coffee</b></th>
-                                            <th><b class="pull-left">Reorder Level</b></th>
-                                            <th><b class="pull-left">Stock Limit</b></th>
+                                            <th><b class="pull-left">Name</b></th>
+                                            <th><b class="pull-left">Reorder Level (grams)</b></th>
+                                            <th><b class="pull-left">Stock Limit (grams)</b></th>
                                             <th><b class="pull-left">Supplier</b></th>
-                                            <th><b class="pull-left">Number of Stocks</b></th>
-                                            <th><b class="pull-left">Price/kg</b></th>
+                                            <th><b class="pull-left">Number of Stocks (grams)</b></th>
                                             <th class="disabled-sorting"><b>Edit</b></th>
                                             <th><b class="pull-left">Activation</b></th>
                                         </thead>
@@ -308,7 +307,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                  <td><?php echo $row->raw_limit; ?></td>
                                                  <td><?php echo $row->sup_company; ?></td>
                                                  <td><?php echo $row->raw_stock; ?></td>
-                                                 <td>Php<?php echo number_format($row->unitPrice,2); ?></td>
                                                 <td>
                                                     <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#updateraw<?php echo $row->raw_id;?>">Edit</a>
                                                 </td>
@@ -357,11 +355,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     </div>
                                                                 </div>
                                                                 <div class="panel-footer" style="margin-bottom:-14px;">
-                                                                    <input type="submit" class="btn btn-success" value="Yes" />
+                                                                    <input type="submit" class="btn btn-danger" value="Yes" />
                                                                     <!--<span class="glyphicon glyphicon-ok"></span>-->
                                                                     
                                                                     <!--<span class="glyphicon glyphicon-remove"></span>-->
-                                                                    <button type="button" class="btn btn-danger btn-close" onclick="document.getElementById('button<?php echo $row->raw_id;?>').click()" data-dismiss="modal">No</button>
+                                                                    <button type="button" class="btn btn-success btn-close" onclick="document.getElementById('button<?php echo $row->raw_id;?>').click()" data-dismiss="modal">No</button>
                                                                 </div>
                                                                 </form>
                                                         </div>
@@ -413,31 +411,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6 form-group">
-                                                                        <div class="form-group label-floating">
-                                                                            <label for="email">Price/kg</label>
-                                                                            <input class="form-control" value="<?php echo $row->unitPrice; ?>" type="number" name="price" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6 form-group">
                                                                                <div class="form-group label-floating">
                                                                                 <label for="email">Supplier</label>
                                                                                 <select class="form-control" name="sup_company" required>
-                                                                                    <option disabled selected value> -- select a supplier -- </option>
+                                                                                    <option disabled selected value> -- select an item -- </option>
                                                                                     <?php 
 
-                                                                                        foreach($data1['getSupplier'] as $row2)
+                                                                                        foreach($data1['getSupplier'] as $row)
                                                                                         { 
-                                                                                        ?>
-                                                                                        <option value="<?php echo $row2->sup_id;?>" <?php if ($row->sup_id==$row2->sup_id) { ?> selected="selected" <?php } ?> ><?php echo $row2->sup_company; ?></option>
-                                                                                    <?php
+                                                                                            echo '<option value="'.$row->sup_id.'">'.$row->sup_company.'</option>';
                                                                                         }
                                                                                      ?>
                                                                                 </select>
                                                                             </div>
                                                                         </div>
                                                                 </div>
-
-                                                                 
 
                                                             </div>
                                                             <div class="panel-footer" style="margin-bottom:-14px;">

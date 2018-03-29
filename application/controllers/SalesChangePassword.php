@@ -31,11 +31,7 @@
 				$username = $this->session->userdata('username');
 				$userid = $this->Changepassword_Model->getUserid($username);
 				$psword = $this->Changepassword_Model->getCurrPassword($userid);
-				if($this->db->query("SELECT IF (EXISTS (SELECT * FROM user WHERE username = '".$username."'), 1,  0) AS result")->row()->result == 1){
-					$this->session->set_flashdata('error', 'Username already exist');
-								redirect('salesChangePassword');
-								
-				}else{
+
 				if (!empty($new_password)) {
 					if ($psword->password == $curr_password) {
 						if ($new_password == $conf_password) {
@@ -68,7 +64,6 @@
 								redirect('salesChangePassword');
 					}
 				}
-			}
 			} else {
 				echo validation_errors();
 				$this->session->set_flashdata('error', validation_errors());

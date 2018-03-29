@@ -164,7 +164,7 @@
                                                  <td><?php echo 'Php '.number_format($row->paid_amount,2); ?></td>
                                                  <td><?php echo 'Php '.number_format($row->client_balance,2); ?></td>
                                                  <td><?php echo 'Php '.number_format($row->withheld,2); ?></td>
-                                                 <td><?php echo $row->remarks; ?></td>
+                                                 <td><?php echo $row->payment_remarks; ?></td>
                                              </tr>
                                              <?php 
                                                 }

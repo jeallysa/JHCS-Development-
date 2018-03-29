@@ -126,7 +126,7 @@
                                 </div>
                                 <div class="card-content">
                                     <p class="category">Raw Coffee</p>
-                                    <h3 class="title"> <?php echo number_format($data1['rawcoffeestock']); ?>
+                                    <h3 class="title"> <?php echo $data1['rawcoffeestock']; ?>
                                         <small>grams</small>
                                     </h3>
                                 </div>
@@ -147,7 +147,7 @@
                                 </div>
                                 <div class="card-content">
                                     <p class="category">Packaging</p>
-                                    <h3 class="title"> <?php echo number_format($data2['packagingstock']); ?>
+                                    <h3 class="title"> <?php echo $data2['packagingstock']; ?>
                                         <small>pieces</small>
                                     </h3>
                                 </div>
@@ -159,7 +159,7 @@
                                 </div>
                                 </a>
                             </div>
-                        </div>  
+                        </div>
                         <div class="col-lg-3 col-md-6 col-sm-6">
                             <div class="card card-stats">
                                 <div class="card-header" data-background-color="red">
@@ -167,7 +167,7 @@
                                 </div>
                                 <div class="card-content">
                                     <p class="category">Stickers</p>
-                                    <h3 class="title"> <?php echo number_format($data3['stickerstock']); ?>
+                                    <h3 class="title"> <?php echo $data3['stickerstock']; ?>
                                     <small>pieces</small>
                                     </h3>
                                 </div>
@@ -187,7 +187,7 @@
                                 </div>
                                 <div class="card-content">
                                     <p class="category">Machines</p>
-                                    <h3 class="title"> <?php echo number_format($data4['machinestock']); ?>
+                                    <h3 class="title"> <?php echo $data4['machinestock']; ?>
                                     <small>pieces</small>
                                     </h3>
                                 </div>
@@ -207,6 +207,7 @@
                     <div class="card">
                         <div class="card-header" data-background-color="green">
                             <h4 class="title">Sales</h4>
+                            <p class="category">December 2017</p>
                         </div>
                         <div class="card-content table-responsive">
                             <table id=example class="table table-hover">
@@ -217,7 +218,7 @@
                                                 <th><b>Date</b></th>
                                                 <th><b>Client</b></th>
                                                 <th><b>Coffee</b></th>
-                                                <th><b>Packaging</b></th>
+                                                <th><b>Bag</b></th>
                                                 <th><b>Size</b></th>
                                                 <th><b>Quantity</b></th>
                                                 <th><b>Unit Price</b></th>
@@ -239,8 +240,8 @@
                                                  <td><?php echo $row->package_type; ?></td>
                                                  <td><?php echo $row->package_size; ?></td>
                                                  <td><?php echo $row->contractPO_qty; ?></td>
-                                                 <td>Php <?php echo number_format($row->blend_price,2); ?></td>
-                                                 <td>Php <?php echo number_format($row->client_balance,2); ?></td>
+                                                 <td><?php echo $row->blend_price; ?></td>
+                                                 <td><?php echo $row->client_balance; ?></td>
                                                  <td><?php echo $row->client_type; ?></td>
                                              </tr>
                                              <?php 

@@ -103,10 +103,12 @@
 			$price = $this->input->post('price');
 			$packaging = $this->input->post('package_id');
 			$type = $this->input->post('type');
+			$qty = $this->input->post('quantity');
 			$data_blend = array(
 				'blend' => $blend_name,
 				'package_id' => $packaging,
 				'blend_price' => $price,
+				'blend_qty' => $qty,
 				'blend_type' => $type
 			);
 
@@ -127,13 +129,6 @@
 			redirect('adminBlends', 'refresh');
 
 
-		}
-
-		public function activation(){
-			$this->load->model('Admin_Blends_model');
-			$id = $this->input->post("deact_id");
-			$this->Admin_Blends_model->activation($id);
-			redirect('adminBlends');
 		}
         
 

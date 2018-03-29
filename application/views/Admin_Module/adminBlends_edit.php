@@ -242,7 +242,7 @@
                                                             $colname = "per" . $row2->raw_id;
                                         ?>
                                         <td>
-                                            <input onblur = "findTotal()" type="number" id="per" name="per[<?php echo $row2->raw_id;?>]" value="<?php echo $row->$colname; ?>" class="form-control">
+                                            <input type="number" name="per[<?php echo $row2->raw_id;?>]" value="<?php echo $row->$colname; ?>" class="form-control">
                                         </td>
                                         <?php
                                                 }
@@ -250,20 +250,6 @@
                                         ?>
                                         
                                     </tr>
-                                    <script>
-
-                                        function findTotal(){
-                                            var x = document.getElementsByName("per[<?php echo json_encode($row2->raw_id);?>]");
-                                            var tot=0;
-                                            for(var i=0;i<x.length;i++){
-                                                if(parseInt(x[i].value))
-                                                    tot += parseInt(x[i].value);
-                                            }
-                                            if (tot > 2){
-                                                alert('100!');
-                                            }
-                                        }
-                                    </script>
                                 </tbody>
                             </table>
                                     <div class="text-center" data-toggle="modal" data-target="#verify">
