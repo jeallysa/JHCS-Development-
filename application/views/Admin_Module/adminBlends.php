@@ -6,7 +6,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
     <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Existing Blends Inventory Stocks</title>
+    <title>Raw Coffee Inventory Stocks</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
@@ -22,21 +22,14 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
 </head>
-<style>
-    /*
-        td.highlight {
-            background-color: whitesmoke !important;
-        }
-*/
-
+    <style>
+        
     .table thead,
     thead th {
         text-align: center;
         font-size: 120%;
     }
-    /* Custom Style */
 
-    
     input[type=checkbox].toggle-switch {
         appearance: none;
         -moz-appearance: none;
@@ -71,8 +64,6 @@
     input[type=checkbox].toggle-switch:checked::after {
         left: 2em;
     }
-    
-
     .navbar {
         background-color: chartreuse;
     }
@@ -231,7 +222,7 @@
                                                 <span></span>
                                                 <li class="active">
                                                     <a href="<?php echo base_url(); ?>adminBlends">
-                                                        Existing Blends
+                                                        Company Blends
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
@@ -268,9 +259,9 @@
                                 </div> 
                                 <div class="card-content">
                                     <a href="<?php echo base_url(); ?>AdminBlends/add_show" class="btn btn-success" style="float: right">Add New Blend</a>
-                                    <table id="example" class="table hover order-column" cellspacing="0" width="100%">
+                                    <table id="example" class="table hover order-column" cellspacing="0" width="100%" style="font-size: 11px">
                                         <thead>
-                                            <th><b class="pull-left">Blend Name</b></th>
+                                            <th><b class="pull-left">Company Blend</b></th>
                                             <?php
                                                     $conntitle=mysqli_connect("localhost","root","","jhcs");
                                                     if ($conntitle->connect_error) {
@@ -307,7 +298,6 @@
                                                         foreach($fetch_data_eb -> result() as $row)
                                                         {
                                                 ?>
-                                            <tr>
                                                 <td><?php echo $row->blend; ?></td>
 
                                                 
@@ -322,7 +312,7 @@
                                                 ?>
                                                 <td><?php echo $row->package_size; ?></td>
                                                 <td><?php echo $row->package_type; ?></td>
-                                                <td><?php echo $row->blend_price; ?></td>
+                                                <td>Php<?php echo number_format($row->blend_price,2); ?></td>
 
                                                 <!--
                                                 <td>Blend A</td>
@@ -379,11 +369,11 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="panel-footer" style="margin-bottom:-14px;">
-                                                                    <input type="submit" class="btn btn-danger" value="Yes" />
+                                                                    <input type="submit" class="btn btn-success" value="Yes" />
                                                                     <!--<span class="glyphicon glyphicon-ok"></span>-->
                                                                     
                                                                     <!--<span class="glyphicon glyphicon-remove"></span>-->
-                                                                    <button type="button" class="btn btn-success btn-close" onclick="document.getElementById('button<?php echo $row->main_id;?>').click()" data-dismiss="modal">No</button>
+                                                                    <button type="button" class="btn btn-danger btn-close" onclick="document.getElementById('button<?php echo $row->main_id;?>').click()" data-dismiss="modal">No</button>
                                                                 </div>
                                                                 </form>
                                                         </div>
@@ -448,22 +438,22 @@ $(document).ready(function() {
         "dom":' fBrtip',
         "lengthChange": false,
         "info":     false,
-		buttons: [
+        buttons: [
             { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+                    columns: [0, 1, 2, 3, 4]
                 }
             },
             
-			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs',
+            { "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+                    columns: [0, 1, 2, 3, 4]
                 }
             },
             
-			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs',
+            { "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+                    columns: [0, 1, 2, 3, 4]
                 }
             }
         ]
@@ -475,14 +465,6 @@ $('table tbody tr  td').on('click', function() {
     $("#txtfname").val($(this).closest('tr').children()[0].textContent);
     $("#txtlname").val($(this).closest('tr').children()[1].textContent);
 });
-</script>
-<script>
-$(function() {
-    $('#toggle-two').bootstrapToggle({
-        on: 'Enabled',
-        off: 'Disabled'
-    });
-})
 </script>
 
 </html>
