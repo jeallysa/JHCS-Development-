@@ -125,21 +125,6 @@
             <div class="content" style="margin-top: -100px;">
                 <div class="container-fluid">
                     <div class="card">
-                        <div class="card-content">
-                            <div class="form-group col-xs-3">
-                                <label>Filter By:</label>
-                                    <div class="input-group input-daterange">
-                                        <input type="text" id="min" class="form-control" value="2000-01-01" >
-                                        <span class="input-group-addon">to</span>
-                                        <input type="text" id="max" class="form-control" value="<?php   echo date("Y-m-d") ?>" >
-                                    </div>
-                                </div>
-                        </div>
-                        <div class="content">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="card">
                                             <div class="card-header" data-background-color="green">
                                                 <div class="nav-tabs-navigation">
                                                     <div class="nav-tabs-wrapper">
@@ -188,11 +173,15 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                <div class="card-content">
+                                      <div class="form-group col-xs-3">
+                                <label>Filter By:</label>
+                                    <div class="input-group input-daterange">
+                                        <input type="text" id="min" class="form-control" value="2000-01-01" >
+                                        <span class="input-group-addon">to</span>
+                                        <input type="text" id="max" class="form-control" value="<?php   echo date("Y-m-d") ?>" >
                                     </div>
                                 </div>
-                                
-                                <div class="card-content">
                                     <table id="example" class="display  hover order-column" cellspacing="0" width="100%" style="font-size: 11px">
                                         <thead>
                                             <tr>
@@ -201,7 +190,7 @@
                                                 <th><b>Date</b></th>
                                                 <th><b>Client</b></th>
                                                 <th><b>Coffee</b></th>
-                                                <th><b>Bag</b></th>
+                                                <th><b>Packaging</b></th>
                                                 <th><b>Size</b></th>
                                                 <th><b>Quantity</b></th>
                                                 <th><b>Unit Price</b></th>
@@ -224,8 +213,8 @@
                                                 <td><?php echo $row->package_type; ?></td>
                                                 <td><?php echo $row->package_size; ?></td>
                                                 <td><?php echo $row->contractPO_qty; ?></td>
-                                                <td><?php echo $row->blend_price; ?></td>
-                                                <td><?php echo $row->total_amount; ?></td>
+                                                <td>Php<?php echo number_format($row->blend_price,2); ?></td>
+                                                <td>Php<?php echo number_format($row->total_amount,2); ?></td>
                                             </tr>
 
                                             <?php
@@ -246,8 +235,6 @@
                                     </table>
                                 </div>
                             </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
