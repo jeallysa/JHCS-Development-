@@ -246,7 +246,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <th><b>#</b></th>
                                                     <th><b>Date Returned</b></th>
                                                     <th><b>Supplier</b></th>
-                                                    <th><b>Quantity</b></th>
+                                                    <th><b>Quantity (in grams)</b></th>
                                                     <th><b>Item</b></th>
                                                     <th><b>Remarks</b></th>
                                                 </tr>
@@ -260,7 +260,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <td><?php echo $row->company_returnID; ?></td>
                                                     <td><?php echo $row->sup_returnDate; ?></td>
                                                     <td><?php echo $row->sup_company; ?></td>
-                                                    <td><?php echo number_format($row->sup_returnQty); ?> g</td>
+                                                    <td><?php echo $row->sup_returnQty; ?></td>
                                                     <td><?php echo $row->raw_coffee; ?></td>
                                                     <td><?php echo $row->sup_returnRemarks; ?></td>
                                                 </tr>
@@ -284,7 +284,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 <th><b>Delivery Receipt No.</b></th>
                                                                 <th><b>Date Returned</b></th>
                                                                 <th><b>Client</b></th>
-                                                                <th><b>Quantity</b></th>
+                                                                <th><b>Quantity (in grams)</b></th>
                                                                 <th><b>Remarks</b></th>
                                                                 <th><b>Action Taken</b></th>
                                                             </tr>
@@ -299,7 +299,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 <td><?php echo $row->client_dr; ?></td>
                                                                 <td><?php echo $row->coff_returnDate; ?></td>
                                                                 <td><?php echo $row->client_company; ?></td>
-                                                                <td><?php echo number_format($row->coff_returnQty); ?> g</td>
+                                                                <td><?php echo $row->coff_returnQty; ?></td>
                                                                 <td><?php echo $row->coff_remarks; ?></td>
                                                                 <td><?php echo $row->coff_returnAction; ?></td>
                                                             </tr>
@@ -335,7 +335,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 <td><?php echo $row->mach_returnDate; ?></td>
                                                                 <td><?php echo $row->client_company; ?></td>
                                                                 <td><?php echo $row->machine; ?></td>
-                                                                <td><?php echo number_format($row->mach_returnQty); ?> pc/s</td>
+                                                                <td><?php echo $row->mach_returnQty; ?> pc/s</td>
                                                                 <td><?php echo $row->mach_remarks; ?></td>
                                                                 <td><?php echo $row->mach_returnAction; ?></td>
                                                             </tr>

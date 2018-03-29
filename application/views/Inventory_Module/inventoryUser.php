@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<!doctype html> 
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -149,68 +149,89 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-8">
-                              <div class="card">
-                                <div class="card-header" data-background-color="purple">
+                            <div class="card">
+                                <div class="card-header" data-background-color="blue">
                                     <h4 class="title">Edit Profile</h4>
-                                    <p class="category"></p>
+                                    <p class="category">Complete your profile</p>
                                 </div>
-                                <?php
-                                    $error = $this->session->flashdata('error');
-                                    $success = $this->session->flashdata('success');
-                                    if(!empty($error)){
-                                        ?>
-                                        <div class="alert alert-danger" style="margin: 20px; text-align: center; ">
-                                            <strong><?php echo $error; ?></strong> 
-                                        </div>
-                                  <?php } else if(!empty($success)){ ?>
-                                        <div class="alert alert-success" style="margin: 20px; text-align: center; ">
-                                            <strong><?php echo $success; ?></strong> 
-                                        </div>
-                                  <?php } ?> 
                                 <div class="card-content">
-                                    <?php echo form_open('salesUserProfile/updateUser') ?>
+                                    <form>
                                         <div class="row">
-                                            <?php 
-                                                    foreach($data['profile'] as $row)
-                                                    {
-                                                ?>
+                                            <div class="col-md-5">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Company (disabled)</label>
+                                                    <input type="text" class="form-control" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Username</label>
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Email address</label>
+                                                    <input type="email" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Fist Name</label>
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
                                             <div class="col-md-6">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Last Name</label>
-                                                    <?php echo form_input(['name' => 'lname', 'value' => $row->u_lname, 'id' => 'lastname', 'class' => 'form-control']); ?>
-                                                    
-                                                </div>
-                                            </div> 
-                                            <div class="col-md-6">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">First Name</label>
-                                                    <?php echo form_input(['name' => 'fname', 'value' => $row->u_fname, 'id' => 'firstname', 'class' => 'form-control']); ?>
+                                                    <input type="text" class="form-control">
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Email</label>
-                                                    <?php echo form_input(['name' => 'email', 'id' => 'Email', 'value' => $row->u_email, 'class' => 'form-control']); ?>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Contact Number</label>
-                                                    <?php echo form_input(['name' => 'number', 'id' => 'ContactNumber','value' => $row->u_contact, 'class' => 'form-control']); ?>
-                                                </div>
-                                            </div>
+                                        </div>
+                                        <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Address</label>
-                                                    <?php echo form_textarea(['name' => 'address', 'id' => 'Address', 'value' => $row->u_address, 'class' => 'form-control']); ?>
+                                                    <label class="control-label">Adress</label>
+                                                    <input type="text" class="form-control">
                                                 </div>
                                             </div>
-                                        <?php } 
-                                            ?>
                                         </div>
-                                        <?php echo form_submit(['name' => 'submit', 'value' => 'Update Profile', 'class' => 'btn btn-success' ]); ?>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">City</label>
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Country</label>
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Postal Code</label>
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>About Me</label>
+                                                    <div class="form-group label-floating">
+                                                        <label class="control-label"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
+                                                        <textarea class="form-control" rows="5"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-info pull-right">Update Profile</button>
                                         <div class="clearfix"></div>
-                                    <?php echo form_close(); ?>
+                                    </form>
                                 </div>
                             </div>
                         </div>

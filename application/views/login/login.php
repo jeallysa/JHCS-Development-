@@ -71,20 +71,21 @@
                                       <?php } ?> 
                             </div>
                             <div class="form-bottom">
-                                <?php echo form_open('login/validate') ?>
+			                    <form role="form" action="<?php echo site_url('login/validate');?>" method="post" class="login-form validate-form">
 			                    	<div class="form-group">
 			                    		<label class="sr-only" for="username">Username</label>
-                                        <?php echo form_input(['name' => 'username', 'id' => 'username', 'placeholder' => 'Username' ,'class' => 'form-control']); ?>
+			                        	<input type="text" name="username" placeholder="Username..." class="form-username form-control" id="username">
 			                        </div>
 			                        <div class="form-group">
 			                        	<label class="sr-only" for="password">Password</label>
-                                        <?php echo form_password(['name' => 'password', 'id' => 'password', 'placeholder' => 'Password' ,'class' => 'form-control']); ?>
+			                        	<input type="password" name="password" placeholder="Password..." class="form-password form-control" id="password">
 			                        </div>
                                     <div class="row" style="display: flex; align-items: center; justify-content: center;color: red">
-                                      </div>  
+                                      
+
+                                      </div>
 			                        <button type="submit" class="btn">Sign in!</button>
-                                <?php echo form_close(); ?>
-			                    
+			                    </form>
 		                    </div>
                         </div>
                     </div>

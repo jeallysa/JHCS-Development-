@@ -176,7 +176,8 @@
                             </div>
                         <div class="card-content table-responsive">
                               <a href="<?php echo base_url(); ?>adminNewClients" class="btn btn-success" data-original-title style="float: right"> Create New Client</a>
-                             <table id="example" class="table hover order-column" cellspacing="0" width="100%" style="font-size: 11.5px">
+                            <a href="<?php echo base_url(); ?>adminAddContract" class="btn btn-success" data-original-title style="float: right"> Create New Contract</a>
+                             <table id="example" class="table hover order-column" cellspacing="0" width="100%" style="font-size: 13px">
                                         <thead>
                                             <tr>
                                                 <th><b>Client No.</b></th>
@@ -256,11 +257,11 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="panel-footer" style="margin-bottom:-14px;">
-                                                                    <input type="submit" class="btn btn-success" value="Yes" />
+                                                                    <input type="submit" class="btn btn-danger" value="Yes" />
                                                                     <!--<span class="glyphicon glyphicon-ok"></span>-->
                                                                     
                                                                     <!--<span class="glyphicon glyphicon-remove"></span>-->
-                                                                    <button type="button" class="btn btn-danger btn-close" onclick="document.getElementById('button<?php echo $row->client_id;?>').click()" data-dismiss="modal">No</button>
+                                                                    <button type="button" class="btn btn-success btn-close" onclick="document.getElementById('button<?php echo $row->client_id;?>').click()" data-dismiss="modal">No</button>
                                                                 </div>
                                                                 </form>
                                                         </div>

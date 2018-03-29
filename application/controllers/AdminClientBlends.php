@@ -18,11 +18,14 @@
 			}
 		}
         
-        public function activation(){
-			$this->load->model('Admin_Blends_model');
+        function activation(){
+			
+			$this->load->model('Admin_Blends_Model');
 			$id = $this->input->post("deact_id");
-			$this->Admin_Blends_model->activation($id);
-			redirect('adminClientBlends');
+			$this->Admin_Blends_Model->activation($id);
+			echo "<script>alert('Deactivation successful!');</script>";
+			redirect('adminClientBlends', 'refresh');
+
 		}
 
 	}

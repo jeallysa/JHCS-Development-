@@ -160,7 +160,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th><b>Item Code</b></th>
-                                                        <th><b>Purchase Date</b></th>
+                                                        <th><b>Date</b></th>
 														<th><b>Coffee</b></th>
 														<th><b>Bag</b></th>
 														<th><b>Size</b></th>
@@ -178,7 +178,7 @@
                                                          <td><?php echo $row->walkin_date; ?></td>
                                                          <td><?php echo $row->blend; ?></td>
                                                          <td><?php echo $row->package_type; ?></td>
-                                                         <td><?php echo number_format($row->package_size); ?> g</td>
+                                                         <td><?php echo $row->package_size; ?></td>
                                                          <td><?php echo $row->walkin_qty; ?></td>
                                                          <td>Php <?php echo number_format($row->blend_price,2); ?></td>
                                                          <td><?php 
@@ -200,7 +200,7 @@
 													<thead>
                                                         <th><b>Item Code</b></th>
 														<th><b>Serial No.</b></th>
-														<th><b>Purchase Date</b></th>
+														<th><b>Date</b></th>
 														<th><b>Client</b></th>
 														<th><b>Machine</b></th>
 														<th><b>Quantity</b></th>

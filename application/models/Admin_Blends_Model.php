@@ -14,7 +14,7 @@ class Admin_Blends_Model extends CI_model
 
 	function fetch_data_eb(){
 		$qcount = $this->db->query('SELECT * FROM raw_coffee');
-		$query_append = "SELECT c.blend_id AS main_id, c.blend_type AS type, c.blend AS blend, c.blend_activation,";
+		$query_append = "SELECT c.blend_id AS main_id, c.blend_type AS type, c.blend,";
 
 		foreach ($qcount->result() as $row){
 			$query_append .= " SUM(CASE
@@ -51,7 +51,7 @@ class Admin_Blends_Model extends CI_model
 	
 	function fetch_data_cb(){
 		$qcount = $this->db->query('SELECT * FROM raw_coffee');
-		$query_append = "SELECT c.blend_id AS main_id, c.blend_type AS type, c.blend AS blend, c.blend_activation,";
+		$query_append = "SELECT c.blend_id AS main_id, c.blend_type AS type, c.blend,";
 
 		foreach ($qcount->result() as $row){
 			$query_append .= " SUM(CASE
@@ -65,10 +65,6 @@ class Admin_Blends_Model extends CI_model
 		$query = $this->db->query($query_append);
 		return $query;
 
-	}
-
-	function activation($id){
-		$this->db->query("UPDATE coffee_blend SET blend_activation = IF(blend_activation=1, 0, 1) WHERE blend_id = ".$id."");
 	}
 
 

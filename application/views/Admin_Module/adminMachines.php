@@ -197,6 +197,12 @@
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
+                                            <label for="email">Number of Stocks</label>
+                                            <input class="form-control" type="number" name="stocks" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
                                             <label for="email">Price Per Unit</label>
                                             <input class="form-control" type="number" name="price" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                         </div>
@@ -205,7 +211,7 @@
                                            <div class="form-group label-floating">
                                             <label for="email">Supplier</label>
                                             <select class="form-control" name="sup_company" required>
-                                                <option disabled selected value> -- select a supplier -- </option>
+                                                <option disabled selected value> -- select an item -- </option>
                                                 <?php 
 
                                                     foreach($data1['getSupplier'] as $row)
@@ -248,7 +254,7 @@
                                                 <span></span>
                                                 <li>
                                                     <a href="<?php echo base_url(); ?>adminBlends">
-                                                        Company Blends
+                                                        Existing Blends
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
@@ -287,10 +293,10 @@
                                     <a class="btn btn-success" data-toggle="modal" data-target="#stock" data-original-title style="float: right">Add New Machine</a>
                                     <table id="example" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
-                                            <th><b class="pull-left">Machine No.</b></th>
+                                            <th><b class="pull-left">Machine Number</b></th>
                                             <th><b class="pull-left">Machine</b></th>
                                             <th><b class="pull-left">Type</b></th>
-                                            <th><b class="pull-left">Price Per Unit</b></th>
+                                            <th><b class="pull-left">Price</b></th>
                                             <th><b class="pull-left">Reorder Level</b></th>
                                             <th><b class="pull-left">Stock Limit</b></th>
                                             <th><b class="pull-left">Supplier</b></th>
@@ -307,7 +313,7 @@
                                                  <td><?php echo $row->mach_id; ?></td>
                                                  <td><?php echo $row->brewer; ?></td>
                                                  <td><?php echo $row->brewer_type; ?></td>
-                                                 <td>Php<?php echo number_format($row->mach_price,2); ?></td>
+                                                 <td><?php echo $row->mach_price; ?></td>
                                                  <td><?php echo $row->mach_reorder; ?></td>
                                                  <td><?php echo $row->mach_limit; ?></td>
                                                  <td><?php echo $row->sup_company; ?></td>
@@ -363,11 +369,11 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="panel-footer" style="margin-bottom:-14px;">
-                                                                    <input type="submit" class="btn btn-success" value="Yes" />
+                                                                    <input type="submit" class="btn btn-danger" value="Yes" />
                                                                     <!--<span class="glyphicon glyphicon-ok"></span>-->
                                                                     
                                                                     <!--<span class="glyphicon glyphicon-remove"></span>-->
-                                                                    <button type="button" class="btn btn-danger btn-close" onclick="document.getElementById('button<?php echo $row->mach_id;?>').click()" data-dismiss="modal">No</button>
+                                                                    <button type="button" class="btn btn-success btn-close" onclick="document.getElementById('button<?php echo $row->mach_id;?>').click()" data-dismiss="modal">No</button>
                                                                 </div>
                                                                 </form>
                                                         </div>
@@ -437,14 +443,12 @@
                                                                                <div class="form-group label-floating">
                                                                                 <label for="email">Supplier</label>
                                                                                 <select class="form-control" name="sup_company" required>
-                                                                                    <option disabled selected value> -- select a supplier -- </option>
+                                                                                    <option disabled selected value> -- select an item -- </option>
                                                                                     <?php 
 
-                                                                                        foreach($data1['getSupplier'] as $row2)
+                                                                                        foreach($data1['getSupplier'] as $row)
                                                                                         { 
-                                                                                        ?>
-                                                                                        <option value="<?php echo $row2->sup_id;?>" <?php if ($row->sup_id==$row2->sup_id) { ?> selected="selected" <?php } ?> ><?php echo $row2->sup_company; ?></option>
-                                                                                    <?php
+                                                                                            echo '<option value="'.$row->sup_id.'">'.$row->sup_company.'</option>';
                                                                                         }
                                                                                      ?>
                                                                                 </select>

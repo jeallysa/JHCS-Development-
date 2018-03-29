@@ -125,8 +125,21 @@
             <div class="content" style="margin-top: -100px;">
                 <div class="container-fluid">
                     <div class="card">
+                        <div class="card-content">
+                           <div class="form-group col-xs-3">
+                                <label>Filter By:</label>
+                                    <div class="input-group input-daterange">
+                                        <input type="text" id="min" class="form-control" value="2000-01-01" >
+                                        <span class="input-group-addon">to</span>
+                                        <input type="text" id="max" class="form-control" value="<?php   echo date("Y-m-d") ?>" >
+                                    </div>
+                                </div>
+                        </div>
                         <div class="content">
                             <div class="container-fluid">
+                                  <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="card">
                                             <div class="card-header" data-background-color="green">
                                                 <div class="nav-tabs-navigation">
                                                     <div class="nav-tabs-wrapper">
@@ -175,16 +188,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                
-                                <div class="card-content">
-                           <div class="form-group col-xs-3">
-                                <label>Filter By:</label>
-                                    <div class="input-group input-daterange">
-                                        <input type="text" id="min" class="form-control" value="2000-01-01" >
-                                        <span class="input-group-addon">to</span>
-                                        <input type="text" id="max" class="form-control" value="<?php   echo date("Y-m-d") ?>" >
+                                        </div>
                                     </div>
                                 </div>
+                                
+                                <div class="card-content">
                                    <table id="example" class="display  hover order-column" cellspacing="0" width="100%">
                                         <thead>
                                             <th><b>Collection Receipt No.</b></th>
@@ -208,9 +216,9 @@
                                                  <td><?php echo $row->client_company; ?></td>
                                                  <td><?php echo $row->payment_mode; ?></td>
                                                  <td><?php echo $row->paid_date; ?></td>
-                                                 <td>Php<?php echo number_format($row->paid_amount,2); ?></td>
-                                                 <td>Php<?php echo number_format($row->client_balance,2); ?></td>
-                                                 <td>Php<?php echo number_format($row->withheld,2); ?></td>
+                                                 <td><?php echo $row->paid_amount; ?></td>
+                                                 <td><?php echo $row->client_balance; ?></td>
+                                                 <td><?php echo $row->withheld; ?></td>
                                                  <td><?php echo $row->payment_remarks; ?></td>
                                              </tr>
                                              <?php 

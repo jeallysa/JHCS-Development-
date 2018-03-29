@@ -9,7 +9,7 @@ class AdminPackaging_model extends CI_MODEL
 	}
 
 	function getPackaging(){
-		$query=$this->db->query("SELECT sup_id, package_id, package_type, sup_company, package_size, package_reorder, package_limit, package_stock, pack_activation FROM packaging NATURAL JOIN supplier");
+		$query=$this->db->query("SELECT package_id, package_type, sup_company, package_size, package_reorder, package_limit, package_stock, pack_activation FROM packaging NATURAL JOIN supplier");
 		return $query->result();
 	}
     
