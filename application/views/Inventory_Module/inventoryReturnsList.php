@@ -313,15 +313,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <table id="machine" class="table hover order-column" cellspacing="0" width="100%">
                                                         <thead>
                                                             <tr>
-                                                                <th><b>#</b></th>
-                                                                <th><b>Delivery Receipt No.</b></th>
+                                                                <th><b>Return No.</b></th>
+                                                                <th><b>Machine Serial No.</b></th>
                                                                 <th><b>Date Returned</b></th>
                                                                 <th><b>Client</b></th>
                                                                 <th><b>Machine</b></th>
                                                                 <th><b>Quantity</b></th>
                                                                 <th><b>Remarks</b></th>
                                                                 <th><b>Action Taken</b></th>
-                                                                <th><b>Status</b></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -331,7 +330,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     ?>
                                                             <tr>
                                                                 <td><?php echo $row->client_machReturnID; ?></td>
-                                                                <td><?php echo $row->client_dr; ?></td>
+                                                                <td><?php echo $row->mach_serial; ?></td>
                                                                 <td><?php echo $row->mach_returnDate; ?></td>
                                                                 <td><?php echo $row->client_company; ?></td>
                                                                 <td><?php echo $row->machine; ?></td>
