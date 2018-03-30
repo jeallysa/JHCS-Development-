@@ -9,7 +9,7 @@ class sellProduct_model extends CI_MODEL
 	}
 
 	Public function getSoldCoffee(){
-		$query=$this->db->query("SELECT blend_id, walkin_date, blend, package_type, package_size, walkin_qty, blend_price FROM walkin_sales NATURAL JOIN coffee_blend NATURAL JOIN packaging");
+		$query=$this->db->query("SELECT * FROM walkin_sales NATURAL JOIN coffee_blend NATURAL JOIN packaging");
 		return $query->result();
 	}
 
@@ -118,6 +118,24 @@ class sellProduct_model extends CI_MODEL
 
 	function minus_machine_rent($mach_retQty, $mach_id){
 		$this->db->query("UPDATE machine SET mach_stocks = mach_stocks + ".$mach_retQty." WHERE mach_id = '".$mach_id."';");
+	}
+
+	function insert_coffeereturn($coffeeblend_return){ 
+		$this->db->insert('client_coffreturn', $coffeeblend_return);
+	}
+
+	function update_coffeereturn($return, $id, $blend_returnedQty){
+		$data2 = array(
+	        'coff_remarks' => $return,
+	        'walkin_returns' => $blend_returnedQty
+		);
+
+		$this->db->where('walkin_id', $id);
+		$this->db->update('walkin_sales', $data2);
+	}
+
+	function add_blend_stock($blend_returnedQty, $blend_id){
+		$this->db->query("UPDATE coffee_blend SET blend_qty = blend_qty + ".$blend_returnedQty." WHERE blend_id = '".$blend_id."';");
 	}
 }
 

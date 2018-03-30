@@ -23,6 +23,52 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
 </head>
 
+<style type="text/css">
+.pagination>.active>a,
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover {
+    background-color: #4caf50;
+    border-color: #9c27b0;
+    color: #FFFFFF;
+    box-shadow: 0 4px 5px 0 rgba(156, 39, 176, 0.14), 0 1px 10px 0 rgba(156, 39, 176, 0.12), 0 2px 4px -1px rgba(156, 39, 176, 0.2);
+}
+
+.page-header {
+    height: 60vh;
+    background-position: center center;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+a {
+    color: #4caf50;
+}
+
+a:hover,
+a:focus {
+    color: #4caf50;
+    text-decoration: none;
+}
+
+.navbar .dropdown-menu li a:hover,
+.navbar .dropdown-menu li a:focus,
+.navbar .dropdown-menu li a:active,
+.navbar.navbar-default .dropdown-menu li a:hover,
+.navbar.navbar-default .dropdown-menu li a:focus,
+.navbar.navbar-default .dropdown-menu li a:active {
+    background-color: #4caf50;
+    color: #FFFFFF;
+    box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2);
+}
+</style>
+
 <body>
    <div class="wrapper">
         <div class="sidebar" data-color="green" data-image="<?php echo base_url(); ?>assets/img/sidebar-1.jpg">
@@ -131,6 +177,7 @@
                                                 <div class="nav-tabs-navigation">
                                                     <div class="nav-tabs-wrapper">
                                                         <ul class="nav nav-tabs" data-tabs="tabs" data-background-color="green">
+                                                            <span></span>
                                                             <li class="">
                                                                 <a href="<?php echo base_url(); ?>adminSalesReport">
                                                         Sales Report
@@ -144,30 +191,17 @@
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                             </li>
-                                                            <li class="">
-                                                                <a href="<?php echo base_url(); ?>adminDeliveryReport">
-                                                        Delivery Report
-                                                        <div class="ripple-container"></div>
-                                                   </a>
-                                                            </li>
-                                                            <span></span>
-                                                            <li class="">
-                                                                <a href="<?php echo base_url(); ?>adminInventoryReport">
-                                                        Inventory Report
-                                                        <div class="ripple-container"></div>
-                                                    </a>
-                                                            </li>
-                                                            <span></span>
-                                                            <li class="">
-                                                                <a href="<?php echo base_url(); ?>adminOrderReport">
-                                                        PO Report
-                                                        <div class="ripple-container"></div>
-                                                    </a>
-                                                            </li>
                                                             <span></span>
                                                             <li class="active">
                                                                 <a href="<?php echo base_url(); ?>adminReceivableReport">
                                                         Accounts Receivables Report
+                                                        <div class="ripple-container"></div>
+                                                    </a>
+                                                            </li> 
+                                                            <span></span>
+                                                             <li class="">
+                                                                <a href="<?php echo base_url(); ?>adminInventoryReport">
+                                                        Inventory Report
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                             </li>
@@ -177,26 +211,26 @@
                                             </div>
                                 
                                 <div class="card-content">
-                                    <table id="example" class="display  hover order-column" cellspacing="0" width="100%">
+                                   <table id="example" class="table hover order-column">
                                         <thead>
                                             <tr>
+                                                <th><b>Date</b></th>
                                                 <th><b>Client</b></th>
-                                                <th><b>Total Receivables</b></th>
+                                                <th><b>Receivables</b></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            
-                                             <?php 
+                                            <?php 
                                                 foreach ($receivable as $row) {
                                              ?>
                                              <tr>
+                                                 <td><?php echo $row->client_deliverDate; ?></td>
                                                  <td><?php echo $row->client_company; ?></td>
-                                                 <td>Php<?php echo number_format($row->client_balance,2); ?></td>
+                                                 <td><?php echo 'Php '.number_format($row->client_balance,2); ?></td>
                                              </tr>
                                              <?php 
                                                 }
                                               ?>
-                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -278,19 +312,19 @@ $(document).ready(function() {
 		buttons: [
             { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs',
                 exportOptions: {
-                    columns: [0, 1]
+                    columns: [0, 1, 2]
                 }
             },
             
 			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs',
                 exportOptions: {
-                    columns: [0, 1]
+                    columns: [0, 1, 2]
                 }
             },
             
 			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs',
                 exportOptions: {
-                    columns: [0, 1]
+                    columns: [0, 1, 2]
                 }
             }
         ]

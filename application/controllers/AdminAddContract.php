@@ -41,6 +41,7 @@
 			$data = array(
                 "client_id" =>$this->input->post("client_company"),
 				"date_started" =>$this->input->post("date_started"),
+				"date_expiration" =>$this->input->post("date_expiration"),
 				"credit_term" =>$this->input->post("contract_term"),
 				"blend_id" =>$this->input->post("contract_blend"),
 				"mach_id" =>$this->input->post("contract_machine"),

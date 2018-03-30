@@ -15,6 +15,13 @@
 			return $query->result();
 			
 		}
+
+		public function get_coffee_walkin_return(){
+			$query = $this->db->query("SELECT * FROM client_coffreturn INNER JOIN walkin_sales ON walkin_sales.walkin_id = client_coffreturn.client_deliveryID NATURAL JOIN coffee_blend NATURAL JOIN packaging WHERE walkin_sales.coff_remark='Returned' AND client_coffreturn.resolved = 'No'");
+			return $query->result();
+			
+		}
+
 		public function get_resolved_coffee(){
 			$query = $this->db->query("SELECT * FROM client_coffreturn NATURAL JOIN client_delivery NATURAL JOIN contracted_client WHERE client_coffreturn.resolved='Yes' ");
 			return $query->result();

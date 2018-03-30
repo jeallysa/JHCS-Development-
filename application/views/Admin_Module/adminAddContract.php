@@ -23,6 +23,50 @@
 .title {
     font-size: large;
 }
+
+.pagination>.active>a,
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover {
+    background-color: #4caf50;
+    border-color: #9c27b0;
+    color: #FFFFFF;
+    box-shadow: 0 4px 5px 0 rgba(156, 39, 176, 0.14), 0 1px 10px 0 rgba(156, 39, 176, 0.12), 0 2px 4px -1px rgba(156, 39, 176, 0.2);
+}
+
+.page-header {
+    height: 60vh;
+    background-position: center center;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+a {
+    color: #4caf50;
+}
+
+a:hover,
+a:focus {
+    color: #4caf50;
+    text-decoration: none;
+}
+
+.navbar .dropdown-menu li a:hover,
+.navbar .dropdown-menu li a:focus,
+.navbar .dropdown-menu li a:active,
+.navbar.navbar-default .dropdown-menu li a:hover,
+.navbar.navbar-default .dropdown-menu li a:focus,
+.navbar.navbar-default .dropdown-menu li a:active {
+    background-color: #4caf50;
+    color: #FFFFFF;
+    box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2);
+}
 </style>
 
 <body>
@@ -131,21 +175,40 @@
                             <div class="modal-body" style="padding: 5px;">
                                     <div class="col-md-12 form-group">
                                          <div class="form-group label-floating">
-                                            <label for="email">Company Name</label>
+                                            <label for="email">Client</label>
+                                            <!--
                                             <select class="form-control" name="client_company" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Company Name should only countain letters">
-                                                <option disabled selected value> -- select a company name -- </option>
+                                                <option disabled selected value> -- select a client name -- </option>
                                                 <?php 
+                                                /*
 
                                                     foreach($data4['getName'] as $row)
                                                     { 
                                                         echo '<option value="'.$row->client_id.'">'.$row->client_company.'</option>';
                                                     }
+                                                */
                                                  ?>
                                             </select>
+                                        --> 
+                                            <?php
+                                                $cli_id = $this->input->get('p'); 
+                                                $query = $this->db->query("SELECT * FROM contracted_client WHERE client_id = '".$cli_id."';");
+                                                foreach($query->result() AS $row){
+                                            ?>
+                                            <input class="form-control" type="text" name="client" value="<?php echo $row->client_company?>" disabled>
+                                            <input class="form-control" type="hidden" name="client_company" value="<?php echo $row->client_id?>">
+                                            <?php
+                                                }
+                                            ?>
                                         </div>
+
                                         <div class="form-group label-floating">
-                                            <label for="email">Date</label>
+                                            <label for="email">Date Started</label>
                                             <input class="form-control" name="date_started" type="date" class="no-border" value="<?php echo date("Y-m-d");?>" data-validate="required" message="Date of Purchase is recquired! min="<?=date('Y-m-d')?>" max="<?=date('Y-m-d',strtotime(date('Y-m-d').'+1 days'))?>"">
+                                        </div>
+                                         <div class="form-group label-floating">
+                                            <label for="email">Date Expiration</label>
+                                            <input class="form-control" name="date_expiration" type="date" class="no-border" value="<?php echo date("Y-m-d");?>" data-validate="required" message="Date of Purchase is recquired! min="<?=date('Y-m-d')?>" max="<?=date('Y-m-d',strtotime(date('Y-m-d').'+1 days'))?>"">
                                         </div>
                                          <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
@@ -241,8 +304,31 @@
                                             <input class="form-control" type="text" name="contract_serial" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                         </div>
                                     </div>
-                                   <?php }
+                                   <?php }else{ 
                                                  ?>
+
+                                        <div class="col-md-6 form-group">
+                                           <div class="form-group label-floating">
+                                            <label for="email">Machine</label>
+                                            <input class="form-control" type="hidden" name="contract_machine" value ="0" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Machine Required Quantity</label>
+                                            <input class="form-control" type="hidden" name="contract_mqty" min="0" value="0" data-validate="required" max="" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Machine Serial Number</label>
+                                            <input class="form-control" type="hidden" name="contract_serial" min="0" value="0" data-validate="required" max="" required>
+                                        </div>
+                                    </div>
+
+                                    <?php
+                                        }
+                                    ?>
                                 </div> 
                             </div>
                             <div class="panel-footer" style="margin-bottom:-14px;">

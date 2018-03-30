@@ -71,7 +71,51 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     .navbar {
         background-color: chartreuse;
     }
-    </style>
+
+.pagination>.active>a,
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover {
+    background-color: #4caf50;
+    border-color: #9c27b0;
+    color: #FFFFFF;
+    box-shadow: 0 4px 5px 0 rgba(156, 39, 176, 0.14), 0 1px 10px 0 rgba(156, 39, 176, 0.12), 0 2px 4px -1px rgba(156, 39, 176, 0.2);
+}
+
+.page-header {
+    height: 60vh;
+    background-position: center center;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+a {
+    color: #4caf50;
+}
+
+a:hover,
+a:focus {
+    color: #4caf50;
+    text-decoration: none;
+}
+
+.navbar .dropdown-menu li a:hover,
+.navbar .dropdown-menu li a:focus,
+.navbar .dropdown-menu li a:active,
+.navbar.navbar-default .dropdown-menu li a:hover,
+.navbar.navbar-default .dropdown-menu li a:focus,
+.navbar.navbar-default .dropdown-menu li a:active {
+    background-color: #4caf50;
+    color: #FFFFFF;
+    box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2);
+}
+</style>
 <body>
     <div class="wrapper">
         <div class="sidebar" data-color="green" data-image="<?php echo base_url(); ?>assets/img/sidebar-1.jpg">
@@ -184,6 +228,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </div>
                                 </div>
                                 <div class="row">
+                                    <div class="col-md-12 form-group">
+                                        <div class="form-group label-floating">
+                                            <label for="email">Type of Roast</label>
+                                            <select class="form-control" type="text" name="raw_type" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Name should only countain letters" >
+                                               <option value="city">City</option>
+                                                <option value="medium">Medium</option>
+                                                <option value="light">Light</option>
+                                              </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
                                      <div class="col-lg-6 form-group">
                                         <div class="form-group label-floating">
                                             <label for="email">Reorder Level</label>
@@ -289,6 +345,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <table id="example" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
                                             <th><b class="pull-left">Raw Coffee</b></th>
+                                            <th><b class="pull-left">Type of Roast</b></th>
                                             <th><b class="pull-left">Reorder Level</b></th>
                                             <th><b class="pull-left">Stock Limit</b></th>
                                             <th><b class="pull-left">Supplier</b></th>
@@ -304,6 +361,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 ?>
                                              <tr>
                                                  <td><?php echo $row->raw_coffee; ?></td>
+                                                 <td><?php echo $row->raw_type; ?></td>
                                                  <td><?php echo $row->raw_reorder; ?></td>
                                                  <td><?php echo $row->raw_limit; ?></td>
                                                  <td><?php echo $row->sup_company; ?></td>
@@ -382,6 +440,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                         <div class="form-group label-floating">
                                                                             <label for="email">Name</label>
                                                                             <input class="form-control" type="text" name="name" value="<?php echo $row->raw_coffee; ?>" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Name should only countain letters">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                 <div class="row">
+                                                                    <div class="col-md-12 form-group">
+                                                                        <div class="form-group label-floating">
+                                                                            <label for="email">Type of Roast</label>
+                                                                            <select class="form-control" type="text" name="name" value="<?php echo $row->raw_coffee; ?>" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Name should only countain letters">
+                                                                                 <option value="city">City</option>
+                                                                                <option value="medium">Medium</option>
+                                                                                <option value="light">Light</option>
+                                                                              </select>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -502,19 +572,19 @@ $(document).ready(function() {
 		buttons: [
             { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4]
+                    columns: [0, 1, 2, 3, 4, 5, 6]
                 }
             },
             
 			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4]
+                    columns: [0, 1, 2, 3, 4, 5, 6]
                 }
             },
             
 			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4]
+                    columns: [0, 1, 2, 3, 4, 5, 6]
                 }
             }
         ]
