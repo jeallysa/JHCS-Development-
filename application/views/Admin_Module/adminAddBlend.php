@@ -162,7 +162,7 @@
                                                             <input type="number" class="form-control" name="price"  min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-2">
                                                         <div class="form-group label-floating">
                                                             
                                                             <label for="sel1">Package and Size:</label>
@@ -181,20 +181,42 @@
                                                             
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-2">
                                                         <div class="form-group label-floating">
                                                             
                                                             <label for="sel1">Blend Type:</label>
 
                                                               <select class="form-control" id="sel1" name="type">
                                                                 
-                                                                    <option value="Existing"> Existing </option>
+                                                                    <option value="Existing"> Company Blend </option>
                                                                     <option value="Client"> Client </option>
                                                                    
                                                               </select>
                                                             
                                                         </div>
                                                     </div>
+                                                    
+                                                    <div class="col-md-2">
+                                                        <div class="form-group label-floating">
+                                                            
+                                                            <label for="sel2">Sticker:</label>
+
+                                                              <select class="form-control" id="sel2" name="stick">
+                                                                <?php
+                                                                    $stick = $this->db->query('SELECT * FROM sticker');
+                                                                    foreach($stick->result() as $row6){
+
+                                                                ?>
+                                                                    <option value="<?php echo $row6->sticker_id; ?>"> <?php echo $row6->sticker; ?> </option>
+                                                                    <?php
+                                                                    }
+                                                                ?>
+                                                                   
+                                                              </select>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                
 
                                                 </div>
 
