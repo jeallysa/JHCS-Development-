@@ -597,6 +597,7 @@
 											<input  type="hidden" name="MRID" readonly />
 											<input  type="hidden" name="serial" readonly />
 											<input  type="hidden" name="qty" readonly />
+
                                             <div class="col-lg-7">
 												<div class="row">
 													<label class="col-md-5 control">Client :</label>

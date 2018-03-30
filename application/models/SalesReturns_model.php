@@ -80,8 +80,19 @@
 			
 		}
 
+
+		public function update_mach_return($MRID){
+			$this->db->query("UPDATE client_machreturn SET client_machreturn.resolved = 'Yes' WHERE client_machreturn.client_machReturnID = '".$MRID."';");
+			
+		}
+
 		public function update_less_return_coffee($quantity, $blend_id){
 			$this->db->query("UPDATE coffee_blend SET blend_qty = blend_qty - ".$quantity." WHERE blend_id = '".$blend_id."';");
+			
+		}
+
+		public function less_machine($m_id, $qty){
+			$this->db->query("UPDATE machine SET mach_stocks = mach_stocks - ".$qty." WHERE mach_id = '".$m_id."';");
 			
 		}
 
