@@ -26,7 +26,8 @@
 			$data1["cli_det"] = $this->SalesClients_model->load_Client_det($id);
 			$data2["del_data"] = $this->SalesClients_model->load_DelClient($id);
 			$data3["pay_data"] = $this->SalesClients_model->load_PayClient($id);
-			$this->load->view('Sales_Module/salesClientsInfo', ['data' => $data,'data1' => $data1, 'data2' => $data2, 'data3' => $data3]);
+			$data4["balance"] = $this->SalesClients_model->getBalances($id);
+			$this->load->view('Sales_Module/salesClientsInfo', ['data' => $data,'data1' => $data1, 'data2' => $data2, 'data3' => $data3, 'data4' => $data4]);
 		}
 		public function salesContract()
 		{
@@ -98,6 +99,7 @@
 			
 			redirect('SalesClients/salesMultipleOrders');
 		}
+		
 
 	}
 

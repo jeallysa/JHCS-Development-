@@ -124,17 +124,21 @@
                                 <div class="card-content">
                                     <p class="category">Sales</p>
                                     <h3 class="title"><?php 
-											if(!empty($data['sum'])){
-												  echo "NULL DATA";
-											  }else{
-												echo $data['sum']->client_balance; 
-											}
+											$total = $this->db->query("SELECT SUM(client_balance) AS total FROM client_delivery WHERE client_deliverDate=now() ;")->row()->total;
+										
+										if(!empty($total)){
+											echo number_format($total);
+										}else{
+											echo 0;
+										}
+										
 										 ?>
                                     </h3>
+									
                                 </div>
                                 <div class="card-footer">
                                     <div class="stats">
-                                        <i class="material-icons">date_range</i> Details
+                                        <i class="material-icons">date_range</i>  <a href="<?php echo base_url(); ?>salesReport">Details</a>
                                     </div>
                                 </div>
                             </div>
@@ -146,11 +150,20 @@
                                 </div>
                                 <div class="card-content">
                                     <p class="category">Collections</p>
-                                    <h3 class="title">30,000</h3>
+                                    <?php 
+											$total = $this->db->query("SELECT SUM(client_balance) AS total FROM client_delivery  WHERE client_deliverDate=now() AND payment_remarks='paid'; ")->row()->total;
+										if(!empty($total)){
+											echo number_format($total);
+										}else{
+											echo 0;
+										}
+										
+										 ?>
+
                                 </div>
                                 <div class="card-footer">
                                     <div class="stats">
-                                        <i class="material-icons">date_range</i> Details
+                                        <i class="material-icons">date_range</i> <a href="<?php echo base_url(); ?>salesCollections">Details</a>
                                     </div>
                                 </div>
                             </div>
@@ -162,11 +175,18 @@
                                 </div>
                                 <div class="card-content">
                                     <p class="category">Recievables</p>
-                                    <h3 class="title">33,755</h3>
+                                    <?php 
+											$total = $this->db->query("SELECT SUM(client_balance) AS total FROM client_delivery WHERE payment_remarks='unpaid';")->row()->total;
+											if(!empty($total)){
+												echo number_format($total);
+											}else{
+												echo 0;
+											}
+										 ?>
                                 </div>
                                 <div class="card-footer">
                                     <div class="stats">
-                                        <i class="material-icons">date_range</i> Details
+                                        <i class="material-icons">date_range</i><a href="<?php echo base_url(); ?>salesReceivables">Details</a>
                                     </div>
                                 </div>
                             </div>
@@ -178,11 +198,18 @@
                                 </div>
                                 <div class="card-content">
                                     <p class="category">Clients</p>
-                                    <h3 class="title">245</h3>
+                                    <?php 
+											$total = $this->db->query("SELECT COUNT(client_company) AS total FROM contracted_client WHERE client_activation='1';")->row()->total;
+											if(!empty($total)){
+												echo number_format($total);
+											}else{
+												echo 0;
+											}
+										 ?>
                                 </div>
                                 <div class="card-footer">
                                     <div class="stats">
-                                        <i class="material-icons">date_range</i> Details
+                                        <i class="material-icons">date_range</i> <a href="<?php echo base_url(); ?>salesClients">Details</a>
                                     </div>
                                 </div>
                             </div>

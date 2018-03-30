@@ -221,67 +221,6 @@
 												
 											</div>
 										
-										<!--<div class="row">
-											<div class="col-xs-4 col-md-4 well well-sm" style="margin-left:20px; margin-top:20px;" ><br>
-												<legend><span class="glyphicon glyphicon-shopping-cart"></span> Order</legend><hr>
-												<form action="#" method="post" class="form" role="form">
-												<div class="row">
-													<div class="col-md-7 col-md-offset-2">
-														<select class="form-control" id="blend" label="Select Coffee Blend">
-															<option selected disabled>Select Coffee Blend</option>
-                                                            <option value="Guatemala Rainforest">Guatemala Rainforest</option>
-                                                            <option value="Cordillera Sunrise">Cordillera Sunrise</option>
-                                                            <option value="Sumatra Night">Sumatra Night</option>
-                                                            <option value="Espresso">Espresso</option>
-                                                         </select>
-													</div>
-
-												</div>
-												<div class="col-md-7 col-md-offset-2">
-														<select class="form-control" id="type">
-															<option selected disabled>Type of Bag</option>
-                                                            <option value="Clear">Clear</option>
-                                                            <option value="Brown">Brown</option>
-                                                         </select>
-												</div>
-												<div class="col-md-7 col-md-offset-2">
-														<select class="form-control" id="size">
-															<option selected disabled>Size of Bag</option>
-                                                            <option value="250">250 g</option>
-                                                            <option value="500">500 g</option>
-                                                            <option value="1000">1000 g</option>
-                                                         </select>
-												</div>
-												<div class="col-md-7 col-md-offset-2">
-													<input class="form-control" name="" id="qty" placeholder="Quantity" type="number" min="0" oninput="validity.valid||(value='');" data-validate="required" />
-												</div>
-												
-												<input class="btn btn-lg btn-primary btn-lg" type="text" id="append_data" value="Add to Table" readonly>
-													
-												</form>
-											</div>
-											<div class="col-xs-7 col-7 well well-sm" style="margin-left:15px; margin-top:20px;">
-												<table class="table" id="data_table">
-													<thead class="text-primary">
-														<th>Coffee Blend</th>
-														<th>Type of Bag</th>
-														<th>Size of Bag</th>
-														<th>Quantity</th>
-														<th></th>
-													</thead>
-													<tbody>
-														
-													</tbody>
-												</table>
-												<button class="btn btn-primary btn-sm" type="button" name="AddPO" id="AddPO">Add Purchase Order/s</button>
-												
-											</div>
-											<div class="col-xs-7 col-7" style="margin-left:15px; margin-top:150px;">
-												<hr>
-												
-											</div>
-    									</div>-->
-										
                                     </div>
 								</center>
                             </div>
