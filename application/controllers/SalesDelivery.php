@@ -70,10 +70,13 @@
                 "coff_remarks" =>$this->input->post("remarks")    
 			);
 			$dataA = $this->security->xss_clean($dataA);
+			$add_blend =$this->input->post("qty_returned");
+			$blend_id =$this->input->post("blend_id");
 			$return = 'Returned';
 			$deliver_id = $this->input->post("deliveryID");
 			$this->SalesDelivery_model->insert_dataA($dataA);
 			$this->SalesDelivery_model->updateA($return, $deliver_id);
+			$this->SalesDelivery_model->add_blend($add_blend, $blend_id);
 			echo "<script>alert('Item Returned!');</script>";
 			redirect('SalesDelivery', 'refresh');
 		}

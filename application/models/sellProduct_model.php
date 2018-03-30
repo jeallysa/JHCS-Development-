@@ -14,7 +14,7 @@ class sellProduct_model extends CI_MODEL
 	}
 
 	Public function getSoldMachine(){
-		$query2=$this->db->query("SELECT * FROM machine_out NATURAL JOIN contracted_client NATURAL JOIN machine where status = 'sold' AND remarks='Received'");
+		$query2=$this->db->query("SELECT *, machine.mach_id, machine_out.mach_serial FROM machine_out NATURAL JOIN contracted_client NATURAL JOIN machine LEFT OUTER JOIN client_machreturn ON client_machreturn.mach_serial = machine_out.mach_serial WHERE status = 'sold'");
 		return $query2->result();
 	}
 
@@ -102,6 +102,18 @@ class sellProduct_model extends CI_MODEL
 
 		$this->db->where('mach_salesID', $id);
 		$this->db->update('machine_out', $data2);
+	}
+
+	function add_machine_stock($mach_retQty, $mach_id){
+		$this->db->query("UPDATE machine SET mach_stocks = mach_stocks + ".$mach_retQty." WHERE mach_id = '".$mach_id."';");
+	}
+
+	function minus_machine($minusMach, $ma_id){
+		$this->db->query("UPDATE machine SET mach_stocks = mach_stocks - ".$minusMach." WHERE mach_id = '".$ma_id."';");
+	}
+
+	function minus_machine_rent($mach_retQty, $mach_id){
+		$this->db->query("UPDATE machine SET mach_stocks = mach_stocks + ".$mach_retQty." WHERE mach_id = '".$mach_id."';");
 	}
 }
 

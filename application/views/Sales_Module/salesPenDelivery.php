@@ -485,6 +485,7 @@
                                                                         <input class="form-control col-md-3" type="text" name="remarks" required="">
                                                                          <input name="deliveryID" type="hidden" class="form-control" value="<?php echo $row2->client_deliveryID; ?>" >
                                                                         <input name="client_dr" type="hidden" class="form-control" value="<?php echo $row2->client_dr; ?>" >
+                                                                        <input name="blend_id" type="hidden" class="form-control" value="<?php echo $row2->blend_id; ?>" >
 																		</div>
                                                                     </div>
                                                                 </div>

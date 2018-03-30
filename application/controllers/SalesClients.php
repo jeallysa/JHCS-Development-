@@ -69,7 +69,7 @@
 			$dataA = array(
 				"mach_returnDate" =>$this->input->post("date_returned"),
 				"mach_returnQty" =>$this->input->post("qty_returned"),
-				"client_id" =>$this->input->post("client_id"),
+				"client_id" =>$this->input->get("client_id"),
 				"mach_id" =>$this->input->post("mach_id"),
 				"mach_serial" =>$this->input->post("serial"),
                 "mach_remarks" =>$this->input->post("remarks")    
@@ -78,8 +78,13 @@
 			$return = 'Returned';
 			$id = $this->input->post("sales_id");
 			$cli_id = $this->input->post("cli_id");
+			
+			$mach_returnQty = $this->input->post("qty_returned");
+			$mach_id = $this->input->post("mach_id");
+
 			$this->sellProduct_model->insert_dataA($dataA);
 			$this->sellProduct_model->updateA($return, $id);
+			$this->sellProduct_model->minus_machine_rent($mach_returnQty, $mach_id);
 			echo "<script>alert('Machine Returned!');</script>";
 			redirect('salesClients/salesContract?id='.$cli_id.'', 'refresh');
 		}

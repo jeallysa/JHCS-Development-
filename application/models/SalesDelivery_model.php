@@ -50,6 +50,10 @@
 		function updateB($pay, $deliver_id, $amount_paid){
 			$this->db->query("UPDATE client_delivery SET payment_remarks ='".$pay."', amount_paid = amount_paid + ".$amount_paid." WHERE client_deliveryID = '".$deliver_id."';");
 		}
+
+		function add_blend($add_blend, $blend_id){
+			$this->db->query("UPDATE coffee_blend SET blend_qty = blend_qty + ".$add_blend." WHERE blend_id = '".$blend_id."';");
+		}
 	}
 
 ?>

@@ -203,9 +203,10 @@
 														<th><b>Purchase Date</b></th>
 														<th><b>Client</b></th>
 														<th><b>Machine</b></th>
-														<th><b>Quantity</b></th>
+														<th><b>Sold Quantity</b></th>
 														<th><b>Unit Price</b></th>
-														<th><b>Total Amount</b></th>
+                                                        <th><b>Total Amount</b></th>
+														<th><b>Returns Quantity</b></th>
                                                         <th><b>Action</b></th>
 													</thead>
 													<tbody>
@@ -226,6 +227,8 @@
                                                                 echo 'Php' .number_format($price * $qty, 2);
                                                              ?>
                                                          </td>
+                                                         <td><?php echo $row->mach_returnQty; ?></td>
+
                                                          <td><button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#return<?php echo $row->mach_salesID; ?>">Return</button>
                                                          </td>
                 <!-- modal machine returns -->
@@ -292,15 +295,20 @@
 
                                                                     <div class="form-group">
                                                                         <label class="col-md-6 control">Date Returned:</label>
-                                                                        <input class="form-control col-md-3" type="date" name="date_returned" required="">
+                                                                        <input class="form-control col-md-6" type="date" name="date_returned" required="">
                                                                         <input type="hidden" name="mach_id" value="<?php echo $row->mach_id; ?>" required>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
 
                                                                     <div class="form-group">
-                                                                        <label class="col-md-7 control">Quantity Returned:</label>
-                                                                        <input class="form-control col-md-3" type="number" name="qty_returned" min="1" max="<?php echo $row->mach_qty;?>" required="">
+                                                                        <label class="col-md-6 control">Quantity Returned:</label>
+                                                                        <input class="form-control col-md-6" type="number" name="qty_returned" min="1" max="<?php
+                                                                            $retqtymach = $row->mach_returnQty;
+                                                                            $solmach = $row->mach_qty;
+                                                                            $ret_mach = $solmach - $retqtymach;
+                                                                            echo $ret_mach;
+                                                                         ?>" required="">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -308,7 +316,7 @@
         
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label class="col-md-3 control">Remarks:</label>
+                                                                        <label class="col-md-6 control">Remarks:</label>
                                                                         <input class="form-control col-md-3" type="text" name="remarks" required="">
                                                                          <input name="serial" type="hidden" class="form-control" value="<?php echo $row->mach_serial; ?>" >
                                                                          <input name="client_id" type="hidden" class="form-control" value="<?php echo $row->client_id; ?>

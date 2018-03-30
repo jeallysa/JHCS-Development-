@@ -61,7 +61,10 @@
                 "status" =>$this->input->post("sold")
 			);
 			$data7 = $this->security->xss_clean($data7);
+			$ma_id = $this->input->post("mach_id");
+			$minusMach = $this->input->post("qty");
 			$this->sellProduct_model->add_data($data7);
+			$this->sellProduct_model->minus_machine($minusMach, $ma_id);
             redirect ('salesSellProduct');
 		}
 
@@ -79,8 +82,11 @@
 			$dataA = $this->security->xss_clean($dataA);
 			$return = 'Returned';
 			$id = $this->input->post("sales_id");
+			$mach_id = $this->input->post("mach_id");
+			$mach_retQty = $this->input->post("qty_returned");
 			$this->sellProduct_model->insert_dataA($dataA);
 			$this->sellProduct_model->updateA($return, $id);
+			$this->sellProduct_model->add_machine_stock($mach_retQty, $mach_id);
 			echo "<script>alert('Machine Returned!');</script>";
 			redirect('salesSellProduct', 'refresh');
 		}
