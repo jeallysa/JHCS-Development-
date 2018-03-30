@@ -36,10 +36,10 @@
 			);
 			$brewer = $this->input->post("brewer");
 			$type = $this->input->post("type");
-			$this->AdminMachines_model->activity_logs('admin', "Inserted: '".$brewer.", ".$type."'");
+			$this->AdminMachines_model->activity_logs('admin', "Inserted Coffee Machine: '".$brewer.", ".$type."'");
 			$data = $this->security->xss_clean($data);
 			$this->AdminMachines_model->insert_data($data);
-			echo "<script>alert('Update successful!');</script>";
+			echo "<script>alert('Inserted successful!');</script>";
 			redirect('adminMachines', 'refresh');
 		}
 
@@ -53,6 +53,7 @@
 			$limit = $this->input->post("limit");
 			$stock_level = $this->input->post("stock_level");
 			$sup_id = $this->input->post("sup_company");
+			$this->AdminMachines_Model->activity_logs('admin', "Updated Coffee Machine: ".$brewer.", ".$type." roast ");
 			$this->AdminMachines_Model->update($id, $brewer, $type, $price, $reorder, $limit, $stock_level, $sup_id);
 			echo "<script>alert('Update successful!');</script>";
 			redirect('adminMachines', 'refresh');
@@ -61,14 +62,15 @@
         function activation(){
 			$this->load->model('AdminMachines_model');
 			$id = $this->input->post("deact_id");
+			$deact = $this->db->query("SELECT * FROM machine WHERE mach_id = '".$id."'")->row()->mach_activation;
 			$brewer = $this->input->post("brewer");
 			$type = $this->input->post("type");
-			if ($id == 1){
-				$this->AdminMachines_model->activity_logs('admin', "Activated: '".$brewer.", ".$type."'");
-				$this->AdminMachines_model->activation($id);
+			if ($deact == 1){
+				$this->AdminMachines_model->activity_logs('admin', "Deactivated: '".$brewer.", ".$type."'");
+				$this->AdminMachines_model->activation($id);//
 				redirect('adminMachines');
 			}else{	
-				$this->AdminMachines_model->activity_logs('admin', "Deactivated: '".$brewer.", ".$type."'");
+				$this->AdminMachines_model->activity_logs('admin', "Activated: '".$brewer.", ".$type."'");
 				$this->AdminMachines_model->activation($id);
 				redirect('adminMachines');
 			}
