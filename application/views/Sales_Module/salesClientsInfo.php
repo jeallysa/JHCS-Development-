@@ -204,6 +204,7 @@
                                             <table id="" class="display hover order-column cell-border" cellspacing="0" width="100%">
                                                 <thead>
                                                     <th><b class="pull-left">Purchase Order No.</b></th>
+                                                    <th><b class="pull-left">Purchase Date</b></th>
                                                     <th><b class="pull-left">Item Code</b></th>
                                                     <th><b class="pull-left">Coffee Blend</b></th>
                                                     <th><b class="pull-left">Bag</b></th>
@@ -222,10 +223,11 @@
                                                 ?>
                                                     <tr>
                                                         <td><?php echo $row->contractPO_id; ?></td>
+                                                        <td><?php echo $row->contractPO_date; ?></td>
                                                         <td><?php echo $row->blend_id; ?></td>
                                                         <td><?php echo $row->blend; ?></td>
                                                         <td><?php echo $row->package_type; ?></td>
-                                                        <td><?php echo $row->package_size; ?></td>
+                                                        <td><?php echo number_format($row->package_size); ?> g</td>
                                                         <td><?php echo $row->contractPO_qty; ?></td>
                                                         <td>Php <?php echo number_format($row->blend_price,2); ?></td>
                                                         <td><?php 
@@ -249,7 +251,7 @@
                                                     <th><b class="pull-left">Delivery Receipt No.</b></th>
                                                     <th><b class="pull-left">Sales Invoice No.</b></th>
                                                     <th><b class="pull-left">Purchase Order No.</b></th>
-                                                    <th><b class="pull-left">Date Delivered</b></th>
+                                                    <th><b class="pull-left">Delivery Date</b></th>
                                                     <th><b class="pull-left">Coffee</b></th>
                                                     <th><b class="pull-left">Quantity</b></th>
                                                     <th><b class="pull-left">Unit Price</b></th>
@@ -269,7 +271,7 @@
                                                         <td><?php echo $row->client_invoice; ?></td>
                                                         <td><?php echo $row->contractPO_id; ?></td>
                                                         <td><?php echo $row->client_deliverDate; ?></td>
-                                                        <td><?php echo $row->blend.'/ '.$row->package_type.'/ '.$row->package_size; ?> g</td>
+                                                        <td><?php echo $row->blend.'/ '.$row->package_type.'/ '.number_format($row->package_size); ?> g</td>
                                                         <td><?php echo $row->contractPO_qty; ?></td>
                                                         <td>Php <?php echo number_format($row->blend_price,2); ?></td>
                                                         <td><?php 
@@ -294,7 +296,7 @@
                                                     <th><b class="pull-left">Collection No.</b></th>
                                                     <th><b class="pull-left">Delivery Receipt No.</b></th>
                                                     <th><b class="pull-left">Mode of Payment</b></th>
-                                                    <th><b class="pull-left">Date Paid</b></th>
+                                                    <th><b class="pull-left">Payment Date</b></th>
                                                     <th><b class="pull-left">Amount</b></th>
                                                     <th><b class="pull-left">Gross Amount</b></th>
                                                     <th><b class="pull-left">Withheld</b></th>
@@ -349,7 +351,7 @@
                                                         <thead class="text-primary">
                                                             <th><b class="pull-left">Delivery Receipt No.</b></th>
                                                             <th><b class="pull-left">Item Code</b></th>
-                                                            <th><b class="pull-left">Date Delivered</b></th>
+                                                            <th><b class="pull-left">Delivery Date</b></th>
                                                             <th><b class="pull-left">Amount</b></th>
                                                             <th>
                                                                 <input type="checkbox" id="checkall" />

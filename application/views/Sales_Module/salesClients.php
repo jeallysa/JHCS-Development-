@@ -247,7 +247,7 @@
                                                 </div>
                                             </div>-->
                                             <div class="form-group">
-                                                <label class="col-md-5 control">Date of Purchase :</label>
+                                                <label class="col-md-5 control">Purchase Date :</label>
                                                 <div class="col-md-4">
                                                     <input id="date" name="date" type="date" class="no-border" value="<?php echo date("Y-m-d");?>" data-validate="required" message="A Date of Purchase is recquired! min="<?=date('Y-m-d')?>" max="<?=date('Y-m-d',strtotime(date('Y-m-d')))?>"">
                                                 </div>
