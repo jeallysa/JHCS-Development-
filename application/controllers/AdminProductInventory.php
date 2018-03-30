@@ -29,8 +29,9 @@
 			$reorder = $this->input->post("reorder");
 			$stocklimit = $this->input->post("stocklimit");
 			$stocks = $this->input->post("stocks");
+			$price = $this->input->post("price");
 			$sup_id = $this->input->post("sup_company");
-			$this->AdminProductInventory_model->update($id, $name, $reorder, $stocks, $stocklimit, $sup_id);
+			$this->AdminProductInventory_model->update($id, $name, $reorder, $stocks, $stocklimit, $price, $sup_id);
             echo "<script>alert('Update successful!');</script>";
 			redirect('adminProductInventory', 'refresh');
 		}
@@ -43,6 +44,7 @@
 				"raw_reorder" =>$this->input->post("reorder"),
 				"raw_limit" =>$this->input->post("stocklimit"),
                 "raw_stock" =>$this->input->post("stocks"),
+                "unitPrice" =>$this->input->post("price"),
                 "sup_id" =>$this->input->post("sup_company")
         
 			);

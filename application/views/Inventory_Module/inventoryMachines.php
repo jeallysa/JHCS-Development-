@@ -196,10 +196,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <th><b class="pull-left">Machine No.</b></th>
                                                     <th><b class="pull-left">Machine</b></th>
                                                     <th><b class="pull-left">Type</b></th>
-                                                    <th><b class="pull-left">Reorder Level (per pc)</b></th>
-                                                    <th><b class="pull-left">Stock Limit (per pc)</b></th>
-                                                    <th><b class="pull-left">Number of Stocks (per pc)</b></th>
-                                                    <th><b class="pull-left">Physical Count (per pc)</b></th>
+                                                    <th><b class="pull-left">Reorder Level</b></th>
+                                                    <th><b class="pull-left">Stock Limit</b></th>
+                                                    <th><b class="pull-left">Number of Stocks</b></th>
+                                                    <th><b class="pull-left">Physical Count</b></th>
                                                     <th><b class="pull-left">Remarks</b></th>
                                                     <th><b class="pull-left">Cue Card</b></th>
                                                 </tr>
@@ -214,10 +214,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <td><?php echo $row->mach_id; ?></td>
                                                     <td><?php echo $row->brewer; ?></td>
                                                     <td><?php echo $row->brewer_type; ?></td>
-                                                    <td><?php echo $row->mach_reorder; ?></td>
-                                                    <td><?php echo $row->mach_limit; ?></td>
-                                                    <td><b><?php echo $row->mach_stocks; ?></b></td>
-                                                    <td><b><?php echo $row->mach_physcount; ?></b></td>
+                                                    <td><?php echo number_format($row->mach_reorder); ?> pc/s</td>
+                                                    <td><?php echo number_format($row->mach_limit); ?> pc/s</td>
+                                                    <td><b><?php echo number_format($row->mach_stocks); ?> pc/s</b></td>
+                                                    <td><b><?php echo number_format($row->mach_physcount); ?> pc/s</b></td>
                                                     <td><?php echo $row->mach_remarks; ?></td>
                                                     <td><a class="btn btn-info" data-toggle="modal" data-target="#<?php echo $row->mach_id; ?>" data-original-title style="float: right">View</a>
 
@@ -247,7 +247,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                           <tr>
                                                             <th><b>Client/Supplier</b></th>
                                                             <th><b>Date</b></th>
-                                                            <th><b>Quantity (per pc)</b></th>
+                                                            <th><b>Quantity</b></th>
                                                             <th><b>Remarks</b></th>
                                                             <th><b>Type</b></th>
                                                           </tr>
@@ -261,7 +261,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                            echo '<tr>' ,
                                                 '<td>'  . $object->client_company  . '</td>' ,
                                                 '<td>'  . $object->date  . '</td>' ,
-                                                '<td>'  . $object->mach_qty  . '</td>' ;
+                                                '<td>'  . number_format($object->mach_qty)  . ' pc/s</td>' ;
                                                 ?>
                                                     <td>Sales</td>
                                                     <td>OUT</td>
@@ -279,7 +279,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                            echo '<tr>' ,
                                                 '<td>'  . $object->client_company  . '</td>' ,
                                                 '<td>'  . $object->mach_returnDate  . '</td>' ,
-                                                '<td>'  . $object->mach_returnQty  . '</td>' ;
+                                                '<td>'  . number_format($object->mach_returnQty)  . ' pc/s</td>' ;
                                                 ?>
                                                     <td>Return</td>
                                                     <td>IN</td>
@@ -297,7 +297,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                            echo '<tr>' ,
                                                 '<td>'  . $object->client_company  . '</td>' ,
                                                 '<td>'  . $object->coService_date  . '</td>' ,
-                                                '<td>'  . $object->mach_qty  . '</td>' ;
+                                                '<td>'  . number_format($object->mach_qty)  . ' pc/s</td>' ;
                                                 ?>
                                                     <td>Coffee Services</td>
                                                     <td>OUT</td>
@@ -315,7 +315,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                            echo '<tr>' ,
                                                 '<td>'  . $object->sup_company  . '</td>' ,
                                                 '<td>'  . $object->date_received  . '</td>' ,
-                                                '<td>'  . $object->yield_weight  . '</td>' ;
+                                                '<td>'  . number_format($object->yield_weight)  . ' pc/s</td>' ;
                                                 ?>
                                                     <td>Company Delivery</td>
                                                     <td>IN</td>
@@ -337,7 +337,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                               $query = $this->db->query($retrieveDetails5);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
-                                           echo '<p>'  . $object->totalQty  . ' pieces</p>' ;
+                                           echo '<p>'  . $object->totalQty  . ' piece/s</p>' ;
                                            }
                                             }
                                                 ?>
@@ -351,7 +351,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                               $query = $this->db->query($retrieveDetails6);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
-                                           echo '<p>'  . $object->totalQty  . ' pieces</p>' ;
+                                           echo '<p>'  . $object->totalQty  . ' piece/s</p>' ;
                                            }
                                             }
                                                 ?>
@@ -391,6 +391,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                             <textarea style="resize:vertical;" class="form-control" rows="2" name="remarks"></textarea>
                                                                         </div>
                                                                         <button style="float: right;" type="submit" class="btn btn-success">Save</button>
+                                                                        <input type="reset" class="btn btn-danger" value="Clear" />
                                                                     </div>
                                                                 </div>
                                                             </div>

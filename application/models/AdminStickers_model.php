@@ -10,7 +10,7 @@ class AdminStickers_model extends CI_MODEL
 	 
 
 	function getStickers(){
-		$query=$this->db->query("SELECT sticker_id, sticker, sticker_reorder, sticker_limit, sup_company, sticker_stock, sticker_activation FROM sticker NATURAL JOIN supplier");
+		$query=$this->db->query("SELECT sup_id, sticker_id, sticker, sticker_reorder, sticker_limit, sup_company, sticker_stock, sticker_activation FROM sticker NATURAL JOIN supplier");
 		return $query->result();
 	}
     

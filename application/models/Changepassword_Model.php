@@ -14,13 +14,19 @@ class Changepassword_Model extends CI_model
 	function getUserid($username){
         $query = $this->db->query("SELECT user_no from jhcs.user where username ='".$username."';");
         foreach ($query ->result() as $row) {
-        	return $row->user_no;
+        	return $query->row()->user_no;
         }
 	}
+
+	function getUsers($username){
+		$query = $this->db->query("SELECT * FROM user WHERE username = '".$username."'");
+		return $query;
+	}
+
 	function getCurrPassword($userid){
 		$query = $this->db->where(['user_no' => $userid])
 							->get('user');
-		if ($query->num_rows() > 0) {
+		if ($query->num_rows() < 2) {
 			return $query->row();
 		} 
 	}
