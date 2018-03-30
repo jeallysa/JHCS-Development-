@@ -69,6 +69,37 @@
 			$this->db->update('client_coffreturn', $dataB);
 			
 		}
+
+		public function update_return($id){
+			$this->db->query("UPDATE client_coffreturn SET coff_returnQty = '0', resolved = 'Yes' WHERE client_deliveryID = '".$id."';");
+			
+		}
+
+		public function update_delivery($id){
+			$this->db->query("UPDATE client_delivery SET client_delivery.return = 'Received' WHERE client_deliveryID = '".$id."';");
+			
+		}
+
+
+		public function update_mach_return($MRID){
+			$this->db->query("UPDATE client_machreturn SET client_machreturn.resolved = 'Yes' WHERE client_machreturn.client_machReturnID = '".$MRID."';");
+			
+		}
+
+		public function update_less_return_coffee($quantity, $blend_id){
+			$this->db->query("UPDATE coffee_blend SET blend_qty = blend_qty - ".$quantity." WHERE blend_id = '".$blend_id."';");
+			
+		}
+
+		public function less_machine($m_id, $qty){
+			$this->db->query("UPDATE machine SET mach_stocks = mach_stocks - ".$qty." WHERE mach_id = '".$m_id."';");
+			
+		}
+
+		public function update_walkin_sales($id){
+			$this->db->query("UPDATE walkin_sales SET coff_remark = 'Received', walkin_returns = '0' WHERE walkin_id = '".$id."';");
+			
+		}
 		
 		public function ResolveMachineReturnsA($c_id, $m_id, $date, $remarks, $serial, $qty){
 			

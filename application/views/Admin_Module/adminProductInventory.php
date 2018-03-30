@@ -572,19 +572,19 @@ $(document).ready(function() {
 		buttons: [
             { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4]
+                    columns: [0, 1, 2, 3, 4, 5, 6]
                 }
             },
             
 			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4]
+                    columns: [0, 1, 2, 3, 4, 5, 6]
                 }
             },
             
 			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4]
+                    columns: [0, 1, 2, 3, 4, 5, 6]
                 }
             }
         ]

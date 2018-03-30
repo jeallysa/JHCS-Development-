@@ -15,7 +15,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- Bootstrap core CSS     -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/dataTables.bootstrap.min.css"/>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.dataTable.min.css"/>
+    <link href="<?php echo base_url(); ?>assets/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/css/jquery.dataTable.min.css" rel="stylesheet" />
     <!--  Material Dashboard CSS    -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0"/>
     <!--  CSS for Demo Purpose, don't include it in your project     -->
@@ -171,19 +172,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </div>
                         <form action="#" method="post" accept-charset="utf-8">
                             <div class="modal-body" style="padding: 5px;">
-                                <label>Set Date from </label>
-                                <input type="date" name=""/>
-                                <label> to </label>
-                                <input type="date" name=""/>
-                                <button style="float: right;" onclick="printDiv('toBePrinted<?php echo $details; ?>')"><i class="material-icons">print</i></button>
                                 <div id="page-wrapper">
-                                    <div id="toBePrinted<?php echo $details; ?>">
+                                    
                                     <div class="table-responsive">
                                         <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
                                                                 <h3><b><?php echo $pckg; ?> bag (<?php echo $size; ?> g)</b></h3>
                                                                 <hr>
                                                             </div>
-                                        <table class="table table-striped" id="table-mutasi">
+                                    <div class="form-group col-xs-3">
+                                    <label>Filter By:</label>
+                                        <div class="input-group input-daterange">
+                                        <input type="text" id="min<?php echo $details; ?>" class="form-control" value="2000-01-01" >
+                                        <span class="input-group-addon">to</span>
+                                        <input type="text" id="max<?php echo $details; ?>" class="form-control" value="<?php   echo date("Y-m-d") ?>" >
+                                    </div>
+                                </div>
+                                        <table class="table table-striped" id="table-mutasi<?php echo $details; ?>">
                                             <thead>
                                                 <tr>
                                                     <th><b>Client/Supplier</b></th>
@@ -201,7 +205,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
                                            echo '<tr>' ,
-                                                '<td> </td>' ,
+                                                '<td> Walkin Client </td>' ,
                                                 '<td>'  . $object->walkin_date  . '</td>' ,
                                                 '<td>'  . number_format($object->walkin_qty)  . ' pc/s</td>' ;
                                                 ?>
@@ -285,7 +289,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 </div>
                                                             </div>
 
-                                        <form action="InventoryPackaging/update/<?php echo $id ?>" method="post" accept-charset="utf-8">
+                                        <form action="InventoryPackaging/update" method="post" accept-charset="utf-8">
                                                             <div class="row">
                                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                                     
@@ -304,7 +308,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     <div class="form-group">
                                                                         <label for="type"></label>
                                                                         <div class="col-md-4">
-                                                                            <input value="<?php echo $details; ?>" class="form-control" name="rawid<?php echo $details; ?>" type="hidden" />
+                                                                            <input value="<?php echo $details; ?>" class="form-control" name="pckgid<?php echo $details; ?>" type="hidden" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
@@ -326,7 +330,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         </form>
                                                     </div>
                                     </div>
-                                </div>
+                                
                             </div>
                         </div>
                             <div class="panel-footer" align="center" style="margin-bottom:-14px;">
@@ -458,31 +462,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </body>       
                                                        
 <!--   Core JS Files   -->
-<!--
-    <script src="../assets/js/jquery-1.12.4.js" type="text/javascript"></script>
--->
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/bootstrap-datepicker.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/dataTables.buttons.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.flash.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.Html5.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.print.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/jszip.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/pdfmake.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/vfs_fonts.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/material.min.js" type="text/javascript"></script>
 <!--  Charts Plugin -->
-<script src="<?php echo base_url(); ?>assets/js/chartist.min.js"></script>
+<script src="../assets/js/chartist.min.js"></script>
 <!--  Dynamic Elements plugin -->
-<script src="<?php echo base_url(); ?>assets/js/arrive.min.js"></script>
+<script src="../assets/js/arrive.min.js"></script>
 <!--  PerfectScrollbar Library -->
-<script src="<?php echo base_url(); ?>assets/js/perfect-scrollbar.jquery.min.js"></script>
+<script src="../assets/js/perfect-scrollbar.jquery.min.js"></script>
 <!--  Notifications Plugin    -->
-<script src="<?php echo base_url(); ?>assets/js/bootstrap-notify.js"></script>
+<script src="../assets/js/bootstrap-notify.js"></script>
 <!--  Google Maps Plugin    -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 <!-- Material Dashboard javascript methods -->
-<script src="<?php echo base_url(); ?>assets/js/material-dashboard.js?v=1.2.0"></script>
+<script src="../assets/js/material-dashboard.js?v=1.2.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-<script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/jquery.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/jquery.datatables.js"></script>
+<script src="../assets/js/demo.js"></script>
 <script>
+
 $(document).ready(function() {
-    $('table.table').DataTable({
+    $('#example').DataTable({
         select: {
             style: 'single'
         }
@@ -491,28 +501,37 @@ $(document).ready(function() {
 });
 </script>
 <script>
-    function printDiv(divName){
-        var printme = document.getElementById(divName); 
+
+<?php
+           
+           $c = 1; 
+          
+    foreach($packaging as $object){
+       $temp =  $object->package_id;
+              
+        
+               ?>                               
+                                                  
     
-        var wme = window.open("","","width= 900","height=700");
+  $(document).ready(function(){                
+           $(<?php echo "'#details".$c." input[id=physcount".$c."]'"?>).keyup(function(){
+            var y = parseFloat($(this).val());
+            var x = parseFloat($(<?php echo "'#details".$c." input[id=pckgstocks".$c."]'"?>).val());
+            var res = x - y ;
+            $(<?php echo "'#details".$c." input[id=discrepancy".$c."]'"?>).val(res);
+});      
+});     
+  
     
-        var cancel = document.getElementsByClassName("btn");
-        for(var i=0; i < cancel.length; i++){  
-            cancel[i].style.visibility = 'hidden';
-        }
-        wme.document.write(printme.outerHTML);
-        wme.document.close();
-        wme.focus();
-        wme.print();
-        wme.close();
-    
-      
-        for(var i=0; i < cancel.length; i++){  
-            cancel[i].style.visibility = 'visible';
-        }
-    
-    }
-</script> 
+<?php                                                  
+                                                                 
+            
+       $c++;
+     }
+               
+?>
+
+</script>
 
 <script>
 
@@ -523,36 +542,69 @@ $(document).ready(function() {
     foreach($packaging as $object){
        $temp =  $object->package_id;
           
-         
-        
-        
-         $i = 1; //after every PO it returns to 1
-
-                        $retrieveDetails ="SELECT * FROM jhcs.packaging NATURAL JOIN supplier WHERE pack_activation = '1';";
-                        $query = $this->db->query($retrieveDetails);
-                                       
-                    
-                       if ($query->num_rows() > 0){
-                              foreach ($query->result() as $object){
+     
                ?>                               
                                                   
-    
-  $(document).ready(function(){                
-           $(<?php echo "'#details".$c." input[id=physcount".$i."]'"?>).keyup(function(){
-            var y = parseFloat($(this).val());
-            var x = parseFloat($(<?php echo "'#details".$c." input[id=pckgstocks".$i."]'"?>).val());
-            var res = x - y ;
-            $(<?php echo "'#details".$c." input[id=discrepancy".$i."]'"?>).val(res);
-});      
-});     
+    /**
+  $.fn.dataTableExt.afnFiltering.push(
+        function(oSettings, aData, iDataIndex){
+            var dateStart = parseDateValue($(<?php echo "'#details".$c." input[id=min".$c."]'"?>).val());
+            var dateEnd = parseDateValue($(<?php echo "'#details".$c." input[id=max".$c."]'"?>).val());
+            var evalDate= parseDateValue(aData[1]);
+
+            if (evalDate >= dateStart && evalDate <= dateEnd) {
+                return true;
+            }
+            else {
+                return false;
+            }
+    }); 
+*/
+    //Date Converter
+    function parseDateValue(rawDate) {
+        var month = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+        var dateArray = rawDate.split(" ");
+        var parsedDate = dateArray[2] + month + dateArray[0];
+        return parsedDate;
+    }
+
+
+    var oTable = $(<?php echo "'#details".$c." table[id=table-mutasi".$c."]'"?>).DataTable({ 
+        "dom":' fBrtip',
+        "lengthChange": false,
+        "info":     false,
+        buttons: [
+            { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs'},    
+            { "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs'},
+            { "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs'}
+        ]
+});
+
+    $(<?php echo "'#details".$c." input[id=min".$c."]'"?>).datepicker({
+        format: "yyyy-mm-dd",
+        weekStart: 1,
+        daysOfWeekHighlighted: "0",
+        autoclose: true,
+        todayHighlight: true
+    });
+    $(<?php echo "'#details".$c." input[id=max".$c."]'"?>).datepicker({
+        format: "yyyy-mm-dd",
+        weekStart: 1,
+        daysOfWeekHighlighted: "0",
+        autoclose: true,
+        todayHighlight: true
+    });
+
+    // Event Listeners
+    $(<?php echo "'#details".$c." input[id=min".$c."]'"?>).datepicker().on( 'changeDate', function() {
+        oTable.fnDraw(); 
+    });  
+    $(<?php echo "'#details".$c." input[id=max".$c."]'"?>).datepicker().on( 'changeDate', function() {
+        oTable.fnDraw(); 
+    }); 
   
     
-<?php                                                  
-                                                  
-                            $i++;
-                      }
-                       
-                 }
+<?php                  
                        
             
        $c++;

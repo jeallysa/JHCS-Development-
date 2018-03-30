@@ -126,7 +126,7 @@ class sellProduct_model extends CI_MODEL
 
 	function update_coffeereturn($return, $id, $blend_returnedQty){
 		$data2 = array(
-	        'coff_remarks' => $return,
+	        'coff_remark' => $return,
 	        'walkin_returns' => $blend_returnedQty
 		);
 

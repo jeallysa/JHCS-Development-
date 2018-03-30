@@ -175,18 +175,33 @@ a:focus {
                             <div class="modal-body" style="padding: 5px;">
                                     <div class="col-md-12 form-group">
                                          <div class="form-group label-floating">
-                                            <label for="email">Company Name</label>
+                                            <label for="email">Client</label>
+                                            <!--
                                             <select class="form-control" name="client_company" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Company Name should only countain letters">
-                                                <option disabled selected value> -- select a company name -- </option>
+                                                <option disabled selected value> -- select a client name -- </option>
                                                 <?php 
+                                                /*
 
                                                     foreach($data4['getName'] as $row)
                                                     { 
                                                         echo '<option value="'.$row->client_id.'">'.$row->client_company.'</option>';
                                                     }
+                                                */
                                                  ?>
                                             </select>
+                                        --> 
+                                            <?php
+                                                $cli_id = $this->input->get('p'); 
+                                                $query = $this->db->query("SELECT * FROM contracted_client WHERE client_id = '".$cli_id."';");
+                                                foreach($query->result() AS $row){
+                                            ?>
+                                            <input class="form-control" type="text" name="client" value="<?php echo $row->client_company?>" disabled>
+                                            <input class="form-control" type="hidden" name="client_company" value="<?php echo $row->client_id?>">
+                                            <?php
+                                                }
+                                            ?>
                                         </div>
+
                                         <div class="form-group label-floating">
                                             <label for="email">Date Started</label>
                                             <input class="form-control" name="date_started" type="date" class="no-border" value="<?php echo date("Y-m-d");?>" data-validate="required" message="Date of Purchase is recquired! min="<?=date('Y-m-d')?>" max="<?=date('Y-m-d',strtotime(date('Y-m-d').'+1 days'))?>"">
