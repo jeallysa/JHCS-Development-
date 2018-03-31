@@ -112,7 +112,7 @@
 			$this->sellProduct_model->insert_coffeereturn($coffeeblend_return);
 			$this->sellProduct_model->update_coffeereturn($return, $id, $blend_returnedQty);
 			$this->sellProduct_model->add_blend_stock($blend_returnedQty, $blend_id);
-			echo "<script>alert('Machine Returned!');</script>";
+			echo "<script>alert('Coffee Blend Returned!');</script>";
 			redirect('salesSellProduct', 'refresh');
 		}
 		

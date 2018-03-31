@@ -49,22 +49,27 @@
 		function resolveReturns()
 		{
 
-					echo 'A new return has been resolved';
-					  $id = $this->input->post('deliveryID');
-					   $date = $this->input->post('delivery_date');
-					  $receiver = $this->input->post('receiver');
-					  $dr = $this->input->post('DRReturns');
-						$SI = $this->input->post('SINo');
-						$client_id = $this->input->post('client_id');
-						$po = $this->input->post('PO_ID');
-						$RID = $this->input->post('RID');
-						/*$quantity = $this->input->post('quantity_returned');*/
-						$remarks = $this->input->post('remarksReturns');
-				
-					  $this->SalesReturns_model->ResolveCoffeeReturnsA($date, $receiver, $dr, $SI, $client_id, $po);
-						$resolved = 'Yes';
-					  $this->SalesReturns_model->ResolveCoffeeReturnsB($RID, $remarks, $resolved);
-					  redirect('SalesReturns/index');
+		echo 'A new return has been resolved';
+		  $id = $this->input->post('deliveryID');
+		  // $date = $this->input->post('delivery_date');
+		  // $receiver = $this->input->post('receiver');
+		  // $dr = $this->input->post('DRReturns');
+		  // $SI = $this->input->post('SINo');
+		  // $client_id = $this->input->post('client_id');
+		  // $po = $this->input->post('PO_ID');
+		  // $RID = $this->input->post('RID');
+		  $quantity = $this->input->post('quantity');
+		  $blend_id = $this->input->post('blend_id');
+		  // $remarks = $this->input->post('remarksReturns');
+	
+		 //  $this->SalesReturns_model->ResolveCoffeeReturnsA($date, $receiver, $dr, $SI, $client_id, $po);
+			// $resolved = 'Yes';
+		 //  $this->SalesReturns_model->ResolveCoffeeReturnsB($RID, $remarks, $resolved);
+		  $this->SalesReturns_model->update_return($id);
+		  $this->SalesReturns_model->update_delivery($id);
+		  $this->SalesReturns_model->update_less_return_coffee($quantity, $blend_id);
+		echo "<script>alert('Blend Return has been resolved!');</script>";
+		  redirect('SalesReturns/index');
 
 		}
 		
