@@ -84,6 +84,11 @@
 			$this->db->query("UPDATE coffee_blend SET blend_qty = blend_qty - ".$quantity." WHERE blend_id = '".$blend_id."';");
 			
 		}
+
+		public function update_walkin_sales($id){
+			$this->db->query("UPDATE walkin_sales SET coff_remark = 'Received', walkin_returns = '0' WHERE walkin_id = '".$id."';");
+			
+		}
 		
 		public function ResolveMachineReturnsA($c_id, $m_id, $date, $remarks, $serial, $qty){
 			

@@ -305,66 +305,68 @@
                                                         <td><?php echo $row->walkin_returns; ?></td>
                                                         <td><?php echo $row->coff_remarks; ?></td>
                                                         <td>
-                                                            <button class="btn btn-danger btn-sm viewCoffeeReturns" style="margin-top: 0px" data-toggle="modal" data-target="#resolve_coffee_walkin<?php echo $row->walkin_id; ?>" id="getDetails" data-id="<?php echo $row->walkin_id; ?>"> Resolve</button>
+                                                            <button class="btn btn-danger btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#resolve_coffee_walkin<?php echo $row->walkin_id; ?>" id="getDetails" data-id="<?php echo $row->walkin_id; ?>"> Resolve</button>
                                                         </td>
 
         <!--modal for coffee walkin returns-->
              <div class="modal fade displaycontent" id="resolve_coffee_walkin<?php echo $row->walkin_id; ?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
                  <div class="modal-dialog modal-md">
                      <div class="panel panel-primary">
-                                    <div class="panel-heading">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                        <h4 class="panel-title" id="contactLabel"><center>Resolve Coffee Returns</center></h4>
-                                    </div>
+                            <div class="panel-heading">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="panel-title" id="contactLabel"><center>Resolve Coffee Returns</center></h4>
+                            </div>
                                     
-                                        <div class="modal-body" style="padding: 10px;">
-
-                                            <?php echo form_open('SalesReturns/resolveReturns', array('method'=>'POST')); ?>
+                            <div class="modal-body" style="padding: 10px;">
+                                <form action="<?php echo base_url(); ?>SalesReturns/resolve_walkin" method="post" accept-charset="utf-8">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        
                                         <div class="row">
-                                            <div class="col-lg-12">
-                                                
-                                                <div class="row">
-                                                    <div class="form-group">
-                                                        <label class="col-md-5 control">Coffee Blend :</label>
-                                                        <p class="col-md-5 control"><b><?php echo $row->blend; ?></b></p>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-md-5 control">Bag :</label>
-                                                        <p class="col-md-5 control"><b><?php echo $row->package_type; ?></b></p>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-md-5 control">Size :</label>
-                                                        <p class="col-md-5 control"><b><?php echo number_format($row->package_size); ?> g</b></p>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-md-5 control">Returned Quantity :</label>
-                                                        <p class="col-md-5 control"><b><?php echo $row->walkin_returns; ?></b></p>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-md-5 control">Remarks :</label>
-                                                        <p class="col-md-5 control"><b><?php echo $row->coff_remarks; ?></b></p>
-                                                    </div>
-                                                </div>
+                                            <div class="form-group">
+                                                <input type="hidden" name="walkin_id" value="<?php echo $row->walkin_id; ?>">
+                                                <input type="hidden" name="resolve_walkin_qty" value="<?php echo $row->walkin_returns; ?>">
+                                                <input type="hidden" name="blend_id_walkin" value="<?php echo $row->blend_id; ?>">
+                                                <label class="col-md-5 control">Coffee Blend :</label>
+                                                <p class="col-md-5 control"><b><?php echo $row->blend; ?></b></p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-5 control">Bag :</label>
+                                                <p class="col-md-5 control"><b><?php echo $row->package_type; ?></b></p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-5 control">Size :</label>
+                                                <p class="col-md-5 control"><b><?php echo number_format($row->package_size); ?> g</b></p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-5 control">Returned Quantity :</label>
+                                                <p class="col-md-5 control"><b><?php echo $row->walkin_returns; ?></b></p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-5 control">Remarks :</label>
+                                                <p class="col-md-5 control"><b><?php echo $row->coff_remarks; ?></b></p>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
 
-                                        </div><br>
-                                        <div class="modal-footer">
-                                            <div class="form-group">
-                                                    <label class="col-md-3 control">Action :</label>
-                                                    <div class="col-md-8">
-                                                        <?php echo form_input(['name'=>'remarksReturns','id'=>'remarksReturns', 'class'=>'form-control','type'=>'text']); ?>
-                                                    </div>
-                                                    </div>
-                                                    <br>
-                                            <?php echo form_submit(['name'=>'ResolveReturn', 'value'=>'Resolve','class'=>'btn btn-primary']) ?>
-                                            
+                                <br>
+                                <div class="modal-footer">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control">Action :</label>
+                                        <input name="action" type="text" class="form-control">
+                                        <div class="col-md-8">
+                                            <button type="submit" class="btn btn-danger btn-md">Resolve</button>
                                         </div>
-                                    <?php echo form_close(); ?>
-                        </div>
-                         
+                                    </div>
+                                    <br>
+                                </div>
+                            </form>
+                            </div>
                     </div>
-                 </div></div>
+                         
+                </div>
+            </div>
                                                     </tr>
                                                     <?php
                                                         }
@@ -375,9 +377,6 @@
                                     </div>
                                             </div>
                                             <div class="tab-pane" id="machinereturn">
-                                                <!--<div class="card-header btn btn-primary btn-lg" data-background-color="green" data-toggle="modal" data-target="#add_machine_return" data-original-title style="float:right;">
-                                                    Add Return
-                                                </div>-->
                                                 <br>
                                                 <br>
                                                 <table id="fresh-datatables" class="display table-striped table-hover cell-border" cellspacing="0" width="100%" style="width:100%">

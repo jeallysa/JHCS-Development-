@@ -49,7 +49,6 @@
 		function resolveReturns()
 		{
 
-		echo 'A new return has been resolved';
 		  $id = $this->input->post('deliveryID');
 		  // $date = $this->input->post('delivery_date');
 		  // $receiver = $this->input->post('receiver');
@@ -67,6 +66,20 @@
 		 //  $this->SalesReturns_model->ResolveCoffeeReturnsB($RID, $remarks, $resolved);
 		  $this->SalesReturns_model->update_return($id);
 		  $this->SalesReturns_model->update_delivery($id);
+		  $this->SalesReturns_model->update_less_return_coffee($quantity, $blend_id);
+		echo "<script>alert('Blend Return has been resolved!');</script>";
+		  redirect('SalesReturns/index');
+
+		}
+
+		function resolve_walkin()
+		{
+
+		  $id = $this->input->post('walkin_id');
+		  $quantity = $this->input->post('resolve_walkin_qty');
+		  $blend_id = $this->input->post('blend_id_walkin');
+
+		  $this->SalesReturns_model->update_walkin_sales($id);
 		  $this->SalesReturns_model->update_less_return_coffee($quantity, $blend_id);
 		echo "<script>alert('Blend Return has been resolved!');</script>";
 		  redirect('SalesReturns/index');
