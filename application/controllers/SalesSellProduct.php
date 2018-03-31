@@ -46,11 +46,8 @@
 
 			$this->sellProduct_model->record_data($date, $quantity, $blend_id);
 			echo "<script>alert('Client order has been saved!');</script>";
-<<<<<<< HEAD
-			redirect ('salesSellProduct/salesWalkin');
-=======
+
 			redirect('salesSellProduct/salesWalkin', 'refresh');
->>>>>>> 71f36a2663734706cb99a6ed8a0846f3bc9400bf
 		}
 
 		public function add()
@@ -91,6 +88,30 @@
 			$this->sellProduct_model->insert_dataA($dataA);
 			$this->sellProduct_model->updateA($return, $id);
 			$this->sellProduct_model->add_machine_stock($mach_retQty, $mach_id);
+			echo "<script>alert('Machine Returned!');</script>";
+			redirect('salesSellProduct', 'refresh');
+		}
+
+        function return_blend()
+		{
+			$this->load->model('sellProduct_model');
+			$coffeeblend_return = array(
+				"client_deliveryID" =>$this->input->post("walkin_id"),
+				"coff_returnDate" =>$this->input->post("date_blend_returned"),
+				"coff_returnQty" =>$this->input->post("blend_returned"),
+				"coff_remarks" =>$this->input->post("return_blend_remarks")
+			);
+			$coffeeblend_return = $this->security->xss_clean($coffeeblend_return);
+
+			$return = 'Returned';
+			$id = $this->input->post("walkin_id");
+			$blend_id = $this->input->post("blend_id");
+			$blend_returnedQty = $this->input->post("blend_returned");
+
+
+			$this->sellProduct_model->insert_coffeereturn($coffeeblend_return);
+			$this->sellProduct_model->update_coffeereturn($return, $id, $blend_returnedQty);
+			$this->sellProduct_model->add_blend_stock($blend_returnedQty, $blend_id);
 			echo "<script>alert('Machine Returned!');</script>";
 			redirect('salesSellProduct', 'refresh');
 		}
