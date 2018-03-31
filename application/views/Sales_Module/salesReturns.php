@@ -232,7 +232,7 @@
 									<div class="card-content">
                                         <div class="tab-content">
                                             <div class="tab-pane active" id="coffeereturns">
-                                                <ul class="nav nav-tabs navbar-default justify-content-center" id="deliveries" >
+                                                <ul class="nav nav-tabs navbar-default justify-content-center" id="coffeereturns" >
                                                     <li class="active"><a href="#contract" data-toggle="tab" >Contracted Client</a></li>
                                                     <li><a href="#walkin" data-toggle="tab">Walk-in Client</a></li>
                                                 </ul>
