@@ -9,13 +9,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url(); ?>assets/img/apple-icon.png"/>
     <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/img/favicon.png"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Inventory Stocks</title>
+    <title>Inventory Machines</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/dataTables.bootstrap.min.css"/>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.dataTable.min.css"/>
+    <link href="<?php echo base_url(); ?>assets/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/css/jquery.dataTable.min.css" rel="stylesheet" />
     <!--  Material Dashboard CSS    -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0"/>
     <!--  CSS for Demo Purpose, don't include it in your project     -->
@@ -171,20 +172,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </div>
                         <form action="#" method="post" accept-charset="utf-8">
                             <div class="modal-body" style="padding: 5px;">
-                                <label>Set Date from </label>
-                                <input type="date" name=""/>
-                                <label> to </label>
-                                <input type="date" name=""/>
-                                <button style="float: right;" onclick="printDiv('toBePrinted<?php echo $details; ?>')"><i class="material-icons">print</i></button>
                                 <div id="page-wrapper">
-                                    <div id="toBePrinted<?php echo $details; ?>">
+                                    
                                     <div class="table-responsive">
                                         <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
                                                                 <h3><b><?php echo $brwr; ?></b></h3>
                                                                 <h4><?php echo $brwrtype; ?></h4>
                                                                 <hr>
                                                             </div>
-                                        <table class="table table-striped" id="table-mutasi">
+                                                           
+                                    <div class="form-group col-xs-3">
+                                    <label>Filter By:</label>
+                                        <div class="input-group input-daterange">
+                                        <input type="text" id="min<?php echo $details; ?>" class="form-control" value="2000-01-01" >
+                                        <span class="input-group-addon">to</span>
+                                        <input type="text" id="max<?php echo $details; ?>" class="form-control" value="<?php   echo date("Y-m-d") ?>" >
+                                    </div>
+                                </div>
+                                        <table class="table table-striped" id="table-mutasi<?php echo $details ?>">
                                             <thead>
                                                 <tr>
                                                     <th><b>Client/Supplier</b></th>
@@ -269,6 +274,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         ?> 
                                  
                                             </tbody>
+
                                         </table>
                                         <div class="row">
                                                    <div class="col-lg-6 col-md-6 col-offset-6">
@@ -301,38 +307,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                        <form action="InventoryStocks/update/<?php echo $id ?>" method="post" accept-charset="utf-8">
+                                        <form action="InventoryMachines/update" method="post" accept-charset="utf-8">
                                                             <div class="row">
                                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                                     
                                                                     <div class="form-group">
                                                                         <label class="col-md-6 control">Physical Count :</label>
                                                                         <div class="col-md-4">
-                                                                            <input id="physcount<?php echo $details; ?>" name="physcount<?php echo $details; ?>" type="number" class="form-control"/>
+                                                                            <input id="physcount<?php echo $details; ?>" name="physcount[]" type="number" class="form-control"/>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label class="col-md-6 control">Discrepancy :</label>
                                                                         <div class="col-md-4">
-                                                                            <input value="0" id="discrepancy<?php echo $details; ?>" name="discrepancy<?php echo $details; ?>" readonly="" class="form-control" />
+                                                                            <input value="0" id="discrepancy<?php echo $details; ?>" name="discrepancy[]" readonly="" class="form-control" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="type"></label>
                                                                         <div class="col-md-4">
-                                                                            <input value="<?php echo $details; ?>" class="form-control" name="rawid<?php echo $details; ?>" type="hidden" />
+                                                                            <input value="<?php echo $details; ?>" class="form-control" id="machid<?php echo $details; ?>" name="machid[]" type="hidden" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="type"></label>
                                                                         <div class="col-md-4">
-                                                                            <input value="<?php echo $stock; ?>" class="form-control" id = "machstocks<?php echo $details; ?>" name="machstocks<?php echo $details; ?>" type="hidden" />
+                                                                            <input value="<?php echo $stock; ?>" class="form-control" id = "machstocks<?php echo $details; ?>" name="machstocks[]" type="hidden" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label class="col-md-6 control">Remarks :</label>
                                                                         <div class="col-md-10">
-                                                                            <textarea style="resize:vertical;" class="form-control" rows="2" name="remarks<?php echo $details; ?>"></textarea>
+                                                                            <textarea style="resize:vertical;" class="form-control" rows="2" name="remarks[]"></textarea>
                                                                         </div>
                                                                         <button type="submit" class="btn btn-success">Save</button>
                                                                         <input type="reset" class="btn btn-danger" value="Clear" />
@@ -342,7 +348,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         </form>
                                                     </div>
                                     </div>
-                                </div>
+                                
                             </div>
                         </div>
                             <div class="panel-footer" align="center" style="margin-bottom:-14px;">
@@ -474,31 +480,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </body>       
                                                        
 <!--   Core JS Files   -->
-<!--
-    <script src="../assets/js/jquery-1.12.4.js" type="text/javascript"></script>
--->
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/bootstrap-datepicker.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/dataTables.buttons.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.flash.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.Html5.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.print.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/jszip.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/pdfmake.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/vfs_fonts.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/material.min.js" type="text/javascript"></script>
 <!--  Charts Plugin -->
-<script src="<?php echo base_url(); ?>assets/js/chartist.min.js"></script>
+<script src="../assets/js/chartist.min.js"></script>
 <!--  Dynamic Elements plugin -->
-<script src="<?php echo base_url(); ?>assets/js/arrive.min.js"></script>
+<script src="../assets/js/arrive.min.js"></script>
 <!--  PerfectScrollbar Library -->
-<script src="<?php echo base_url(); ?>assets/js/perfect-scrollbar.jquery.min.js"></script>
+<script src="../assets/js/perfect-scrollbar.jquery.min.js"></script>
 <!--  Notifications Plugin    -->
-<script src="<?php echo base_url(); ?>assets/js/bootstrap-notify.js"></script>
+<script src="../assets/js/bootstrap-notify.js"></script>
 <!--  Google Maps Plugin    -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 <!-- Material Dashboard javascript methods -->
-<script src="<?php echo base_url(); ?>assets/js/material-dashboard.js?v=1.2.0"></script>
+<script src="../assets/js/material-dashboard.js?v=1.2.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-<script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/jquery.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/jquery.datatables.js"></script>
+<script src="../assets/js/demo.js"></script>
 <script>
 $(document).ready(function() {
-    $('table.table').DataTable({
+    $('#example').DataTable({
         select: {
             style: 'single'
         }
@@ -506,29 +517,39 @@ $(document).ready(function() {
     });
 });
 </script>
+
 <script>
-    function printDiv(divName){
-        var printme = document.getElementById(divName); 
+
+<?php
+           
+           $c = 1; 
+          
+    foreach($machine as $object){
+       $temp =  $object->mach_id;
+              
+        
+               ?>                               
+                                                  
     
-        var wme = window.open("","","width= 900","height=700");
+  $(document).ready(function(){                
+           $(<?php echo "'#details".$c." input[id=physcount".$c."]'"?>).keyup(function(){
+            var y = parseFloat($(this).val());
+            var x = parseFloat($(<?php echo "'#details".$c." input[id=machstocks".$c."]'"?>).val());
+            var res = x - y ;
+            $(<?php echo "'#details".$c." input[id=discrepancy".$c."]'"?>).val(res);
+});      
+});     
+  
     
-        var cancel = document.getElementsByClassName("btn");
-        for(var i=0; i < cancel.length; i++){  
-            cancel[i].style.visibility = 'hidden';
-        }
-        wme.document.write(printme.outerHTML);
-        wme.document.close();
-        wme.focus();
-        wme.print();
-        wme.close();
-    
-      
-        for(var i=0; i < cancel.length; i++){  
-            cancel[i].style.visibility = 'visible';
-        }
-    
-    }
-</script> 
+<?php                                                  
+                                                                 
+            
+       $c++;
+     }
+               
+?>
+
+</script>
 
 <script>
 
@@ -539,36 +560,69 @@ $(document).ready(function() {
     foreach($machine as $object){
        $temp =  $object->mach_id;
           
-         
-        
-        
-         $i = 1; //after every PO it returns to 1
-
-                        $retrieveDetails ="SELECT * FROM jhcs.machine NATURAL JOIN supplier WHERE mach_activation = '1';";
-                        $query = $this->db->query($retrieveDetails);
-                                       
-                    
-                       if ($query->num_rows() > 0){
-                              foreach ($query->result() as $object){
+     
                ?>                               
                                                   
-    
-  $(document).ready(function(){                
-           $(<?php echo "'#details".$c." input[id=physcount".$i."]'"?>).keyup(function(){
-            var y = parseFloat($(this).val());
-            var x = parseFloat($(<?php echo "'#details".$c." input[id=machstocks".$i."]'"?>).val());
-            var res = x - y ;
-            $(<?php echo "'#details".$c." input[id=discrepancy".$i."]'"?>).val(res);
-});      
-});     
+    /**
+  $.fn.dataTableExt.afnFiltering.push(
+        function(oSettings, aData, iDataIndex){
+            var dateStart = parseDateValue($(<?php echo "'#details".$c." input[id=min".$c."]'"?>).val());
+            var dateEnd = parseDateValue($(<?php echo "'#details".$c." input[id=max".$c."]'"?>).val());
+            var evalDate= parseDateValue(aData[1]);
+
+            if (evalDate >= dateStart && evalDate <= dateEnd) {
+                return true;
+            }
+            else {
+                return false;
+            }
+    }); 
+*/
+    //Date Converter
+    function parseDateValue(rawDate) {
+        var month = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+        var dateArray = rawDate.split(" ");
+        var parsedDate = dateArray[2] + month + dateArray[0];
+        return parsedDate;
+    }
+
+
+    var oTable = $(<?php echo "'#details".$c." table[id=table-mutasi".$c."]'"?>).DataTable({ 
+        "dom":' fBrtip',
+        "lengthChange": false,
+        "info":     false,
+        buttons: [
+            { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs'},    
+            { "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs'},
+            { "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs'}
+        ]
+});
+
+    $(<?php echo "'#details".$c." input[id=min".$c."]'"?>).datepicker({
+        format: "yyyy-mm-dd",
+        weekStart: 1,
+        daysOfWeekHighlighted: "0",
+        autoclose: true,
+        todayHighlight: true
+    });
+    $(<?php echo "'#details".$c." input[id=max".$c."]'"?>).datepicker({
+        format: "yyyy-mm-dd",
+        weekStart: 1,
+        daysOfWeekHighlighted: "0",
+        autoclose: true,
+        todayHighlight: true
+    });
+
+    // Event Listeners
+    $(<?php echo "'#details".$c." input[id=min".$c."]'"?>).datepicker().on( 'changeDate', function() {
+        oTable.fnDraw(); 
+    });  
+    $(<?php echo "'#details".$c." input[id=max".$c."]'"?>).datepicker().on( 'changeDate', function() {
+        oTable.fnDraw(); 
+    }); 
   
     
-<?php                                                  
-                                                  
-                            $i++;
-                      }
-                       
-                 }
+<?php                  
                        
             
        $c++;
@@ -577,5 +631,5 @@ $(document).ready(function() {
 ?>
 
 </script>
- 
+
 </html>

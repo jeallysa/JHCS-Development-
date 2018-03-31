@@ -21,7 +21,8 @@ class InventoryMachines_Model extends CI_model
           return NULL;
   }
 
-	function update($machid, $count, $discrepancy, $remarks){
+
+      function update($machid, $count, $discrepancy, $remarks){
 		$data = array(
 	        
 	        'mach_physcount' => $count,
