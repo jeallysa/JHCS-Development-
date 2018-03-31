@@ -1,4 +1,4 @@
-<!doctype html>
+f<!doctype html>
 <html lang="en">
 
 <head>
@@ -6,7 +6,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
     <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Client Blends Inventory Stocks</title>
+    <title>Raw Coffee Inventory Stocks</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
@@ -22,111 +22,96 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
 </head>
-<style>
-    /*
-        td.highlight {
-            background-color: whitesmoke !important;
-        }
-*/
-
+    <style>
+        
     .table thead,
     thead th {
         text-align: center;
         font-size: 120%;
     }
-    /* Custom Style */
 
-    .onoffswitch {
-        position: relative;
-        width: 110px;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-    }
-
-    .onoffswitch-checkbox {
-        display: none;
-    }
-
-    .onoffswitch-label {
-        display: block;
-        overflow: hidden;
+    input[type=checkbox].toggle-switch {
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        width: 4em;
+        height: 2em;
+        border-radius: 2em;
+        background-color: #ddd;
+        outline: 0;
         cursor: pointer;
-        border: 2px solid #999999;
-        border-radius: 20px;
+        transition: background-color 0.09s ease-in-out;
+        position: relative;
     }
 
-    .onoffswitch-inner {
-        display: block;
-        width: 200%;
-        margin-left: -100%;
-        -moz-transition: margin 0.3s ease-in 0s;
-        -webkit-transition: margin 0.3s ease-in 0s;
-        -o-transition: margin 0.3s ease-in 0s;
-        transition: margin 0.3s ease-in 0s;
+    input[type=checkbox].toggle-switch:checked {
+        background-color: #3af;
     }
 
-    .onoffswitch-inner:before,
-    .onoffswitch-inner:after {
-        display: block;
-        float: left;
-        width: 50%;
-        height: 30px;
-        padding: 0;
-        line-height: 30px;
-        font-size: 14px;
-        color: white;
-        font-family: Trebuchet, Arial, sans-serif;
-        font-weight: bold;
-        -moz-box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-    }
-
-    .onoffswitch-inner:before {
-        content: " Enabled";
-        padding-left: 10px;
-        background-color: #2FCCFF;
-        color: #FFFFFF;
-    }
-
-    .onoffswitch-inner:after {
-        content: "Disabled";
-        padding-right: 10px;
-        background-color: #EEEEEE;
-        color: #999999;
-        text-align: right;
-    }
-
-    .onoffswitch-switch {
-        display: block;
-        width: 18px;
-        margin: 7px;
-        background: #FFFFFF;
-        border: 2px solid #999999;
-        border-radius: 20px;
+    input[type=checkbox].toggle-switch::after {
+        content: '';
+        width: 2em;
+        height: 2em;
+        background-color: white;
+        border-radius: 2em;
         position: absolute;
-        top: 0;
-        bottom: 0;
-        right: 70px;
-        -moz-transition: all 0.3s ease-in 0s;
-        -webkit-transition: all 0.3s ease-in 0s;
-        -o-transition: all 0.3s ease-in 0s;
-        transition: all 0.3s ease-in 0s;
+        transform: scale(0.7);
+        left: 0;
+        transition: left 0.09s ease-in-out;
+        box-shadow: 0 0.1em rgba(0, 0, 0, 0.5);
     }
 
-    .onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-inner {
-        margin-left: 0;
+    input[type=checkbox].toggle-switch:checked::after {
+        left: 2em;
     }
-
-    .onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-switch {
-        right: 0px;
-    }
-
     .navbar {
         background-color: chartreuse;
     }
-    </style>
+
+.pagination>.active>a,
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover {
+    background-color: #4caf50;
+    border-color: #9c27b0;
+    color: #FFFFFF;
+    box-shadow: 0 4px 5px 0 rgba(156, 39, 176, 0.14), 0 1px 10px 0 rgba(156, 39, 176, 0.12), 0 2px 4px -1px rgba(156, 39, 176, 0.2);
+}
+
+.page-header {
+    height: 60vh;
+    background-position: center center;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+a {
+    color: #4caf50;
+}
+
+a:hover,
+a:focus {
+    color: #4caf50;
+    text-decoration: none;
+}
+
+.navbar .dropdown-menu li a:hover,
+.navbar .dropdown-menu li a:focus,
+.navbar .dropdown-menu li a:active,
+.navbar.navbar-default .dropdown-menu li a:hover,
+.navbar.navbar-default .dropdown-menu li a:focus,
+.navbar.navbar-default .dropdown-menu li a:active {
+    background-color: #4caf50;
+    color: #FFFFFF;
+    box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2);
+}
+</style>
 <body>
     <div class="wrapper">
         <div class="sidebar" data-color="green" data-image="<?php echo base_url(); ?>assets/img/sidebar-1.jpg">
@@ -260,11 +245,7 @@
                     </div>
                 </div>
             </div>
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="card">
+            
                                 <div class="modal fade" id="newblend" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="panel panel-primary">
@@ -427,6 +408,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
                                 <div class="card-header" data-background-color="green">
                                     <div class="nav-tabs-navigation">
                                         <div class="nav-tabs-wrapper">
@@ -440,7 +426,7 @@
                                                 <span></span>
                                                 <li>
                                                     <a href="<?php echo base_url(); ?>adminBlends">
-                                                        Existing Blends
+                                                        Company Blends
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
@@ -477,9 +463,9 @@
                                 </div>
                                 <div class="card-content">
                                     <a href="<?php echo base_url(); ?>AdminBlends/add_show" class="btn btn-success" style="float: right">Add New Blend</a>
-                                    <table id="example" class="table hover order-column" cellspacing="0" width="100%">
+                                     <table id="example" class="table hover order-column" cellspacing="0" width="100%" style="font-size: 11px">
                                         <thead>
-                                            <th><b class="pull-left">Blend Name</b></th>
+                                            <th><b class="pull-left">Client Blend</b></th>
                                             <?php
                                                     $conntitle=mysqli_connect("localhost","root","","jhcs");
                                                     if ($conntitle->connect_error) {
@@ -501,7 +487,7 @@
                                             <th><b class="pull-left">Size</b></th>
                                             <th><b class="pull-left">Packaging</b></th>
                                             <th><b class="pull-left">Price Per Unit</b></th>
-                                           
+                                            <th><b class="pull-left">Quantity</b></th>
                                             <th><b class="pull-left">Edit</b></th>
                                             <th><b class="pull-left">Activation</b></th>
                                         </thead>
@@ -515,7 +501,6 @@
                                                         foreach($fetch_data_cb -> result() as $row)
                                                         {
                                                 ?>
-                                            <tr>
                                                 <td><?php echo $row->blend; ?></td>
 
                                                 
@@ -530,7 +515,8 @@
                                                 ?>
                                                 <td><?php echo $row->package_size; ?></td>
                                                 <td><?php echo $row->package_type; ?></td>
-                                                <td><?php echo $row->blend_price; ?></td>
+                                                <td>Php<?php echo number_format($row->blend_price,2); ?></td>
+                                                <td><?php echo $row->blend_qty; ?></td>
 
                                                 <!--
                                                 <td>Blend A</td>
@@ -546,13 +532,57 @@
                                                 </td>
                                                 <td>
                                                     <div class="onoffswitch">
-                                                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                                                        <label class="onoffswitch-label" for="myonoffswitch">
-                                                            <span class="onoffswitch-inner"></span>
-                                                            <span class="onoffswitch-switch"></span>
-                                                        </label>
+                                                         <?php
+                                                        if($row->blend_activation == 1){
+
+                                                    ?>
+                                                         <input type="checkbox" id="button<?php echo $row->main_id;?>" class="toggle-switch" data-toggle="modal" data-target="#deactivate<?php echo $row->main_id;?>" checked>
+                                                    <?php
+                                                        }else{
+
+                                                    ?>
+
+                                                        <input type="checkbox" id="button<?php echo $row->main_id;?>" class="toggle-switch" data-toggle="modal" data-target="#deactivate<?php echo $row->main_id;?>">
+                                                    <?php
+                                                        }
+
+                                                    ?>
                                                     </div>
                                                 </td>
+                                                <div class="modal fade" id="deactivate<?php echo $row->main_id;?>" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="panel panel-primary">
+                                                            <div class="panel-heading" >
+                                                                <button type="button" class="close" data-dismiss="modal" onclick="document.getElementById('button<?php echo $row->main_id;?>').click()" aria-hidden="true">×</button>
+                                                                <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-warning-sign"></span> Activation/Deactivation </h4>
+                                                            </div>
+                                                            <form action="<?php echo base_url(); ?>AdminClientBlends/activation" method="post" accept-charset="utf-8">
+                                                                <div class="modal-body" style="padding: 5px;">
+                                                                    <div class="row" style="text-align: center">
+                                                                        <br>
+                                                                        <h4> Are you sure you want to activate/deactivate this blend?</h4>
+                                                                        <br>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12 form-group">
+                                                                            <div class="form-group label-floating">
+                                                                                <input class="form-control" type="hidden" name="deact_id" value="<?php echo $row->main_id; ?>" required>
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="panel-footer" style="margin-bottom:-14px;">
+                                                                    <input type="submit" class="btn btn-success" value="Yes" />
+                                                                    <!--<span class="glyphicon glyphicon-ok"></span>-->
+                                                                    
+                                                                    <!--<span class="glyphicon glyphicon-remove"></span>-->
+                                                                    <button type="button" class="btn btn-danger btn-close" onclick="document.getElementById('button<?php echo $row->main_id;?>').click()" data-dismiss="modal">No</button>
+                                                                </div>
+                                                                </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </tr>
 
                                             <?php
@@ -613,22 +643,22 @@ $(document).ready(function() {
         "dom":' fBrtip',
         "lengthChange": false,
         "info":     false,
-		buttons: [
+        buttons: [
             { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5]
+                    columns: [':not(:nth-last-child(1)):not(:nth-last-child(2))']
                 }
             },
             
-			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs',
+            { "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5]
+                    columns: [':not(:nth-last-child(1)):not(:nth-last-child(2))']
                 }
             },
             
-			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs',
+            { "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5]
+                    columns: [':not(:nth-last-child(1)):not(:nth-last-child(2))']
                 }
             }
         ]
@@ -640,14 +670,5 @@ $('table tbody tr  td').on('click', function() {
     $("#txtfname").val($(this).closest('tr').children()[0].textContent);
     $("#txtlname").val($(this).closest('tr').children()[1].textContent);
 });
-</script>
-
-<script>
-$(function() {
-    $('#toggle-two').bootstrapToggle({
-        on: 'Enabled',
-        off: 'Disabled'
-    });
-})
 </script>
 </html>

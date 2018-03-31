@@ -20,6 +20,52 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
 </head>
 
+<style type="text/css">
+.pagination>.active>a,
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover {
+    background-color: #4caf50;
+    border-color: #9c27b0;
+    color: #FFFFFF;
+    box-shadow: 0 4px 5px 0 rgba(156, 39, 176, 0.14), 0 1px 10px 0 rgba(156, 39, 176, 0.12), 0 2px 4px -1px rgba(156, 39, 176, 0.2);
+}
+
+.page-header {
+    height: 60vh;
+    background-position: center center;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+a {
+    color: #4caf50;
+}
+
+a:hover,
+a:focus {
+    color: #4caf50;
+    text-decoration: none;
+}
+
+.navbar .dropdown-menu li a:hover,
+.navbar .dropdown-menu li a:focus,
+.navbar .dropdown-menu li a:active,
+.navbar.navbar-default .dropdown-menu li a:hover,
+.navbar.navbar-default .dropdown-menu li a:focus,
+.navbar.navbar-default .dropdown-menu li a:active {
+    background-color: #4caf50;
+    color: #FFFFFF;
+    box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2);
+}
+</style>
+
 <body>
     <div class="wrapper">
         <div class="sidebar" data-color="green" data-image="<?php echo base_url(); ?>assets/img/sidebar-1.jpg">
@@ -119,64 +165,66 @@
                         <div class="col-md-8">
                             <div class="card">
                                 <div class="card-header" data-background-color="green">
-                                    <h4 class="title">Create New Account</h4>
+                                    <h4 class="title">Edit Profile</h4>
                                     <p class="category"></p>
                                 </div>
+                                <?php
+                                    $error = $this->session->flashdata('error');
+                                    $success = $this->session->flashdata('success');
+                                    if(!empty($error)){
+                                        ?>
+                                        <div class="alert alert-danger" style="margin: 20px; text-align: center; ">
+                                            <strong><?php echo $error; ?></strong> 
+                                        </div>
+                                  <?php } else if(!empty($success)){ ?>
+                                        <div class="alert alert-success" style="margin: 20px; text-align: center; ">
+                                            <strong><?php echo $success; ?></strong> 
+                                        </div>
+                                  <?php } ?> 
                                 <div class="card-content">
-                                    <form>
+                                    <?php echo form_open('AdminUser/updateUser') ?>
                                         <div class="row">
-                                            <div class="col-md-5">
+                                            <?php 
+                                                    foreach($data['profile'] as $row)
+                                                    {
+                                                ?>
+                                            <div class="col-md-6">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Last Name</label>
-                                                    <input type="text" class="form-control" disabled>
+                                                    <?php echo form_input(['name' => 'lname', 'value' => $row->u_lname, 'id' => 'lastname', 'class' => 'form-control']); ?>
+                                                    
                                                 </div>
-                                            </div>
-                                            <div class="col-md-3">
+                                            </div> 
+                                            <div class="col-md-6">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">First Name</label>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Middle Initial</label>
-                                                    <input type="email" class="form-control">
+                                                    <?php echo form_input(['name' => 'fname', 'value' => $row->u_fname, 'id' => 'firstname', 'class' => 'form-control']); ?>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Birthplace</label>
-                                                    <input type="text" class="form-control">
+                                                    <label class="control-label">Email</label>
+                                                    <?php echo form_input(['name' => 'email', 'id' => 'Email', 'value' => $row->u_email, 'class' => 'form-control']); ?>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Religion</label>
-                                                    <input type="text" class="form-control">
+                                                    <label class="control-label">Contact Number</label>
+                                                    <?php echo form_input(['name' => 'number', 'id' => 'ContactNumber','value' => $row->u_contact, 'class' => 'form-control']); ?>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Cellphone Number</label>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group label-floating">
                                                     <label class="control-label">Address</label>
-                                                    <input type="text" class="form-control">
+                                                    <?php echo form_textarea(['name' => 'address', 'id' => 'Address', 'value' => $row->u_address, 'class' => 'form-control']); ?>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Email</label>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                            </div>
+                                        <?php } 
+                                            ?>
                                         </div>
-                                        <button type="submit" class="btn btn-success pull-right">Update Profile</button>
+                                        <?php echo form_submit(['name' => 'submit', 'value' => 'Update Profile', 'class' => 'btn btn-success' ]); ?>
                                         <div class="clearfix"></div>
-                                    </form>
+                                    <?php echo form_close(); ?>
                                 </div>
                             </div>
                         </div>

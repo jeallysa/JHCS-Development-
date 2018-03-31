@@ -11,8 +11,8 @@
 			if ($this->session->userdata('username') != '')
             {
             	$this->load->model("InventoryStickers_Model");
-				$stckr_data["fetch_data"] = $this->InventoryStickers_Model->fetch_data();
-				$this->load->view('Inventory_Module/inventoryStickers', $stckr_data);
+				$data["sticker"] = $this->InventoryStickers_Model->retrieveSticker();
+				$this->load->view('Inventory_Module/inventoryStickers', $data);
 			} else {
 				redirect('login');
 			}

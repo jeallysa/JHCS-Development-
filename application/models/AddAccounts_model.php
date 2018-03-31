@@ -8,13 +8,12 @@ class AddAccounts_model extends CI_model
 	}
 
 
-	function test_main(){
+	function test_main(){ 
 		echo "Sample function";
 	}
 
-	function add_data($user_no, $u_lname, $u_fname, $u_type, $u_address, $u_email, $u_contact, $username, $password){
+	function add_data($u_lname, $u_fname, $u_type, $u_address, $u_email, $u_contact, $username, $password){
 		$data = array(
-            'user_no' => $user_no,
 			'u_lname' => $u_lname,
 			'u_fname' => $u_fname,
             'u_type' => $u_type,
@@ -23,7 +22,6 @@ class AddAccounts_model extends CI_model
 			'u_contact' => $u_contact,
             'username' => $username,
             'password' => $password
-
 		);
 		
 		$this->db->insert('user', $data);
@@ -34,4 +32,22 @@ class AddAccounts_model extends CI_model
 		</script>";
 	}
 
+	function activity_logs($module, $activity){
+		$username = $this->session->userdata('username');
+        $query = $this->db->query("SELECT user_no from jhcs.user where username ='".$username."';");
+        foreach ($query ->result() as $row) {
+        	$id = $row->user_no;
+        }
+
+        $data = array(
+            'user_no' => $id,
+            'timestamp' => date('Y\-m\-d\ H:i:s A'),
+            'message' => $activity,
+            'type' => $module
+        );
+        $this->db->insert('activitylogs', $data);
+	}
+
+
 }
+?>

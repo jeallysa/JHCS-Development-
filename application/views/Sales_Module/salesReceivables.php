@@ -144,8 +144,9 @@
                                     <table id="example" class="table hover order-column">
                                         <thead>
                                             <tr>
+                                                <th><b>Date</b></th>
                                                 <th><b>Client</b></th>
-                                                <th><b>Total Receivable</b></th>
+                                                <th><b>Receivables</b></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -153,6 +154,7 @@
                                                 foreach ($receivable as $row) {
                                              ?>
                                              <tr>
+                                                 <td><?php echo $row->client_deliverDate; ?></td>
                                                  <td><?php echo $row->client_company; ?></td>
                                                  <td><?php echo 'Php '.number_format($row->client_balance,2); ?></td>
                                              </tr>

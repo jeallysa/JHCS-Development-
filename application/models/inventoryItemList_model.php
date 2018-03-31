@@ -11,21 +11,35 @@
   
   
   function retrieveItems(){
-      $query = $this->db->query('SELECT * from items join supplier on supplier_id = sup_id');
+      
+       $arrayItem = array("raw_coffee","sticker","packaging","machine");
+      
+//  $i = 0;    
+ $result = array("");
+      
+   for($i = 0 ; $i<=3 ; $i++){    
+      $query = $this->db->query('SELECT * from '.$arrayItem[$i].' join supplier on '.$arrayItem[$i].'.sup_id = supplier.sup_id');
             
       if($query->num_rows() > 0){
-          return $query-> result();
+              $result[$i] = $query->result();
+               // return  $query->result();
+          
       }else
-          return NULL;
-  }
+               $result[$i] = null;
+                 // return null;
+      
+  }return $result;
+      
+}
+      
+      
+      
+      
+      
+      
+      
+      
       
   }
-  
-  
-  
-  
-  
-  
-
 
 ?>

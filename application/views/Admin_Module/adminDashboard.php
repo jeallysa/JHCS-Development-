@@ -23,6 +23,52 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
 </head>
 
+<style type="text/css">
+.pagination>.active>a,
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover {
+    background-color: #4caf50;
+    border-color: #9c27b0;
+    color: #FFFFFF;
+    box-shadow: 0 4px 5px 0 rgba(156, 39, 176, 0.14), 0 1px 10px 0 rgba(156, 39, 176, 0.12), 0 2px 4px -1px rgba(156, 39, 176, 0.2);
+}
+
+.page-header {
+    height: 60vh;
+    background-position: center center;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+a {
+    color: #4caf50;
+}
+
+a:hover,
+a:focus {
+    color: #4caf50;
+    text-decoration: none;
+}
+
+.navbar .dropdown-menu li a:hover,
+.navbar .dropdown-menu li a:focus,
+.navbar .dropdown-menu li a:active,
+.navbar.navbar-default .dropdown-menu li a:hover,
+.navbar.navbar-default .dropdown-menu li a:focus,
+.navbar.navbar-default .dropdown-menu li a:active {
+    background-color: #4caf50;
+    color: #FFFFFF;
+    box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2);
+}
+</style>
+
 <body>
     <div class="wrapper">
         <div class="sidebar" data-color="green" data-image="<?php echo base_url(); ?>assets/img/sidebar-1.jpg">
@@ -126,7 +172,7 @@
                                 </div>
                                 <div class="card-content">
                                     <p class="category">Raw Coffee</p>
-                                    <h3 class="title"> <?php echo $data1['rawcoffeestock']; ?>
+                                    <h3 class="title"> <?php echo number_format($data1['rawcoffeestock']); ?>
                                         <small>grams</small>
                                     </h3>
                                 </div>
@@ -147,7 +193,7 @@
                                 </div>
                                 <div class="card-content">
                                     <p class="category">Packaging</p>
-                                    <h3 class="title"> <?php echo $data2['packagingstock']; ?>
+                                    <h3 class="title"> <?php echo number_format($data2['packagingstock']); ?>
                                         <small>pieces</small>
                                     </h3>
                                 </div>
@@ -159,7 +205,7 @@
                                 </div>
                                 </a>
                             </div>
-                        </div>
+                        </div>  
                         <div class="col-lg-3 col-md-6 col-sm-6">
                             <div class="card card-stats">
                                 <div class="card-header" data-background-color="red">
@@ -167,7 +213,7 @@
                                 </div>
                                 <div class="card-content">
                                     <p class="category">Stickers</p>
-                                    <h3 class="title"> <?php echo $data3['stickerstock']; ?>
+                                    <h3 class="title"> <?php echo number_format($data3['stickerstock']); ?>
                                     <small>pieces</small>
                                     </h3>
                                 </div>
@@ -187,7 +233,7 @@
                                 </div>
                                 <div class="card-content">
                                     <p class="category">Machines</p>
-                                    <h3 class="title"> <?php echo $data4['machinestock']; ?>
+                                    <h3 class="title"> <?php echo number_format($data4['machinestock']); ?>
                                     <small>pieces</small>
                                     </h3>
                                 </div>
@@ -207,7 +253,6 @@
                     <div class="card">
                         <div class="card-header" data-background-color="green">
                             <h4 class="title">Sales</h4>
-                            <p class="category">December 2017</p>
                         </div>
                         <div class="card-content table-responsive">
                             <table id=example class="table table-hover">
@@ -218,7 +263,7 @@
                                                 <th><b>Date</b></th>
                                                 <th><b>Client</b></th>
                                                 <th><b>Coffee</b></th>
-                                                <th><b>Bag</b></th>
+                                                <th><b>Packaging</b></th>
                                                 <th><b>Size</b></th>
                                                 <th><b>Quantity</b></th>
                                                 <th><b>Unit Price</b></th>
@@ -240,8 +285,8 @@
                                                  <td><?php echo $row->package_type; ?></td>
                                                  <td><?php echo $row->package_size; ?></td>
                                                  <td><?php echo $row->contractPO_qty; ?></td>
-                                                 <td><?php echo $row->blend_price; ?></td>
-                                                 <td><?php echo $row->client_balance; ?></td>
+                                                 <td>Php <?php echo number_format($row->blend_price,2); ?></td>
+                                                 <td>Php <?php echo number_format($row->client_balance,2); ?></td>
                                                  <td><?php echo $row->client_type; ?></td>
                                              </tr>
                                              <?php 

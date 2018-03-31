@@ -46,7 +46,8 @@
 
 			$this->sellProduct_model->record_data($date, $quantity, $blend_id);
 			echo "<script>alert('Client order has been saved!');</script>";
-			$this->salesWalkin();
+
+			redirect('salesSellProduct/salesWalkin', 'refresh');
 		}
 
 		public function add()
@@ -61,7 +62,10 @@
                 "status" =>$this->input->post("sold")
 			);
 			$data7 = $this->security->xss_clean($data7);
+			$ma_id = $this->input->post("mach_id");
+			$minusMach = $this->input->post("qty");
 			$this->sellProduct_model->add_data($data7);
+			$this->sellProduct_model->minus_machine($minusMach, $ma_id);
             redirect ('salesSellProduct');
 		}
 
@@ -79,9 +83,36 @@
 			$dataA = $this->security->xss_clean($dataA);
 			$return = 'Returned';
 			$id = $this->input->post("sales_id");
+			$mach_id = $this->input->post("mach_id");
+			$mach_retQty = $this->input->post("qty_returned");
 			$this->sellProduct_model->insert_dataA($dataA);
 			$this->sellProduct_model->updateA($return, $id);
+			$this->sellProduct_model->add_machine_stock($mach_retQty, $mach_id);
 			echo "<script>alert('Machine Returned!');</script>";
+			redirect('salesSellProduct', 'refresh');
+		}
+
+        function return_blend()
+		{
+			$this->load->model('sellProduct_model');
+			$coffeeblend_return = array(
+				"client_deliveryID" =>$this->input->post("walkin_id"),
+				"coff_returnDate" =>$this->input->post("date_blend_returned"),
+				"coff_returnQty" =>$this->input->post("blend_returned"),
+				"coff_remarks" =>$this->input->post("return_blend_remarks")
+			);
+			$coffeeblend_return = $this->security->xss_clean($coffeeblend_return);
+
+			$return = 'Returned';
+			$id = $this->input->post("walkin_id");
+			$blend_id = $this->input->post("blend_id");
+			$blend_returnedQty = $this->input->post("blend_returned");
+
+
+			$this->sellProduct_model->insert_coffeereturn($coffeeblend_return);
+			$this->sellProduct_model->update_coffeereturn($return, $id, $blend_returnedQty);
+			$this->sellProduct_model->add_blend_stock($blend_returnedQty, $blend_id);
+			echo "<script>alert('Coffee Blend Returned!');</script>";
 			redirect('salesSellProduct', 'refresh');
 		}
 		

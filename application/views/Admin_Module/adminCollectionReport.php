@@ -23,6 +23,52 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
 </head>
 
+<style type="text/css">
+.pagination>.active>a,
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover {
+    background-color: #4caf50;
+    border-color: #9c27b0;
+    color: #FFFFFF;
+    box-shadow: 0 4px 5px 0 rgba(156, 39, 176, 0.14), 0 1px 10px 0 rgba(156, 39, 176, 0.12), 0 2px 4px -1px rgba(156, 39, 176, 0.2);
+}
+
+.page-header {
+    height: 60vh;
+    background-position: center center;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+a {
+    color: #4caf50;
+}
+
+a:hover,
+a:focus {
+    color: #4caf50;
+    text-decoration: none;
+}
+
+.navbar .dropdown-menu li a:hover,
+.navbar .dropdown-menu li a:focus,
+.navbar .dropdown-menu li a:active,
+.navbar.navbar-default .dropdown-menu li a:hover,
+.navbar.navbar-default .dropdown-menu li a:focus,
+.navbar.navbar-default .dropdown-menu li a:active {
+    background-color: #4caf50;
+    color: #FFFFFF;
+    box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2);
+}
+</style>
+
 <body>
    <div class="wrapper">
         <div class="sidebar" data-color="green" data-image="<?php echo base_url(); ?>assets/img/sidebar-1.jpg">
@@ -125,7 +171,45 @@
             <div class="content" style="margin-top: -100px;">
                 <div class="container-fluid">
                     <div class="card">
-                        <div class="card-content">
+                        <div class="content">
+                            <div class="container-fluid">
+                                <div class="card-header" data-background-color="green">
+                                    <div class="nav-tabs-navigation">
+                                        <div class="nav-tabs-wrapper">
+                                            <ul class="nav nav-tabs" data-tabs="tabs" data-background-color="green">
+                                                <li class="">
+                                                    <a href="<?php echo base_url(); ?>adminSalesReport">
+                                            Sales Report
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                                </li> 
+                                                <span></span>
+                                                <li class="active">
+                                                    <a href="<?php echo base_url(); ?>adminCollectionReport">
+                                            Collection Report
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                                </li>
+                                                <span></span>
+                                                <li class="">
+                                                    <a href="<?php echo base_url(); ?>adminReceivableReport">
+                                            Accounts Receivables Report
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                                </li>
+                                                <span></span>
+                                                 <li class="">
+                                                    <a href="<?php echo base_url(); ?>adminInventoryReport">
+                                            Inventory Report
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="card-content">
                            <div class="form-group col-xs-3">
                                 <label>Filter By:</label>
                                     <div class="input-group input-daterange">
@@ -134,80 +218,20 @@
                                         <input type="text" id="max" class="form-control" value="<?php   echo date("Y-m-d") ?>" >
                                     </div>
                                 </div>
-                        </div>
-                        <div class="content">
-                            <div class="container-fluid">
-                                  <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="card">
-                                            <div class="card-header" data-background-color="green">
-                                                <div class="nav-tabs-navigation">
-                                                    <div class="nav-tabs-wrapper">
-                                                        <ul class="nav nav-tabs" data-tabs="tabs" data-background-color="green">
-                                                            <li class="">
-                                                                <a href="<?php echo base_url(); ?>adminSalesReport">
-                                                        Sales Report
-                                                        <div class="ripple-container"></div>
-                                                    </a>
-                                                            </li> 
-                                                            <span></span>
-                                                            <li class="active">
-                                                                <a href="<?php echo base_url(); ?>adminCollectionReport">
-                                                        Collection Report
-                                                        <div class="ripple-container"></div>
-                                                    </a>
-                                                            </li>
-                                                            <li class="">
-                                                                <a href="<?php echo base_url(); ?>adminDeliveryReport">
-                                                        Delivery Report
-                                                        <div class="ripple-container"></div>
-                                                   </a>
-                                                            </li>
-                                                            <span></span>
-                                                            <li class="">
-                                                                <a href="<?php echo base_url(); ?>adminInventoryReport">
-                                                        Inventory Report
-                                                        <div class="ripple-container"></div>
-                                                    </a>
-                                                            </li>
-                                                            <span></span>
-                                                            <li class="">
-                                                                <a href="<?php echo base_url(); ?>adminOrderReport">
-                                                        PO Report
-                                                        <div class="ripple-container"></div>
-                                                    </a>
-                                                            </li>
-                                                            <span></span>
-                                                            <li class="">
-                                                                <a href="<?php echo base_url(); ?>adminReceivableReport">
-                                                        Accounts Receivables Report
-                                                        <div class="ripple-container"></div>
-                                                    </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="card-content">
-                                   <table id="example" class="display  hover order-column" cellspacing="0" width="100%">
+                                  <table id="example" class="display  hover order-column" cellspacing="0" width="100%">
                                         <thead>
-                                            <th><b>Collection Receipt No.</b></th>
-                                            <th><b>Delivery Receipt No.</b></th>
-                                            <th><b>Client</b></th>
-                                            <th><b>Mode of Payment</b></th>
-                                            <th><b>Date Paid</b></th>
-                                            <th><b>Amount</b></th>
-                                            <th><b>Gross Amount</b></th>
-                                            <th><b>Withheld</b></th>
-                                            <th><b>Remarks</b></th>
+                                            <th><b class="pull-left">Collection Receipt No.</b></th>
+                                            <th><b class="pull-left">Delivery Receipt No.</b></th>
+                                            <th><b class="pull-left">Client</b></th>
+                                            <th><b class="pull-left">Mode of Payment</b></th>
+                                            <th><b class="pull-left">Date Paid</b></th>
+                                            <th><b class="pull-left">Amount</b></th>
+                                            <th><b class="pull-left">Gross Amount</b></th>
+                                            <th><b class="pull-left">Withheld</b></th>
+                                            <th><b class="pull-left">Remarks</b></th>
                                         </thead>
                                         <tbody>
-                                            
-                                             <?php 
+                                            <?php 
                                                 foreach ($collections as $row) {
                                              ?>
                                              <tr>
@@ -216,16 +240,16 @@
                                                  <td><?php echo $row->client_company; ?></td>
                                                  <td><?php echo $row->payment_mode; ?></td>
                                                  <td><?php echo $row->paid_date; ?></td>
-                                                 <td><?php echo $row->paid_amount; ?></td>
-                                                 <td><?php echo $row->client_balance; ?></td>
-                                                 <td><?php echo $row->withheld; ?></td>
-                                                 <td><?php echo $row->payment_remarks; ?></td>
+                                                 <td><?php echo 'Php '.number_format($row->paid_amount,2); ?></td>
+                                                 <td><?php echo 'Php '.number_format($row->client_balance,2); ?></td>
+                                                 <td><?php echo 'Php '.number_format($row->withheld,2); ?></td>
+                                                 <td><?php echo $row->remarks; ?></td>
                                              </tr>
                                              <?php 
                                                 }
                                               ?>
                                         </tbody>
-                                    </table>
+                                        </table>
                                 </div>
                             </div>
                         </div>

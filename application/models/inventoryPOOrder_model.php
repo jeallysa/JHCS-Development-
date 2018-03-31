@@ -56,14 +56,14 @@
 function updateOrderStatus($data2, $supp_po_id){
         
     
-        foreach($data2 as $object ){
+     foreach($data2 as $object ){
             
             $data =array(
                 'delivery_stat' => 1
-            );
+                         );
              
-           $this->db->where('supp_po_ordered_id', $object['supp_po_ordered_id']);
-           $this->db->update('supp_po_ordered', $data); 
+                  $this->db->where('supp_po_ordered_id', $object['supp_po_ordered_id']);
+                  $this->db->update('supp_po_ordered', $data); 
      }
 
     
@@ -71,28 +71,22 @@ function updateOrderStatus($data2, $supp_po_id){
     
 //just for looking if there is still some orders on a certain PO left.  if none then set the PO delivery_status to 1   
 //test if there is a remaining order on a PO - an item found end loop by setting it to 4 to terminate..  but if nothing found set the delivery stat of PO to 1 so it appears on Unpaid.
-    $arrayTable = array("raw_coffee","sticker","packaging","machine");      
-    $arrayOn = array("raw_coffee","sticker","package_name","brewer_type");  
-    $array = [];
+      
+      $query = $this->db->query('SELECT * FROM supp_po_ordered  where supp_PO_id = '. $supp_po_id. ' and supp_po_ordered.delivery_stat = 0');
+           if($query->num_rows() > 0){
+               
+               //Do nothing- it has still some orders left.
+               
+           }else{
+               // no orders left-  update PO delivery to 1.
+                            $data =array(
+                                 'delivery_stat' => 1
+                                        );
     
-    for($i = 0 ; $i < 4 ; $i++){      
-      $query = $this->db->query('SELECT *  FROM '.$arrayTable[$i].' join supp_po_ordered  on item = '.$arrayOn[$i].' join supp_po using (supp_po_id) where supp_PO_id = '.$supp_po_id.
-                ' and supp_po_ordered.delivery_stat = 0');
+                           $this->db->where('supp_po_id', $supp_po_id);
+                           $this->db->update('supp_po', $data);
           
-    if($query->num_rows() > 0){
-       $array[$i] = $query->num_rows() ;
-     }
-  }
-    if(empty($array)){
-    $data =array(
-             'delivery_stat' => 1
-            );
-    
-    $this->db->where('supp_po_id', $supp_po_id);
-    $this->db->update('supp_po', $data);
-          
-    }
-         
+        }
   } 
           
 
@@ -101,9 +95,10 @@ function updateOrderStatus($data2, $supp_po_id){
    function updateStock($data3, $supp_po_id){
           
   
-    $arrayTable = array("raw_coffee","sticker","packaging","machine");  
-    $arrayNameOfItem = array("raw_coffee","sticker","package_name","brewer_type");  
-    $stockColumn= array("raw_stock","sticker_stock","package_stock","mach_stocks");
+      $arrayTable = array("raw_coffee","sticker","packaging","machine");  
+       $arrayNameOfItem = array("raw_coffee","sticker","package_type","brewer");  
+         $arrayTypeOfItem = array("raw_type","sticker_type", "package_size" , "brewer_type");   
+                $stockColumn= array("raw_stock","sticker_stock","package_stock","mach_stocks");
   
      
     $query  = $this->db->query('SELECT supp_id FROM supp_po where supp_po_id='.$supp_po_id);
@@ -111,15 +106,16 @@ function updateOrderStatus($data2, $supp_po_id){
                
    
      $i=0;
+       
   foreach($data3 as $key => $object){
       
     
       
-    $loc = 0;
+$loc = 0;                                  //QUERY THE REMAINING STOCK PER OF EACH ITEM-TYPE
  for($i = 0 ; $i <= 3 ; $i++){      
-   $query = $this->db->query("SELECT sum(".$stockColumn[$i].") as sumx FROM ".$arrayTable[$i]. " where ". $arrayNameOfItem[$i]." LIKE '%".$object['item']."%' and sup_id = ".$res->supp_id);     
+   $query = $this->db->query("SELECT sum(".$stockColumn[$i].") as sumx FROM ".$arrayTable[$i]. " where ". $arrayNameOfItem[$i]." LIKE '%".$object['item']."%' and ". $arrayTypeOfItem[$i]." LIKE '%".$object['itemType']."%' and sup_id = ".$res->supp_id);     
       
-       if($query->num_rows() > 0){
+     if($query->num_rows() > 0){
          $whatStock = $i; //using the I to know which Table
          $whatTable = $i; //using the I to know which Table
         
@@ -131,22 +127,31 @@ function updateOrderStatus($data2, $supp_po_id){
          $loc++; 
         }
      
-    $where = array( $arrayNameOfItem[$whatStock] =>$object['item'] , 'sup_id' => $res->supp_id); // multiple where
-    $this->db->where($where);  //used the where here
-    $this->db->update($arrayTable[$whatTable], $data);    
-   }
+     
+     
+     $where = array( $arrayNameOfItem[$i] =>$object['item'] , $arrayTypeOfItem[$i] =>$object['itemType'] , 'sup_id' => $res->supp_id ,''); // multiple where
+     $this->db->where($where);  //used the where here
+     $this->db->update($arrayTable[$i], $data);   
+     
+            }
                 
-  }
+         }
       
-      }
+   
+}
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
         
 }
   
-  
-  
-  
-  
-  
-
-
 ?>

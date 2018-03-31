@@ -26,7 +26,8 @@
 			$data1["cli_det"] = $this->SalesClients_model->load_Client_det($id);
 			$data2["del_data"] = $this->SalesClients_model->load_DelClient($id);
 			$data3["pay_data"] = $this->SalesClients_model->load_PayClient($id);
-			$this->load->view('Sales_Module/salesClientsInfo', ['data' => $data,'data1' => $data1, 'data2' => $data2, 'data3' => $data3]);
+			$data4["balance"] = $this->SalesClients_model->getBalances($id);
+			$this->load->view('Sales_Module/salesClientsInfo', ['data' => $data,'data1' => $data1, 'data2' => $data2, 'data3' => $data3, 'data4' => $data4]);
 		}
 		public function salesContract()
 		{
@@ -69,7 +70,7 @@
 			$dataA = array(
 				"mach_returnDate" =>$this->input->post("date_returned"),
 				"mach_returnQty" =>$this->input->post("qty_returned"),
-				"client_id" =>$this->input->post("client_id"),
+				"client_id" =>$this->input->get("client_id"),
 				"mach_id" =>$this->input->post("mach_id"),
 				"mach_serial" =>$this->input->post("serial"),
                 "mach_remarks" =>$this->input->post("remarks")    
@@ -78,8 +79,13 @@
 			$return = 'Returned';
 			$id = $this->input->post("sales_id");
 			$cli_id = $this->input->post("cli_id");
+			
+			$mach_returnQty = $this->input->post("qty_returned");
+			$mach_id = $this->input->post("mach_id");
+
 			$this->sellProduct_model->insert_dataA($dataA);
 			$this->sellProduct_model->updateA($return, $id);
+			$this->sellProduct_model->minus_machine_rent($mach_returnQty, $mach_id);
 			echo "<script>alert('Machine Returned!');</script>";
 			redirect('salesClients/salesContract?id='.$cli_id.'', 'refresh');
 		}
@@ -93,6 +99,7 @@
 			
 			redirect('SalesClients/salesMultipleOrders');
 		}
+		
 
 	}
 

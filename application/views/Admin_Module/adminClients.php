@@ -68,8 +68,51 @@
     .navbar {
         background-color: chartreuse;
     }
-    </style>
+    
+.pagination>.active>a,
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover {
+    background-color: #4caf50;
+    border-color: #9c27b0;
+    color: #FFFFFF;
+    box-shadow: 0 4px 5px 0 rgba(156, 39, 176, 0.14), 0 1px 10px 0 rgba(156, 39, 176, 0.12), 0 2px 4px -1px rgba(156, 39, 176, 0.2);
+}
 
+.page-header {
+    height: 60vh;
+    background-position: center center;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+a {
+    color: #4caf50;
+}
+
+a:hover,
+a:focus {
+    color: #4caf50;
+    text-decoration: none;
+}
+
+.navbar .dropdown-menu li a:hover,
+.navbar .dropdown-menu li a:focus,
+.navbar .dropdown-menu li a:active,
+.navbar.navbar-default .dropdown-menu li a:hover,
+.navbar.navbar-default .dropdown-menu li a:focus,
+.navbar.navbar-default .dropdown-menu li a:active {
+    background-color: #4caf50;
+    color: #FFFFFF;
+    box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2);
+}
+</style>
     
 <body>
     <div class="wrapper">
@@ -176,8 +219,7 @@
                             </div>
                         <div class="card-content table-responsive">
                               <a href="<?php echo base_url(); ?>adminNewClients" class="btn btn-success" data-original-title style="float: right"> Create New Client</a>
-                            <a href="<?php echo base_url(); ?>adminAddContract" class="btn btn-success" data-original-title style="float: right"> Create New Contract</a>
-                             <table id="example" class="table hover order-column" cellspacing="0" width="100%" style="font-size: 13px">
+                             <table id="example" class="table hover order-column" cellspacing="0" width="100%" style="font-size: 11.5px">
                                         <thead>
                                             <tr>
                                                 <th><b>Client No.</b></th>
@@ -257,11 +299,11 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="panel-footer" style="margin-bottom:-14px;">
-                                                                    <input type="submit" class="btn btn-danger" value="Yes" />
+                                                                    <input type="submit" class="btn btn-success" value="Yes" />
                                                                     <!--<span class="glyphicon glyphicon-ok"></span>-->
                                                                     
                                                                     <!--<span class="glyphicon glyphicon-remove"></span>-->
-                                                                    <button type="button" class="btn btn-success btn-close" onclick="document.getElementById('button<?php echo $row->client_id;?>').click()" data-dismiss="modal">No</button>
+                                                                    <button type="button" class="btn btn-danger btn-close" onclick="document.getElementById('button<?php echo $row->client_id;?>').click()" data-dismiss="modal">No</button>
                                                                 </div>
                                                                 </form>
                                                         </div>

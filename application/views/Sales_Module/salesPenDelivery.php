@@ -182,7 +182,8 @@
             <th><b class="pull-left">Quantity</b></th>
             <th><b class="pull-left">Unit Price</b></th>
             <th><b class="pull-left">Total Amount</b></th>
-            <th><b class="pull-left">Date of Purchase</b></th>
+            <th><b class="pull-left">Purchase Date</b></th>
+            <th><b class="pull-left">Delivery Status</b></th>
             <th class="disabled-sorting"><b class="pull-left">Action</b></th>
         </thead>
         <tbody>
@@ -206,6 +207,7 @@
                      ?>
                 </td>
                 <td><?php echo $row1->contractPO_date; ?></td>
+                <td><?php echo $row1->delivery_stat; ?></td>
                 <td><?php 
                         $dbStat = $row1->delivery_stat; 
                         if ($dbStat != 'delivered') {
@@ -245,7 +247,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-5 control">Size :</label>
                                                 <div class="col-md-5">
-                                                    <p><b><?php echo $row1->package_size;
+                                                    <p><b><?php echo number_format($row1->package_size);
                                                     ?> g</b></p>
                                                 </div>
                                             </div>
@@ -280,20 +282,23 @@
                                     </div>
                                     <hr>
                                     <div class="row">
-                                        <div class="col-lg-5">
+                                        <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label class="col-md-6 control">Delivery Receipt No :</label>
-                                                <div class="col-md-5">
-                                                    <input id="" name="dr_no" type="text" class="form-control" required="">
+                                                <div class="col-md-6">
+                                                    <input id="" name="client_dr" type="text" class="form-control" required="">
                                                     <input class="form-control" type="hidden" name="po_id" value="<?php echo $row1->contractPO_id; ?>" required>
+                                                    <input class="form-control" type="hidden" name="blend" value="<?php echo $row1->blend; ?>" required>
+                                                    <input class="form-control" type="hidden" name="pack_size" value="<?php echo $row1->package_size; ?>" required>
                                                     <input class="form-control" type="hidden" name="client_balance" value="<?php echo $amount; ?>" required>
                                                     <input class="form-control" type="hidden" name="client_id" value="<?php echo $row1->client_id; ?>" required>
+                                                    <input class="form-control" type="hidden" name="full_qty" value="<?php echo $row1->contractPO_qty; ?>" required>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-7">
+                                        <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label class="col-md-6 control">Date of Delivery :</label>
+                                                <label class="col-md-6 control">Delivery Date :</label>
                                                 <div class="col-md-6">
                                                     <input class="form-control" name="delivery_date" placeholder="Date" type="date" required />
                                                 </div>
@@ -301,27 +306,43 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-5">
+                                        <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label class="col-md-6 control">Sales Invoice No. :</label>
-                                                <div class="col-md-5">
+                                                <div class="col-md-6">
                                                     <input id="" name="invoice" type="text" class="form-control" required>
                                                    
 													
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-7">
+                                        <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label class="col-md-6 control">Received by :</label>
-                                                <div class="col-md-5">
+                                                <div class="col-md-6">
                                                     <input id="" name="receive_by" type="text" class="form-control" required="">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label class="col-md-6 control">Remaining quantity to be delivered :</label>
+                                                <div class="col-md-6">
+                                                    <input id="" name="delivered_qty" type="number" value="<?php 
+
+                                                    $full_delivery = $row1->contractPO_qty;
+                                                    $delivered_qty = $row1->delivered_qty;
+                                                    $diff = $full_delivery - $delivered_qty;
+                                                    echo $diff;
+
+                                                    ?>" class="form-control" min="1" max="<?php echo $diff ?>" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="panel-footer" align="center">
-                                        <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
                                         <button type="submit" class="btn btn-success">Save Delivery</button>
                                     </div>
                             </form>
@@ -342,13 +363,15 @@
             <th><b class="pull-left">Delivery Receipt No.</b></th>
             <th><b class="pull-left">Sales Invoice No.</b></th>
             <th><b class="pull-left">Purchase Order No.</b></th>
-            <th><b class="pull-left">Date Delivered</b></th>
+            <th><b class="pull-left">Delivery Date</b></th>
             <th><b class="pull-left">Client</b></th>
             <th><b class="pull-left">Coffee Blend</b></th>
-            <th><b class="pull-left">Quantity</b></th>
+            <th><b class="pull-left">Quantity Delivered</b></th>
             <th><b class="pull-left">Unit Price</b></th>
             <th><b class="pull-left">Total Amount</b></th>
             <th><b>Received By</b></th>
+            <th><b>Payment Status</b></th>
+            <th><b>Quantity Returned</b></th>
             <th>Action</th>
         </thead>
         <tbody>
@@ -363,7 +386,7 @@
                 <td><?php echo $row2->client_deliverDate; ?></td>
                 <td><?php echo $row2->client_company; ?></td>
                 <td><?php echo "$row2->blend/ $row2->package_type/ $row2->package_size g"; ?></td>
-                <td><?php echo $row2->contractPO_qty; ?></td>
+                <td><?php echo $row2->deliver_quantity; ?></td>
                 <td>Php <?php echo number_format($row2->blend_price,2); ?></td>
                 <td><?php 
                         $price = $row2->blend_price;
@@ -373,11 +396,13 @@
                      ?>
                 </td>
                 <td><?php echo $row2->client_receive; ?></td>
-                <td><button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#pay<?php echo $row2->client_dr; ?>">Pay</button>
-                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#return<?php echo $row2->client_dr; ?>">Return</button>
+                <td><?php echo $row2->payment_remarks; ?></td>
+                <td><?php echo $row2->coff_returnQty; ?></td>
+                <td><button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#pay<?php echo $row2->client_deliveryID; ?>">Pay</button>
+                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#return<?php echo $row2->client_deliveryID; ?>">Return</button>
                 </td>
                 <!-- modal coffee returns -->
-                <div class="modal fade" id="return<?php echo $row2->client_dr; ?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                <div class="modal fade" id="return<?php echo $row2->client_deliveryID; ?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="panel panel-primary">
                             <div class="panel-heading">
@@ -404,7 +429,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-md-6 control">Date Delivered:</label>
+                                                <label class="col-md-6 control">Delivery Date:</label>
                                                 <div class="col-md-5">
                                                     <p><b><?php echo $row2->client_deliverDate;
                                                     ?></b></p>
@@ -433,17 +458,22 @@
                                                                 <div class="col-md-6">
 
                                                                     <div class="form-group">
-                                                                        <label class="col-md-6 control">Date of Return:</label>
-                                                                        <input class="no-border" type="date" name="date_returned" value="<?php echo date("Y-m-d");?>" data-validate="required" message="A Date of Purchase is recquired! min="<?=date('Y-m-d')?>" max="<?=date('Y-m-d',strtotime(date('Y-m-d')))?>"">
-                                                                        <input type="hidden" name="client_dr" value="<?php echo $row2->client_dr; ?>" required>
+                                                                        <label class="col-md-6 control">Date Returned:</label>
+                                                                        <input class="col-md-6 control no-border" type="date" name="date_returned" value="<?php echo date("Y-m-d");?>" data-validate="required" message="A Date of Purchase is recquired! min="<?=date('Y-m-d')?>" max="<?=date('Y-m-d',strtotime(date('Y-m-d')))?>"">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
 
                                                                     <div class="form-group">
-                                                                        <label class="col-md-7 control">Quantity Returned:</label>
-																		<div class="col-md-5">
-                                                                        <input class="form-control" type="number" name="qty_returned" min="1" max="<?php echo $row2->contractPO_qty;?>" required="" oninput="validity.valid||(value='');" >
+                                                                        <label class="col-md-6 control">Quantity Returned:</label>
+																		<div class="col-md-6">
+                                                                        <input class="form-control" type="number" name="qty_returned" min="1" max="<?php  
+                                                                        $fulqty = $row2->deliver_quantity;
+                                                                        $retqty = $row2->coff_returnQty;
+                                                                        $retdif = $fulqty - $retqty;
+                                                                        echo $retdif;
+
+                                                                        ?>" required="" oninput="validity.valid||(value='');" >
 																		</div>
                                                                     </div>
                                                                 </div>
@@ -452,10 +482,12 @@
         
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label class="col-md-3 control">Remarks:</label>
-																		<div class="col-md-9">
+                                                                        <label class="col-md-6 control">Remarks:</label>
+																		<div class="col-md-6">
                                                                         <input class="form-control col-md-3" type="text" name="remarks" required="">
                                                                          <input name="deliveryID" type="hidden" class="form-control" value="<?php echo $row2->client_deliveryID; ?>" >
+                                                                        <input name="client_dr" type="hidden" class="form-control" value="<?php echo $row2->client_dr; ?>" >
+                                                                        <input name="blend_id" type="hidden" class="form-control" value="<?php echo $row2->blend_id; ?>" >
 																		</div>
                                                                     </div>
                                                                 </div>
@@ -477,7 +509,7 @@
                 </div>
 
                 <!-- modal of unpaid -->
-                <div class="modal fade" id="pay<?php echo $row2->client_dr ?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                <div class="modal fade" id="pay<?php echo $row2->client_deliveryID ?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="panel panel-primary">
                             <div class="panel-heading">
@@ -494,9 +526,9 @@
                                                             <div class="row">
                                                                 <div class="col-md-8">
                                                                     <div class="form-group label-floating">
-                                                                        <label for="email">Date Paid:</label>
+                                                                        <label for="email">Payment Date:</label>
                                                                         <input class="form-control" type="date" name="date_paid" required>
-                                                                        <input class="form-control" type="hidden" name="client_dr" value="<?php echo $row2->client_dr; ?>" required>
+                                                                        <input class="form-control" type="hidden" name="deliver_id" value="<?php echo $row2->client_deliveryID; ?>" required>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-4">
@@ -509,8 +541,14 @@
                                                             <div class="row">
                                                                 <div class="col-md-8">
                                                                     <div class="form-group label-floating">
-                                                                        <label>Amount:</label>
-                                                                        <input class="form-control" type="number" name="amount" value="<?php echo $amount; ?>" min=1 max="<?php echo $amount; ?>" required>
+                                                                        <label>Remaining Balance:</label>
+                                                                        <input class="form-control" type="number" name="amount" value="<?php
+                                                                            $rem_amount = $amount - $row2->amount_paid;
+                                                                            echo $rem_amount;
+
+                                                                        ; ?>" min=1 max="<?php echo $rem_amount; ?>" required>
+                                                                        <input class="form-control" type="hidden" name="total_amount" value="<?php echo $amount; ?>" min=1 max="<?php echo $amount; ?>">
+
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-4">
@@ -538,7 +576,6 @@
                                                                         </select>
                                                                     </div>
                                                                 </div>
-                                                            </div>
                                                         </div>
                                                     </div>
                                                     <center>
@@ -569,7 +606,7 @@
             <th><b class="pull-left">Delivery Receipt No.</b></th>
             <th><b class="pull-left">Client</b></th>
             <th><b class="pull-left">Mode of Payment</b></th>
-            <th><b class="pull-left">Date Paid</b></th>
+            <th><b class="pull-left">Payment Date</b></th>
             <th><b class="pull-left">Amount</b></th>
             <th><b class="pull-left">Gross Amount</b></th>
             <th><b class="pull-left">Withheld</b></th>
@@ -594,6 +631,7 @@
             <?php 
                 }
             ?>
+
         </tbody>
     </table>
 </div>
@@ -675,15 +713,5 @@ $(document).ready(function(){
     }
 });
 </script>
-
-<!-- <script type="text/javascript">
-    $(document).ready(function(){
-        $('.view_data').click(function(){
-            var contractPO_id = $(this).attr("id");
-            alert(contractPO_id);
-            $('#' + contractPO_id).modal('show');
-        });
-    });
-</script> -->
 
 </html>

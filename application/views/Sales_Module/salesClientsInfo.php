@@ -25,6 +25,12 @@
     .select-pane {
         display: none;
     }
+	.no-border{
+		border: none !important;
+	}
+	.bold{
+		font-weight: 1000;	
+	}
     </style>
 </head>
 
@@ -204,6 +210,7 @@
                                             <table id="" class="display hover order-column cell-border" cellspacing="0" width="100%">
                                                 <thead>
                                                     <th><b class="pull-left">Purchase Order No.</b></th>
+                                                    <th><b class="pull-left">Purchase Date</b></th>
                                                     <th><b class="pull-left">Item Code</b></th>
                                                     <th><b class="pull-left">Coffee Blend</b></th>
                                                     <th><b class="pull-left">Bag</b></th>
@@ -222,10 +229,11 @@
                                                 ?>
                                                     <tr>
                                                         <td><?php echo $row->contractPO_id; ?></td>
+                                                        <td><?php echo $row->contractPO_date; ?></td>
                                                         <td><?php echo $row->blend_id; ?></td>
                                                         <td><?php echo $row->blend; ?></td>
                                                         <td><?php echo $row->package_type; ?></td>
-                                                        <td><?php echo $row->package_size; ?></td>
+                                                        <td><?php echo number_format($row->package_size); ?> g</td>
                                                         <td><?php echo $row->contractPO_qty; ?></td>
                                                         <td>Php <?php echo number_format($row->blend_price,2); ?></td>
                                                         <td><?php 
@@ -249,7 +257,7 @@
                                                     <th><b class="pull-left">Delivery Receipt No.</b></th>
                                                     <th><b class="pull-left">Sales Invoice No.</b></th>
                                                     <th><b class="pull-left">Purchase Order No.</b></th>
-                                                    <th><b class="pull-left">Date Delivered</b></th>
+                                                    <th><b class="pull-left">Delivery Date</b></th>
                                                     <th><b class="pull-left">Coffee</b></th>
                                                     <th><b class="pull-left">Quantity</b></th>
                                                     <th><b class="pull-left">Unit Price</b></th>
@@ -269,7 +277,7 @@
                                                         <td><?php echo $row->client_invoice; ?></td>
                                                         <td><?php echo $row->contractPO_id; ?></td>
                                                         <td><?php echo $row->client_deliverDate; ?></td>
-                                                        <td><?php echo $row->blend.'/ '.$row->package_type.'/ '.$row->package_size; ?> g</td>
+                                                        <td><?php echo $row->blend.'/ '.$row->package_type.'/ '.number_format($row->package_size); ?> g</td>
                                                         <td><?php echo $row->contractPO_qty; ?></td>
                                                         <td>Php <?php echo number_format($row->blend_price,2); ?></td>
                                                         <td><?php 
@@ -294,7 +302,7 @@
                                                     <th><b class="pull-left">Collection No.</b></th>
                                                     <th><b class="pull-left">Delivery Receipt No.</b></th>
                                                     <th><b class="pull-left">Mode of Payment</b></th>
-                                                    <th><b class="pull-left">Date Paid</b></th>
+                                                    <th><b class="pull-left">Payment Date</b></th>
                                                     <th><b class="pull-left">Amount</b></th>
                                                     <th><b class="pull-left">Gross Amount</b></th>
                                                     <th><b class="pull-left">Withheld</b></th>
@@ -337,9 +345,9 @@
                                 </div>
                                 <br>
                                 <br>
-                                <form action="#" method="post" accept-charset="utf-8">
+                                <?php echo form_open('SalesClients/addClientPO', array('method'=>'POST')); ?>
                                     <div class="modal-body" style="padding: 5px;">
-                                        <p style="font-size:150%;"><span style="display:inline-block; width: 5%;"></span>Total Balance: <b>P50,000</b>
+                                        <p style="font-size:150%;"><span id="val"></span>
                                             <br> </p>
                                         <p>
                                             <center>
@@ -347,46 +355,34 @@
                                                 <div class="card-content table-responsive">
                                                     <table id="mytable" class="table table-bordred table-striped">
                                                         <thead class="text-primary">
+															<th><b class="pull-left">ID</b></th>
                                                             <th><b class="pull-left">Delivery Receipt No.</b></th>
                                                             <th><b class="pull-left">Item Code</b></th>
-                                                            <th><b class="pull-left">Date Delivered</b></th>
+                                                            <th><b class="pull-left">Delivery Date</b></th>
                                                             <th><b class="pull-left">Amount</b></th>
-                                                            <th>
-                                                                <input type="checkbox" id="checkall" />
-                                                            </th>
+                                                           
                                                         </thead>
                                                         <tbody>
-                                                            <tr>
-                                                                <td>2222</td>
-                                                                <td>I0001</td>
-                                                                <td>Oct. 2,2017</td>
-                                                                <td class="text-primary">10,000.00</td>
-                                                                <td>
-                                                                    <input type="checkbox" class="checkthis" />
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>3475</td>
-                                                                <td>I0002</td>
-                                                                <td>Nov. 6,2017</td>
-                                                                <td class="text-primary">30,000.00</td>
-                                                                <td>
-                                                                    <input type="checkbox" class="checkthis" />
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>2356</td>
-                                                                <td>I0003</td>
-                                                                <td>Dec. 2,2017</td>
-                                                                <td class="text-primary">10,000.00</td>
-                                                                <td>
-                                                                    <input type="checkbox" class="checkthis" />
-                                                                </td>
-                                                            </tr>
+															<?php
+															foreach($data4['balance'] as $row)
+																	{
+															?>  
+															<tr>
+																<td class="chk"><?php echo $row->client_deliveryID; ?></td>
+																<td><?php echo $row->client_dr; ?></td>
+																<td><?php echo $row->blend_id; ?></td>
+																<td><?php echo $row->client_deliverDate; ?></td>
+																<td class="text-primary"><?php echo $row->client_balance; ?> </td>
+															</tr>
+															<?php 
+																}
+															 ?>
+                                                           
                                                         </tbody>
                                                     </table>
+													
                                                 </div>
-                                                <a class="btn btn-primary" data-toggle="collapse" href="#collapsePayment" aria-expanded="false" aria-controls="collapseExample" data-background-color="red">Add Payment</a>
+                                                <a class="btn btn-primary" data-toggle="collapse" href="#collapsePayment" aria-expanded="false" aria-controls="collapseExample" data-background-color="red" id="AddPay">Add Full Payment</a>
                                             </center>
                                         </p>
                                         <div class="collapse" id="collapsePayment">
@@ -398,36 +394,44 @@
                                                                 <div class="form-group label-floating">
                                                                     <div class="form-group">
                                                                         <div class="row">
-                                                                            <div class="col-md-4">
+																			<?php
+																			foreach($data4['balance'] as $row)
+																					{
+																			?>  
+																			<input class="no-border" type="text" name="displayID" id="displayID" value="<?php echo $row->client_deliveryID; ?>">
+																			<?php 
+																}
+															 ?>
+																			 <div class="col-md-4">
                                                                                 <div class="form-group label-floating">
-                                                                                    <label for="email">Payment Date:</label>
-                                                                                    <input class="form-control" type="date" name="">
+                                                                                    <label>Amount: </label>
+																					<b><span id="val1"></span></b>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-md-4">
+                                                                            <div class="col-md-6">
                                                                                 <div class="form-group label-floating">
-                                                                                    <label for="email">Collection Receipt No.:</label>
-                                                                                    <input class="form-control" type="text" name="">
+                                                                                    <label for="email">Payment Date: </label>
+                                                                                    <input id="date" name="Pdate" type="date" class="no-border bold" value="<?php echo date("Y-m-d");?>" data-validate="required" message="A Date of Purchase is recquired! min="<?=date('Y-m-d')?>" max="<?=date('Y-m-d',strtotime(date('Y-m-d')))?>"">
                                                                                 </div>
-                                                                            </div>
-                                                                            <div class="col-md-4">
-                                                                                <div class="form-group label-floating">
-                                                                                    <label>Amount:</label>
-                                                                                    <input class="form-control" type="number" name="">
-                                                                                </div>
-                                                                            </div>
+                                                                            </div>      
                                                                         </div>
                                                                         <div class="row">
+																			<div class="col-md-4">
+                                                                                <div class="form-group label-floating">
+                                                                                    <label for="email">Collection Receipt No.:</label>
+                                                                                    <input class="form-control" type="text" name="crNo">
+                                                                                </div>
+                                                                            </div>
                                                                             <div class="col-md-4">
                                                                                 <div class="form-group label-floating">
                                                                                     <label>Remarks:</label>
-                                                                                    <input class="form-control" type="text" name="">
+                                                                                    <input class="form-control" type="text" name="remarks">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-4 ">
                                                                                 <div class="form-group label-floating">
                                                                                     <label>MOD</label>
-                                                                                    <select class="form-control nav">
+                                                                                    <select class="form-control nav" name="mod">
                                                                                         <option value="">Cash on delivery</option>
                                                                                         <option value="">Cash on Delivery</option>
                                                                                         <option value="">Bank Deposit</option>
@@ -436,6 +440,14 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
+																		<div class="row">
+																			<div class="col-md-4">
+                                                                                <div class="form-group label-floating">
+                                                                                    <label for="email">Withheld.: </label>
+                                                                                    <input class="form-control" type="text" name="withheld">
+                                                                                </div>
+                                                                            </div>
+																		</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -449,7 +461,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </form>
+                                <?php echo form_close(); ?>
                             </div>
                         </div>
                     </div>
@@ -511,11 +523,68 @@ $(document).ready(function() {
             });
         }
     });
+	
+	
 
     $("[data-toggle=tooltip]").tooltip();
+	
+/*	$("#AddPay").on("click", function() {
+		 getData();
+    });
+	
+	function getData(){
+		var checkArray = [];
+		
+		$('.chk').each(function(){
+			var getBalance = $(this).parent().siblings().eq(0);
+			checkArray.push($(this).val());
+			
+			
+		})
+		
+		if(checkArray.length > 0){
+				alert("You have selected " + checkArray);	
+			}else{
+				alert("Please at least check one of the checkbox");	
+			}
+		
+	}*/
+	
+/*	$(function () {
+		var checkArray = [];
+	  $(':checkbox').on('click', function(e) {
+		  
+		if (this.checked == true) {
+		  var fifthEle = $(this).parent().siblings().eq(3);
+			var id = $(this).parent().siblings().eq(4);
+		  $('#showBalance').append('<p>'+ fifthEle.text() + '</p>');
+		}
+	  })
+	});*/
+	
+	function formatPera(num) {
+		var p = num.toFixed(2).split(".");
+		return "Php " + p[0].split("").reverse().reduce(function(acc, num, i, orig) {
+			return  num + (i && !(i % 3) ? "," : "") + acc;
+		}, "") + "." + p[1];
+	}
+	
+	var table = document.getElementById("mytable"), 
+		sumVal = 0;
+            
+            for(var i = 1; i < table.rows.length; i++)
+            {
+                sumVal = sumVal + parseInt(table.rows[i].cells[4].innerHTML);
+            }
+            
+            document.getElementById("val").innerHTML = "Total Balance = " + formatPera(sumVal);
+            console.log(sumVal);
 });
+	
+	
 </script>
 <script type="text/javascript">
+	$(document).ready(function() {
 $(document).on('change', 'select.nav', function() {
     var $this = this;
     var target = $this.value;
@@ -528,8 +597,29 @@ $(document).on('click', '.series-select', function() {
     var txt = $this.text + '<span class="caret"></span>';
     $($this).closest('li.dropdown').find('a.dropdown-toggle').php(txt);
 
+		
+});
+		
+		function formatPera(num) {
+			var p = num.toFixed(2).split(".");
+			return "Php " + p[0].split("").reverse().reduce(function(acc, num, i, orig) {
+				return  num + (i && !(i % 3) ? "," : "") + acc;
+			}, "") + "." + p[1];
+		}
+	
+		var table = document.getElementById("mytable"), 
+		sumVal1 = 0;
+		
+            
+            for(var i = 1; i < table.rows.length; i++)
+            {
+                sumVal1 = sumVal1 + parseInt(table.rows[i].cells[4].innerHTML);
+            }
+            
+            document.getElementById("val1").innerHTML = formatPera(sumVal1);
+            console.log(sumVal1);
 
-})
+});
 </script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -540,7 +630,43 @@ $(document).ready(function(){
     if(activeTab){
         $('#myTab a[href="' + activeTab + '"]').tab('show');
     }
+	
+	/*$('#AddPay').click(function(){
+		
+		var table_data = [];
+		
+		$('#mytable tr').each(function(row,tr){
+		
+			if($(tr).find('td:eq(0)').text() == ""){
+
+			}else{
+				var sub = {
+					'id' : $(tr).find('td:eq(0)').text(),
+				}
+
+				table_data.push(sub);
+			}
+
+		});
+		
+		document.getElementById("displayID").value = table_data;
+*/
+
+		
+
+
 });
+	});
+	/*function getValueUsingClass(){
+			getValue = [];
+		
+            
+            $(".chk").each(function() {
+			getValue.push($(this).val());
+			});
+            
+            document.getElementById("displayID").value = getValue;
+	}*/
 </script>
 
 

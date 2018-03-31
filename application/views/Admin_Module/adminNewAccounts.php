@@ -23,6 +23,50 @@
 .title {
     font-size: large;
 }
+
+.pagination>.active>a,
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover {
+    background-color: #4caf50;
+    border-color: #9c27b0;
+    color: #FFFFFF;
+    box-shadow: 0 4px 5px 0 rgba(156, 39, 176, 0.14), 0 1px 10px 0 rgba(156, 39, 176, 0.12), 0 2px 4px -1px rgba(156, 39, 176, 0.2);
+}
+
+.page-header {
+    height: 60vh;
+    background-position: center center;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+a {
+    color: #4caf50;
+}
+
+a:hover,
+a:focus {
+    color: #4caf50;
+    text-decoration: none;
+}
+
+.navbar .dropdown-menu li a:hover,
+.navbar .dropdown-menu li a:focus,
+.navbar .dropdown-menu li a:active,
+.navbar.navbar-default .dropdown-menu li a:hover,
+.navbar.navbar-default .dropdown-menu li a:focus,
+.navbar.navbar-default .dropdown-menu li a:active {
+    background-color: #4caf50;
+    color: #FFFFFF;
+    box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2);
+}
 </style>
 
 <body>
@@ -127,66 +171,77 @@
                                     <h4 class="title">Create New Account</h4>
                                     <p class="category">Fill the form</p>
                                 </div>
-                                <div class="card-content">
-                                    <form role="form" action="<?php echo base_url();?>addAccounts/insertAccounts" method="post">
-                                          <h6> Personal Information </h6>
-                                <div class="row">
-                                    <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <input class="form-control" name="u_fname" placeholder="First Name" type="text" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="First Name should only countain letters" />
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <input class="form-control" name="u_lname" placeholder="Last Name" type="text" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Last Name should only countain letters" />
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div>
-                                        <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                            <input class="form-control" name="u_email" placeholder="E-mail" type="text" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required title="You have entered an invalid E-mail address. Please try again." />
+                                 <?php
+                                    $error = $this->session->flashdata('error');
+                                    $success = $this->session->flashdata('success');
+                                    if(!empty($error)){
+                                        ?>
+                                        <div class="alert alert-danger" style="margin: 20px; text-align: center; ">
+                                            <strong><?php echo $error; ?></strong> 
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <input class="form-control" name="u_contact" placeholder="Cellphone Number" type="number" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required />
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-10 col-md-12 col-sm-12">
-                                        <textarea style="resize:vertical;" class="form-control" placeholder="Address" rows="2" name="u_address" required></textarea>
-                                    </div>
-                                </div>
-                                <h6> Position </h6>
-                                <div class="row">
-                                    <div class="col-lg-10 col-md-12 col-sm-12">
-                                        <textarea style="resize:vertical;" class="form-control" placeholder="Position" rows="2" name="u_type" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Position should only countain letters" ></textarea>
-                                    </div>
-                                </div>
-                                <h6> User Credentials </h6>
-                                <div class="row">
-                                    <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <input class="form-control" name="username" placeholder="Username" type="text" required pattern="[a-zA-Z][a-zA-Z0-9\s]*" title="Alphanumeric characters only" required />
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <input class="form-control" name="password" placeholder="Password" type="password"  onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');
-                                             if(this.checkValidity()) form.confirm_password.pattern = this.value;" required />
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-10 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                        <input class="form-control" name="cpassword" placeholder="Confirm Password" type="cpassword" onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');" required />
-                                    </div>
-                                </div>
+                                  <?php } else if(!empty($success)){ ?>
+                                        <div class="alert alert-success" style="margin: 20px; text-align: center; ">
+                                            <strong><?php echo $success; ?></strong> 
+                                        </div>
+                                  <?php } ?> 
+                                <div class="card-content">
+                                    <?php echo form_open('addAccounts/insertAccounts') ?>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 15px;">
+                                                <?php echo form_input(['name' => 'u_fname', 'id' => 'firstname', 'placeholder' => 'First Name', 'value' => isset($_POST['u_fname']) ? $_POST['u_fname'] : '' , 'class' => 'form-control']); ?>
+                                            
+                                            <!-- <input class="form-control" name="u_fname" placeholder="First Name" type="text" pattern="[a-zA-Z][a-zA-Z\s]*" required title="First Name should only countain letters" required /> -->
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 15px;">
+                                                <?php echo form_input(['name' => 'u_lname', 'id' => 'lastname', 'placeholder' => 'Last Name', 'value' => set_value('u_lname'), 'class' => 'form-control']); ?>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 15px;">
+                                                <?php echo form_input(['name' => 'u_email', 'id' => 'u_email', 'placeholder' => 'Email','value' => set_value('u_email'), 'class' => 'form-control']); ?>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 15px;">
+                                                <?php echo form_input(['name' => 'u_contact', 'id' => 'u_contact', 'value' => set_value('u_contact'),'placeholder' => 'Contact Number', 'class' => 'form-control']); ?>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <?php echo form_textarea(['name' => 'u_address', 'id' => 'u_address', 'placeholder' => 'Complete Address', 'value' => set_value('u_fname') ,'class' => 'form-control']); ?>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-6" >   
+                                                <?php echo form_input(['name' => 'username', 'id' => 'username', 'placeholder' => 'Username', 'class' => 'form-control']); ?>
+                                            </div>
+                                            <div class="col-lg-6" align="center">
+                                                <?php 
+                                                    $options = array(
+                                                        'admin' => 'admin',
+                                                        'inventory' => 'inventory',
+                                                        'sales' => 'sales',
+                                                        );
+                                                    echo "<div class='form-group'>"; 
+                                                    echo form_dropdown('u_type', $options, 'admin', 'class="form-control"');
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 15px;">
+                                                <?php echo form_password(['name' => 'password', 'id' => 'Password', 'placeholder' => 'Password', 'class' => 'form-control']); ?>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 15px;">
+                                                <?php echo form_password(['name' => 'cpassword', 'id' => 'Password', 'placeholder' => 'Confirm Password', 'class' => 'form-control']); ?>
+                                            </div>
+                                        </div>
                                         <input type="submit" class="btn btn-success" value="Add" />
-                                <!--<span class="glyphicon glyphicon-ok"></span>-->
-                                <input type="reset" class="btn btn-danger" value="Clear" />
-                                <!--<span class="glyphicon glyphicon-remove"></span>-->
-                                <a href="<?php echo base_url(); ?>adminAccounts" style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</a>
-                                        
-                                    </form>
+                                        <!--<span class="glyphicon glyphicon-ok"></span>-->
+                                        <input type="reset" class="btn btn-danger" value="Clear" />
+                                        <!--<span class="glyphicon glyphicon-remove"></span>-->
+                                        <a href="<?php echo base_url(); ?>adminAccounts" style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</a>
+                                    <?php echo form_close(); ?>
                                 </div>
                             </div>
                         </div>

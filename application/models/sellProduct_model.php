@@ -9,12 +9,12 @@ class sellProduct_model extends CI_MODEL
 	}
 
 	Public function getSoldCoffee(){
-		$query=$this->db->query("SELECT blend_id, walkin_date, blend, package_type, package_size, walkin_qty, blend_price FROM walkin_sales NATURAL JOIN coffee_blend NATURAL JOIN packaging");
+		$query=$this->db->query("SELECT * FROM walkin_sales NATURAL JOIN coffee_blend NATURAL JOIN packaging");
 		return $query->result();
 	}
 
 	Public function getSoldMachine(){
-		$query2=$this->db->query("SELECT * FROM machine_out NATURAL JOIN contracted_client NATURAL JOIN machine where status = 'sold' AND remarks='Received'");
+		$query2=$this->db->query("SELECT *, machine.mach_id, machine_out.mach_serial FROM machine_out NATURAL JOIN contracted_client NATURAL JOIN machine LEFT OUTER JOIN client_machreturn ON client_machreturn.mach_serial = machine_out.mach_serial WHERE status = 'sold'");
 		return $query2->result();
 	}
 
@@ -36,7 +36,7 @@ class sellProduct_model extends CI_MODEL
 
 
 	function record_data($date, $quantity, $blend_id){
-		$query = $this->db->query('SELECT c.percentage, c.raw_id, d.package_id, d.package_size FROM coffee_blend b JOIN proportions c JOIN packaging d ON b.blend_id = c.blend_id AND b.package_id = d.package_id WHERE c.blend_id ='.$blend_id.';');		
+		$query = $this->db->query('SELECT c.percentage, c.raw_id, d.package_id, d.package_size, b.sticker_id FROM coffee_blend b JOIN proportions c JOIN packaging d ON b.blend_id = c.blend_id AND b.package_id = d.package_id WHERE c.blend_id ='.$blend_id.';');		
 		$data = array(
 			'walkin_date' => $date,
 			'walkin_qty' => $quantity,
@@ -46,11 +46,10 @@ class sellProduct_model extends CI_MODEL
 		$this->db->insert('walkin_sales', $data);
 		$inserted_id = $this->db->insert_id();
 
-		$ret = $query->row();
-		$pack_id = $ret->package_id;
-		//$stick_id = $ret->sticker_id;
-		$this->db->query('UPDATE packaging SET package_stock = package_stock - '.$quantity.' WHERE package_id ='.$pack_id.';');
-		//$this->db->query('UPDATE sticker SET sticker_stock = sticker_stock - '.$quantity.' WHERE sticker_id ='.$sticker_id.';');
+		$pack_id = $query->row()->package_id;
+		$stick_id = $query->row()->sticker_id;
+		$this->db->query("UPDATE packaging SET package_stock = package_stock - ".$quantity." WHERE package_id =".$pack_id.";");
+		$this->db->query('UPDATE sticker SET sticker_stock = sticker_stock - '.$quantity.' WHERE sticker_id ='.$stick_id.';'); 
 		$data_trans = array(
 					'transact_date' => $date,
 		        	'type' => "OUT"
@@ -81,8 +80,13 @@ class sellProduct_model extends CI_MODEL
 		        	'package_id' => $pack_id,
 		        	'quantity' => $quantity
 		);
+		$data_stick = array(
+				'trans_id' => $trans_id,
+		        	'sticker_id' => $stick_id,
+		        	'quantity' => $quantity
+		);
 		$this->db->insert('trans_pack', $data_pack);
-		$this->db->query('INSERT INTO trans_stick (trans_id) VALUES ('.$trans_id.')');
+		$this->db->insert('trans_stick', $data_stick);
 		$this->db->query('INSERT INTO trans_mach (trans_id) VALUES ('.$trans_id.')');
 
 		
@@ -102,6 +106,36 @@ class sellProduct_model extends CI_MODEL
 
 		$this->db->where('mach_salesID', $id);
 		$this->db->update('machine_out', $data2);
+	}
+
+	function add_machine_stock($mach_retQty, $mach_id){
+		$this->db->query("UPDATE machine SET mach_stocks = mach_stocks + ".$mach_retQty." WHERE mach_id = '".$mach_id."';");
+	}
+
+	function minus_machine($minusMach, $ma_id){
+		$this->db->query("UPDATE machine SET mach_stocks = mach_stocks - ".$minusMach." WHERE mach_id = '".$ma_id."';");
+	}
+
+	function minus_machine_rent($mach_retQty, $mach_id){
+		$this->db->query("UPDATE machine SET mach_stocks = mach_stocks + ".$mach_retQty." WHERE mach_id = '".$mach_id."';");
+	}
+
+	function insert_coffeereturn($coffeeblend_return){ 
+		$this->db->insert('client_coffreturn', $coffeeblend_return);
+	}
+
+	function update_coffeereturn($return, $id, $blend_returnedQty){
+		$data2 = array(
+	        'coff_remark' => $return,
+	        'walkin_returns' => $blend_returnedQty
+		);
+
+		$this->db->where('walkin_id', $id);
+		$this->db->update('walkin_sales', $data2);
+	}
+
+	function add_blend_stock($blend_returnedQty, $blend_id){
+		$this->db->query("UPDATE coffee_blend SET blend_qty = blend_qty + ".$blend_returnedQty." WHERE blend_id = '".$blend_id."';");
 	}
 }
 

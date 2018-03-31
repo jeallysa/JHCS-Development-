@@ -15,6 +15,13 @@
 			return $query->result();
 			
 		}
+
+		public function get_coffee_walkin_return(){
+			$query = $this->db->query("SELECT * FROM client_coffreturn INNER JOIN walkin_sales ON walkin_sales.walkin_id = client_coffreturn.client_deliveryID NATURAL JOIN coffee_blend NATURAL JOIN packaging WHERE walkin_sales.coff_remark='Returned' AND client_coffreturn.resolved = 'No'");
+			return $query->result();
+			
+		}
+
 		public function get_resolved_coffee(){
 			$query = $this->db->query("SELECT * FROM client_coffreturn NATURAL JOIN client_delivery NATURAL JOIN contracted_client WHERE client_coffreturn.resolved='Yes' ");
 			return $query->result();
@@ -60,6 +67,37 @@
 			);
 			$this->db->where('client_coffReturnID', $RID);
 			$this->db->update('client_coffreturn', $dataB);
+			
+		}
+
+		public function update_return($id){
+			$this->db->query("UPDATE client_coffreturn SET coff_returnQty = '0', resolved = 'Yes' WHERE client_deliveryID = '".$id."';");
+			
+		}
+
+		public function update_delivery($id){
+			$this->db->query("UPDATE client_delivery SET client_delivery.return = 'Received' WHERE client_deliveryID = '".$id."';");
+			
+		}
+
+
+		public function update_mach_return($MRID){
+			$this->db->query("UPDATE client_machreturn SET client_machreturn.resolved = 'Yes' WHERE client_machreturn.client_machReturnID = '".$MRID."';");
+			
+		}
+
+		public function update_less_return_coffee($quantity, $blend_id){
+			$this->db->query("UPDATE coffee_blend SET blend_qty = blend_qty - ".$quantity." WHERE blend_id = '".$blend_id."';");
+			
+		}
+
+		public function less_machine($m_id, $qty){
+			$this->db->query("UPDATE machine SET mach_stocks = mach_stocks - ".$qty." WHERE mach_id = '".$m_id."';");
+			
+		}
+
+		public function update_walkin_sales($id){
+			$this->db->query("UPDATE walkin_sales SET coff_remark = 'Received', walkin_returns = '0' WHERE walkin_id = '".$id."';");
 			
 		}
 		

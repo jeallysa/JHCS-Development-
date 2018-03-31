@@ -43,7 +43,51 @@
     .navbar {
         background-color: chartreuse;
     }
-    </style>
+
+.pagination>.active>a,
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover {
+    background-color: #4caf50;
+    border-color: #9c27b0;
+    color: #FFFFFF;
+    box-shadow: 0 4px 5px 0 rgba(156, 39, 176, 0.14), 0 1px 10px 0 rgba(156, 39, 176, 0.12), 0 2px 4px -1px rgba(156, 39, 176, 0.2);
+}
+
+.page-header {
+    height: 60vh;
+    background-position: center center;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+a {
+    color: #4caf50;
+}
+
+a:hover,
+a:focus {
+    color: #4caf50;
+    text-decoration: none;
+}
+
+.navbar .dropdown-menu li a:hover,
+.navbar .dropdown-menu li a:focus,
+.navbar .dropdown-menu li a:active,
+.navbar.navbar-default .dropdown-menu li a:hover,
+.navbar.navbar-default .dropdown-menu li a:focus,
+.navbar.navbar-default .dropdown-menu li a:active {
+    background-color: #4caf50;
+    color: #FFFFFF;
+    box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2);
+}
+</style>
 <body>
     <div class="wrapper">
         <div class="sidebar" data-color="green" data-image="<?php echo base_url(); ?>assets/img/sidebar-1.jpg">
@@ -153,16 +197,16 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group label-floating">
                                                             <label for="email">Blend Name</label>
-                                                            <input class="form-control" type="text" name="blend_name" required="">
+                                                            <input class="form-control" type="text" name="blend_name"  required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Name should only countain letters">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group label-floating">
                                                             <label for="email">Price Per Unit</label>
-                                                            <input type="number" class="form-control" name="price" required="">
+                                                            <input type="number" class="form-control" name="price"  min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-2">
                                                         <div class="form-group label-floating">
                                                             
                                                             <label for="sel1">Package and Size:</label>
@@ -188,19 +232,36 @@
 
                                                               <select class="form-control" id="sel1" name="type">
                                                                 
-                                                                    <option value="Existing"> Existing </option>
+                                                                    <option value="Existing"> Company Blend </option>
                                                                     <option value="Client"> Client </option>
                                                                    
                                                               </select>
                                                             
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-1">
+                                                    
+                                                    <div class="col-md-2">
                                                         <div class="form-group label-floating">
-                                                            <label for="email">Quantity</label>
-                                                            <input type="number" class="form-control" name="quantity" required="">
+                                                            
+                                                            <label for="sel2">Sticker:</label>
+
+                                                              <select class="form-control" id="sel2" name="stick">
+                                                                <?php
+                                                                    $stick = $this->db->query('SELECT * FROM sticker');
+                                                                    foreach($stick->result() as $row6){
+
+                                                                ?>
+                                                                    <option value="<?php echo $row6->sticker_id; ?>"> <?php echo $row6->sticker; ?> </option>
+                                                                    <?php
+                                                                    }
+                                                                ?>
+                                                                   
+                                                              </select>
+                                                            
                                                         </div>
                                                     </div>
+                                                
+
                                                 </div>
 
                                                     <div class="row">
@@ -247,7 +308,7 @@
                                                             $colname = "per" . $row2->raw_id;
                                         ?>
                                         <td>
-                                            <input type="number" name="per[<?php echo $row2->raw_id;?>]" class="form-control">
+                                            <input type="number" name="per[<?php echo $row2->raw_id;?>]" class="form-control" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                         </td>
                                         <?php
                                                 }

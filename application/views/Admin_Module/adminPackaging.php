@@ -67,7 +67,51 @@
     .navbar {
         background-color: chartreuse;
     }
-    </style>
+
+.pagination>.active>a,
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover {
+    background-color: #4caf50;
+    border-color: #9c27b0;
+    color: #FFFFFF;
+    box-shadow: 0 4px 5px 0 rgba(156, 39, 176, 0.14), 0 1px 10px 0 rgba(156, 39, 176, 0.12), 0 2px 4px -1px rgba(156, 39, 176, 0.2);
+}
+
+.page-header {
+    height: 60vh;
+    background-position: center center;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+a {
+    color: #4caf50;
+}
+
+a:hover,
+a:focus {
+    color: #4caf50;
+    text-decoration: none;
+}
+
+.navbar .dropdown-menu li a:hover,
+.navbar .dropdown-menu li a:focus,
+.navbar .dropdown-menu li a:active,
+.navbar.navbar-default .dropdown-menu li a:hover,
+.navbar.navbar-default .dropdown-menu li a:focus,
+.navbar.navbar-default .dropdown-menu li a:active {
+    background-color: #4caf50;
+    color: #FFFFFF;
+    box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2);
+}
+</style>
 <body>
     <div class="wrapper">
         <div class="sidebar" data-color="green" data-image="<?php echo base_url(); ?>assets/img/sidebar-1.jpg">
@@ -196,16 +240,10 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="email">Number of Stocks</label>
-                                            <input class="form-control" type="number" name="stocks" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 form-group">
                                            <div class="form-group label-floating">
                                             <label for="email">Supplier</label>
                                             <select class="form-control" name="sup_company" required>
-                                                <option disabled selected value> -- select an item -- </option>
+                                                <option disabled selected value> -- select a supplier -- </option>
                                                 <?php 
 
                                                     foreach($data1['getSupplier'] as $row)
@@ -248,7 +286,7 @@
                                                 <span></span>
                                                 <li>
                                                     <a href="<?php echo base_url(); ?>adminBlends">
-                                                        Existing Blends
+                                                        Company Blends
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
@@ -287,12 +325,12 @@
                                     <a class="btn btn-success" data-toggle="modal" data-target="#stock" data-original-title style="float: right">Add New Packaging</a>
                                     <table id="example" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
-                                            <th><b class="pull-left">Type</b></th>
+                                            <th><b class="pull-left">Packaging</b></th>
                                             <th><b class="pull-left">Supplier</b></th>
                                             <th><b class="pull-left">Size</b></th>
-                                            <th><b class="pull-left">Reorder Level (pc)</b></th>
-                                            <th><b class="pull-left">Stock Limit (pc)</b></th>
-                                            <th><b class="pull-left">Number of stocks (pc)</b></th>    
+                                            <th><b class="pull-left">Reorder Level</b></th>
+                                            <th><b class="pull-left">Stock Limit</b></th>
+                                            <th><b class="pull-left">Number of Stocks</b></th>    
                                             <th><b class="pull-left">Edit</b></th>
                                             <th><b class="pull-left">Activation</b></th>
 
@@ -367,11 +405,11 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="panel-footer" style="margin-bottom:-14px;">
-                                                                    <input type="submit" class="btn btn-danger" value="Yes" />
+                                                                    <input type="submit" class="btn btn-success" value="Yes" />
                                                                     <!--<span class="glyphicon glyphicon-ok"></span>-->
                                                                     
                                                                     <!--<span class="glyphicon glyphicon-remove"></span>-->
-                                                                    <button type="button" class="btn btn-success btn-close" onclick="document.getElementById('button<?php echo $row->package_id;?>').click()" data-dismiss="modal">No</button>
+                                                                    <button type="button" class="btn btn-danger btn-close" onclick="document.getElementById('button<?php echo $row->package_id;?>').click()" data-dismiss="modal">No</button>
                                                                 </div>
                                                                 </form>
                                                         </div>
@@ -431,21 +469,23 @@
                                                                             <input class="form-control" value="<?php echo $row->package_stock; ?>" type="number" name="stocks" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-md-6 form-group">
-                                                                           <div class="form-group label-floating">
-                                                                            <label for="email">Supplier</label>
-                                                                            <select class="form-control" name="sup_company" required>
-                                                                                <option disabled selected value> -- select an item -- </option>
-                                                                                <?php 
+                                                                     <div class="col-md-6 form-group">
+                                                                               <div class="form-group label-floating">
+                                                                                <label for="email">Supplier</label>
+                                                                                <select class="form-control" name="sup_company" required>
+                                                                                    <option disabled selected value> -- select a supplier -- </option>
+                                                                                    <?php 
 
-                                                                                    foreach($data1['getSupplier'] as $row)
-                                                                                    { 
-                                                                                        echo '<option value="'.$row->sup_id.'">'.$row->sup_company.'</option>';
-                                                                                    }
-                                                                                 ?>
-                                                                            </select>
+                                                                                        foreach($data1['getSupplier'] as $row2)
+                                                                                        { 
+                                                                                        ?>
+                                                                                        <option value="<?php echo $row2->sup_id;?>" <?php if ($row->sup_id==$row2->sup_id) { ?> selected="selected" <?php } ?> ><?php echo $row2->sup_company; ?></option>
+                                                                                    <?php
+                                                                                        }
+                                                                                     ?>
+                                                                                </select>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
                                                                 </div>
 
                                                             </div>
