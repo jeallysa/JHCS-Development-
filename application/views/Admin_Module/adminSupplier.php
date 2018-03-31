@@ -231,7 +231,7 @@ a:focus {
                                                 <th><b>Cellphone No.</b></th>
                                                 
                                                 <th class="disabled-sorting"><b>Edit</b></th>
-                                                <th><b class="pull-left">Actions</b></th>
+                                                <th><b class="pull-left">Activation</b></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -351,13 +351,6 @@ a:focus {
                                                                             <input name="sup_contact" class="form-control" type="number" value="<?php echo $row->sup_contact; ?>" id="example-number-input" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                                                         </div>
                                                                     </div>
-                                                                       <div class="col-md-6">
-                                                                            <label class="control-label">Product</label>
-                                                                            <select class="form-control" name="Category" placeholder="Category" type="text" required required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Product should only countain letters">
-                                                                                <option>Brown Bag</option>
-                                                                                <option>Clear Bag</option>
-                                                                            </select>
-                                                                        </div>
                                                                     <div class="form-group row">
                                                                          
                                                                          <div class="col-md-6">
@@ -464,7 +457,7 @@ $(document).ready(function() {
                 }
             },
             
-			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs',
+			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> CSV',"className": 'btn btn-success btn-xs',
                 exportOptions: {
                     columns: [0, 1, 2, 3, 4, 5, 6]
                 }

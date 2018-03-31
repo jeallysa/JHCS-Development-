@@ -210,7 +210,6 @@ a:focus {
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign" ></span> Adjust Stock Limit</h4>
                         </div>
                         <form action="#" method="post" accept-charset="utf-8">
                             <div class="modal-body" style="padding-left: 100px;">
@@ -219,12 +218,6 @@ a:focus {
                                         <div class="form-group label-floating">
                                             <label for="type">(Item Name)</label>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="example-number-input" class="col-2 col-form-label">Stock Limit</label>
-                                    <div class="col-10">
-                                        <input class="form-control" type="number" value="100" id="example-number-input">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -604,7 +597,7 @@ a:focus {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>  
             </div>
         </div>
 
@@ -650,7 +643,7 @@ $(document).ready(function() {
                 }
             },
             
-            { "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs',
+            { "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> CSV',"className": 'btn btn-success btn-xs',
                 exportOptions: {
                     columns: [':not(:nth-last-child(1)):not(:nth-last-child(2))']
                 }

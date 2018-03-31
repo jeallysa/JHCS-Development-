@@ -230,12 +230,6 @@ a:focus {
                                         </div>
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="email">Stock Limit</label>
-                                            <input class="form-control" type="number" name="stocklimit" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 form-group">
                                            <div class="form-group label-floating">
                                             <label for="email">Supplier</label>
                                             <select class="form-control" name="sup_company" required>
@@ -323,7 +317,6 @@ a:focus {
                                         <thead>
                                             <th><b class="pull-left">Sticker</b></th>
                                             <th><b class="pull-left">Reorder Level</b></th>
-                                            <th><b class="pull-left">Stock Limit</b></th>
                                             <th><b class="pull-left">Supplier</b></th>
                                             <th><b class="pull-left">Number of Stocks</b></th>
                                             <th><b class="pull-left">Edit</b></th>
@@ -337,7 +330,6 @@ a:focus {
                                              <tr>
                                                  <td><?php echo $row->sticker; ?></td>
                                                  <td><?php echo $row->sticker_reorder; ?></td>
-                                                 <td><?php echo $row->sticker_limit; ?></td>
                                                  <td><?php echo $row->sup_company; ?></td>
                                                  <td><?php echo $row->sticker_stock; ?></td>
                                                 <td>
@@ -434,12 +426,6 @@ a:focus {
                                                                     </div>
                                                                     <div class="col-md-6 form-group">
                                                                         <div class="form-group label-floating">
-                                                                            <label for="email">Stock Limit</label>
-                                                                            <input class="form-control" value="<?php echo $row->sticker_limit; ?>" type="number" name="stocklimit" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6 form-group">
-                                                                        <div class="form-group label-floating">
                                                                             <label for="email">Number of Stocks</label>
                                                                             <input class="form-control" value="<?php echo $row->sticker_stock; ?>" type="number" name="stocks" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                                                         </div>
@@ -531,7 +517,7 @@ $(document).ready(function() {
                 }
             },
             
-			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs',
+			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> CSV',"className": 'btn btn-success btn-xs',
                 exportOptions: {
                     columns: [0, 1, 2, 3, 4]
                 }

@@ -231,7 +231,7 @@ a:focus {
                                                     <th><b>Email</b></th>
                                                     <th><b>Cellphone No.</b></th>
                                                     <th class="disabled-sorting"><b>Edit</b></th>
-                                                    <th><b class="pull-left">Actions</b></th>
+                                                    <th><b class="pull-left">Activation</b></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -444,7 +444,7 @@ $(document).ready(function() {
                 }
             },
             
-			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs',
+			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> CSV',"className": 'btn btn-success btn-xs',
                 exportOptions: {
                     columns: [0, 1, 2, 3, 4, 5, 6]
                 }

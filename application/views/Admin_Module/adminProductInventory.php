@@ -246,12 +246,7 @@ a:focus {
                                             <input class="form-control" type="number" name="reorder" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 form-group">
-                                        <div class="form-group label-floating">
-                                            <label for="email">Stock Limit</label>
-                                            <input class="form-control" type="number" name="stocklimit" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
-                                        </div>
-                                    </div>
+
                                     <div class="col-md-6 form-group">
                                            <div class="form-group label-floating">
                                             <label for="email">Supplier</label>
@@ -347,7 +342,6 @@ a:focus {
                                             <th><b class="pull-left">Raw Coffee</b></th>
                                             <th><b class="pull-left">Type of Roast</b></th>
                                             <th><b class="pull-left">Reorder Level</b></th>
-                                            <th><b class="pull-left">Stock Limit</b></th>
                                             <th><b class="pull-left">Supplier</b></th>
                                             <th><b class="pull-left">Number of Stocks</b></th>
                                             <th><b class="pull-left">Price/kg</b></th>
@@ -365,7 +359,6 @@ a:focus {
                                                  <td><?php echo $row->raw_reorder; ?></td>
                                                  <td><?php echo $row->raw_limit; ?></td>
                                                  <td><?php echo $row->sup_company; ?></td>
-                                                 <td><?php echo $row->raw_stock; ?></td>
                                                  <td>Php<?php echo number_format($row->unitPrice,2); ?></td>
                                                 <td>
                                                     <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#updateraw<?php echo $row->raw_id;?>">Edit</a>
@@ -472,12 +465,6 @@ a:focus {
                                                                     </div>
                                                                     <div class="col-md-6 form-group">
                                                                         <div class="form-group label-floating">
-                                                                            <label for="email">Stock Limit</label>
-                                                                            <input class="form-control" value="<?php echo $row->raw_limit; ?>" type="number" name="stocklimit" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6 form-group">
-                                                                        <div class="form-group label-floating">
                                                                             <label for="email">Number of Stocks</label>
                                                                             <input class="form-control" value="<?php echo $row->raw_stock; ?>" type="number" name="stocks" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                                                         </div>
@@ -576,7 +563,7 @@ $(document).ready(function() {
                 }
             },
             
-			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs',
+			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> CSV',"className": 'btn btn-success btn-xs',
                 exportOptions: {
                     columns: [0, 1, 2, 3, 4, 5, 6]
                 }

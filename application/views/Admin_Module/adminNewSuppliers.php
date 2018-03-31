@@ -213,15 +213,6 @@ a:focus {
                                         <input class="form-control" name="tel_number" placeholder="Cellphone Number" type="number"  min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required />
                                     </div>
                                 </div>
-                                
-                                <h6> Product </h6>
-                                <div class="row">
-                                    <div>
-                                        <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                            <input class="form-control" name="product" placeholder="Product" type="text" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Product should only countain letters" />
-                                        </div>
-                                    </div>
-                                </div>
                             
                                 <input type="submit" class="btn btn-success" value="Add" />
                                 <!--<span class="glyphicon glyphicon-ok"></span>-->

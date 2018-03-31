@@ -205,11 +205,6 @@ a:focus {
                     </div>
                 </div>
             </nav>
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="card">
                                 <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="panel panel-primary">
@@ -253,6 +248,11 @@ a:focus {
                                         </div>
                                     </div>
                                 </div>
+                               <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
                                 <div class="card-header" data-background-color="green">
                                     <div class="nav-tabs-navigation">
                                         <div class="nav-tabs-wrapper">
@@ -490,7 +490,7 @@ $(document).ready(function() {
                 }
             },
             
-            { "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs',
+            { "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> CSV',"className": 'btn btn-success btn-xs',
                 exportOptions: {
                     columns: [':not(:nth-last-child(1)):not(:nth-last-child(2))']
                 }
