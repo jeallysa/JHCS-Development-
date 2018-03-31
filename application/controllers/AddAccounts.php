@@ -36,7 +36,11 @@
 	            $username = $this->input->post('username');
 				$password = $this->input->post('password');
 				$confpassword = $this->input->post('cpassword');
+				
+				$this->AddAccounts_model->activity_logs('admin', "Inserted New Account: ".$u_lname.",".$u_fname." in ".$u_type." Department ");
+
 				$this->load->model('AddAccounts_model');
+
 				if($this->db->query("SELECT IF (EXISTS (SELECT * FROM user WHERE (u_lname = '".$u_lname."' AND u_fname = '".$u_fname."') OR username = '".$username."'), 1,  0) AS result")->row()->result == 1){
 						$this->session->set_flashdata('error', 'Data already exist');
 									redirect('adminNewAccounts');

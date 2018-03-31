@@ -447,7 +447,7 @@ a:focus {
                                                                     <div class="col-md-12 form-group">
                                                                         <div class="form-group label-floating">
                                                                             <label for="email">Type of Roast</label>
-                                                                            <select class="form-control" type="text" name="name" value="<?php echo $row->raw_coffee; ?>" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Name should only countain letters">
+                                                                            <select class="form-control" type="text" name="raw_type" value="<?php echo $row->raw_coffee; ?>" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Name should only countain letters">
                                                                                  <option value="city">City</option>
                                                                                 <option value="medium">Medium</option>
                                                                                 <option value="light">Light</option>

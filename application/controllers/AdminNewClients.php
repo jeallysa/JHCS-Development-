@@ -8,15 +8,17 @@
 			$this->load->helper('security');
 		}
 		
-		public function index()
-		{ 
+		public function index() { 
 			if ($this->session->userdata('username') != '')
 			{
 				$this->load->view('Admin_Module/adminNewClients');
-			} else {
+			} else { 
 				redirect('login');
 			}
 		}
+		
+
+
 
 	}
 ?>

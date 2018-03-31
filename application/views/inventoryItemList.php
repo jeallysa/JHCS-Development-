@@ -32,28 +32,90 @@
                                                     <thead>
                                                         <tr>
                                                             <th><b>Item</b></th>
-                                                            <th><b>Description</b></th>
-                                                            <th><b>Category</b></th>
                                                             <th><b>Type</b></th>
-                                                            <th><b>Supplier</b></th>
+                                                            <th><b>Category</b></th>
                                                             <th><b>Unit Price</b></th>
+                                                            <th><b>Supplier</b></th>
+                                                            <th><b>Remarks</b></th>
                                                         </tr>
                                                         
                                                     </thead>
                                                     
                                                     <tbody>
-                                             <?php
-                                                        foreach($items as $object){
+                               <?php
+                                                 
+                                        for($i = 0 ; $i <= 3 ; $i++){           
+                                            //if(!empty($Items[$i])){           
+                                                foreach($items[$i] as $object){
+                                                      if($i==0){
+                                                        $category = "Raw Coffee";
                                                       echo '<tr>' ,
-                                                            '<td>' . $object->item_name . '</td>' ,
-                                                            '<td>' . $object->desc . '</td>' ,
-                                                            '<td>' . $object->category . '</td>' ,
-                                                            '<td>' .                      '</td>' ,
+                                                            '<td>' . $object->raw_coffee . '</td>' ,
+                                                            '<td>' . $object->raw_type . '</td>' ,
+                                                            '<td>' . $category .          '</td>' ,
+                                                            '<td>' . $object->unitPrice .  '</td>' ,
                                                             '<td>' . $object->sup_company . '</td>' ,
-                                                            '<td>' . $object->unitPrice . '</td>' ,
+                                                            '<td>' . $object->raw_remarks . '</td>' ,
                                                             '</tr>' ;
+                                                    
+                                                             }
+                                                    
+                                                    if($i==1){
+                                                        $category = "Sticker";
+                                                      echo '<tr>' ,
+                                                            '<td>' . $object->sticker . '</td>' ,
+                                                            '<td>' . $object->sticker_type . '</td>' ,
+                                                            '<td>' . $category .          '</td>' ,
+                                                            '<td>' . $object->unitPrice .  '</td>' ,
+                                                            '<td>' . $object->sup_company . '</td>' ,
+                                                            '<td>' . $object->sticker_remarks . '</td>' ,
+                                                            '</tr>' ;
+                                                    
+                                                             }
+                                                    
+                                                    
+                                                    if($i==2){
+                                                        $category = "Packaging";
+                                                      echo '<tr>' ,
+                                                            '<td>' . $object->package_type . '</td>' ,
+                                                            '<td>' . $object->package_size . '</td>' ,
+                                                            '<td>' . $category .          '</td>' ,
+                                                            '<td>' . $object->unitPrice .  '</td>' ,
+                                                            '<td>' . $object->sup_company . '</td>' ,
+                                                            '<td>' . $object->package_remarks . '</td>' ,
+                                                            '</tr>' ;
+                                                    
+                                                             }
+                                                    
+                                                    
+                                                    if($i==3){
+                                                        $category = "Machine";
+                                                      echo '<tr>' ,
+                                                            '<td>' . $object->brewer . '</td>' ,
+                                                            '<td>' . $object->brewer_type . '</td>' ,
+                                                            '<td>' . $category .          '</td>' ,
+                                                            '<td>' . $object->unitPrice .  '</td>' ,
+                                                            '<td>' . $object->sup_company . '</td>' ,
+                                                            '<td>' . $object->mach_remarks . '</td>' ,
+                                                            '</tr>' ;
+                                                    
+                                                             }
+                                                    
+                                                    
+                                                    
+                                                    
                                                         }
-                                                        ?>
+                                                            
+                                                 // }
+                                            }
+                                      ?>
+                                                        
+                                              
+                                              
+                                              
+                                                        
+                                                        
+                                                        
                                                         
                                                         
                                                         

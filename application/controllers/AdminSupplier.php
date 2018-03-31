@@ -40,13 +40,14 @@
 			
 			$this->load->model('Admin_Suppliers_Model');
 			$id = $this->input->post("deact_id");
+			$deact = $this->db->query("SELECT * FROM supplier WHERE sup_id = '".$id."'")->row()->sup_activation;
 			$company = $this->input->post("sup_company");
-			if ($id == 1){
-				$this->Admin_Suppliers_Model->activity_logs('admin', "Activated Supplier: '".$company."'");
+			if ($deact == 1){
+				$this->Admin_Suppliers_Model->activity_logs('admin', "Deactivated Supplier: '".$company."'");
 				$this->Admin_Suppliers_Model->activation($id);
 				redirect('adminSupplier');
 			} else {
-				$this->Admin_Suppliers_Model->activity_logs('admin', "Deactivated Supplier: '".$company."'");
+				$this->Admin_Suppliers_Model->activity_logs('admin', "Activated Supplier: '".$company."'");
 				$this->Admin_Suppliers_Model->activation($id);
 				redirect('adminSupplier');
 			}

@@ -23,7 +23,7 @@
 			$email = $this->input->post('email');
 			$tel_number = $this->input->post('tel_number');
 			
-
+			$this->addsupplier_model->activity_logs('admin', "Inserted New Supplier: ".$supplier." ");	
 
 			$this->addsupplier_model->add_data($supplier, $address, $first_name, $last_name, $position, $email, $tel_number);
 			

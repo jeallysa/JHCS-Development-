@@ -25,12 +25,12 @@
 			$tel_number = $this->input->post('tel_number');
 			$cli_type = $this->input->post('cli_type');
 
+			$this->addclient_model->activity_logs('admin', "Inserted New Client: ".$client." under ".$cli_type." ");			
 
-			$this->addclient_model->add_data($client, $address, $first_name, $last_name, $position, $email, $tel_number, $cli_type);
-			
-			
-			
+			$this->addclient_model->add_data($client, $address, $first_name, $last_name, $position, $email, $tel_number, $cli_type);	
 		}
+
+
 
 	}
 ?>
