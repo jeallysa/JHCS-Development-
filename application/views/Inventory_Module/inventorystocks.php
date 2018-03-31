@@ -225,7 +225,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 '<td>'  . $object->date_received  . '</td>' ,
                                                 '<td>'  . number_format($object->yield_weight)  . ' g</td>' ,
                                                 '<td> Company Delivery </td>' ,
-                                                '<td> IN </td>' ,
+                                                '<td> In </td>' ,
                                                 '</tr>' ;
                                               }
                                             }
@@ -274,12 +274,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                         <label class="col-md-6 control">Physical Count :</label>
                                                                         <div class="col-md-4">
                                                                             <input id="physcount<?php echo $details; ?>" name="physcount<?php echo $details; ?>" type="number" class="form-control"/>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="type"></label>
-                                                                        <div class="col-md-4">
-                                                                            <input value="<?php echo $stock; ?>" class="form-control" id="stock<?php echo $details; ?>" name="stock<?php echo $details; ?>" type="hidden" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">

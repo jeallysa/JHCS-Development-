@@ -68,7 +68,51 @@
     .navbar {
         background-color: chartreuse;
     }
-    </style>
+
+.pagination>.active>a,
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover {
+    background-color: #4caf50;
+    border-color: #9c27b0;
+    color: #FFFFFF;
+    box-shadow: 0 4px 5px 0 rgba(156, 39, 176, 0.14), 0 1px 10px 0 rgba(156, 39, 176, 0.12), 0 2px 4px -1px rgba(156, 39, 176, 0.2);
+}
+
+.page-header {
+    height: 60vh;
+    background-position: center center;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+a {
+    color: #4caf50;
+}
+
+a:hover,
+a:focus {
+    color: #4caf50;
+    text-decoration: none;
+}
+
+.navbar .dropdown-menu li a:hover,
+.navbar .dropdown-menu li a:focus,
+.navbar .dropdown-menu li a:active,
+.navbar.navbar-default .dropdown-menu li a:hover,
+.navbar.navbar-default .dropdown-menu li a:focus,
+.navbar.navbar-default .dropdown-menu li a:active {
+    background-color: #4caf50;
+    color: #FFFFFF;
+    box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2);
+}
+</style>
 
 <body>
     <div class="wrapper">
@@ -177,7 +221,13 @@
                                                      <div class="form-group row">
                                                         <div for="example-number-input" class="col-2 col-form-label">
                                                             <label for="type">Date Started</label>
-                                                            <input class="form-control" type="textarea" value="December 28, 2017" id="example-number-input" required>
+                                                            <input class="form-control" type="date" value="December 28, 2017" id="example-number-input" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div for="example-number-input" class="col-2 col-form-label">
+                                                            <label for="type">Date Expiration</label>
+                                                            <input class="form-control" type="date" value="December 28, 2017" id="example-number-input" required>
                                                         </div>
                                                     </div>
                                                         <div class="form-group row">
@@ -250,15 +300,24 @@
                                             <tr>
                                                 <th><b>Company</b></th>
                                                 <th><b>Date Started</b></th>
+                                                <th><b>Date Expiration</b></th>
                                                 <th><b>Credit Term</b></th>
                                                 <th><b>Coffee Blend</b></th>
                                                 <th><b>Bag</b></th>
                                                 <th><b>Size</b></th>
                                                 <th><b>Coffee Required Quantity</b></th>
+                                                <?php
+                                                     $id = $this->input->get('p');
+                                                    $type = $this->db->query("SELECT * FROM contracted_client WHERE client_id = '".$id."';")->row()->client_type;
+                                                    if($type == "Coffee Service"){
+                                                ?>
                                                 <th><b>Machine</b></th>
                                                 <th><b>Machine Required Quantity</b></th>
                                                 <th><b>Machine Serial Number</b></th>
-                                                <th class="disabled-sorting"><b>Edit</b></th>
+                                                <?php
+                                                    }
+                                                ?>
+                                               <!-- <th class="disabled-sorting"><b>Edit</b></th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -273,17 +332,24 @@
                                                 <tr>
                                                 <td><?php echo $row->client_company; ?></td>
                                                 <td><?php echo $row->date_started; ?></td>
+                                                  <td><?php echo $row->date_expiration; ?></td>
                                                  <td><?php echo $row->credit_term; ?></td>
                                                 <td><?php echo $row->blend; ?></td>
                                                 <td><?php echo $row->package_type; ?></td>
                                                 <td><?php echo $row->package_size; ?></td>
-                                                <td><?php echo $row->brewer; ?></td>
                                                  <td><?php echo $row->required_qty; ?></td>
-                                                  <td><?php echo $row->mach_qty; ?></td>
-                                                  <td><?php echo $row->mach_serial; ?></td>
-                                                
+                                                 <?php
+                                                   
+                                                    if($type == "Coffee Service"){
+                                                 ?>
+                                                    <td><?php echo $row->brewer; ?></td>
+                                                    <td><?php echo $row->mach_qty; ?></td>
+                                                    <td><?php echo $row->mach_serial; ?></td>
+                                                <?php
+                                                    }
+                                                ?>
 
-                                                     <td>
+                                                <!--     <td>
                                                                 <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit<?php echo $row->contract_id; ?>">Edit</a>
                                                 </td>
                                                     
@@ -304,6 +370,12 @@
                                                                         <div class="form-group label-floating">
                                                                             <label for="email">Date Started</label>
                                                                             <input class="form-control" type="date" name="date_started" value="<?php echo $row->date_started; ?>" required>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6 form-group">
+                                                                        <div class="form-group label-floating">
+                                                                            <label for="email">Date Expiration</label>
+                                                                            <input class="form-control" type="date" name="date_started" value="<?php echo $row->date_expiration; ?>" required>
                                                                         </div>
                                                                     </div>
                                                                        <div class="col-md-6 form-group">
@@ -369,15 +441,13 @@
                                                             </div>
                                                                         <div class="panel-footer" style="margin-bottom:-14px;">
                                                                 <input type="submit" class="btn btn-success" value="Update" />
-                                                                <!--<span class="glyphicon glyphicon-ok"></span>-->
                                                                 <input type="reset" class="btn btn-danger" value="Clear" />
-                                                                <!--<span class="glyphicon glyphicon-remove"></span>-->
                                                                 <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
                                                             </div>
                                                                     </form>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        </div> -->
                                             </tr>
 
                                             <?php
@@ -408,13 +478,6 @@
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/FileExport/dataTables.buttons.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/FileExport/buttons.flash.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/FileExport/buttons.Html5.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/FileExport/buttons.print.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/FileExport/jszip.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/FileExport/pdfmake.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/FileExport/vfs_fonts.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/datepicker.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/material.min.js" type="text/javascript"></script>
@@ -438,25 +501,6 @@ $(document).ready(function() {
         "dom":' fBrtip',
         "lengthChange": false,
         "info":     false,
-		buttons: [
-            { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs',
-                exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-                }
-            },
-            
-			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs',
-                exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-                }
-            },
-            
-			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs',
-                exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-                }
-            }
-        ]
     });
 });
 

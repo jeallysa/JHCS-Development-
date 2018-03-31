@@ -36,7 +36,7 @@ class sellProduct_model extends CI_MODEL
 
 
 	function record_data($date, $quantity, $blend_id){
-		$query = $this->db->query('SELECT c.percentage, c.raw_id, d.package_id, d.package_size FROM coffee_blend b JOIN proportions c JOIN packaging d ON b.blend_id = c.blend_id AND b.package_id = d.package_id WHERE c.blend_id ='.$blend_id.';');		
+		$query = $this->db->query('SELECT c.percentage, c.raw_id, d.package_id, d.package_size, b.sticker_id FROM coffee_blend b JOIN proportions c JOIN packaging d ON b.blend_id = c.blend_id AND b.package_id = d.package_id WHERE c.blend_id ='.$blend_id.';');		
 		$data = array(
 			'walkin_date' => $date,
 			'walkin_qty' => $quantity,
@@ -46,11 +46,10 @@ class sellProduct_model extends CI_MODEL
 		$this->db->insert('walkin_sales', $data);
 		$inserted_id = $this->db->insert_id();
 
-		$ret = $query->row();
-		$pack_id = $ret->package_id;
-		//$stick_id = $ret->sticker_id;
-		$this->db->query('UPDATE packaging SET package_stock = package_stock - '.$quantity.' WHERE package_id ='.$pack_id.';');
-		//$this->db->query('UPDATE sticker SET sticker_stock = sticker_stock - '.$quantity.' WHERE sticker_id ='.$sticker_id.';');
+		$pack_id = $query->row()->package_id;
+		$stick_id = $query->row()->sticker_id;
+		$this->db->query("UPDATE packaging SET package_stock = package_stock - ".$quantity." WHERE package_id =".$pack_id.";");
+		$this->db->query('UPDATE sticker SET sticker_stock = sticker_stock - '.$quantity.' WHERE sticker_id ='.$stick_id.';'); 
 		$data_trans = array(
 					'transact_date' => $date,
 		        	'type' => "OUT"
@@ -81,8 +80,13 @@ class sellProduct_model extends CI_MODEL
 		        	'package_id' => $pack_id,
 		        	'quantity' => $quantity
 		);
+		$data_stick = array(
+				'trans_id' => $trans_id,
+		        	'sticker_id' => $stick_id,
+		        	'quantity' => $quantity
+		);
 		$this->db->insert('trans_pack', $data_pack);
-		$this->db->query('INSERT INTO trans_stick (trans_id) VALUES ('.$trans_id.')');
+		$this->db->insert('trans_stick', $data_stick);
 		$this->db->query('INSERT INTO trans_mach (trans_id) VALUES ('.$trans_id.')');
 
 		

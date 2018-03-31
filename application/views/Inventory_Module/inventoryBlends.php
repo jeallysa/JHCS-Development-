@@ -118,6 +118,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             }
                                         ?>
                                 </li>
+                            </li>
+                            <li>
                                 <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="material-icons">person</i>
                                         <p class="hidden-lg hidden-md">Profile</p>
@@ -141,17 +143,214 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                 </div>
             </nav>
+            
+            
+            
+            
+            
+            
+             <?php
+        $details = 1; 
+      if(!empty($blend)) {                                     
+           foreach($blend as $object){
+            $blnd = $object->blend; 
+            $pckg = $object->package_type;
+            $size = $object->package_size;
+            $id =  $object->blend_id;
+            $stock =  $object->blend_qty; 
+          
+           
+?>
+                                             
+         <!-----------------------------------------------------------------------  MODAL DETAILS -------------------------------------->
+            <div class="modal fade" id="<?php echo "details" . $details   ?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span>Stock Card Details</h4>
+                        </div>
+                        <form action="#" method="post" accept-charset="utf-8">
+                            <div class="modal-body" style="padding: 5px;">
+                                <label>Set Date from </label>
+                                <input type="date" name=""/>
+                                <label> to </label>
+                                <input type="date" name=""/>
+                                <button style="float: right;" onclick="printDiv('toBePrinted<?php echo $details; ?>')"><i class="material-icons">print</i></button>
+                                <div id="page-wrapper">
+                                    <div id="toBePrinted<?php echo $details; ?>">
+                                    <div class="table-responsive">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
+                                                                <h3><b><?php echo $blnd; ?></b></h3>
+                                                                <h4><?php echo $pckg; ?> bag (<?php echo $size; ?>g)</h4>
+                                                                <hr>
+                                                            </div>
+                                        <table class="table table-striped" id="table-mutasi">
+                                            <thead>
+                                                <tr>
+                                                    <th><b>Client/Supplier</b></th>
+                                                    <th><b>Date</b></th>
+                                                    <th><b>Quantity</b></th>
+                                                    <th><b>Remarks</b></th>
+                                                    <th><b>Type</b></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                
+                                                
+                                             <?php
+                                              $retrieveDetails1 ="SELECT walkin_id, blend_id, walkin_date, walkin_qty FROM jhcs.walkin_sales NATURAL JOIN coffee_blend WHERE blend_id = ".$details ;
+                                              $query = $this->db->query($retrieveDetails1);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td> </td>' ,
+                                                '<td>'  . $object->walkin_date  . '</td>' ,
+                                                '<td>'  . number_format($object->walkin_qty)  . ' </td>' ;
+                                                ?>
+                                                    <td>Walkin Sales</td>
+                                                    <td>Out</td>
+                                                 <?php   
+                                                '<tr>' ;
+                                              }
+                                            }
+                                        ?>  
+
+                                        <?php
+                                              $retrieveDetails2 ="SELECT contractPO_id, client_company, contractPO_date, contractPO_qty FROM jhcs.contracted_po NATURAL JOIN contracted_client WHERE delivery_stat = 'delivered' AND blend_id = ".$details ;
+                                              $query = $this->db->query($retrieveDetails2);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td>'  . $object->client_company  . '</td>' ,
+                                                '<td>'  . $object->contractPO_date  . '</td>' ,
+                                                '<td>'  . number_format($object->contractPO_qty)  . ' </td>' ;
+                                                ?>
+                                                    <td>Sales</td>
+                                                    <td>Out</td>
+                                                 <?php   
+                                                '</tr>' ;
+                                              }
+                                            }
+                                        ?>  
+
+                                        <?php
+                                              $retrieveDetails3 ="SELECT coService_id, blend_id, client_company, coService_date, coService_qty FROM jhcs.coffeeservice NATURAL JOIN coffee_blend NATURAL JOIN contracted_client WHERE blend_id = ".$details ;
+                                              $query = $this->db->query($retrieveDetails3);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td>'  . $object->client_company  . '</td>' ,
+                                                '<td>'  . $object->coService_date  . '</td>' ,
+                                                '<td>'  . number_format($object->coService_qty)  . '</td>' ;
+                                                ?>
+                                                    <td>Coffee Services</td>
+                                                    <td>Out</td>
+                                                 <?php   
+                                                '</tr>' ;
+                                              }
+                                            }
+                                        ?> 
+
+                                        <?php
+                                              $retrieveDetails4 ="SELECT blend_id, client_company, coff_returnDate, coff_returnQty FROM jhcs.client_coffreturn NATURAL JOIN client_delivery NATURAL JOIN contracted_client NATURAL JOIN contracted_po NATURAL JOIN coffee_blend WHERE blend_id = ".$details ;
+                                              $query = $this->db->query($retrieveDetails4);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td>'  . $object->client_company  . '</td>' ,
+                                                '<td>'  . $object->coff_returnDate  . '</td>' ,
+                                                '<td>'  . number_format($object->coff_returnQty)  . '</td>' ;
+                                                ?>
+                                                    <td>Return</td>
+                                                    <td>In</td>
+                                                 <?php   
+                                                '</tr>' ;
+                                              }
+                                            }
+                                        ?> 
+                                 
+                                            </tbody>
+                                        </table>
+                                        <div class="row">
+                                          <center>                 
+                                        <form action="InventoryBlends/update/<?php echo $id ?>" method="post" accept-charset="utf-8">
+                                            
+                                                            <div class="row">
+                                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                                    
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-6 control">Physical Count :</label>
+                                                                        <div class="col-md-4">
+                                                                            <input id="physcount<?php echo $details; ?>" name="physcount<?php echo $details; ?>" type="number" class="form-control"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-6 control">Discrepancy :</label>
+                                                                        <div class="col-md-4">
+                                                                            <input value="0" id="discrepancy<?php echo $details; ?>" name="discrepancy<?php echo $details; ?>" readonly="" class="form-control" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="type"></label>
+                                                                        <div class="col-md-4">
+                                                                            <input value="<?php echo $details; ?>" class="form-control" name="blndid<?php echo $details; ?>" type="hidden" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="type"></label>
+                                                                        <div class="col-md-4">
+                                                                            <input value="<?php echo $stock; ?>" class="form-control" id = "blndstocks<?php echo $details; ?>" name="blndstocks<?php echo $details; ?>" type="hidden" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-6 control">Remarks :</label>
+                                                                        <div class="col-md-10">
+                                                                            <textarea style="resize:vertical;" class="form-control" rows="2" name="remarks<?php echo $details; ?>"></textarea>
+                                                                            <button type="submit" class="btn btn-success">Save</button>
+                                                                        <input type="reset" class="btn btn-danger" value="Clear" />
+                                                                        </div>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    </center>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="panel-footer" align="center" style="margin-bottom:-14px;">
+                                <button type="button" class="btn btn-default btn-close" data-dismiss="modal">CLOSE</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+<?php                       
+                   $details++;
+                               
+              }
+           }      
+
+ ?>
+        <!----------------------------------------------------------END     OF     MODAL -------------------------------------->     
+        
+        
+        
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-md-12">
                             <div class="card card-nav-tabs">
+                                
                                 <div class="card-header" data-background-color="blue">
                                     <div class="nav-tabs-navigation">
                                         <div class="nav-tabs-wrapper">
                                             <span class="nav-tabs-title"> </span>
                                             <ul class="nav nav-tabs" data-tabs="tabs">
-                                                <li>
+                                              <li>
                                                     <a href="<?php echo base_url(); ?>inventoryStocks">
                                                         <i class="material-icons">local_cafe</i>Raw Coffee
                                                         <div class="ripple-container"></div>
@@ -180,187 +379,70 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         <i class="material-icons">local_laundry_service</i>Machines
                                                         <div class="ripple-container"></div>
                                                     </a>
-                                                </li>
+                                                </li>                                               
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-content">
-                                    <div class="tab-content">
-                                        <div class="tab-pane active" id="coffeeblends">
-                                            <br>
-                                            <br>
-                                             <table id="" class="table hover order-column" cellspacing="0" width="100%">
-                                            <thead>
-                                                <tr>
-                                                    <th><b class="pull-left">No.</b></th>
-                                                    <th><b class="pull-left">Blend</b></th>
-                                                    <th><b class="pull-left">Packaging</b></th>
-                                                    <th><b class="pull-left">Size</b></th>
-                                                    <th><b class="pull-left">Number of Stocks</b></th>
-                                                    <th><b class="pull-left">Stock Card</b></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php 
-                                                    if($fetch_data->num_rows() > 0){
-                                                        foreach ($fetch_data -> result() as $row)
-                                                    {
-                                                ?>
-                                                <tr>
-                                                    <td><?php echo $row->blend_id; ?></td>
-                                                    <td><?php echo $row->blend; ?></td>
-                                                    <td><?php echo $row->package_type; ?> bag</td>
-                                                    <td><?php echo number_format($row->package_size); ?> g</td>
-                                                    <td><b><?php echo number_format($row->blend_qty); ?> pc/s</b></td>
-                                                    <td><a class="btn btn-info" data-toggle="modal" data-target="#<?php echo $row->blend_id; ?>" data-original-title style="float: right">View</a>
-
-                                                        <!-- Modal -->
-                                                <div class="modal fade" id="<?php echo $row->blend_id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                  <div class="modal-dialog modal-lg">
-                                                    <div class="panel panel-primary">
-                                                        <div class="panel-heading">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span>Stock Card Details</h4>
-                                                        </div>
-                                                      <div class="modal-body" style="padding: 5px;">
-                                                          <label>Set Date from </label>
-                                                            <input type="date" name="">
-                                                            <label> to </label>
-                                                            <input type="date" name="">
-                                                            <button style="float: right;" onclick="printDiv('toBePrinted<?php echo $row->blend_id; ?>')"><i class="material-icons">print</i></button>
-                                                        <div id="toBePrinted<?php echo $row->blend_id; ?>">
-                                                            <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
-                                                                <h3><b><?php echo $row->blend; ?></b></h3>
-                                                                <h4><?php echo $row->package_type; ?> bag (<?php echo $row->package_size; ?>g)</h4>
-                                                                <hr>
-                                                            </div>
-                                                        <table id="fresh-datatables" class="table table-striped table-hover responsive" cellspacing="0" width="100%">
-                                                        <thead>
-                                                          <tr>
-                                                            <th><b>Client</b></th>
-                                                            <th><b>Date</b></th>
-                                                            <th><b>Quantity (per pc)</b></th>
-                                                            <th><b>Remarks</b></th>
-                                                            <th><b>Type</b></th>
-                                                          </tr>
-                                                        </thead>
-                                                        <tbody><!--, CONCAT(walkin_fname,' ',walkin_lname) AS customer-->
-                                                            <?php
-                                              $retrieveDetails1 ="SELECT walkin_id, blend_id, walkin_date, walkin_qty FROM jhcs.walkin_sales NATURAL JOIN coffee_blend WHERE blend_id = '$row->blend_id';" ;
-                                              $query = $this->db->query($retrieveDetails1);
-                                              if ($query->num_rows() > 0) {
-                                              foreach ($query->result() as $object) {
+                                
+                                <div class="card-content ">
+                                    <br>
+                                    <table id="example" class="table hover order-column" cellspacing="0" width="100%">
+                                        <thead>
+                                            <th><b class="pull-left">No.</b></th>
+                                            <th><b class="pull-left">Blend</b></th>
+                                            <th><b class="pull-left">Packaging</b></th>
+                                            <th><b class="pull-left">Size</b></th>
+                                            <th><b class="pull-left">Number of Stocks</b></th>
+                                            <th><b class="pull-left">Stock Card</b></th>
+                                        </thead>
+                                        <tbody>
+                                            
+                                            
+                                            
+                  <?php
+                              if(!empty($blend)) {                  
+                                      $mapModal = 1;
+                                          foreach($blend as $object){ 
+                                             
+                                            
                                            echo '<tr>' ,
-                                                '<td> </td>' ,
-                                                '<td>'  . $object->walkin_date  . '</td>' ,
-                                                '<td>'  . number_format($object->walkin_qty)  . ' </td>' ;
-                                                ?>
-                                                    <td>Walkin Sales</td>
-                                                    <td>OUT</td>
-                                                 <?php   
-                                                '<tr>' ;
-                                              }
-                                            }
-                                        ?>  
+                                                
+                                                '<td>'  . $object->blend_id . '</td>' ,
+                                                '<td>'  . $object->blend . '</td>' ,
+                                                '<td>'  . $object->package_type   . ' bag</td>' ,
+                                                '<td>'  . number_format($object->package_size)  . ' g</td>' ,
+                                                '<td><b>'  . number_format($object->blend_qty)   . ' pc/s</b></td>' ;
 
-                                        <?php
-                                              $retrieveDetails2 ="SELECT contractPO_id, client_company, contractPO_date, contractPO_qty FROM jhcs.contracted_po NATURAL JOIN contracted_client WHERE delivery_stat = 'delivered' AND blend_id = '$row->blend_id';" ;
-                                              $query = $this->db->query($retrieveDetails2);
-                                              if ($query->num_rows() > 0) {
-                                              foreach ($query->result() as $object) {
-                                           echo '<tr>' ,
-                                                '<td>'  . $object->client_company  . '</td>' ,
-                                                '<td>'  . $object->contractPO_date  . '</td>' ,
-                                                '<td>'  . number_format($object->contractPO_qty)  . ' </td>' ;
-                                                ?>
-                                                    <td>Sales</td>
-                                                    <td>OUT</td>
-                                                 <?php   
-                                                '</tr>' ;
-                                              }
-                                            }
-                                        ?>  
-
-                                        <?php
-                                              $retrieveDetails3 ="SELECT coService_id, blend_id, client_company, coService_date, coService_qty FROM jhcs.coffeeservice NATURAL JOIN coffee_blend NATURAL JOIN contracted_client WHERE blend_id = '$row->blend_id';" ;
-                                              $query = $this->db->query($retrieveDetails3);
-                                              if ($query->num_rows() > 0) {
-                                              foreach ($query->result() as $object) {
-                                           echo '<tr>' ,
-                                                '<td>'  . $object->client_company  . '</td>' ,
-                                                '<td>'  . $object->coService_date  . '</td>' ,
-                                                '<td>'  . number_format($object->coService_qty)  . '</td>' ;
-                                                ?>
-                                                    <td>Coffee Services</td>
-                                                    <td>OUT</td>
-                                                 <?php   
-                                                '</tr>' ;
-                                              }
-                                            }
-                                        ?> 
-
-                                        <?php
-                                              $retrieveDetails4 ="SELECT blend_id, client_company, coff_returnDate, coff_returnQty FROM jhcs.client_coffreturn NATURAL JOIN client_delivery NATURAL JOIN contracted_client NATURAL JOIN contracted_po NATURAL JOIN coffee_blend WHERE blend_id = '$row->blend_id';" ;
-                                              $query = $this->db->query($retrieveDetails4);
-                                              if ($query->num_rows() > 0) {
-                                              foreach ($query->result() as $object) {
-                                           echo '<tr>' ,
-                                                '<td>'  . $object->client_company  . '</td>' ,
-                                                '<td>'  . $object->coff_returnDate  . '</td>' ,
-                                                '<td>'  . number_format($object->coff_returnQty)  . '</td>' ;
-                                                ?>
-                                                    <td>Return</td>
-                                                    <td>IN</td>
-                                                 <?php   
-                                                '</tr>' ;
-                                              }
-                                            }
-                                        ?> 
-
+                                                                      
+                                        ?>
+                                                                              
+                                               <td><a class="btn btn-info btn-sm" data-toggle="modal" data-target="#<?php echo "details" . $mapModal  ?>">View</a></td>
+                                            
+                                            
+                                            
+                <?php                          '</tr>' ; 
+                           $mapModal++;
+                                         }  
+                              }
+               ?>
+                                            
+                                            
+         
                                         
-                                                    </tbody>
-                                                      </table>
-                                                        </div>
-                                                      </div>
-                                                      <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                      </div>
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                            </td>
-                                                </tr>
-                                                <?php
-                                                                }
-
-                                                            }
-                                                        else{
-                                                         ?>
-                                                        <tr>
-                                                            <td colspan = 9 style = "text-align: center;"> <h3>No blends found</h3> </td>
-                                                        </tr>
-                                                        <?php
-                                                        }
-
-                                                    ?>
-                                            </tbody>
-                                        </table>
-                                        </div>
-                                    </div>
-                                </div> 
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-</body>
+                        </div>     
+              </div>
+          </div>
+     </div>
+    </div> 
+    </div>        
+ 
+</body>       
+                                                       
 <!--   Core JS Files   -->
 <!--
     <script src="../assets/js/jquery-1.12.4.js" type="text/javascript"></script>
@@ -417,15 +499,53 @@ $(document).ready(function() {
     
     }
 </script> 
- 
- <script>
-    $('#count').on('keyup', function() {
-   if($.trim(this.value).length) {
-     var discrepancy = parseFloat($('#stock').val()).toFixed(2) - 
-                   parseFloat(this.value).toFixed(2);
-     $('#discrepancy').val(discrepancy);
-   }
-});
-</script>
 
+<script>
+
+<?php
+           
+           $c = 1; 
+          
+    foreach($blend as $object){
+       $temp =  $object->blend_id;
+          
+         
+        
+        
+         $i = 1; //after every PO it returns to 1
+
+                        $retrieveDetails ="SELECT * FROM jhcs.coffee_blend NATURAL JOIN packaging WHERE blend_activation = '1';";
+                        $query = $this->db->query($retrieveDetails);
+                                       
+                    
+                       if ($query->num_rows() > 0){
+                              foreach ($query->result() as $object){
+               ?>                               
+                                                  
+    
+  $(document).ready(function(){                
+           $(<?php echo "'#details".$c." input[id=physcount".$i."]'"?>).keyup(function(){
+            var y = parseFloat($(this).val());
+            var x = parseFloat($(<?php echo "'#details".$c." input[id=blndstocks".$i."]'"?>).val());
+            var res = x - y ;
+            $(<?php echo "'#details".$c." input[id=discrepancy".$i."]'"?>).val(res);
+});      
+});     
+  
+    
+<?php                                                  
+                                                  
+                            $i++;
+                      }
+                       
+                 }
+                       
+            
+       $c++;
+     }
+               
+?>
+
+</script>
+ 
 </html>
