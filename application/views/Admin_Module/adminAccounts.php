@@ -68,7 +68,51 @@
     .navbar {
         background-color: chartreuse;
     }
-    </style>
+
+.pagination>.active>a,
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover {
+    background-color: #4caf50;
+    border-color: #9c27b0;
+    color: #FFFFFF;
+    box-shadow: 0 4px 5px 0 rgba(156, 39, 176, 0.14), 0 1px 10px 0 rgba(156, 39, 176, 0.12), 0 2px 4px -1px rgba(156, 39, 176, 0.2);
+}
+
+.page-header {
+    height: 60vh;
+    background-position: center center;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+a {
+    color: #4caf50;
+}
+
+a:hover,
+a:focus {
+    color: #4caf50;
+    text-decoration: none;
+}
+
+.navbar .dropdown-menu li a:hover,
+.navbar .dropdown-menu li a:focus,
+.navbar .dropdown-menu li a:active,
+.navbar.navbar-default .dropdown-menu li a:hover,
+.navbar.navbar-default .dropdown-menu li a:focus,
+.navbar.navbar-default .dropdown-menu li a:active {
+    background-color: #4caf50;
+    color: #FFFFFF;
+    box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2);
+}
+</style>
 
 <body>
     <div class="wrapper">
@@ -287,7 +331,11 @@
                                                                                 <div class="form-group row">
                                                                                 <div for="example-number-input" class="col-2 col-form-label">
                                                                                     <label for="type">Position</label>
-                                                                                    <input class="form-control" name="position" type="textarea" value="<?php echo $row->u_type; ?>" id="example-number-input" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Position should only countain letters">
+                                                                                    <select class="form-control" name="position" type="textarea" value="<?php echo $row->u_type; ?>" id="example-number-input" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Position should only countain letters">
+                                                                                    <option value="admin">admin</option>
+                                                                                     <option value="sales">sales</option>
+                                                                                     <option value="inventory">inventory</option>
+                                                                                     </select>
                                                                                 </div>
                                                                             </div>
                                                                                 <div class="form-group row">

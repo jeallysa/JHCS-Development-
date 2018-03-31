@@ -45,7 +45,9 @@
 			$id = $this->input->post('id');
 			$price = $this->input->post('price');
 			$packaging = $this->input->post('package_id');
-			$this->db->query("UPDATE coffee_blend SET blend = '".$blend_name."', blend_price = '".$price."', package_id = '".$packaging."' WHERE blend_id = '".$id."';");
+			$type = $this->input->post('type');
+			$sticker = $this->input->post('stick');
+			$this->db->query("UPDATE coffee_blend SET blend = '".$blend_name."', blend_price = '".$price."', package_id = '".$packaging."', blend_type = '".$type."', sticker_id = '".$sticker."' WHERE blend_id = '".$id."';");
 			$query = $this->db->query("SELECT * FROM raw_coffee;");
 			foreach($query->result() as $row){
 				$prop = $this->input->post("per[".$row->raw_id."]");
@@ -103,11 +105,14 @@
 			$price = $this->input->post('price');
 			$packaging = $this->input->post('package_id');
 			$type = $this->input->post('type');
+			$sticker = $this->input->post('stick');
+
 			$data_blend = array(
 				'blend' => $blend_name,
 				'package_id' => $packaging,
 				'blend_price' => $price,
-				'blend_type' => $type
+				'blend_type' => $type,
+				'sticker_id' => $sticker
 			);
 
 			$this->db->insert('coffee_blend', $data_blend);

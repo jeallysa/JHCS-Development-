@@ -170,6 +170,8 @@
 														<th><b>Qty</b></th>
 														<th><b>Price</b></th>
                                                         <th><b>Total Amount</b></th>
+                                                        <th><b>Returns Quantity</b></th>
+                                                        <th><b>Action</b></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -190,6 +192,111 @@
                                                                 echo 'Php '.number_format($price * $qty,2);
                                                              ?>
                                                         </td>
+                                                         <td><?php echo $row->walkin_returns; ?></td>
+                                                         <td><button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#returnblend<?php echo $row->walkin_id; ?>">Return</button>
+                                                         </td>
+                <!-- modal machine returns -->
+                <div class="modal fade" id="returnblend<?php echo $row->walkin_id; ?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h4 class="panel-title" id="contactLabel"><center>Return Coffee Blend</center> </h4>
+                            </div>
+                            <div class="modal-body" style="padding: 5px;">
+                                <div class="card-block">
+                                     <form action="<?php echo base_url(); ?>salesSellProduct/return_blend" method="post" accept-charset="utf-8">
+                                        <div class="modal-body" style="padding: 5px;">
+                                            <h3 class="pull-center"><?php echo $row->blend; ?></h3>
+                                            
+                                        <div class="row">
+                                            <div class="col-lg-12" style="padding-bottom: 20px;">
+                                                <div class="form-group label-floating">
+                                                    <div class="form-group">
+
+                                                    <div class="row">
+                                                        <div class="col-lg-">
+                                                             <div class="form-group">
+                                                                <label class="col-md-4 control">Purchase Date: </label>
+                                                                <div class="col-md-6">
+                                                                    <p><b><?php echo $row->walkin_date;
+                                                                    ?></b></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-md-4 control">Packaging: </label>
+                                                                <div class="col-md-6">
+                                                                    <p><b><?php echo $row->package_type.'/ '.number_format($row->package_size).' g';
+                                                                    ?></b></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-md-4 control">Quantity :</label>
+                                                                <div class="col-md-6">
+                                                                    <p><b><?php echo $row->walkin_qty; ?></b></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-md-4 control">Price: </label>
+                                                                <div class="col-md-3">
+                                                                    <p><b>Php <?php echo number_format($price,2); ?></b></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-md-4 control">Total Amount: </label>
+                                                                <div class="col-md-3">
+                                                                    <p><b><?php echo 'Php' .number_format($price * $qty, 2) ?></b></p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            
+                                                    </div>
+                                                    <hr>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+
+                                                            <div class="form-group">
+                                                                <label class="col-md-6 control">Date Returned:</label>
+                                                                <input class="form-control col-md-12" type="date" name="date_blend_returned" required="">
+                                                                <input type="hidden" name="blend_id" value="<?php echo $row->blend_id; ?>" required>
+                                                                <input type="hidden" name="walkin_id" value="<?php echo $row->walkin_id; ?>" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+
+                                                            <div class="form-group">
+                                                                <label class="col-md-6 control">Quantity Returned:</label>
+                                                                <input class="form-control col-md-12" type="number" name="blend_returned" min="1" max="<?php
+                                                                    $retblend = $row->walkin_returns;
+                                                                    $soldblend = $row->walkin_qty;
+                                                                    $ret_mach = $soldblend - $retblend;
+                                                                    echo $ret_mach;
+                                                                 ?>" required="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="col-md-6 control">Remarks:</label>
+                                                                <input class="form-control col-md-3" type="text" name="return_blend_remarks" required="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <center>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-success">Save</button>
+                                            </center>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
                                                      </tr>
                                                      <?php 
                                                         }
@@ -206,9 +313,10 @@
 														<th><b>Purchase Date</b></th>
 														<th><b>Client</b></th>
 														<th><b>Machine</b></th>
-														<th><b>Quantity</b></th>
+														<th><b>Sold Quantity</b></th>
 														<th><b>Unit Price</b></th>
-														<th><b>Total Amount</b></th>
+                                                        <th><b>Total Amount</b></th>
+														<th><b>Returns Quantity</b></th>
                                                         <th><b>Action</b></th>
 													</thead>
 													<tbody>
@@ -229,6 +337,8 @@
                                                                 echo 'Php' .number_format($price * $qty, 2);
                                                              ?>
                                                          </td>
+                                                         <td><?php echo $row->mach_returnQty; ?></td>
+
                                                          <td><button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#return<?php echo $row->mach_salesID; ?>">Return</button>
                                                          </td>
                 <!-- modal machine returns -->
@@ -295,15 +405,20 @@
 
                                                                     <div class="form-group">
                                                                         <label class="col-md-6 control">Date Returned:</label>
-                                                                        <input class="form-control col-md-3" type="date" name="date_returned" required="">
+                                                                        <input class="form-control col-md-6" type="date" name="date_returned" required="">
                                                                         <input type="hidden" name="mach_id" value="<?php echo $row->mach_id; ?>" required>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
 
                                                                     <div class="form-group">
-                                                                        <label class="col-md-7 control">Quantity Returned:</label>
-                                                                        <input class="form-control col-md-3" type="number" name="qty_returned" min="1" max="<?php echo $row->mach_qty;?>" required="">
+                                                                        <label class="col-md-6 control">Quantity Returned:</label>
+                                                                        <input class="form-control col-md-6" type="number" name="qty_returned" min="1" max="<?php
+                                                                            $retqtymach = $row->mach_returnQty;
+                                                                            $solmach = $row->mach_qty;
+                                                                            $ret_mach = $solmach - $retqtymach;
+                                                                            echo $ret_mach;
+                                                                         ?>" required="">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -311,7 +426,7 @@
         
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label class="col-md-3 control">Remarks:</label>
+                                                                        <label class="col-md-6 control">Remarks:</label>
                                                                         <input class="form-control col-md-3" type="text" name="remarks" required="">
                                                                          <input name="serial" type="hidden" class="form-control" value="<?php echo $row->mach_serial; ?>" >
                                                                          <input name="client_id" type="hidden" class="form-control" value="<?php echo $row->client_id; ?>

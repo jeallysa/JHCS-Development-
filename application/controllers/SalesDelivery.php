@@ -23,6 +23,13 @@
         function insert()
 		{
 			$this->load->model('SalesDelivery_model');
+			$po = $this->input->post("po_id");
+			$cli_dr = $this->input->post("client_dr"); 
+			$del_Date = $this->input->post("delivery_date");
+			$blend = $this->input->post("blend");
+			$pack_size = $this->input->post("pack_size");
+
+
 			$data = array(
 				"client_dr" =>$this->input->post("client_dr"),
 				"client_deliverDate" =>$this->input->post("delivery_date"),
@@ -43,6 +50,7 @@
 				$po_id = $this->input->post("po_id");
 				$delivered_qty = $this->SalesDelivery_model->insert_data($data);
 				$this->SalesDelivery_model->updateDel($deliver, $po_id, $delivered_quantity);
+				$this->SalesDelivery_model->record_data($del_Date, $delivered_quantity, $blend, $pack_size, $cli_dr);
 				echo "<script>alert('Delivery successful!');</script>";
 
 				
@@ -51,12 +59,14 @@
 				$po_id = $this->input->post("po_id");
 				$delivered_qty = $this->SalesDelivery_model->insert_data($data);
 				$this->SalesDelivery_model->updateDel($deliver, $po_id, $delivered_quantity);
+				$this->SalesDelivery_model->record_data($del_Date, $delivered_quantity, $blend, $pack_size, $cli_dr);
 				echo "<script>alert('Delivery successful!');</script>";
 
 				
 			} 
 
 			redirect('SalesDelivery', 'refresh');
+			
 		}
 
         function insert1()
@@ -70,10 +80,13 @@
                 "coff_remarks" =>$this->input->post("remarks")    
 			);
 			$dataA = $this->security->xss_clean($dataA);
+			$add_blend =$this->input->post("qty_returned");
+			$blend_id =$this->input->post("blend_id");
 			$return = 'Returned';
 			$deliver_id = $this->input->post("deliveryID");
 			$this->SalesDelivery_model->insert_dataA($dataA);
 			$this->SalesDelivery_model->updateA($return, $deliver_id);
+			$this->SalesDelivery_model->add_blend($add_blend, $blend_id);
 			echo "<script>alert('Item Returned!');</script>";
 			redirect('SalesDelivery', 'refresh');
 		}

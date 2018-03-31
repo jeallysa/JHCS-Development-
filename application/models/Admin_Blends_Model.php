@@ -22,7 +22,10 @@ class Admin_Blends_Model extends CI_model
 							        ELSE NULL
 							    END) AS per".$row->raw_id.",";
 		}
-		$query_append .= " d.package_size, d.package_type, c.blend_price FROM raw_coffee a JOIN proportions b JOIN coffee_blend c NATURAL JOIN packaging d ON a.raw_id = b.raw_id AND b.blend_id = c.blend_id WHERE c.blend_type = 'Existing' AND a.raw_activation = 1 GROUP BY c.blend_id;";
+		$query_append .= " d.package_size, d.package_type, c.blend_price, c.blend_qty FROM raw_coffee a JOIN proportions b JOIN coffee_blend c NATURAL JOIN packaging d ON a.raw_id = b.raw_id AND b.blend_id = c.blend_id WHERE c.blend_type = 'Existing' AND a.raw_activation = 1 GROUP BY c.blend_id;";
+
+
+
 
 
 		$query = $this->db->query($query_append);
@@ -40,7 +43,7 @@ class Admin_Blends_Model extends CI_model
 							        ELSE NULL
 							    END) AS per".$row->raw_id.",";
 		}
-		$query_append .= " d.package_size, d.package_type, c.blend_price FROM raw_coffee a JOIN proportions b JOIN coffee_blend c NATURAL JOIN packaging d ON a.raw_id = b.raw_id AND b.blend_id = c.blend_id WHERE c.blend_id='".$id."' AND a.raw_activation = 1 GROUP BY c.blend_id;";
+		$query_append .= " d.package_size, d.package_type, c.blend_price, c.blend_qty FROM raw_coffee a JOIN proportions b JOIN coffee_blend c NATURAL JOIN packaging d ON a.raw_id = b.raw_id AND b.blend_id = c.blend_id WHERE c.blend_id='".$id."' AND a.raw_activation = 1 GROUP BY c.blend_id;";
 
 
 		$query = $this->db->query($query_append);
@@ -59,7 +62,7 @@ class Admin_Blends_Model extends CI_model
 							        ELSE NULL
 							    END) AS per".$row->raw_id.",";
 		}
-		$query_append .= " d.package_size, d.package_type, c.blend_price FROM raw_coffee a JOIN proportions b JOIN coffee_blend c NATURAL JOIN packaging d ON a.raw_id = b.raw_id AND b.blend_id = c.blend_id WHERE c.blend_type = 'Client' AND a.raw_activation = 1 GROUP BY c.blend_id;";
+		$query_append .= " d.package_size, d.package_type, c.blend_price, c.blend_qty FROM raw_coffee a JOIN proportions b JOIN coffee_blend c NATURAL JOIN packaging d ON a.raw_id = b.raw_id AND b.blend_id = c.blend_id WHERE c.blend_type = 'Client' AND a.raw_activation = 1 GROUP BY c.blend_id;";
 
 
 		$query = $this->db->query($query_append);

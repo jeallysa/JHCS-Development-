@@ -15,7 +15,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- Bootstrap core CSS     -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/dataTables.bootstrap.min.css"/>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.dataTable.min.css"/>
+    <link href="<?php echo base_url(); ?>assets/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/css/jquery.dataTable.min.css" rel="stylesheet" />
     <!--  Material Dashboard CSS    -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0"/>
     <!--  CSS for Demo Purpose, don't include it in your project     -->
@@ -118,6 +119,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             }
                                         ?>
                                 </li>
+                            </li>
+                            <li>
                                 <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="material-icons">person</i>
                                         <p class="hidden-lg hidden-md">Profile</p>
@@ -141,17 +144,225 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                 </div>
             </nav>
+            
+            
+            
+            
+            
+            
+             <?php
+        $details = 1; 
+      if(!empty($packaging)) {                                     
+           foreach($packaging as $object){
+            $pckg = $object->package_type;
+            $size = $object->package_size;
+            $id =  $object->package_id;
+            $stock =  $object->package_stock; 
+          
+           
+?>
+                                             
+         <!-----------------------------------------------------------------------  MODAL DETAILS -------------------------------------->
+            <div class="modal fade" id="<?php echo "details" . $details   ?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span>Stock Card Details</h4>
+                        </div>
+                        <form action="#" method="post" accept-charset="utf-8">
+                            <div class="modal-body" style="padding: 5px;">
+                                <div id="page-wrapper">
+                                    
+                                    <div class="table-responsive">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
+                                                                <h3><b><?php echo $pckg; ?> bag (<?php echo $size; ?> g)</b></h3>
+                                                                <hr>
+                                                            </div>
+                                    <div class="form-group col-xs-3">
+                                    <label>Filter By:</label>
+                                        <div class="input-group input-daterange">
+                                        <input type="text" id="min<?php echo $details; ?>" class="form-control" value="2000-01-01" >
+                                        <span class="input-group-addon">to</span>
+                                        <input type="text" id="max<?php echo $details; ?>" class="form-control" value="<?php   echo date("Y-m-d") ?>" >
+                                    </div>
+                                </div>
+                                        <table class="table table-striped" id="table-mutasi<?php echo $details; ?>">
+                                            <thead>
+                                                <tr>
+                                                    <th><b>Client/Supplier</b></th>
+                                                    <th><b>Date</b></th>
+                                                    <th><b>Quantity</b></th>
+                                                    <th><b>Remarks</b></th>
+                                                    <th><b>Type</b></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                
+                                                <?php
+                                              $retrieveDetails1 ="SELECT walkin_id, package_id, walkin_date, walkin_qty FROM jhcs.walkin_sales NATURAL JOIN coffee_blend NATURAL JOIN packaging WHERE package_id = ".$details ;
+                                              $query = $this->db->query($retrieveDetails1);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td> Walkin Client </td>' ,
+                                                '<td>'  . $object->walkin_date  . '</td>' ,
+                                                '<td>'  . number_format($object->walkin_qty)  . ' pc/s</td>' ;
+                                                ?>
+                                                    <td>Walkin Sales</td>
+                                                    <td>Out</td>
+                                                 <?php   
+                                                 ;
+                                              }
+                                            }
+                                        ?>  
+
+                                        <?php
+                                              $retrieveDetails2 ="SELECT package_id, contractPO_id, client_company, contractPO_date, contractPO_qty FROM jhcs.contracted_po NATURAL JOIN contracted_client NATURAL JOIN coffee_blend NATURAL JOIN packaging WHERE delivery_stat = 'delivered' AND package_id = ".$details ;
+                                              $query = $this->db->query($retrieveDetails2);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td>'  . $object->client_company  . '</td>' ,
+                                                '<td>'  . $object->contractPO_date  . '</td>' ,
+                                                '<td>'  . number_format($object->contractPO_qty)  . ' pc/s</td>' ;
+                                                ?>
+                                                    <td>Sales</td>
+                                                    <td>Out</td>
+                                                 <?php   
+                                                '</tr>' ;
+                                              }
+                                            }
+                                        ?>
+
+                                        <?php
+                                              $retrieveDetails3 ="SELECT retail_id, package_id, client_company, retail_date, retail_qty FROM jhcs.retail NATURAL JOIN coffee_blend NATURAL JOIN packaging NATURAL JOIN contracted_client WHERE package_id = ".$details ;
+                                              $query = $this->db->query($retrieveDetails3);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td>'  . $object->client_company  . '</td>' ,
+                                                '<td>'  . $object->retail_date  . '</td>' ,
+                                                '<td>'  . number_format($object->retail_qty)  . ' pc/s</td>' ;
+                                                ?>
+                                                    <td>Retail Sales</td>
+                                                    <td>Out</td>
+                                                 <?php   
+                                                '</tr>' ;
+                                              }
+                                            }
+                                        ?>  
+
+                                        <?php
+                                              $retrieveDetails4 ="SELECT package_id, item, qty, date_received, yield_weight, sup_company FROM jhcs.supp_po_ordered INNER JOIN supp_delivery ON supp_po_ordered.supp_po_ordered_id = supp_delivery.supp_po_ordered_id INNER JOIN supp_po ON supp_po.supp_po_id = supp_po_ordered.supp_po_id INNER JOIN supplier ON supplier.sup_id = supp_po.supp_id INNER JOIN packaging ON (supp_po_ordered.item = packaging.package_type AND supp_po_ordered.type = packaging.package_size) WHERE package_id = ".$details ;
+                                              $query = $this->db->query($retrieveDetails4);
+                                              if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                           echo '<tr>' ,
+                                                '<td>'  . $object->sup_company  . '</td>' ,
+                                                '<td>'  . $object->date_received  . '</td>' ,
+                                                '<td>'  . number_format($object->yield_weight)  . ' pc/s</td>' ;
+                                                ?>
+                                                    <td>Company Delivery</td>
+                                                    <td>In</td>
+                                                 <?php   
+                                                '</tr>' ;
+                                              }
+                                            }
+                                        ?> 
+                                 
+                                            </tbody>
+                                        </table>
+                                        <div class="row">
+                                                <div class="col-lg-6 col-md-6 col-offset-6">
+                                                                <div class="form-group">
+                                                                    <label class="col-md-4 control">Total In :</label>
+                                                                    <div class="col-md-4">
+                                                                        <p>- piece/s</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-4 control">Total Out :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p>- piece/s</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                        <form action="InventoryPackaging/update" method="post" accept-charset="utf-8">
+                                                            <div class="row">
+                                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                                    
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-6 control">Physical Count :</label>
+                                                                        <div class="col-md-4">
+                                                                            <input id="physcount<?php echo $details; ?>" name="physcount<?php echo $details; ?>" type="number" class="form-control"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-6 control">Discrepancy :</label>
+                                                                        <div class="col-md-4">
+                                                                            <input value="0" id="discrepancy<?php echo $details; ?>" name="discrepancy<?php echo $details; ?>" readonly="" class="form-control" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="type"></label>
+                                                                        <div class="col-md-4">
+                                                                            <input value="<?php echo $details; ?>" class="form-control" name="pckgid<?php echo $details; ?>" type="hidden" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="type"></label>
+                                                                        <div class="col-md-4">
+                                                                            <input value="<?php echo $stock; ?>" class="form-control" id = "pckgstocks<?php echo $details; ?>" name="pckgstocks<?php echo $details; ?>" type="hidden" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-6 control">Remarks :</label>
+                                                                        <div class="col-md-10">
+                                                                            <textarea style="resize:vertical;" class="form-control" rows="2" name="remarks<?php echo $details; ?>"></textarea>
+                                                                        </div>
+                                                                        <button type="submit" class="btn btn-success">Save</button>
+                                                                        <input type="reset" class="btn btn-danger" value="Clear" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                    </div>
+                                
+                            </div>
+                        </div>
+                            <div class="panel-footer" align="center" style="margin-bottom:-14px;">
+                                <button type="button" class="btn btn-default btn-close" data-dismiss="modal">CLOSE</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+<?php                       
+                   $details++;
+                               
+              }
+           }      
+
+ ?>
+        <!----------------------------------------------------------END     OF     MODAL -------------------------------------->     
+        
+        
+        
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-md-12">
                             <div class="card card-nav-tabs">
+                                
                                 <div class="card-header" data-background-color="blue">
                                     <div class="nav-tabs-navigation">
                                         <div class="nav-tabs-wrapper">
                                             <span class="nav-tabs-title"> </span>
                                             <ul class="nav nav-tabs" data-tabs="tabs">
-                                                <li>
+                                              <li>
                                                     <a href="<?php echo base_url(); ?>inventoryStocks">
                                                         <i class="material-icons">local_cafe</i>Raw Coffee
                                                         <div class="ripple-container"></div>
@@ -180,270 +391,108 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         <i class="material-icons">local_laundry_service</i>Machines
                                                         <div class="ripple-container"></div>
                                                     </a>
-                                                </li>
+                                                </li>                                               
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-content">
-                                    <div class="tab-content">
-                                        <div class="tab-pane active" id="packaging">
-                                            <br>
-                                            <br>
-                                             <table id="" class="table hover order-column" cellspacing="0" width="100%">
-                                            <thead>
-                                                <tr>
-                                                    <th><b class="pull-left">Packaging No.</b></th>
-                                                    <th><b class="pull-left">Package</b></th>
-                                                    <th><b class="pull-left">Size</b></th>
-                                                    <th><b class="pull-left">Reorder Level</b></th>
-                                                    <th><b class="pull-left">Stock Limit</b></th>
-                                                    <th><b class="pull-left">Number of stocks</b></th>
-                                                    <th><b class="pull-left">Physical Count</b></th>
-                                                    <th><b class="pull-left">Remarks</b></th>
-                                                    <th><b class="pull-left">Stock Card</b></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php 
-                                                    if($fetch_data->num_rows() > 0){
-                                                        foreach ($fetch_data -> result() as $row)
-                                                    {
-                                                ?>
-                                                <tr>
-                                                    <td><?php echo $row->package_id; ?></td>
-                                                    <td><?php echo $row->package_type; ?> bag</td>
-                                                    <td><?php echo number_format($row->package_size); ?> g</td>
-                                                    <td><?php echo number_format($row->package_reorder); ?> pc/s</td>
-                                                    <td><?php echo number_format($row->package_limit); ?> pc/s</td>
-                                                    <td><b><?php echo number_format($row->package_stock); ?> pc/s</b></td>
-                                                    <td><b><?php echo number_format($row->package_physcount); ?> pc/s</b></td>
-                                                    <td><?php echo $row->package_remarks; ?></td>
-                                                    <td><a class="btn btn-info" data-toggle="modal" data-target="#<?php echo $row->package_id; ?>" data-original-title style="float: right">View</a>
-
-                                                        <!-- Modal -->
-                                                <div class="modal fade" id="<?php echo $row->package_id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                  <div class="modal-dialog modal-lg">
-                                                    <div class="panel panel-primary">
-                                                        <div class="panel-heading">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                            <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span>Stock Card Details</h4>
-                                                        </div>
-                                                      <div class="modal-body" style="padding: 5px;">
-                                                          <label>Set Date from </label>
-                                                            <input type="date" name="">
-                                                            <label> to </label>
-                                                            <input type="date" name="">
-                                                          <button style="float: right;" onclick="printDiv('toBePrinted<?php echo $row->package_id; ?>')"><i class="material-icons">print</i></button>
-                                                        <div id="toBePrinted<?php echo $row->package_id; ?>">
-                                                            <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
-                                                                <h3><b><?php echo $row->package_type; ?> bag (<?php echo $row->package_size; ?> g)</b></h3>
-                                                                <hr>
-                                                            </div>
-                                                        <table id="fresh-datatables" class="table table-striped table-hover responsive" cellspacing="0" width="100%">
-                                                        <thead>
-                                                          <tr>
-                                                            <th><b>Client/Supplier</b></th>
-                                                            <th><b>Date</b></th>
-                                                            <th><b>Quantity</b></th>
-                                                            <th><b>Remarks</b></th>
-                                                            <th><b>Type</b></th>
-                                                          </tr>
-                                                        </thead>
-                                                        <tbody><!--, CONCAT(walkin_fname,' ',walkin_lname) AS customer -->
-                                                            <?php
-                                              $retrieveDetails1 ="SELECT walkin_id, package_id, walkin_date, walkin_qty FROM jhcs.walkin_sales NATURAL JOIN coffee_blend NATURAL JOIN packaging WHERE package_id = '$row->package_id';" ;
-                                              $query = $this->db->query($retrieveDetails1);
-                                              if ($query->num_rows() > 0) {
-                                              foreach ($query->result() as $object) {
+                                
+                                <div class="card-content ">
+                                    <br>
+                                    <table id="example" class="table hover order-column" cellspacing="0" width="100%">
+                                        <thead>
+                                            <th><b class="pull-left">No.</b></th>
+                                            <th><b class="pull-left">Package</b></th>
+                                            <th><b class="pull-left">Size</b></th>
+                                            <th><b class="pull-left">Reorder Level</b></th>
+                                            <th><b class="pull-left">Stock Limit</b></th>
+                                            <th><b class="pull-left">Number of stocks</b></th>
+                                            <th><b class="pull-left">Physical Count</b></th>
+                                            <th><b class="pull-left">Remarks</b></th>
+                                            <th><b class="pull-left">Stock Card</b></th>
+                                        </thead>
+                                        <tbody>
+                                            
+                                            
+                                            
+                  <?php
+                              if(!empty($packaging)) {                  
+                                      $mapModal = 1;
+                                          foreach($packaging as $object){ 
+                                             
+                                            
                                            echo '<tr>' ,
-                                                '<td> </td>' ,
-                                                '<td>'  . $object->walkin_date  . '</td>' ,
-                                                '<td>'  . number_format($object->walkin_qty)  . ' pc/s</td>' ;
-                                                ?>
-                                                    <td>Walkin Sales</td>
-                                                    <td>Out</td>
-                                                 <?php   
-                                                 ;
-                                              }
-                                            }
-                                        ?>  
+                                                
+                                                '<td>'  . $object->package_id . '</td>' ,
+                                                '<td>'  . $object->package_type . ' bag</td>' ,
+                                                '<td>'  . number_format($object->package_size)   . ' g</td>' ,
+                                                '<td>'  . number_format($object->package_reorder)  . ' pc/s</td>' ,
+                                                '<td>'  . number_format($object->package_limit)   . ' pc/s</td>' ,
+                                                '<td><b>'  . number_format($object->package_stock)   . ' pc/s</b></td>' ,
+                                                '<td>'  . number_format($object->package_physcount)   . ' pc/s</td>' ,
+                                                '<td>'  . $object->package_remarks   . '</td>' ;
 
-                                        <?php
-                                              $retrieveDetails2 ="SELECT package_id, contractPO_id, client_company, contractPO_date, contractPO_qty FROM jhcs.contracted_po NATURAL JOIN contracted_client NATURAL JOIN coffee_blend NATURAL JOIN packaging WHERE delivery_stat = 'delivered' AND package_id = '$row->package_id';" ;
-                                              $query = $this->db->query($retrieveDetails2);
-                                              if ($query->num_rows() > 0) {
-                                              foreach ($query->result() as $object) {
-                                           echo '<tr>' ,
-                                                '<td>'  . $object->client_company  . '</td>' ,
-                                                '<td>'  . $object->contractPO_date  . '</td>' ,
-                                                '<td>'  . number_format($object->contractPO_qty)  . ' pc/s</td>' ;
-                                                ?>
-                                                    <td>Sales</td>
-                                                    <td>Out</td>
-                                                 <?php   
-                                                '</tr>' ;
-                                              }
-                                            }
+                                                                      
                                         ?>
-
-                                        <?php
-                                              $retrieveDetails3 ="SELECT retail_id, package_id, client_company, retail_date, retail_qty FROM jhcs.retail NATURAL JOIN coffee_blend NATURAL JOIN packaging NATURAL JOIN contracted_client WHERE package_id = '$row->package_id';" ;
-                                              $query = $this->db->query($retrieveDetails3);
-                                              if ($query->num_rows() > 0) {
-                                              foreach ($query->result() as $object) {
-                                           echo '<tr>' ,
-                                                '<td>'  . $object->client_company  . '</td>' ,
-                                                '<td>'  . $object->retail_date  . '</td>' ,
-                                                '<td>'  . number_format($object->retail_qty)  . ' pc/s</td>' ;
-                                                ?>
-                                                    <td>Retail Sales</td>
-                                                    <td>Out</td>
-                                                 <?php   
-                                                '</tr>' ;
-                                              }
-                                            }
-                                        ?>  
-
-                                        <?php
-                                              $retrieveDetails4 ="SELECT item, qty, date_received, yield_weight, sup_company FROM jhcs.supp_po_ordered INNER JOIN supp_delivery ON supp_po_ordered.supp_po_ordered_id = supp_delivery.supp_po_ordered_id INNER JOIN supp_po ON supp_po.supp_po_id = supp_po_ordered.supp_po_id INNER JOIN supplier ON supplier.sup_id = supp_po.supp_id WHERE item = '$row->package_name';" ;
-                                              $query = $this->db->query($retrieveDetails4);
-                                              if ($query->num_rows() > 0) {
-                                              foreach ($query->result() as $object) {
-                                           echo '<tr>' ,
-                                                '<td>'  . $object->sup_company  . '</td>' ,
-                                                '<td>'  . $object->date_received  . '</td>' ,
-                                                '<td>'  . number_format($object->yield_weight)  . ' pc/s</td>' ;
-                                                ?>
-                                                    <td>Company Delivery</td>
-                                                    <td>IN</td>
-                                                 <?php   
-                                                '</tr>' ;
-                                              }
-                                            }
-                                        ?> 
-                                                        </tbody>
-                                                      </table><hr>
-                                                          <div class="row">
-                                                            <div class="col-lg-6 col-md-6 col-offset-6">
-                                                                <div class="form-group">
-                                                                    <label class="col-md-4 control">Total In :</label>
-                                                                    <div class="col-md-4">
-                                                                        <p>- piece/s</p>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-4 control">Total Out :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p>- piece/s</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <form action="<?php echo base_url(); ?>InventoryPackaging/update" method="post" accept-charset="utf-8">
-                                                            <div class="row">
-                                                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                                                    <div class="form-group">
-                                                                        <label class="col-md-6 control">Physical Count :</label>
-                                                                        <div class="col-md-4">
-                                                                            <input id="count" name="count" type="number" class="form-control"/>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="type"></label>
-                                                                        <div class="col-md-4">
-                                                                            <input value="<?php echo $row->package_stock; ?>" class="form-control" id="stock" name="stock" type="hidden" />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label class="col-md-6 control">Discrepancy :</label>
-                                                                        <div class="col-md-4">
-                                                                            <input value="0" id="discrepancy" name="discrepancy" readonly="" class="form-control" />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="type"></label>
-                                                                        <div class="col-md-4">
-                                                                            <input value="<?php echo $row->package_id; ?>" class="form-control" name="packageid" type="hidden" />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label class="col-md-6 control">Remarks :</label>
-                                                                        <div class="col-md-10">
-                                                                            <textarea style="resize:vertical;" class="form-control" rows="2" name="remarks"></textarea>
-                                                                        </div>
-                                                                        <button type="submit" class="btn btn-success">Save</button>
-                                                                        <input type="reset" class="btn btn-danger" value="Clear" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                        </div>
-                                                        </div>
-                                                      </div>
-                                                      <div class="modal-footer">
-                                                          <button style="float: right;" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                      </div>
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                            </td>
-                                                </tr>
-                                                <?php
-                                                                }
-
-                                                            }
-                                                        else{
-                                                         ?>
-                                                        <tr>
-                                                            <td colspan = 9 style = "text-align: center;"> <h3>No packagings found</h3> </td>
-                                                        </tr>
-                                                        <?php
-                                                        }
-
-                                                    ?>
-                                            </tbody>
-                                        </table>
-                                        </div>
-                                    </div>
-                                </div> 
+                                                                              
+                                               <td><a class="btn btn-info btn-sm" data-toggle="modal" data-target="#<?php echo "details" . $mapModal  ?>">View</a></td>
+                                            
+                                            
+                                            
+                <?php                          '</tr>' ; 
+                           $mapModal++;
+                                         }  
+                              }
+               ?>
+                                            
+                                            
+         
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-</body>
+                        </div>     
+              </div>
+          </div>
+     </div>
+    </div> 
+    </div>        
+ 
+</body>       
+                                                       
 <!--   Core JS Files   -->
-<!--
-    <script src="../assets/js/jquery-1.12.4.js" type="text/javascript"></script>
--->
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/bootstrap-datepicker.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/dataTables.buttons.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.flash.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.Html5.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.print.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/jszip.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/pdfmake.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/vfs_fonts.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/material.min.js" type="text/javascript"></script>
 <!--  Charts Plugin -->
-<script src="<?php echo base_url(); ?>assets/js/chartist.min.js"></script>
+<script src="../assets/js/chartist.min.js"></script>
 <!--  Dynamic Elements plugin -->
-<script src="<?php echo base_url(); ?>assets/js/arrive.min.js"></script>
+<script src="../assets/js/arrive.min.js"></script>
 <!--  PerfectScrollbar Library -->
-<script src="<?php echo base_url(); ?>assets/js/perfect-scrollbar.jquery.min.js"></script>
+<script src="../assets/js/perfect-scrollbar.jquery.min.js"></script>
 <!--  Notifications Plugin    -->
-<script src="<?php echo base_url(); ?>assets/js/bootstrap-notify.js"></script>
+<script src="../assets/js/bootstrap-notify.js"></script>
 <!--  Google Maps Plugin    -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 <!-- Material Dashboard javascript methods -->
-<script src="<?php echo base_url(); ?>assets/js/material-dashboard.js?v=1.2.0"></script>
+<script src="../assets/js/material-dashboard.js?v=1.2.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-<script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/jquery.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/jquery.datatables.js"></script>
+<script src="../assets/js/demo.js"></script>
 <script>
+
 $(document).ready(function() {
-    $('table.table').DataTable({
+    $('#example').DataTable({
         select: {
             style: 'single'
         }
@@ -452,37 +501,117 @@ $(document).ready(function() {
 });
 </script>
 <script>
-    function printDiv(divName){
-        var printme = document.getElementById(divName); 
+
+<?php
+           
+           $c = 1; 
+          
+    foreach($packaging as $object){
+       $temp =  $object->package_id;
+              
+        
+               ?>                               
+                                                  
     
-        var wme = window.open("","","width= 900","height=700");
+  $(document).ready(function(){                
+           $(<?php echo "'#details".$c." input[id=physcount".$c."]'"?>).keyup(function(){
+            var y = parseFloat($(this).val());
+            var x = parseFloat($(<?php echo "'#details".$c." input[id=pckgstocks".$c."]'"?>).val());
+            var res = x - y ;
+            $(<?php echo "'#details".$c." input[id=discrepancy".$c."]'"?>).val(res);
+});      
+});     
+  
     
-        var cancel = document.getElementsByClassName("btn");
-        for(var i=0; i < cancel.length; i++){  
-            cancel[i].style.visibility = 'hidden';
-        }
-        wme.document.write(printme.outerHTML);
-        wme.document.close();
-        wme.focus();
-        wme.print();
-        wme.close();
-    
-      
-        for(var i=0; i < cancel.length; i++){  
-            cancel[i].style.visibility = 'visible';
-        }
-    
-    }
-</script> 
+<?php                                                  
+                                                                 
+            
+       $c++;
+     }
+               
+?>
+
+</script>
 
 <script>
-    $('#count').on('keyup', function() {
-   if($.trim(this.value).length) {
-     var discrepancy = parseFloat($('#stock').val()).toFixed(2) - 
-                   parseFloat(this.value).toFixed(2);
-     $('#discrepancy').val(discrepancy);
-   }
+
+<?php
+           
+           $c = 1; 
+          
+    foreach($packaging as $object){
+       $temp =  $object->package_id;
+          
+     
+               ?>                               
+                                                  
+    /**
+  $.fn.dataTableExt.afnFiltering.push(
+        function(oSettings, aData, iDataIndex){
+            var dateStart = parseDateValue($(<?php echo "'#details".$c." input[id=min".$c."]'"?>).val());
+            var dateEnd = parseDateValue($(<?php echo "'#details".$c." input[id=max".$c."]'"?>).val());
+            var evalDate= parseDateValue(aData[1]);
+
+            if (evalDate >= dateStart && evalDate <= dateEnd) {
+                return true;
+            }
+            else {
+                return false;
+            }
+    }); 
+*/
+    //Date Converter
+    function parseDateValue(rawDate) {
+        var month = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+        var dateArray = rawDate.split(" ");
+        var parsedDate = dateArray[2] + month + dateArray[0];
+        return parsedDate;
+    }
+
+
+    var oTable = $(<?php echo "'#details".$c." table[id=table-mutasi".$c."]'"?>).DataTable({ 
+        "dom":' fBrtip',
+        "lengthChange": false,
+        "info":     false,
+        buttons: [
+            { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs'},    
+            { "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs'},
+            { "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs'}
+        ]
 });
+
+    $(<?php echo "'#details".$c." input[id=min".$c."]'"?>).datepicker({
+        format: "yyyy-mm-dd",
+        weekStart: 1,
+        daysOfWeekHighlighted: "0",
+        autoclose: true,
+        todayHighlight: true
+    });
+    $(<?php echo "'#details".$c." input[id=max".$c."]'"?>).datepicker({
+        format: "yyyy-mm-dd",
+        weekStart: 1,
+        daysOfWeekHighlighted: "0",
+        autoclose: true,
+        todayHighlight: true
+    });
+
+    // Event Listeners
+    $(<?php echo "'#details".$c." input[id=min".$c."]'"?>).datepicker().on( 'changeDate', function() {
+        oTable.fnDraw(); 
+    });  
+    $(<?php echo "'#details".$c." input[id=max".$c."]'"?>).datepicker().on( 'changeDate', function() {
+        oTable.fnDraw(); 
+    }); 
+  
+    
+<?php                  
+                       
+            
+       $c++;
+     }
+               
+?>
+
 </script>
  
 </html>

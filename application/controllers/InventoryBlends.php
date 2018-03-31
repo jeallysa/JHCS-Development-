@@ -11,8 +11,8 @@
 			if ($this->session->userdata('username') != '')
 			{
 				$this->load->model("InventoryBlends_Model");
-				$blnd_data["fetch_data"] = $this->InventoryBlends_Model->fetch_data();
-				$this->load->view('Inventory_Module/inventoryBlends', $blnd_data);
+				$data["blend"] = $this->InventoryBlends_Model->retrieveBlends();
+				$this->load->view('Inventory_Module/inventoryBlends', $data);
 			} else {
 				redirect('login');
 			}

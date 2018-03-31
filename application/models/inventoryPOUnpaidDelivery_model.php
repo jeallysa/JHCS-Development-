@@ -19,6 +19,19 @@
   }
       
       
+      
+   function ajaxTotal($poId){
+      $query = $this->db->query('SELECT * from supp_po where supp_po_id ='.$poId);
+      if($query->num_rows() > 0){
+          return $query-> row();
+      }else
+          return NULL;
+  }
+      
+      
+      
+      
+      
     function getTotalAmount(){
       $query = $this->db->query('SELECT total_amount FROM jhcs.supp_po');
       if($query->num_rows() > 0){

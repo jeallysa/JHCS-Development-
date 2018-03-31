@@ -288,6 +288,8 @@
                                                 <div class="col-md-6">
                                                     <input id="" name="client_dr" type="text" class="form-control" required="">
                                                     <input class="form-control" type="hidden" name="po_id" value="<?php echo $row1->contractPO_id; ?>" required>
+                                                    <input class="form-control" type="hidden" name="blend" value="<?php echo $row1->blend; ?>" required>
+                                                    <input class="form-control" type="hidden" name="pack_size" value="<?php echo $row1->package_size; ?>" required>
                                                     <input class="form-control" type="hidden" name="client_balance" value="<?php echo $amount; ?>" required>
                                                     <input class="form-control" type="hidden" name="client_id" value="<?php echo $row1->client_id; ?>" required>
                                                     <input class="form-control" type="hidden" name="full_qty" value="<?php echo $row1->contractPO_qty; ?>" required>
@@ -485,6 +487,7 @@
                                                                         <input class="form-control col-md-3" type="text" name="remarks" required="">
                                                                          <input name="deliveryID" type="hidden" class="form-control" value="<?php echo $row2->client_deliveryID; ?>" >
                                                                         <input name="client_dr" type="hidden" class="form-control" value="<?php echo $row2->client_dr; ?>" >
+                                                                        <input name="blend_id" type="hidden" class="form-control" value="<?php echo $row2->blend_id; ?>" >
 																		</div>
                                                                     </div>
                                                                 </div>

@@ -28,6 +28,8 @@
 			$address = $this->input->post("address");
 			$email = $this->input->post("email");
 			$cell_no = $this->input->post("cell_no");
+			$this->Admin_Clients_Model->activity_logs('admin', "Updated Client information: ".$comp_name." under ".$cli_type." ");
+
 			$this->Admin_Clients_Model->update($id, $comp_name, $cli_type, $l_name, $f_name, $address, $email, $cell_no);
 			echo "<script>alert('Update successful!');</script>";
 			redirect('adminClients', 'refresh');
@@ -37,6 +39,20 @@
 			
 			$this->load->model('Admin_Clients_Model');
 			$id = $this->input->post("deact_id");
+			$deact = $this->db->query("SELECT * FROM user WHERE user_no = '".$id."'")->row()->u_activation;
+			$comp_name =  $this->db->query("SELECT * FROM contracted_client WHERE client_id = '".$id."'")->row()->client_company;
+			$cli_type = $this->db->query("SELECT * FROM contracted_client WHERE client_id = '".$id."'")->row()->client_type;
+			if ($deact == 1){
+				$this->Admin_Clients_Model->activity_logs('admin', "Deactivated: ".$comp_name." under ".$cli_type." ");
+				$this->Admin_Clients_Model->activation($id);
+				redirect('adminClients', 'refresh');
+
+			}else{	
+				$this->Admin_Clients_Model->activity_logs('admin', "Activated: ".$comp_name." under ".$cli_type." ");	
+				$this->Admin_Clients_Model->activation($id);
+				redirect('adminClients', 'refresh');
+			}	
+
 			$this->Admin_Clients_Model->activation($id);
 			redirect('adminClients');
 

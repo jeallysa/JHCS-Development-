@@ -8,30 +8,36 @@
   }
   
       
-       /*
-        public function querySelected($item_name){
-            $arrayItem = array("raw_coffee","sticker","packaging","machine");
-             $arrayOn = array("raw_coffee","sticker","package_name","brewer_type");
-                   for($table = 0 ; $table < 4 ; $table++){
+      
+      
+      
+         public function querySelectedType($item_name, $sup_id){
+            $arrayTable = array("raw_coffee","sticker","packaging","machine");
+            $arrayOn = array("raw_coffee","sticker","package_type","brewer");
+            $arrayType = array("raw_type","sticker_type","package_size","brewer_type");
+      
+                   for($table = 0 ; $table <= 3 ; $table++){
                           
-               $retrieveDetails ="SELECT unitPrice FROM ".$arrayItem[$table]." where ".$arrayOn[$table] ." = .$item_name."; 
-                       
- $retrieveDetails ="SELECT unitPrice FROM raw_coffee where raw_coffee = 'GUATEMALA'";        
-               $query = $this->db->query($retrieveDetails);
+             $retrieveDetails ="SELECT ".$arrayType[$table]." as type  FROM ".$arrayTable[$table]." where ".$arrayOn[$table]." = '".$item_name."' AND sup_id =".$sup_id; 
+             $query = $this->db->query($retrieveDetails);
                       if ($query->num_rows() > 0) {
                          return $query->result();     
-                           }
-                   
-                  //   }
-         }        
-      */
-   
-      public function querySelectedAmount($item_name, $sup_id){
-            $arrayTable = array("raw_coffee","sticker","packaging","machine");
-            $arrayOn = array("raw_coffee","sticker","package_name","brewer");
-                   for($table = 0 ; $table < 4 ; $table++){
                           
-             $retrieveDetails ="SELECT unitPrice FROM ".$arrayTable[$table]." where ".$arrayOn[$table] ." = '".$item_name."' AND sup_id =".$sup_id; 
+                       }
+                 }
+         }   
+      
+       
+      
+   
+      public function querySelectedAmount($item_name, $sup_id , $item_type){
+            $arrayTable = array("raw_coffee","sticker","packaging","machine");
+            $arrayOn = array("raw_coffee","sticker","package_type","brewer");
+            $arrayType = array("raw_type","sticker_type","package_size","brewer_type");
+      
+                   for($table = 0 ; $table <= 3 ; $table++){
+                          
+             $retrieveDetails ="SELECT unitPrice , category FROM ".$arrayTable[$table]." where ".$arrayOn[$table] ." = '".$item_name."' and ".$arrayType[$table] ." = '".$item_type."' AND sup_id =".$sup_id; 
              $query = $this->db->query($retrieveDetails);
                       if ($query->num_rows() > 0) {
                          return $query->row();      // im expecting only 1 row
@@ -39,7 +45,10 @@
                    
                    }
          } 
-     
+   
+      
+      
+      
       /*
       public function querySelectedType($item_name, $sup_id){
             $arrayTable = array("raw_coffee","sticker","packaging","machine");
@@ -137,10 +146,11 @@
  
       $result = array("");
    for($i=0 ; $i <= 3 ; $i++){
-                $array = array("raw_coffee","sticker","packaging","machine");
+      $array = array("raw_coffee","sticker","packaging","machine");
+      $arrayName = array("raw_coffee","sticker","package_type","brewer"); 
       $arrayActivation = array("raw_activation","sticker_activation","pack_activation","mach_activation");
        
-      $query = $this->db->query('SELECT * from ' . $array[$i] . ' join supplier using(sup_id) join supp_temp_po on sup_company = supp_name where '. $arrayActivation[$i].' = 1');      
+      $query = $this->db->query('SELECT distinct '. $arrayName[$i] .' from '. $array[$i] .' join supplier using(sup_id) join supp_temp_po on sup_company = supp_name where '. $arrayActivation[$i].' = 1');      
       
       
     if($query->num_rows() > 0){
@@ -153,6 +163,7 @@
  
       
   } return $result;
+      
 }
       
   function retrieveTruckingFee(){
