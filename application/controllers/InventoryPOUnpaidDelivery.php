@@ -1,20 +1,24 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-	class InventoryPOUnpaidDelivery extends CI_Controller
-	{
+	class InventoryPOUnpaidDelivery extends CI_Controller{
+        
 		function __construct(){
 			parent::__construct();
+            
             $this->load->model('inventoryPOUnpaidDelivery_model');
+            $this->load->model('notification_model');
             
 		}
 		
 		public function index(){ 
-            $this->load->view('layout/header');
+       //     $this->load->view('layout/header');
             
             
             $data['unpaid'] = $this->inventoryPOUnpaidDelivery_model->retrieveUnpaid();
             $data['total'] = $this->inventoryPOUnpaidDelivery_model->getTotalAmount();
+            
+             $data['reorder'] = $this->notification_model->reorder();
             
             
 			$this->load->view('inventoryPOUnpaidDelivery',$data);
@@ -22,11 +26,48 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         
         
         
+            
+    public function ajaxTotal(){          //ajax part
+        $poId = $this->input->post('poId');
+       
+        $result = $this->inventoryPOUnpaidDelivery_model->ajaxTotal($poId);
+        
+        if(count($result)>0){
+            //$data = array(
+            //           'unitPrice' => $result->unitPrice,
+             //           'category' => $result->category,
+            //            );
+                     
+            
+           $zxc = 123;
+            echo json_encode($result);
+        }
+          
+    }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
          public function insertPartialPayment($temp){
          $supp_po_id = $temp;
          $data = array(   "supp_po_id" => $temp,
-                          "date"       => $this->input->post("date"),
+                          "payment_date"       => $this->input->post("date"),
                           "amount"     => $this->input->post("amount"),
                           "bank"       => $this->input->post("bank"),
                        );
@@ -49,7 +90,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          $supp_po_id = $temp;
          
          $data = array(   "supp_po_id" => $temp,
-                          "date"       => $this->input->post("date"),
+                          "payment_date"       => $this->input->post("date"),
                           "amount"     => $remaining,
                           "bank"       => $this->input->post("bank"),
                        );
