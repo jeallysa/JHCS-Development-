@@ -25,5 +25,21 @@ class SalesDashboard_model extends CI_model
 		$query = $this->db->query("SELECT * FROM contracted_client WHERE client_activation='1'");
 		return $query->result();
 	}
+	function UpdateSeen($id, $unseen){
+		
+		$data = array(
+			'seen' => $unseen
+		);
+		$this->db->where('client_id', $id);
+		$this->db->update('contract', $data);
+	}
+	function mayNotif($id, $meron){
+		$data = array(
+			'seen' => $meron
+		);
+		$this->db->where('client_id', $id);
+		$this->db->update('contract', $data);
+	}
+	
 
 }

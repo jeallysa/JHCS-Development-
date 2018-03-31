@@ -46,11 +46,9 @@
 
 			$this->sellProduct_model->record_data($date, $quantity, $blend_id);
 			echo "<script>alert('Client order has been saved!');</script>";
-<<<<<<< HEAD
-			redirect ('salesSellProduct/salesWalkin');
-=======
+
 			redirect('salesSellProduct/salesWalkin', 'refresh');
->>>>>>> 71f36a2663734706cb99a6ed8a0846f3bc9400bf
+
 		}
 
 		public function add()

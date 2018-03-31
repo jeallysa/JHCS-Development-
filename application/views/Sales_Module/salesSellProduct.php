@@ -42,6 +42,9 @@
     tbody td {
         text-align: center;
     }
+		.select-pane {
+        display: none;
+    }
     </style>
 </head>
 
@@ -56,7 +59,7 @@
                     <li>
                         <a href="<?php echo base_url(); ?>salesDashboard">
                             <i class="material-icons">dashboard</i>
-                            <p>Dashboard</p>
+                            <p>Dashboard<i class="material-icons pull-right select-pane" style="color:red">error</i></p>
                         </a>
                     </li>
                     <li class="active">
