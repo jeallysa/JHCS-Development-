@@ -190,6 +190,19 @@ input {
                                 <div class="card-content table-responsive">
                                     <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
                                     <h4><b>COFFEE</b></h4></div>
+                                    <form class="form-inline pull-right">
+                                        <div class="form-group mb-2">
+                                            <label>
+                                                <H4><b> Working File: </b></H4> </label>
+                                            <select class="form-control" id="inputPassword2" style="text-align: center;">
+                                                <option>January</option>
+                                                <option>February</option>
+                                                <option>March</option>
+                                                <option>April</option>
+                                            </select>
+                                        </div>
+                                        <button type="submit" class="btn btn-info btn-sm">Next</button>
+                                    </form>
                                       <div class="form-group col-xs-3">
                                     <label>Filter By:</label>
                                         <div class="input-group input-daterange">
@@ -253,7 +266,7 @@ input {
                                                 <?php
                                                 for ($i = 1; $i <= $rowcount; $i++){
                                                     $colname = "coff" . $i?>
-                                                        <td><?php echo $row->$colname; ?> </td>
+                                                        <td><?php echo number_format($row->$colname); ?> </td>
                                                 <?php
 
                                                 }
@@ -267,7 +280,7 @@ input {
                                                 else{
                                                 ?>
                                                     <tr>
-                                                        <td colspan = 11 style = "text-align: center;"> <h3>No clients found</h3> </td>
+                                                        <td colspan = 11 style = "text-align: center;"> <h3>No data found</h3> </td>
                                                     </tr>
                                                 <?php
                                                 }
@@ -278,122 +291,40 @@ input {
                                             <tr>
                                                 <th>Total</th>
                                                 <?php
-                                              $coffee1 ="SELECT raw_coffeeid, sum(quantity) as total from trans_raw NATURAL JOIN inv_transact where raw_coffeeid = '1' and type = 'OUT';" ;
-                                              $query = $this->db->query($coffee1);
-                                              if ($query->num_rows() > 0) {
-                                              foreach ($query->result() as $object) {
-                                           echo '<th>'  . $object->total  . '</th>' ;
-                                           }
-                                            }
+                                                $query = $this->db->query("SELECT * FROM raw_coffee");
+                                                foreach ($query->result() AS $row){
+                                              $totalout ="SELECT raw_coffeeid, sum(quantity) as totalout from trans_raw NATURAL JOIN inv_transact where raw_coffeeid = '".$row->raw_id."' and type = 'OUT' and month(transact_date) = month(now());" ;
+                                              $query2 = $this->db->query($totalout);
+                                              if ($query2->num_rows() > 0) {
+                                              foreach ($query2->result() as $object) {
+                                                   echo '<th>'  . number_format($object->totalout)  . '</th>' ;
+                                                   }
+                                                }
+                                                }
                                                 ?>
-                                                <?php
-                                              $coffee2 ="SELECT raw_coffeeid, sum(quantity) as total from trans_raw NATURAL JOIN inv_transact where raw_coffeeid = '2' and type = 'OUT';" ;
-                                              $query = $this->db->query($coffee2);
-                                              if ($query->num_rows() > 0) {
-                                              foreach ($query->result() as $object) {
-                                           echo '<th>'  . $object->total  . '</th>' ;
-                                           }
-                                            }
-                                                ?>
-                                                <?php
-                                              $coffee3 ="SELECT raw_coffeeid, sum(quantity) as total from trans_raw NATURAL JOIN inv_transact where raw_coffeeid = '3' and type = 'OUT';" ;
-                                              $query = $this->db->query($coffee3);
-                                              if ($query->num_rows() > 0) {
-                                              foreach ($query->result() as $object) {
-                                           echo '<th>'  . $object->total  . '</th>' ;
-                                           }
-                                            }
-                                                ?>
-                                                <?php
-                                              $coffee4 ="SELECT raw_coffeeid, sum(quantity) as total from trans_raw NATURAL JOIN inv_transact where raw_coffeeid = '4' and type = 'OUT';" ;
-                                              $query = $this->db->query($coffee4);
-                                              if ($query->num_rows() > 0) {
-                                              foreach ($query->result() as $object) {
-                                           echo '<th>'  . $object->total  . '</th>' ;
-                                           }
-                                            }
-                                                ?>
-                                                <?php
-                                              $coffee5 ="SELECT raw_coffeeid, sum(quantity) as total from trans_raw NATURAL JOIN inv_transact where raw_coffeeid = '5' and type = 'OUT';" ;
-                                              $query = $this->db->query($coffee5);
-                                              if ($query->num_rows() > 0) {
-                                              foreach ($query->result() as $object) {
-                                           echo '<th>'  . $object->total  . '</th>' ;
-                                           }
-                                            }
-                                                ?>
-                                                <?php
-                                              $coffee6 ="SELECT raw_coffeeid, sum(quantity) as total from trans_raw NATURAL JOIN inv_transact where raw_coffeeid = '6' and type = 'OUT';" ;
-                                              $query = $this->db->query($coffee6);
-                                              if ($query->num_rows() > 0) {
-                                              foreach ($query->result() as $object) {
-                                           echo '<th>'  . $object->total  . '</th>' ;
-                                           }
-                                            }
-                                                ?>
+                                                
                                             </tr>
                                             <tr>
                                                 <th>Ending Inventory</th>
                                                 <?php
-                                              $end1 ="SELECT sum(IF(`type`= 'IN', `quantity`, 0))-sum(IF(`type`= 'OUT', `quantity`, 0)) AS `ending` FROM `trans_raw` NATURAL JOIN `inv_transact` WHERE  `raw_coffeeid` = '1';" ;
-                                              $query = $this->db->query($end1);
-                                              if ($query->num_rows() > 0) {
-                                              foreach ($query->result() as $object) {
-                                           echo '<th>'  . $object->ending  . '</th>' ;
-                                           }
-                                            }
+                                                $query = $this->db->query("SELECT * FROM raw_coffee");
+                                                foreach ($query->result() AS $row){
+                                              $end ="SELECT sum(IF(`type`= 'IN', `quantity`, 0))-sum(IF(`type`= 'OUT', `quantity`, 0)) AS `ending` FROM `trans_raw` NATURAL JOIN `inv_transact` WHERE  `raw_coffeeid` = '".$row->raw_id."' and month(transact_date) = month(now());" ;
+                                              $query3 = $this->db->query($end);
+                                              if ($query3->num_rows() > 0) {
+                                              foreach ($query3->result() as $object) {
+                                                   echo '<th>'  . number_format($object->ending)  . '</th>' ;
+                                                   }
+                                                }
+                                                }
                                                 ?>
-                                                <?php
-                                              $end2 ="SELECT sum(IF(`type`= 'IN', `quantity`, 0))-sum(IF(`type`= 'OUT', `quantity`, 0)) AS `ending` FROM `trans_raw` NATURAL JOIN `inv_transact` WHERE  `raw_coffeeid` = '2';" ;
-                                              $query = $this->db->query($end2);
-                                              if ($query->num_rows() > 0) {
-                                              foreach ($query->result() as $object) {
-                                           echo '<th>'  . $object->ending  . '</th>' ;
-                                           }
-                                            }
-                                                ?>
-                                                <?php
-                                              $end3 ="SELECT sum(IF(`type`= 'IN', `quantity`, 0))-sum(IF(`type`= 'OUT', `quantity`, 0)) AS `ending` FROM `trans_raw` NATURAL JOIN `inv_transact` WHERE  `raw_coffeeid` = '3';" ;
-                                              $query = $this->db->query($end3);
-                                              if ($query->num_rows() > 0) {
-                                              foreach ($query->result() as $object) {
-                                           echo '<th>'  . $object->ending  . '</th>' ;
-                                           }
-                                            }
-                                                ?>
-                                                <?php
-                                              $end4 ="SELECT sum(IF(`type`= 'IN', `quantity`, 0))-sum(IF(`type`= 'OUT', `quantity`, 0)) AS `ending` FROM `trans_raw` NATURAL JOIN `inv_transact` WHERE  `raw_coffeeid` = '4';" ;
-                                              $query = $this->db->query($end4);
-                                              if ($query->num_rows() > 0) {
-                                              foreach ($query->result() as $object) {
-                                           echo '<th>'  . $object->ending  . '</th>' ;
-                                           }
-                                            }
-                                                ?>
-                                                <?php
-                                              $end5 ="SELECT sum(IF(`type`= 'IN', `quantity`, 0))-sum(IF(`type`= 'OUT', `quantity`, 0)) AS `ending` FROM `trans_raw` NATURAL JOIN `inv_transact` WHERE  `raw_coffeeid` = '5';" ;
-                                              $query = $this->db->query($end5);
-                                              if ($query->num_rows() > 0) {
-                                              foreach ($query->result() as $object) {
-                                           echo '<th>'  . $object->ending  . '</th>' ;
-                                           }
-                                            }
-                                                ?>
-                                                <?php
-                                              $end6 ="SELECT sum(IF(`type`= 'IN', `quantity`, 0))-sum(IF(`type`= 'OUT', `quantity`, 0)) AS `ending` FROM `trans_raw` NATURAL JOIN `inv_transact` WHERE  `raw_coffeeid` = '6';" ;
-                                              $query = $this->db->query($end6);
-                                              if ($query->num_rows() > 0) {
-                                              foreach ($query->result() as $object) {
-                                           echo '<th>'  . $object->ending  . '</th>' ;
-                                           }
-                                            }
-                                                ?>
+                                                
                                             </tr>
                                         </tfoot>
                                     </table>
                                 </div>
                                 </div><hr>
-                            <div class="row">
+                            <!--<div class="row">
                                 <div class="col-sm-6">
                                 <div class="card-content table-responsive">
                                     <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
@@ -426,8 +357,8 @@ input {
                                                 '<td>'  . $object->walkin_date  . '</td>' ,
                                                 '<td>  Walk-in </td>' ,
                                                 '<td>'  . $object->package_type  . '</td>' ,
-                                                '<td>'  . $object->package_size  . '</td>' ,
-                                                '<td>'  . $object->walkin_qty  . '</td>' ,
+                                                '<td>'  . number_format($object->package_size)  . '</td>' ,
+                                                '<td>'  . number_format($object->walkin_qty)  . '</td>' ,
                                                 '</tr>' ;
                                               }
                                             }
@@ -442,8 +373,8 @@ input {
                                                 '<td>'  . $object->client_deliverDate  . '</td>' ,
                                                 '<td>'  . $object->client_company  . '</td>' ,
                                                 '<td>'  . $object->package_type  . '</td>' ,
-                                                '<td>'  . $object->package_size  . '</td>' ,
-                                                '<td>'  . $object->contractPO_qty  . '</td>' ,
+                                                '<td>'  . number_format($object->package_size)  . '</td>' ,
+                                                '<td>'  . number_format($object->contractPO_qty)  . '</td>' ,
                                                 '</tr>' ;
                                               }
                                             }
@@ -483,7 +414,7 @@ input {
                                                 '<td>'  . $object->walkin_date  . '</td>' ,
                                                 '<td>  Walk-in </td>' ,
                                                 '<td>'  . $object->sticker  . '</td>' ,
-                                                '<td>'  . $object->walkin_qty  . '</td>' ,
+                                                '<td>'  . number_format($object->walkin_qty)  . '</td>' ,
                                                 '</tr>' ;
                                               }
                                             }
@@ -498,7 +429,7 @@ input {
                                                 '<td>'  . $object->client_deliverDate  . '</td>' ,
                                                 '<td>'  . $object->client_company  . '</td>' ,
                                                 '<td>'  . $object->sticker  . '</td>' ,
-                                                '<td>'  . $object->contractPO_qty  . '</td>' ,
+                                                '<td>'  . number_format($object->contractPO_qty)  . '</td>' ,
                                                 '</tr>' ;
                                               }
                                             }
@@ -539,7 +470,7 @@ input {
                                                         <td><?php echo $row->date; ?></td>
                                                          <td><?php echo $row->client_company; ?></td>
                                                          <td><?php echo $row->brewer; ?></td>
-                                                         <td><?php echo $row->mach_qty; ?></td>
+                                                         <td><?php echo number_format($row->mach_qty); ?></td>
                                                     </tr>
                                                     <?php
                                                 }
@@ -548,7 +479,7 @@ input {
                                     </table>
                                 </div>
                             </div>
-                            </div><hr>
+                            </div><hr>-->
                             </div>
                             </div>
                         </div>
@@ -595,9 +526,9 @@ $(document).ready(function() {
         "lengthChange": false,
         "info":     false,
 		buttons: [
-            { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs' },
-			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs' },
-			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs' }
+            { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs', footer: true },
+			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs', footer: true },
+			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs', footer: true }
         ]
     });
     $('#datePicker')
