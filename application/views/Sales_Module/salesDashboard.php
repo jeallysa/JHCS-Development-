@@ -44,8 +44,50 @@
 			border: none !important;
 			
 		}
-		.higlight{
-			background-color: #FFFF00;
+		
+		
+		.sidebar[data-color="purple"] .nav li.active a,
+		.off-canvas-sidebar[data-color="purple"] .nav li.active a{
+			background-color: #4cb1d1;
+			font-weight: 600;
+			
+		}
+		.sidebar .nav li.active>a,
+		.off-canvas-sidebar .nav li.active>a {
+			color: #f5f5f5;
+		}
+		.sidebar .nav li>a,
+		.off-canvas-sidebar .nav li>a {
+			margin: 10px 15px 0;
+			border-radius: 3px;
+			color: #f5f5f5;
+		}
+		.sidebar .nav li:hover>a,
+		.off-canvas-sidebar .nav li:hover>a {
+			background: rgba(200, 200, 200, 0.2);
+			color: #ddd;
+		}
+		.sidebar .nav li.active>a i,
+		.off-canvas-sidebar .nav li.active>a i {
+			color: #1f6fb4;
+		}
+		.off-canvas-sidebar .nav i {
+			font-size: 24px;
+			float: left;
+			margin-right: 15px;
+			line-height: 30px;
+			width: 30px;
+			text-align: center;
+			color: #f5f5f5;
+		}
+		.sidebar .nav i, .off-canvas-sidebar .nav i {
+			font-size: 24px;
+			float: left;
+			margin-right: 15px;
+			line-height: 30px;
+			width: 30px;
+			text-align: center;
+			color: #f5f5f5;
 		}
 
     </style>
