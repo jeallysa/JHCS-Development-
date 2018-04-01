@@ -191,7 +191,7 @@
                                                          </select>
 												</div>
 												<div class="col-md-2">
-													<input class="form-control" name="" id="qty" placeholder="Quantity" type="number" min="0" oninput="validity.valid||(value='');" data-validate="required" />
+													<input class="form-control" name="" id="qty" placeholder="Quantity" type="number" min="1" oninput="validity.valid||(value='');" data-validate="required" />
 												</div>
 												<input class="btn btn-lg btn-primary btn-sm" type="text" id="append_data" value="Add to Table" readonly>
 												</div>

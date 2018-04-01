@@ -70,7 +70,7 @@
 			$dataA = array(
 				"mach_returnDate" =>$this->input->post("date_returned"),
 				"mach_returnQty" =>$this->input->post("qty_returned"),
-				"client_id" =>$this->input->get("client_id"),
+				"client_id" =>$this->input->post("client_id"),
 				"mach_id" =>$this->input->post("mach_id"),
 				"mach_serial" =>$this->input->post("serial"),
                 "mach_remarks" =>$this->input->post("remarks")    

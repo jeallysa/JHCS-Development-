@@ -353,8 +353,7 @@
                                 <br>
                                 <div class="modal-footer">
                                     <div class="form-group">
-                                        <label class="col-md-3 control">Action :</label>
-                                        <input name="action" type="text" class="form-control">
+                              
                                         <div class="col-md-8">
                                             <button type="submit" class="btn btn-danger btn-md">Resolve</button>
                                         </div>
@@ -555,18 +554,7 @@
 											<input type="hidden" name="SINo" readonly />
 											<input type="hidden" name="RID" readonly />
   
-										<div class="row">
-											<div class="col-lg-9">
-                                                <div class="form-group">
-                                                    <label class="col-md-3 control">Remarks :</label>
-                                                    <div class="col-md-8">
-                                                        <!--<input id="" name="coffee_returns_remarks" type="text" class="form-control">-->
-														<?php echo form_input(['name'=>'remarksReturns','id'=>'remarksReturns', 'class'=>'form-control','type'=>'text']); ?>
-														
-                                                    </div>
-                                                </div>
-                                            </div>
-										</div><br>
+							<br>
 										<div class="modal-footer">
 											<!--<button type="submit" class="btn btn-primary" name="submit">Save changes</button>-->
 											<?php echo form_submit(['name'=>'ResolveReturn', 'value'=>'Resolve','class'=>'btn btn-primary']) ?>
@@ -638,15 +626,7 @@
                                         </div>
                                         <hr>
                                         <div class="row">
-                                            
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="col-md-6 control">Delivery Date:</label>
-                                                    <div class="col-md-6">
-                                                        <input class="no-border" name="delivery_date" placeholder="Date" type="date" value="<?php echo date("Y-m-d");?>" data-validate="required" message="A Date of Delivery is recquired! min="<?=date('Y-m-d')?>" max="<?=date('Y-m-d',strtotime(date('Y-m-d').'+1 days'))?>"" required />
-                                                    </div>
-                                                </div>
-                                            </div>
+
                                         </div>
 										<div class="modal-footer">
 											<button type="submit" class="btn btn-success">Resolve Machine Return</button>
