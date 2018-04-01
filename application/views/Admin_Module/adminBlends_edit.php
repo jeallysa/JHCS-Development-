@@ -22,6 +22,37 @@
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+     <script type="text/javascript">
+
+        function findTotal(){
+            var valued = $("input[id='per']").map(function(){
+            if (isNaN(Math.abs(parseInt($(this).val())))) {
+                    return 0;
+            }else{
+                if (parseInt($(this).val()) < 0){
+                    return Math.abs(parseInt($(this).val()));
+                }else{
+                    return parseInt($(this).val());
+                }
+            }
+            }).get();
+            
+            function getSum(total, num) {
+                return total + num;
+            }
+            var a = valued.reduce(getSum);
+            if (a > 100 || a < 100){
+                document.getElementById("myBtn").disabled = true;
+            }else{
+                document.getElementById("myBtn").disabled = false;
+            }
+
+            
+                                            
+
+        }
+                                        
+    </script>
 </head>
 <style>
     /*
@@ -293,24 +324,19 @@ a:focus {
                                     <table class="table table-striped table-bordered dt-responsive nowrap" id="table-mutasi">
                                 <thead>
                                     <tr>
-                                       <?php
-                                        $conntitle=mysqli_connect("localhost","root","","jhcs");
-                                        if ($conntitle->connect_error) {
-                                            die("Connection failed: " . $conntitle->connect_error);
-                                        } 
-                                        $sql="SELECT * FROM raw_coffee WHERE raw_activation = 1";
-                                        $result = $conntitle->query($sql); 
-                                        if ($result->num_rows > 0) {
-                                            while($row = $result->fetch_assoc()) {
-                                    ?>
-                                    <th><b><?php echo $row["raw_coffee"]; ?></b></th>
-                                    <?php
-                                        }
-                                    } else {
-                                        echo "0 results";
-                                    }
-                                    $conntitle->close();
-                                    ?>
+                                        <?php
+                                                    $query_head = $this->db->query("SELECT CONCAT(raw_coffee, ' ', UCASE(LEFT(raw_type, 1)), SUBSTRING(raw_type, 2), ' ', 'Roast') AS type FROM raw_coffee WHERE raw_activation = 1");
+ 
+                                                    if ($query_head->num_rows() > 0) {
+                                                        foreach($query_head->result() AS $row) {
+                                                ?>
+                                                <th><b><?php echo $row->type; ?></b></th>
+                                                <?php
+                                                    }
+                                                } else {
+                                                    echo "0 results";
+                                                }
+                                                ?>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -323,7 +349,7 @@ a:focus {
                                                             $colname = "per" . $row2->raw_id;
                                         ?>
                                         <td>
-                                            <input onblur = "findTotal()" type="number" id="per" name="per[<?php echo $row2->raw_id;?>]" value="<?php echo $row->$colname; ?>" class="form-control">
+                                            <input oninput="findTotal(); validity.valid||(value='');" data-validate="required" type="number" min="0" max="" id="per" name="per[<?php echo $row2->raw_id;?>]" value="<?php echo $row->$colname; ?>" class="form-control">
                                         </td>
                                         <?php
                                                 }
@@ -331,24 +357,11 @@ a:focus {
                                         ?>
                                         
                                     </tr>
-                                    <script>
-
-                                        function findTotal(){
-                                            var x = document.getElementsByName("per[<?php echo json_encode($row2->raw_id);?>]");
-                                            var tot=0;
-                                            for(var i=0;i<x.length;i++){
-                                                if(parseInt(x[i].value))
-                                                    tot += parseInt(x[i].value);
-                                            }
-                                            if (tot > 2){
-                                                alert('100!');
-                                            }
-                                        }
-                                    </script>
+                                   
                                 </tbody>
                             </table>
                                     <div class="text-center" data-toggle="modal" data-target="#verify">
-                                        <button type="submit" class="btn btn-success">
+                                        <button type="submit" id="myBtn" class="btn btn-success">
                                           Save
                                         </button>
                                         <a href="<?php echo base_url(); ?>adminBlends" class="btn btn-danger"> Cancel</a>
@@ -393,6 +406,7 @@ a:focus {
 <script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/dataTables.responsive.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/responsive.bootstrap.min.js"></script>
+
 <script type="text/javascript">
 $(document).ready(function() {
     $('#example').DataTable({
@@ -419,6 +433,11 @@ $(document).ready(function() {
             }
         ]
     });
+    function findTotal(){
+    
+    }
+
+
 });
 
 $('table tbody tr  td').on('click', function() {
