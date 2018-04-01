@@ -261,7 +261,6 @@ a:focus {
                             <h4 class="title">Reminder</h4>
                         </div>
                         <div class="card-content table-responsive">
-<<<<<<< HEAD
                             <table id=example class="table table-hover">
                                 <tbody>
 											
@@ -308,8 +307,6 @@ a:focus {
 												}
 
 										 	?>
-												
-=======
                             <table id=example class="table table-striped table-bordered dt-responsive nowrap">
                                <thead>
                                             <tr>

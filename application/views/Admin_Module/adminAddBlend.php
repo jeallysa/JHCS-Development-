@@ -62,11 +62,6 @@
         }
 */
 
-    .table thead,
-    thead th {
-        text-align: center;
-        font-size: 120%;
-    }
     /* Custom Style */
 
     
@@ -309,7 +304,7 @@ a:focus {
                                             </div>
                                     </div><hr>  
                                     <h3 style="text-align: center;"> PROPORTIONS </h3>  
-                                    <table class="table table-striped table-bordered dt-responsive nowrap" id="example">
+                                    <table class="table table-striped table-bordered dt-responsive nowrap" id="example" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
                                          <?php
