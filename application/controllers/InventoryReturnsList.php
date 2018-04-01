@@ -34,8 +34,13 @@
 				"sup_returnQty" =>$this->input->post("quantity"),
 				"sup_returnRemarks" =>$this->input->post("remarks")
 			);
-			$this->InventoryReturnsList_Model->insert_data($data);
+			$date = $this->input->post("date");
+			$raw_id = $this->input->post("coffee");
+			$quantity = $this->input->post("quantity");
+			$return_id = $this->InventoryReturnsList_Model->insert_data($data);
+			$this->InventoryReturnsList_Model->compReturnDecrease($date, $quantity, $raw_id, $return_id);
 			redirect('inventoryReturnsList', 'refresh');
+			
 		}
 
 	}

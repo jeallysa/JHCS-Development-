@@ -21,6 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0"/>
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/demo.css"/>
+    <link href="<?php echo base_url(); ?>assets/css/responsive.bootstrap.min.css" rel="stylesheet" />
     <!--     Fonts and icons     -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' type='text/css'>
@@ -68,12 +69,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <a href="<?php echo base_url(); ?>inventoryOutRawCoffee">
                             <i class="material-icons">reply</i>
                             <p>Inventory Out</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url(); ?>inventoryItemList">
-                            <i class="material-icons">storage</i>
-                            <p>Items</p>
                         </a>
                     </li>
                     <li>
@@ -163,7 +158,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </div>
                                 <div class="card-content ">
                                     <br>
-                                    <table id="example" class="table hover order-column" cellspacing="0" width="100%">
+                                    <table id="example" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                         <thead>
                                             <th><b>Delivery Receipt No.</b></th>
                                             <th><b>Tagging Number</b></th>
@@ -214,6 +209,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.datatables.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/dataTables.responsive.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/responsive.bootstrap.min.js"></script>
+
 <script type="text/javascript">
 $(document).ready(function() {
     var table = $('#example').DataTable({

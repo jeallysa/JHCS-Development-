@@ -15,7 +15,7 @@ class InventoryInventoryReport_model extends CI_Model {
 							    END) AS coffin". $row->raw_id ."";
 		}
 
-		$query_append .= " FROM raw_coffee a JOIN trans_raw b JOIN inv_transact c JOIN supp_delivery d JOIN supp_po e JOIN supplier f ON a.raw_id = b.raw_coffeeid AND b.trans_id = c.trans_id AND c.po_supplier = d.supp_delivery_id AND d.supp_po_id = e.supp_po_id AND e.supp_id = f.sup_id GROUP BY c.trans_id) a WHERE type = 'IN' and month(transact_date)=month(now()) GROUP BY a.main_id UNION SELECT a.* FROM (SELECT c.trans_id AS main_id, c.type AS type, c.transact_date AS transact_date, c.dr_client as po_no, '(Client Return)' as supplier";
+		$query_append .= " FROM raw_coffee a JOIN trans_raw b JOIN inv_transact c JOIN supp_delivery d JOIN supp_po e JOIN supplier f ON a.raw_id = b.raw_coffeeid AND b.trans_id = c.trans_id AND c.po_supplier = d.supp_delivery_id AND d.supp_po_id = e.supp_po_id AND e.supp_id = f.sup_id GROUP BY c.trans_id) a WHERE type = 'IN' and month(transact_date)=month(now()) GROUP BY a.main_id UNION SELECT a.* FROM (SELECT c.trans_id AS main_id, c.type AS type, c.transact_date AS transact_date, c.client_returnID, '(Client Return)' as supplier";
 
         foreach ($qcount->result() AS $row){
 			$query_append .= ", SUM(CASE
@@ -24,7 +24,16 @@ class InventoryInventoryReport_model extends CI_Model {
 							    END) AS coffin". $row->raw_id ."";
 		}
         
-        $query_append .= " FROM raw_coffee a JOIN trans_raw b JOIN inv_transact c JOIN client_delivery d JOIN contracted_po e JOIN contracted_client f ON a.raw_id = b.raw_coffeeid AND b.trans_id = c.trans_id AND c.dr_client = d.client_dr AND d.contractPO_id = e.contractPO_id AND e.client_id= f.client_id WHERE type = 'IN' GROUP BY c.trans_id) a WHERE type = 'IN' and month(transact_date)=month(now()) GROUP BY a.main_id;";
+        $query_append .= " FROM raw_coffee a JOIN trans_raw b JOIN inv_transact c JOIN client_coffreturn d ON a.raw_id = b.raw_coffeeid AND b.trans_id = c.trans_id AND c.client_returnID = d.client_coffReturnID GROUP BY c.trans_id) a WHERE type = 'IN' and month(transact_date)=month(now()) GROUP BY a.main_id UNION SELECT a.* FROM (SELECT c.trans_id AS main_id, c.type AS type, c.transact_date AS transact_date, c.walkin_return, '(Walk-In Return)' as supplier";
+
+        foreach ($qcount->result() AS $row){
+			$query_append .= ", SUM(CASE
+							        WHEN b.raw_coffeeid = '". $row->raw_id ."' THEN b.quantity
+							        ELSE NULL
+							    END) AS coffin". $row->raw_id ."";
+		}
+        
+        $query_append .= " FROM raw_coffee a JOIN trans_raw b JOIN inv_transact c JOIN walkin_sales d ON a.raw_id = b.raw_coffeeid AND b.trans_id = c.trans_id AND c.walkin_return = d.walkin_id GROUP BY c.trans_id) a WHERE type = 'IN' and month(transact_date)=month(now()) GROUP BY a.main_id;";
 
 		$query = $this->db->query($query_append);
 		return $query;
@@ -33,19 +42,19 @@ class InventoryInventoryReport_model extends CI_Model {
     
     public function get_coffeeinWithP($sdf){
 		$count = $this->db->count_all_results('raw_coffee');
-                 $qcount = $this->db->query("SELECT * FROM raw_coffee;");
+        $qcount = $this->db->query("SELECT * FROM raw_coffee;");
 		$query_append = "SELECT a.* FROM
                             (SELECT c.trans_id AS main_id, c.type AS type, c.transact_date AS transact_date, c.po_supplier as po_no, 'Company' as supplier";
 
 		foreach ($qcount->result() AS $row){
 			$query_append .= ", SUM(CASE
-							        WHEN b.raw_coffeeid = '".$row->raw_id ."' THEN b.quantity
+							        WHEN b.raw_coffeeid = '". $row->raw_id ."' THEN b.quantity
 							        ELSE NULL
-							    END) AS coffin".$row->raw_id."";
+							    END) AS coffin". $row->raw_id ."";
 		}
 
-		$query_append .= " FROM raw_coffee a JOIN trans_raw b JOIN inv_transact c JOIN supp_delivery d JOIN supp_po e JOIN supplier f ON a.raw_id = b.raw_coffeeid AND b.trans_id = c.trans_id AND c.po_supplier = d.supp_delivery_id AND d.supp_po_id = e.supp_po_id AND e.supp_id = f.sup_id GROUP BY c.trans_id) a WHERE type = 'IN' and month(transact_date)='".$sdf."' GROUP BY a.main_id UNION SELECT a.* FROM (SELECT c.trans_id AS main_id, c.type AS type, c.transact_date AS transact_date, c.dr_client as po_no, '(Client Return)' as supplier";
-        
+		$query_append .= " FROM raw_coffee a JOIN trans_raw b JOIN inv_transact c JOIN supp_delivery d JOIN supp_po e JOIN supplier f ON a.raw_id = b.raw_coffeeid AND b.trans_id = c.trans_id AND c.po_supplier = d.supp_delivery_id AND d.supp_po_id = e.supp_po_id AND e.supp_id = f.sup_id GROUP BY c.trans_id) a WHERE type = 'IN' and month(transact_date)='".$sdf."' GROUP BY a.main_id UNION SELECT a.* FROM (SELECT c.trans_id AS main_id, c.type AS type, c.transact_date AS transact_date, c.client_returnID, '(Client Return)' as supplier";
+
         foreach ($qcount->result() AS $row){
 			$query_append .= ", SUM(CASE
 							        WHEN b.raw_coffeeid = '". $row->raw_id ."' THEN b.quantity
@@ -53,8 +62,16 @@ class InventoryInventoryReport_model extends CI_Model {
 							    END) AS coffin". $row->raw_id ."";
 		}
         
-        $query_append .= " FROM raw_coffee a JOIN trans_raw b JOIN inv_transact c JOIN client_delivery d JOIN contracted_po e JOIN contracted_client f ON a.raw_id = b.raw_coffeeid AND b.trans_id = c.trans_id AND c.dr_client = d.client_dr AND d.contractPO_id = e.contractPO_id AND e.client_id= f.client_id WHERE type = 'IN' GROUP BY c.trans_id) a WHERE type = 'IN' and month(transact_date)='".$sdf."' GROUP BY a.main_id;";
+        $query_append .= " FROM raw_coffee a JOIN trans_raw b JOIN inv_transact c JOIN client_coffreturn d ON a.raw_id = b.raw_coffeeid AND b.trans_id = c.trans_id AND c.client_returnID = d.client_coffReturnID GROUP BY c.trans_id) a WHERE type = 'IN' and month(transact_date)='".$sdf."' GROUP BY a.main_id UNION SELECT a.* FROM (SELECT c.trans_id AS main_id, c.type AS type, c.transact_date AS transact_date, c.walkin_return, '(Walk-In Return)' as supplier";
 
+        foreach ($qcount->result() AS $row){
+			$query_append .= ", SUM(CASE
+							        WHEN b.raw_coffeeid = '". $row->raw_id ."' THEN b.quantity
+							        ELSE NULL
+							    END) AS coffin". $row->raw_id ."";
+		}
+        
+        $query_append .= " FROM raw_coffee a JOIN trans_raw b JOIN inv_transact c JOIN walkin_sales d ON a.raw_id = b.raw_coffeeid AND b.trans_id = c.trans_id AND c.walkin_return = d.walkin_id GROUP BY c.trans_id) a WHERE type = 'IN' and month(transact_date)='".$sdf."' GROUP BY a.main_id;";
 
 		$query = $this->db->query($query_append);
 		return $query;
@@ -64,7 +81,7 @@ class InventoryInventoryReport_model extends CI_Model {
     public function get_coffeeout(){
 		$count = $this->db->count_all_results('raw_coffee');
 		$query_append = "SELECT a.* FROM
-							(SELECT c.trans_id AS main_id, c.transact_date AS transact_date, c.type AS type, c.dr_client as dr_no, 'Contracted Client' as client";
+                            (SELECT c.trans_id AS main_id, c.transact_date AS transact_date, c.type AS type, c.po_client as dr_no, e.client_company as client";
 
 		for ($i = 0; $i <= $count; $i++){
 			$query_append .= ", SUM(CASE
@@ -73,7 +90,7 @@ class InventoryInventoryReport_model extends CI_Model {
 							    END) AS coffout".$i."";
 		}
         
-		$query_append .= " FROM raw_coffee a JOIN trans_raw b JOIN inv_transact c JOIN client_delivery d ON c.dr_client = d.client_dr JOIN contracted_po e JOIN contracted_client f ON a.raw_id = b.raw_coffeeid AND b.trans_id = c.trans_id AND d.contractPO_id = e.contractPO_id AND e.client_id = f.client_id GROUP BY c.trans_id) a WHERE type = 'OUT' and month(transact_date)=month(now()) GROUP BY a.main_id UNION SELECT a.* FROM (SELECT c.trans_id AS main_id, c.transact_date AS transact_date, c.type AS type, c.sales_inv AS po_no, 'Walk-in' AS client";
+		$query_append .= " FROM raw_coffee a JOIN trans_raw b JOIN inv_transact c JOIN contracted_po d JOIN contracted_client e ON a.raw_id = b.raw_coffeeid AND b.trans_id = c.trans_id AND c.po_client = d.contractPO_id AND d.client_id = e.client_id GROUP BY c.trans_id) a WHERE type = 'OUT' and month(transact_date)=month(now()) GROUP BY a.main_id UNION SELECT a.* FROM (SELECT c.trans_id AS main_id, c.transact_date AS transact_date, c.type AS type, c.sales_inv AS po_no, 'Walk-in' AS client";
         
         for ($i = 0; $i <= $count; $i++){
 			$query_append .= ", SUM(CASE 
@@ -99,9 +116,9 @@ class InventoryInventoryReport_model extends CI_Model {
 	}
     
     public function get_coffeeoutWithP($sdf){
-		$count = $this->db->count_all_results('raw_coffee');
+				$count = $this->db->count_all_results('raw_coffee');
 		$query_append = "SELECT a.* FROM
-							(SELECT c.trans_id AS main_id, c.transact_date AS transact_date, c.type AS type, c.dr_client as dr_no, 'Contracted Client' as client";
+                            (SELECT c.trans_id AS main_id, c.transact_date AS transact_date, c.type AS type, c.po_client as dr_no, e.client_company as client";
 
 		for ($i = 0; $i <= $count; $i++){
 			$query_append .= ", SUM(CASE
@@ -110,7 +127,7 @@ class InventoryInventoryReport_model extends CI_Model {
 							    END) AS coffout".$i."";
 		}
         
-		$query_append .= " FROM raw_coffee a JOIN trans_raw b JOIN inv_transact c JOIN client_delivery d ON c.dr_client = d.client_dr JOIN contracted_po e JOIN contracted_client f ON a.raw_id = b.raw_coffeeid AND b.trans_id = c.trans_id AND d.contractPO_id = e.contractPO_id AND e.client_id = f.client_id GROUP BY c.trans_id) a WHERE type = 'OUT' and month(transact_date)='".$sdf."' GROUP BY a.main_id UNION SELECT a.* FROM (SELECT c.trans_id AS main_id, c.transact_date AS transact_date, c.type AS type, c.sales_inv AS po_no, 'Walk-in' AS client";
+		$query_append .= " FROM raw_coffee a JOIN trans_raw b JOIN inv_transact c JOIN contracted_po d JOIN contracted_client e ON a.raw_id = b.raw_coffeeid AND b.trans_id = c.trans_id AND c.po_client = d.contractPO_id AND d.client_id = e.client_id GROUP BY c.trans_id) a WHERE type = 'OUT' and month(transact_date)='".$sdf."' GROUP BY a.main_id UNION SELECT a.* FROM (SELECT c.trans_id AS main_id, c.transact_date AS transact_date, c.type AS type, c.sales_inv AS po_no, 'Walk-in' AS client";
         
         for ($i = 0; $i <= $count; $i++){
 			$query_append .= ", SUM(CASE 

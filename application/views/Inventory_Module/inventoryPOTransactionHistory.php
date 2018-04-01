@@ -19,6 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0"/>
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/demo.css"/>
+    <link href="<?php echo base_url(); ?>assets/css/responsive.bootstrap.min.css" rel="stylesheet" />
     
     <!--     Fonts and icons     -->
     <link rel="stylesheet" href="css.css" />
@@ -73,12 +74,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <a href="<?php echo base_url(); ?>inventoryOutRawCoffee">
                             <i class="material-icons">reply</i>
                             <p>Inventory Out</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url(); ?>inventoryItemList">
-                            <i class="material-icons">storage</i>
-                            <p>Items</p>
                         </a>
                     </li>
                     <li>
@@ -249,7 +244,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <div id="page-wrapper">
                                     <div class="table-responsive">
                                    
-                                        <table class="table table-striped" id="table-mutasi">
+                                        <table class="table table-striped table-bordered dt-responsive nowrap" id="table-mutasi">
                                             <thead>
                                                 <tr>
                                                     <th>Item Name</th>
@@ -341,7 +336,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <div id="page-wrapper">
                                     <div class="table-responsive">
                                    
-                                        <table class="table table-striped" id="table-mutasi">
+                                        <table class="table table-striped table-bordered dt-responsive nowrap" id="table-mutasi">
                                             <thead>
                                                 <tr>
                                                     <th>Payment Date</th>
@@ -454,7 +449,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 
                                 <div class="card-content ">
                                     <br>
-                                    <table id="example" class="table hover order-column" cellspacing="0" width="100%">
+                                    <table id="example" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                         <thead>
                                             <th><b class="pull-left">PO #</b></th>
                                             <th><b class="pull-left">Date Ordered</b></th>
@@ -527,6 +522,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?php echo base_url(); ?>assets/js/material-dashboard.js?v=1.2.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/dataTables.responsive.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/responsive.bootstrap.min.js"></script>
+
 <script type="text/javascript">
 $(document).ready(function() {
     var table = $('#example').DataTable({

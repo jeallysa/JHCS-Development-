@@ -52,6 +52,7 @@ class sellProduct_model extends CI_MODEL
 		$this->db->query('UPDATE sticker SET sticker_stock = sticker_stock - '.$quantity.' WHERE sticker_id ='.$stick_id.';'); 
 		$data_trans = array(
 					'transact_date' => $date,
+					'sales_inv' => $inserted_id,
 		        	'type' => "OUT"
 		);
 		$this->db->insert('inv_transact', $data_trans);

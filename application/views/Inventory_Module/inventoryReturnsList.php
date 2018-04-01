@@ -21,6 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0"/>
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/demo.css"/>
+    <link href="<?php echo base_url(); ?>assets/css/responsive.bootstrap.min.css" rel="stylesheet" />
     <!--     Fonts and icons     -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" >
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' type='text/css'>
@@ -135,12 +136,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <p>Inventory Out</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="<?php echo base_url(); ?>inventoryItemList">
-                            <i class="material-icons">storage</i>
-                            <p>Items</p>
-                        </a>
-                    </li>
                     <li class="active">
                         <a href="<?php echo base_url(); ?>inventoryReturnsList">
                             <i class="material-icons">input</i>
@@ -233,7 +228,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <a class="btn btn-success" data-toggle="modal" data-target="#return" data-original-title style="float: right">Add Returns</a>
                                             <br>
                                             <br>
-                                             <table id="" class="table hover order-column" cellspacing="0" width="100%">
+                                             <table id="example" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                             <thead>
                                                 <tr>
                                                     <th><b>#</b></th>
@@ -270,7 +265,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             </ul>
                                             <div class="tab-content tab-color">
                                                 <div class="tab-pane active" id="coffee">
-                                                    <table id="coffee" class="table hover order-column" cellspacing="0" width="100%">
+                                                    <table id="exampleA" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                                         <thead>
                                                             <tr>
                                                                 <th><b>#</b></th>
@@ -303,7 +298,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     </table>
                                                 </div>
                                                 <div class="tab-pane fade" id="machine">
-                                                    <table id="machine" class="table hover order-column" cellspacing="0" width="100%">
+                                                    <table id="exampleB" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                                         <thead>
                                                             <tr>
                                                                 <th><b>Return No.</b></th>
@@ -452,15 +447,40 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.datatables.js"></script>
-<script>
-$(document).ready(function() {
-    $('table.table').DataTable({
-        select: {
-            style: 'single'
-        }
+<script src="<?php echo base_url(); ?>assets/js/dataTables.responsive.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/responsive.bootstrap.min.js"></script>
 
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#example').DataTable({
+        "dom":' fBrtip',
+        "lengthChange": false,
+        "info":     false,
     });
 });
+
 </script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#exampleA').DataTable({
+        "dom":' fBrtip',
+        "lengthChange": false,
+        "info":     false,
+    });
+});
+
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#exampleB').DataTable({
+        "dom":' fBrtip',
+        "lengthChange": false,
+        "info":     false,
+    });
+});
+
  
 </html>

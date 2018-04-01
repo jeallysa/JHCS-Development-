@@ -23,7 +23,7 @@
 				$stock = $this->db->query("SELECT * FROM raw_coffee WHERE raw_id = '".$raw_guide."';")->row()->raw_stock;
 				$taker = round($quantity*($package*($percentage * 0.01)));
 				if ($stock < $taker){
-					echo '<script> alert("Maximum order exceeded! Transaction halted."); </script>';
+					echo '<script> alert("Maximum order exceeded from the number of stocks! Transaction halted."); </script>';
 					return;
 				}else{
 					echo '<script> alert("Purchase order added."); </script>';
@@ -74,7 +74,7 @@
 			$this->db->query('UPDATE coffee_blend SET blend_qty = blend_qty + '.$quantity.' WHERE blend_id ='.$blend_id.';');
 			$data_trans = array(
 						'transact_date' => $date,
-						'dr_client' => $po_id,
+						'po_client' => $po_id,
 			        	'type' => "OUT"
 			);
 			$this->db->insert('inv_transact', $data_trans);

@@ -307,23 +307,18 @@ a:focus {
                                     <table id="example" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" style="font-size: 11px">
                                         <thead>
                                             <th><b class="pull-left">Company Blend</b></th>
-                                            <?php
-                                                    $conntitle=mysqli_connect("localhost","root","","jhcs");
-                                                    if ($conntitle->connect_error) {
-                                                        die("Connection failed: " . $conntitle->connect_error);
-                                                    } 
-                                                    $sql="SELECT * FROM raw_coffee WHERE raw_activation = 1";
-                                                    $result = $conntitle->query($sql); 
-                                                    if ($result->num_rows > 0) {
-                                                        while($row = $result->fetch_assoc()) {
+                                              <?php
+                                                    $query_head = $this->db->query("SELECT CONCAT(raw_coffee, ' ', UCASE(LEFT(raw_type, 1)), SUBSTRING(raw_type, 2), ' ', 'Roast') AS type FROM raw_coffee WHERE raw_activation = 1");
+ 
+                                                    if ($query_head->num_rows() > 0) {
+                                                        foreach($query_head->result() AS $row) {
                                                 ?>
-                                                <th><b><?php echo $row["raw_coffee"]; ?></b></th>
+                                                <th><b><?php echo $row->type; ?></b></th>
                                                 <?php
                                                     }
                                                 } else {
                                                     echo "0 results";
                                                 }
-                                                $conntitle->close();
                                                 ?>
                                             <th><b class="pull-left">Size</b></th>
                                             <th><b class="pull-left">Packaging</b></th>
