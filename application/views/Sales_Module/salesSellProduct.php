@@ -192,7 +192,7 @@
                                                          <td><?php echo $row->walkin_returns; ?></td>
                                                          <td><button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#returnblend<?php echo $row->walkin_id; ?>">Return</button>
                                                          </td>
-                <!-- modal machine returns -->
+                <!-- modal walkin returns -->
                 <div class="modal fade" id="returnblend<?php echo $row->walkin_id; ?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="panel panel-primary">
