@@ -191,7 +191,13 @@
                                                              ?>
                                                         </td>
                                                          <td><?php echo $row->walkin_returns; ?></td>
-                                                         <td><button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#returnblend<?php echo $row->walkin_id; ?>">Return</button>
+                                                         <td><button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#returnblend<?php echo $row->walkin_id; ?>" <?php 
+                                                            $coff_remark = $row->coff_remark; 
+                                                            if ($coff_remark == 'Returned') {
+                                                                echo "disabled";
+                                                            }
+
+                                                         ?>>Return</button>
                                           
                                                          </td>
 
@@ -339,7 +345,13 @@
                                                          </td>
                                                          <td><?php echo $row->mach_returnQty; ?></td>
 
-                                                         <td><button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#return<?php echo $row->mach_salesID; ?>">Return</button>
+                                                         <td><button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#return<?php echo $row->mach_salesID; ?>" <?php 
+                                                            $mach_remark = $row->remarks; 
+                                                            if ($mach_remark == 'Returned') {
+                                                                echo "disabled";
+                                                            }
+
+                                                         ?>>Return</button>
 
                                                          </td>
                 <!-- modal machine returns -->
