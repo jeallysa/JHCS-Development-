@@ -21,10 +21,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0"/>
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/demo.css"/>
+    <link href="<?php echo base_url(); ?>assets/css/responsive.bootstrap.min.css" rel="stylesheet" />
     <!--     Fonts and icons     -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" >
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' type='text/css'>
     <link rel="shortcut icon" href="favicon.ico">
+
 </head>
 <body>
     <div class="wrapper">
@@ -176,7 +178,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <input type="text" id="max<?php echo $details; ?>" class="form-control" value="<?php   echo date("Y-m-d") ?>" >
                                     </div>
                                 </div>
-                                        <table class="table table-striped" id="table-mutasi<?php echo $details; ?>">
+                                        <table class="table table-striped table-bordered dt-responsive nowrap" id="table-mutasi<?php echo $details; ?>">
                                             <thead>
                                                 <tr>
                                                     <th><b>Client/Supplier</b></th>
@@ -379,7 +381,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 
                                 <div class="card-content ">
                                     <br>
-                                    <table id="example" class="table hover order-column" cellspacing="0" width="100%">
+                                    <table id="example" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                         <thead>
                                             <th><b class="pull-left">No.</b></th>
                                             <th><b class="pull-left">Blend</b></th>
@@ -469,6 +471,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="../assets/js/material-dashboard.js?v=1.2.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="../assets/js/demo.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/dataTables.responsive.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/responsive.bootstrap.min.js"></script>
+
 <script>
 
 $(document).ready(function() {
