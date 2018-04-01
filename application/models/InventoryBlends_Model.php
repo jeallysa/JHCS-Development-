@@ -21,4 +21,12 @@ class InventoryBlends_Model extends CI_model
           return NULL;
   }
 
+  function update($data, $id){
+              
+    $this->db->where('blend_id', $id ); 
+    $this->db->update('coffee_blend', $data);    
+   
+        
+  }
+
 }

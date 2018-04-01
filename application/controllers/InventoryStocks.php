@@ -20,43 +20,23 @@
 			}
 		}
 
-		public function update($details){
-           
-        $rawidv=$this->input->post('rawid');
-        $physcountv=$this->input->post('physcount');
-        $discrepancyv=$this->input->post('discrepancy');
-        $remarksv=$this->input->post('remarks');
-        $datev=$this->input->post('date');
-        $modalnum = $details;
+		function update($id){
+             
             
-       
-  if ($_POST)  {
+            $data = array(
+                        'raw_id'         => $this->input->post("rawid"),
+                        'raw_physcount'  => $this->input->post("physcount"),
+                        'raw_discrepancy'=> $this->input->post("discrepancy"),
+                        'raw_remarks'    => $this->input->post("remarks"),
+                        'inventory_date'    => $this->input->post("date"),
+                    );              
+                
         
- for ($i = 0; $i < count($this->input->post('rawid')); $i++){                             
-              
-              
-                             $data[$i] = array(
-                                    'raw_physcount' => $physcountv[$i],
-          							'raw_remarks' => $remarksv[$i],
-          							'raw_discrepancy' => $discrepancyv[$i],
-          							'inventory_date' => $datev[$i],
+            $this->InventoryStocks_Model->update($data , $id);    
         
-                                 );
-
-        $this->inventoryStocks_Model->updateInventory($data, $physcountv[$i]); 
-                       
-     
-}
-      
-      
-    
-      
-      
-	}
             
-           redirect(base_url('inventorystocks'));
-           
-    }
+            redirect('inventorystocks');
+        }  
 
 	}
 

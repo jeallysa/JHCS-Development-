@@ -21,28 +21,23 @@
 		}
 
 
-		function update(){
-			$query  = $this->db->query("SELECT * FROM raw_coffee NATURAL JOIN supplier WHERE raw_activation = '1';");
-              $res = $query->row();
-
-              $c = 1; 
-          
-    foreach($res as $object){
-       $temp =  $object->mach_id;
-
-			$this->load->model('InventoryMachines_Model');
-			$machid = $this->input->post("machid".$temp);
-			$count = $this->input->post("physcount".$temp);
-			$discrepancy = $this->input->post("discrepancy".$temp);
-			$invdate = $this->input->post("date".$temp);
-			$remarks = $this->input->post("remarks".$temp);
-			$this->InventoryStickers_Model->update($machid, $count, $discrepancy, $remarks, $invdate);
-			echo "<script>alert('Update successful!');</script>";
-			redirect('inventoryMachines', 'refresh');
-
-			$c++;
-		}
-	}
+		function update($id){
+             
+            
+            $data = array(
+                        'mach_id'         => $this->input->post("machid"),
+                        'mach_physcount'  => $this->input->post("physcount"),
+                        'mach_discrepancy'=> $this->input->post("discrepancy"),
+                        'mach_remarks'    => $this->input->post("remarks"),
+                        'inventory_date'    => $this->input->post("date"),
+                    );              
+                
+        
+            $this->InventoryMachines_Model->update($data , $id);    
+        
+            
+            redirect('inventoryMachines');
+        }  
 
 
 	}

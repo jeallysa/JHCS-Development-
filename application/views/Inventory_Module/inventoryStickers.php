@@ -197,7 +197,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span>Stock Card Details</h4>
                         </div>
-                        <form action="#" method="post" accept-charset="utf-8">
+                        <form action="InventoryStickers/update/<?php echo $id ?>" method="post" accept-charset="utf-8">
                             <div class="modal-body" style="padding: 5px;">
                                 <div id="page-wrapper">
                                    
@@ -290,37 +290,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     <div class="form-group">
                                                                         <label class="col-md-6 control">Physical Count :</label>
                                                                         <div class="col-md-4">
-                                                                            <input id="physcount<?php echo $details; ?>" name="physcount<?php echo $details; ?>" type="number" class="form-control" required/>
+                                                                            <input id="physcount<?php echo $details; ?>" name="physcount" type="number" class="form-control" required/>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label class="col-md-6 control">Discrepancy :</label>
                                                                         <div class="col-md-4">
-                                                                            <input value="0" id="discrepancy<?php echo $details; ?>" name="discrepancy<?php echo $details; ?>" readonly="" class="form-control" />
+                                                                            <input value="0" id="discrepancy<?php echo $details; ?>" name="discrepancy" readonly="" class="form-control" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label class="col-md-6 control">Date of Inventory :</label>
                                                                         <div class="col-md-4">
-                                                                            <input value="<?php   echo date("Y-m-d") ?>" id="date<?php echo $details; ?>" type="date" name="date<?php echo $details; ?>" class="form-control" min="2017-01-01" max="<?php   echo date("Y-m-d") ?>"/>
+                                                                            <input value="<?php   echo date("Y-m-d") ?>" id="date<?php echo $details; ?>" type="date" name="date" class="form-control" min="2017-01-01" max="<?php   echo date("Y-m-d") ?>"/>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label class="col-md-6 control">Remarks :</label>
                                                                         <div class="col-md-4">
-                                                                            <textarea style="resize:vertical;" class="form-control" rows="2" name="remarks<?php echo $details; ?>"></textarea>
+                                                                            <textarea style="resize:vertical;" class="form-control" rows="2" name="remarks"></textarea>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="type"></label>
                                                                         <div class="col-md-4">
-                                                                            <input value="<?php echo $details; ?>" class="form-control" name="stckrid<?php echo $details; ?>" type="hidden" />
+                                                                            <input value="<?php echo $id; ?>" class="form-control" name="stckrid" type="hidden" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="type"></label>
                                                                         <div class="col-md-4">
-                                                                            <input value="<?php echo $id; ?>" class="form-control" id = "stckrstocks<?php echo $details; ?>" name="stckrstocks<?php echo $details; ?>" type="hidden" />
+                                                                            <input value="<?php echo $stock; ?>" class="form-control" id = "stckrstocks<?php echo $details; ?>" name="stckrstocks" type="hidden" />
                                                                         </div>
                                                                     </div>
                                                             </div>
