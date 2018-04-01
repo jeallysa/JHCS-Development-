@@ -27,11 +27,10 @@
 			$type = $this->input->post("type");
             $size = $this->input->post("size");
 			$reorder = $this->input->post("reorder");
-			$stocklimit = $this->input->post("stocklimit");
 			$stocks = $this->input->post("stocks");
 			$sup_id = $this->input->post("sup_company");
 			$this->AdminPackaging_model->activity_logs('admin', "Updated Packaging: '".$type." bag, ".$size."g'");
-			$this->AdminPackaging_model->update($id, $type, $size, $reorder, $stocks, $stocklimit, $sup_id);
+			$this->AdminPackaging_model->update($id, $type, $size, $reorder, $stocks, $sup_id);
 			echo "<script>alert('Update successful!');</script>";
 			redirect('adminPackaging', 'refresh');
 		}
@@ -43,7 +42,6 @@
 				"package_type" =>$this->input->post("type"),
                 "package_size" =>$this->input->post("size"),
 				"package_reorder" =>$this->input->post("reorder"),
-				"package_limit" =>$this->input->post("stocklimit"),
                 "package_stock" =>$this->input->post("stocks"),
                  "sup_id" =>$this->input->post("sup_company")
         
