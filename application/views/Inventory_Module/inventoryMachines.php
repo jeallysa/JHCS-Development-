@@ -270,75 +270,50 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                                         </table>
                                         <div class="row">
-                                                   <div class="col-lg-6 col-md-6 col-offset-6">
-                                                                <div class="form-group">
-                                                                    <label class="col-md-4 control">Total In :</label>
-                                                                    <div class="col-md-4">
-                                                                        <?php
-                                              $retrieveDetails5 ="SELECT SUM(mach_returnQty) AS totalQty FROM (SELECT * FROM jhcs.client_machreturn NATURAL JOIN contracted_client WHERE mach_id = ".$details.") AS stickerIn;" ;
-                                              $query = $this->db->query($retrieveDetails5);
-                                              if ($query->num_rows() > 0) {
-                                              foreach ($query->result() as $object) {
-                                           echo '<p>'  . $object->totalQty  . ' piece/s</p>' ;
-                                           }
-                                            }
-                                                ?>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-4 control">Total Out :</label>
-                                                                    <div class="col-md-7">
-                                                                        <?php
-                                              $retrieveDetails6 ="SELECT SUM(mach_qty) AS totalQty FROM (SELECT * FROM jhcs.machine_out NATURAL JOIN machine NATURAL JOIN contracted_client where mach_id = ".$details.") AS stickerOut;" ;
-                                              $query = $this->db->query($retrieveDetails6);
-                                              if ($query->num_rows() > 0) {
-                                              foreach ($query->result() as $object) {
-                                           echo '<p>'  . $object->totalQty  . ' piece/s</p>' ;
-                                           }
-                                            }
-                                                ?>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                            <center>  
                                         <form action="InventoryMachines/update" method="post" accept-charset="utf-8">
                                                             <div class="row">
-                                                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                                                    
                                                                     <div class="form-group">
                                                                         <label class="col-md-6 control">Physical Count :</label>
                                                                         <div class="col-md-4">
-                                                                            <input id="physcount<?php echo $details; ?>" name="physcount[]" type="number" class="form-control"/>
+                                                                            <input id="physcount<?php echo $details; ?>" name="physcount<?php echo $details; ?>" type="number" class="form-control" required/>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label class="col-md-6 control">Discrepancy :</label>
                                                                         <div class="col-md-4">
-                                                                            <input value="0" id="discrepancy<?php echo $details; ?>" name="discrepancy[]" readonly="" class="form-control" />
+                                                                            <input value="0" id="discrepancy<?php echo $details; ?>" name="discrepancy<?php echo $details; ?>" readonly="" class="form-control" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="type"></label>
+                                                                        <label class="col-md-6 control">Date of Inventory :</label>
                                                                         <div class="col-md-4">
-                                                                            <input value="<?php echo $details; ?>" class="form-control" id="machid<?php echo $details; ?>" name="machid[]" type="hidden" />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="type"></label>
-                                                                        <div class="col-md-4">
-                                                                            <input value="<?php echo $stock; ?>" class="form-control" id = "machstocks<?php echo $details; ?>" name="machstocks[]" type="hidden" />
+                                                                            <input value="<?php   echo date("Y-m-d") ?>" id="date<?php echo $details; ?>" type="date" name="date<?php echo $details; ?>" class="form-control" min="2017-01-01" max="<?php   echo date("Y-m-d") ?>"/>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label class="col-md-6 control">Remarks :</label>
-                                                                        <div class="col-md-10">
-                                                                            <textarea style="resize:vertical;" class="form-control" rows="2" name="remarks[]"></textarea>
+                                                                        <div class="col-md-4">
+                                                                            <textarea style="resize:vertical;" class="form-control" rows="2" name="remarks<?php echo $details; ?>"></textarea>
                                                                         </div>
-                                                                        <button type="submit" class="btn btn-success">Save</button>
-                                                                        <input type="reset" class="btn btn-danger" value="Clear" />
                                                                     </div>
-                                                                </div>
+                                                                    <div class="form-group">
+                                                                        <label for="type"></label>
+                                                                        <div class="col-md-4">
+                                                                            <input value="<?php echo $details; ?>" class="form-control" name="machid<?php echo $details; ?>" type="hidden" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="type"></label>
+                                                                        <div class="col-md-4">
+                                                                            <input value="<?php echo $stock; ?>" class="form-control" id = "stckrstocks<?php echo $details; ?>" name="machstocks<?php echo $details; ?>" type="hidden" />
+                                                                        </div>
+                                                                    </div>
                                                             </div>
+                                                            <input type="submit" class="btn btn-success" value="Save" >
+                                                            <input type="reset" class="btn btn-danger" value="Clear" />
                                                         </form>
+                                                    </center>  
                                                     </div>
                                     </div>
                                 
@@ -415,10 +390,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <th><b class="pull-left">No.</b></th>
                                             <th><b class="pull-left">Machine</b></th>
                                             <th><b class="pull-left">Type</b></th>
-                                            <th><b class="pull-left">Reorder Level</b></th>
-                                            <th><b class="pull-left">Stock Limit</b></th>
                                             <th><b class="pull-left">Number of Stocks</b></th>
                                             <th><b class="pull-left">Physical Count</b></th>
+                                            <th><b class="pull-left">Date of Inventory</b></th>
                                             <th><b class="pull-left">Remarks</b></th>
                                             <th><b class="pull-left">Stock Card</b></th>
                                         </thead>
@@ -437,10 +411,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 '<td>'  . $object->mach_id . '</td>' ,
                                                 '<td>'  . $object->brewer . '</td>' ,
                                                 '<td>'  . $object->brewer_type   . '</td>' ,
-                                                '<td>'  . number_format($object->mach_reorder)  . ' pc/s</td>' ,
-                                                '<td>'  . number_format($object->mach_limit)   . ' pc/s</td>' ,
                                                 '<td><b>'  . number_format($object->mach_stocks)   . ' pc/s</b></td>' ,
                                                 '<td>'  . number_format($object->mach_physcount)   . ' pc/s</td>' ,
+                                                '<td>'  . $object->inventory_date   . '</td>' ,
                                                 '<td>'  . $object->mach_remarks   . '</td>' ;
 
                                                                       
@@ -581,6 +554,13 @@ $(document).ready(function() {
 
 
     var oTable = $(<?php echo "'#details".$c." table[id=table-mutasi".$c."]'"?>).DataTable({ 
+        "columnDefs": [
+            { "orderable": false, "targets": 0 },
+            { "orderable": false, "targets": 2 },
+            { "orderable": false, "targets": 3 },
+            { "orderable": false, "targets": 4 }
+        ],
+        "aaSorting": [1,'desc'],
         "dom":' fBrtip',
         "lengthChange": false,
         "info":     false,

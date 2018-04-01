@@ -359,7 +359,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
                                             <label for="email">Date</label>
-                                            <input class="form-control" type="date" name="date" required>
+                                            <input class="form-control" type="date" name="date" min="2017-01-01" max="<?php   echo date("Y-m-d") ?>" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6 form-group">
@@ -397,7 +397,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
                                             <label for="email">Quantity</label>
-                                            <input class="form-control" type="number" name="quantity" placeholder="grams" required />
+                                            <input class="form-control" type="number" name="quantity" placeholder="grams" min="1"required />
                                         </div>
                                     </div>
                                 </div>

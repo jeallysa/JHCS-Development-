@@ -272,20 +272,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <div class="row">
                                           <center>                 
                                         <form action="InventoryBlends/update" method="post" accept-charset="utf-8">
-                                            
                                                             <div class="row">
-                                                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                                                    
                                                                     <div class="form-group">
                                                                         <label class="col-md-6 control">Physical Count :</label>
                                                                         <div class="col-md-4">
-                                                                            <input id="physcount<?php echo $details; ?>" name="physcount<?php echo $details; ?>" type="number" class="form-control"/>
+                                                                            <input id="physcount<?php echo $details; ?>" name="physcount<?php echo $details; ?>" type="number" class="form-control" required/>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label class="col-md-6 control">Discrepancy :</label>
                                                                         <div class="col-md-4">
                                                                             <input value="0" id="discrepancy<?php echo $details; ?>" name="discrepancy<?php echo $details; ?>" readonly="" class="form-control" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-6 control">Date of Inventory :</label>
+                                                                        <div class="col-md-4">
+                                                                            <input value="<?php   echo date("Y-m-d") ?>" id="date<?php echo $details; ?>" type="date" name="date<?php echo $details; ?>" class="form-control" min="2017-01-01" max="<?php   echo date("Y-m-d") ?>"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-6 control">Remarks :</label>
+                                                                        <div class="col-md-4">
+                                                                            <textarea style="resize:vertical;" class="form-control" rows="2" name="remarks<?php echo $details; ?>"></textarea>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
@@ -297,20 +306,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     <div class="form-group">
                                                                         <label for="type"></label>
                                                                         <div class="col-md-4">
-                                                                            <input value="<?php echo $stock; ?>" class="form-control" id = "blndstocks<?php echo $details; ?>" name="blndstocks<?php echo $details; ?>" type="hidden" />
+                                                                            <input value="<?php echo $stock; ?>" class="form-control" id = "blndstocks<?php echo $details; ?>" name="stckrstocks<?php echo $details; ?>" type="hidden" />
                                                                         </div>
                                                                     </div>
-                                                                    <div class="form-group">
-                                                                        <label class="col-md-6 control">Remarks :</label>
-                                                                        <div class="col-md-10">
-                                                                            <textarea style="resize:vertical;" class="form-control" rows="2" name="remarks<?php echo $details; ?>"></textarea>
-                                                                            <button type="submit" class="btn btn-success">Save</button>
-                                                                        <input type="reset" class="btn btn-danger" value="Clear" />
-                                                                        </div>
-                                                                        
-                                                                    </div>
-                                                                </div>
                                                             </div>
+                                                            <input type="submit" class="btn btn-success" value="Save" >
+                                                            <input type="reset" class="btn btn-danger" value="Clear" />
                                                         </form>
                                                     </div>
                                                     </center>
@@ -391,6 +392,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <th><b class="pull-left">Packaging</b></th>
                                             <th><b class="pull-left">Size</b></th>
                                             <th><b class="pull-left">Number of Stocks</b></th>
+                                            <th><b class="pull-left">Physical Count</b></th>
+                                            <th><b class="pull-left">Date of Inventory</b></th>
+                                            <th><b class="pull-left">Remarks</b></th>
                                             <th><b class="pull-left">Stock Card</b></th>
                                         </thead>
                                         <tbody>
@@ -409,7 +413,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 '<td>'  . $object->blend . '</td>' ,
                                                 '<td>'  . $object->package_type   . ' bag</td>' ,
                                                 '<td>'  . number_format($object->package_size)  . ' g</td>' ,
-                                                '<td><b>'  . number_format($object->blend_qty)   . ' pc/s</b></td>' ;
+                                                '<td><b>'  . number_format($object->blend_qty)   . ' pc/s</b></td>' ,
+                                                '<td>'  . number_format($object->package_physcount)  . ' g</td>' ,
+                                                '<td>'  . $object->inventory_date  . '</td>' ,
+                                                '<td>'  . $object->blend_remarks  . '</td>' ;
 
                                                                       
                                         ?>
@@ -549,6 +556,13 @@ $(document).ready(function() {
 
 
     var oTable = $(<?php echo "'#details".$c." table[id=table-mutasi".$c."]'"?>).DataTable({ 
+        "columnDefs": [
+            { "orderable": false, "targets": 0 },
+            { "orderable": false, "targets": 2 },
+            { "orderable": false, "targets": 3 },
+            { "orderable": false, "targets": 4 }
+        ],
+        "aaSorting": [1,'desc'],
         "dom":' fBrtip',
         "lengthChange": false,
         "info":     false,
