@@ -94,13 +94,6 @@ input {
                             <p>Returns</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="<?php echo base_url(); ?>inventorySamplesList">
-                            <i class="material-icons">dvr</i>
-                            <p>Samples</p>
-                        </a>
-                    </li>
-                    
                 </ul>
             </div>
         </div>

@@ -9,9 +9,8 @@
     <title>Sales Dashboard</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, wal-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
-    <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />   
     <link href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
-    <link href="<?php echo base_url(); ?>assets/css/demo.css" rel="stylesheet" />
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
     <style>
@@ -22,89 +21,101 @@
 	.select-pane {
         display: none;
     }
-		.sidebar .sidebar-background:after,
-		.off-canvas-sidebar .sidebar-background:after{
-			background: rgba(139,69,19, 0.8);
-		}
-		span.rednum {
-		  background: #cc0001;
-		  border-radius: 3px;
-		  color: #fff;
-		  z-index: 999999;
-			font-weight: 600;
-		  padding: 2px 6px;
-		  box-shadow: 0 2px 3px rgba(0,0,0,.2), inset 0 2px 5px rgba(225,225,225,.3);
-		  font-size: 13px;
-		  margin-left: 5px;
-		  position: relative;
-		  display: inline-block;
-		  top: -1px;
-		}
 		.no-border{
 			border: none !important;
 			
 		}
 		
 		
+		.sidebar .sidebar-background:after,
+		.off-canvas-sidebar .sidebar-background:after{
+			background: rgba(139,69,19, 0.8) !important;
+		}
+		
 		.sidebar[data-color="purple"] .nav li.active a,
 		.off-canvas-sidebar[data-color="purple"] .nav li.active a{
-			background-color: #4cb1d1;
-			font-weight: 600;
+			background-color: #4cb1d1 !important;
+			font-weight: 600 !important;
 			
 		}
 		.sidebar .nav li.active>a,
 		.off-canvas-sidebar .nav li.active>a {
-			color: #f5f5f5;
+			color: #f5f5f5 !important;
 		}
 		.sidebar .nav li>a,
 		.off-canvas-sidebar .nav li>a {
-			margin: 10px 15px 0;
-			border-radius: 3px;
-			color: #f5f5f5;
+			margin: 10px 15px 0 !important;
+			border-radius: 3px !important;
+			color: #f5f5f5 !important;
 		}
 		.sidebar .nav li:hover>a,
 		.off-canvas-sidebar .nav li:hover>a {
-			background: rgba(200, 200, 200, 0.2);
-			color: #ddd;
+			background: rgba(200, 200, 200, 0.2) !important;
+			color: #ddd !important;
 		}
 		.sidebar .nav li.active>a i,
 		.off-canvas-sidebar .nav li.active>a i {
-			color: #1f6fb4;
+			color: #1f6fb4 !important;
 		}
 		.off-canvas-sidebar .nav i {
-			font-size: 24px;
-			float: left;
-			margin-right: 15px;
-			line-height: 30px;
-			width: 30px;
-			text-align: center;
-			color: #f5f5f5;
+			font-size: 24px !important;
+			float: left !important;
+			margin-right: 15px !important;
+			line-height: 30px !important;
+			width: 30px !important;
+			text-align: center !important;
+			color: #f5f5f5 !important;
 		}
 		.sidebar .nav i, .off-canvas-sidebar .nav i {
-			font-size: 24px;
-			float: left;
-			margin-right: 15px;
-			line-height: 30px;
-			width: 30px;
-			text-align: center;
-			color: #f5f5f5;
+			font-size: 24px !important;
+			float: left !important;
+			margin-right: 15px !important;
+			line-height: 30px !important;
+			width: 30px !important;
+			text-align: center !important;
+			color: #f5f5f5 !important;
 		}
+		.card [data-background-color="purple"] {
+			background: linear-gradient(60deg, #a16854, #a16854) !important;
+			box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2) !important;
+		}
+		a {
+			color: #634618 !important;
+		}
+
+		a:hover,
+		a:focus {
+			color: #8a6d3b !important;
+			text-decoration: none !important;
+		}
+		.navbar .dropdown-menu li a:hover,
+		.navbar .dropdown-menu li a:focus,
+		.navbar .dropdown-menu li a:active,
+		.navbar.navbar-default .dropdown-menu li a:hover,
+		.navbar.navbar-default .dropdown-menu li a:focus,
+		.navbar.navbar-default .dropdown-menu li a:active {
+			background-color: #a94442 !important;
+			color: #FFFFFF !important;
+			box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2) !important;
+		}
+		
+		
 
     </style>
 </head>
 
 <body>
     <div class="wrapper">
-        <div class="sidebar" data-color="purple" data-image="../assets/img/1.jpg">
+        <div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-0.jpg">
             <div class="logo">
-                <img src="<?php echo base_url(); ?>assets/img/logo.png" alt="image1" width="250px" height="150px">
+                <img src="<?php echo base_url(); ?>assets/img/logos.png" alt="image1" width="250px" height="150px">
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li class="active">
                         <a href="<?php echo base_url(); ?>salesDashboard">
-                            <i class="material-icons">dashboard</i>
-                            <p>Dashboard<i class="material-icons pull-right select-pane" style="color:red">error</i></p>
+                            <i class="material-icons">dashboard</i><i class="material-icons pull-right select-pane" style="color:red !important">error</i>
+                            <p>Dashboard</p>
                         </a>
                     </li>
                     <li>
@@ -223,7 +234,7 @@
                                 <div class="card-content">
                                     <p class="category">Collections</p>
                                     <?php 
-											$total = $this->db->query("SELECT SUM(client_balance) AS total FROM client_delivery  WHERE client_deliverDate=now() AND payment_remarks='paid'; ")->row()->total;
+											$total = $this->db->query("SELECT SUM(client_balance) AS total FROM client_delivery  WHERE  payment_remarks='paid'; ")->row()->total;
 										if(!empty($total)){
 											echo number_format($total);
 										}else{
@@ -312,7 +323,7 @@
 
 													<tr>
 														<td>
-															<span style="background-color: #ff5148; color:white"> The contract of <?php echo $object->client_company; ?> client has Expired. </span>
+															<span > The contract of <?php echo $object->client_company; ?> client has Expired. </span>
 															<input class="no-border" type="text" value="<?php echo $object->client_id; ?>" id="idClient" readonly />
 														</td >
 														<td class="td-actions text-right"><button type="submit" class="btn btn-primary pull-right" id="check" data-id="<?php echo $object->client_id; ?>" >Details</button></td>
@@ -364,33 +375,31 @@
 <script type="text/javascript">
 	var id = document.getElementById('idClient').value;
 	$.ajax({
-		url:'<?=base_url()?>SalesDashboard/mayNotif/' +id,
+		url:'<?=base_url()?>AdminDashboard/getExpire/' +id,
 		method: 'POST',
 		success:function(data){
 					$(".select-pane").show();
 		}
 	});
-$(document).ready(function() {
-    demo.initDashboardPageCharts();
+	$(document).ready(function() {
+		demo.initDashboardPageCharts();
 
-	$(document).on('click', '#check', function(e){   
-        e.preventDefault();
-        var id = $(this).data('id'); 
-			$.ajax({
-				url:'<?=base_url()?>SalesDashboard/updateNotif/' +id,
-				method: 'POST',
-				success:function(data){
-					$(".select-pane").hide();
-					alert('naupdate na!');
-				}
+		$(document).on('click', '#check', function(e){   
+			e.preventDefault();
+			var id = $(this).data('id'); 
+				$.ajax({
+					url:'<?=base_url()?>AdminDashboard/updateNotif/' +id,
+					method: 'POST',
+					success:function(data){
+						$(".select-pane").hide();
+						alert('naupdate na!');
+					}
 
-				});
+					});
 
-	});
-	
-});
-	
-	
+		});
+
+	});	
 </script>
 
 </html>

@@ -22,6 +22,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0"/>
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/demo.css"/>
+	
     <!--     Fonts and icons     -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" >
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' type='text/css'>
@@ -88,13 +89,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <p>Returns</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="<?php echo base_url(); ?>inventorySamplesList">
-                            <i class="material-icons">dvr</i>
-                            <p>Samples</p>
-                        </a>
-                    </li>
-                    
                 </ul>
             </div>
         </div>

@@ -4,7 +4,7 @@
 	{
 		function __construct(){
 			parent::__construct();
-        	$this->load->model('login_model');  
+        	$this->load->model('AdminDashboard_model');  
 
 		}
 		
@@ -29,6 +29,19 @@
 				redirect('login');
 			}
 			
+		}
+		
+		public function getExpire(){
+			$id = $this->uri->segment(3,1);
+			$unseen = '0';
+			$data = $this->AdminDashboard_model->UpdateExpire($id, $unseen);
+			 echo json_encode($data);
+		}
+		public function updateSeen(){
+			$id = $this->uri->segment(3,1);
+			$unseen = '1';
+			$data = $this->AdminDashboard_model->UpdateSeen($id, $unseen);
+			 echo json_encode($data);
 		}
 
 	}

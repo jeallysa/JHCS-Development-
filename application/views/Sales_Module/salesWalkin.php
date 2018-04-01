@@ -19,6 +19,7 @@
     <link href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="<?php echo base_url(); ?>assets/css/demo.css" rel="stylesheet" />
+	<!--<link href="<?php echo base_url(); ?>assets/css/sales.css" rel="stylesheet" />-->
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
@@ -199,7 +200,7 @@
                                 <br><br><br>
                                 <br><br><br>
                                     <div class="text-center" data-toggle="modal" data-target="#verify">
-                                        <button type="submit" class="btn btn-success">
+                                        <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#verify">
                                           Save
                                         </button>
                                         <a href="<?php echo base_url(); ?>salesSellProduct" class="btn btn-danger"> Cancel</a>
@@ -210,6 +211,56 @@
                     </div>
                 </div>
             </div>
+		<!--modal for verification-->
+                    <div class="modal fade" id="verify" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h4 class="panel-title" id="contactLabel"><center>Verify Order</center> </h4>
+                                </div>
+                                <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h4>Client: Juanito Perez</h4>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h4>Date: January 22, 2018</h4>
+                                    </div>
+                                </div>
+                                <hr>
+                                
+                                 <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th><b>Coffee</b></th>
+                                            <th><b>Bag</b></th>
+                                            <th><b>Size</b></th>
+                                            <th><b>Qty</b></th>
+                                            <th><b>Price</b></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Fiesta Blend Ground</td>
+                                            <td>brown</td>
+                                            <td>250 g</td>
+                                            <td>2</td>
+                                            <td>350</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <hr>
+                                <h3>Total Amount: Php 700.00</h3>
+                              </div>
+                              <div align="center">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-success">Save</button>
+                              </div>
+                            </div>
+                            </div>
+                        </div>
 
        
              </div>

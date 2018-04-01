@@ -18,6 +18,7 @@
     <link href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="<?php echo base_url(); ?>assets/css/demo.css" rel="stylesheet" />
+	<link href="<?php echo base_url(); ?>assets/css/sales.css" rel="stylesheet" />
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
@@ -41,11 +42,11 @@
 			
 		}
 		.navbar-default > li.active > a, .navbar-default > li.active > a:focus, .navbar-default > li.active > a:hover {
-			border-top: 1px solid #CC99FF !important;
-			border-right: 1px solid #CC99FF !important;
-			border-left: 1px solid #CC99FF !important;
+			border-top: 1px solid #4cb1d1 !important;
+			border-right: 1px solid #4cb1d1 !important;
+			border-left: 1px solid #4cb1d1 !important;
 			border-bottom: transparent !important;
-			background-color: #CC99FF !important;
+			background-color: #4cb1d1 !important;
 			color: white !important;
 		}
 		.navbar-default > li.active > a {
@@ -55,7 +56,7 @@
 		}
 		.navbar-default > li > a, .navbar-default > li > a:hover {
 			border: none;
-			color: #CC99FF !important; 
+			color: #4cb1d1 !important; 
 			background: transparent; 
 		}
 		.navbar-default > li > a::after {
@@ -74,15 +75,15 @@
 			transform: scale(1); 
 		}
 		.tab-nav > li > a::after {
-			background: #21527d none repeat scroll 0% 0%; color: #fff;
+			background: #4cb1d1 none repeat scroll 0% 0%; color: #fff;
 		}
 		.tab-pane { 
 			padding: 15px 0;
 		}
 		.tab-color{	
 			padding:20px;
-			border-top: 3px solid #CC99FF;
-			border-left: 2px solid #CC99FF;
+			border-top: 3px solid #4cb1d1;
+			border-left: 2px solid #4cb1d1;
 		}
 		
 		.select-pane {
@@ -107,8 +108,8 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        <div class="sidebar sidebar-color" data-color="purple" data-image="../assets/img/sidebar-0.pg">
+    <div class="wrapper" >
+        <div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
             <div class="logo">
                 <img src="../assets/img/logo.png" alt="image1" width="250px" height="150px">
             </div>
@@ -353,8 +354,7 @@
                                 <br>
                                 <div class="modal-footer">
                                     <div class="form-group">
-                                        <label class="col-md-3 control">Action :</label>
-                                        <input name="action" type="text" class="form-control">
+                              
                                         <div class="col-md-8">
                                             <button type="submit" class="btn btn-danger btn-md">Resolve</button>
                                         </div>
@@ -555,18 +555,7 @@
 											<input type="hidden" name="SINo" readonly />
 											<input type="hidden" name="RID" readonly />
   
-										<div class="row">
-											<div class="col-lg-9">
-                                                <div class="form-group">
-                                                    <label class="col-md-3 control">Remarks :</label>
-                                                    <div class="col-md-8">
-                                                        <!--<input id="" name="coffee_returns_remarks" type="text" class="form-control">-->
-														<?php echo form_input(['name'=>'remarksReturns','id'=>'remarksReturns', 'class'=>'form-control','type'=>'text']); ?>
-														
-                                                    </div>
-                                                </div>
-                                            </div>
-										</div><br>
+							<br>
 										<div class="modal-footer">
 											<!--<button type="submit" class="btn btn-primary" name="submit">Save changes</button>-->
 											<?php echo form_submit(['name'=>'ResolveReturn', 'value'=>'Resolve','class'=>'btn btn-primary']) ?>
@@ -638,15 +627,7 @@
                                         </div>
                                         <hr>
                                         <div class="row">
-                                            
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="col-md-6 control">Delivery Date:</label>
-                                                    <div class="col-md-6">
-                                                        <input class="no-border" name="delivery_date" placeholder="Date" type="date" value="<?php echo date("Y-m-d");?>" data-validate="required" message="A Date of Delivery is recquired! min="<?=date('Y-m-d')?>" max="<?=date('Y-m-d',strtotime(date('Y-m-d').'+1 days'))?>"" required />
-                                                    </div>
-                                                </div>
-                                            </div>
+
                                         </div>
 										<div class="modal-footer">
 											<button type="submit" class="btn btn-success">Resolve Machine Return</button>

@@ -55,9 +55,12 @@
 			$this->db->query("UPDATE coffee_blend SET blend_qty = blend_qty + ".$add_blend." WHERE blend_id = '".$blend_id."';");
 		}
 
-		function record_data($date, $quantity, $blend, $size, $cli_dr){
-
+		function record_data($quantity, $blend, $size){
+			
 			$blend_id = $this->db->query('SELECT a.blend_id AS blend_id, a.blend, b.package_size FROM coffee_blend a JOIN packaging b ON a.package_id = b.package_id WHERE a.blend = "'.$blend.'" AND b.package_size = '.$size.';')->row()->blend_id;
+
+			$this->db->query("UPDATE coffee_blend SET blend_qty = blend_qty - ".$quantity." WHERE blend_id = '".$blend_id."'");
+			/*
 
 			$query = $this->db->query('SELECT c.percentage, c.raw_id, d.package_id, d.package_size, b.sticker_id FROM coffee_blend b JOIN proportions c JOIN packaging d ON b.blend_id = c.blend_id AND b.package_id = d.package_id WHERE c.blend_id ='.$blend_id.';');		
 			
@@ -68,7 +71,7 @@
 			);
 
 			$this->db->insert('walkin_sales', $data);
-			$inserted_id = $this->db->insert_id();*/
+			$inserted_id = $this->db->insert_id();
 
 			$pack_id = $query->row()->package_id;
 			$stick_id = $query->row()->sticker_id;
@@ -110,7 +113,7 @@
 			);
 			$this->db->insert('trans_pack', $data_pack);
 			$this->db->insert('trans_stick', $data_stick);
-			$this->db->query('INSERT INTO trans_mach (trans_id) VALUES ('.$trans_id.')');
+			$this->db->query('INSERT INTO trans_mach (trans_id) VALUES ('.$trans_id.')');*/
 
 			
 		}
