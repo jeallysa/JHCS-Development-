@@ -15,6 +15,7 @@
     <link href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="<?php echo base_url(); ?>assets/css/demo.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/responsive.bootstrap.min.css" rel="stylesheet" />
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
@@ -213,15 +214,6 @@ a:focus {
                                         <input class="form-control" name="tel_number" placeholder="Cellphone Number" type="number"  min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required />
                                     </div>
                                 </div>
-                                
-                                <h6> Product </h6>
-                                <div class="row">
-                                    <div>
-                                        <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 15px;">
-                                            <input class="form-control" name="product" placeholder="Product" type="text" required pattern="[a-zA-Z][a-zA-Z\s]*" required title="Product should only countain letters" />
-                                        </div>
-                                    </div>
-                                </div>
                             
                                 <input type="submit" class="btn btn-success" value="Add" />
                                 <!--<span class="glyphicon glyphicon-ok"></span>-->
@@ -256,5 +248,7 @@ a:focus {
 <script src="<?php echo base_url(); ?>assets/js/material-dashboard.js?v=1.2.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/dataTables.responsive.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/responsive.bootstrap.min.js"></script>
 
 </html>

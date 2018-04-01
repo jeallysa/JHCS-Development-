@@ -50,7 +50,7 @@
 				$po_id = $this->input->post("po_id");
 				$delivered_qty = $this->SalesDelivery_model->insert_data($data);
 				$this->SalesDelivery_model->updateDel($deliver, $po_id, $delivered_quantity);
-				$this->SalesDelivery_model->record_data($del_Date, $delivered_quantity, $blend, $pack_size, $cli_dr);
+				$this->SalesDelivery_model->record_data($delivered_quantity, $blend, $pack_size);
 				echo "<script>alert('Delivery successful!');</script>";
 
 				
@@ -59,7 +59,7 @@
 				$po_id = $this->input->post("po_id");
 				$delivered_qty = $this->SalesDelivery_model->insert_data($data);
 				$this->SalesDelivery_model->updateDel($deliver, $po_id, $delivered_quantity);
-				$this->SalesDelivery_model->record_data($del_Date, $delivered_quantity, $blend, $pack_size, $cli_dr);
+				$this->SalesDelivery_model->record_data($delivered_quantity, $blend, $pack_size);
 				echo "<script>alert('Delivery successful!');</script>";
 
 				

@@ -45,15 +45,15 @@
 			  echo json_encode($data);
 		}
 		public function addClientPO(){
-
-					echo 'A new Purchase Order has been Added';
 					  $id = $this->input->post('client_id');
 					  $date = $this->input->post('date');
 					  $QTY = $this->input->post('quantity');
-						$blend_id = $this->input->post('ItemCode');
-				
-					  $this->SalesClients_model->addClientPO( $date, $QTY, $id, $blend_id);
-					  redirect('SalesClients/index');
+					  $blend_id = $this->input->post('ItemCode');
+					
+					  $po_id = $this->SalesClients_model->addClientPO($date, $QTY, $id, $blend_id);
+					  $this->SalesClients_model->stockDecrease($date, $QTY, $blend_id, $po_id);
+					  
+					  redirect('SalesClients/index', 'refresh');
 
 		}
 		
