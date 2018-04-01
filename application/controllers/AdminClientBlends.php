@@ -1,5 +1,5 @@
 <?php
-
+ 
 	class AdminClientBlends extends CI_Controller
 	{
 		function __construct(){
@@ -19,10 +19,27 @@
 		}
         
         public function activation(){
-			$this->load->model('Admin_Blends_model');
+        	$this->load->model('Admin_Blends_model');
 			$id = $this->input->post("deact_id");
-			$this->Admin_Blends_model->activation($id);
-			redirect('adminClientBlends');
+			$deact = $this->db->query("SELECT * FROM coffee_blend WHERE blend_id = '".$id."'")->row()->blend_activation;
+			
+			$name = $this->db->query("SELECT * FROM coffee_blend WHERE blend_id = '".$id."'")->row()->blend;
+			$type = $this->db->query("SELECT * FROM `coffee_blend` NATURAL JOIN packaging WHERE blend_id = '".$id."' ")->row()->package_type;
+			$size =  $this->db->query("SELECT * FROM `coffee_blend` NATURAL JOIN packaging WHERE blend_id = '".$id."' ")->row()->package_size;
+
+			if ($deact == 1){
+				$this->Admin_Blends_model->activity_logs('admin', "Deactivated: ".$name." ".$type." ".$size." grams ");	
+				$this->Admin_Blends_model->activation($id);
+				echo "<script>alert('Deactivation successful!');</script>";
+				redirect('adminClientBlends', 'refresh');
+
+			}else{	
+				$this->Admin_Blends_model->activity_logs('admin', "Activated: ".$name." ".$type." ".$size." grams ");	
+				$this->Admin_Blends_model->activation($id);
+				echo "<script>alert('Activation successful!');</script>";
+
+				redirect('adminClientBlends', 'refresh');
+			}
 		}
 
 	}
