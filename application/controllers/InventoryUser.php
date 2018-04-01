@@ -4,16 +4,19 @@
 	{
 		function __construct(){
 			parent::__construct();
+			$this->load->model('UserProfile_model');
+			$this->load->model('notification_model');
 		}
 		
 		public function index()
 		{ 
 			if ($this->session->userdata('username') != '')
 			{
-				$this->load->model('UserProfile_model');
+				
 				$username = $this->session->userdata('username');
+				$data['reorder'] = $this->notification_model->reorder();
 				$data['profile'] = $this->UserProfile_model->getProfile($username);
-				$this->load->view('Inventory_Module/inventoryUser', ['data' => $data]);
+				$this->load->view('Inventory_Module/inventoryUser', [$data, 'data' => $data]);
 			} else {
 				redirect('login');
 			}

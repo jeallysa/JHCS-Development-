@@ -4,13 +4,15 @@
 	{
 		function __construct(){
 			parent::__construct();
+			$this->load->model("InventoryStocks_Model");
+			$this->load->model('notification_model');
 		}
 		
 		public function index()
 		{ 
 			if ($this->session->userdata('username') != '')
 			{
-				$this->load->model("InventoryStocks_Model");
+				$data['reorder'] = $this->notification_model->reorder();
                 $data['coffee'] = $this->InventoryStocks_Model ->retrieveCoffee();
 				$this->load->view('Inventory_Module/inventoryStocks', $data);
 			} else {
@@ -18,33 +20,23 @@
 			}
 		}
 
-
 		function update($id){
-
-        $rawid = $this->input->post("rawid");
-		$physcount = $this->input->post("physcount");
-		$discrepancy = $this->input->post("discrepancy");
-		$remarks = $this->input->post("remarks");
-		$coffee_id = $id;
-
+             
             
-        if ($_POST)  {
-            for ($i = 0; $i < count($this->input->post('rawid')); $i++){       //to have a length used the itemID             
-                if(!empty($discrepancy[$i])){
-                    $data[$i] = array(
-                        'raw_id' => $id,
-                        'raw_physcount' => $physcount[$i],
-                        'raw_discrepancy' => $discrepancy[$i],
-                        'raw_remarks'    => $remarks[$i],
+            $data = array(
+                        'raw_id'         => $this->input->post("rawid"),
+                        'raw_physcount'  => $this->input->post("physcount"),
+                        'raw_discrepancy'=> $this->input->post("discrepancy"),
+                        'raw_remarks'    => $this->input->post("remarks"),
+                        'inventory_date'    => $this->input->post("date"),
                     );              
-                }
-        }
-            $this->InventoryStocks_Model->update($data, $coffee_id);    
-        }
+                
+        
+            $this->InventoryStocks_Model->update($data , $id);    
+        
             
-            
-            redirect('inventoryStocks', 'refresh');
-    }  
+            redirect('inventorystocks');
+        }  
 
 	}
 

@@ -22,14 +22,15 @@ class InventoryStocks_Model extends CI_model
   }
 
 
-	function update($data, $coffee_id){
-               
-    $this->db->where('raw_id', $res->coffee_id ); 
+  function update($data, $id){
+              
+    $this->db->where('raw_id', $id ); 
     $this->db->update('raw_coffee', $data);    
    
-                
+        
   }
-      
-      
-
+   
 }
+      
+      
+?>

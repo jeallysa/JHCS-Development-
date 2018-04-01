@@ -21,17 +21,12 @@ class InventoryStickers_Model extends CI_model
           return NULL;
   }
 
-	function update($stickerid, $count, $discrepancy, $remarks){
-		$data = array(
-	        
-	        'sticker_physcount' => $count,
-	        'sticker_remarks' => $remarks,
-	        'sticker_discrepancy' => $discrepancy
-	        
-		);
-
-		$this->db->where('sticker_id', $stickerid);
-		$this->db->update('sticker', $data);
-	}
+	function update($data, $id){
+              
+    $this->db->where('sticker_id', $id ); 
+    $this->db->update('sticker', $data);    
+   
+        
+  }
 
 }

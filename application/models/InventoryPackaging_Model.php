@@ -21,17 +21,12 @@ class InventoryPackaging_Model extends CI_model
           return NULL;
   }
 
-	function update($packageid, $count, $discrepancy, $remarks){
-		$data = array(
-	        
-	        'package_physcount' => $count,
-	        'package_remarks' => $remarks,
-	        'package_discrepancy' => $discrepancy
-	        
-		);
-
-		$this->db->where('package_id', $packageid);
-		$this->db->update('packaging', $data);
-	}
+	function update($data, $id){
+              
+    $this->db->where('package_id', $id ); 
+    $this->db->update('packaging', $data);    
+   
+        
+  }
 
 }
