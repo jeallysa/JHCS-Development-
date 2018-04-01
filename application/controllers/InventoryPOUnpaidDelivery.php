@@ -33,41 +33,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $result = $this->inventoryPOUnpaidDelivery_model->ajaxTotal($poId);
         
         if(count($result)>0){
-            //$data = array(
-            //           'unitPrice' => $result->unitPrice,
-             //           'category' => $result->category,
-            //            );
+        
                      
             
-           $zxc = 123;
+      
             echo json_encode($result);
         }
           
     }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
         
          public function insertPartialPayment($temp){
          $supp_po_id = $temp;
          $data = array(   "supp_po_id" => $temp,
-                          "payment_date"       => $this->input->post("date"),
+                          "date"       => $this->input->post("date"),
                           "amount"     => $this->input->post("amount"),
                           "bank"       => $this->input->post("bank"),
                        );
@@ -90,7 +69,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          $supp_po_id = $temp;
          
          $data = array(   "supp_po_id" => $temp,
-                          "payment_date"       => $this->input->post("date"),
+                          "date"       => $this->input->post("date"),
                           "amount"     => $remaining,
                           "bank"       => $this->input->post("bank"),
                        );
@@ -106,26 +85,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
      }     
         
         
-        
-        
-        
-        
-        
-        
-        /*
-        public function insertFullPayment($temp){
-         
-         $data = array(   "supp_po_id" => $temp,
-                          "date"       => $this->input->post("date"),
-                          "amount"     => $this->input->post("amount"),
-                          "bank"       => $this->input->post("bank"),
-                       );
-         
-         $this->inventoryPOUnpaidDelivery_model->insertFull($data);
-             
-         redirect(base_url('inventoryPOUnpaidDelivery'));
-     }    
-       */ 
         
         
         

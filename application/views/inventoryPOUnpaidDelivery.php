@@ -29,7 +29,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <style>
 .title {
     font-size: large;
-    padding-top: 15px;
 
 }
 </style>
@@ -89,6 +88,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <p>Returns</p>
                         </a>
                     </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>inventorySamplesList">
+                            <i class="material-icons">dvr</i>
+                            <p>Samples</p>
+                        </a>
+                    </li>
+                    
                 </ul>
             </div>
         </div>
@@ -97,10 +103,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="main-panel">
             <nav class="navbar navbar-transparent navbar-absolute">
                 <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    
+                    
+                    
+                    
+                    
+                    
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            
-                                <li id="nameheader">
+                            <li class="dropdown">
+                                <li>
                                     <?php $username = $this->session->userdata('username') ?>
                                 
                                 <?php
@@ -113,8 +133,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             }
                                         ?>
                                 </li>
-                           
-                            <li>
                                 <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="material-icons">person</i>
                                         <p class="hidden-lg hidden-md">Profile</p>
@@ -133,14 +151,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <a href="<?php echo base_url('Login/logout');  ?>">Logout</a>
                                     </li>
                                 </ul>
-                            </li>
-                               
-       <!------------------                                          NOTIFICATION                    ---------------------------------->           
                             
-                            <li>
+                               
+          <!------------------                                          NOTIFICATION                    ---------------------------------->           
+                            
+                            
                             
                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">announcement</i>
+                                        <i class="material-icons">shopping_basket</i>
                                         <p class="hidden-lg hidden-md">Profile</p>
                                        <span class="label-count" style='background-color: #f44336;'> <?php 
                                            
@@ -157,14 +175,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             
                             
                             
-                            
                                 <ul class="dropdown-menu">
                                     
                                    <?php 
                                  for($i = 0; $i <= 3 ;$i++){
                                      if(!empty($reorder[$i])){
                                           foreach($reorder[$i] as $object){
-                                            echo   '<li><a href="inventoryStocks">' . $object->name . "     " . $object->type. ' now drops below the re-order level</a></li>';
+                                            echo   '<li>' . $object->name . "     " . $object->type. '</li>';
                                                  
                                              }
                                       }
@@ -172,19 +189,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     ?>
                                    
                                 </ul>
+            
+         <!------------------                                          NOTIFICATION                    ---------------------------------->                               
                             
-                            </li>
                             
                             
-                            
-    <!------------------                                          NOTIFICATION                    ---------------------------------->           
-
+                             </li>
+                 
+                        
+                        
                         
                         </ul>
                     </div>
                 
                 </div>
             </nav>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
             <div class="content">
@@ -227,7 +260,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         <tr>
                                                             <th>Item Name</th>
                                                             <th>Type</th>
-                                                            <th>Yield Weight(g)</th>
+                                                         <!--   <th>Yield Weight(g)</th> -->
                                                             <th>Amount</th>
                                                         </tr>
                                                     </thead>
@@ -240,7 +273,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       $arrayType = array("raw_type","sticker_type","package_size","brewer_type");
                          for($table = 0 ; $table < 4 ; $table++){
                           
-                             $retrieveDetails ="SELECT * FROM supp_delivery join supp_po_ordered using(supp_po_ordered_id)  join ".$arrayItem[$table]." on   item =  ".$arrayOn[$table]." where sup_id = 
+                             $retrieveDetails ="SELECT * FROM supp_po_ordered join ".$arrayItem[$table]." on   item =  ".$arrayOn[$table]." where sup_id = 
                              ".$sup_id ." and  type = ".$arrayType[$table]." and supp_po_ordered.supp_po_id = $temp"  ;  
                              
                             $query = $this->db->query($retrieveDetails);
@@ -251,7 +284,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                            echo '<tr>' ,
                                                 '<td>'  . $object->item   . '</td>' ,
                                                 '<td>'  . $object->type  . '</td>' ,
-                                                '<td>'  . $object->yield_weight. '</td>' ,
+                                              //  '<td>'  . $object->yield_weight. '</td>' ,
                                                 '<td>'  . $object->amount  . '</td>' ;
                                             ?>
                                                 <td><input class="form-control" type="hidden"  id="poId" value="<?php echo $temp ?>" />   </td>       
@@ -265,7 +298,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         <tr>
                                                             <td>Trucking Fee</td>
                                                             <td></td>
-                                                            <td></td>
+                                                          
                                                             <td><input class="form-control" type="number"  id="truckingFee" readonly disabled /></td>
                                                             
                                                         </tr>       
@@ -359,7 +392,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         <tr>
                                                             <th>Item Name</th>
                                                             <th>Type</th>
-                                                            <th>Yield Weight(g)</th>
+                                                     <!--  <th>Yield Weight(g)</th> -->
                                                             <th>Amount</th>
                                                         </tr>
                                                     </thead>
@@ -372,7 +405,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       $arrayType = array("raw_type","sticker_type","package_size","brewer_type");
                          for($table = 0 ; $table < 4 ; $table++){
                           
-                             $retrieveDetails ="SELECT * FROM supp_delivery join supp_po_ordered using(supp_po_ordered_id)  join ".$arrayItem[$table]." on   item =  ".$arrayOn[$table]." where sup_id = 
+                             $retrieveDetails ="SELECT * FROM supp_po_ordered join ".$arrayItem[$table]." on   item =  ".$arrayOn[$table]." where sup_id = 
                              ".$sup_id ." and  type = ".$arrayType[$table]." and supp_po_ordered.supp_po_id = $temp"  ;  
                        
                                               $query = $this->db->query($retrieveDetails);
@@ -383,7 +416,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                            echo '<tr>' ,
                                                 '<td>'  . $object->item   . '</td>' ,
                                                 '<td>'  . $object->type  . '</td>' ,
-                                                '<td>'  . $object->yield_weight. '</td>' ,
+                                               // '<td>'  . $object->yield_weight. '</td>' ,
+                                               // '<td>'  . $object->yields. '</td>' ,
                                                 '<td>'  . $object->amount  . '</td>' ;
                                             ?>
                                                         <td><input class="form-control" type="hidden"  id="poId" value="<?php echo $temp ?>" />   </td>
@@ -398,7 +432,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                      <tr>
                                                             <td>Trucking Fee</td>
                                                             <td></td>
-                                                            <td></td>
+                                                         
                                                             <td><input class="form-control" type="number"  id="truckingFee" readonly disabled /></td>
                                                             
                                                         </tr>      
@@ -630,12 +664,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <thead>
                                             <th><b class="pull-left">PO #</b></th>
                                             <th><b class="pull-left">Date Ordered</b></th>
-                                            
                                             <th><b class="pull-left">Supplier</b></th>
-                                       
-                                       
                                             <th><b class="pull-left">Payment type</b></th>
                                             <th><b class="pull-left">See Details</b></th>
+                                            
                                         </thead>
                                         <tbody>
                                             
@@ -657,10 +689,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												                      
                                              ?>
                                                                               
-                                               <td><center>
+                                               <td>
                                                     <a class=" btn btn-success btn-sm" data-toggle="modal" data-target="#<?php echo $full . $i   ?>">full</a>
-                                                    <a class=" btn btn-warning btn-sm" data-toggle="modal" data-target="#<?php echo $partial . $i   ?>">partial</a></center> </td>
-                                                <td>
+                                                    <a class=" btn btn-warning btn-sm" data-toggle="modal" data-target="#<?php echo $partial . $i   ?>">partial</a> </td>
+                                               <td>
                                                     <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#<?php echo $details . $i   ?>">Details</a>
                                                 </td>
                                             
