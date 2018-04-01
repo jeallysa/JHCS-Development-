@@ -192,81 +192,9 @@
                                                         </td>
                                                          <td><?php echo $row->walkin_returns; ?></td>
                                                          <td><button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#returnblend<?php echo $row->walkin_id; ?>">Return</button>
-                                                            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#undo<?php echo $row->walkin_id; ?>">Undo</button>
+                                          
                                                          </td>
-                <!-- modal for undo -->
-                <div class="modal fade" id="undo<?php echo $row->walkin_id; ?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                <h4 class="panel-title" id="contactLabel"><center>Undo Coffee Blend</center> </h4>
-                            </div>
-                            <div class="modal-body" style="padding: 5px;">
-                                <div class="card-block">
-                                     <form action="<?php echo base_url(); ?>salesSellProduct/return_blend" method="post" accept-charset="utf-8">
-                                        <div class="modal-body" style="padding: 5px;">
-                                            <h3 class="pull-center"><?php echo $row->blend; ?></h3>
-                                            
-                                        <div class="row">
-                                            <div class="col-lg-12" style="padding-bottom: 20px;">
-                                                <div class="form-group label-floating">
-                                                    <div class="form-group">
 
-                                                    <div class="row">
-                                                        <div class="col-lg-">
-                                                             <div class="form-group">
-                                                                <label class="col-md-4 control">Purchase Date: </label>
-                                                                <div class="col-md-6">
-                                                                    <p><b><?php echo $row->walkin_date;
-                                                                    ?></b></p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label class="col-md-4 control">Packaging: </label>
-                                                                <div class="col-md-6">
-                                                                    <p><b><?php echo $row->package_type.'/ '.number_format($row->package_size).' g';
-                                                                    ?></b></p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label class="col-md-4 control">Quantity :</label>
-                                                                <div class="col-md-6">
-                                                                    <p><b><?php echo $row->walkin_qty; ?></b></p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label class="col-md-4 control">Price: </label>
-                                                                <div class="col-md-3">
-                                                                    <p><b>Php <?php echo number_format($price,2); ?></b></p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label class="col-md-4 control">Total Amount: </label>
-                                                                <div class="col-md-3">
-                                                                    <p><b><?php echo 'Php' .number_format($price * $qty, 2) ?></b></p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                            
-                                                    </div>
-                                                    <hr>
-                                                    <h3>Are you sure to undo this purchase order?</h3>
-                                                    <label class="center">Enter Admin's password: </label>
-                                                    <input type="password" name="">
-                                              <br>
-                                              <br>
-                                            <center>
-                                                <button type="submit" class="btn btn-success">Yes</button>
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                            </center>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
                 <!-- modal walkin returns -->
                 <div class="modal fade" id="returnblend<?php echo $row->walkin_id; ?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
                     <div class="modal-dialog">
