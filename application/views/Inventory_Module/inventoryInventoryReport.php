@@ -29,14 +29,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <style type="text/css">
 label,
-input {
-    color: black;
-}
-
-.title {
-    font-size: large;
-
-}
 @media print {
   .header-print {
     display: table-header-group;
@@ -147,17 +139,19 @@ input {
                     </div>
                 </div>
             </nav>
-            <div class="content" style="margin-top: 0px; ">
+            <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-lg-20 col-md-12">
+                        <div class="col-md-12">
                             <div class="card">
+                                <div class="card-header" data-background-color="blue">
+                                    <h3 class="title"><center>Inventory Report</center></h3>
+                                </div>
                         <div class="card-content">
                             <div class="row">
                                 <div class="card-content table-responsive">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
-                                        <h4><b>COFFEE</b></h4></div>
-                                    
+                                    <div class="row">
+                                        <div class="pull-right">
                                     <?php $month_filt = $data5["datav"];
                                     $year = $this->db->query("SELECT year(now()) AS year;")->row()->year;
                                             $tomonth = $this->db->query("SELECT MONTH(NOW()) AS tomonth;")->row()->tomonth;
@@ -166,7 +160,6 @@ input {
                                             $dateObj   = DateTime::createFromFormat('!m', $month_filt);
                                             $monthName = $dateObj->format('F');
                                             ?>
-                                            
                                     <?php
                                         }else{
                                             $dateObj   = DateTime::createFromFormat('!m', $tomonth);
@@ -176,6 +169,9 @@ input {
                                     <?php
                                         }
                                     ?>
+                                        </div>
+                                    </div>
+                                    <div class="row">
                                     <form action="<?php echo base_url(); ?>InventoryInventoryReport/date_filt" method="post" class="form-inline pull-right">
                                         <div class="form-group mb-2">
                                             <label>
@@ -196,8 +192,8 @@ input {
                                                 <option value = "12" <?php if((isset($month_filt) && $month_filt == 12)){ echo 'selected="selected"'; }?>>December <?php echo $year; ?> </option>
                                             </select>
                                         </div>
-                                        
                                     </form>
+                                    </div>
                                     <table id="coffeein" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
@@ -476,130 +472,6 @@ input {
                                     </table>
                                 </div>
                             </div>
-                            
-                            <!--<div class="row">
-                                <div class="col-sm-6">
-                                <div class="card-content table-responsive">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
-                                    <h4><b>PACKAGING</b></h4></div>
-                                      <div class="form-group col-xs-6">
-                                    <label>Filter By:</label>
-                                        <div class="input-group input-daterange">
-                                            <input type="text" id="min" class="form-control" value="2000-01-01" >
-                                            <span class="input-group-addon">to</span>
-                                            <input type="text" id="max" class="form-control" value="<?php   echo date("Y-m-d") ?>" >
-                                        </div>
-                                    </div>
-                                    <table id="package" class="table hover order-column" cellspacing="0" width="100%">
-                                        <thead>
-                                            <tr>
-                                                <th><b>Date In</b></th>
-                                                <th><b>Supplier</b></th>
-                                                <th><b>Bag</b></th>
-                                                <th><b>Size</b></th>
-                                                <th><b>Quantity</b></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php 
-                                                foreach($data2["packagein"] as $row)
-                                                {
-                                            ?>
-                                                    <tr>
-                                                        <td><?php echo $row->date_received; ?></td>
-                                                         <td><?php echo $row->sup_company; ?></td>
-                                                         <td><?php echo $row->bag; ?></td>
-                                                         <td><?php echo number_format($row->size); ?></td>
-                                                         <td><?php echo number_format($row->qty); ?></td>
-                                                    </tr>
-                                                    <?php
-                                                }
-                                            ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                                <div class="col-sm-6">
-                                <div class="card-content table-responsive">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
-                                    <h4><b>STICKER</b></h4></div>
-                                      <div class="form-group col-xs-6">
-                                    <label>Filter By:</label>
-                                        <div class="input-group input-daterange">
-                                            <input type="text" id="min" class="form-control" value="2000-01-01" >
-                                            <span class="input-group-addon">to</span>
-                                            <input type="text" id="max" class="form-control" value="<?php   echo date("Y-m-d") ?>" >
-                                        </div>
-                                    </div>
-                                    <table id="sticker" class="table hover order-column" cellspacing="0" width="100%">
-                                        <thead>
-                                            <tr>
-                                                <th><b>Date In</b></th>
-                                                <th><b>Supplier</b></th>
-                                                <th><b>Sticker</b></th>
-                                                <th><b>Quantity</b></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php 
-                                                foreach($data3["stickerin"] as $row)
-                                                {
-                                            ?>
-                                                    <tr>
-                                                        <td><?php echo $row->date_received; ?></td>
-                                                         <td><?php echo $row->sup_company; ?></td>
-                                                         <td><?php echo $row->sticker; ?></td>
-                                                         <td><?php echo number_format($row->qty); ?></td>
-                                                    </tr>
-                                                    <?php
-                                                }
-                                            ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                                </div><hr>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                <div class="card-content table-responsive">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
-                                    <h4><b>MACHINE</b></h4></div>
-                                      <div class="form-group col-xs-6">
-                                    <label>Filter By:</label>
-                                        <div class="input-group input-daterange">
-                                            <input type="text" id="min" class="form-control" value="2000-01-01" >
-                                            <span class="input-group-addon">to</span>
-                                            <input type="text" id="max" class="form-control" value="<?php   echo date("Y-m-d") ?>" >
-                                        </div>
-                                    </div>
-                                    <table id="machine" class="table hover order-column" cellspacing="0" width="100%">
-                                        <thead>
-                                            <tr>
-                                                <th><b>Date In</b></th>
-                                                <th><b>Supplier</b></th>
-                                                <th><b>Machine</b></th>
-                                                <th><b>Quantity</b></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php 
-                                                foreach($data4["machinein"] as $row)
-                                                {
-                                            ?>
-                                                    <tr>
-                                                        <td><?php echo $row->date_received; ?></td>
-                                                         <td><?php echo $row->sup_company; ?></td>
-                                                         <td><?php echo $row->machine; ?></td>
-                                                         <td><?php echo number_format($row->qty); ?></td>
-                                                    </tr>
-                                                    <?php
-                                                }
-                                            ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            </div><hr>-->
                             </div>
                             </div>
                         </div>
