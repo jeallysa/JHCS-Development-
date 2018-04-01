@@ -17,7 +17,7 @@ class AdminProductInventory_model extends CI_MODEL
     }
 
 	function getProducts(){
-		$query=$this->db->query("SELECT sup_id, sup_company, raw_id, raw_coffee, raw_type, raw_reorder, raw_limit, sup_company, raw_stock, unitPrice, raw_activation FROM raw_coffee NATURAL JOIN supplier");
+		$query=$this->db->query("SELECT sup_id, sup_company, raw_id, raw_coffee, raw_type, raw_reorder, sup_company, raw_stock, unitPrice, raw_activation FROM raw_coffee NATURAL JOIN supplier");
 		return $query->result();
 	}
     
@@ -30,13 +30,12 @@ class AdminProductInventory_model extends CI_MODEL
 		$this->db->insert('raw_coffee', $data);
 	}
 
-	function update($id, $name, $raw_type, $reorder, $stocks, $stocklimit, $price, $sup_id){
+	function update($id, $name, $raw_type, $reorder, $stocks, $price, $sup_id){
 		$data = array(
 	        'raw_coffee' => $name,
 	        'raw_type' => $raw_type,
 	        'raw_reorder' => $reorder,
 	        'raw_stock' => $stocks,
-	        'raw_limit' => $stocklimit,
 	        'unitPrice' => $price,
 	        'sup_id' => $sup_id
 		);

@@ -18,6 +18,7 @@
     <link href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="<?php echo base_url(); ?>assets/css/demo.css" rel="stylesheet" />
+	<link href="<?php echo base_url(); ?>assets/css/sales.css" rel="stylesheet" />
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
@@ -292,6 +293,7 @@
                                                     <input class="form-control" type="hidden" name="pack_size" value="<?php echo $row1->package_size; ?>" required>
                                                     <input class="form-control" type="hidden" name="client_balance" value="<?php echo $amount; ?>" required>
                                                     <input class="form-control" type="hidden" name="client_id" value="<?php echo $row1->client_id; ?>" required>
+                                                    <input class="form-control" type="hidden" name="client_company" value="<?php echo $row1->client_company; ?>" required>
                                                     <input class="form-control" type="hidden" name="full_qty" value="<?php echo $row1->contractPO_qty; ?>" required>
                                                 </div>
                                             </div>
@@ -399,7 +401,14 @@
                 <td><?php echo $row2->payment_remarks; ?></td>
                 <td><?php echo $row2->coff_returnQty; ?></td>
                 <td><button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#pay<?php echo $row2->client_deliveryID; ?>">Pay</button>
-                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#return<?php echo $row2->client_deliveryID; ?>">Return</button>
+                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#return<?php echo $row2->client_deliveryID;?>" <?php 
+                        $resolved = $row2->resolved; 
+                        $return = $row2->return; 
+                        if ($resolved == 'Yes' || $resolved == 'No') {
+                            echo "disabled";
+                        }
+
+                     ?>>Return</button>
                 </td>
                 <!-- modal coffee returns -->
                 <div class="modal fade" id="return<?php echo $row2->client_deliveryID; ?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
@@ -488,6 +497,8 @@
                                                                          <input name="deliveryID" type="hidden" class="form-control" value="<?php echo $row2->client_deliveryID; ?>" >
                                                                         <input name="client_dr" type="hidden" class="form-control" value="<?php echo $row2->client_dr; ?>" >
                                                                         <input name="blend_id" type="hidden" class="form-control" value="<?php echo $row2->blend_id; ?>" >
+                                                                        <input class="form-control" type="hidden" name="client_company" value="<?php echo $row2->client_company; ?>" required>
+
 																		</div>
                                                                     </div>
                                                                 </div>
@@ -547,6 +558,7 @@
                                                                             echo $rem_amount;
 
                                                                         ; ?>" min=1 max="<?php echo $rem_amount; ?>" required>
+                                                                        <input type="hidden" name="client_company" value="<?php echo $row2->client_company ?>">
                                                                         <input class="form-control" type="hidden" name="total_amount" value="<?php echo $amount; ?>" min=1 max="<?php echo $amount; ?>">
 
                                                                     </div>

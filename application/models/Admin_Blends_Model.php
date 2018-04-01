@@ -10,7 +10,7 @@ class Admin_Blends_Model extends CI_model
 
 	function test_main(){
 		echo "Sample function";
-	}
+	} 
 
 	function fetch_data_eb(){
 		$qcount = $this->db->query('SELECT * FROM raw_coffee');
@@ -72,6 +72,22 @@ class Admin_Blends_Model extends CI_model
 
 	function activation($id){
 		$this->db->query("UPDATE coffee_blend SET blend_activation = IF(blend_activation=1, 0, 1) WHERE blend_id = ".$id."");
+	}
+
+	function activity_logs($module, $activity){
+		$username = $this->session->userdata('username');
+        $query = $this->db->query("SELECT user_no from jhcs.user where username ='".$username."';");
+        foreach ($query ->result() as $row) {
+        	$id = $row->user_no;
+        }
+
+        $data = array(
+            'user_no' => $id,
+            'timestamp' => date('Y\-m\-d\ H:i:s A'),
+            'message' => $activity,
+            'type' => $module
+        );
+        $this->db->insert('activitylogs', $data);
 	}
 
 

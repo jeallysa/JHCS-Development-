@@ -36,7 +36,7 @@
 			$data1["cli_det"] = $this->SalesClients_model->load_Client_det($id);
 			$data2["cli_coff"] = $this->SalesClients_model->load_Client_coff($id);
 			$data3["cli_mach"] = $this->SalesClients_model->load_Client_mach($id);
-			$this->load->view('Sales_Module/salesContract', ['data1' => $data1, 'data2' => $data2, 'data3' => $data3]);
+			$this->load->view('Sales_Module/salesContract', ['data1' => $data1, 'data2' => $data2, 'data3' => $data3]); 
 		}
 		
 		public function salesClientDetails(){
@@ -45,15 +45,19 @@
 			  echo json_encode($data);
 		}
 		public function addClientPO(){
-					  $id = $this->input->post('client_id');
-					  $date = $this->input->post('date');
-					  $QTY = $this->input->post('quantity');
-					  $blend_id = $this->input->post('ItemCode');
-					
-					  $po_id = $this->SalesClients_model->addClientPO($date, $QTY, $id, $blend_id);
-					  $this->SalesClients_model->stockDecrease($date, $QTY, $blend_id, $po_id);
-					  
-					  redirect('SalesClients/index', 'refresh');
+			$this->load->model('SalesClients_model');
+			$id = $this->input->post('client_id');
+			$date = $this->input->post('date');
+			$QTY = $this->input->post('quantity');
+			$blend_id = $this->input->post('ItemCode');
+			
+			$client = $this->db->query("SELECT * FROM contracted_client WHERE client_id = '".$id."'")->row()->client_company;
+			$this->SalesClients_model->activity_logs('sales', "Added Purchase Order for ".$client." ");
+			
+			$po_id = $this->SalesClients_model->addClientPO($date, $QTY, $id, $blend_id);
+			$this->SalesClients_model->stockDecrease($date, $QTY, $blend_id, $po_id);
+		  
+			redirect('SalesClients/index', 'refresh');
 
 		}
 		
@@ -92,7 +96,10 @@
 		
 		
 		public function addMultipleOrders(){
+			$this->load->model('SalesClients_model');
 			$data = $this->input->post('table_data');
+
+			$this->SalesClients_model->activity_logs('sales', "Added other Purchase Order ");
 			$this->SalesClients_model->AddMultipleOrders($data);
 			$this->output->set_content_type('application/json');
 			echo json_encode(array('check'=>'check'));
