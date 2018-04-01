@@ -137,6 +137,18 @@ class sellProduct_model extends CI_MODEL
 	function add_blend_stock($blend_returnedQty, $blend_id){
 		$this->db->query("UPDATE coffee_blend SET blend_qty = blend_qty + ".$blend_returnedQty." WHERE blend_id = '".$blend_id."';");
 	}
+	function getBlend($id){
+		$query = $this->db->query("SELECT * from coffee_blend NATURAL JOIN packaging WHERE blend_id='$id'");
+		return $query->row();
+	}
+	function getMachinebyId($id){
+		$query = $this->db->query("SELECT * from machine WHERE mach_id='$id'");
+		return $query->row();
+	}
+	function getClientbyId($id){
+		$query = $this->db->query("SELECT * from contracted_client WHERE client_id='$id'");
+		return $query->row();
+	}
 }
 
 ?>

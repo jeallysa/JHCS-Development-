@@ -39,6 +39,9 @@
     .content {
         height: 1000px !important;
     }
+	.no-border{
+		border: none !important;	
+	}
 
     </style>
 </head>
@@ -143,14 +146,14 @@
                                     <h3 class="title"><center>Walk-in Client Order</center></h3>
                                 </div>
 
-                                <form action="record" method="post" accept-charset="utf-8">
+                                
                                     <div class="card-content">
                                         <div class="modal-body" style="padding: 5px;">
-                                                <div class="row">
-                                                    <div class="col-md-12">
+                                                <div class="row" style="margin: auto;">
+                                                    <div class="col-md-6" >
                                                         <div class="form-group label-floating">
                                                             <label for="email">Date</label>
-                                                            <input class="form-control" type="date" name="date" value="<?php echo date("Y-m-d");?>" required="">
+                                                            <input class="form-control" type="date" value="<?php echo date("Y-m-d");?>" required="" id="datepicked">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -175,11 +178,12 @@
                                             
                                             <div class="col-sm-6 nopadding">
                                               <div class="form-group">
-                                                  <select class="selectpicker" data-live-search="true" name="blend_id">
+                                                  <select class="selectpicker" data-live-search="true" id="blend">
                                                     <?php 
                                                     foreach($data3['blends'] as $row)
                                                     { 
                                                         echo '<option value="'.$row->blend_id.'">'.$row->blend." ".$row->package_type." ".$row->package_size." g".'</option>';
+														
                                                     }
                                                     ?>
                                                   </select>
@@ -189,7 +193,7 @@
                                             <div class="col-sm-6 nopadding">
                                               <div class="form-group">
                                                   <div class="input-group">
-                                                    <input type="number" class="form-control" id="qty" name="qty" value="qty" placeholder="qty" required="" min="1">
+                                                    <input type="number" class="form-control" id="qty"  value="qty" placeholder="qty" required="" min="1">
                                                         <div class="input-group-btn">
                                                       </div>
                                                   </div>
@@ -199,73 +203,79 @@
                                 <br><br><br>
                                 <br><br><br>
                                 <br><br><br>
-                                    <div class="text-center" data-toggle="modal" data-target="#verify">
-                                        <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#verify">
+    								<center>
+                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#verify" id="submit" disabled="disabled">
                                           Save
                                         </button>
                                         <a href="<?php echo base_url(); ?>salesSellProduct" class="btn btn-danger"> Cancel</a>
-                                    </div>
-                                </form> 
+									</center>
+								
+					<!--modal for verification-->
+                    <div class="modal fade" id="verify" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading" style="background-color: #990000;">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h4 class="panel-title" id="contactLabel"><center><b>Verify Order</b></center> </h4>
+                                </div>
+								<form action="<?php echo base_url(); ?>SalesSellProduct/record" method="post" accept-charset="utf-8">
+                                <div class="modal-body">
+									 <div class="col-md-12 col-md-offset-2">
+										 <input class="form-control" name="blend_id" id="displayBlend" type="hidden" readonly />
+										 <div class="row">
+											<label class="col-md-3 control">Date of Purchase :</label>
+											<div class="col-md-5">
+											<b><input class="no-border" name="date" id="displayDate" readonly /></b>
+											</div>
+										</div>
+										<div class="row">
+											<label class="col-md-2 control">Blend :</label>
+											<div class="col-md-3">
+											<b><input name="blendName" class="no-border" type="disabled" id="blendName"  readonly /></b>
+											</div>
+										</div>
+									 	<div class="row">
+											<label class="col-md-2 control">Size :</label>
+											<div class="col-md-3">
+											<b><input name="size" class="no-border" type="disabled" id="blendName"  readonly /></b>
+											</div>
+										</div>
+										<div class="row">
+											<label class="col-md-2 control">Type :</label>
+											<div class="col-md-3">
+											<b><input name="type" class="no-border" type="disabled" id="blendName"  readonly /></b>
+											</div>
+										</div>
+										 <div class="row">
+											<label class="col-md-2 control">Quantity :</label>
+											<div class="col-md-3">
+											<b><input class="no-border" name="qty" id="displayQty" readonly /></b>
+											</div>
+										</div>
+									</div>
+                                </div>
+                                <hr>
+                              <div align="center">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-success">Save</button>
+                              </div>
+							 </form> 
+                            </div>
+                            </div>
+                        </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-		<!--modal for verification-->
-                    <div class="modal fade" id="verify" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                    <h4 class="panel-title" id="contactLabel"><center>Verify Order</center> </h4>
-                                </div>
-                                <div class="modal-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h4>Client: Juanito Perez</h4>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h4>Date: January 22, 2018</h4>
-                                    </div>
-                                </div>
-                                <hr>
-                                
-                                 <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th><b>Coffee</b></th>
-                                            <th><b>Bag</b></th>
-                                            <th><b>Size</b></th>
-                                            <th><b>Qty</b></th>
-                                            <th><b>Price</b></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Fiesta Blend Ground</td>
-                                            <td>brown</td>
-                                            <td>250 g</td>
-                                            <td>2</td>
-                                            <td>350</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
-                                <hr>
-                                <h3>Total Amount: Php 700.00</h3>
-                              </div>
-                              <div align="center">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-success">Save</button>
-                              </div>
-                            </div>
-                            </div>
-                        </div>
+	
 
        
              </div>
     </div>
 </body>
+	
 <!--   Core JS Files   -->
 <script src="../assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
@@ -281,13 +291,59 @@
 <script src="../assets/js/perfect-scrollbar.jquery.min.js"></script>
 <!--  Notifications Plugin    -->
 <script src="../assets/js/bootstrap-notify.js"></script>
-<!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+
 <!-- Material Dashboard javascript methods -->
 <script src="../assets/js/material-dashboard.js?v=1.2.0"></script>
 <script src="../assets/js/bootstrap-select.js"></script>
-<!-- Material Dashboard DEMO methods, don't include it in your project! -->
-<script src="../assets/js/demo.js"></script>
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		
+		$(document).on('click', '#submit', function(e){ 
+		var datepicked = document.getElementById('datepicked').value;
+		var e = document.getElementById("blend");
+		var blend = e.options[e.selectedIndex].value;
+		var qty = document.getElementById('qty').value;
+
+		document.getElementById('displayDate').value = datepicked ;		
+		document.getElementById('displayBlend').value = blend ;		
+		document.getElementById('displayQty').value = qty ;	
+			
+		jQuery.ajax({
+					url:'<?=base_url()?>SalesSellProduct/getBlend/' +blend,
+					method: 'GET',
+					type: 'ajax',
+					dataType: 'json',
+					success:function(data)
+					{
+						
+						$('[name="blendName"]').val(data.blend);
+						$('[name="size"]').val(data.package_size);
+						$('[name="type"]').val(data.package_type);
+						/*$("#verify").modal('show');*/
+					},
+			error: function (jqXHR, textStatus, errorThrown)
+				{
+					alert('Error get data from ajax');
+				}
+
+			});
+			
+		});
+		 $("#qty").keyup(function () {
+                if ($(this).val() !== "" && $(this).val() !== null)
+                {
+                    $("#submit").removeAttr("disabled");
+                }
+            });
+		
+		
+
+			});
+	
+	    
+</script>
 
 
 
