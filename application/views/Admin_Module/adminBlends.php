@@ -304,7 +304,7 @@ a:focus {
                                 </div> 
                                 <div class="card-content">
                                     <a href="<?php echo base_url(); ?>AdminBlends/add_show" class="btn btn-success" style="float: right">Add New Blend</a>
-                                    <table id="example" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" style="font-size: 11px">
+                                    <table id="example" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" >
                                         <thead>
                                             <th><b class="pull-left">Company Blend</b></th>
                                               <?php

@@ -6,7 +6,7 @@
 			parent::__construct();
 		}
 		
-		public function index()
+		public function index() 
 		{ 
 			if ($this->session->userdata('username') != '')
             {
@@ -43,7 +43,8 @@
 			$date =  $this->input->post("date");
             $quantity = $this->input->post("qty");
             $blend_id = $this->input->post("blend_id");
-
+			$blend = $this->db->query("SELECT * FROM coffee_blend WHERE blend_id = '".$blend_id."'")->row()->blend;
+			$this->sellProduct_model->activity_logs('sales', "Sell ".$quantity." ".$blend." ");
 			$this->sellProduct_model->record_data($date, $quantity, $blend_id);
 			echo "<script>alert('Client order has been saved!');</script>";
 
@@ -85,6 +86,9 @@
 			$id = $this->input->post("sales_id");
 			$mach_id = $this->input->post("mach_id");
 			$mach_retQty = $this->input->post("qty_returned");
+			$machine = $this->db->query("SELECT * FROM machine WHERE mach_id = '".$mach_id."'")->row()->brewer;
+			$mach_type = $this->db->query("SELECT * FROM machine WHERE mach_id = '".$mach_id."'")->row()->brewer_type;
+			$this->sellProduct_model->activity_logs('sales', "Returned ".$mach_retQty." ".$machine." Machine ".$mach_type." from Walkin Sales ");
 			$this->sellProduct_model->insert_dataA($dataA);
 			$this->sellProduct_model->updateA($return, $id);
 			$this->sellProduct_model->add_machine_stock($mach_retQty, $mach_id);
@@ -108,7 +112,8 @@
 			$blend_id = $this->input->post("blend_id");
 			$blend_returnedQty = $this->input->post("blend_returned");
 
-
+			$blend = $this->db->query("SELECT * FROM coffee_blend WHERE blend_id = '".$blend_id."'")->row()->blend;
+			$this->sellProduct_model->activity_logs('sales', "Returned ".$blend_returnedQty." ".$blend." from Walkin Sales ");
 			$this->sellProduct_model->insert_coffeereturn($coffeeblend_return);
 			$this->sellProduct_model->update_coffeereturn($return, $id, $blend_returnedQty);
 			$this->sellProduct_model->add_blend_stock($blend_returnedQty, $blend_id);

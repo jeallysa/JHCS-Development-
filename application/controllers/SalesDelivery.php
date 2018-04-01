@@ -28,6 +28,7 @@
 			$del_Date = $this->input->post("delivery_date");
 			$blend = $this->input->post("blend");
 			$pack_size = $this->input->post("pack_size");
+<<<<<<< HEAD
             $gross_amount = $this->input->post("client_balance");  
 
             $blend_price = $this->input->post("blend_price");
@@ -37,6 +38,9 @@
             $client_balance = $gross_amount - $blend_price * $deliver_quantity;
 
 
+=======
+			$client =$this->input->post("client_company");
+>>>>>>> 6b539f86ae5ea7b5ce93fc072119a1ba63a92dc4
 
 			$data = array(
 				"client_dr" =>$this->input->post("client_dr"),
@@ -57,6 +61,7 @@
 				$deliver = 'delivered';
 				$po_id = $this->input->post("po_id");
 				$delivered_qty = $this->SalesDelivery_model->insert_data($data);
+				$this->SalesDelivery_model->activity_logs('sales', " Mark ".$client."'s orders as Fully Delivered ");
 				$this->SalesDelivery_model->updateDel($deliver, $po_id, $delivered_quantity);
 				$this->SalesDelivery_model->record_data($delivered_quantity, $blend, $pack_size);
 				echo "<script>alert('Delivery successful!');</script>";
@@ -66,6 +71,7 @@
 				$deliver = 'partial delivery';
 				$po_id = $this->input->post("po_id");
 				$delivered_qty = $this->SalesDelivery_model->insert_data($data);
+				$this->SalesDelivery_model->activity_logs('sales', " Mark ".$client."'s orders as Partially Delivered ");
 				$this->SalesDelivery_model->updateDel($deliver, $po_id, $delivered_quantity);
 				$this->SalesDelivery_model->record_data($delivered_quantity, $blend, $pack_size);
 				echo "<script>alert('Delivery successful!');</script>";
@@ -89,9 +95,13 @@
 			);
 			$dataA = $this->security->xss_clean($dataA);
 			$add_blend =$this->input->post("qty_returned");
+			$client =$this->input->post("client_company");
 			$blend_id =$this->input->post("blend_id");
 			$return = 'Returned';
 			$deliver_id = $this->input->post("deliveryID");
+
+			//$client = $this->db->query("SELECT * FROM contracted_client WHERE client_id = '".$id."'")->row()->client_company;
+			$this->SalesDelivery_model->activity_logs('sales', "Mark ".$client."'s orders as Returned ");
 			$this->SalesDelivery_model->insert_dataA($dataA);
 			$this->SalesDelivery_model->updateA($return, $deliver_id);
 			$this->SalesDelivery_model->add_blend($add_blend, $blend_id);
@@ -99,7 +109,7 @@
 			redirect('SalesDelivery', 'refresh');
 		}
 
-        function insert2()
+        function insert2() 
 		{
 			$this->load->model('SalesDelivery_model');
 			$dataB = array(
@@ -114,7 +124,7 @@
 			);
 			$dataB = $this->security->xss_clean($dataB);
 			
-
+				$client =$this->input->post("client_company");
 				$total_amount = $this->input->post("total_amount");
 				$withheld = $this->input->post("withheld");
 				$amount_input = $this->input->post("amount");
@@ -124,12 +134,14 @@
 				if ($amount_paid < $total_amount) {
 					$payment_stat = 'partially paid';
 					$deliver_id = $this->input->post("deliver_id");
+					$this->SalesDelivery_model->activity_logs('sales', " Mark ".$client."'s orders as Partially Paid ");
 					$this->SalesDelivery_model->insert_dataB($dataB);
 					$this->SalesDelivery_model->updateB($payment_stat, $deliver_id, $amount_paid);
 					echo "<script>alert('Payment recorded!');</script>";
 				} else{
 					$payment_stat = 'paid';
 					$deliver_id = $this->input->post("deliver_id");
+					$this->SalesDelivery_model->activity_logs('sales', " Mark ".$client."'s orders as Fully Paid ");
 					$this->SalesDelivery_model->insert_dataB($dataB);
 					$this->SalesDelivery_model->updateB($payment_stat, $deliver_id, $amount_paid);
 					echo "<script>alert('Payment recorded!');</script>";

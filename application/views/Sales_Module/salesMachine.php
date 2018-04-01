@@ -384,7 +384,7 @@ $(document).ready(function() {
 			});
 			});	
 
-		 $("#qty, #serial, #datepo").keyup(function () {
+		 $("#qty").keyup(function () {
                 if ($(this).val() !== "" && $(this).val() !== null)
                 {
                     $("#submit").removeAttr("disabled");
