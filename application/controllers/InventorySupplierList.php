@@ -5,14 +5,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	{
 		function __construct(){
 			parent::__construct();
+			$this->load->model('inventorySupplierList_model');
+			$this->load->model('notification_model');
 		}
 		
 		public function index()
 		{ 
             if ($this->session->userdata('username') != '')
             {
-            	$this->load->view('layout/header');
-	            $this->load->model('inventorySupplierList_model');
+	            $data['reorder'] = $this->notification_model->reorder();
 	            $data['supplier'] = $this->inventorySupplierList_model ->retrieveSupplier();
 				$this->load->view('inventorySupplierList' ,$data);
 			} else {

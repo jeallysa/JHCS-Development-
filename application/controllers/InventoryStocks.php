@@ -4,13 +4,15 @@
 	{
 		function __construct(){
 			parent::__construct();
+			$this->load->model("InventoryStocks_Model");
+			$this->load->model('notification_model');
 		}
 		
 		public function index()
 		{ 
 			if ($this->session->userdata('username') != '')
 			{
-				$this->load->model("InventoryStocks_Model");
+				$data['reorder'] = $this->notification_model->reorder();
                 $data['coffee'] = $this->InventoryStocks_Model ->retrieveCoffee();
 				$this->load->view('Inventory_Module/inventoryStocks', $data);
 			} else {
@@ -18,33 +20,43 @@
 			}
 		}
 
-
-		function update($id){
-
-        $rawid = $this->input->post("rawid");
-		$physcount = $this->input->post("physcount");
-		$discrepancy = $this->input->post("discrepancy");
-		$remarks = $this->input->post("remarks");
-		$coffee_id = $id;
-
+		public function update($details){
+           
+        $rawidv=$this->input->post('rawid');
+        $physcountv=$this->input->post('physcount');
+        $discrepancyv=$this->input->post('discrepancy');
+        $remarksv=$this->input->post('remarks');
+        $datev=$this->input->post('date');
+        $modalnum = $details;
             
-        if ($_POST)  {
-            for ($i = 0; $i < count($this->input->post('rawid')); $i++){       //to have a length used the itemID             
-                if(!empty($discrepancy[$i])){
-                    $data[$i] = array(
-                        'raw_id' => $id,
-                        'raw_physcount' => $physcount[$i],
-                        'raw_discrepancy' => $discrepancy[$i],
-                        'raw_remarks'    => $remarks[$i],
-                    );              
-                }
-        }
-            $this->InventoryStocks_Model->update($data, $coffee_id);    
-        }
+       
+  if ($_POST)  {
+        
+ for ($i = 0; $i < count($this->input->post('rawid')); $i++){                             
+              
+              
+                             $data[$i] = array(
+                                    'raw_physcount' => $physcountv[$i],
+          							'raw_remarks' => $remarksv[$i],
+          							'raw_discrepancy' => $discrepancyv[$i],
+          							'inventory_date' => $datev[$i],
+        
+                                 );
+
+        $this->inventoryStocks_Model->updateInventory($data, $physcountv[$i]); 
+                       
+     
+}
+      
+      
+    
+      
+      
+	}
             
-            
-            redirect('inventoryStocks', 'refresh');
-    }  
+           redirect(base_url('inventorystocks'));
+           
+    }
 
 	}
 

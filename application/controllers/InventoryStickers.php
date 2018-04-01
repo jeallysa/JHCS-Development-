@@ -4,13 +4,15 @@
 	{
 		function __construct(){
 			parent::__construct();
+			$this->load->model("InventoryStickers_Model");
+			$this->load->model('notification_model');
 		}
 		
 		public function index()
 		{ 
 			if ($this->session->userdata('username') != '')
             {
-            	$this->load->model("InventoryStickers_Model");
+            	$data['reorder'] = $this->notification_model->reorder();
 				$data["sticker"] = $this->InventoryStickers_Model->retrieveSticker();
 				$this->load->view('Inventory_Module/inventoryStickers', $data);
 			} else {

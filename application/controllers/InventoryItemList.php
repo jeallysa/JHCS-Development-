@@ -5,16 +5,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	{
 		function __construct(){
 			parent::__construct();
-            
+              $this->load->model('notification_model');  
               $this->load->model('inventoryItemList_model');
 		}
 		
 		public function index()
 		{ 
             if ($this->session->userdata('username') != ''){
-                
-            	$this->load->view('layout/header');
-                
+                $data['reorder'] = $this->notification_model->reorder();
 	          
 	            $data['items'] = $this->inventoryItemList_model->retrieveItems();
 	            
