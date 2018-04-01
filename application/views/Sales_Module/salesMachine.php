@@ -171,7 +171,7 @@
                                                 </div>
                                                 <div class="col-md-5">
                                                     <div class="form-group label-floating">
-                                                        <input class="form-control" type="date" id="datepo" name="date" required="" id="DatePO">
+                                                        <input class="form-control" type="date" value="<?php echo date("Y-m-d");?>" name="date" required="" id="DatePO">
                                                         <input type="hidden" name="sold" value="sold"> 
                                                     </div>
                                                 </div>
@@ -244,6 +244,67 @@
                                 </div>
                             </div>
                         </div>
+						<!--modal for verification-->
+                    <div class="modal fade" id="verify" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading" style="background-color: #990000;">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h4 class="panel-title" id="contactLabel"><center><b>Verify Order</b></center> </h4>
+                                </div>
+								<form action="<?php echo base_url(); ?>SalesSellProduct/add" method="post" accept-charset="utf-8">
+                                <div class="modal-body"><br>
+									<div class="col-md-12 col-md-offset-1">
+										<p>Please confirm the order information !</p></div>
+									 <div class="col-md-12 col-md-offset-2">
+										 
+										
+										 <br>
+										 <div class="row">
+											<label class="col-md-3 control">Purchase Date:</label>
+											<div class="col-md-3">
+											<b><input class="no-border" name="datePO" id="displayDate" readonly /></b>
+											</div>
+										</div>
+										<div class="row">
+											<label class="col-md-3 control">Client :</label>
+											<div class="col-md-3">
+											<b><input name="client" class="no-border" type="disabled" id="displayClient"  readonly /></b>
+											</div>
+										</div>
+									 	<div class="row">
+											<label class="col-md-3 control">Machine :</label>
+											<div class="col-md-3">
+											<b><input name="brewer" class="no-border" type="disabled" id="displayMachine"  readonly /></b>
+											</div>
+										</div>
+										<div class="row">
+											<label class="col-md-3 control">Serial :</label>
+											<div class="col-md-3">
+											<b><input name="serial" class="no-border" type="disabled" id="displaySerial"  readonly /></b>
+											</div>
+										</div>
+										 <div class="row">
+											<label class="col-md-3 control">Quantity :</label>
+											<div class="col-md-3">
+											<b><input class="no-border" name="qty" id="displayQty" readonly /></b>
+											</div>
+										</div>
+										 
+										 <input class="form-control" name="mach_id" id="displayMachine" type="hidden" readonly />
+										  <input type="hidden" name="sold" value="sold">
+									</div>
+                                </div>
+                                <hr>
+                              <div align="center">
+								   <input class="form-control" name="client_id" id="displayClient" type="hidden" readonly />
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-success" >Save</button>
+                              </div>
+							 </form> 
+                            </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -254,62 +315,7 @@
     </div>
 </body>
 
-				<!--modal for verification-->
-                    <div class="modal fade" id="verify" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="panel panel-primary">
-                                <div class="panel-heading" style="background-color: #990000;">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                    <h4 class="panel-title" id="contactLabel"><center><b>Verify Order</b></center> </h4>
-                                </div>
-								<form action="<?php echo base_url(); ?>SalesSellProduct/add" method="post" accept-charset="utf-8">
-                                <div class="modal-body">
-									 <div class="col-md-12 col-md-offset-2">
-										 <input class="form-control" name="client_id" id="displayClient" type="hidden" readonly />
-										 <input class="form-control" name="mach_id" id="displayMachine" type="hidden" readonly />
-										  <input type="hidden" name="sold" value="sold">
-										 
-										 <div class="row">
-											<label class="col-md-4 control">Date of Purchase :</label>
-											<div class="col-md-4">
-											<b><input class="no-border" name="datePO" id="displayDate" readonly /></b>
-											</div>
-										</div>
-										<div class="row">
-											<label class="col-md-2 control">Client :</label>
-											<div class="col-md-3">
-											<b><input name="client" class="no-border" type="disabled" id="displayClient"  readonly /></b>
-											</div>
-										</div>
-									 	<div class="row">
-											<label class="col-md-2 control">Machine :</label>
-											<div class="col-md-3">
-											<b><input name="brewer" class="no-border" type="disabled" id="displayMachine"  readonly /></b>
-											</div>
-										</div>
-										<div class="row">
-											<label class="col-md-2 control">Serial :</label>
-											<div class="col-md-3">
-											<b><input name="serial" class="no-border" type="disabled" id="displaySerial"  readonly /></b>
-											</div>
-										</div>
-										 <div class="row">
-											<label class="col-md-2 control">Quantity :</label>
-											<div class="col-md-3">
-											<b><input class="no-border" name="qty" id="displayQty" readonly /></b>
-											</div>
-										</div>
-									</div>
-                                </div>
-                                <hr>
-                              <div align="center">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                <button type="submit" class="btn btn-success" >Save</button>
-                              </div>
-							 </form> 
-                            </div>
-                            </div>
-                        </div>
+				
 <!--   Core JS Files   -->
 <script src="../assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
@@ -339,58 +345,58 @@ $(document).ready(function() {
     $('#example').DataTable();
 	
 	$(document).on('click', '#submit', function(e){ 
-	var machine = document.getElementById('machine_id').value;
-	var client = document.getElementById('client_id').value;
-	var datePO = document.getElementById('DatePO').value;
-	var serial = document.getElementById('serial').value;
-	var qty = document.getElementById('qty').value;
-	
-	document.getElementById('displayDate').value = datePO;
-	document.getElementById('displaySerial').value = serial;
-	document.getElementById('displayQty').value = qty;
-	document.getElementById('displayClient').value = client;
-	document.getElementById('displayMachine').value = machine;
-	
-	jQuery.ajax({
-		url:'<?=base_url()?>SalesSellProduct/getMachinebyId/' +machine,
-		method: 'GET',
-		type: 'ajax',
-		dataType: 'json',
-		success:function(data)
-		{
-			$('[name="brewer"]').val(data.brewer);
-		},
-			error: function (jqXHR, textStatus, errorThrown)
-				{
-					alert('Error get data from ajax');
-				}
+		var machine = document.getElementById('machine_id').value;
+		var client = document.getElementById('client_id').value;
+		var datePO = document.getElementById('DatePO').value;
+		var serial = document.getElementById('serial').value;
+		var qty = document.getElementById('qty').value;
 
-			});
-	
-	jQuery.ajax({
-		url:'<?=base_url()?>SalesSellProduct/getClientbyId/' +client,
-		method: 'GET',
-		type: 'ajax',
-		dataType: 'json',
-		success:function(data)
-		{
-			$('[name="client"]').val(data.client_company);
-		},
-			error: function (jqXHR, textStatus, errorThrown)
-				{
-					alert('Error get data from ajax');
-				}
+		document.getElementById('displayDate').value = datePO;
+		document.getElementById('displaySerial').value = serial;
+		document.getElementById('displayQty').value = qty;
+		document.getElementById('displayClient').value = client;
+		document.getElementById('displayMachine').value = machine;
 
-			});
-			});	
+		jQuery.ajax({
+			url:'<?=base_url()?>SalesSellProduct/getMachinebyId/' +machine,
+			method: 'GET',
+			type: 'ajax',
+			dataType: 'json',
+			success:function(data)
+			{
+				$('[name="brewer"]').val(data.brewer);
+			},
+				error: function (jqXHR, textStatus, errorThrown)
+					{
+						alert('Error get data from ajax');
+					}
 
-		 $("#qty").keyup(function () {
-                if ($(this).val() !== "" && $(this).val() !== null)
-                {
-                    $("#submit").removeAttr("disabled");
-                }
-            });
-	
+				});
+
+		jQuery.ajax({
+			url:'<?=base_url()?>SalesSellProduct/getClientbyId/' +client,
+			method: 'GET',
+			type: 'ajax',
+			dataType: 'json',
+			success:function(data)
+			{
+				$('[name="client"]').val(data.client_company);
+			},
+				error: function (jqXHR, textStatus, errorThrown)
+					{
+						alert('Error get data from ajax');
+					}
+
+				});
+				});	
+
+			 $("#qty").keyup(function () {
+					if ($(this).val() !== "" && $(this).val() !== null)
+					{
+						$("#submit").removeAttr("disabled");
+					}
+				});
+
 	
 	
     });

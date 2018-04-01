@@ -220,8 +220,10 @@
                                 </div>
 								<form action="<?php echo base_url(); ?>SalesSellProduct/record" method="post" accept-charset="utf-8">
                                 <div class="modal-body">
+									<div class="col-md-12 col-md-offset-1">
+										<p>Please confirm the order information !</p></div>
 									 <div class="col-md-12 col-md-offset-2">
-										 <input class="form-control" name="blend_id" id="displayBlend" type="hidden" readonly />
+										 
 										 <div class="row">
 											<label class="col-md-3 control">Date of Purchase :</label>
 											<div class="col-md-5">
@@ -252,6 +254,7 @@
 											<b><input class="no-border" name="qty" id="displayQty" readonly /></b>
 											</div>
 										</div>
+										 <input class="form-control" name="blend_id" id="displayBlend" type="hidden" readonly />
 									</div>
                                 </div>
                                 <hr>
