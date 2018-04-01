@@ -290,11 +290,8 @@
 	});
 	
 	$('#AddPO').click(function(){
-		
 		var table_data = [];
-		
 		$('#data_table tr').each(function(row,tr){
-		
 			if($(tr).find('td:eq(0)').text() == ""){
 
 			}else{
@@ -304,14 +301,11 @@
 					'blend' : $(tr).find('td:eq(2)').text(),
 					'quantity' : $(tr).find('td:eq(3)').text(),
 				}
-
 				table_data.push(sub);
 			}
-
 		});
 		
-		$.ajax({
-			
+		$.ajax({			
 			url:'<?=base_url()?>SalesClients/addMultipleOrders/',
 			method: 'POST',
 			data: {table_data:table_data},
@@ -323,8 +317,7 @@
 				}
 				console.log(data.check)
 				location.reload();  
-			}
-			
+			}	
 		});
 	});
 </script>

@@ -57,13 +57,14 @@
 			
 			$this->load->model('AdminStickers_model');
 			$id = $this->input->post("deact_id");
+			$deact = $this->db->query("SELECT * FROM sticker WHERE sticker_id = '".$id."'")->row()->sticker_activation;
 			$name = $this->input->post("name");
-			if ($id == 1){
-				$this->AdminStickers_model->activity_logs('admin', "Activated: '".$name."'");	
+			if ($deact == 1){
+				$this->AdminStickers_model->activity_logs('admin', "Deactivated: '".$name."'");	
 				$this->AdminStickers_model->activation($id);
 				redirect('adminStickers');
 			}else{	
-				$this->AdminStickers_model->activity_logs('admin', "Deactivated: '".$name."'");	
+				$this->AdminStickers_model->activity_logs('admin', "Activated: '".$name."'");	
 				$this->AdminStickers_model->activation($id);
 				redirect('adminStickers');
 			}

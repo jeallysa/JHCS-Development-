@@ -21,7 +21,7 @@ class AdminPackaging_model extends CI_MODEL
     function insert_data($data){ 
 		$this->db->insert('packaging', $data);
 	}
-
+ 
     function update($id, $type, $size, $reorder, $stocks, $stocklimit, $sup_id){
 		$data = array(
             'package_type' => $type,

@@ -21,7 +21,20 @@
 			}
 
 		}
+		public function updateNotif(){
+			
+			$id = $this->uri->segment(3,1);
+			$unseen = '1';
+			$data = $this->SalesDashboard_model->UpdateSeen($id, $unseen);
+			 echo json_encode($data);
+		}
 		
+		public function mayNotif(){
+			$id = $this->uri->segment(3,1);
+			$meron = '0';
+			$data = $this->SalesDashboard_model->mayNotif($id, $meron);
+			echo json_encode($data);
+		}
 	}
 
 ?>

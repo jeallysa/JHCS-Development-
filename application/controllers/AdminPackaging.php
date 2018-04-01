@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 	class AdminPackaging extends CI_Controller
 	{
@@ -61,17 +61,18 @@
 			
 			$this->load->model('AdminPackaging_model');
 			$id = $this->input->post("deact_id");
+			$deact = $this->db->query("SELECT * FROM packaging WHERE package_id = '".$id."'")->row()->pack_activation;
 			$type = $this->input->post("type");
             $size = $this->input->post("size");
 
-			if ($id == 1){
-				$this->AdminPackaging_model->activity_logs('admin', "Activated: '".$type." bag, ".$size."g'");	
+			if ($deact == 1){
+				$this->AdminPackaging_model->activity_logs('admin', "Deativated: '".$type." bag, ".$size."g'");	
 				$this->AdminPackaging_model->activation($id);
-				redirect('adminPackaging');
+				redirect('adminPackaging', 'refresh');
 			} else {
-				$this->AdminPackaging_model->activity_logs('admin', "Deactivated: '".$type." bag, ".$size."g'");
+				$this->AdminPackaging_model->activity_logs('admin', "Activated: '".$type." bag, ".$size."g'");
 				$this->AdminPackaging_model->activation($id);
-				redirect('adminPackaging');
+				redirect('adminPackaging', 'refresh');
 			}
 
 

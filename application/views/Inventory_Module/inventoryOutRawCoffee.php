@@ -246,7 +246,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <table id="walkin" class="table hover order-column" cellspacing="0" width="100%">
                                                         <thead>
                                                             <tr>
-                                                                <th><b>Sales ID</b></th>
+                                                                <th><b>Sales Invoice No.</b></th>
                                                                 <th><b>Date</b></th>
                                                                 <th><b>Client</b></th>
                                                                 <th><b>Coffee</b></th>
@@ -266,8 +266,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                  <td>Walk-in</td>
                                                                  <td><?php echo $row->blend; ?></td>
                                                                  <td><?php echo $row->package_type; ?></td>
-                                                                 <td><?php echo $row->package_size; ?></td>
-                                                                 <td><?php echo $row->walkin_qty; ?></td>
+                                                                 <td><?php echo number_format($row->package_size); ?></td>
+                                                                 <td><?php echo number_format($row->walkin_qty); ?></td>
                                                             </tr>
                                                             <?php
                                                         }
@@ -280,7 +280,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         <thead>
                                                             <tr>
                                                                 <th><b>Delivery Receipt No.</b></th>
-                                                                <th><b>Date Delivered</b></th>
+                                                                <th><b>Delivery Date</b></th>
                                                                 <th><b>Client</b></th>
                                                                 <th><b>Coffee</b></th>
                                                                 <th><b>Bag</b></th>
@@ -300,8 +300,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 <td><?php echo $row->client_company; ?></td>
                                                                 <td><?php echo $row->blend; ?></td>
                                                                 <td><?php echo $row->package_type; ?></td>
-                                                                <td><?php echo $row->package_size; ?></td>
-                                                                <td><?php echo $row->contractPO_qty; ?></td>
+                                                                <td><?php echo number_format($row->package_size); ?></td>
+                                                                <td><?php echo number_format($row->contractPO_qty); ?></td>
                                                                 <td><?php echo $row->client_receive; ?></td>
                                                             </tr>
                                                             <?php
@@ -315,7 +315,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <div class="tab-pane" id="machineout">
                                              <table id="" class="table hover order-column" cellspacing="0" width="100%">
                                             <thead>
-                                                <th><b>Sales ID</b></th>
+                                                <th><b>Serial No.</b></th>
                                                 <th><b>Date</b></th>
                                                 <th><b>Client</b></th>
                                                 <th><b>Machine</b></th>
@@ -328,11 +328,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     {
                                                 ?>
                                                 <tr>
-                                                     <td><?php echo $row->mach_salesID; ?></td>
+                                                     <td><?php echo $row->mach_serial; ?></td>
                                                      <td><?php echo $row->date; ?></td>
                                                      <td><?php echo $row->client_company; ?></td>
                                                      <td><?php echo $row->brewer; ?></td>
-                                                     <td><?php echo $row->mach_qty; ?></td>
+                                                     <td><?php echo number_format($row->mach_qty); ?></td>
                                                      <td><?php echo $row->status; ?></td>
                                                 </tr>
                                                 <?php

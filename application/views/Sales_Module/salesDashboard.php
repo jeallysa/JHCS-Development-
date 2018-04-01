@@ -19,12 +19,83 @@
         right: 0;
         left: auto;
     }
+	.select-pane {
+        display: none;
+    }
+		.sidebar .sidebar-background:after,
+		.off-canvas-sidebar .sidebar-background:after{
+			background: rgba(139,69,19, 0.8);
+		}
+		span.rednum {
+		  background: #cc0001;
+		  border-radius: 3px;
+		  color: #fff;
+		  z-index: 999999;
+			font-weight: 600;
+		  padding: 2px 6px;
+		  box-shadow: 0 2px 3px rgba(0,0,0,.2), inset 0 2px 5px rgba(225,225,225,.3);
+		  font-size: 13px;
+		  margin-left: 5px;
+		  position: relative;
+		  display: inline-block;
+		  top: -1px;
+		}
+		.no-border{
+			border: none !important;
+			
+		}
+		
+		
+		.sidebar[data-color="purple"] .nav li.active a,
+		.off-canvas-sidebar[data-color="purple"] .nav li.active a{
+			background-color: #4cb1d1;
+			font-weight: 600;
+			
+		}
+		.sidebar .nav li.active>a,
+		.off-canvas-sidebar .nav li.active>a {
+			color: #f5f5f5;
+		}
+		.sidebar .nav li>a,
+		.off-canvas-sidebar .nav li>a {
+			margin: 10px 15px 0;
+			border-radius: 3px;
+			color: #f5f5f5;
+		}
+		.sidebar .nav li:hover>a,
+		.off-canvas-sidebar .nav li:hover>a {
+			background: rgba(200, 200, 200, 0.2);
+			color: #ddd;
+		}
+		.sidebar .nav li.active>a i,
+		.off-canvas-sidebar .nav li.active>a i {
+			color: #1f6fb4;
+		}
+		.off-canvas-sidebar .nav i {
+			font-size: 24px;
+			float: left;
+			margin-right: 15px;
+			line-height: 30px;
+			width: 30px;
+			text-align: center;
+			color: #f5f5f5;
+		}
+		.sidebar .nav i, .off-canvas-sidebar .nav i {
+			font-size: 24px;
+			float: left;
+			margin-right: 15px;
+			line-height: 30px;
+			width: 30px;
+			text-align: center;
+			color: #f5f5f5;
+		}
+
     </style>
 </head>
 
 <body>
     <div class="wrapper">
-        <div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
+        <div class="sidebar" data-color="purple" data-image="../assets/img/1.jpg">
             <div class="logo">
                 <img src="<?php echo base_url(); ?>assets/img/logo.png" alt="image1" width="250px" height="150px">
             </div>
@@ -33,7 +104,7 @@
                     <li class="active">
                         <a href="<?php echo base_url(); ?>salesDashboard">
                             <i class="material-icons">dashboard</i>
-                            <p>Dashboard</p>
+                            <p>Dashboard<i class="material-icons pull-right select-pane" style="color:red">error</i></p>
                         </a>
                     </li>
                     <li>
@@ -123,7 +194,8 @@
                                 </div>
                                 <div class="card-content">
                                     <p class="category">Sales</p>
-                                    <h3 class="title"><?php 
+                                    <h3 class="title">
+										<?php 
 											$total = $this->db->query("SELECT SUM(client_balance) AS total FROM client_delivery WHERE client_deliverDate=now() ;")->row()->total;
 										
 										if(!empty($total)){
@@ -224,24 +296,51 @@
                                 <div class="card-content table-responsive">
                                     <table class="table">
                                         <tbody>
-                                            <tr>
-                                                <td>Client C's contract has expired today !</td>
-                                                <td class="td-actions text-right">
-                                                    <button type="submit" class="btn btn-primary pull-right">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Client B has not yet paid for the month of November. <a href="#">See in receivables</a></td>
-                                                <td class="td-actions text-right">
-                                                    <button type="submit" class="btn btn-primary pull-right">Details</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Client A is scheduled to order Type C coffee before Jan 1, 2019 </td>
-                                                <td class="td-actions text-right">
-                                                    <button type="submit" class="btn btn-primary pull-right">Details</button>
-                                                </td>
-                                            </tr>
+											
+												
+											<?php
+										
+												$query = $this->db->query("SELECT date_expiration,client_id,client_company,seen FROM contract NATURAL JOIN contracted_client WHERE seen='0'");
+												$date = date('Y-m-d');
+												
+												
+												if(!empty($query)){
+													foreach($query->result() as $object){
+														if($object->date_expiration == $date){
+															if($object->seen ==  '0'){
+												?>
+
+													<tr>
+														<td>
+															<span style="background-color: #ff5148; color:white"> The contract of <?php echo $object->client_company; ?> client has Expired. </span>
+															<input class="no-border" type="text" value="<?php echo $object->client_id; ?>" id="idClient" readonly />
+														</td >
+														<td class="td-actions text-right"><button type="submit" class="btn btn-primary pull-right" id="check" data-id="<?php echo $object->client_id; ?>" >Details</button></td>
+													</tr>
+											
+													
+													<?php
+															}elseif($object->seen == '1'){
+													?>
+													<tr>
+														<td>
+															<span> The contract of <?php echo $object->client_company; ?> client has Expired. </span>
+															<input class="no-border" type="text" value="<?php echo $object->client_id; ?>" id="idClient" readonly />
+														</td >
+														<td class="td-actions text-right"><button type="submit" class="btn btn-default pull-right" id="check" data-id="<?php echo $object->client_id; ?>" >Details</button></td>
+													</tr>
+													<?php
+																
+															}
+														}else{
+
+													}	}
+												}else{
+													echo 0;
+												}
+
+										 	?>
+												
                                         </tbody>
                                     </table>
                                 </div>
@@ -263,10 +362,35 @@
 <script src="<?php echo base_url(); ?>assets/js/material-dashboard.js?v=1.2.0"></script>
 <script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
 <script type="text/javascript">
+	var id = document.getElementById('idClient').value;
+	$.ajax({
+		url:'<?=base_url()?>SalesDashboard/mayNotif/' +id,
+		method: 'POST',
+		success:function(data){
+					$(".select-pane").show();
+		}
+	});
 $(document).ready(function() {
     demo.initDashboardPageCharts();
 
+	$(document).on('click', '#check', function(e){   
+        e.preventDefault();
+        var id = $(this).data('id'); 
+			$.ajax({
+				url:'<?=base_url()?>SalesDashboard/updateNotif/' +id,
+				method: 'POST',
+				success:function(data){
+					$(".select-pane").hide();
+					alert('naupdate na!');
+				}
+
+				});
+
+	});
+	
 });
+	
+	
 </script>
 
 </html>
