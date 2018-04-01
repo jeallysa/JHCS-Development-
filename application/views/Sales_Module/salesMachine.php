@@ -207,7 +207,7 @@
                                                 <?php 
                                                 foreach($data5['machine'] as $row)
                                                 { 
-                                                    echo '<option value="'.$row->mach_id.'">'.$row->brewer."/ ".$row->brewer.'</option>';
+                                                    echo '<option value="'.$row->mach_id.'">'.$row->brewer."/ ".$row->brewer_type.'</option>';
                                                 }
                                                 ?>
                                               </select>

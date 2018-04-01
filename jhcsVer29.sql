@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2018 at 10:59 PM
+-- Generation Time: Apr 01, 2018 at 11:35 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -106,6 +106,16 @@ CREATE TABLE `client_delivery` (
   `return` varchar(10) NOT NULL DEFAULT 'Received'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Triggers `client_delivery`
+--
+DELIMITER $$
+CREATE TRIGGER `update_pay_stat` BEFORE UPDATE ON `client_delivery` FOR EACH ROW IF NEW.client_balance = NEW.amount_paid THEN
+	SET NEW.payment_remarks = 'paid';
+END IF
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -123,6 +133,13 @@ CREATE TABLE `client_machreturn` (
   `mach_returnAction` varchar(50) NOT NULL,
   `resolved` varchar(11) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT 'No'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `client_machreturn`
+--
+
+INSERT INTO `client_machreturn` (`client_machReturnID`, `mach_returnDate`, `mach_returnQty`, `client_id`, `mach_id`, `mach_serial`, `mach_remarks`, `mach_returnAction`, `resolved`) VALUES
+(33, '2018-04-04', 0, '2                   ', 1, 's555', 'Maintenance', '', 'Yes');
 
 -- --------------------------------------------------------
 
@@ -150,7 +167,7 @@ CREATE TABLE `coffee_blend` (
 
 INSERT INTO `coffee_blend` (`blend_id`, `blend`, `package_id`, `blend_price`, `blend_qty`, `blend_physcount`, `blend_remarks`, `blend_discrepancy`, `blend_activation`, `blend_type`, `sticker_id`) VALUES
 (1, 'Guatemala Rainforest', '4', 1025, 43, 0, NULL, 0, 1, 'Existing', 1),
-(2, 'Guatemala Rainforest', '5', 615, -68, 0, NULL, 0, 1, 'Existing', 1),
+(2, 'Guatemala Rainforest', '5', 615, -143, 0, NULL, 0, 1, 'Existing', 1),
 (3, 'Guatemala Rainforest', '6', 365, 4, 0, NULL, 0, 1, 'Existing', 1),
 (4, 'Cordillera Sunrise', '4', 950, 33, 0, NULL, 0, 1, 'Existing', 1),
 (5, 'Cordillera Sunrise', '5', 575, 6, 0, NULL, 0, 1, 'Existing', 1),
@@ -158,7 +175,7 @@ INSERT INTO `coffee_blend` (`blend_id`, `blend`, `package_id`, `blend_price`, `b
 (7, 'Sumatra Night', '4', 850, 7, 0, NULL, 0, 1, 'Existing', 1),
 (8, 'Sumatra Night', '5', 530, 10, 0, NULL, 0, 1, 'Existing', 1),
 (9, 'Sumatra Night', '6', 325, 11, 0, NULL, 0, 1, 'Existing', 1),
-(10, 'Chef\'s Blend', '4', 800, 59, 0, NULL, 0, 1, 'Existing', 1),
+(10, 'Chef\'s Blend', '4', 800, -141, 0, NULL, 0, 1, 'Existing', 1),
 (11, 'Chef\'s Blend', '5', 465, 9, 0, NULL, 0, 1, 'Existing', 1),
 (12, 'Chef\'s Blend', '6', 265, 16, 0, NULL, 0, 1, 'Existing', 1),
 (13, 'Espresso Blend', '4', 750, 2, 0, NULL, 0, 1, 'Existing', 1),
@@ -280,6 +297,16 @@ CREATE TABLE `contracted_po` (
   `delivered_qty` int(11) NOT NULL DEFAULT '0',
   `delivery_stat` varchar(20) NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Triggers `contracted_po`
+--
+DELIMITER $$
+CREATE TRIGGER `update_del_stat` BEFORE UPDATE ON `contracted_po` FOR EACH ROW IF NEW.contractPO_qty = NEW.delivered_qty THEN
+	SET NEW.delivery_stat = 'delivered';
+END IF
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -1418,17 +1445,17 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `client_coffreturn`
 --
 ALTER TABLE `client_coffreturn`
-  MODIFY `client_coffReturnID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `client_coffReturnID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT for table `client_delivery`
 --
 ALTER TABLE `client_delivery`
-  MODIFY `client_deliveryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
+  MODIFY `client_deliveryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
 --
 -- AUTO_INCREMENT for table `client_machreturn`
 --
 ALTER TABLE `client_machreturn`
-  MODIFY `client_machReturnID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `client_machReturnID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `coffee_blend`
 --
@@ -1453,7 +1480,7 @@ ALTER TABLE `contracted_client`
 -- AUTO_INCREMENT for table `contracted_po`
 --
 ALTER TABLE `contracted_po`
-  MODIFY `contractPO_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `contractPO_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 --
 -- AUTO_INCREMENT for table `inv_transact`
 --
@@ -1478,7 +1505,7 @@ ALTER TABLE `packaging`
 -- AUTO_INCREMENT for table `payment_contracted`
 --
 ALTER TABLE `payment_contracted`
-  MODIFY `paid_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `paid_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `payment_supplier`
 --

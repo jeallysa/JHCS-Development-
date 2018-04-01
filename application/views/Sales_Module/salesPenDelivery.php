@@ -399,7 +399,13 @@
                 <td><?php echo $row2->client_receive; ?></td>
                 <td><?php echo $row2->payment_remarks; ?></td>
                 <td><?php echo $row2->coff_returnQty; ?></td>
-                <td><button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#pay<?php echo $row2->client_deliveryID; ?>">Pay</button>
+                <td><button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#pay<?php echo $row2->client_deliveryID; ?>" <?php 
+                        $payment_remarks = $row2->payment_remarks; 
+                        if ($payment_remarks == 'paid') {
+                            echo "disabled";
+                        }
+
+                     ?>>Pay</button>
                     <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#return<?php echo $row2->client_deliveryID;?>" <?php 
                         $resolved = $row2->resolved; 
                         $return = $row2->return; 
