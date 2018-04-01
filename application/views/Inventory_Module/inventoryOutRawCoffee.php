@@ -246,6 +246,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 <th><b>Bag</b></th>
                                                                 <th><b>Size</b></th>
                                                                 <th><b>Quantity</b></th>
+                                                                <th><b>Sticker</b></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -261,6 +262,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                  <td><?php echo $row->package_type; ?></td>
                                                                  <td><?php echo number_format($row->package_size); ?></td>
                                                                  <td><?php echo number_format($row->walkin_qty); ?></td>
+                                                                 <td><?php echo $row->sticker; ?></td>
                                                             </tr>
                                                             <?php
                                                         }
@@ -279,6 +281,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 <th><b>Bag</b></th>
                                                                 <th><b>Size</b></th>
                                                                 <th><b>Quantity</b></th>
+                                                                <th><b>Sticker</b></th>
                                                                 <th><b>Received By</b></th>
                                                             </tr>
                                                         </thead>
@@ -295,6 +298,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 <td><?php echo $row->package_type; ?></td>
                                                                 <td><?php echo number_format($row->package_size); ?></td>
                                                                 <td><?php echo number_format($row->contractPO_qty); ?></td>
+                                                                <td><?php echo $row->sticker; ?></td>
                                                                 <td><?php echo $row->client_receive; ?></td>
                                                             </tr>
                                                             <?php
