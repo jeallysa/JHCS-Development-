@@ -204,7 +204,7 @@
                             </div>
                             <div class="modal-body" style="padding: 5px;">
                                 <div class="card-block">
-                                     <form action="<?php echo base_url(); ?>salesSellProduct/return_blend" method="post" accept-charset="utf-8">
+                                     <form action="<?php echo base_url(); ?>salesSellProduct/return_blend" method="post" accept-charset="utf-8"> 
                                         <div class="modal-body" style="padding: 5px;">
                                             <h3 class="pull-center"><?php echo $row->blend; ?></h3>
                                             
@@ -408,6 +408,8 @@
                                                                         <label class="col-md-6 control">Date Returned:</label>
                                                                         <input class="form-control col-md-6" type="date" name="date_returned" required="">
                                                                         <input type="hidden" name="mach_id" value="<?php echo $row->mach_id; ?>" required>
+                                                                        <input type="hidden" name="machine" value="<?php echo $row->brewer; ?>" required>
+                                                                        <input type="hidden" name="machine_type" value="<?php echo $row->brewer_type; ?>" required>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">

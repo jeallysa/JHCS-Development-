@@ -344,7 +344,6 @@ a:focus {
                                              <?php 
                                                 }
                                               ?>
->>>>>>> 23aaecac1e70cae4d225ce99505b25532a95f828
                                         </tbody>
                             </table>
                         </div>

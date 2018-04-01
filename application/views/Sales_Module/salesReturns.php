@@ -317,7 +317,7 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                 <h4 class="panel-title" id="contactLabel"><center>Resolve Coffee Returns</center></h4>
                             </div>
-                                    
+                                     
                             <div class="modal-body" style="padding: 10px;">
                                 <form action="<?php echo base_url(); ?>SalesReturns/resolve_walkin" method="post" accept-charset="utf-8">
                                 <div class="row">
@@ -523,6 +523,14 @@
 													
 														</div>
 													</div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-5 control">Client :</label>
+                                                        <div class="col-md-7" >
+
+                                                            <p><b> <input name="company" class="no-border" type="disabled"  readonly></b></p>
+                                                    
+                                                        </div>
+                                                    </div>
 													<div class="form-group">
 														<label class="col-md-5 control">Size :</label>
 														<div class="col-md-5">
@@ -713,6 +721,7 @@ $(document).ready(function(){
 					$('[name="SINo"]').val(data.client_invoice);
 					$('[name="RID"]').val(data.client_coffReturnID);
 					$('#resolve_coffee').modal('show');
+                    $('[name="company"]').val(data.client_company);
 
 				},
 			error: function (jqXHR, textStatus, errorThrown)

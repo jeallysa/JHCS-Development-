@@ -293,6 +293,7 @@
                                                     <input class="form-control" type="hidden" name="pack_size" value="<?php echo $row1->package_size; ?>" required>
                                                     <input class="form-control" type="hidden" name="client_balance" value="<?php echo $amount; ?>" required>
                                                     <input class="form-control" type="hidden" name="client_id" value="<?php echo $row1->client_id; ?>" required>
+                                                    <input class="form-control" type="hidden" name="client_company" value="<?php echo $row1->client_company; ?>" required>
                                                     <input class="form-control" type="hidden" name="full_qty" value="<?php echo $row1->contractPO_qty; ?>" required>
                                                 </div>
                                             </div>
@@ -496,6 +497,8 @@
                                                                          <input name="deliveryID" type="hidden" class="form-control" value="<?php echo $row2->client_deliveryID; ?>" >
                                                                         <input name="client_dr" type="hidden" class="form-control" value="<?php echo $row2->client_dr; ?>" >
                                                                         <input name="blend_id" type="hidden" class="form-control" value="<?php echo $row2->blend_id; ?>" >
+                                                                        <input class="form-control" type="hidden" name="client_company" value="<?php echo $row2->client_company; ?>" required>
+
 																		</div>
                                                                     </div>
                                                                 </div>
@@ -555,6 +558,7 @@
                                                                             echo $rem_amount;
 
                                                                         ; ?>" min=1 max="<?php echo $rem_amount; ?>" required>
+                                                                        <input type="hidden" name="client_company" value="<?php echo $row2->client_company ?>">
                                                                         <input class="form-control" type="hidden" name="total_amount" value="<?php echo $amount; ?>" min=1 max="<?php echo $amount; ?>">
 
                                                                     </div>
