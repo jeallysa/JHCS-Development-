@@ -262,24 +262,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 '</tr>' ;
                                               }
                                             }
-                                        ?>
-
-                                        <?php
-                                              $retrieveDetails3 ="SELECT retail_id, package_id, client_company, retail_date, retail_qty FROM jhcs.retail NATURAL JOIN coffee_blend NATURAL JOIN packaging NATURAL JOIN contracted_client WHERE package_id = ".$id ;
-                                              $query = $this->db->query($retrieveDetails3);
-                                              if ($query->num_rows() > 0) {
-                                              foreach ($query->result() as $object) {
-                                           echo '<tr>' ,
-                                                '<td>'  . $object->client_company  . '</td>' ,
-                                                '<td>'  . $object->retail_date  . '</td>' ,
-                                                '<td>'  . number_format($object->retail_qty)  . ' pc/s</td>' ;
-                                                ?>
-                                                    <td>Retail Sales</td>
-                                                    <td>Out</td>
-                                                 <?php   
-                                                '</tr>' ;
-                                              }
-                                            }
                                         ?>  
 
                                         <?php

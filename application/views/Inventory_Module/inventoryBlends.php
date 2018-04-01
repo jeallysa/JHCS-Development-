@@ -267,24 +267,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         ?>  
 
                                         <?php
-                                              $retrieveDetails3 ="SELECT coService_id, blend_id, client_company, coService_date, coService_qty FROM jhcs.coffeeservice NATURAL JOIN coffee_blend NATURAL JOIN contracted_client WHERE blend_id = ".$id ;
-                                              $query = $this->db->query($retrieveDetails3);
-                                              if ($query->num_rows() > 0) {
-                                              foreach ($query->result() as $object) {
-                                           echo '<tr>' ,
-                                                '<td>'  . $object->client_company  . '</td>' ,
-                                                '<td>'  . $object->coService_date  . '</td>' ,
-                                                '<td>'  . number_format($object->coService_qty)  . '</td>' ;
-                                                ?>
-                                                    <td>Coffee Services</td>
-                                                    <td>Out</td>
-                                                 <?php   
-                                                '</tr>' ;
-                                              }
-                                            }
-                                        ?> 
-
-                                        <?php
                                               $retrieveDetails4 ="SELECT blend_id, client_company, coff_returnDate, coff_returnQty FROM jhcs.client_coffreturn NATURAL JOIN client_delivery NATURAL JOIN contracted_client NATURAL JOIN contracted_po NATURAL JOIN coffee_blend WHERE blend_id = ".$id ;
                                               $query = $this->db->query($retrieveDetails4);
                                               if ($query->num_rows() > 0) {

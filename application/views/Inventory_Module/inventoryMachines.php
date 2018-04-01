@@ -267,24 +267,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         ?>  
 
                                         <?php
-                                              $retrieveDetails3 ="SELECT coService_id, mach_id, client_company, coService_date, mach_qty FROM jhcs.coffeeservice NATURAL JOIN machine NATURAL JOIN contracted_client WHERE mach_id = ".$id ;
-                                              $query = $this->db->query($retrieveDetails3);
-                                              if ($query->num_rows() > 0) {
-                                              foreach ($query->result() as $object) {
-                                           echo '<tr>' ,
-                                                '<td>'  . $object->client_company  . '</td>' ,
-                                                '<td>'  . $object->coService_date  . '</td>' ,
-                                                '<td>'  . number_format($object->mach_qty)  . ' pc/s</td>' ;
-                                                ?>
-                                                    <td>Coffee Services</td>
-                                                    <td>Out</td>
-                                                 <?php   
-                                                '</tr>' ;
-                                              }
-                                            }
-                                        ?>
-
-                                        <?php
                                               $retrieveDetails4 ="SELECT item, qty, date_received, yield_weight, sup_company FROM jhcs.supp_po_ordered INNER JOIN supp_delivery ON supp_po_ordered.supp_po_ordered_id = supp_delivery.supp_po_ordered_id INNER JOIN supp_po ON supp_po.supp_po_id = supp_po_ordered.supp_po_id INNER JOIN supplier ON supplier.sup_id = supp_po.supp_id INNER JOIN machine ON supp_po_ordered.item = machine.brewer_type WHERE mach_id = ".$id ;
                                               $query = $this->db->query($retrieveDetails4);
                                               if ($query->num_rows() > 0) {
