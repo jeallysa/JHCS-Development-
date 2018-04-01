@@ -33,7 +33,7 @@
 			
 		}
 		public function getDetailsCoffee($id){
-			$query = $this->db->query("SELECT * FROM client_coffreturn NATURAL JOIN client_delivery NATURAL JOIN contracted_po NATURAL JOIN coffee_blend NATURAL JOIN packaging WHERE client_id='$id' ");
+			$query = $this->db->query("SELECT * FROM contracted_client NATURAL JOIN client_coffreturn NATURAL JOIN client_delivery NATURAL JOIN contracted_po NATURAL JOIN coffee_blend NATURAL JOIN packaging WHERE client_id='$id' ");
 			 return $query->row();
 			
 		}
@@ -128,6 +128,22 @@
 			
 			$this->db->where('client_machReturnID', $MRID);
 			$this->db->update('client_machreturn', $dataB);
+		}
+
+		function activity_logs($module, $activity){
+		$username = $this->session->userdata('username');
+        $query = $this->db->query("SELECT user_no from jhcs.user where username ='".$username."';");
+        foreach ($query ->result() as $row) {
+        	$id = $row->user_no;
+        }
+
+        $data = array(
+            'user_no' => $id,
+            'timestamp' => date('Y\-m\-d\ H:i:s A'),
+            'message' => $activity,
+            'type' => $module
+        );
+        $this->db->insert('activitylogs', $data);
 		}
 		
 	}

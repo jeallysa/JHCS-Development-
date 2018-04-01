@@ -178,7 +178,7 @@ a:focus {
                                     <div class="nav-tabs-navigation">
                                         <div class="nav-tabs-wrapper">
                                             <ul class="nav nav-tabs" data-tabs="tabs" data-background-color="green">
-                                                <li class="active">
+                                                <li class="">
                                                     <a href="<?php echo base_url(); ?>adminSalesReport">
                                             Sales Report
                                             <div class="ripple-container"></div>
@@ -199,7 +199,7 @@ a:focus {
                                         </a>
                                                 </li>
                                                 <span></span>
-                                                 <li class="">
+                                                 <li class="active">
                                                     <a href="<?php echo base_url(); ?>adminInventoryReport">
                                             Inventory Report
                                             <div class="ripple-container"></div>
@@ -210,12 +210,62 @@ a:focus {
                                     </div>
                                 </div>
                                 
-                                <div class="card-content">
-                                    <table id="example" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                                <div class="content" style="margin-top: 0px; ">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-20 col-md-12">
+                            <div class="card">
+                        <div class="card-content">
+                            <div class="row">
+                                <div class="card-content table-responsive">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
+                                        <h4><b>COFFEE</b></h4></div>
+                                    
+                                    <?php $month_filt = $data5["datav"];
+                                    $year = $this->db->query("SELECT year(now()) AS year;")->row()->year;
+                                            $tomonth = $this->db->query("SELECT MONTH(NOW()) AS tomonth;")->row()->tomonth;
+                                    
+                                        if(isset($month_filt)){
+                                            $dateObj   = DateTime::createFromFormat('!m', $month_filt);
+                                            $monthName = $dateObj->format('F');
+                                            ?>
+                                            
+                                    <?php
+                                        }else{
+                                            $dateObj   = DateTime::createFromFormat('!m', $tomonth);
+                                            $monthName = $dateObj->format('F');
+                                    ?>
+                                        <label><H4><b> Current Month: <?php echo $monthName; ?> <?php echo $year; ?> </b></H4></label>
+                                    <?php
+                                        }
+                                    ?>
+                                    <form action="<?php echo base_url(); ?>AdminInventoryReport/date_filt" method="post" class="form-inline pull-right">
+                                        <div class="form-group mb-2">
+                                            <label>
+                                                <H4><b> Working File: </b></H4> </label>
+                                            <select class="form-control" onchange="this.form.submit()" id="" name="datefilt" style="text-align: center;">
+                                                <option disabled selected value>  </option>
+                                                <option value = "1" <?php if((isset($month_filt) && $month_filt == 1)){ echo 'selected="selected"'; }?>>January <?php echo $year; ?> </option>
+                                                <option value = "2" <?php if((isset($month_filt) && $month_filt == 2)){ echo 'selected="selected"'; }?>>February <?php echo $year; ?> </option>
+                                                <option value = "3" <?php if(isset($month_filt) && $month_filt == 3){ echo 'selected="selected"'; }?>>March <?php echo $year; ?> </option>
+                                                <option value = "4" <?php if((isset($month_filt) && $month_filt == 4)){ echo 'selected="selected"'; }?>>April <?php echo $year; ?> </option>
+                                                <option value = "5" <?php if((isset($month_filt) && $month_filt == 5)){ echo 'selected="selected"'; }?>>May <?php echo $year; ?> </option>
+                                                <option value = "6" <?php if((isset($month_filt) && $month_filt == 6)){ echo 'selected="selected"'; }?>>June <?php echo $year; ?> </option>
+                                                <option value = "7" <?php if((isset($month_filt) && $month_filt == 7)){ echo 'selected="selected"'; }?>>July <?php echo $year; ?> </option>
+                                                <option value = "8" <?php if((isset($month_filt) && $month_filt == 8)){ echo 'selected="selected"'; }?>>August <?php echo $year; ?> </option>
+                                                <option value = "9" <?php if((isset($month_filt) && $month_filt == 9)){ echo 'selected="selected"'; }?>>September <?php echo $year; ?> </option>
+                                                <option value = "10" <?php if((isset($month_filt) && $month_filt == 10)){ echo 'selected="selected"'; }?>>October <?php echo $year; ?> </option>
+                                                <option value = "11" <?php if((isset($month_filt) && $month_filt == 11)){ echo 'selected="selected"'; }?>>November <?php echo $year; ?> </option>
+                                                <option value = "12" <?php if((isset($month_filt) && $month_filt == 12)){ echo 'selected="selected"'; }?>>December <?php echo $year; ?> </option>
+                                            </select>
+                                        </div>
+                                        
+                                    </form>
+                                    <table id="coffeein" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
                                                 <th><b>Date In</b></th>
-                                                <th><b>Supplier</b></th>
+                                                <th><b></b></th>
                                                 <?php
                                                     $conntitle=mysqli_connect("localhost","root","","jhcs");
                                                     if ($conntitle->connect_error) {
@@ -234,59 +284,80 @@ a:focus {
                                                 }
                                                 $conntitle->close();
                                                 ?>
-                                                <th><b> Packaging </b> </th>
-                                                <th><b> Machines </b> </th>
-                                                <th><b> Stickers </b> </th>
+                                            </tr>
+                                            <tr id="dt-header">
+                                                <td><b>Beginning Inventory</b></td>
+                                                <td></td>
+                                                <?php
+                                                $query = $this->db->query("SELECT * FROM raw_coffee");
+                                                if (isset($month_filt)){
+                                                    if($month_filt == '1'){
+                                                        foreach ($query->result() AS $row){
+                                                            $begin ="SELECT sum(IF(`type`= 'IN', `quantity`, 0))-sum(IF(`type`= 'OUT', `quantity`, 0)) AS `beginning` FROM `trans_raw` NATURAL JOIN `inv_transact` WHERE  `raw_coffeeid` = '".$row->raw_id."' and month(transact_date) = 12;" ;
+                                                    
+                                                          $query2 = $this->db->query($begin);
+                                                          if ($query2->num_rows() > 0) {
+                                                          foreach ($query2->result() as $object) {
+                                                               echo '<td><b>'  . number_format($object->beginning)  . '</b></td>' ;
+                                                               }
+                                                            }
+                                                        }
+                                                    }else{
+                                                        foreach ($query->result() AS $row){
+                                                        $begin ="SELECT sum(IF(`type`= 'IN', `quantity`, 0))-sum(IF(`type`= 'OUT', `quantity`, 0)) AS `beginning` FROM `trans_raw` NATURAL JOIN `inv_transact` WHERE  `raw_coffeeid` = '".$row->raw_id."' and month(transact_date) = ".$month_filt."- 1;" ;
+                                                    
+                                                          $query3 = $this->db->query($begin);
+                                                          if ($query3->num_rows() > 0) {
+                                                          foreach ($query3->result() as $object) {
+                                                               echo '<td><b>'  . number_format($object->beginning)  . '</b></td>' ;
+                                                               }
+                                                            }
+                                                        }
+                                                    }
+                                                
+                                                        
+                                                    
+                                                }else{
+                                                foreach ($query->result() AS $row){
+                                                    $query4 = $this->db->query("SELECT month(now()) AS this_month");
+                                                    if($query4->row()->this_month == '1'){
+                                                $begin ="SELECT sum(IF(`type`= 'IN', `quantity`, 0))-sum(IF(`type`= 'OUT', `quantity`, 0)) AS `beginning` FROM `trans_raw` NATURAL JOIN `inv_transact` WHERE  `raw_coffeeid` = '".$row->raw_id."' and month(transact_date) = 12;" ;
+                                                    }else{
+                                                        $begin ="SELECT sum(IF(`type`= 'IN', `quantity`, 0))-sum(IF(`type`= 'OUT', `quantity`, 0)) AS `beginning` FROM `trans_raw` NATURAL JOIN `inv_transact` WHERE  `raw_coffeeid` = '".$row->raw_id."' and month(transact_date) = month(now()) - 1;" ;
+                                                    }
+                                              $query5 = $this->db->query($begin);
+                                              if ($query5->num_rows() > 0) {
+                                              foreach ($query5->result() as $object) {
+                                                   echo '<td><b>'  . number_format($object->beginning)  . '</b></td>' ;
+                                                   }
+                                                }
+                                                }
+                                                }
+                                                ?>
                                             </tr>
                                         </thead>
                                         <tbody>
-
                                              <?php
-                                                    $con=mysqli_connect("localhost","root","","jhcs");
-                                                    if (mysqli_connect_errno())
-                                                      {
-                                                      echo "Failed to connect to MySQL: " . mysqli_connect_error();
-                                                      }
-                                                    $sql="SELECT * FROM raw_coffee";
+                                                    
 
-                                                    if ($result=mysqli_query($con,$sql))
-                                                      {
+                                                    if($data1['coffeein']->num_rows() > 0){
 
-                                                      $rowcount=mysqli_num_rows($result);
-                                                      mysqli_free_result($result);
-                                                      }
-                                                      mysqli_close($con);
-
-                                                    if($fetch_data->num_rows() > 0){
-
-                                                        foreach($fetch_data -> result() as $row)
+                                                        foreach($data1['coffeein'] -> result() as $row)
                                                         {
                                                 ?>
                                             <tr>
                                                 <td><?php echo $row->transact_date; ?></td>
-
-                                                <td><?php echo $row->sup_company; ?></td>
-                                                
+                                                <td><?php echo $row->supplier; ?></td>
                                                 <?php
-                                                for ($i = 1; $i <= $rowcount; $i++){
-                                                    $colname = "coff" . $i?>
-                                                        <td><?php echo $row->$colname; ?> </td>
+                                                $qcount1 = $this->db->query("SELECT * FROM raw_coffee");
+                                                foreach ($qcount1->result() as $row2){
+                                                    $colname1 = "coffin" . $row2->raw_id; ?>
+                                                        <td><?php echo number_format($row->$colname1); ?> </td>
                                                 <?php
 
                                                 }
                                                 
                                                 ?>
-
-                                                <!--
-                                                <td>3000 g</td>
-                                                <td>8000 g</td>
-                                                <td>4000 g</td>
-                                                <td>5000 g</td>
-                                                <td>3000 g</td>
-                                                <td>7000 g</td> -->
-                                                <td><?php echo $row->packaging; ?></td>
-                                                <td><?php echo $row->machines; ?></td>
-                                                <td><?php echo $row->stickers; ?></td>
                                             </tr>
                                             <?php
                                                     }
@@ -295,15 +366,316 @@ a:focus {
                                                 else{
                                                 ?>
                                                     <tr>
-                                                        <td colspan = 11 style = "text-align: center;"> <h3>No clients found</h3> </td>
+                                                        <td colspan = 11 style = "text-align: center;"> <h3>No data found</h3> </td>
                                                     </tr>
                                                 <?php
                                                 }
 
                                                 ?>
                                         </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Total</th>
+                                                <th></th>
+                                                <?php
+                                                
+                                                if (isset($month_filt)){
+                                                    $query = $this->db->query("SELECT * FROM raw_coffee");
+                                                    foreach ($query->result() AS $row){
+                                                  $totalin ="SELECT raw_coffeeid, sum(quantity) as totalin from trans_raw NATURAL JOIN inv_transact where raw_coffeeid = '".$row->raw_id."' and type = 'IN' and month(transact_date) = '".$month_filt."';" ;
+                                                  $query6 = $this->db->query($totalin);
+                                                  if ($query6->num_rows() > 0) {
+                                                  foreach ($query6->result() as $object) {
+                                                       echo '<th>'  . number_format($object->totalin)  . '</th>' ;
+                                                       }
+                                                    }
+                                                }
+                                                }else{
+                                                    $query = $this->db->query("SELECT * FROM raw_coffee");
+                                                    foreach ($query->result() AS $row){
+                                                  $totalin ="SELECT raw_coffeeid, sum(quantity) as totalin from trans_raw NATURAL JOIN inv_transact where raw_coffeeid = '".$row->raw_id."' and type = 'IN' and month(transact_date) = month(now());" ;
+                                                  $query7 = $this->db->query($totalin);
+                                                  if ($query7->num_rows() > 0) {
+                                                  foreach ($query7->result() as $object) {
+                                                       echo '<th>'  . number_format($object->totalin)  . '</th>' ;
+                                                       }
+                                                    }
+                                                }
+                                                }
+                                                ?>
+                                            </tr>
+                                        </tfoot>
                                     </table>
                                 </div>
+                                </div><hr>
+                   <div class="row">
+                        <div class="card-content table-responsive">
+                            <table id="coffeeout" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th><b>Date Out</b></th>
+                                                <th><b></b></th>
+                                                <?php
+                                                    $conntitle=mysqli_connect("localhost","root","","jhcs");
+                                                    if ($conntitle->connect_error) {
+                                                        die("Connection failed: " . $conntitle->connect_error);
+                                                    } 
+                                                    $sql="SELECT * FROM raw_coffee";
+                                                    $result = $conntitle->query($sql);
+                                                    if ($result->num_rows > 0) {
+                                                        while($row = $result->fetch_assoc()) {
+                                                ?>
+                                                <th><b><?php echo $row["raw_coffee"]; ?></b></th>
+                                                <?php
+                                                    }
+                                                } else {
+                                                    echo "0 results";
+                                                }
+                                                $conntitle->close();
+                                                ?>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                                    
+
+                                                    if($data6['coffeeout']->num_rows() > 0){
+
+                                                        foreach($data6['coffeeout'] -> result() as $row)
+                                                        {
+                                                ?>
+                                            <tr>
+                                                <td><?php echo $row->transact_date; ?></td>
+                                                <td><?php echo $row->client; ?></td>
+                                                <?php
+                                                $qcount2 = $this->db->query("SELECT * FROM raw_coffee");
+                                                foreach ($qcount2->result() as $row3){
+                                                    $colname2 = "coffout" . $row3->raw_id; ?>
+                                                        <td><?php echo number_format($row->$colname2); ?> </td>
+                                                <?php
+
+                                                }
+                                                
+                                                ?>
+                                            </tr>
+                                            <?php
+                                                    }
+
+                                                }
+                                                else{
+                                                ?>
+                                                    <tr>
+                                                        <td colspan = 11 style = "text-align: center;"> <h3>No data found</h3> </td>
+                                                    </tr>
+                                                <?php
+                                                }
+
+                                                ?>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Total</th>
+                                                <th></th>
+                                                <?php
+                                                
+                                                if (isset($month_filt)){
+                                                    $query = $this->db->query("SELECT * FROM raw_coffee");
+                                                    foreach ($query->result() AS $row){
+                                                  $totalout ="SELECT raw_coffeeid, sum(quantity) as totalout from trans_raw NATURAL JOIN inv_transact where raw_coffeeid = '".$row->raw_id."' and type = 'OUT' and month(transact_date) = '".$month_filt."';" ;
+                                                  $query8 = $this->db->query($totalout);
+                                                  if ($query8->num_rows() > 0) {
+                                                  foreach ($query8->result() as $object) {
+                                                       echo '<th>'  . number_format($object->totalout)  . '</th>' ;
+                                                       }
+                                                    }
+                                                }
+                                                }else{
+                                                    $query = $this->db->query("SELECT * FROM raw_coffee");
+                                                    foreach ($query->result() AS $row){
+                                                  $totalout ="SELECT raw_coffeeid, sum(quantity) as totalout from trans_raw NATURAL JOIN inv_transact where raw_coffeeid = '".$row->raw_id."' and type = 'OUT' and month(transact_date) = month(now());" ;
+                                                  $query9 = $this->db->query($totalout);
+                                                  if ($query9->num_rows() > 0) {
+                                                  foreach ($query9->result() as $object) {
+                                                       echo '<th>'  . number_format($object->totalout)  . '</th>' ;
+                                                       }
+                                                    }
+                                                }
+                                                }
+                                                ?>
+                                            </tr>
+                                            <tr>
+
+
+
+
+
+
+
+                                                <th>Ending Inventory</th>
+                                                <th></th>
+                                                <?php
+                                                
+                                                if (isset($month_filt)){
+                                                    $query = $this->db->query("SELECT * FROM raw_coffee");
+                                                    foreach ($query->result() AS $row){
+                                                  $end ="SELECT sum(IF(`type`= 'IN', `quantity`, 0))-sum(IF(`type`= 'OUT', `quantity`, 0)) as ending FROM `trans_raw` NATURAL JOIN `inv_transact` WHERE  `raw_coffeeid` = '".$row->raw_id."' and month(transact_date) = '".$month_filt."';" ;
+                                                  $query10 = $this->db->query($end);
+                                                  if ($query10->num_rows() > 0) {
+                                                  foreach ($query10->result() as $object) {
+                                                       echo '<th>'  . number_format($object->ending)  . '</th>' ;
+                                                       }
+                                                    }
+                                                }
+                                                }else{
+                                                    $query = $this->db->query("SELECT * FROM raw_coffee");
+                                                    foreach ($query->result() AS $row){
+                                                  $end ="SELECT sum(IF(`type`= 'IN', `quantity`, 0))-sum(IF(`type`= 'OUT', `quantity`, 0)) as ending FROM `trans_raw` NATURAL JOIN `inv_transact` WHERE  `raw_coffeeid` = '".$row->raw_id."' and month(transact_date) = month(now());" ;
+                                                  $query11 = $this->db->query($end);
+                                                  if ($query11->num_rows() > 0) {
+                                                  foreach ($query11->result() as $object) {
+                                                       echo '<th>'  . number_format($object->ending)  . '</th>' ;
+                                                       }
+                                                    }
+                                                }
+                                                }
+                                                ?>
+                                                
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <!--<div class="row">
+                                <div class="col-sm-6">
+                                <div class="card-content table-responsive">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
+                                    <h4><b>PACKAGING</b></h4></div>
+                                      <div class="form-group col-xs-6">
+                                    <label>Filter By:</label>
+                                        <div class="input-group input-daterange">
+                                            <input type="text" id="min" class="form-control" value="2000-01-01" >
+                                            <span class="input-group-addon">to</span>
+                                            <input type="text" id="max" class="form-control" value="<?php   echo date("Y-m-d") ?>" >
+                                        </div>
+                                    </div>
+                                    <table id="package" class="table hover order-column" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th><b>Date In</b></th>
+                                                <th><b>Supplier</b></th>
+                                                <th><b>Bag</b></th>
+                                                <th><b>Size</b></th>
+                                                <th><b>Quantity</b></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php 
+                                                foreach($data2["packagein"] as $row)
+                                                {
+                                            ?>
+                                                    <tr>
+                                                        <td><?php echo $row->date_received; ?></td>
+                                                         <td><?php echo $row->sup_company; ?></td>
+                                                         <td><?php echo $row->bag; ?></td>
+                                                         <td><?php echo number_format($row->size); ?></td>
+                                                         <td><?php echo number_format($row->qty); ?></td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                                <div class="col-sm-6">
+                                <div class="card-content table-responsive">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
+                                    <h4><b>STICKER</b></h4></div>
+                                      <div class="form-group col-xs-6">
+                                    <label>Filter By:</label>
+                                        <div class="input-group input-daterange">
+                                            <input type="text" id="min" class="form-control" value="2000-01-01" >
+                                            <span class="input-group-addon">to</span>
+                                            <input type="text" id="max" class="form-control" value="<?php   echo date("Y-m-d") ?>" >
+                                        </div>
+                                    </div>
+                                    <table id="sticker" class="table hover order-column" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th><b>Date In</b></th>
+                                                <th><b>Supplier</b></th>
+                                                <th><b>Sticker</b></th>
+                                                <th><b>Quantity</b></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php 
+                                                foreach($data3["stickerin"] as $row)
+                                                {
+                                            ?>
+                                                    <tr>
+                                                        <td><?php echo $row->date_received; ?></td>
+                                                         <td><?php echo $row->sup_company; ?></td>
+                                                         <td><?php echo $row->sticker; ?></td>
+                                                         <td><?php echo number_format($row->qty); ?></td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                                </div><hr>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                <div class="card-content table-responsive">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="padding-bottom: 10px;">
+                                    <h4><b>MACHINE</b></h4></div>
+                                      <div class="form-group col-xs-6">
+                                    <label>Filter By:</label>
+                                        <div class="input-group input-daterange">
+                                            <input type="text" id="min" class="form-control" value="2000-01-01" >
+                                            <span class="input-group-addon">to</span>
+                                            <input type="text" id="max" class="form-control" value="<?php   echo date("Y-m-d") ?>" >
+                                        </div>
+                                    </div>
+                                    <table id="machine" class="table hover order-column" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th><b>Date In</b></th>
+                                                <th><b>Supplier</b></th>
+                                                <th><b>Machine</b></th>
+                                                <th><b>Quantity</b></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php 
+                                                foreach($data4["machinein"] as $row)
+                                                {
+                                            ?>
+                                                    <tr>
+                                                        <td><?php echo $row->date_received; ?></td>
+                                                         <td><?php echo $row->sup_company; ?></td>
+                                                         <td><?php echo $row->machine; ?></td>
+                                                         <td><?php echo number_format($row->qty); ?></td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            </div><hr>-->
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
                             </div>
                         </div>
                     </div>
@@ -314,7 +686,6 @@ a:focus {
 <!--   Core JS Files   -->
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/js/bootstrap-datepicker.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/dataTables.buttons.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/buttons.flash.min.js" type="text/javascript"></script>
@@ -323,93 +694,108 @@ a:focus {
 <script src="<?php echo base_url(); ?>assets/FileExport/jszip.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/pdfmake.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/vfs_fonts.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/datepicker.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/material.min.js" type="text/javascript"></script>
 <!--  Charts Plugin -->
-<script src="../assets/js/chartist.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/chartist.min.js"></script>
 <!--  Dynamic Elements plugin -->
-<script src="../assets/js/arrive.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/arrive.min.js"></script>
 <!--  PerfectScrollbar Library -->
-<script src="../assets/js/perfect-scrollbar.jquery.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/perfect-scrollbar.jquery.min.js"></script>
 <!--  Notifications Plugin    -->
-<script src="../assets/js/bootstrap-notify.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/bootstrap-notify.js"></script>
 <!--  Google Maps Plugin    -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 <!-- Material Dashboard javascript methods -->
-<script src="../assets/js/material-dashboard.js?v=1.2.0"></script>
+<script src="<?php echo base_url(); ?>assets/js/material-dashboard.js?v=1.2.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-<script src="../assets/js/demo.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/dataTables.responsive.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/responsive.bootstrap.min.js"></script>
 
-<script>   
-    
-    
-    $.fn.dataTableExt.afnFiltering.push(
-        function(oSettings, aData, iDataIndex){
-            var dateStart = parseDateValue($("#min").val());
-            var dateEnd = parseDateValue($("#max").val());
-            var evalDate= parseDateValue(aData[4]);
 
-            if (evalDate >= dateStart && evalDate <= dateEnd) {
-                return true;
-            }
-            else {
-                return false;
-            }
-    });
-    //Date Converter
-    function parseDateValue(rawDate) {
-        var month = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
-        var dateArray = rawDate.split(" ");
-        var parsedDate = dateArray[2] + month + dateArray[0];
-        return parsedDate;
-    }
-
-
-    var oTable = $('#example').dataTable({ 
+<script>
+$(document).ready(function() {
+    $('#coffeein').DataTable({
+        "responsive": true,
+        "orderCellsTop": true,
         "dom":' fBrtip',
         "lengthChange": false,
         "info":     false,
-		buttons: [
-            { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs',
-                exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+        buttons: [
+            { extend: 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs', footer: true,
+                customize: function ( win ) { 
+                     $(win.document.body) .css( 'font-size', '10pt' )
+                    .prepend( '<label style="position:absolute; top:55; left:5;"><H4><b><?php echo $monthName; ?> <?php echo $year; ?> </b></H4></label>');
+                        $(win.document.body).find( 'table' )
+                            .addClass( 'compact' )
+                            .css( 'font-size', 'inherit' );
+                    $(win.document.body).find( 'thead' ).prepend('<div class="header-print">' + $('#dt-header').val() + '</div>');
                 }
             },
-            
-			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> CSV',"className": 'btn btn-success btn-xs',
-                exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5, 6, 7, 8]
-                }
-            },
-            
-			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs',
-                exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5, 6, 7 ,8]
-                }
+            { "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs', footer: true },
+            { "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs', footer: true, 
+                orientation: 'portrait',
+                        exportOptions: {
+                         columns: ':visible'
+                 
+                        },
+                    customize: function (doc) {
+                        doc.defaultStyle.alignment = 'right';
+                        doc.styles.tableHeader.alignment = 'center';
+                        doc.pageMargins = [50,50,100,80];
+                        doc.defaultStyle.fontSize = 10;
+                        doc.styles.tableHeader.fontSize = 10;
+                        doc.styles.title.fontSize = 12;
+                         doc.content[1].table.widths = [ '14%', '14%', '14%', '14%', '14%', '14%', '14%', '14%']; }
             }
         ]
+      
     });
 
-    $('#min,#max').datepicker({
-        format: "yyyy-mm-dd",
-        weekStart: 1,
-        daysOfWeekHighlighted: "0",
-        autoclose: true,
-        todayHighlight: true
+});
+</script>
+<script>
+$(document).ready(function() {
+    $('#coffeeout').DataTable({
+        "responsive": true,
+        "orderCellsTop": true,
+        "dom":' fBrtip',
+        "lengthChange": false,
+        "info":     false,
+        buttons: [
+            { extend: 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs', footer: true,
+                customize: function ( win ) { 
+                     $(win.document.body) .css( 'font-size', '10pt' )
+                    .prepend( '<label style="position:absolute; top:55; left:5;"><H4><b><?php echo $monthName; ?> <?php echo $year; ?> </b></H4></label>');
+                        $(win.document.body).find( 'table' )
+                            .addClass( 'compact' )
+                            .css( 'font-size', 'inherit' );
+                    $(win.document.body).find( 'thead' ).prepend('<div class="header-print">' + $('#dt-header').val() + '</div>');
+                }
+            },
+            { "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs', footer: true },
+            { "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs', footer: true, 
+                orientation: 'portrait',
+                        exportOptions: {
+                         columns: ':visible'
+                 
+                        },
+                    customize: function (doc) {
+                        doc.defaultStyle.alignment = 'right';
+                        doc.styles.tableHeader.alignment = 'center';
+                        doc.pageMargins = [50,50,100,80];
+                        doc.defaultStyle.fontSize = 10;
+                        doc.styles.tableHeader.fontSize = 10;
+                        doc.styles.title.fontSize = 12;
+                         doc.content[1].table.widths = [ '14%', '14%', '14%', '14%', '14%', '14%', '14%', '14%']; }
+            }
+        ]
+      
     });
 
-    // Event Listeners
-    $("#min").datepicker().on( 'changeDate', function() {
-        oTable.fnDraw(); 
-    });
-    $("#max").datepicker().on( 'changeDate', function() { 
-        oTable.fnDraw(); 
-    });
-    
-
-
+});
 </script>
 
 </html>

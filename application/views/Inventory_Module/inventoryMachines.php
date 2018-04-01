@@ -26,6 +26,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' type='text/css'>
     <link rel="shortcut icon" href="favicon.ico">
 </head>
+<style>
+.title {
+    font-size: large;
+    padding-top: 15px;
+
+}
+</style>
 <body>
     <div class="wrapper">
         <div class="sidebar" data-color="blue" data-image="<?php echo base_url(); ?>assets/img/sidebar-0.jpg">
@@ -81,19 +88,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="main-panel">
             <nav class="navbar navbar-transparent navbar-absolute">
                 <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#"> </a>
-                    </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown">
-                                <li>
+                            
+                                <li id="nameheader">
                                     <?php $username = $this->session->userdata('username') ?>
                                 
                                 <?php
@@ -106,12 +104,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             }
                                         ?>
                                 </li>
-                            </li>
+                           
                             <li>
                                 <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="material-icons">person</i>
                                         <p class="hidden-lg hidden-md">Profile</p>
-                                    </a>
+                                </a>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a href="<?php echo base_url(); ?>inventoryUser">User Profile</a>
@@ -127,13 +125,57 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </li>
                                 </ul>
                             </li>
+                               
+       <!------------------                                          NOTIFICATION                    ---------------------------------->           
+                            
+                            <li>
+                            
+                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="material-icons">announcement</i>
+                                        <p class="hidden-lg hidden-md">Profile</p>
+                                       <span class="label-count" style='background-color: #f44336;'> <?php 
+                                           
+                              $total = 0;
+                                for($i = 0; $i <= 3 ;$i++){
+                                     if(!empty($reorder[$i])){
+                                          foreach($reorder[$i] as $object){
+                                              $total = $total+1;
+                                                 
+                                             }
+                                      }
+                                 } echo $total;
+                                           ?>   </span> </a>
+                            
+                            
+                            
+                            
+                                <ul class="dropdown-menu">
+                                    
+                                   <?php 
+                                 for($i = 0; $i <= 3 ;$i++){
+                                     if(!empty($reorder[$i])){
+                                          foreach($reorder[$i] as $object){
+                                            echo   '<li><a href="inventoryStocks">' . $object->name . "     " . $object->type. ' now drops below the re-order level</a></li>';
+                                                 
+                                             }
+                                      }
+                                 }
+                                    ?>
+                                   
+                                </ul>
+                            
+                            </li>
+                            
+                            
+                            
+    <!------------------                                          NOTIFICATION                    ---------------------------------->           
+
+                        
                         </ul>
                     </div>
+                
                 </div>
             </nav>
-            
-            
-            
             
             
             
@@ -189,7 +231,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <tbody>
                                                 
                                              <?php
-                                              $retrieveDetails ="SELECT * FROM jhcs.machine_out NATURAL JOIN machine NATURAL JOIN contracted_client where mach_id = ".$details ;
+                                              $retrieveDetails ="SELECT * FROM jhcs.machine_out NATURAL JOIN machine NATURAL JOIN contracted_client where mach_id = ".$id ;
                                               $query = $this->db->query($retrieveDetails);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
@@ -207,7 +249,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         ?>  
 
                                         <?php
-                                              $retrieveDetails2 ="SELECT * FROM jhcs.client_machreturn NATURAL JOIN contracted_client WHERE mach_id = ".$details ;
+                                              $retrieveDetails2 ="SELECT * FROM jhcs.client_machreturn NATURAL JOIN contracted_client WHERE mach_id = ".$id ;
                                               $query = $this->db->query($retrieveDetails2);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
@@ -225,7 +267,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         ?>  
 
                                         <?php
-                                              $retrieveDetails3 ="SELECT coService_id, mach_id, client_company, coService_date, mach_qty FROM jhcs.coffeeservice NATURAL JOIN machine NATURAL JOIN contracted_client WHERE mach_id = ".$details ;
+                                              $retrieveDetails3 ="SELECT coService_id, mach_id, client_company, coService_date, mach_qty FROM jhcs.coffeeservice NATURAL JOIN machine NATURAL JOIN contracted_client WHERE mach_id = ".$id ;
                                               $query = $this->db->query($retrieveDetails3);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
@@ -243,7 +285,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         ?>
 
                                         <?php
-                                              $retrieveDetails4 ="SELECT item, qty, date_received, yield_weight, sup_company FROM jhcs.supp_po_ordered INNER JOIN supp_delivery ON supp_po_ordered.supp_po_ordered_id = supp_delivery.supp_po_ordered_id INNER JOIN supp_po ON supp_po.supp_po_id = supp_po_ordered.supp_po_id INNER JOIN supplier ON supplier.sup_id = supp_po.supp_id INNER JOIN machine ON supp_po_ordered.item = machine.brewer_type WHERE mach_id = ".$details ;
+                                              $retrieveDetails4 ="SELECT item, qty, date_received, yield_weight, sup_company FROM jhcs.supp_po_ordered INNER JOIN supp_delivery ON supp_po_ordered.supp_po_ordered_id = supp_delivery.supp_po_ordered_id INNER JOIN supp_po ON supp_po.supp_po_id = supp_po_ordered.supp_po_id INNER JOIN supplier ON supplier.sup_id = supp_po.supp_id INNER JOIN machine ON supp_po_ordered.item = machine.brewer_type WHERE mach_id = ".$id ;
                                               $query = $this->db->query($retrieveDetails4);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
@@ -270,37 +312,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     <div class="form-group">
                                                                         <label class="col-md-6 control">Physical Count :</label>
                                                                         <div class="col-md-4">
-                                                                            <input id="physcount<?php echo $details; ?>" name="physcount<?php echo $details; ?>" type="number" class="form-control" required/>
+                                                                            <input id="physcount<?php echo $details; ?>" name="physcount<?php echo $id; ?>" type="number" class="form-control" required/>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label class="col-md-6 control">Discrepancy :</label>
                                                                         <div class="col-md-4">
-                                                                            <input value="0" id="discrepancy<?php echo $details; ?>" name="discrepancy<?php echo $details; ?>" readonly="" class="form-control" />
+                                                                            <input value="0" id="discrepancy<?php echo $details; ?>" name="discrepancy<?php echo $id; ?>" readonly="" class="form-control" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label class="col-md-6 control">Date of Inventory :</label>
                                                                         <div class="col-md-4">
-                                                                            <input value="<?php   echo date("Y-m-d") ?>" id="date<?php echo $details; ?>" type="date" name="date<?php echo $details; ?>" class="form-control" min="2017-01-01" max="<?php   echo date("Y-m-d") ?>"/>
+                                                                            <input value="<?php   echo date("Y-m-d") ?>" id="date<?php echo $details; ?>" type="date" name="date<?php echo $id; ?>" class="form-control" min="2017-01-01" max="<?php   echo date("Y-m-d") ?>"/>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label class="col-md-6 control">Remarks :</label>
                                                                         <div class="col-md-4">
-                                                                            <textarea style="resize:vertical;" class="form-control" rows="2" name="remarks<?php echo $details; ?>"></textarea>
+                                                                            <textarea style="resize:vertical;" class="form-control" rows="2" name="remarks<?php echo $id; ?>"></textarea>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="type"></label>
                                                                         <div class="col-md-4">
-                                                                            <input value="<?php echo $details; ?>" class="form-control" name="machid<?php echo $details; ?>" type="hidden" />
+                                                                            <input value="<?php echo $id; ?>" class="form-control" name="machid<?php echo $id; ?>" type="hidden" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="type"></label>
                                                                         <div class="col-md-4">
-                                                                            <input value="<?php echo $stock; ?>" class="form-control" id = "stckrstocks<?php echo $details; ?>" name="machstocks<?php echo $details; ?>" type="hidden" />
+                                                                            <input value="<?php echo $stock; ?>" class="form-control" id = "machstocks<?php echo $details; ?>" name="machstocks<?php echo $id; ?>" type="hidden" />
                                                                         </div>
                                                                     </div>
                                                             </div>
@@ -386,6 +428,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <th><b class="pull-left">Type</b></th>
                                             <th><b class="pull-left">Number of Stocks</b></th>
                                             <th><b class="pull-left">Physical Count</b></th>
+                                            <th><b class="pull-left">Discrepancy</b></th>
                                             <th><b class="pull-left">Date of Inventory</b></th>
                                             <th><b class="pull-left">Remarks</b></th>
                                             <th><b class="pull-left">Stock Card</b></th>
@@ -407,6 +450,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 '<td>'  . $object->brewer_type   . '</td>' ,
                                                 '<td><b>'  . number_format($object->mach_stocks)   . ' pc/s</b></td>' ,
                                                 '<td>'  . number_format($object->mach_physcount)   . ' pc/s</td>' ,
+                                                '<td>'  . number_format($object->mach_discrepancy)   . ' pc/s</td>' ,
                                                 '<td>'  . $object->inventory_date   . '</td>' ,
                                                 '<td>'  . $object->mach_remarks   . '</td>' ;
 

@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url(); ?>assets/img/apple-icon.png"/>
     <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/img/favicon.png"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Inventory Stocks</title>
+    <title>Inventory</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
@@ -27,6 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <style>
 .title {
     font-size: large;
+    padding-top: 15px;
 
 }
 </style>
@@ -90,20 +91,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
         </div>
         <div class="main-panel">
-            <nav class="navbar navbar-transparent navbar-absolute">
+           <nav class="navbar navbar-transparent navbar-absolute">
                 <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown">
-                                <li>
+                            
+                                <li id="nameheader">
                                     <?php $username = $this->session->userdata('username') ?>
                                 
                                 <?php
@@ -116,6 +109,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             }
                                         ?>
                                 </li>
+                           
+                            <li>
                                 <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="material-icons">person</i>
                                         <p class="hidden-lg hidden-md">Profile</p>
@@ -135,7 +130,54 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </li>
                                 </ul>
                             </li>
+                               
+       <!------------------                                          NOTIFICATION                    ---------------------------------->           
+                            
+                            <li>
+                            
+                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="material-icons">announcement</i>
+                                        <p class="hidden-lg hidden-md">Profile</p>
+                                       <span class="label-count" style='background-color: #f44336;'> <?php 
+                                           
+                              $total = 0;
+                                for($i = 0; $i <= 3 ;$i++){
+                                     if(!empty($reorder[$i])){
+                                          foreach($reorder[$i] as $object){
+                                              $total = $total+1;
+                                                 
+                                             }
+                                      }
+                                 } echo $total;
+                                           ?>   </span> </a>
+                            
+                            
+                            
+                            
+                                <ul class="dropdown-menu">
+                                    
+                                   <?php 
+                                 for($i = 0; $i <= 3 ;$i++){
+                                     if(!empty($reorder[$i])){
+                                          foreach($reorder[$i] as $object){
+                                            echo   '<li><a href="inventoryStocks">' . $object->name . "     " . $object->type. ' now drops below the re-order level</a></li>';
+                                                 
+                                             }
+                                      }
+                                 }
+                                    ?>
+                                   
+                                </ul>
+                            
+                            </li>
+                            
+                            
+                            
+    <!------------------                                          NOTIFICATION                    ---------------------------------->           
+
+                        
                         </ul>
                     </div>
+                
                 </div>
             </nav>

@@ -29,7 +29,6 @@
 				"brewer_type" =>$this->input->post("type"),
 				"mach_price" =>$this->input->post("price"),
 				"mach_reorder" =>$this->input->post("reorder"),
-				"mach_limit" =>$this->input->post("stocklimit"),
                 "mach_stocks" =>$this->input->post("stocks"),
                 "sup_id" =>$this->input->post("sup_company")
         
@@ -50,11 +49,10 @@
 			$type = $this->input->post("type");
 			$price = $this->input->post("price");
 			$reorder = $this->input->post("reorder");
-			$limit = $this->input->post("limit");
 			$stock_level = $this->input->post("stock_level");
 			$sup_id = $this->input->post("sup_company");
 			$this->AdminMachines_Model->activity_logs('admin', "Updated Coffee Machine: ".$brewer.", ".$type." roast ");
-			$this->AdminMachines_Model->update($id, $brewer, $type, $price, $reorder, $limit, $stock_level, $sup_id);
+			$this->AdminMachines_Model->update($id, $brewer, $type, $price, $reorder, $stock_level, $sup_id);
 			echo "<script>alert('Update successful!');</script>";
 			redirect('adminMachines', 'refresh');
 		}

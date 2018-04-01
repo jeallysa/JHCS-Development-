@@ -22,17 +22,22 @@ class InventoryMachines_Model extends CI_model
   }
 
 
-      function update($machid, $count, $discrepancy, $remarks){
+      function update($machid, $count, $discrepancy, $remarks, $invdate){
+      	
+
 		$data = array(
 	        
 	        'mach_physcount' => $count,
 	        'mach_remarks' => $remarks,
-	        'mach_discrepancy' => $discrepancy
+	        'mach_discrepancy' => $discrepancy,
+	        'inventory_date' => $invdate
 	        
 		);
 
 		$this->db->where('mach_id', $machid);
 		$this->db->update('machine', $data);
+
+
 	}
 
 }

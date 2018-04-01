@@ -4,19 +4,21 @@
 	{
 		function __construct(){
 			parent::__construct();
+			$this->load->model("InventorySamplesList_Model");
+			$this->load->model('notification_model');
 		}
 		
 		public function index()
 		{ 
 			if ($this->session->userdata('username') != '')
             {
-            	$this->load->model("InventorySamplesList_Model");
+            	$data['reorder'] = $this->notification_model->reorder();
 				$smpl_data["fetch_data"] = $this->InventorySamplesList_Model->fetch_data();
 				$smpl_data2["fetch_data2"] = $this->InventorySamplesList_Model->fetch_data2();
 				$data1['get_drnumber'] = $this->InventorySamplesList_Model->get_drnumber();
 				$data2['get_packaging'] = $this->InventorySamplesList_Model->get_packaging();
 				$data3['get_sticker'] = $this->InventorySamplesList_Model->get_sticker();
-				$this->load->view('Inventory_Module/inventorySamplesList', ['smpl_data' => $smpl_data, 'smpl_data2' => $smpl_data2, 'data1' => $data1, 'data2' => $data2, 'data3' => $data3] );
+				$this->load->view('Inventory_Module/inventorySamplesList', [$data, 'smpl_data' => $smpl_data, 'smpl_data2' => $smpl_data2, 'data1' => $data1, 'data2' => $data2, 'data3' => $data3] );
 			} else {
 				redirect('login');
 			}

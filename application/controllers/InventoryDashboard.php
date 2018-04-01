@@ -4,13 +4,15 @@
 	{
 		function __construct(){
 			parent::__construct();
+			$this->load->model('notification_model');
+			$this->load->model('InventoryDashboard_model');
 		}
 		
 		public function index()
 		{ 
             if ($this->session->userdata('username') != '')
 			{
-		        $this->load->model('InventoryDashboard_model');
+		        $data['reorder'] = $this->notification_model->reorder();
 		        $rawcoffeeStock = $this->InventoryDashboard_model->get_rawcoffeestock();
 		        $data1['rawcoffeestock'] = $rawcoffeeStock[0]->rawstock;
 		        $packagingStock = $this->InventoryDashboard_model->get_packagingstock();

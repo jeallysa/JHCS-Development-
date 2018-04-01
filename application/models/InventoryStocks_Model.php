@@ -22,13 +22,28 @@ class InventoryStocks_Model extends CI_model
   }
 
 
-	function update($data, $coffee_id){
+  function updateInventory($data, $modalnum){
+  
+     
+    $query  = $this->db->query("SELECT * FROM raw_coffee NATURAL JOIN supplier WHERE raw_activation = '1';");
+              $res = $query->row();
                
-    $this->db->where('raw_id', $res->coffee_id ); 
-    $this->db->update('raw_coffee', $data);    
    
+     $i=0;
+       
+  foreach($data as $key => $object){
+      
+    
+      
+     $this->db->where('raw_id', $physcountv[$i]);
+    $this->db->update('raw_coffee', $data);
+     
+            
                 
-  }
+         }
+      
+   
+}
       
       
 

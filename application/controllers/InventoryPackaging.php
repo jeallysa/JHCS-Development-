@@ -4,13 +4,15 @@
 	{
 		function __construct(){
 			parent::__construct();
+			$this->load->model("InventoryPackaging_Model");
+			$this->load->model('notification_model');
 		}
 		
 		public function index()
 		{ 
 			if ($this->session->userdata('username') != '')
 			{
-				$this->load->model("InventoryPackaging_Model");
+				$data['reorder'] = $this->notification_model->reorder();
 				$data["packaging"] = $this->InventoryPackaging_Model->retrievePackaging();
 				$this->load->view('Inventory_Module/inventoryPackaging', $data);
 			} else {

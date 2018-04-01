@@ -26,6 +26,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' type='text/css'>
     <link rel="shortcut icon" href="favicon.ico">
 </head>
+<style>
+.title {
+    font-size: large;
+    padding-top: 15px;
+
+}
+</style>
 <body>
     <div class="wrapper">
         <div class="sidebar" data-color="blue" data-image="<?php echo base_url(); ?>assets/img/sidebar-0.jpg">
@@ -81,19 +88,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="main-panel">
             <nav class="navbar navbar-transparent navbar-absolute">
                 <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#"> </a>
-                    </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown">
-                                <li>
+                            
+                                <li id="nameheader">
                                     <?php $username = $this->session->userdata('username') ?>
                                 
                                 <?php
@@ -106,12 +104,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             }
                                         ?>
                                 </li>
-                            </li>
+                           
                             <li>
                                 <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="material-icons">person</i>
                                         <p class="hidden-lg hidden-md">Profile</p>
-                                    </a>
+                                </a>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a href="<?php echo base_url(); ?>inventoryUser">User Profile</a>
@@ -127,14 +125,57 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </li>
                                 </ul>
                             </li>
+                               
+       <!------------------                                          NOTIFICATION                    ---------------------------------->           
+                            
+                            <li>
+                            
+                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="material-icons">announcement</i>
+                                        <p class="hidden-lg hidden-md">Profile</p>
+                                       <span class="label-count" style='background-color: #f44336;'> <?php 
+                                           
+                              $total = 0;
+                                for($i = 0; $i <= 3 ;$i++){
+                                     if(!empty($reorder[$i])){
+                                          foreach($reorder[$i] as $object){
+                                              $total = $total+1;
+                                                 
+                                             }
+                                      }
+                                 } echo $total;
+                                           ?>   </span> </a>
+                            
+                            
+                            
+                            
+                                <ul class="dropdown-menu">
+                                    
+                                   <?php 
+                                 for($i = 0; $i <= 3 ;$i++){
+                                     if(!empty($reorder[$i])){
+                                          foreach($reorder[$i] as $object){
+                                            echo   '<li><a href="inventoryStocks">' . $object->name . "     " . $object->type. ' now drops below the re-order level</a></li>';
+                                                 
+                                             }
+                                      }
+                                 }
+                                    ?>
+                                   
+                                </ul>
+                            
+                            </li>
+                            
+                            
+                            
+    <!------------------                                          NOTIFICATION                    ---------------------------------->           
+
+                        
                         </ul>
                     </div>
+                
                 </div>
             </nav>
-            
-            
-            
-            
             
             
              <?php
@@ -190,7 +231,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 
                                                 
                                              <?php
-                                              $retrieveDetails1 ="SELECT walkin_id, blend_id, walkin_date, walkin_qty FROM jhcs.walkin_sales NATURAL JOIN coffee_blend WHERE blend_id = ".$details ;
+                                              $retrieveDetails1 ="SELECT walkin_id, blend_id, walkin_date, walkin_qty FROM jhcs.walkin_sales NATURAL JOIN coffee_blend WHERE blend_id = ".$id ;
                                               $query = $this->db->query($retrieveDetails1);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
@@ -208,7 +249,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         ?>  
 
                                         <?php
-                                              $retrieveDetails2 ="SELECT contractPO_id, client_company, contractPO_date, contractPO_qty FROM jhcs.contracted_po NATURAL JOIN contracted_client WHERE delivery_stat = 'delivered' AND blend_id = ".$details ;
+                                              $retrieveDetails2 ="SELECT contractPO_id, client_company, contractPO_date, contractPO_qty FROM jhcs.contracted_po NATURAL JOIN contracted_client WHERE delivery_stat = 'delivered' AND blend_id = ".$id ;
                                               $query = $this->db->query($retrieveDetails2);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
@@ -226,7 +267,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         ?>  
 
                                         <?php
-                                              $retrieveDetails3 ="SELECT coService_id, blend_id, client_company, coService_date, coService_qty FROM jhcs.coffeeservice NATURAL JOIN coffee_blend NATURAL JOIN contracted_client WHERE blend_id = ".$details ;
+                                              $retrieveDetails3 ="SELECT coService_id, blend_id, client_company, coService_date, coService_qty FROM jhcs.coffeeservice NATURAL JOIN coffee_blend NATURAL JOIN contracted_client WHERE blend_id = ".$id ;
                                               $query = $this->db->query($retrieveDetails3);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
@@ -244,7 +285,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         ?> 
 
                                         <?php
-                                              $retrieveDetails4 ="SELECT blend_id, client_company, coff_returnDate, coff_returnQty FROM jhcs.client_coffreturn NATURAL JOIN client_delivery NATURAL JOIN contracted_client NATURAL JOIN contracted_po NATURAL JOIN coffee_blend WHERE blend_id = ".$details ;
+                                              $retrieveDetails4 ="SELECT blend_id, client_company, coff_returnDate, coff_returnQty FROM jhcs.client_coffreturn NATURAL JOIN client_delivery NATURAL JOIN contracted_client NATURAL JOIN contracted_po NATURAL JOIN coffee_blend WHERE blend_id = ".$id ;
                                               $query = $this->db->query($retrieveDetails4);
                                               if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
@@ -294,13 +335,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     <div class="form-group">
                                                                         <label for="type"></label>
                                                                         <div class="col-md-4">
-                                                                            <input value="<?php echo $details; ?>" class="form-control" name="blndid<?php echo $details; ?>" type="hidden" />
+                                                                            <input value="<?php echo $id; ?>" class="form-control" name="blndid<?php echo $details; ?>" type="hidden" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="type"></label>
                                                                         <div class="col-md-4">
-                                                                            <input value="<?php echo $stock; ?>" class="form-control" id = "blndstocks<?php echo $details; ?>" name="stckrstocks<?php echo $details; ?>" type="hidden" />
+                                                                            <input value="<?php echo $stock; ?>" class="form-control" id = "blndstocks<?php echo $details; ?>" name="blndstocks<?php echo $details; ?>" type="hidden" />
                                                                         </div>
                                                                     </div>
                                                             </div>
@@ -387,6 +428,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <th><b class="pull-left">Size</b></th>
                                             <th><b class="pull-left">Number of Stocks</b></th>
                                             <th><b class="pull-left">Physical Count</b></th>
+                                            <th><b class="pull-left">Discrepancy</b></th>
                                             <th><b class="pull-left">Date of Inventory</b></th>
                                             <th><b class="pull-left">Remarks</b></th>
                                             <th><b class="pull-left">Stock Card</b></th>
@@ -408,7 +450,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 '<td>'  . $object->package_type   . ' bag</td>' ,
                                                 '<td>'  . number_format($object->package_size)  . ' g</td>' ,
                                                 '<td><b>'  . number_format($object->blend_qty)   . ' pc/s</b></td>' ,
-                                                '<td>'  . number_format($object->package_physcount)  . ' g</td>' ,
+                                                '<td>'  . number_format($object->blend_physcount)  . ' pc/s</td>' ,
+                                                '<td>'  . number_format($object->blend_discrepancy)   . ' pc/s</td>' ,
                                                 '<td>'  . $object->inventory_date  . '</td>' ,
                                                 '<td>'  . $object->blend_remarks  . '</td>' ;
 
