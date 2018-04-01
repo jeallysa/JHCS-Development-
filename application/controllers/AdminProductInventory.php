@@ -56,7 +56,7 @@
 			$this->AdminProductInventory_model->activity_logs('admin', "Inserted New Raw Coffee: ".$name.",".$raw_type." roast ");	
 			$data = $this->security->xss_clean($data);
 			$this->AdminProductInventory_model->insert_data($data);
-			echo "<script>alert('Update successful!');</script>";
+			echo "<script>alert('Inserted successful!');</script>";
 			redirect('adminProductInventory', 'refresh');
 		}
  
