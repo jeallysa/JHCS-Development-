@@ -100,6 +100,7 @@
 			// $this->SalesReturns_model->ResolveMachineReturnsB($MRID, $resolved);
 			$this->SalesReturns_model->less_machine($m_id, $qty);
 			$this->SalesReturns_model->update_mach_return($MRID);
+			$this->SalesReturns_model->update_mach_return_rent($c_id, $remarks);
 			echo "<script>alert('Blend Return has been resolved!');</script>";
 			redirect('SalesReturns/index');
 		}

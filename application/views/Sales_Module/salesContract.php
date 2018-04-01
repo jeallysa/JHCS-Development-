@@ -360,6 +360,11 @@
                                                                         <label class="col-md-3 control">Remarks:</label>
                                                                         <input class="form-control col-md-3" type="text" name="remarks" required="">
                                                                          <input name="serial" type="hidden" class="form-control" value="<?php echo $row->mach_serial; ?>" >
+                                                                         <input name="client_id" type="hidden" class="form-control" value="<?php 
+                                                                            $cli_id = $_GET['id'];
+                                                                            echo $cli_id;
+                                                                         ; ?>
+                                                                         " >
                                                                          <input name="cli_id" type="hidden" class="form-control" value="<?php echo $row->client_id; ?>
                                                                          " >
                                                                          <input name="sales_id" type="hidden" class="form-control" value="<?php echo $row->mach_salesID; ?>

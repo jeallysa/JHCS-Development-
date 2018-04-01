@@ -82,7 +82,12 @@
 
 
 		public function update_mach_return($MRID){
-			$this->db->query("UPDATE client_machreturn SET client_machreturn.resolved = 'Yes' WHERE client_machreturn.client_machReturnID = '".$MRID."';");
+			$this->db->query("UPDATE client_machreturn SET client_machreturn.resolved = 'Yes', mach_returnQty = '0' WHERE client_machreturn.client_machReturnID = '".$MRID."';");
+			
+		}
+
+		public function update_mach_return_rent($c_id){
+			$this->db->query("UPDATE machine_out SET machine_out.remarks = 'Received' WHERE client_id = '".$c_id."';");
 			
 		}
 

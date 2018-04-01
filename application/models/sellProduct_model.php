@@ -14,7 +14,7 @@ class sellProduct_model extends CI_MODEL
 	}
 
 	Public function getSoldMachine(){
-		$query2=$this->db->query("SELECT *, machine.mach_id, machine_out.mach_serial FROM machine_out NATURAL JOIN contracted_client NATURAL JOIN machine LEFT OUTER JOIN client_machreturn ON client_machreturn.mach_serial = machine_out.mach_serial WHERE status = 'sold'");
+		$query2=$this->db->query("SELECT *, machine.mach_id, machine_out.mach_serial, contracted_client.client_id FROM machine_out NATURAL JOIN contracted_client NATURAL JOIN machine LEFT OUTER JOIN client_machreturn ON client_machreturn.mach_serial = machine_out.mach_serial WHERE status = 'sold'");
 		return $query2->result();
 	}
 

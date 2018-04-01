@@ -18,6 +18,7 @@
     <link href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="<?php echo base_url(); ?>assets/css/demo.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/responsive.bootstrap.min.css" rel="stylesheet" />
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
@@ -260,6 +261,7 @@ a:focus {
                             <h4 class="title">Reminder</h4>
                         </div>
                         <div class="card-content table-responsive">
+<<<<<<< HEAD
                             <table id=example class="table table-hover">
                                 <tbody>
 											
@@ -307,6 +309,45 @@ a:focus {
 
 										 	?>
 												
+=======
+                            <table id=example class="table table-striped table-bordered dt-responsive nowrap">
+                               <thead>
+                                            <tr>
+                                                <th><b>Delivery Receipt No.</b></th>
+                                                <th><b>Sales Invoice No.</b></th>
+                                                <th><b>Date</b></th>
+                                                <th><b>Client</b></th>
+                                                <th><b>Coffee</b></th>
+                                                <th><b>Packaging</b></th>
+                                                <th><b>Size</b></th>
+                                                <th><b>Quantity</b></th>
+                                                <th><b>Unit Price</b></th>
+                                                <th><b>Total Amount</b></th>
+                                                <th><b>Remarks</b></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                           
+                                             <?php 
+                                                foreach ($data5['sales'] as $row) {
+                                             ?>
+                                            <tr>
+                                                 <td><?php echo $row->client_dr; ?></td>
+                                                 <td><?php echo $row->client_invoice; ?></td>
+                                                 <td><?php echo $row->client_deliverDate; ?></td>
+                                                 <td><?php echo $row->client_company; ?></td>
+                                                 <td><?php echo $row->blend; ?></td>
+                                                 <td><?php echo $row->package_type; ?></td>
+                                                 <td><?php echo $row->package_size; ?></td>
+                                                 <td><?php echo $row->contractPO_qty; ?></td>
+                                                 <td>Php <?php echo number_format($row->blend_price,2); ?></td>
+                                                 <td>Php <?php echo number_format($row->client_balance,2); ?></td>
+                                                 <td><?php echo $row->client_type; ?></td>
+                                             </tr>
+                                             <?php 
+                                                }
+                                              ?>
+>>>>>>> 23aaecac1e70cae4d225ce99505b25532a95f828
                                         </tbody>
                             </table>
                         </div>
@@ -347,6 +388,9 @@ a:focus {
 <script src="<?php echo base_url(); ?>assets/js/material-dashboard.js?v=1.2.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/dataTables.responsive.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/responsive.bootstrap.min.js"></script>
+
 <script type="text/javascript">
 $(document).ready(function() {
     $('#example').DataTable({
@@ -360,7 +404,7 @@ $(document).ready(function() {
                 }
             },
             
-			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> CSV',"className": 'btn btn-success btn-xs',
+			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs',
                 exportOptions: {
                     columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
                 }

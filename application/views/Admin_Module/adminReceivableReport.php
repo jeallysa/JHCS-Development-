@@ -6,7 +6,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
     <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Accounts Receivable Report</title>
+    <title>Accounts Receivables Report</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
@@ -18,6 +18,7 @@
     <link href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="<?php echo base_url(); ?>assets/css/demo.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/responsive.bootstrap.min.css" rel="stylesheet" />
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
@@ -173,51 +174,49 @@ a:focus {
                     <div class="card">
                         <div class="content">
                             <div class="container-fluid">
-                                            <div class="card-header" data-background-color="green">
-                                                <div class="nav-tabs-navigation">
-                                                    <div class="nav-tabs-wrapper">
-                                                        <ul class="nav nav-tabs" data-tabs="tabs" data-background-color="green">
-                                                            <span></span>
-                                                            <li class="">
-                                                                <a href="<?php echo base_url(); ?>adminSalesReport">
-                                                        Sales Report
-                                                        <div class="ripple-container"></div>
-                                                    </a>
-                                                            </li> 
-                                                            <span></span>
-                                                            <li class="">
-                                                                <a href="<?php echo base_url(); ?>adminCollectionReport">
-                                                        Collection Report
-                                                        <div class="ripple-container"></div>
-                                                    </a>
-                                                            </li>
-                                                            <span></span>
-                                                            <li class="active">
-                                                                <a href="<?php echo base_url(); ?>adminReceivableReport">
-                                                        Accounts Receivables Report
-                                                        <div class="ripple-container"></div>
-                                                    </a>
-                                                            </li> 
-                                                            <span></span>
-                                                             <li class="">
-                                                                <a href="<?php echo base_url(); ?>adminInventoryReport">
-                                                        Inventory Report
-                                                        <div class="ripple-container"></div>
-                                                    </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                <div class="card-header" data-background-color="green">
+                                    <div class="nav-tabs-navigation">
+                                        <div class="nav-tabs-wrapper">
+                                            <ul class="nav nav-tabs" data-tabs="tabs" data-background-color="green">
+                                                <li class="">
+                                                    <a href="<?php echo base_url(); ?>adminSalesReport">
+                                            Sales Report
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                                </li> 
+                                                <span></span>
+                                                <li class="">
+                                                    <a href="<?php echo base_url(); ?>adminCollectionReport">
+                                            Collection Report
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                                </li>
+                                                <span></span>
+                                                <li class="active">
+                                                    <a href="<?php echo base_url(); ?>adminReceivableReport">
+                                            Accounts Receivables Report
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                                </li>
+                                                <span></span>
+                                                 <li class="">
+                                                    <a href="<?php echo base_url(); ?>adminInventoryReport">
+                                            Inventory Report
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
                                 
                                 <div class="card-content">
-                                   <table id="example" class="table hover order-column">
+
+                                  <table id="example" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                         <thead>
-                                            <tr>
                                                 <th><b>Date</b></th>
                                                 <th><b>Client</b></th>
                                                 <th><b>Receivables</b></th>
-                                            </tr>
                                         </thead>
                                         <tbody>
                                             <?php 
@@ -232,7 +231,7 @@ a:focus {
                                                 }
                                               ?>
                                         </tbody>
-                                    </table>
+                                        </table>
                                 </div>
                             </div>
                         </div>
@@ -242,20 +241,19 @@ a:focus {
         </div>
 </body>
 <!--   Core JS Files   -->
-<script src="../assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
-<script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
-
-<script src="../assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/bootstrap-datepicker.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/dataTables.buttons.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/buttons.flash.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/FileExport/buttons.html5.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/FileExport/buttons.Html5.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/buttons.print.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/jszip.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/pdfmake.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/FileExport/vfs_fonts.js" type="text/javascript"></script>
-<script src="../assets/js/bootstrap-datepicker.min.js"></script>
-<script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="../assets/js/material.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/material.min.js" type="text/javascript"></script>
 <!--  Charts Plugin -->
 <script src="../assets/js/chartist.min.js"></script>
 <!--  Dynamic Elements plugin -->
@@ -270,16 +268,9 @@ a:focus {
 <script src="../assets/js/material-dashboard.js?v=1.2.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="../assets/js/demo.js"></script>
-<!-- <script type="text/javascript">
-$(document).ready(function() {
-    $('#example').DataTable({
-        dom: 'Bfrtip',
-        buttons: [
-            'excel', 'pdf', 'print'
-        ]
-    });
-});
-</script> -->
+<script src="<?php echo base_url(); ?>assets/js/dataTables.responsive.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/responsive.bootstrap.min.js"></script>
+
 
 <script>   
     
@@ -288,7 +279,7 @@ $(document).ready(function() {
         function(oSettings, aData, iDataIndex){
             var dateStart = parseDateValue($("#min").val());
             var dateEnd = parseDateValue($("#max").val());
-            var evalDate= parseDateValue(aData[2]);
+            var evalDate= parseDateValue(aData[4]);
 
             if (evalDate >= dateStart && evalDate <= dateEnd) {
                 return true;
@@ -305,24 +296,25 @@ $(document).ready(function() {
         return parsedDate;
     }
 
+
     var oTable = $('#example').dataTable({ 
         "dom":' fBrtip',
         "lengthChange": false,
         "info":     false,
-		buttons: [
+        buttons: [
             { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs',
                 exportOptions: {
                     columns: [0, 1, 2]
                 }
             },
             
-			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> CSV',"className": 'btn btn-success btn-xs',
+            { "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> CSV',"className": 'btn btn-success btn-xs',
                 exportOptions: {
                     columns: [0, 1, 2]
                 }
             },
             
-			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs',
+            { "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs',
                 exportOptions: {
                     columns: [0, 1, 2]
                 }
@@ -349,5 +341,4 @@ $(document).ready(function() {
 
 
 </script>
-
 </html>
