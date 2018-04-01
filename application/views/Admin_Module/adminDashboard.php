@@ -67,15 +67,20 @@ a:focus {
     color: #FFFFFF;
     box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2);
 }
+	.select-pane {
+        display: none;
+    }
+		.no-border{
+			border: none !important;
+			
+		}
+		
 </style>
 
 <body>
     <div class="wrapper">
-        <div class="sidebar" data-color="green" data-image="<?php echo base_url(); ?>assets/img/sidebar-1.jpg">
-            <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
-        Tip 2: you can also add an image using data-image tag
-    -->
+        <div class="sidebar" data-color="green" data-image="<?php echo base_url(); ?>assets/img/sidebar-0.jpg">
+
             <div class="logo ">
                 <img src="<?php echo base_url(); ?>assets/img/logo.png" alt="image1" width="250px" height="150px">
             </div>
@@ -83,7 +88,7 @@ a:focus {
                 <ul class="nav">
                     <li class="active">
                         <a href="<?php echo base_url(); ?>adminDashboard">
-                            <i class="material-icons">dashboard</i>
+                            <i class="material-icons">dashboard</i><i class="material-icons pull-right select-pane" style="color:red !important">error</i>
                             
                             <p>Dashboard</p>
                         </a>
@@ -252,46 +257,56 @@ a:focus {
                 <div class="col-lg-12 col-md-12">
                     <div class="card">
                         <div class="card-header" data-background-color="green">
-                            <h4 class="title">Sales</h4>
+                            <h4 class="title">Reminder</h4>
                         </div>
                         <div class="card-content table-responsive">
                             <table id=example class="table table-hover">
-                               <thead>
-                                            <tr>
-                                                <th><b>Delivery Receipt No.</b></th>
-                                                <th><b>Sales Invoice No.</b></th>
-                                                <th><b>Date</b></th>
-                                                <th><b>Client</b></th>
-                                                <th><b>Coffee</b></th>
-                                                <th><b>Packaging</b></th>
-                                                <th><b>Size</b></th>
-                                                <th><b>Quantity</b></th>
-                                                <th><b>Unit Price</b></th>
-                                                <th><b>Total Amount</b></th>
-                                                <th><b>Remarks</b></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                           
-                                             <?php 
-                                                foreach ($data5['sales'] as $row) {
-                                             ?>
-                                            <tr>
-                                                 <td><?php echo $row->client_dr; ?></td>
-                                                 <td><?php echo $row->client_invoice; ?></td>
-                                                 <td><?php echo $row->client_deliverDate; ?></td>
-                                                 <td><?php echo $row->client_company; ?></td>
-                                                 <td><?php echo $row->blend; ?></td>
-                                                 <td><?php echo $row->package_type; ?></td>
-                                                 <td><?php echo $row->package_size; ?></td>
-                                                 <td><?php echo $row->contractPO_qty; ?></td>
-                                                 <td>Php <?php echo number_format($row->blend_price,2); ?></td>
-                                                 <td>Php <?php echo number_format($row->client_balance,2); ?></td>
-                                                 <td><?php echo $row->client_type; ?></td>
-                                             </tr>
-                                             <?php 
-                                                }
-                                              ?>
+                                <tbody>
+											
+												
+											<?php
+										
+												$query = $this->db->query("SELECT date_expiration,client_id,client_company,seen_admin FROM contract NATURAL JOIN contracted_client WHERE seen_admin='0'");
+												$date = date('Y-m-d');
+												
+												
+												if(!empty($query)){
+													foreach($query->result() as $object){
+														if($object->date_expiration == $date){
+															if($object->seen_admin ==  '0'){
+												?>
+
+													<tr>
+														<td>
+															<span > The contract of <?php echo $object->client_company; ?> client has Expired. </span>
+															<input class="no-border" type="text" value="<?php echo $object->client_id; ?>" id="idClient" readonly />
+														</td >
+														<td class="td-actions text-right"><button type="submit" class="btn btn-primary pull-right" id="check" data-id="<?php echo $object->client_id; ?>" >Details</button></td>
+													</tr>
+											
+													
+													<?php
+															}elseif($object->seen_admin == '1'){
+													?>
+													<tr>
+														<td>
+															<span> The contract of <?php echo $object->client_company; ?> client has Expired. </span>
+															<input class="no-border" type="text" value="<?php echo $object->client_id; ?>" id="idClient" readonly />
+														</td >
+														<td class="td-actions text-right"><button type="submit" class="btn btn-default pull-right" id="check" data-id="<?php echo $object->client_id; ?>" >Details</button></td>
+													</tr>
+													<?php
+																
+															}
+														}else{
+
+													}	}
+												}else{
+													echo 0;
+												}
+
+										 	?>
+												
                                         </tbody>
                             </table>
                         </div>
@@ -374,6 +389,35 @@ $(function() {
         off: 'Disabled'
     });
 })
+</script>
+<script type="text/javascript">
+	var id = document.getElementById('idClient').value;
+	$.ajax({
+		url:'<?=base_url()?>AdminDashboard/getExpire/' +id,
+		method: 'POST',
+		success:function(data){
+					$(".select-pane").show();
+		}
+	});
+	$(document).ready(function() {
+		demo.initDashboardPageCharts();
+
+		$(document).on('click', '#check', function(e){   
+			e.preventDefault();
+			var id = $(this).data('id'); 
+				$.ajax({
+					url:'<?=base_url()?>AdminDashboard/updateSeen/' +id,
+					method: 'POST',
+					success:function(data){
+						$(".select-pane").hide();
+						alert('naupdate na!');
+					}
+
+					});
+
+		});
+
+	});	
 </script>
 
 </html>

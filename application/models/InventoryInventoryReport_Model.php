@@ -6,7 +6,7 @@ class InventoryInventoryReport_model extends CI_Model {
 		$count = $this->db->count_all_results('raw_coffee');
         $qcount = $this->db->query("SELECT * FROM raw_coffee;");
 		$query_append = "SELECT a.* FROM
-                            (SELECT c.trans_id AS main_id, c.type AS type, c.transact_date AS transact_date, c.po_supplier as po_no, f.sup_company as supplier";
+                            (SELECT c.trans_id AS main_id, c.type AS type, c.transact_date AS transact_date, c.po_supplier as po_no, 'Company' as supplier";
 
 		foreach ($qcount->result() AS $row){
 			$query_append .= ", SUM(CASE
@@ -35,7 +35,7 @@ class InventoryInventoryReport_model extends CI_Model {
 		$count = $this->db->count_all_results('raw_coffee');
                  $qcount = $this->db->query("SELECT * FROM raw_coffee;");
 		$query_append = "SELECT a.* FROM
-                            (SELECT c.trans_id AS main_id, c.type AS type, c.transact_date AS transact_date, c.po_supplier as po_no, f.sup_company as supplier";
+                            (SELECT c.trans_id AS main_id, c.type AS type, c.transact_date AS transact_date, c.po_supplier as po_no, 'Company' as supplier";
 
 		foreach ($qcount->result() AS $row){
 			$query_append .= ", SUM(CASE
@@ -64,7 +64,7 @@ class InventoryInventoryReport_model extends CI_Model {
     public function get_coffeeout(){
 		$count = $this->db->count_all_results('raw_coffee');
 		$query_append = "SELECT a.* FROM
-							(SELECT c.trans_id AS main_id, c.transact_date AS transact_date, c.type AS type, c.dr_client as dr_no, f.client_company as client";
+							(SELECT c.trans_id AS main_id, c.transact_date AS transact_date, c.type AS type, c.dr_client as dr_no, 'Contracted Client' as client";
 
 		for ($i = 0; $i <= $count; $i++){
 			$query_append .= ", SUM(CASE
@@ -101,7 +101,7 @@ class InventoryInventoryReport_model extends CI_Model {
     public function get_coffeeoutWithP($sdf){
 		$count = $this->db->count_all_results('raw_coffee');
 		$query_append = "SELECT a.* FROM
-							(SELECT c.trans_id AS main_id, c.transact_date AS transact_date, c.type AS type, c.dr_client as dr_no, f.client_company as client";
+							(SELECT c.trans_id AS main_id, c.transact_date AS transact_date, c.type AS type, c.dr_client as dr_no, 'Contracted Client' as client";
 
 		for ($i = 0; $i <= $count; $i++){
 			$query_append .= ", SUM(CASE

@@ -93,7 +93,6 @@
 			$serial= $this->input->post('serial');
 			$qty= $this->input->post('qty');
 			$MRID= $this->input->post('MRID');
-
 			$remarks = 'Received';
 
 			// $this->SalesReturns_model->ResolveMachineReturnsA($c_id, $m_id, $date, $remarks, $serial, $qty);

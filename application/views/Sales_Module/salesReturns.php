@@ -18,6 +18,7 @@
     <link href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="<?php echo base_url(); ?>assets/css/demo.css" rel="stylesheet" />
+	<link href="<?php echo base_url(); ?>assets/css/sales.css" rel="stylesheet" />
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
@@ -41,11 +42,11 @@
 			
 		}
 		.navbar-default > li.active > a, .navbar-default > li.active > a:focus, .navbar-default > li.active > a:hover {
-			border-top: 1px solid #CC99FF !important;
-			border-right: 1px solid #CC99FF !important;
-			border-left: 1px solid #CC99FF !important;
+			border-top: 1px solid #4cb1d1 !important;
+			border-right: 1px solid #4cb1d1 !important;
+			border-left: 1px solid #4cb1d1 !important;
 			border-bottom: transparent !important;
-			background-color: #CC99FF !important;
+			background-color: #4cb1d1 !important;
 			color: white !important;
 		}
 		.navbar-default > li.active > a {
@@ -55,7 +56,7 @@
 		}
 		.navbar-default > li > a, .navbar-default > li > a:hover {
 			border: none;
-			color: #CC99FF !important; 
+			color: #4cb1d1 !important; 
 			background: transparent; 
 		}
 		.navbar-default > li > a::after {
@@ -74,15 +75,15 @@
 			transform: scale(1); 
 		}
 		.tab-nav > li > a::after {
-			background: #21527d none repeat scroll 0% 0%; color: #fff;
+			background: #4cb1d1 none repeat scroll 0% 0%; color: #fff;
 		}
 		.tab-pane { 
 			padding: 15px 0;
 		}
 		.tab-color{	
 			padding:20px;
-			border-top: 3px solid #CC99FF;
-			border-left: 2px solid #CC99FF;
+			border-top: 3px solid #4cb1d1;
+			border-left: 2px solid #4cb1d1;
 		}
 		
 		.select-pane {
@@ -107,8 +108,8 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        <div class="sidebar sidebar-color" data-color="purple" data-image="../assets/img/sidebar-0.pg">
+    <div class="wrapper" >
+        <div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
             <div class="logo">
                 <img src="../assets/img/logo.png" alt="image1" width="250px" height="150px">
             </div>
