@@ -268,7 +268,10 @@
                                                         <td><?php echo number_format($row->package_size); ?> g</td>
                                                         <td><?php echo $row->coff_remarks; ?></td>
                                                         <td>
-                                                            <button class="btn btn-danger btn-sm viewCoffeeReturns" style="margin-top: 0px" data-toggle="modal" data-target="#resolve_coffee" id="getDetails" data-id="<?php echo $row->client_id; ?>"> Resolve</button>
+                                                            <button class="btn btn-danger btn-sm viewCoffeeReturns" style="margin-top: 0px" data-toggle="modal" data-target="#resolve_coffee" id="getDetails" data-id="<?php echo $row->client_id; ?>" > 
+                                                            Resolve</button>
+                                                            <input value="<?php echo $row->client_deliveryID; ?> " id='delID' type="hidden" />
+                                                            <input value="<?php echo $row->client_coffReturnID; ?> " id='retID' type="hidden" />
                                                         </td>
                                                     </tr>
                                                     <?php
@@ -342,6 +345,10 @@
                                             <div class="form-group">
                                                 <label class="col-md-5 control">Returned Quantity :</label>
                                                 <p class="col-md-5 control"><b><?php echo $row->walkin_returns; ?></b></p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-5 control">Date Resolved :</label>
+                                                <input type="date" name="date_resolved" class="form_control" required="">
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-md-5 control">Remarks :</label>
@@ -488,8 +495,6 @@
                                                         </table>
                                                     </div>
                                                 </div>
-                                                
-
                                             </div>
                                         </div>
                                     </div>
@@ -551,6 +556,10 @@
 															<p><b><input name="quantity" id="Originalquantity" class="no-border" type="disabled"  readonly></b></p>
 														</div>
 													</div>
+                                                <div class="form-group">
+                                                    <label class="col-md-5 control">Date Resolved :</label>
+                                                    <input type="date" name="date_resolved" required="">
+                                                </div>
 												</div>
                                             </div>
                                         </div>
@@ -700,13 +709,14 @@ $(document).ready(function() {
 $(document).ready(function(){  
     $(document).on('click', '#getDetails', function(e){   
         e.preventDefault();
-        var id = $(this).data('id');  
+        var id = $(this).data('id'); 
+        var delID = document.getElementById('delID').value;
   
         jQuery.ajax({
             method: 'GET',
             type: 'ajax',
 			dataType: 'json',
-            url: '<?=base_url()?>SalesReturns/getDetails/' + id ,			
+            url: '<?=base_url()?>SalesReturns/getDetails/' + id + '/' + delID ,			
 			success: function(data)
 				{
 					$('[name="PO_ID"]').val(data.contractPO_id);
@@ -728,7 +738,8 @@ $(document).ready(function(){
 				{
 					alert('Error get data from ajax');
 				}         
-                });        
+                });
+           
     });   
 });
 

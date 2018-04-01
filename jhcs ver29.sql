@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 26, 2018 at 07:31 AM
+-- Generation Time: Apr 02, 2018 at 12:04 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -30,7 +30,7 @@ CREATE TABLE `activitylogs` (
   `activitylogs_id` int(11) NOT NULL,
   `user_no` varchar(45) NOT NULL,
   `timestamp` datetime NOT NULL,
-  `message` varchar(45) NOT NULL,
+  `message` varchar(100) NOT NULL,
   `type` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -41,7 +41,8 @@ CREATE TABLE `activitylogs` (
 INSERT INTO `activitylogs` (`activitylogs_id`, `user_no`, `timestamp`, `message`, `type`) VALUES
 (1, '1', '2018-02-17 15:37:58', 'Add samples', 'inventory'),
 (2, '3', '2018-02-19 11:47:15', 'Add returns', 'inventory'),
-(3, '4', '2018-02-20 13:19:27', 'Edit blah blah', 'inventory');
+(3, '4', '2018-02-20 13:19:27', 'Edit blah blah', 'inventory'),
+(4, '5', '2018-03-27 07:43:03', 'Inserted: \'Jeanne, Jeanne Machine\'', 'admin');
 
 -- --------------------------------------------------------
 
@@ -61,7 +62,6 @@ CREATE TABLE `category` (
 
 INSERT INTO `category` (`categoryId`, `category`, `activation`) VALUES
 (1, 'Blended Coffee', 1),
-(2, 'Coffee Filter', 1),
 (3, 'Coffee Machine', 1),
 (4, 'Packaging', 1),
 (5, 'Raw Coffee', 1),
@@ -76,24 +76,13 @@ INSERT INTO `category` (`categoryId`, `category`, `activation`) VALUES
 CREATE TABLE `client_coffreturn` (
   `client_coffReturnID` int(11) NOT NULL,
   `client_dr` varchar(20) NOT NULL,
+  `client_deliveryID` int(11) NOT NULL,
   `coff_returnDate` date NOT NULL,
   `coff_returnQty` int(11) NOT NULL,
   `coff_remarks` varchar(50) NOT NULL,
   `coff_returnAction` varchar(50) NOT NULL,
-  `resolved` enum('Yes','No') NOT NULL DEFAULT 'No',
-  `client_deliveryID` int(11) DEFAULT NULL
+  `resolved` enum('Yes','No') NOT NULL DEFAULT 'No'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `client_coffreturn`
---
-
-INSERT INTO `client_coffreturn` (`client_coffReturnID`, `client_dr`, `coff_returnDate`, `coff_returnQty`, `coff_remarks`, `coff_returnAction`, `resolved`, `client_deliveryID`) VALUES
-(9, 'dr1q1', '2018-03-14', 100, 'kulang', 'Sample', 'Yes', 18),
-(10, 'dr222', '2018-03-29', 200, 'Damaged', 'Sample', 'Yes', 16),
-(11, 'dr362', '2018-03-23', 120, 'Spoiled', '', 'No', 19),
-(12, 'dr111', '2018-03-25', 50, 'spoiled', '', 'No', 23),
-(13, 'dr222', '2018-03-24', 50, 'wrong product', '', 'No', 24);
 
 -- --------------------------------------------------------
 
@@ -103,13 +92,15 @@ INSERT INTO `client_coffreturn` (`client_coffReturnID`, `client_dr`, `coff_retur
 
 CREATE TABLE `client_delivery` (
   `client_deliveryID` int(11) NOT NULL,
+  `client_dr` varchar(20) NOT NULL,
   `contractPO_id` int(11) NOT NULL,
-  `client_dr` varchar(50) NOT NULL,
   `client_invoice` varchar(50) NOT NULL,
   `client_deliverDate` date NOT NULL,
   `client_balance` int(11) NOT NULL,
   `client_receive` varchar(50) NOT NULL,
+  `deliver_quantity` int(11) NOT NULL,
   `client_id` int(11) NOT NULL,
+  `amount_paid` int(11) NOT NULL DEFAULT '0',
   `payment_remarks` varchar(25) NOT NULL DEFAULT 'unpaid',
   `return` varchar(10) NOT NULL DEFAULT 'Received'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -118,11 +109,18 @@ CREATE TABLE `client_delivery` (
 -- Dumping data for table `client_delivery`
 --
 
-INSERT INTO `client_delivery` (`client_deliveryID`, `contractPO_id`, `client_dr`, `client_invoice`, `client_deliverDate`, `client_balance`, `client_receive`, `client_id`, `payment_remarks`, `return`) VALUES
-(23, 12, 'dr111', 'si111', '2018-03-25', 51250, 'Jenella Salvador', 2, 'unpaid', 'Returned'),
-(24, 13, 'dr222', 'si222', '2018-03-24', 51250, 'Alvin Noel', 1, 'unpaid', 'Returned'),
-(25, 14, 'dr333', 'si333', '2018-03-19', 20500, 'Joel Cruz', 2, 'paid', 'Received'),
-(26, 15, 'dr444', 'si444', '2018-03-05', 80000, 'Dian Deli', 3, 'paid', 'Received');
+INSERT INTO `client_delivery` (`client_deliveryID`, `client_dr`, `contractPO_id`, `client_invoice`, `client_deliverDate`, `client_balance`, `client_receive`, `deliver_quantity`, `client_id`, `amount_paid`, `payment_remarks`, `return`) VALUES
+(126, 'dr111', 58, 'si222', '2018-04-01', 80000, 'Johny Bravo', 50, 3, 80000, 'paid', 'Received');
+
+--
+-- Triggers `client_delivery`
+--
+DELIMITER $$
+CREATE TRIGGER `update_pay_stat` BEFORE UPDATE ON `client_delivery` FOR EACH ROW IF NEW.client_balance = NEW.amount_paid THEN
+	SET NEW.payment_remarks = 'paid';
+END IF
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -136,42 +134,18 @@ CREATE TABLE `client_machreturn` (
   `mach_returnQty` int(11) NOT NULL,
   `client_id` varchar(20) NOT NULL,
   `mach_id` int(11) NOT NULL,
+  `mach_serial` varchar(60) NOT NULL,
   `mach_remarks` varchar(50) NOT NULL,
-  `mach_returnAction` varchar(50) NOT NULL
+  `mach_returnAction` varchar(50) NOT NULL,
+  `resolved` varchar(11) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT 'No'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `client_machreturn`
 --
 
-INSERT INTO `client_machreturn` (`client_machReturnID`, `mach_returnDate`, `mach_returnQty`, `client_id`, `mach_id`, `mach_remarks`, `mach_returnAction`) VALUES
-(1, '2018-02-13', 1, '1', 1, 'damaged', 'return to supplier'),
-(2, '2018-02-07', 1, '2', 1, 'damaged', 'repair');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `coffeeservice`
---
-
-CREATE TABLE `coffeeservice` (
-  `coService_id` int(11) NOT NULL,
-  `coService_date` date NOT NULL,
-  `coService_credit` varchar(50) NOT NULL,
-  `blend_id` int(11) NOT NULL,
-  `coService_qty` int(11) NOT NULL,
-  `mach_id` int(11) NOT NULL,
-  `mach_qty` int(11) NOT NULL,
-  `client_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `coffeeservice`
---
-
-INSERT INTO `coffeeservice` (`coService_id`, `coService_date`, `coService_credit`, `blend_id`, `coService_qty`, `mach_id`, `mach_qty`, `client_id`) VALUES
-(1, '2018-02-01', '30 day', 1, 300, 1, 1, 1),
-(2, '2018-02-21', '15 day', 2, 300, 2, 1, 2);
+INSERT INTO `client_machreturn` (`client_machReturnID`, `mach_returnDate`, `mach_returnQty`, `client_id`, `mach_id`, `mach_serial`, `mach_remarks`, `mach_returnAction`, `resolved`) VALUES
+(33, '2018-04-04', 0, '2                   ', 1, 's555', 'Maintenance', '', 'Yes');
 
 -- --------------------------------------------------------
 
@@ -189,43 +163,44 @@ CREATE TABLE `coffee_blend` (
   `blend_remarks` varchar(45) DEFAULT 'null',
   `blend_discrepancy` int(11) NOT NULL DEFAULT '0',
   `blend_activation` int(11) NOT NULL DEFAULT '1',
-  `blend_type` varchar(45) NOT NULL
+  `blend_type` varchar(45) NOT NULL,
+  `sticker_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `coffee_blend`
 --
 
-INSERT INTO `coffee_blend` (`blend_id`, `blend`, `package_id`, `blend_price`, `blend_qty`, `blend_physcount`, `blend_remarks`, `blend_discrepancy`, `blend_activation`, `blend_type`) VALUES
-(1, 'Guatemala Rainforest', '4', 1025, 10, 0, NULL, 0, 1, 'Existing'),
-(2, 'Guatemala Rainforest', '5', 615, 7, 0, NULL, 0, 1, 'Existing'),
-(3, 'Guatemala Rainforest', '6', 365, 4, 0, NULL, 0, 1, 'Existing'),
-(4, 'Cordillera Sunrise', '4', 950, 8, 0, NULL, 0, 1, 'Existing'),
-(5, 'Cordillera Sunrise', '5', 575, 6, 0, NULL, 0, 1, 'Existing'),
-(6, 'Cordillera Sunrise', '6', 350, 5, 0, NULL, 0, 1, 'Existing'),
-(7, 'Sumatra Night', '4', 850, 7, 0, NULL, 0, 1, 'Existing'),
-(8, 'Sumatra Night', '5', 530, 10, 0, NULL, 0, 1, 'Existing'),
-(9, 'Sumatra Night', '6', 325, 11, 0, NULL, 0, 1, 'Existing'),
-(10, 'Chef\'s Blend', '4', 800, 5, 0, NULL, 0, 1, 'Existing'),
-(11, 'Chef\'s Blend', '5', 465, 9, 0, NULL, 0, 1, 'Existing'),
-(12, 'Chef\'s Blend', '6', 265, 16, 0, NULL, 0, 1, 'Existing'),
-(13, 'Espresso Blend', '4', 750, 2, 0, NULL, 0, 1, 'Existing'),
-(14, 'Espresso Blend', '5', 415, 3, 0, NULL, 0, 1, 'Existing'),
-(15, 'Espresso Blend', '6', 230, 5, 0, NULL, 0, 1, 'Existing'),
-(16, 'Breakfast Blend', '1', 675, 7, 0, NULL, 0, 1, 'Existing'),
-(17, 'Breakfast Blend', '2', 375, 9, 0, NULL, 0, 1, 'Existing'),
-(18, 'Breakfast Blend', '3', 200, 5, 0, NULL, 0, 1, 'Existing'),
-(19, 'Mabuhay Blend', '1', 600, 4, 0, NULL, 0, 1, 'Existing'),
-(20, 'Mabuhay Blend', '2', 350, 6, 0, NULL, 0, 1, 'Existing'),
-(21, 'Mabuhay Blend', '3', 180, 3, 0, NULL, 0, 1, 'Existing'),
-(22, 'Fiesta Blend', '1', 500, 8, 0, NULL, 0, 1, 'Existing'),
-(23, 'Fiesta Blend', '2', 315, 9, 0, NULL, 0, 1, 'Existing'),
-(24, 'Fiesta Blend', '3', 165, 7, 0, NULL, 0, 1, 'Existing'),
-(25, 'Kalayaan Blend', '1', 400, 5, 0, NULL, 0, 1, 'Existing'),
-(26, 'Kalayaan Blend', '2', 275, 1, 0, NULL, 0, 1, 'Existing'),
-(27, 'Kalayaan Blend', '3', 150, 2, 0, NULL, 0, 1, 'Existing'),
-(28, 'Pizza Volante Blend', '2', 500, 20, 0, NULL, 0, 1, 'Client'),
-(29, 'The Manor Blend', '3', 300, 12, 0, NULL, 0, 1, 'Client');
+INSERT INTO `coffee_blend` (`blend_id`, `blend`, `package_id`, `blend_price`, `blend_qty`, `blend_physcount`, `blend_remarks`, `blend_discrepancy`, `blend_activation`, `blend_type`, `sticker_id`) VALUES
+(1, 'Guatemala Rainforest', '4', 1025, 15, 0, NULL, 0, 1, 'Existing', 1),
+(2, 'Guatemala Rainforest', '5', 615, 15, 0, NULL, 0, 1, 'Existing', 1),
+(3, 'Guatemala Rainforest', '6', 365, 15, 0, NULL, 0, 1, 'Existing', 1),
+(4, 'Cordillera Sunrise', '4', 950, 15, 0, NULL, 0, 1, 'Existing', 1),
+(5, 'Cordillera Sunrise', '5', 575, 15, 0, NULL, 0, 1, 'Existing', 1),
+(6, 'Cordillera Sunrise', '6', 350, 15, 0, NULL, 0, 1, 'Existing', 1),
+(7, 'Sumatra Night', '4', 850, 15, 0, NULL, 0, 1, 'Existing', 1),
+(8, 'Sumatra Night', '5', 530, 15, 0, NULL, 0, 1, 'Existing', 1),
+(9, 'Sumatra Night', '6', 325, 15, 0, NULL, 0, 1, 'Existing', 1),
+(10, 'Chef\'s Blend', '4', 800, 15, 0, NULL, 0, 1, 'Existing', 1),
+(11, 'Chef\'s Blend', '5', 465, 15, 0, NULL, 0, 1, 'Existing', 1),
+(12, 'Chef\'s Blend', '6', 265, 15, 0, NULL, 0, 1, 'Existing', 1),
+(13, 'Espresso Blend', '4', 750, 15, 0, NULL, 0, 1, 'Existing', 1),
+(14, 'Espresso Blend', '5', 415, 15, 0, NULL, 0, 1, 'Existing', 1),
+(15, 'Espresso Blend', '6', 230, 15, 0, NULL, 0, 1, 'Existing', 1),
+(16, 'Breakfast Blend', '1', 675, 15, 0, NULL, 0, 1, 'Existing', 1),
+(17, 'Breakfast Blend', '2', 375, 15, 0, NULL, 0, 1, 'Existing', 1),
+(18, 'Breakfast Blend', '3', 200, 15, 0, NULL, 0, 1, 'Existing', 1),
+(19, 'Mabuhay Blend', '1', 600, 15, 0, NULL, 0, 1, 'Existing', 1),
+(20, 'Mabuhay Blend', '2', 350, 15, 0, NULL, 0, 1, 'Existing', 1),
+(21, 'Mabuhay Blend', '3', 180, 15, 0, NULL, 0, 1, 'Existing', 1),
+(22, 'Fiesta Blend', '1', 500, 15, 0, NULL, 0, 1, 'Existing', 1),
+(23, 'Fiesta Blend', '2', 315, 15, 0, NULL, 0, 1, 'Existing', 1),
+(24, 'Fiesta Blend', '3', 165, 15, 0, NULL, 0, 1, 'Existing', 1),
+(25, 'Kalayaan Blend', '1', 400, 15, 0, NULL, 0, 1, 'Existing', 1),
+(26, 'Kalayaan Blend', '2', 275, 15, 0, NULL, 0, 1, 'Existing', 1),
+(27, 'Kalayaan Blend', '3', 150, 15, 0, NULL, 0, 1, 'Existing', 1),
+(28, 'Pizza Volante Blend', '2', 500, 15, 0, NULL, 0, 1, 'Client', 1),
+(29, 'The Manor Blend', '3', 300, 15, 0, NULL, 0, 1, 'Client', 1);
 
 -- --------------------------------------------------------
 
@@ -243,16 +218,6 @@ CREATE TABLE `company_returns` (
   `sup_returnAction` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `company_returns`
---
-
-INSERT INTO `company_returns` (`company_returnID`, `sup_returnDate`, `sup_id`, `sup_returnQty`, `sup_returnItem`, `sup_returnRemarks`, `sup_returnAction`) VALUES
-(1, '2018-02-21', 1, 25, '1', 'Spoiled', ''),
-(2, '2018-02-21', 1, 30, '1', 'Damage Package', ''),
-(3, '2018-02-21', 2, 50, '2', 'Damage Package', ''),
-(4, '2018-03-07', 2, 11111, '4', 'Incorrect Roast', '');
-
 -- --------------------------------------------------------
 
 --
@@ -264,21 +229,25 @@ CREATE TABLE `contract` (
   `date_started` date NOT NULL,
   `blend_id` int(11) NOT NULL,
   `package_id` int(11) NOT NULL,
-  `mach_id` int(11) NOT NULL,
   `client_id` int(50) NOT NULL,
   `required_qty` int(11) NOT NULL,
-  `credit_term` varchar(20) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `credit_term` varchar(20) NOT NULL,
+  `mach_id` int(50) NOT NULL,
+  `mach_salesID` int(50) NOT NULL,
+  `date_expiration` date DEFAULT NULL,
+  `seen` varchar(45) DEFAULT '0',
+  `seen_admin` varchar(45) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `contract`
 --
 
-INSERT INTO `contract` (`contract_id`, `date_started`, `blend_id`, `package_id`, `mach_id`, `client_id`, `required_qty`, `credit_term`) VALUES
-(3, '2017-10-15', 2, 3, 1, 1, 75, '30 days'),
-(4, '2017-04-11', 4, 6, 1, 2, 125, '15 days'),
-(5, '2016-09-22', 10, 2, 1, 3, 100, '30 days'),
-(6, '2015-03-15', 15, 4, 1, 4, 150, '15 days');
+INSERT INTO `contract` (`contract_id`, `date_started`, `blend_id`, `package_id`, `client_id`, `required_qty`, `credit_term`, `mach_id`, `mach_salesID`, `date_expiration`, `seen`, `seen_admin`) VALUES
+(3, '2017-10-15', 2, 3, 1, 75, '30 days', 1, 1, '2018-03-30', '0', '0'),
+(4, '2017-04-11', 4, 6, 2, 125, '15 days', 1, 1, '2018-03-31', '0', '0'),
+(5, '2016-09-22', 10, 2, 3, 100, '30 days', 1, 1, '2018-03-31', '0', '0'),
+(6, '2015-03-15', 15, 4, 4, 150, '15 days', 1, 1, '2018-03-31', '0', '0');
 
 -- --------------------------------------------------------
 
@@ -297,17 +266,17 @@ CREATE TABLE `contracted_client` (
   `client_contact` varchar(12) NOT NULL,
   `client_type` varchar(20) NOT NULL,
   `client_activation` int(11) NOT NULL DEFAULT '1'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `contracted_client`
 --
 
 INSERT INTO `contracted_client` (`client_id`, `client_company`, `client_fname`, `client_lname`, `client_position`, `client_email`, `client_address`, `client_contact`, `client_type`, `client_activation`) VALUES
-(1, 'Eurotel', 'Amagan', 'Jesselyn', 'General Manager', 'jesselyn22@gmail.com', '#118 Liwanag Loakan, Baguio City', '09176253445', 'Retail', 1),
+(1, 'Eurotel', 'Amagan', 'Jesselyn', 'General Manager', 'jesselyn22@gmail.com', '#118 Liwanag Loakan, Baguio City', '09176253445', 'Coffee Service', 1),
 (2, 'De Vera Inn', 'Calpito', 'Annyssa', 'Manager', 'maecalpito@gmail.com', '#52 Green Valley, Baguio City', '0962736554', 'Coffee Service', 1),
 (3, 'Bloomfield Hotel', 'Andrew', 'Garcia', 'manager', 'bloom@gmail.com', 'Mabini Street, Baguio City', '09678543778', 'Retail', 1),
-(4, 'TrueBlends', 'Ally', 'Benjamin', 'CEO', 'trueb@yahoo.com', 'Bonifacio Rd, Baguio City', '09568798767', 'Coffee Service', 1);
+(4, 'TrueBlends', 'Ally', 'Benjamin', 'CEO', 'trueb@yahoo.com', 'Bonifacio Rd, Baguio City', '09568798767', 'Retail', 1);
 
 -- --------------------------------------------------------
 
@@ -319,9 +288,9 @@ CREATE TABLE `contracted_po` (
   `contractPO_id` int(11) NOT NULL,
   `client_id` int(11) NOT NULL,
   `blend_id` int(11) NOT NULL,
-  `sticker_id` int(11) DEFAULT NULL,
   `contractPO_date` date NOT NULL,
   `contractPO_qty` int(11) NOT NULL,
+  `delivered_qty` int(11) NOT NULL DEFAULT '0',
   `delivery_stat` varchar(20) NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -329,14 +298,18 @@ CREATE TABLE `contracted_po` (
 -- Dumping data for table `contracted_po`
 --
 
-INSERT INTO `contracted_po` (`contractPO_id`, `client_id`, `blend_id`, `sticker_id`, `contractPO_date`, `contractPO_qty`, `delivery_stat`) VALUES
-(12, 2, 1, NULL, '2018-03-26', 50, 'delivered'),
-(13, 1, 1, NULL, '2018-03-26', 50, 'delivered'),
-(14, 2, 1, NULL, '2018-03-26', 20, 'delivered'),
-(15, 3, 10, NULL, '2018-03-26', 100, 'delivered'),
-(16, 2, 4, NULL, '2018-03-26', 125, 'pending'),
-(17, 1, 2, NULL, '2018-03-26', 75, 'pending'),
-(18, 4, 15, NULL, '2018-03-26', 150, 'pending');
+INSERT INTO `contracted_po` (`contractPO_id`, `client_id`, `blend_id`, `contractPO_date`, `contractPO_qty`, `delivered_qty`, `delivery_stat`) VALUES
+(58, 3, 10, '2018-04-01', 100, 50, 'partial delivery');
+
+--
+-- Triggers `contracted_po`
+--
+DELIMITER $$
+CREATE TRIGGER `update_del_stat` BEFORE UPDATE ON `contracted_po` FOR EACH ROW IF NEW.contractPO_qty = NEW.delivered_qty THEN
+	SET NEW.delivery_stat = 'delivered';
+END IF
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -347,8 +320,12 @@ INSERT INTO `contracted_po` (`contractPO_id`, `client_id`, `blend_id`, `sticker_
 CREATE TABLE `inv_transact` (
   `trans_id` int(11) NOT NULL,
   `transact_date` date NOT NULL,
-  `po_client` int(11) DEFAULT NULL,
+  `company_returnID` int(11) DEFAULT NULL,
+  `client_returnID` int(11) DEFAULT NULL,
   `po_supplier` int(11) DEFAULT NULL,
+  `po_client` int(11) DEFAULT NULL,
+  `sales_inv` int(11) DEFAULT NULL,
+  `walkin_return` int(11) DEFAULT NULL,
   `type` varchar(45) NOT NULL DEFAULT 'IN'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -356,45 +333,26 @@ CREATE TABLE `inv_transact` (
 -- Dumping data for table `inv_transact`
 --
 
-INSERT INTO `inv_transact` (`trans_id`, `transact_date`, `po_client`, `po_supplier`, `type`) VALUES
-(1, '2017-01-10', 1, NULL, 'IN'),
-(2, '2017-02-02', 2, NULL, 'IN'),
-(3, '2017-06-07', 1, NULL, 'IN'),
-(4, '2017-12-12', 2, NULL, 'IN'),
-(5, '2018-01-18', 2, NULL, 'IN'),
-(6, '2018-01-31', 1, NULL, 'IN'),
-(7, '2018-02-06', 2, NULL, 'IN'),
-(8, '2018-10-10', 1, NULL, 'IN'),
-(9, '2018-03-22', NULL, NULL, 'OUT');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `items`
---
-
-CREATE TABLE `items` (
-  `item_id` int(11) NOT NULL,
-  `item_name` varchar(45) NOT NULL,
-  `category` varchar(45) NOT NULL,
-  `supplier_id` int(11) NOT NULL,
-  `unitPrice` double NOT NULL,
-  `desc` varchar(45) DEFAULT NULL,
-  `status` varchar(45) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `items`
---
-
-INSERT INTO `items` (`item_id`, `item_name`, `category`, `supplier_id`, `unitPrice`, `desc`, `status`) VALUES
-(1, 'coffee 1', 'raw coffee', 1, 3.2, 'sss', '1'),
-(2, 'coffee 2', 'raw coffee', 1, 4.5, 'asd', '1'),
-(3, 'coffee 3', 'raw coffee', 1, 4, 'asd', '1'),
-(4, 'coffee 4', 'raw coffee', 1, 5.4, 'asd', '1'),
-(5, 'coffee 5', 'raw coffee', 2, 3.5, 'asd', '1'),
-(6, 'sticker 1', 'sticker', 2, 2, 'aasdd', '1'),
-(7, 'sticker 2', 'sticker', 1, 3, 'ddsa', '1');
+INSERT INTO `inv_transact` (`trans_id`, `transact_date`, `company_returnID`, `client_returnID`, `po_supplier`, `po_client`, `sales_inv`, `walkin_return`, `type`) VALUES
+(1, '2018-03-05', NULL, NULL, 26, NULL, NULL, NULL, 'IN'),
+(2, '2018-02-02', NULL, 32, NULL, NULL, NULL, NULL, 'IN'),
+(3, '2018-03-07', NULL, 33, NULL, NULL, NULL, NULL, 'IN'),
+(4, '2018-02-12', NULL, 34, NULL, NULL, NULL, NULL, 'IN'),
+(5, '2018-01-18', NULL, NULL, NULL, 51, NULL, NULL, 'OUT'),
+(6, '2018-01-31', NULL, NULL, NULL, 52, NULL, NULL, 'OUT'),
+(7, '2018-02-06', NULL, NULL, NULL, 53, NULL, NULL, 'OUT'),
+(8, '2018-03-10', NULL, NULL, NULL, 54, NULL, NULL, 'OUT'),
+(13, '2018-03-29', NULL, NULL, NULL, NULL, 47, NULL, 'OUT'),
+(14, '2018-03-20', NULL, NULL, NULL, NULL, 50, NULL, 'OUT'),
+(15, '2018-01-23', NULL, NULL, NULL, NULL, 51, NULL, 'OUT'),
+(16, '2018-03-12', 1, NULL, NULL, NULL, NULL, NULL, 'OUT'),
+(17, '2018-03-15', 2, NULL, NULL, NULL, NULL, NULL, 'OUT'),
+(18, '2018-02-24', 3, NULL, NULL, NULL, NULL, NULL, 'OUT'),
+(19, '2018-02-27', 4, NULL, NULL, NULL, NULL, NULL, 'OUT'),
+(20, '2018-02-27', NULL, NULL, NULL, NULL, NULL, 46, 'IN'),
+(21, '2018-03-12', NULL, NULL, NULL, NULL, NULL, 55, 'IN'),
+(22, '2018-04-01', NULL, NULL, NULL, NULL, NULL, NULL, 'OUT'),
+(23, '2018-04-01', NULL, NULL, NULL, NULL, NULL, NULL, 'OUT');
 
 -- --------------------------------------------------------
 
@@ -404,7 +362,6 @@ INSERT INTO `items` (`item_id`, `item_name`, `category`, `supplier_id`, `unitPri
 
 CREATE TABLE `machine` (
   `mach_id` int(11) NOT NULL,
-  `mach_serial` varchar(50) NOT NULL,
   `brewer` varchar(50) NOT NULL,
   `brewer_type` varchar(50) NOT NULL,
   `mach_price` int(11) NOT NULL,
@@ -416,15 +373,17 @@ CREATE TABLE `machine` (
   `mach_discrepancy` int(11) NOT NULL DEFAULT '0',
   `unitPrice` decimal(11,0) DEFAULT NULL,
   `sup_id` varchar(11) NOT NULL,
-  `mach_activation` int(11) NOT NULL DEFAULT '1'
+  `mach_activation` int(11) NOT NULL DEFAULT '1',
+  `category` varchar(45) DEFAULT '4'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `machine`
 --
 
-INSERT INTO `machine` (`mach_id`, `mach_serial`, `brewer`, `brewer_type`, `mach_price`, `mach_reorder`, `mach_limit`, `mach_stocks`, `mach_physcount`, `mach_remarks`, `mach_discrepancy`, `unitPrice`, `sup_id`, `mach_activation`) VALUES
-(1, '5454564584', 'Saeco', 'Double Cup Espresso', 10000, 5, 10, 7, 0, NULL, 0, '10000', '1', 1);
+INSERT INTO `machine` (`mach_id`, `brewer`, `brewer_type`, `mach_price`, `mach_reorder`, `mach_limit`, `mach_stocks`, `mach_physcount`, `mach_remarks`, `mach_discrepancy`, `unitPrice`, `sup_id`, `mach_activation`, `category`) VALUES
+(1, 'Saeco', 'Double Cup Espresso', 10000, 5, 10, 141, 0, NULL, 0, '10000', '1', 1, '4'),
+(2, 'Hanabishi', 'Single Cup Espresso', 200, 5, 20, 15, 0, NULL, 0, '10000', '1', 1, '4');
 
 -- --------------------------------------------------------
 
@@ -435,20 +394,21 @@ INSERT INTO `machine` (`mach_id`, `mach_serial`, `brewer`, `brewer_type`, `mach_
 CREATE TABLE `machine_out` (
   `mach_salesID` int(11) NOT NULL,
   `mach_id` int(11) NOT NULL,
+  `mach_serial` varchar(60) NOT NULL,
   `date` date NOT NULL,
   `mach_qty` int(11) NOT NULL,
-  `client_id` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `client_id` int(11) NOT NULL,
+  `remarks` varchar(60) NOT NULL DEFAULT 'Received',
+  `status` varchar(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `machine_out`
 --
 
-INSERT INTO `machine_out` (`mach_salesID`, `mach_id`, `date`, `mach_qty`, `client_id`) VALUES
-(1, 1, '2018-02-24', 1, 1),
-(2, 1, '2018-02-12', 1, 2),
-(3, 1, '2018-03-16', 2, 2),
-(4, 1, '2018-03-14', 3, 3);
+INSERT INTO `machine_out` (`mach_salesID`, `mach_id`, `mach_serial`, `date`, `mach_qty`, `client_id`, `remarks`, `status`) VALUES
+(4, 1, 's444', '2017-10-15', 1, 1, 'Received', 'rented'),
+(5, 1, 's555', '2017-04-11', 1, 2, 'Received', 'rented');
 
 -- --------------------------------------------------------
 
@@ -469,20 +429,20 @@ CREATE TABLE `packaging` (
   `unitPrice` decimal(11,0) NOT NULL,
   `sup_id` int(11) NOT NULL,
   `pack_activation` int(11) NOT NULL DEFAULT '1',
-  `package_name` varchar(45) NOT NULL
+  `category` varchar(45) DEFAULT '2'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `packaging`
 --
 
-INSERT INTO `packaging` (`package_id`, `package_type`, `package_size`, `package_reorder`, `package_limit`, `package_stock`, `package_physcount`, `package_remarks`, `package_discrepancy`, `unitPrice`, `sup_id`, `pack_activation`, `package_name`) VALUES
-(1, 'clear', '1000', 50, 200, 60, 0, NULL, 0, '12', 1, 1, 'clear bag 1000'),
-(2, 'clear', '500', 50, 200, 70, 0, NULL, 0, '23', 2, 1, 'clear bag 500'),
-(3, 'clear', '250', 50, 200, 90, 0, NULL, 0, '12', 1, 1, 'clear bag 250'),
-(4, 'brown', '1000', 50, 200, 102, 0, NULL, 0, '32', 2, 1, 'brown bag 1000'),
-(5, 'brown', '500', 50, 200, 92, 0, NULL, 0, '12', 1, 1, 'brown bag 500'),
-(6, 'brown', '250', 50, 200, 137, 0, NULL, 0, '12', 2, 1, 'brown bag 250');
+INSERT INTO `packaging` (`package_id`, `package_type`, `package_size`, `package_reorder`, `package_limit`, `package_stock`, `package_physcount`, `package_remarks`, `package_discrepancy`, `unitPrice`, `sup_id`, `pack_activation`, `category`) VALUES
+(1, 'clear', '1000', 50, 200, 60, 0, NULL, 0, '12', 1, 1, '2'),
+(2, 'clear', '500', 50, 200, 74, 0, NULL, 0, '23', 2, 1, '2'),
+(3, 'clear', '250', 50, 200, 90, 0, NULL, 0, '12', 1, 1, '2'),
+(4, 'brown', '1000', 50, 200, 38, 0, NULL, 0, '32', 2, 1, '2'),
+(5, 'brown', '500', 50, 200, 92, 0, NULL, 0, '12', 1, 1, '2'),
+(6, 'brown', '250', 50, 200, 137, 0, NULL, 0, '12', 2, 1, '2');
 
 -- --------------------------------------------------------
 
@@ -492,7 +452,7 @@ INSERT INTO `packaging` (`package_id`, `package_type`, `package_size`, `package_
 
 CREATE TABLE `payment_contracted` (
   `paid_id` int(11) NOT NULL,
-  `client_dr` varchar(50) NOT NULL,
+  `client_deliveryID` int(11) NOT NULL,
   `collection_no` varchar(20) NOT NULL,
   `payment_mode` varchar(20) NOT NULL,
   `paid_date` date NOT NULL,
@@ -505,9 +465,9 @@ CREATE TABLE `payment_contracted` (
 -- Dumping data for table `payment_contracted`
 --
 
-INSERT INTO `payment_contracted` (`paid_id`, `client_dr`, `collection_no`, `payment_mode`, `paid_date`, `paid_amount`, `withheld`, `remarks`) VALUES
-(6, 'dr333', 'cr333', 'Bank deposit', '2018-03-08', 20000, 500, 'tax withheld'),
-(7, 'dr444', 'cr444', 'Cash on Delivery', '2018-03-15', 79500, 500, 'tax withheld');
+INSERT INTO `payment_contracted` (`paid_id`, `client_deliveryID`, `collection_no`, `payment_mode`, `paid_date`, `paid_amount`, `withheld`, `remarks`) VALUES
+(33, 126, 'cr111', 'Cash on Delivery', '2018-04-01', 40000, 0, ''),
+(34, 126, 'cr222', 'Cash on Delivery', '2018-04-01', 40000, 0, '');
 
 -- --------------------------------------------------------
 
@@ -602,77 +562,28 @@ CREATE TABLE `raw_coffee` (
   `raw_id` int(11) NOT NULL,
   `raw_coffee` varchar(20) NOT NULL,
   `raw_reorder` int(11) NOT NULL,
-  `raw_limit` int(11) NOT NULL,
   `raw_stock` int(11) NOT NULL,
   `unitPrice` decimal(11,0) NOT NULL,
   `sup_id` int(11) NOT NULL,
   `raw_physcount` int(11) NOT NULL DEFAULT '0',
   `raw_remarks` varchar(45) DEFAULT 'null',
   `raw_discrepancy` int(11) NOT NULL DEFAULT '0',
-  `raw_activation` int(11) NOT NULL DEFAULT '1'
+  `raw_activation` int(11) NOT NULL DEFAULT '1',
+  `raw_type` varchar(50) NOT NULL,
+  `category` varchar(45) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `raw_coffee`
 --
 
-INSERT INTO `raw_coffee` (`raw_id`, `raw_coffee`, `raw_reorder`, `raw_limit`, `raw_stock`, `unitPrice`, `sup_id`, `raw_physcount`, `raw_remarks`, `raw_discrepancy`, `raw_activation`) VALUES
-(1, 'GUATEMALA', 5000, 10000, 77400, '80', 1, 0, NULL, 0, 1),
-(2, 'SUMATRA', 3200, 7001, 7600, '70', 2, 0, NULL, 0, 1),
-(3, 'ROBUSTA', 1000, 8500, 500, '60', 2, 0, NULL, 0, 1),
-(4, 'BENGUET', 1500, 9000, -1500, '80', 1, 0, NULL, 0, 1),
-(5, 'COLOMBIA', 2000, 10000, -8199, '90', 1, 0, NULL, 0, 1),
-(6, 'BARAKO', 2500, 10500, 6800, '76', 1, 0, NULL, 0, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `retail`
---
-
-CREATE TABLE `retail` (
-  `retail_id` int(11) NOT NULL,
-  `retail_date` date NOT NULL,
-  `retail_credit` varchar(20) NOT NULL,
-  `blend_id` int(11) NOT NULL,
-  `retail_qty` int(11) NOT NULL,
-  `sticker_id` int(11) NOT NULL,
-  `client_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `retail`
---
-
-INSERT INTO `retail` (`retail_id`, `retail_date`, `retail_credit`, `blend_id`, `retail_qty`, `sticker_id`, `client_id`) VALUES
-(1, '2018-02-22', '30 day', 1, 300, 1, 1),
-(2, '2018-02-09', '30 day', 2, 300, 2, 2);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sample`
---
-
-CREATE TABLE `sample` (
-  `sample_id` int(11) NOT NULL,
-  `sample_date` date DEFAULT NULL,
-  `sample_recipient` varchar(50) NOT NULL,
-  `sample_type` varchar(50) NOT NULL,
-  `client_coffReturnID` int(11) DEFAULT NULL,
-  `package_id` int(11) NOT NULL,
-  `sticker_id` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sample`
---
-
-INSERT INTO `sample` (`sample_id`, `sample_date`, `sample_recipient`, `sample_type`, `client_coffReturnID`, `package_id`, `sticker_id`) VALUES
-(1, '2018-02-21', 'Walkin Client', 'freebies', 9, 4, 1),
-(2, '2018-02-22', 'The Manor', 'free taste', 10, 5, 2),
-(3, '2018-03-21', 'sfdasd', 'sadad', NULL, 3, 1),
-(4, '2018-03-25', 'Session Road Pedestrians', 'Free Taste', NULL, 3, 1);
+INSERT INTO `raw_coffee` (`raw_id`, `raw_coffee`, `raw_reorder`, `raw_stock`, `unitPrice`, `sup_id`, `raw_physcount`, `raw_remarks`, `raw_discrepancy`, `raw_activation`, `raw_type`, `category`) VALUES
+(1, 'GUATEMALA', 500000, 1000000, '80', 1, 0, NULL, 0, 1, 'city', '1'),
+(2, 'SUMATRA', 500000, 1000000, '70', 2, 0, NULL, 0, 1, 'medium', '1'),
+(3, 'ROBUSTA', 500000, 1000000, '60', 2, 0, NULL, 0, 1, 'light', '1'),
+(4, 'BENGUET', 500000, 1000000, '80', 1, 0, NULL, 0, 1, 'light', '1'),
+(5, 'COLOMBIA', 500000, 1000000, '90', 1, 0, NULL, 0, 1, 'city', '1'),
+(6, 'BARAKO', 500000, 1000000, '76', 1, 0, NULL, 0, 1, 'city', '1');
 
 -- --------------------------------------------------------
 
@@ -691,16 +602,18 @@ CREATE TABLE `sticker` (
   `sticker_discrepancy` int(11) NOT NULL DEFAULT '0',
   `unitPrice` decimal(11,0) DEFAULT NULL,
   `sup_id` int(11) NOT NULL,
-  `sticker_activation` int(11) NOT NULL DEFAULT '1'
+  `sticker_activation` int(11) NOT NULL DEFAULT '1',
+  `sticker_type` varchar(45) NOT NULL DEFAULT 'sticker',
+  `category` varchar(45) DEFAULT '3'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `sticker`
 --
 
-INSERT INTO `sticker` (`sticker_id`, `sticker`, `sticker_reorder`, `sticker_limit`, `sticker_stock`, `sticker_physcount`, `sticker_remarks`, `sticker_discrepancy`, `unitPrice`, `sup_id`, `sticker_activation`) VALUES
-(1, 'Marios', 500, 1000, 600, 0, NULL, 0, '5', 1, 1),
-(2, 'Manor', 500, 1000, 700, 0, NULL, 0, '6', 2, 0);
+INSERT INTO `sticker` (`sticker_id`, `sticker`, `sticker_reorder`, `sticker_limit`, `sticker_stock`, `sticker_physcount`, `sticker_remarks`, `sticker_discrepancy`, `unitPrice`, `sup_id`, `sticker_activation`, `sticker_type`, `category`) VALUES
+(1, 'Marios', 500, 1000, 273, 0, NULL, 0, '5', 1, 1, 'sticker', '3'),
+(2, 'Manor', 500, 1000, 400, 0, NULL, 0, '6', 2, 0, 'sticker', '3');
 
 -- --------------------------------------------------------
 
@@ -726,8 +639,8 @@ CREATE TABLE `supplier` (
 --
 
 INSERT INTO `supplier` (`sup_id`, `sup_productID`, `sup_company`, `sup_lname`, `sup_fname`, `sup_position`, `sup_address`, `sup_email`, `sup_contact`, `sup_activation`) VALUES
-(1, 0, 'Tinz Enterprise', 'Caguioa', 'Tinz', 'Manager', 'Session Road, Baguio City', 'tinz22@gmail.com', '09763545225', 1),
-(2, 0, 'Lanz Trading Inc.', 'Dullao', 'Jeanne', 'CEO', '#98 Bonifacio Street, Baguio City', 'jin_97@yahoo.com', '09875437665', 1);
+(1, 0, 'Unique Circle Enterprise', 'Alcantara', 'Arjay', 'Manager', 'Session Road, Baguio City', 'rjz22@gmail.com', '09763545225', 1),
+(2, 0, 'Coffee Resolutions Inc.', 'kahuna', 'Hanna', 'CEO', '#98 Bonifacio Street, Baguio City', 'jin_97@yahoo.com', '09875437665', 1);
 
 -- --------------------------------------------------------
 
@@ -793,11 +706,28 @@ CREATE TABLE `supp_delivery` (
 --
 
 INSERT INTO `supp_delivery` (`supp_delivery_id`, `supp_po_ordered_id`, `supp_po_id`, `date_received`, `yield_weight`, `yields`, `received_by`) VALUES
-(11, 22, 12, '2018-03-21', 5, 0, 'Jomari Julhusin'),
-(12, 23, 13, '2018-03-21', 100, 0, 'Tin Caguioa'),
-(13, 24, 14, '2018-03-21', 56, 0, 'Tin Caguioa'),
-(14, 25, 15, '2018-03-21', 6399, 0, 'Tin Caguioa'),
-(15, 26, 16, '2018-03-25', 100, 0, 'Tin Caguioa');
+(26, 37, 25, '0000-00-00', 4, 0, 'Tin Caguioa');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `supp_payment`
+--
+
+CREATE TABLE `supp_payment` (
+  `supp_payment_id` int(11) NOT NULL,
+  `supp_po_id` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `amount` int(11) NOT NULL,
+  `bank` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `supp_payment`
+--
+
+INSERT INTO `supp_payment` (`supp_payment_id`, `supp_po_id`, `date`, `amount`, `bank`) VALUES
+(1, 17, '2018-03-27', 560100, 'BPI');
 
 -- --------------------------------------------------------
 
@@ -823,11 +753,7 @@ CREATE TABLE `supp_po` (
 --
 
 INSERT INTO `supp_po` (`supp_po_id`, `supp_id`, `suppPO_date`, `trucking_fee`, `supp_creditTerm`, `total_item`, `total_amount`, `delivery_stat`, `payment_stat`, `payment`) VALUES
-(12, 1, '2018-03-20', 69, '21', 0, 0, '1', '0', NULL),
-(13, 1, '2018-03-21', 4343, '30', 0, 0, '1', '0', NULL),
-(14, 1, '2018-03-21', 55, '12', 0, 0, '1', '0', NULL),
-(15, 1, '2018-03-21', 12, '30', 0, 0, '1', '0', NULL),
-(16, 1, '2018-03-24', 15, '15', 0, 0, '1', '0', NULL);
+(25, 2, '2018-03-31', 1, '1', 4, 93, '1', '0', NULL);
 
 -- --------------------------------------------------------
 
@@ -852,11 +778,7 @@ CREATE TABLE `supp_po_ordered` (
 --
 
 INSERT INTO `supp_po_ordered` (`supp_po_ordered_id`, `supp_po_id`, `item`, `qty`, `amount`, `type`, `delivery_stat`, `payment_stat`, `payment`) VALUES
-(22, 12, 'Double Cup Espresso', 5, 0, 'Type', '1', '0', NULL),
-(23, 13, 'clear bag 1000', 100, 0, 'Type', '1', '0', NULL),
-(24, 14, 'Marios', 56, 0, 'Type', '1', '0', NULL),
-(25, 15, 'COLOMBIA', 6399, 0, 'Type', '1', '0', NULL),
-(26, 16, 'GUATEMALA', 100, 0, 'Type', '1', '0', NULL);
+(37, 25, 'clear', 4, 92, '500', '1', '0', NULL);
 
 -- --------------------------------------------------------
 
@@ -871,6 +793,21 @@ CREATE TABLE `supp_temp_po` (
   `trucking_fee` decimal(10,0) NOT NULL,
   `credit_term` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `supp_temp_po_order`
+--
+
+CREATE TABLE `supp_temp_po_order` (
+  `idsupp_temp_po_order` int(11) NOT NULL,
+  `item_name` varchar(50) NOT NULL,
+  `qty` int(11) NOT NULL,
+  `type` varchar(20) NOT NULL,
+  `unitPrice` int(11) NOT NULL,
+  `amount` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -919,7 +856,11 @@ INSERT INTO `trans_mach` (`tmach_id`, `mach_id`, `trans_id`, `quantity`) VALUES
 (6, 1, 6, '5'),
 (7, 1, 7, '3'),
 (8, 1, 8, '1'),
-(9, NULL, 9, NULL);
+(13, NULL, 13, NULL),
+(14, NULL, 14, NULL),
+(15, NULL, 15, NULL),
+(16, NULL, 22, NULL),
+(17, NULL, 23, NULL);
 
 -- --------------------------------------------------------
 
@@ -954,7 +895,15 @@ INSERT INTO `trans_pack` (`tp_id`, `trans_id`, `package_id`, `quantity`) VALUES
 (13, 6, 6, 500),
 (14, 7, 1, 100),
 (15, 8, 1, 100),
-(16, 9, 5, 3);
+(16, 9, 5, 3),
+(17, 10, 4, 1),
+(18, 11, 4, 21),
+(19, 12, 4, 11),
+(20, 13, 4, 2),
+(21, 14, 4, 1),
+(22, 15, 4, 1),
+(23, 22, 4, 12),
+(24, 23, 4, 15);
 
 -- --------------------------------------------------------
 
@@ -992,7 +941,43 @@ INSERT INTO `trans_raw` (`tr_id`, `trans_id`, `raw_coffeeid`, `quantity`) VALUES
 (20, 8, 5, 1000),
 (21, 9, 1, 150),
 (22, 9, 4, 450),
-(23, 9, 5, 900);
+(23, 9, 5, 900),
+(24, 10, 1, 200),
+(25, 10, 2, 200),
+(26, 10, 6, 600),
+(27, 11, 1, 2100),
+(28, 11, 4, 6300),
+(29, 11, 5, 12600),
+(30, 12, 1, 1100),
+(31, 12, 4, 3300),
+(32, 12, 5, 6600),
+(33, 13, 1, 400),
+(34, 13, 2, 400),
+(35, 13, 6, 1200),
+(36, 14, 1, 100),
+(37, 14, 4, 300),
+(38, 14, 5, 600),
+(39, 15, 1, 100),
+(40, 15, 4, 300),
+(41, 15, 5, 600),
+(42, 16, 5, 500),
+(43, 16, 3, 300),
+(44, 17, 6, 1200),
+(45, 17, 1, 3000),
+(46, 18, 2, 2100),
+(47, 18, 4, 3300),
+(48, 19, 2, 2000),
+(49, 19, 6, 1000),
+(50, 20, 3, 1600),
+(51, 20, 1, 1400),
+(52, 21, 1, 2800),
+(53, 21, 4, 2600),
+(54, 22, 1, 1200),
+(55, 22, 4, 3600),
+(56, 22, 5, 7200),
+(57, 23, 1, 1500),
+(58, 23, 4, 4500),
+(59, 23, 5, 9000);
 
 -- --------------------------------------------------------
 
@@ -1020,7 +1005,15 @@ INSERT INTO `trans_stick` (`tstick_id`, `sticker_id`, `trans_id`, `quantity`) VA
 (6, 1, 6, 150),
 (7, 2, 7, 100),
 (8, 2, 8, 200),
-(9, NULL, 9, NULL);
+(9, NULL, 9, NULL),
+(10, NULL, 10, NULL),
+(11, NULL, 11, NULL),
+(12, NULL, 12, NULL),
+(13, NULL, 13, NULL),
+(14, NULL, 14, NULL),
+(15, NULL, 15, NULL),
+(16, 1, 22, 12),
+(17, 1, 23, 15);
 
 -- --------------------------------------------------------
 
@@ -1046,7 +1039,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_no`, `username`, `u_lname`, `u_fname`, `u_email`, `u_contact`, `u_address`, `password`, `u_activation`, `u_type`) VALUES
-(1, 'tin', 'Caguioa', 'Tin', '2155651@slu.edu.ph', '09269044317', 'Baguio City', 't', 1, 'sales'),
+(1, 'tintin', 'Caguioa', 'Tin', '2155651@slu.edu.ph', '09269044317', 'Baguio City', 'asdasd', 1, 'sales'),
 (2, 'lila', 'Fernandez', 'Mariella', 'lila22@gmail.com', '09176524553', '#09 Hillside, Baguio City', 'l', 1, 'admin'),
 (3, 'jom', 'Julhusin', 'Jomari', 'jom22@gmail.com', '09786525443', '#127 Aurora Hill, Baguio City', 'j', 1, 'inventory'),
 (5, 'jin', 'Dullao', 'Jeanne', 'jeanne@gmail.com', '09067275881', '#90 Central Ambiong ', 'j', 1, 'admin');
@@ -1086,23 +1079,10 @@ CREATE TABLE `walkin_sales` (
   `walkin_id` int(11) NOT NULL,
   `walkin_date` date NOT NULL,
   `walkin_qty` int(11) NOT NULL,
-  `blend_id` int(11) NOT NULL,
-  `sticker_id` int(11) DEFAULT NULL
+  `walkin_returns` int(11) NOT NULL DEFAULT '0',
+  `coff_remark` varchar(80) NOT NULL DEFAULT 'Received',
+  `blend_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `walkin_sales`
---
-
-INSERT INTO `walkin_sales` (`walkin_id`, `walkin_date`, `walkin_qty`, `blend_id`, `sticker_id`) VALUES
-(1, '2018-02-15', 2, 2, 1),
-(2, '2018-02-15', 3, 3, 2),
-(46, '2018-03-21', 12, 1, NULL),
-(47, '2018-03-21', 2, 10, NULL),
-(50, '2018-03-22', 2, 3, NULL),
-(51, '2018-03-22', 2, 3, NULL),
-(52, '2018-03-22', 2, 3, NULL),
-(53, '2018-03-22', 3, 2, NULL);
 
 --
 -- Indexes for dumped tables
@@ -1131,20 +1111,13 @@ ALTER TABLE `client_coffreturn`
 -- Indexes for table `client_delivery`
 --
 ALTER TABLE `client_delivery`
-  ADD PRIMARY KEY (`client_deliveryID`),
-  ADD UNIQUE KEY `client_dr` (`client_dr`);
+  ADD PRIMARY KEY (`client_deliveryID`);
 
 --
 -- Indexes for table `client_machreturn`
 --
 ALTER TABLE `client_machreturn`
   ADD PRIMARY KEY (`client_machReturnID`);
-
---
--- Indexes for table `coffeeservice`
---
-ALTER TABLE `coffeeservice`
-  ADD PRIMARY KEY (`coService_id`);
 
 --
 -- Indexes for table `coffee_blend`
@@ -1181,13 +1154,13 @@ ALTER TABLE `contracted_po`
 -- Indexes for table `inv_transact`
 --
 ALTER TABLE `inv_transact`
-  ADD PRIMARY KEY (`trans_id`);
-
---
--- Indexes for table `items`
---
-ALTER TABLE `items`
-  ADD PRIMARY KEY (`item_id`);
+  ADD PRIMARY KEY (`trans_id`),
+  ADD KEY `inv_trans1_idx` (`company_returnID`),
+  ADD KEY `inv_trans2_idx` (`client_returnID`),
+  ADD KEY `inv_trans3_idx` (`po_supplier`),
+  ADD KEY `inv_trans4_idx` (`po_client`),
+  ADD KEY `inv_trans5_idx` (`sales_inv`),
+  ADD KEY `inv_trans6_idx` (`walkin_return`);
 
 --
 -- Indexes for table `machine`
@@ -1234,18 +1207,6 @@ ALTER TABLE `raw_coffee`
   ADD PRIMARY KEY (`raw_id`);
 
 --
--- Indexes for table `retail`
---
-ALTER TABLE `retail`
-  ADD PRIMARY KEY (`retail_id`);
-
---
--- Indexes for table `sample`
---
-ALTER TABLE `sample`
-  ADD PRIMARY KEY (`sample_id`);
-
---
 -- Indexes for table `sticker`
 --
 ALTER TABLE `sticker`
@@ -1276,6 +1237,12 @@ ALTER TABLE `supp_delivery`
   ADD PRIMARY KEY (`supp_delivery_id`);
 
 --
+-- Indexes for table `supp_payment`
+--
+ALTER TABLE `supp_payment`
+  ADD PRIMARY KEY (`supp_payment_id`);
+
+--
 -- Indexes for table `supp_po`
 --
 ALTER TABLE `supp_po`
@@ -1292,6 +1259,12 @@ ALTER TABLE `supp_po_ordered`
 --
 ALTER TABLE `supp_temp_po`
   ADD PRIMARY KEY (`id_supp_temp_PO`);
+
+--
+-- Indexes for table `supp_temp_po_order`
+--
+ALTER TABLE `supp_temp_po_order`
+  ADD PRIMARY KEY (`idsupp_temp_po_order`);
 
 --
 -- Indexes for table `transac_history`
@@ -1360,7 +1333,7 @@ ALTER TABLE `walkin_sales`
 -- AUTO_INCREMENT for table `activitylogs`
 --
 ALTER TABLE `activitylogs`
-  MODIFY `activitylogs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `activitylogs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `category`
 --
@@ -1370,22 +1343,17 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `client_coffreturn`
 --
 ALTER TABLE `client_coffreturn`
-  MODIFY `client_coffReturnID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `client_coffReturnID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT for table `client_delivery`
 --
 ALTER TABLE `client_delivery`
-  MODIFY `client_deliveryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `client_deliveryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
 --
 -- AUTO_INCREMENT for table `client_machreturn`
 --
 ALTER TABLE `client_machreturn`
-  MODIFY `client_machReturnID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `coffeeservice`
---
-ALTER TABLE `coffeeservice`
-  MODIFY `coService_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `client_machReturnID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `coffee_blend`
 --
@@ -1410,22 +1378,22 @@ ALTER TABLE `contracted_client`
 -- AUTO_INCREMENT for table `contracted_po`
 --
 ALTER TABLE `contracted_po`
-  MODIFY `contractPO_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `contractPO_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 --
 -- AUTO_INCREMENT for table `inv_transact`
 --
 ALTER TABLE `inv_transact`
-  MODIFY `trans_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `trans_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `machine`
 --
 ALTER TABLE `machine`
-  MODIFY `mach_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `mach_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `machine_out`
 --
 ALTER TABLE `machine_out`
-  MODIFY `mach_salesID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `mach_salesID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `packaging`
 --
@@ -1435,7 +1403,7 @@ ALTER TABLE `packaging`
 -- AUTO_INCREMENT for table `payment_contracted`
 --
 ALTER TABLE `payment_contracted`
-  MODIFY `paid_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `paid_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT for table `payment_supplier`
 --
@@ -1451,16 +1419,6 @@ ALTER TABLE `proportions`
 --
 ALTER TABLE `raw_coffee`
   MODIFY `raw_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `retail`
---
-ALTER TABLE `retail`
-  MODIFY `retail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `sample`
---
-ALTER TABLE `sample`
-  MODIFY `sample_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `sticker`
 --
@@ -1485,17 +1443,27 @@ ALTER TABLE `supplier_po`
 -- AUTO_INCREMENT for table `supp_delivery`
 --
 ALTER TABLE `supp_delivery`
-  MODIFY `supp_delivery_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `supp_delivery_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+--
+-- AUTO_INCREMENT for table `supp_payment`
+--
+ALTER TABLE `supp_payment`
+  MODIFY `supp_payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `supp_po`
 --
 ALTER TABLE `supp_po`
-  MODIFY `supp_po_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `supp_po_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `supp_po_ordered`
 --
 ALTER TABLE `supp_po_ordered`
-  MODIFY `supp_po_ordered_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `supp_po_ordered_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+--
+-- AUTO_INCREMENT for table `supp_temp_po_order`
+--
+ALTER TABLE `supp_temp_po_order`
+  MODIFY `idsupp_temp_po_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `transac_history`
 --
@@ -1505,22 +1473,22 @@ ALTER TABLE `transac_history`
 -- AUTO_INCREMENT for table `trans_mach`
 --
 ALTER TABLE `trans_mach`
-  MODIFY `tmach_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `tmach_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `trans_pack`
 --
 ALTER TABLE `trans_pack`
-  MODIFY `tp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `tp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `trans_raw`
 --
 ALTER TABLE `trans_raw`
-  MODIFY `tr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `tr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 --
 -- AUTO_INCREMENT for table `trans_stick`
 --
 ALTER TABLE `trans_stick`
-  MODIFY `tstick_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `tstick_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `user`
 --
@@ -1535,10 +1503,21 @@ ALTER TABLE `walkin_raw`
 -- AUTO_INCREMENT for table `walkin_sales`
 --
 ALTER TABLE `walkin_sales`
-  MODIFY `walkin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `walkin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `inv_transact`
+--
+ALTER TABLE `inv_transact`
+  ADD CONSTRAINT `inv_trans1` FOREIGN KEY (`company_returnID`) REFERENCES `company_returns` (`company_returnID`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `inv_trans2` FOREIGN KEY (`client_returnID`) REFERENCES `client_coffreturn` (`client_coffReturnID`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `inv_trans3` FOREIGN KEY (`po_supplier`) REFERENCES `supp_delivery` (`supp_delivery_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `inv_trans4` FOREIGN KEY (`po_client`) REFERENCES `contracted_po` (`contractPO_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `inv_trans5` FOREIGN KEY (`sales_inv`) REFERENCES `walkin_sales` (`walkin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `inv_trans6` FOREIGN KEY (`walkin_return`) REFERENCES `walkin_sales` (`walkin_id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `proportions`

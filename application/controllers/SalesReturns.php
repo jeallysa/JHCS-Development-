@@ -29,10 +29,12 @@
 		{
 			/*$id=$this->input->post('id');*/
 			$id = $this->uri->segment(3,1);
+			$id2 = $this->uri->segment(4);
+
 			
 			/*$id = array('id'=> $this->input->post('id'));	*/
 
-			$data = $this->SalesReturns_model->getDetailsCoffee($id);
+			$data = $this->SalesReturns_model->getDetailsCoffee($id, $id2);
 			/*$coffee = json_decode($coffeee);*/
 			/*$this->load->view('Sales_Module/SalesReturns',$data);*/
 			
@@ -48,29 +50,21 @@
 
 		function resolveReturns()
 		{
-
 		  $id = $this->input->post('deliveryID');
-		  // $date = $this->input->post('delivery_date');
-		  // $receiver = $this->input->post('receiver');
-		  // $dr = $this->input->post('DRReturns');
-		  // $SI = $this->input->post('SINo');
-		  // $client_id = $this->input->post('client_id');
-		  // $po = $this->input->post('PO_ID');
-		  // $RID = $this->input->post('RID');
+		  $ret_id = $this->input->post('retID');
 		  $client = $this->input->post('company');
 		  $quantity = $this->input->post('quantity');
 		  $blend_id = $this->input->post('blend_id');	
-		  // $remarks = $this->input->post('remarksReturns');
-	
-		 //  $this->SalesReturns_model->ResolveCoffeeReturnsA($date, $receiver, $dr, $SI, $client_id, $po);
-			// $resolved = 'Yes';
-		 //  $this->SalesReturns_model->ResolveCoffeeReturnsB($RID, $remarks, $resolved);
+		  $date = $this->input->post('date_resolved');	
+
 		  $this->SalesReturns_model->activity_logs('sales', "Resolved ".$client." from Contracted Client Order ");
 		  $this->SalesReturns_model->update_return($id);
 		  $this->SalesReturns_model->update_delivery($id);
 		  $this->SalesReturns_model->update_less_return_coffee($quantity, $blend_id);
+		  $this->SalesReturns_model->less_raw_coffee_contracted($date, $quantity, $blend_id, $ret_id);
 		echo "<script>alert('Blend Return has been resolved!');</script>";
-		  redirect('SalesReturns/index');
+		  redirect('SalesReturns/index', 'refresh');
+
 
 		}
 
@@ -80,12 +74,17 @@
 		  $id = $this->input->post('walkin_id');
 		  $quantity = $this->input->post('resolve_walkin_qty');
 		  $blend_id = $this->input->post('blend_id_walkin');
+		  $date_resolved = $this->input->post('date_resolved');
+
 		  $client = $this->db->query("SELECT * FROM coffee_blend WHERE blend_id = '".$blend_id."'")->row()->blend;
 		  $this->SalesReturns_model->activity_logs('sales', "Resolved ".$client." of Walkin Client Order ");
 		  $this->SalesReturns_model->update_walkin_sales($id);
 		  $this->SalesReturns_model->update_less_return_coffee($quantity, $blend_id);
+		  $this->SalesReturns_model->less_raw_coffee_walkin($date_resolved, $quantity, $blend_id, $id);
 		echo "<script>alert('Blend Return has been resolved!');</script>";
-		  redirect('SalesReturns/index');
+			exit;
+		  redirect('SalesReturns/index', 'refresh');
+
 
 		}
 		

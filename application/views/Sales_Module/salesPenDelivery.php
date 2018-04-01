@@ -182,7 +182,7 @@
             <th><b class="pull-center">Coffee Blend</b></th>
             <th><b class="pull-left">Quantity</b></th>
             <th><b class="pull-left">Unit Price</b></th>
-            <th><b class="pull-left">Total Amount</b></th>
+            <th><b class="pull-left">Gross Amount</b></th>
             <th><b class="pull-left">Purchase Date</b></th>
             <th><b class="pull-left">Delivery Status</b></th>
             <th class="disabled-sorting"><b class="pull-left">Action</b></th>
@@ -268,14 +268,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-md-5 control">Total Amount :</label>
+                                                    <label class="col-md-5 control">Gross Amount :</label>
                                                     <div class="col-md-5">
-                                                        <p><b><?php 
-                                                                    $price = $row1->blend_price;
-                                                                    $qty = $row1->contractPO_qty;
-                                                                    $amount = $price * $qty;
-                                                                    echo 'Php '.number_format($amount,2);
-                                                                 ?></b></p>
+                                                        <p><b><?php echo 'Php '.number_format($amount,2); ?></b></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -292,6 +287,7 @@
                                                     <input class="form-control" type="hidden" name="blend" value="<?php echo $row1->blend; ?>" required>
                                                     <input class="form-control" type="hidden" name="pack_size" value="<?php echo $row1->package_size; ?>" required>
                                                     <input class="form-control" type="hidden" name="client_balance" value="<?php echo $amount; ?>" required>
+                                                    <input class="form-control" type="hidden" name="blend_price" value="<?php echo $row1->blend_price; ?>" required>
                                                     <input class="form-control" type="hidden" name="client_id" value="<?php echo $row1->client_id; ?>" required>
                                                     <input class="form-control" type="hidden" name="client_company" value="<?php echo $row1->client_company; ?>" required>
                                                     <input class="form-control" type="hidden" name="full_qty" value="<?php echo $row1->contractPO_qty; ?>" required>
@@ -392,7 +388,7 @@
                 <td>Php <?php echo number_format($row2->blend_price,2); ?></td>
                 <td><?php 
                         $price = $row2->blend_price;
-                        $qty = $row2->contractPO_qty;
+                        $qty = $row2->deliver_quantity;
                         $amount = $price * $qty;
                         echo 'Php '.number_format($amount,2);
                      ?>
@@ -400,7 +396,13 @@
                 <td><?php echo $row2->client_receive; ?></td>
                 <td><?php echo $row2->payment_remarks; ?></td>
                 <td><?php echo $row2->coff_returnQty; ?></td>
-                <td><button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#pay<?php echo $row2->client_deliveryID; ?>">Pay</button>
+                <td><button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#pay<?php echo $row2->client_deliveryID; ?>" <?php 
+                        $payment_remarks = $row2->payment_remarks; 
+                        if ($payment_remarks == 'paid') {
+                            echo "disabled";
+                        }
+
+                     ?>>Pay</button>
                     <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#return<?php echo $row2->client_deliveryID;?>" <?php 
                         $resolved = $row2->resolved; 
                         $return = $row2->return; 

@@ -168,6 +168,7 @@
                                             <br>
                                             <br>
                                             <a href="<?php echo base_url(); ?>salesClients/salesContract?id=<?php echo $row->client_id;?>" class="btn btn-warning btn-round">View Contract</a>
+											<button type="button" class="btn btn-success btn-round" data-toggle="modal" data-target="#balance">Check Balance</button>											
                                        
                                         </div>
                                     </div>
@@ -341,6 +342,62 @@
         </div>
     </div>
 </body>
+ 				<!--modal for checkbalance-->
+                    <div class="modal fade" id="balance" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h4 class="panel-title" id="contactLabel"><center>Balance</center> </h4>
+                                </div>
+                                <br>
+                                <br>
+                                <?php echo form_open('SalesClients/addClientPO', array('method'=>'POST')); ?>
+                                    <div class="modal-body" style="padding: 5px;">
+                                        <p style="font-size:150%;" class="bold"><span id="val"></span>
+                                            <br> </p>
+                                        <p>
+                                            <center>
+                                                <br>
+                                                <div class="card-content table-responsive">
+                                                    <table id="mytable" class="table table-bordred table-striped">
+                                                        <thead class="text-primary">
+															<th><b class="pull-left">ID</b></th>
+                                                            <th><b class="pull-left">Delivery Receipt No.</b></th>
+                                                            <th><b class="pull-left">Item Code</b></th>
+                                                            <th><b class="pull-left">Date Delivered</b></th>
+                                                            <th><b class="pull-left">Amount</b></th>
+                                                           
+                                                        </thead>
+                                                        <tbody>
+															<?php
+															foreach($data4['balance'] as $row)
+																	{
+															?>  
+															<tr>
+																<td class="chk"><?php echo $row->client_deliveryID; ?></td>
+																<td><?php echo $row->client_dr; ?></td>
+																<td><?php echo $row->blend_id; ?></td>
+																<td><?php echo $row->client_deliverDate; ?></td>
+																<td class="text-primary"><?php echo number_format($row->client_balance); ?> </td>
+															</tr>
+															<?php 
+																}
+															 ?>
+                                                           
+                                                        </tbody>
+                                                    </table>
+													<br><br>
+                                                </div>
+                                               
+                                            </center>
+                                        </p>
+
+                                    </div>
+                                <?php echo form_close(); ?>
+                            </div>
+                        </div>
+                    </div>
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>

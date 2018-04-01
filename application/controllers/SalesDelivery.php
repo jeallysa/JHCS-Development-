@@ -28,7 +28,19 @@
 			$del_Date = $this->input->post("delivery_date");
 			$blend = $this->input->post("blend");
 			$pack_size = $this->input->post("pack_size");
+            $gross_amount = $this->input->post("client_balance");  
+
+            $blend_price = $this->input->post("blend_price");
+            $deliver_quantity = $this->input->post("delivered_qty");
+
+
+            $client_balance = $gross_amount - $blend_price * $deliver_quantity;
+
+
 			$client =$this->input->post("client_company");
+
+			$client =$this->input->post("client_company");
+
 
 			$data = array(
 				"client_dr" =>$this->input->post("client_dr"),
@@ -36,7 +48,7 @@
 				"client_invoice" =>$this->input->post("invoice"),
                 "client_receive" =>$this->input->post("receive_by"),        
                 "contractPO_id" =>$this->input->post("po_id"),        
-                "client_balance" =>$this->input->post("client_balance"),        
+                "client_balance" =>$client_balance,        
                 "client_id" =>$this->input->post("client_id"),      
                 "deliver_quantity" =>$this->input->post("delivered_qty")      
 			);
