@@ -18,6 +18,7 @@
     <link href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="<?php echo base_url(); ?>assets/css/demo.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/responsive.bootstrap.min.css" rel="stylesheet" />
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
@@ -205,11 +206,6 @@ a:focus {
                     </div>
                 </div>
             </nav>
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="card">
                                 <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="panel panel-primary">
@@ -253,6 +249,11 @@ a:focus {
                                         </div>
                                     </div>
                                 </div>
+                               <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
                                 <div class="card-header" data-background-color="green">
                                     <div class="nav-tabs-navigation">
                                         <div class="nav-tabs-wrapper">
@@ -303,7 +304,7 @@ a:focus {
                                 </div> 
                                 <div class="card-content">
                                     <a href="<?php echo base_url(); ?>AdminBlends/add_show" class="btn btn-success" style="float: right">Add New Blend</a>
-                                    <table id="example" class="table hover order-column" cellspacing="0" width="100%" style="font-size: 11px">
+                                    <table id="example" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" style="font-size: 11px">
                                         <thead>
                                             <th><b class="pull-left">Company Blend</b></th>
                                             <?php
@@ -475,8 +476,12 @@ a:focus {
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 <!-- Material Dashboard javascript methods -->
 <script src="<?php echo base_url(); ?>assets/js/material-dashboard.js?v=1.2.0"></script>
+<script src="<?php echo base_url(); ?>assets/js/dataTables.responsive.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/responsive.bootstrap.min.js"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/dataTables.responsive.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/responsive.bootstrap.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
     $('#example').DataTable({
@@ -490,7 +495,7 @@ $(document).ready(function() {
                 }
             },
             
-            { "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs',
+            { "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> CSV',"className": 'btn btn-success btn-xs',
                 exportOptions: {
                     columns: [':not(:nth-last-child(1)):not(:nth-last-child(2))']
                 }

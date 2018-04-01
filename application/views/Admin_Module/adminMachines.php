@@ -18,6 +18,7 @@
     <link href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="<?php echo base_url(); ?>assets/css/demo.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/responsive.bootstrap.min.css" rel="stylesheet" />
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
@@ -235,12 +236,6 @@ a:focus {
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
-                                            <label for="email">Stock Limit</label>
-                                            <input class="form-control" type="number" name="stocklimit" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <div class="form-group label-floating">
                                             <label for="email">Price Per Unit</label>
                                             <input class="form-control" type="number" name="price" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                         </div>
@@ -329,14 +324,13 @@ a:focus {
                                 </div>
                                 <div class="card-content">
                                     <a class="btn btn-success" data-toggle="modal" data-target="#stock" data-original-title style="float: right">Add New Machine</a>
-                                    <table id="example" class="table hover order-column" cellspacing="0" width="100%">
+                                    <table id="example" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                         <thead>
                                             <th><b class="pull-left">Machine No.</b></th>
                                             <th><b class="pull-left">Machine</b></th>
                                             <th><b class="pull-left">Type</b></th>
                                             <th><b class="pull-left">Price Per Unit</b></th>
                                             <th><b class="pull-left">Reorder Level</b></th>
-                                            <th><b class="pull-left">Stock Limit</b></th>
                                             <th><b class="pull-left">Supplier</b></th>
                                             <th><b class="pull-left">Number of Stocks </b></th>
                                             <th><b class="pull-left">Edit</b></th>
@@ -353,7 +347,6 @@ a:focus {
                                                  <td><?php echo $row->brewer_type; ?></td>
                                                  <td>Php<?php echo number_format($row->mach_price,2); ?></td>
                                                  <td><?php echo $row->mach_reorder; ?></td>
-                                                 <td><?php echo $row->mach_limit; ?></td>
                                                  <td><?php echo $row->sup_company; ?></td>
                                                  <td><?php echo $row->mach_stocks; ?></td>
                                                 <td>
@@ -466,12 +459,6 @@ a:focus {
                                                                         </div>
                                                                         <div class="col-md-6 form-group">
                                                                             <div class="form-group label-floating">
-                                                                                <label for="email">Stock Limit</label>
-                                                                                <input class="form-control" type="number" name="limit" value="<?php echo $row->mach_limit; ?>" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-6 form-group">
-                                                                            <div class="form-group label-floating">
                                                                                 <label for="email">Number of Stocks</label>
                                                                                 <input class="form-control" type="number" name="stock_level" value="<?php echo $row->mach_stocks; ?>" min="0" oninput="validity.valid||(value='');" data-validate="required" max="" required>
                                                                             
@@ -550,6 +537,8 @@ a:focus {
 <script src="<?php echo base_url(); ?>assets/js/material-dashboard.js?v=1.2.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/dataTables.responsive.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/responsive.bootstrap.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
     $('#example').DataTable({
@@ -559,19 +548,19 @@ $(document).ready(function() {
 		buttons: [
             { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5]
+                    columns: [0, 1, 2, 3, 4]
                 }
             },
             
-			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs',
+			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> CSV',"className": 'btn btn-success btn-xs',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5]
+                    columns: [0, 1, 2, 3, 4]
                 }
             },
             
 			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5]
+                    columns: [0, 1, 2, 3, 4]
                 }
             }
         ]

@@ -18,6 +18,7 @@
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="<?php echo base_url(); ?>assets/css/demo.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/css/bootstrap-select.min.css" rel="stylesheet" />
+	<link href="<?php echo base_url(); ?>assets/css/sales.css" rel="stylesheet" />
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
@@ -191,7 +192,7 @@
                                                          </select>
 												</div>
 												<div class="col-md-2">
-													<input class="form-control" name="" id="qty" placeholder="Quantity" type="number" min="0" oninput="validity.valid||(value='');" data-validate="required" />
+													<input class="form-control" name="" id="qty" placeholder="Quantity" type="number" min="1" oninput="validity.valid||(value='');" data-validate="required" />
 												</div>
 												<input class="btn btn-lg btn-primary btn-sm" type="text" id="append_data" value="Add to Table" readonly>
 												</div>

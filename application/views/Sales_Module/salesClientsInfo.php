@@ -17,6 +17,7 @@
     <link href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="<?php echo base_url(); ?>assets/css/demo.css" rel="stylesheet" />
+	<link href="<?php echo base_url(); ?>assets/css/sales.css" rel="stylesheet" />
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
@@ -167,7 +168,7 @@
                                             <br>
                                             <br>
                                             <a href="<?php echo base_url(); ?>salesClients/salesContract?id=<?php echo $row->client_id;?>" class="btn btn-warning btn-round">View Contract</a>
-                                            <button type="button" class="btn btn-success btn-round" data-toggle="modal" data-target="#balance">Check Balance</button>
+                                       
                                         </div>
                                     </div>
                                 </div>
@@ -332,136 +333,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--modal for checkbalance-->
-                    <div class="modal fade" id="balance" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                    <h4 class="panel-title" id="contactLabel"><center>Balance</center> </h4>
-                                </div>
-                                <br>
-                                <br>
-                                <?php echo form_open('SalesClients/addClientPO', array('method'=>'POST')); ?>
-                                    <div class="modal-body" style="padding: 5px;">
-                                        <p style="font-size:150%;"><span id="val"></span>
-                                            <br> </p>
-                                        <p>
-                                            <center>
-                                                <br>
-                                                <div class="card-content table-responsive">
-                                                    <table id="mytable" class="table table-bordred table-striped">
-                                                        <thead class="text-primary">
-															<th><b class="pull-left">ID</b></th>
-                                                            <th><b class="pull-left">Delivery Receipt No.</b></th>
-                                                            <th><b class="pull-left">Item Code</b></th>
-                                                            <th><b class="pull-left">Delivery Date</b></th>
-                                                            <th><b class="pull-left">Amount</b></th>
-                                                           
-                                                        </thead>
-                                                        <tbody>
-															<?php
-															foreach($data4['balance'] as $row)
-																	{
-															?>  
-															<tr>
-																<td class="chk"><?php echo $row->client_deliveryID; ?></td>
-																<td><?php echo $row->client_dr; ?></td>
-																<td><?php echo $row->blend_id; ?></td>
-																<td><?php echo $row->client_deliverDate; ?></td>
-																<td class="text-primary"><?php echo $row->client_balance; ?> </td>
-															</tr>
-															<?php 
-																}
-															 ?>
-                                                           
-                                                        </tbody>
-                                                    </table>
-													
-                                                </div>
-                                                <a class="btn btn-primary" data-toggle="collapse" href="#collapsePayment" aria-expanded="false" aria-controls="collapseExample" data-background-color="red" id="AddPay">Add Full Payment</a>
-                                            </center>
-                                        </p>
-                                        <div class="collapse" id="collapsePayment">
-                                            <div class="card-block">
-                                                <form action="#" method="post" accept-charset="utf-8">
-                                                    <div class="modal-body" style="padding: 5px;">
-                                                        <div class="row">
-                                                            <div class="col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 20px;">
-                                                                <div class="form-group label-floating">
-                                                                    <div class="form-group">
-                                                                        <div class="row">
-																			<?php
-																			foreach($data4['balance'] as $row)
-																					{
-																			?>  
-																			<input class="no-border" type="text" name="displayID" id="displayID" value="<?php echo $row->client_deliveryID; ?>">
-																			<?php 
-																}
-															 ?>
-																			 <div class="col-md-4">
-                                                                                <div class="form-group label-floating">
-                                                                                    <label>Amount: </label>
-																					<b><span id="val1"></span></b>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-6">
-                                                                                <div class="form-group label-floating">
-                                                                                    <label for="email">Payment Date: </label>
-                                                                                    <input id="date" name="Pdate" type="date" class="no-border bold" value="<?php echo date("Y-m-d");?>" data-validate="required" message="A Date of Purchase is recquired! min="<?=date('Y-m-d')?>" max="<?=date('Y-m-d',strtotime(date('Y-m-d')))?>"">
-                                                                                </div>
-                                                                            </div>      
-                                                                        </div>
-                                                                        <div class="row">
-																			<div class="col-md-4">
-                                                                                <div class="form-group label-floating">
-                                                                                    <label for="email">Collection Receipt No.:</label>
-                                                                                    <input class="form-control" type="text" name="crNo">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-4">
-                                                                                <div class="form-group label-floating">
-                                                                                    <label>Remarks:</label>
-                                                                                    <input class="form-control" type="text" name="remarks">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-4 ">
-                                                                                <div class="form-group label-floating">
-                                                                                    <label>MOD</label>
-                                                                                    <select class="form-control nav" name="mod">
-                                                                                        <option value="">Cash on delivery</option>
-                                                                                        <option value="">Cash on Delivery</option>
-                                                                                        <option value="">Bank Deposit</option>
-                                                                                        <option value="cheque">Cheque</option>
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-																		<div class="row">
-																			<div class="col-md-4">
-                                                                                <div class="form-group label-floating">
-                                                                                    <label for="email">Withheld.: </label>
-                                                                                    <input class="form-control" type="text" name="withheld">
-                                                                                </div>
-                                                                            </div>
-																		</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <center>
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                <button type="submit" class="btn btn-success">Save</button>
-                                                            </center>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php echo form_close(); ?>
                             </div>
                         </div>
                     </div>

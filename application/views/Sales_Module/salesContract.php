@@ -18,6 +18,7 @@
     <link href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="<?php echo base_url(); ?>assets/css/demo.css" rel="stylesheet" />
+	<link href="<?php echo base_url(); ?>assets/css/sales.css" rel="stylesheet" />
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
@@ -359,6 +360,11 @@
                                                                         <label class="col-md-3 control">Remarks:</label>
                                                                         <input class="form-control col-md-3" type="text" name="remarks" required="">
                                                                          <input name="serial" type="hidden" class="form-control" value="<?php echo $row->mach_serial; ?>" >
+                                                                         <input name="client_id" type="hidden" class="form-control" value="<?php 
+                                                                            $cli_id = $_GET['id'];
+                                                                            echo $cli_id;
+                                                                         ; ?>
+                                                                         " >
                                                                          <input name="cli_id" type="hidden" class="form-control" value="<?php echo $row->client_id; ?>
                                                                          " >
                                                                          <input name="sales_id" type="hidden" class="form-control" value="<?php echo $row->mach_salesID; ?>
