@@ -74,7 +74,7 @@
 			$this->db->query('UPDATE coffee_blend SET blend_qty = blend_qty + '.$quantity.' WHERE blend_id ='.$blend_id.';');
 			$data_trans = array(
 						'transact_date' => $date,
-						'dr_client' => $po_id,
+						'po_client' => $po_id,
 			        	'type' => "OUT"
 			);
 			$this->db->insert('inv_transact', $data_trans);
