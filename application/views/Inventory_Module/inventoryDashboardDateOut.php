@@ -1,3 +1,4 @@
+
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
@@ -33,6 +34,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     padding-top: 15px;
 
 }
+
+.label-count {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    display: inline-block;
+    background: red; 
+    text-align: center;
+    color: white;
+}
+
+
 </style>
 
 <body>

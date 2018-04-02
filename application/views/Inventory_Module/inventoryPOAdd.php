@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url(); ?>assets/img/apple-icon.png"/>
     <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/img/favicon.png"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Inventory Stocks</title>
+    <title>Purchase Order</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
@@ -31,6 +31,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     padding-top: 15px;
 
 }
+
+.label-count {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    display: inline-block;
+    background: red; 
+    text-align: center;
+    color: white;
+}
+
+
 </style>
 
 <body>
@@ -82,6 +94,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <p>Returns</p>
                         </a>
                     </li>
+                    <li>
                 </ul>
             </div>
         </div>
@@ -90,10 +103,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="main-panel">
             <nav class="navbar navbar-transparent navbar-absolute">
                 <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    
+                    
+                    
+                    
+                    
+                    
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            
-                                <li id="nameheader">
+                            <li class="dropdown">
+                                <li>
                                     <?php $username = $this->session->userdata('username') ?>
                                 
                                 <?php
@@ -106,8 +133,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             }
                                         ?>
                                 </li>
-                           
-                            <li>
                                 <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="material-icons">person</i>
                                         <p class="hidden-lg hidden-md">Profile</p>
@@ -126,14 +151,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <a href="<?php echo base_url('Login/logout');  ?>">Logout</a>
                                     </li>
                                 </ul>
-                            </li>
+                            
                                
        <!------------------                                          NOTIFICATION                    ---------------------------------->           
                             
-                            <li>
+                            
                             
                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">announcement</i>
+                                        <i class="material-icons">shopping_basket</i>
                                         <p class="hidden-lg hidden-md">Profile</p>
                                        <span class="label-count" style='background-color: #f44336;'> <?php 
                                            
@@ -157,7 +182,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                  for($i = 0; $i <= 3 ;$i++){
                                      if(!empty($reorder[$i])){
                                           foreach($reorder[$i] as $object){
-                                            echo   '<li><a href="inventoryStocks">' . $object->name . "     " . $object->type. ' now drops below the re-order level</a></li>';
+                                            echo   '<li>' . $object->name . "     " . $object->type. '</li>';
                                                  
                                              }
                                       }
@@ -166,18 +191,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                    
                                 </ul>
                             
-                            </li>
+                            
                             
                             
                             
     <!------------------                                          NOTIFICATION                    ---------------------------------->           
-
+                
+                            
+                            
+                            
+                            
+                             </li>
+                 
+                        
+                        
                         
                         </ul>
                     </div>
                 
                 </div>
             </nav>
+        
+        
+        
         
         <div class="content">
             <div class="container-fluid">
@@ -192,7 +228,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                            
                                             <li class="active">
                                                 <a href="<?php echo base_url(); ?>inventoryPOAdd">
-                                                    Add Purchase Order
+                                                    Purchase Order
                                                     <div class="ripple-container"></div>
                                                 </a>
                                             </li>
@@ -251,7 +287,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <div class="row">
                                                                 <div class="col-md-12">
                                                                     <div class="form-group label-floating">
-                                                                        <label class="control-label">Supplier's Name</label>
+                                                                        <label class="control-label">Supplier</label>
                                                                         
                                                                         <select class="form-control" id="supplier" name = "dropdown" >
                                                                     
@@ -277,7 +313,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                         
                                                                         
                                                                         
-                                                                       <input class="form-control" type="date" name="date" id ="poDate" value="<?php if(!empty($tempExisting)){
+                                                                       <input class="form-control" type="date" name="date" id ="poDate"  value="<?php if(!empty($tempExisting)){
                                                                                                                                       echo $tempExisting[0]->date; } ?>" required>
                                                                         
                                                                         
@@ -290,7 +326,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <div class="row">
                                                                 <div class="col-md-6">
                                                                     <div class="form-group label-floating">
-                                                                        <label class="control-label">Credit Terms:</label>
+                                                                        <label class="control-label">Credit Term:</label>
                                                                         
                                                                         
                                                         <input type="number" class="form-control" name="creditTerms" min="1" max = "30"  value="<?php if(!empty($tempExisting)){
@@ -304,7 +340,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                         
                                                                         
                                                          <input type="number" class="form-control"  min="1"  name = "truckingFee" value = "<?php if(!empty($tempExisting)){
-                                                                                                                                           echo $tempExisting[0]->trucking_fee; } ?>" required>
+                                                                                                                                           echo number_format($tempExisting[0]->trucking_fee,2); } ?>" required>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -331,7 +367,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <form method = "post" action ="InventoryPOAdd/insertTempOrder" id ="form2"> 
                                                     
                                                     <div >
-                                                        <h1>List of Order/s</h1>
+                                                        <h1>John Hay Coffee Services Inc.</h1>
                                                         
                                                          <?php if(!empty($lastPO[0])){
                                                                 $last = $lastPO[0]->supp_po_id;
@@ -339,11 +375,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 echo '<h3> PO#' .$new  .'</h3>';
                                                                } 
                                                         ?>
+                                                  <?php     
+                                                       if(!empty($tempExisting)){
+                                                            echo '<h4><b>'  .$tempExisting[0]->supp_name . '</b></h4>' ; 
+                                                         } ?>
+                                                        
+                                                        
+                                                        
+                                                         <?php     
+                                                       if(!empty($tempExisting)){
+                                                            echo '<h4>Date Of Recording '   .$tempExisting[0]->date . '</h4>' ; 
+                                                         } ?>
                                                         
                                                         
                                                         
                                                         
-                                                        <p><?php echo "Date Of Recording " . date('m-d-Y') ?>
                                                         
                                                     </div>
                                                    
@@ -365,7 +411,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                    
                                                                <td class='col-sm-3'>
                                                                       <select class="form-control" name="item" id ="item" required>
-                                                                            <option value = "">CHOOSE ITEM</option>
+                                                                            <option value = "">Choose Item</option>
                                                                            
                                                   <?php
                                                           
@@ -396,14 +442,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                            </td>
                                                                     
                                                                     
-                                                            <td class='col-sm-3'>
+                                                            <td class='col-sm-2'>
                                                                       <select class="form-control" name = "itemType"  id = "itemType" required >
                                                                             <option value="">Select Type</option>      
                                                                      </select>
                                                             </td>    
                                                                    
                                                                     
-                                                           <td class="col-sm-3">
+                                                           <td class="col-sm-2">
                                                      <input type="text" class="form-control" name="unitPrice"  id = "unitPrice" readonly/> 
                                                            </td>
                                                                   
@@ -460,10 +506,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                          foreach ($TempOrdered as $object) {
                                                                          echo '<tr>' ,
       '<td class="col-sm-3"><input type="text" class="form-control" name="item_name[]" id="item_name'.$counter.'" value ="'.$object->item_name. '" readonly required>   </td>' ,
-      '<td class="col-sm-3"><input type="text" class="form-control" name="qty[]"       id="qty'.$counter.'" value ="'.$object->qty       .'" readonly required>  </td>' ,
-      '<td class="col-sm-3"><input type="text" class="form-control" name="type[]"      id="type'.$counter.'" value ="'.$object->type      .'" readonly required>   </td>' ,
-      '<td class="col-sm-3"><input type="text" class="form-control" name="unitPrice[]" id="unitPrice'.$counter.'" value ="'.$object->unitPrice .'" readonly required>   </td>' ,
-      '<td class="col-sm-1"><input type="text" class="form-control" name="amount[]"    id="amount'.$counter.'" value ="'.$object->amount    .'" readonly required>   </td>' ,
+      '<td class="col-sm-3"><input type="text" class="form-control" name="qty[]"       id="qty'.$counter.'" value ="'.number_format($object->qty)       .'" readonly required>  </td>' ,
+      '<td class="col-sm-2"><input type="text" class="form-control" name="type[]"      id="type'.$counter.'" value ="'.$object->type      .'" readonly required>   </td>' ,
+      '<td class="col-sm-2"><input type="text" class="form-control" name="unitPrice[]" id="unitPrice'.$counter.'" value ="Php '.number_format($object->unitPrice,2) .'" readonly required>   </td>' ,
+      '<td class="col-sm-3"><input type="text" class="form-control" name="amount[]"    id="amount'.$counter.'" value ="Php '.number_format($object->amount,2)    .'" readonly required>   </td>' ,
                                                                               '</tr>' ;
                                                                              $counter++;
                                                                              }
@@ -484,7 +530,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             
                                                                 <tr>
                                                                      <td><b>Trucking Fee</b></td>
-                                                                     <td><b><input type="number" class="form-control" name="truckingFee" id="truckingFee" value="<?php if(!empty($truckingFee)) { foreach($truckingFee as $object) { echo $object->trucking_fee; }}  ?>" readonly /></b></td>  
+                                                                     <td><b><input type="text" class="form-control" name="truckingFee" id="truckingFee" value="<?php if(!empty($truckingFee)) { foreach($truckingFee as $object) { echo "Php " .number_format($object->trucking_fee,2); }}  ?>" readonly /></b></td>  
                                                                      <td></td>
                                                                      <td><!--<center><b><input type="number"  class="form-control" name="" id="" readonly required/></b></center> --></td>
                                                                 </tr>

@@ -237,12 +237,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-sm-6">
-                                            <!--<div class="form-group">
-                                                <label class="col-md-6 control">Purchase Order no. :</label>
-                                                <div class="col-md-4">
-                                                    <input id="" name="name" type="text" class="form-control">
-                                                </div>
-                                            </div>-->
+                                  
                                             <div class="form-group">
                                                 <label class="col-md-5 control">Purchase Date :</label>
                                                 <div class="col-md-4">
@@ -265,83 +260,10 @@
                                     </div>
                                 </div>
                                 <hr>
-                               <!-- <div class="col-md-">
-                                    <p>
-                                        <center><a class="btn btn-primary" data-toggle="collapse" href="#collapseBlend" aria-expanded="false" aria-controls="collapseExample">Add New Blend</a></center>
-                                    </p>
-                                    <div class="collapse" id="collapseBlend">
-                                        <div class="card-block">
-                                            <form action="#" method="post" accept-charset="utf-8">
-                                                <div class="modal-body" style="padding: 5px;">
-                                                    <div class="row">
-                                                        <div class="form-conttrol label-floating">
-                                                            <div class="col-md-4">
-                                                                <label> Coffee Blend:</label>
-                                                            </div>
-                                                            <div class="col-md-2">
-                                                                <label>Type of Bag:</label>
-                                                            </div>
-                                                            <div class="col-md-2">
-                                                                <label>Size:</label>
-                                                            </div>
-                                                            <div class="col-md-2">
-                                                                <label>Qty:</label>
-                                                            </div>
-                                                            <div class="col-md-2">
-                                                                <label>Add More:</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <input type="hidden" name="count" value="1" />
-                                                        <div class="control-group " id="fields">
-                                                            <div class="controls" id="profs">
-                                                                <form class="input-append label-floating">
-                                                                    <div id="field">
-                                                                        <div class="input" id="field1">
-                                                                            <div class="col-md-4">
-                                                                                <select class="form-control" name="coffee">
-                                                                                    <option value="">Guatemala Rainforest</option>
-                                                                                    <option value="">Cordillera Sunrise</option>
-                                                                                    <option value="">Sumatra Night</option>
-                                                                                    <option value="">Espresso</option>
-                                                                                </select>
-                                                                            </div>
-                                                                            <div class="col-md-2">
-                                                                                <select class="form-control" name="coffee">
-                                                                                    <option value="clear">Clear</option>
-                                                                                    <option value="brown">Brown</option>
-                                                                                </select>
-                                                                            </div>
-                                                                            <div class="col-md-2">
-                                                                                <select class="form-control" name="coffee">
-                                                                                    <option value="clear">250g</option>
-                                                                                    <option value="brown">500g</option>
-                                                                                    <option value="brown">1000g</option>
-                                                                                </select>
-                                                                            </div>
-                                                                            <div class="col-md-2">
-                                                                                <input class="form-control" type="number" />
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-2">
-                                                                            <button id="b1" class="btn btn-success add-more " type="button">+</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                </div>-->
+                 
                             </div>
                             <div class="panel-footer" align="right">
-                                <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                           
                                 <?php echo form_submit(['name'=>'AddPO', 'value'=>'Add Purchase Order','class'=>'btn btn-primary','id'=>'subButton']) ?>
                             </div>
                         <?php echo form_close(); ?>

@@ -1,3 +1,4 @@
+
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
@@ -38,6 +39,18 @@ input {
     padding-top: 15px;
 
 }
+
+.label-count {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    display: inline-block;
+    background: red; 
+    text-align: center;
+    color: white;
+}
+
+
 </style>
 
 <body>
@@ -632,4 +645,5 @@ $(document).ready(function() {
 
 
 </script>-->
+
 </html>

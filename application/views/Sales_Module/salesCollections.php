@@ -21,6 +21,7 @@
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="<?php echo base_url(); ?>assets/css/demo.css" rel="stylesheet" />
 	<link href="<?php echo base_url(); ?>assets/css/sales.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/responsive.bootstrap.min.css" rel="stylesheet" />
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
@@ -140,7 +141,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <table id="table-mutasi" class="display  hover order-column" cellspacing="0" width="100%">
+                                        <table id="example" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                         <thead>
                                             <th><b class="pull-left">Collection Receipt No.</b></th>
                                             <th><b class="pull-left">Delivery Receipt No.</b></th>
@@ -196,6 +197,9 @@
 <script src="<?php echo base_url(); ?>assets/FileExport/vfs_fonts.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/material.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/dataTables.responsive.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/responsive.bootstrap.min.js"></script>
+
 <!--  Charts Plugin -->
 <script src="../assets/js/chartist.min.js"></script>
 <!--  Dynamic Elements plugin -->
@@ -237,7 +241,7 @@
     }
 
 
-    var oTable = $('#table-mutasi').dataTable({ 
+    var oTable = $('#example').dataTable({ 
         "dom":' fBrtip',
         "lengthChange": false,
         "info":     false,

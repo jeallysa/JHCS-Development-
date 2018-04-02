@@ -33,6 +33,40 @@
 
 		function insert_data($data){ 
 			$this->db->insert('company_returns', $data);
+			return $this->db->insert_id();
+		}
+
+		function compReturnDecrease($date, $quantity, $raw_id, $return_id){
+
+			$stock = $this->db->query("SELECT * FROM raw_coffee WHERE raw_id = '".$raw_id."';")->row()->raw_stock;
+			if ($stock < $quantity){
+				return;
+			}
+			
+			$data_trans = array(
+						'transact_date' => $date,
+						'company_returnID' => $return_id,
+			        	'type' => "OUT"
+			);
+			$this->db->insert('inv_transact', $data_trans);
+			$trans_id = $this->db->insert_id();
+			
+			$this->db->query('UPDATE raw_coffee SET raw_stock = raw_stock - '.$quantity.' WHERE raw_id ='.$raw_id.';'); 
+			        
+			$data_for = array(
+			  	'trans_id' => $trans_id,
+			   	'raw_coffeeid' => $raw_id,
+			   	'quantity' => $quantity
+			);
+			$this->db->insert('trans_raw', $data_for);
+
+			$this->db->query('INSERT INTO trans_pack (trans_id) VALUES ('.$trans_id.')');
+			$this->db->query('INSERT INTO trans_stick (trans_id) VALUES ('.$trans_id.')');
+			$this->db->query('INSERT INTO trans_mach (trans_id) VALUES ('.$trans_id.')');
+
+						
+			
+		
 		}
 	}
 

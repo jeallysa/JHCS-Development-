@@ -21,16 +21,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/material-dashboard.css?v=1.2.0"/>
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/demo.css"/>
+    <link href="<?php echo base_url(); ?>assets/css/responsive.bootstrap.min.css" rel="stylesheet" />
     <!--     Fonts and icons     -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" >
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' type='text/css'>
     <link rel="shortcut icon" href="favicon.ico">
+
 </head>
 <style>
 .title {
     font-size: large;
     padding-top: 15px;
 
+}
+
+.label-count {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    display: inline-block;
+    background: red; 
+    text-align: center;
+    color: white;
 }
 </style>
 <body>
@@ -133,7 +145,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="material-icons">announcement</i>
                                         <p class="hidden-lg hidden-md">Profile</p>
-                                       <span class="label-count" style='background-color: #f44336;'> <?php 
+                                       <span class="label-count"><b> <?php 
                                            
                               $total = 0;
                                 for($i = 0; $i <= 3 ;$i++){
@@ -144,7 +156,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                              }
                                       }
                                  } echo $total;
-                                           ?>   </span> </a>
+                                           ?>  </b> </span> </a>
                             
                             
                             
@@ -199,7 +211,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span>Stock Card Details</h4>
                         </div>
-                        <form action="#" method="post" accept-charset="utf-8">
+                        <form action="InventoryBlends/update/<?php echo $id ?>" method="post" accept-charset="utf-8">
                             <div class="modal-body" style="padding: 5px;">
                                 <div id="page-wrapper">
                                     <div id="toBePrinted<?php echo $details; ?>">
@@ -217,7 +229,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <input type="text" id="max<?php echo $details; ?>" class="form-control" value="<?php   echo date("Y-m-d") ?>" >
                                     </div>
                                 </div>
-                                        <table class="table table-striped" id="table-mutasi<?php echo $details; ?>">
+                                        <table class="table table-striped table-bordered dt-responsive nowrap" id="table-mutasi<?php echo $details; ?>">
                                             <thead>
                                                 <tr>
                                                     <th><b>Client/Supplier</b></th>
@@ -287,49 +299,48 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             </tbody>
                                         </table>
                                         <div class="row">
-                                          <center>                 
-                                        <form action="InventoryBlends/update" method="post" accept-charset="utf-8">
+                                          <center>
                                                             <div class="row">
                                                                     <div class="form-group">
                                                                         <label class="col-md-6 control">Physical Count :</label>
                                                                         <div class="col-md-4">
-                                                                            <input id="physcount<?php echo $details; ?>" name="physcount<?php echo $details; ?>" type="number" class="form-control" required/>
+                                                                            <input id="physcount<?php echo $details; ?>" name="physcount" type="number" class="form-control" required/>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label class="col-md-6 control">Discrepancy :</label>
                                                                         <div class="col-md-4">
-                                                                            <input value="0" id="discrepancy<?php echo $details; ?>" name="discrepancy<?php echo $details; ?>" readonly="" class="form-control" />
+                                                                            <input value="0" id="discrepancy<?php echo $details; ?>" name="discrepancy" readonly="" class="form-control" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label class="col-md-6 control">Date of Inventory :</label>
                                                                         <div class="col-md-4">
-                                                                            <input value="<?php   echo date("Y-m-d") ?>" id="date<?php echo $details; ?>" type="date" name="date<?php echo $details; ?>" class="form-control" min="2017-01-01" max="<?php   echo date("Y-m-d") ?>"/>
+                                                                            <input value="<?php   echo date("Y-m-d") ?>" id="date<?php echo $details; ?>" type="date" name="date" class="form-control" min="2017-01-01" max="<?php   echo date("Y-m-d") ?>"/>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label class="col-md-6 control">Remarks :</label>
                                                                         <div class="col-md-4">
-                                                                            <textarea style="resize:vertical;" class="form-control" rows="2" name="remarks<?php echo $details; ?>"></textarea>
+                                                                            <textarea style="resize:vertical;" class="form-control" rows="2" name="remarks"></textarea>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="type"></label>
                                                                         <div class="col-md-4">
-                                                                            <input value="<?php echo $id; ?>" class="form-control" name="blndid<?php echo $details; ?>" type="hidden" />
+                                                                            <input value="<?php echo $id; ?>" class="form-control" name="blndid" type="hidden" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="type"></label>
                                                                         <div class="col-md-4">
-                                                                            <input value="<?php echo $stock; ?>" class="form-control" id = "blndstocks<?php echo $details; ?>" name="blndstocks<?php echo $details; ?>" type="hidden" />
+                                                                            <input value="<?php echo $stock; ?>" class="form-control" id = "blndstocks<?php echo $details; ?>" name="blndstocks" type="hidden" />
                                                                         </div>
                                                                     </div>
                                                             </div>
                                                             <input type="submit" class="btn btn-success" value="Save" >
                                                             <input type="reset" class="btn btn-danger" value="Clear" />
-                                                        </form>
+                                                        
                                                     </div>
                                                     </center>
                                     </div>
@@ -402,7 +413,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 
                                 <div class="card-content ">
                                     <br>
-                                    <table id="example" class="table hover order-column" cellspacing="0" width="100%">
+                                    <table id="example" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                         <thead>
                                             <th><b class="pull-left">No.</b></th>
                                             <th><b class="pull-left">Blend</b></th>
@@ -494,6 +505,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="../assets/js/material-dashboard.js?v=1.2.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="../assets/js/demo.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/dataTables.responsive.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/responsive.bootstrap.min.js"></script>
+
 <script>
 
 $(document).ready(function() {

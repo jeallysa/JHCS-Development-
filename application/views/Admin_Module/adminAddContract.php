@@ -209,7 +209,7 @@ a:focus {
                                         </div>
                                          <div class="form-group label-floating">
                                             <label for="email">Date Expiration</label>
-                                            <input class="form-control" name="date_expiration" type="date" class="no-border" value="<?php echo date("Y-m-d");?>" data-validate="required" message="Date of Purchase is recquired! min="<?=date('Y-m-d')?>" max="<?=date('Y-m-d',strtotime(date('Y-m-d').'+1 days'))?>"">
+                                            <input class="form-control" name="date_expiration" type="date" required>
                                         </div>
                                          <div class="col-md-6 form-group">
                                         <div class="form-group label-floating">
