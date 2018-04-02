@@ -138,6 +138,23 @@ class sellProduct_model extends CI_MODEL
 	function add_blend_stock($blend_returnedQty, $blend_id){
 		$this->db->query("UPDATE coffee_blend SET blend_qty = blend_qty + ".$blend_returnedQty." WHERE blend_id = '".$blend_id."';");
 	}
+
+	function activity_logs($module, $activity){
+		$username = $this->session->userdata('username');
+        $query = $this->db->query("SELECT user_no from jhcs.user where username ='".$username."';");
+        foreach ($query ->result() as $row) {
+        	$id = $row->user_no;
+        }
+
+        $data = array(
+            'user_no' => $id,
+            'timestamp' => date('Y\-m\-d\ H:i:s A'),
+            'message' => $activity,
+            'type' => $module
+        );
+        $this->db->insert('activitylogs', $data);
+		}
+		
 }
 
 ?>

@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 	class SalesClients_model extends CI_MODEL{
 		function __construct(){
@@ -47,8 +47,10 @@
 			/* NEEDED QUERY for Section 4 */
 			$query = $this->db->query('SELECT c.percentage, c.raw_id, d.package_id, d.package_size, b.sticker_id FROM coffee_blend b JOIN proportions c JOIN packaging d ON b.blend_id = c.blend_id AND b.package_id = d.package_id WHERE c.blend_id ='.$blend_id.';');		
 			
+
 			
 			/* validation of stock if less or not */
+
 			foreach($query->result() AS $row){
 				$raw_guide = $row->raw_id;
 			    $percentage = $row->percentage;
@@ -181,6 +183,22 @@
 			$query = $this->db->query("SELECT * FROM client_delivery NATURAL JOIN contracted_po WHERE payment_remarks='unpaid'");
 			return $query->result();
 		}
+
+		function activity_logs($module, $activity){
+		$username = $this->session->userdata('username');
+        $query = $this->db->query("SELECT user_no from jhcs.user where username ='".$username."';");
+        foreach ($query ->result() as $row) {
+        	$id = $row->user_no;
+        }
+
+        $data = array(
+            'user_no' => $id,
+            'timestamp' => date('Y\-m\-d\ H:i:s A'),
+            'message' => $activity,
+            'type' => $module
+        );
+        $this->db->insert('activitylogs', $data);
+	}
 	}
 
 ?>
