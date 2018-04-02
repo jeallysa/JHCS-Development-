@@ -250,7 +250,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             
                                             
                                                                    
-              <!------------------------------                                FORM1                                        ----------------------------------------------->                            
+                                        
                                                     
                                             
                                             <div class="col-md-4">
@@ -338,8 +338,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 </div> 
                                             </div>                                                
                                
-                                            
-              <!-------------------------------------------------              FORM2                                 ----------------------------------------------->                                     
+                              
+
+
+
+
+                                                   
                                       <div  id="printThis" >  
                                         <div class="col-md-8" id="form2" >
                                             <button class ="btn-print pull-right" id="printer">Generate PDF</button>
@@ -459,7 +463,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                              
                                              
                                              
-      <!------------------------------                                        FORM3                                ----------------------------------------------->                                              
+                                   
                                              
                                              
                                   
@@ -487,8 +491,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       '<td class="col-sm-3"><input type="text" class="form-control" name="item_name[]" id="item_name'.$counter.'" value ="'.$object->item_name. '" readonly required>   </td>' ,
       '<td class="col-sm-3"><input type="text" class="form-control" name="qty[]"       id="qty'.$counter.'" value ="'.number_format($object->qty)       .'" readonly required>  </td>' ,
       '<td class="col-sm-2"><input type="text" class="form-control" name="type[]"      id="type'.$counter.'" value ="'.$object->type      .'" readonly required>   </td>' ,
-      '<td class="col-sm-2"><input type="text" class="form-control" name="unitPrice[]" id="unitPrice'.$counter.'" value ="Php '.number_format($object->unitPrice,2) .'" readonly required>   </td>' ,
-      '<td class="col-sm-3"><input type="text" class="form-control" name="amount[]"    id="amount'.$counter.'" value ="Php '.number_format($object->amount,2)    .'" readonly required>   </td>' ,
+      '<td class="col-sm-2"><input type="text" class="form-control" name="unitPrice[]" id="unitPrice'.$counter.'" value ="'.number_format($object->unitPrice,2) .'" readonly required>   </td>' ,
+      '<td class="col-sm-3"><input type="text" class="form-control" name="amount[]"    id="amount'.$counter.'" value ="'.number_format($object->amount,2)    .'" readonly required>   </td>' ,
                                                                               '</tr>' ;
                                                                              $counter++;
                                                                              }
@@ -509,7 +513,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             
                                                                 <tr>
                                                                      <td><b>Trucking Fee</b></td>
-                                                                     <td><b><input type="text" class="form-control" name="truckingFee" id="truckingFee" value="<?php if(!empty($truckingFee)) { foreach($truckingFee as $object) { echo "Php " .number_format($object->trucking_fee,2); }}  ?>" readonly /></b></td>  
+                                                                     <td><b><input type="text" class="form-control" name="truckingFee" id="truckingFee" value="<?php if(!empty($truckingFee)) { foreach($truckingFee as $object) { echo "" .number_format($object->trucking_fee,2); }}  ?>" readonly /></b></td>  
                                                                      <td></td>
                                                                      <td><!--<center><b><input type="number"  class="form-control" name="" id="" readonly required/></b></center> --></td>
                                                                 </tr>
@@ -538,13 +542,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     </div>
                                                </form> 
                                             </div>    
-  <!------------------------------                                        End Form 3                                ----------------------------------------------->                                              
+
                                                   
                                    
                                                 
                                               
                                                 
-                                               </div>  <!------------------------------END   FORM 2 and 3  DIV------------------------------------->  
+                                               </div>  
                                             
                                             
              
@@ -779,7 +783,7 @@ document.getElementById('submitOrder').onclick = function() {
                   $('#qty').keyup(function(){
                   if(category==1){
                   var y = parseFloat($(this).val());
-			      var x = (y / 100) * parseFloat($('#unitPrice').val());
+			      var x = (y / 1000) * parseFloat($('#unitPrice').val());
 			      $('#amount').val(x);
                
                   }else{

@@ -34,6 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
    
         public function insertPartial($temp){
            
+        $DRNO=$this->input->post('DRNO');
         $itemIdv=$this->input->post('itemId');
         $itemNamev=$this->input->post('item');
         $itemTypev=$this->input->post('itemType');
@@ -59,6 +60,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               
                                    //Data used for mapping 
               $data3[$i] = array(
+                                    "drNo"=>$DRNO,
                                     "itemId"=>$itemIdv[$i],
                                     "item" => $itemNamev[$i],
                                     "itemType" => $itemTypev[$i],
@@ -74,6 +76,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               
                                //Data to be inserted in the Delivery table
                              $data[$i] = array(
+                                    'drNo'=>$DRNO,
                                     'supp_po_ordered_id' => $itemIdv[$i],
                                     'yield_weight' => $yield_weightv[$i],
                                     'yields' => $yieldsv[$i],
@@ -116,7 +119,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         
     
   public function insertFull($temp){
-           
+        $DRNO=$this->input->post('DRNO');   
         $itemIdv=$this->input->post('itemId');
         $itemNamev=$this->input->post('item');
         $itemTypev=$this->input->post('itemType');
@@ -137,6 +140,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
        
                                      //Date used for mapping 
               $data3[$i] = array(
+                                     "drNo"=>$DRNO,
                                     "itemId"=>$itemIdv[$i],
                                     "item" => $itemNamev[$i],
                                     "itemType" => $itemTypev[$i],
@@ -153,6 +157,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             
                                           //Data to be inserted in the Delivery table
                              $data[$i] = array(
+                                    'drNo'=>$DRNO,
                                     'supp_po_ordered_id' => $itemIdv[$i],
                                     'yield_weight' => $yield_weightv[$i],
                                     'yields' => $yieldsv[$i],

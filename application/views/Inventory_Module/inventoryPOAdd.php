@@ -94,7 +94,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <p>Returns</p>
                         </a>
                     </li>
-                    <li>
                 </ul>
             </div>
         </div>
@@ -103,24 +102,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="main-panel">
             <nav class="navbar navbar-transparent navbar-absolute">
                 <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
-                    
-                    
-                    
-                    
-                    
-                    
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown">
-                                <li>
+                            
+                                <li id="nameheader">
                                     <?php $username = $this->session->userdata('username') ?>
                                 
                                 <?php
@@ -133,6 +118,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             }
                                         ?>
                                 </li>
+                           
+                            <li>
                                 <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="material-icons">person</i>
                                         <p class="hidden-lg hidden-md">Profile</p>
@@ -151,16 +138,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <a href="<?php echo base_url('Login/logout');  ?>">Logout</a>
                                     </li>
                                 </ul>
-                            
+                            </li>
                                
        <!------------------                                          NOTIFICATION                    ---------------------------------->           
                             
-                            
+                            <li>
                             
                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">shopping_basket</i>
+                                        <i class="material-icons">announcement</i>
                                         <p class="hidden-lg hidden-md">Profile</p>
-                                       <span class="label-count" style='background-color: #f44336;'> <?php 
+                                        
+                                       <span class="label-count"><b> <?php 
                                            
                               $total = 0;
                                 for($i = 0; $i <= 3 ;$i++){
@@ -171,7 +159,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                              }
                                       }
                                  } echo $total;
-                                           ?>   </span> </a>
+                                           ?>   </b></span> </a>
                             
                             
                             
@@ -182,7 +170,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                  for($i = 0; $i <= 3 ;$i++){
                                      if(!empty($reorder[$i])){
                                           foreach($reorder[$i] as $object){
-                                            echo   '<li>' . $object->name . "     " . $object->type. '</li>';
+                                            echo   '<li><a href="inventoryStocks">' . $object->name . "     " . $object->type. ' now drops below the re-order level</a></li>';
                                                  
                                              }
                                       }
@@ -191,26 +179,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                    
                                 </ul>
                             
-                            
+                            </li>
                             
                             
                             
     <!------------------                                          NOTIFICATION                    ---------------------------------->           
-                
-                            
-                            
-                            
-                            
-                             </li>
-                 
-                        
-                        
+
                         
                         </ul>
                     </div>
                 
-                </div>
-            </nav>
+                </div>            </nav>
         
         
         
@@ -271,7 +250,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             
                                             
                                                                    
-              <!------------------------------                                FORM1                                        ----------------------------------------------->                            
+                                        
                                                     
                                             
                                             <div class="col-md-4">
@@ -359,8 +338,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 </div> 
                                             </div>                                                
                                
-                                            
-              <!-------------------------------------------------              FORM2                                 ----------------------------------------------->                                     
+                              
+
+
+
+
+                                                   
                                       <div  id="printThis" >  
                                         <div class="col-md-8" id="form2" >
                                             <button class ="btn-print pull-right" id="printer">Generate PDF</button>
@@ -480,7 +463,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                              
                                              
                                              
-      <!------------------------------                                        FORM3                                ----------------------------------------------->                                              
+                                   
                                              
                                              
                                   
@@ -508,8 +491,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       '<td class="col-sm-3"><input type="text" class="form-control" name="item_name[]" id="item_name'.$counter.'" value ="'.$object->item_name. '" readonly required>   </td>' ,
       '<td class="col-sm-3"><input type="text" class="form-control" name="qty[]"       id="qty'.$counter.'" value ="'.number_format($object->qty)       .'" readonly required>  </td>' ,
       '<td class="col-sm-2"><input type="text" class="form-control" name="type[]"      id="type'.$counter.'" value ="'.$object->type      .'" readonly required>   </td>' ,
-      '<td class="col-sm-2"><input type="text" class="form-control" name="unitPrice[]" id="unitPrice'.$counter.'" value ="Php '.number_format($object->unitPrice,2) .'" readonly required>   </td>' ,
-      '<td class="col-sm-3"><input type="text" class="form-control" name="amount[]"    id="amount'.$counter.'" value ="Php '.number_format($object->amount,2)    .'" readonly required>   </td>' ,
+      '<td class="col-sm-2"><input type="text" class="form-control" name="unitPrice[]" id="unitPrice'.$counter.'" value ="'.number_format($object->unitPrice,2) .'" readonly required>   </td>' ,
+      '<td class="col-sm-3"><input type="text" class="form-control" name="amount[]"    id="amount'.$counter.'" value ="'.number_format($object->amount,2)    .'" readonly required>   </td>' ,
                                                                               '</tr>' ;
                                                                              $counter++;
                                                                              }
@@ -530,7 +513,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             
                                                                 <tr>
                                                                      <td><b>Trucking Fee</b></td>
-                                                                     <td><b><input type="text" class="form-control" name="truckingFee" id="truckingFee" value="<?php if(!empty($truckingFee)) { foreach($truckingFee as $object) { echo "Php " .number_format($object->trucking_fee,2); }}  ?>" readonly /></b></td>  
+                                                                     <td><b><input type="text" class="form-control" name="truckingFee" id="truckingFee" value="<?php if(!empty($truckingFee)) { foreach($truckingFee as $object) { echo "" .number_format($object->trucking_fee,2); }}  ?>" readonly /></b></td>  
                                                                      <td></td>
                                                                      <td><!--<center><b><input type="number"  class="form-control" name="" id="" readonly required/></b></center> --></td>
                                                                 </tr>
@@ -559,13 +542,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     </div>
                                                </form> 
                                             </div>    
-  <!------------------------------                                        End Form 3                                ----------------------------------------------->                                              
+
                                                   
                                    
                                                 
                                               
                                                 
-                                               </div>  <!------------------------------END   FORM 2 and 3  DIV------------------------------------->  
+                                               </div>  
                                             
                                             
              
@@ -800,7 +783,7 @@ document.getElementById('submitOrder').onclick = function() {
                   $('#qty').keyup(function(){
                   if(category==1){
                   var y = parseFloat($(this).val());
-			      var x = (y / 100) * parseFloat($('#unitPrice').val());
+			      var x = (y / 1000) * parseFloat($('#unitPrice').val());
 			      $('#amount').val(x);
                
                   }else{
