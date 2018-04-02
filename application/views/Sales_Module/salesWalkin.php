@@ -221,7 +221,7 @@
 								<form action="<?php echo base_url(); ?>SalesSellProduct/record" method="post" accept-charset="utf-8">
                                 <div class="modal-body">
 									<div class="col-md-12 col-md-offset-1">
-										<p>Please confirm the order information !</p></div>
+										<h3>Please confirm the order information</h3></div>
 									 <div class="col-md-12 col-md-offset-2">
 										 
 										 <div class="row">
