@@ -639,6 +639,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     padding-top: 15px;
 
 }
+
+.label-count {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    display: inline-block;
+    background: red; 
+    text-align: center;
+    color: white;
+}
 </style>
 <body>
     <div class="wrapper">
@@ -740,7 +750,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="material-icons">announcement</i>
                                         <p class="hidden-lg hidden-md">Profile</p>
-                                       <span class="label-count" style='background-color: #f44336;'> <?php 
+                                       <span class="label-count"> <b> <?php 
                                            
                               $total = 0;
                                 for($i = 0; $i <= 3 ;$i++){
@@ -751,7 +761,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                              }
                                       }
                                  } echo $total;
-                                           ?>   </span> </a>
+                                           ?>  </b> </span> </a>
                             
                             
                             
