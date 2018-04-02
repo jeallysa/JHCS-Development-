@@ -283,7 +283,7 @@ input {
                                                           $query2 = $this->db->query($begin);
                                                           if ($query2->num_rows() > 0) {
                                                           foreach ($query2->result() as $object) {
-                                                               echo '<td><b>'  . number_format($object->beginning)  . '</b></td>' ;
+                                                               echo '<td><b>'  . number_format($object->beginning)  . '  g </b></td>' ;
                                                                }
                                                             }
                                                         }
@@ -294,7 +294,7 @@ input {
                                                           $query3 = $this->db->query($begin);
                                                           if ($query3->num_rows() > 0) {
                                                           foreach ($query3->result() as $object) {
-                                                               echo '<td><b>'  . number_format($object->beginning)  . '</b></td>' ;
+                                                               echo '<td><b>'  . number_format($object->beginning)  . ' g </b></td>' ;
                                                                }
                                                             }
                                                         }
@@ -313,7 +313,7 @@ input {
                                               $query5 = $this->db->query($begin);
                                               if ($query5->num_rows() > 0) {
                                               foreach ($query5->result() as $object) {
-                                                   echo '<td><b>'  . number_format($object->beginning)  . '</b></td>' ;
+                                                   echo '<td><b>'  . number_format($object->beginning)  . ' g </b></td>' ;
                                                    }
                                                 }
                                                 }
@@ -337,7 +337,7 @@ input {
                                                 $qcount1 = $this->db->query("SELECT * FROM raw_coffee");
                                                 foreach ($qcount1->result() as $row2){
                                                     $colname1 = "coffin" . $row2->raw_id; ?>
-                                                        <td><?php echo number_format($row->$colname1); ?> </td>
+                                                        <td><?php echo number_format($row->$colname1); ?> g</td>
                                                 <?php
 
                                                 }
@@ -371,7 +371,7 @@ input {
                                                   $query6 = $this->db->query($totalin);
                                                   if ($query6->num_rows() > 0) {
                                                   foreach ($query6->result() as $object) {
-                                                       echo '<th>'  . number_format($object->totalin)  . '</th>' ;
+                                                       echo '<th>'  . number_format($object->totalin)  . ' g </th>' ;
                                                        }
                                                     }
                                                 }
@@ -382,7 +382,7 @@ input {
                                                   $query7 = $this->db->query($totalin);
                                                   if ($query7->num_rows() > 0) {
                                                   foreach ($query7->result() as $object) {
-                                                       echo '<th>'  . number_format($object->totalin)  . '</th>' ;
+                                                       echo '<th>'  . number_format($object->totalin)  . ' g </th>' ;
                                                        }
                                                     }
                                                 }
@@ -437,7 +437,7 @@ input {
                                                 $qcount2 = $this->db->query("SELECT * FROM raw_coffee");
                                                 foreach ($qcount2->result() as $row3){
                                                     $colname2 = "coffout" . $row3->raw_id; ?>
-                                                        <td><?php echo number_format($row->$colname2); ?> </td>
+                                                        <td><?php echo number_format($row->$colname2); ?> g</td>
                                                 <?php
 
                                                 }
@@ -471,7 +471,7 @@ input {
                                                   $query8 = $this->db->query($totalout);
                                                   if ($query8->num_rows() > 0) {
                                                   foreach ($query8->result() as $object) {
-                                                       echo '<th>'  . number_format($object->totalout)  . '</th>' ;
+                                                       echo '<th>'  . number_format($object->totalout)  . ' g </th>' ;
                                                        }
                                                     }
                                                 }
@@ -482,7 +482,7 @@ input {
                                                   $query9 = $this->db->query($totalout);
                                                   if ($query9->num_rows() > 0) {
                                                   foreach ($query9->result() as $object) {
-                                                       echo '<th>'  . number_format($object->totalout)  . '</th>' ;
+                                                       echo '<th>'  . number_format($object->totalout)  . ' g </th>' ;
                                                        }
                                                     }
                                                 }
@@ -501,7 +501,7 @@ input {
                                                   $query10 = $this->db->query($end);
                                                   if ($query10->num_rows() > 0) {
                                                   foreach ($query10->result() as $object) {
-                                                       echo '<th>'  . number_format($object->ending)  . '</th>' ;
+                                                       echo '<th>'  . number_format($object->ending)  . ' g </th>' ;
                                                        }
                                                     }
                                                 }
@@ -512,7 +512,7 @@ input {
                                                   $query11 = $this->db->query($end);
                                                   if ($query11->num_rows() > 0) {
                                                   foreach ($query11->result() as $object) {
-                                                       echo '<th>'  . number_format($object->ending)  . '</th>' ;
+                                                       echo '<th>'  . number_format($object->ending)  . ' g </th>' ;
                                                        }
                                                     }
                                                 }
@@ -645,59 +645,4 @@ $(document).ready(function() {
 
 });
 </script>
-
-<!--<script>   
-    
-    
-    $.fn.dataTableExt.afnFiltering.push(
-        function(oSettings, aData, iDataIndex){
-            var dateStart = parseDateValue($("#min").val());
-            var dateEnd = parseDateValue($("#max").val());
-            var evalDate= parseDateValue(aData[2]);
-
-            if (evalDate >= dateStart && evalDate <= dateEnd) {
-                return true;
-            }
-            else {
-                return false;
-            }
-    });
-    //Date Converter
-    function parseDateValue(rawDate) {
-        var month = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
-        var dateArray = rawDate.split(" ");
-        var parsedDate = dateArray[2] + month + dateArray[0];
-        return parsedDate;
-    }
-
-    var oTable = $('table.table').dataTable({ 
-        "dom":' fBrtip',
-        "lengthChange": false,
-        "info":     false,
-		buttons: [
-            { "extend": 'print', "text":'<i class="fa fa-files-o"></i> Print',"className": 'btn btn-default btn-xs' },
-			{ "extend": 'excel', "text":'<i class="fa fa-file-excel-o"></i> Excel',"className": 'btn btn-success btn-xs' },
-			{ "extend": 'pdf', "text":'<i class="fa fa-file-pdf-o"></i> PDF',"className": 'btn btn-danger btn-xs' }
-        ]
-    });
-
-    $('#min,#max').datepicker({
-        format: "yyyy-mm-dd",
-        weekStart: 1,
-        daysOfWeekHighlighted: "0",
-        autoclose: true,
-        todayHighlight: true
-    });
-
-    // Event Listeners
-    $("#min").datepicker().on( 'changeDate', function() {
-        oTable.fnDraw(); 
-    });
-    $("#max").datepicker().on( 'changeDate', function() { 
-        oTable.fnDraw(); 
-    });
-    
-
-
-</script>-->
 </html>

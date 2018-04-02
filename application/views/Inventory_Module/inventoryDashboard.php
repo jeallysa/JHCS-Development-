@@ -184,7 +184,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="col-lg-3 col-md-6 col-sm-6">
                             <div class="card card-stats">
                                 <div class="card-header" data-background-color="orange">
-                                    <i class="material-icons">content_paste</i>
+                                    <i class="material-icons">local_cafe</i>
                                 </div>
                                 <div class="card-content">
                                     <p class="category">Raw Coffee</p>
@@ -205,7 +205,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="col-lg-3 col-md-6 col-sm-6">
                             <div class="card card-stats">
                                 <div class="card-header" data-background-color="green">
-                                    <i class="material-icons">credit_card</i>
+                                    <i class="material-icons">local_mall</i>
                                 </div>
                                 <div class="card-content">
                                     <p class="category">Packaging</p>
@@ -225,7 +225,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="col-lg-3 col-md-6 col-sm-6">
                             <div class="card card-stats">
                                 <div class="card-header" data-background-color="red">
-                                    <i class="material-icons">collections</i>
+                                    <i class="material-icons">wallpaper</i>
                                 </div>
                                 <div class="card-content">
                                     <p class="category">Stickers</p>
@@ -244,7 +244,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="col-lg-3 col-md-6 col-sm-6">
                             <div class="card card-stats">
                                 <div class="card-header" data-background-color="blue">
-                                    <i class="material-icons">store</i>
+                                    <i class="material-icons">local_laundry_service</i>
                                 </div>
                                 <div class="card-content">
                                     <p class="category">Machines</p>
@@ -278,7 +278,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="card-content">
                             <div class="row">
                                 <div class="card-content table-responsive">
-                                    <div class="row">
                                         <div class="pull-right">
                                     <?php $month_filt = $data7["datav"];
                                     $year = $this->db->query("SELECT year(now()) AS year;")->row()->year;
@@ -293,34 +292,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             $dateObj   = DateTime::createFromFormat('!m', $tomonth);
                                             $monthName = $dateObj->format('F');
                                     ?>
-                                        <label><H4><b> Current Month: <?php echo $monthName; ?> <?php echo $year; ?> </b></H4></label>
+                                        <label><H4><b> Working File: <?php echo $monthName; ?> <?php echo $year; ?> </b></H4></label>
                                     <?php
                                         }
                                     ?>
                                         </div>
-                                    </div>
                                     <div class="row">
-                                    <form action="<?php echo base_url(); ?>InventoryInventoryReport/date_filt" method="post" class="form-inline pull-right">
-                                        <div class="form-group mb-2">
-                                            <label>
-                                                <H4><b> Working File: </b></H4> </label>
-                                            <select class="form-control" onchange="this.form.submit()" id="" name="datefilt" style="text-align: center;">
-                                                <option disabled selected value>  </option>
-                                                <option value = "1" <?php if((isset($month_filt) && $month_filt == 1)){ echo 'selected="selected"'; }?>>January <?php echo $year; ?> </option>
-                                                <option value = "2" <?php if((isset($month_filt) && $month_filt == 2)){ echo 'selected="selected"'; }?>>February <?php echo $year; ?> </option>
-                                                <option value = "3" <?php if(isset($month_filt) && $month_filt == 3){ echo 'selected="selected"'; }?>>March <?php echo $year; ?> </option>
-                                                <option value = "4" <?php if((isset($month_filt) && $month_filt == 4)){ echo 'selected="selected"'; }?>>April <?php echo $year; ?> </option>
-                                                <option value = "5" <?php if((isset($month_filt) && $month_filt == 5)){ echo 'selected="selected"'; }?>>May <?php echo $year; ?> </option>
-                                                <option value = "6" <?php if((isset($month_filt) && $month_filt == 6)){ echo 'selected="selected"'; }?>>June <?php echo $year; ?> </option>
-                                                <option value = "7" <?php if((isset($month_filt) && $month_filt == 7)){ echo 'selected="selected"'; }?>>July <?php echo $year; ?> </option>
-                                                <option value = "8" <?php if((isset($month_filt) && $month_filt == 8)){ echo 'selected="selected"'; }?>>August <?php echo $year; ?> </option>
-                                                <option value = "9" <?php if((isset($month_filt) && $month_filt == 9)){ echo 'selected="selected"'; }?>>September <?php echo $year; ?> </option>
-                                                <option value = "10" <?php if((isset($month_filt) && $month_filt == 10)){ echo 'selected="selected"'; }?>>October <?php echo $year; ?> </option>
-                                                <option value = "11" <?php if((isset($month_filt) && $month_filt == 11)){ echo 'selected="selected"'; }?>>November <?php echo $year; ?> </option>
-                                                <option value = "12" <?php if((isset($month_filt) && $month_filt == 12)){ echo 'selected="selected"'; }?>>December <?php echo $year; ?> </option>
-                                            </select>
-                                        </div>
-                                    </form>
                                     </div>
                                     <table id="coffeein" class="table hover order-column" cellspacing="0" width="100%">
                                         <thead>
@@ -359,7 +336,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                           $query2 = $this->db->query($begin);
                                                           if ($query2->num_rows() > 0) {
                                                           foreach ($query2->result() as $object) {
-                                                               echo '<td><b>'  . number_format($object->beginning)  . '</b></td>' ;
+                                                               echo '<td><b>'  . number_format($object->beginning)  . ' g </b></td>' ;
                                                                }
                                                             }
                                                         }
@@ -370,7 +347,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                           $query3 = $this->db->query($begin);
                                                           if ($query3->num_rows() > 0) {
                                                           foreach ($query3->result() as $object) {
-                                                               echo '<td><b>'  . number_format($object->beginning)  . '</b></td>' ;
+                                                               echo '<td><b>'  . number_format($object->beginning)  . ' g </b></td>' ;
                                                                }
                                                             }
                                                         }
@@ -389,7 +366,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                               $query5 = $this->db->query($begin);
                                               if ($query5->num_rows() > 0) {
                                               foreach ($query5->result() as $object) {
-                                                   echo '<td><b>'  . number_format($object->beginning)  . '</b></td>' ;
+                                                   echo '<td><b>'  . number_format($object->beginning)  . ' g </b></td>' ;
                                                    }
                                                 }
                                                 }
@@ -413,7 +390,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 $qcount1 = $this->db->query("SELECT * FROM raw_coffee");
                                                 foreach ($qcount1->result() as $row2){
                                                     $colname1 = "coffin" . $row2->raw_id; ?>
-                                                        <td><?php echo number_format($row->$colname1); ?> </td>
+                                                        <td><?php echo number_format($row->$colname1); ?> g</td>
                                                 <?php
 
                                                 }
@@ -447,7 +424,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                   $query6 = $this->db->query($totalin);
                                                   if ($query6->num_rows() > 0) {
                                                   foreach ($query6->result() as $object) {
-                                                       echo '<th>'  . number_format($object->totalin)  . '</th>' ;
+                                                       echo '<th>'  . number_format($object->totalin)  . ' g </th>' ;
                                                        }
                                                     }
                                                 }
@@ -458,7 +435,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                   $query7 = $this->db->query($totalin);
                                                   if ($query7->num_rows() > 0) {
                                                   foreach ($query7->result() as $object) {
-                                                       echo '<th>'  . number_format($object->totalin)  . '</th>' ;
+                                                       echo '<th>'  . number_format($object->totalin)  . ' g </th>' ;
                                                        }
                                                     }
                                                 }
@@ -513,7 +490,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 $qcount2 = $this->db->query("SELECT * FROM raw_coffee");
                                                 foreach ($qcount2->result() as $row3){
                                                     $colname2 = "coffout" . $row3->raw_id; ?>
-                                                        <td><?php echo number_format($row->$colname2); ?> </td>
+                                                        <td><?php echo number_format($row->$colname2); ?> g</td>
                                                 <?php
 
                                                 }
@@ -547,7 +524,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                   $query8 = $this->db->query($totalout);
                                                   if ($query8->num_rows() > 0) {
                                                   foreach ($query8->result() as $object) {
-                                                       echo '<th>'  . number_format($object->totalout)  . '</th>' ;
+                                                       echo '<th>'  . number_format($object->totalout)  . ' g </th>' ;
                                                        }
                                                     }
                                                 }
@@ -558,7 +535,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                   $query9 = $this->db->query($totalout);
                                                   if ($query9->num_rows() > 0) {
                                                   foreach ($query9->result() as $object) {
-                                                       echo '<th>'  . number_format($object->totalout)  . '</th>' ;
+                                                       echo '<th>'  . number_format($object->totalout)  . ' g </th>' ;
                                                        }
                                                     }
                                                 }
@@ -577,7 +554,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                   $query10 = $this->db->query($end);
                                                   if ($query10->num_rows() > 0) {
                                                   foreach ($query10->result() as $object) {
-                                                       echo '<th>'  . number_format($object->ending)  . '</th>' ;
+                                                       echo '<th>'  . number_format($object->ending)  . ' g </th>' ;
                                                        }
                                                     }
                                                 }
@@ -588,7 +565,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                   $query11 = $this->db->query($end);
                                                   if ($query11->num_rows() > 0) {
                                                   foreach ($query11->result() as $object) {
-                                                       echo '<th>'  . number_format($object->ending)  . '</th>' ;
+                                                       echo '<th>'  . number_format($object->ending)  . ' g </th>' ;
                                                        }
                                                     }
                                                 }

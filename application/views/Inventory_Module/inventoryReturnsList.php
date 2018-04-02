@@ -271,8 +271,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                              <table id="" class="table hover order-column" cellspacing="0" width="100%">
                                             <thead>
                                                 <tr>
-                                                    <th><b>#</b></th>
-                                                    <th><b>Date Returned</b></th>
+                                                    <th><b>Return No.</b></th>
+                                                    <th><b>Return Date</b></th>
                                                     <th><b>Supplier</b></th>
                                                     <th><b>Quantity</b></th>
                                                     <th><b>Item</b></th>
@@ -308,9 +308,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <table id="coffee" class="table hover order-column" cellspacing="0" width="100%">
                                                         <thead>
                                                             <tr>
-                                                                <th><b>#</b></th>
+                                                                <th><b>Return No.</b></th>
                                                                 <th><b>Delivery Receipt No.</b></th>
-                                                                <th><b>Date Returned</b></th>
+                                                                <th><b>Return Date</b></th>
                                                                 <th><b>Client</b></th>
                                                                 <th><b>Quantity</b></th>
                                                                 <th><b>Remarks</b></th>
@@ -343,7 +343,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <tr>
                                                                 <th><b>Return No.</b></th>
                                                                 <th><b>Machine Serial No.</b></th>
-                                                                <th><b>Date Returned</b></th>
+                                                                <th><b>Return Date</b></th>
                                                                 <th><b>Client</b></th>
                                                                 <th><b>Machine</b></th>
                                                                 <th><b>Quantity</b></th>

@@ -238,6 +238,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </nav>
             <div class="content">
                 <div class="container-fluid">
+                    
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="card card-nav-tabs">
@@ -254,7 +255,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 </li>
                                                 <li class="">
                                                     <a href="#machineout" data-toggle="tab">
-                                                        <i class="material-icons">gradient</i> Machine
+                                                        <i class="material-icons">local_laundry_service</i> Machine
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 </li>
@@ -263,6 +264,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </div>
                                 </div>
                                 <div class="card-content">
+                                    <div class="card-content table-responsive">
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="coffeeout">
                                             <ul class="nav nav-tabs navbar-default justify-content-center" id="coffeeout" >
@@ -275,10 +277,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         <thead>
                                                             <tr>
                                                                 <th><b>Sales Invoice No.</b></th>
-                                                                <th><b>Date</b></th>
+                                                                <th><b>Purchase Date</b></th>
                                                                 <th><b>Client</b></th>
                                                                 <th><b>Coffee</b></th>
-                                                                <th><b>Bag</b></th>
+                                                                <th><b>Packaging</b></th>
                                                                 <th><b>Size</b></th>
                                                                 <th><b>Quantity</b></th>
                                                                 <th><b>Sticker</b></th>
@@ -295,7 +297,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                  <td>Walk-in</td>
                                                                  <td><?php echo $row->blend; ?></td>
                                                                  <td><?php echo $row->package_type; ?></td>
-                                                                 <td><?php echo number_format($row->package_size); ?></td>
+                                                                 <td><?php echo number_format($row->package_size); ?> g</td>
                                                                  <td><?php echo number_format($row->walkin_qty); ?></td>
                                                                  <td><?php echo $row->sticker; ?></td>
                                                             </tr>
@@ -313,7 +315,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 <th><b>Delivery Date</b></th>
                                                                 <th><b>Client</b></th>
                                                                 <th><b>Coffee</b></th>
-                                                                <th><b>Bag</b></th>
+                                                                <th><b>Packaging</b></th>
                                                                 <th><b>Size</b></th>
                                                                 <th><b>Quantity</b></th>
                                                                 <th><b>Sticker</b></th>
@@ -331,7 +333,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 <td><?php echo $row->client_company; ?></td>
                                                                 <td><?php echo $row->blend; ?></td>
                                                                 <td><?php echo $row->package_type; ?></td>
-                                                                <td><?php echo number_format($row->package_size); ?></td>
+                                                                <td><?php echo number_format($row->package_size); ?> g</td>
                                                                 <td><?php echo number_format($row->contractPO_qty); ?></td>
                                                                 <td><?php echo $row->sticker; ?></td>
                                                                 <td><?php echo $row->client_receive; ?></td>
@@ -348,10 +350,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                              <table id="" class="table hover order-column" cellspacing="0" width="100%">
                                             <thead>
                                                 <th><b>Serial No.</b></th>
-                                                <th><b>Date</b></th>
+                                                <th><b>Purchase Date</b></th>
                                                 <th><b>Client</b></th>
                                                 <th><b>Machine</b></th>
-                                                <th><b>No. of machines installed</b></th>
+                                                <th><b>No. of Machine Installed</b></th>
                                                 <th><b>Remarks</b></th>
                                             </thead>
                                             <tbody>
@@ -374,6 +376,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         </table>
                                         </div>
                                     </div>
+                                </div>
                                 </div> 
                             </div>
                         </div>
@@ -416,7 +419,6 @@ $(document).ready(function() {
         select: {
             style: 'single'
         }
-
     });
 });
 </script>
