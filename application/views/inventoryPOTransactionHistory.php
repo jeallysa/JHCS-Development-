@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url(); ?>assets/img/apple-icon.png"/>
     <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/img/favicon.png"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Purchase Order</title>
+    <title>Inventory Stocks</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
@@ -28,18 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <style>
 .title {
     font-size: large;
-    padding-top: 15px;
 
-}
-
-.label-count {
-    height: 15px;
-    width: 15px;
-    border-radius: 50%;
-    display: inline-block;
-    background: red; 
-    text-align: center;
-    color: white;
 }
 </style>
 
@@ -87,11 +76,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </a>
                     </li>
                     <li>
+                        <a href="<?php echo base_url(); ?>inventoryItemList">
+                            <i class="material-icons">storage</i>
+                            <p>Items</p>
+                        </a>
+                    </li>
+                    <li>
                         <a href="<?php echo base_url(); ?>inventoryReturnsList">
                             <i class="material-icons">input</i>
                             <p>Returns</p>
                         </a>
                     </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>inventorySamplesList">
+                            <i class="material-icons">dvr</i>
+                            <p>Samples</p>
+                        </a>
+                    </li>
+                    
                 </ul>
             </div>
         </div>
@@ -100,10 +102,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="main-panel">
             <nav class="navbar navbar-transparent navbar-absolute">
                 <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    
+                    
+                    
+                    
+                    
+                    
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            
-                                <li id="nameheader">
+                            <li class="dropdown">
+                                <li>
                                     <?php $username = $this->session->userdata('username') ?>
                                 
                                 <?php
@@ -116,8 +132,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             }
                                         ?>
                                 </li>
-                           
-                            <li>
                                 <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="material-icons">person</i>
                                         <p class="hidden-lg hidden-md">Profile</p>
@@ -136,16 +150,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <a href="<?php echo base_url('Login/logout');  ?>">Logout</a>
                                     </li>
                                 </ul>
-                            </li>
-                               
-       <!------------------                                          NOTIFICATION                    ---------------------------------->           
                             
-                            <li>
+                            
+                            
+                            
+                               
+         <!------------------                                          NOTIFICATION                    ---------------------------------->           
+                            
+                            
                             
                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">announcement</i>
+                                        <i class="material-icons">shopping_basket</i>
                                         <p class="hidden-lg hidden-md">Profile</p>
-                                       <span class="label-count"> <b> <?php 
+                                       <span class="label-count" style='background-color: #f44336;'> <?php 
                                            
                               $total = 0;
                                 for($i = 0; $i <= 3 ;$i++){
@@ -156,7 +173,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                              }
                                       }
                                  } echo $total;
-                                           ?>  </b> </span> </a>
+                                           ?>   </span> </a>
                             
                             
                             
@@ -167,7 +184,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                  for($i = 0; $i <= 3 ;$i++){
                                      if(!empty($reorder[$i])){
                                           foreach($reorder[$i] as $object){
-                                            echo   '<li><a href="inventoryStocks">' . $object->name . "     " . $object->type. ' now drops below the re-order level</a></li>';
+                                            echo   '<li>' . $object->name . "     " . $object->type. '</li>';
                                                  
                                              }
                                       }
@@ -176,18 +193,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                    
                                 </ul>
                             
-                            </li>
+                            
+          <!------------------                                          NOTIFICATION                    ---------------------------------->              
                             
                             
                             
-    <!------------------                                          NOTIFICATION                    ---------------------------------->           
-
+                            
+                             </li>
+                 
+                        
+                        
                         
                         </ul>
                     </div>
                 
                 </div>
             </nav>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
             <div class="content">
@@ -260,7 +295,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 '<td>'  . $object->qty  . '</td>' ,
                                              //   '<td>'  . $object->yield_weight. '</td>' ,
                                             //    '<td>'  . $object->yields  . '</td>' ,
-                                                '<td>'  . $object->unitPrice  . '</td>' ,
+                                                '<td>Php '  . number_format($object->unitPrice,2)  . '</td>' ,
                                             //    '<td>'  . $object->amount  . '</td>' ,
                                               //  '<td>'  . $object->date_received  . '</td>' ,         
                                              //   '<td>'  . $object->received_by  . '</td>' , 
@@ -348,10 +383,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                   
                                                 '<td>'  . $object->type .         '</td>' ,  
                                                 '<td>'                            ,'</td>' ,
-                                                '<td>'  . $object->received .     '</td>' ,  
+                                                '<td>'  . number_format($object->received) .     '</td>' ,  
                                                 '<td>'                            ,'</td>' ,  
-                                                '<td>'  . $object->yield_weight . '</td>' ,
-                                                '<td>'  . $object->yields .       '</td>' ,  
+                                                '<td>'  . number_format($object->yield_weight) . '</td>' ,
+                                                '<td>'  . number_format($object->yields) .       '</td>' ,  
                                                 '<td>'  . $object->received_by  . '</td>' ,
                                                 '</tr>' ;
                                               }
@@ -447,7 +482,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                   
                                            echo '<tr>' ,
                                                 '<td>'  . $object->date. '</td>' ,
-                                                '<td>'  . $object->amount . '</td>' ,
+                                                '<td>Php '  . number_format($object->amount,2) . '</td>' ,
                                                 '<td>'  . $object->bank  . '</td>' ,
                                                 '</tr>' ;
                                               }
@@ -495,7 +530,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 
                                                    <li class="">
                                                 <a href="<?php echo base_url(); ?>inventoryPOAdd">
-                                                    Add Purchase Order
+                                                    Purchase Order
                                                     <div class="ripple-container"></div>
                                                 </a>
                                             </li>
@@ -556,7 +591,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                               '<td>'  . $object->suppPO_date   . '</td>' ,
                                                                            //   '<td>'  . $object->date_received  . '</td>' ,
 																			  '<td>'  . $object->sup_company  . '</td>' ,
-                                                                              '<td>'  . $object->total_amount  . '</td>' ;
+                                                                              '<td>Php '  . number_format($object->total_amount,2)  . '</td>' ;
                                                                              // '<td>'  . $object->date_payment     . '</td>'; 
                                                                       ?> 
                                             <td><center><a class="btn btn-info btn-sm" data-toggle="modal" data-target="#<?php echo "details".$i   ?>">Order Details</a></center></td>
