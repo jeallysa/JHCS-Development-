@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url(); ?>assets/img/apple-icon.png"/>
     <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/img/favicon.png"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Inventory Stocks</title>
+    <title>Purchase Order</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
@@ -29,8 +29,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <style>
 .title {
     font-size: large;
+    padding-top: 15px;
 
 }
+
+.label-count {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    display: inline-block;
+    background: red; 
+    text-align: center;
+    color: white;
+}
+
+
 </style>
 
 <body>
@@ -77,24 +90,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(); ?>inventoryItemList">
-                            <i class="material-icons">storage</i>
-                            <p>Items</p>
-                        </a>
-                    </li>
-                    <li>
                         <a href="<?php echo base_url(); ?>inventoryReturnsList">
                             <i class="material-icons">input</i>
                             <p>Returns</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="<?php echo base_url(); ?>inventorySamplesList">
-                            <i class="material-icons">dvr</i>
-                            <p>Samples</p>
-                        </a>
-                    </li>
-                    
                 </ul>
             </div>
         </div>
