@@ -12,10 +12,10 @@
 		{ 
 			if ($this->session->userdata('username') != '')
 			{
-				$data['reorder'] = $this->notification_model->reorder();
+				$reorder = $this->notification_model->reorder();
 				$data1["inventoryout"] = $this->InventoryInventoryReportOut_Model->get_inventoryout();
                 $data2["machineout"] = $this->InventoryInventoryReportOut_Model->get_machineout();
-				$this->load->view('Inventory_Module/inventoryInventoryReport2', [$data, 'data1' => $data1, 'data2' => $data2]);
+				$this->load->view('Inventory_Module/inventoryInventoryReport2', ["reorder" => $reorder, 'data1' => $data1, 'data2' => $data2]);
 			} else {
 				redirect('login');
 			}

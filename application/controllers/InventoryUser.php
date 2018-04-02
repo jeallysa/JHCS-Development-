@@ -14,9 +14,9 @@
 			{
 				
 				$username = $this->session->userdata('username');
-				$data['reorder'] = $this->notification_model->reorder();
+				$reorder = $this->notification_model->reorder();
 				$data['profile'] = $this->UserProfile_model->getProfile($username);
-				$this->load->view('Inventory_Module/inventoryUser', [$data, 'data' => $data]);
+				$this->load->view('Inventory_Module/inventoryUser', ["reorder" => $reorder, 'data' => $data]);
 			} else {
 				redirect('login');
 			}
