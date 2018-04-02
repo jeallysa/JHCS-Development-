@@ -278,6 +278,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         ?>  
 
                                         <?php
+                     $retrieveDetails3 ="SELECT * FROM company_returns INNER JOIN supp_po_ordered ON company_returns.poNo = supp_po_ordered.supp_po_id INNER JOIN supp_po ON supp_po_ordered.supp_po_id = supp_po.supp_po_id INNER JOIN supplier ON supp_po.supp_id = supplier.sup_id INNER JOIN machine ON supp_po_ordered.item = machine.brewer WHERE mach_id = ".$id ; 
+                                     $query = $this->db->query($retrieveCompreturn);
+                                        if ($query->num_rows() > 0) {
+                                              foreach ($query->result() as $object) {
+                                               echo '<tr>' ,
+                                               
+                                                '<td>'  . $object->sup_company   . '</td>' ,
+                                                '<td>'  . $object->sup_returnDate  . '</td>' ,
+                                                '<td>'  . number_format($object->sup_returnQty)  . ' g</td>' ,
+                                                '<td> Company Return </td>' ,
+                                                '<td> Out </td>' ,
+                                                '</tr>' ;
+                                              }
+                                            }
+                                           
+                                        ?>
+
+                                        <?php
                                               $retrieveDetails4 ="SELECT item, qty, date_received, yield_weight, sup_company FROM jhcs.supp_po_ordered INNER JOIN supp_delivery ON supp_po_ordered.supp_po_ordered_id = supp_delivery.supp_po_ordered_id INNER JOIN supp_po ON supp_po.supp_po_id = supp_po_ordered.supp_po_id INNER JOIN supplier ON supplier.sup_id = supp_po.supp_id INNER JOIN machine ON supp_po_ordered.item = machine.brewer_type WHERE mach_id = ".$id ;
                                               $query = $this->db->query($retrieveDetails4);
                                               if ($query->num_rows() > 0) {
