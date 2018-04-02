@@ -56,7 +56,7 @@
 			$this->load->model('sellProduct_model');
 			$data7 = array(
 				"mach_id" =>$this->input->post("mach_id"),
-				"date" =>$this->input->post("date"),
+				"date" =>$this->input->post("datePO"),
 				"mach_qty" =>$this->input->post("qty"),
                 "client_id" =>$this->input->post("client_id"),
                 "mach_serial" =>$this->input->post("serial"),
@@ -119,6 +119,24 @@
 			$this->sellProduct_model->add_blend_stock($blend_returnedQty, $blend_id);
 			echo "<script>alert('Coffee Blend Returned!');</script>";
 			redirect('salesSellProduct', 'refresh');
+		}
+		public function getBlend(){
+			$this->load->model('sellProduct_model');
+			$id = $this->uri->segment(3,1);
+			$data = $this->sellProduct_model->getBlend($id);
+			 echo json_encode($data);
+		}
+		public function getMachinebyId(){
+			$this->load->model('sellProduct_model');
+			$id = $this->uri->segment(3,1);
+			$data = $this->sellProduct_model->getMachinebyId($id);
+			 echo json_encode($data);
+		}
+		public function getClientbyId(){
+			$this->load->model('sellProduct_model');
+			$id = $this->uri->segment(3,1);
+			$data = $this->sellProduct_model->getClientbyId($id);
+			 echo json_encode($data);
 		}
 		
 

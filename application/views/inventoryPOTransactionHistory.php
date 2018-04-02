@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url(); ?>assets/img/apple-icon.png"/>
     <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/img/favicon.png"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Inventory Stocks</title>
+    <title>Purchase Order</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
@@ -28,6 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <style>
 .title {
     font-size: large;
+    padding-top: 15px;
 
 }
 </style>
@@ -95,24 +96,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="main-panel">
             <nav class="navbar navbar-transparent navbar-absolute">
                 <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
-                    
-                    
-                    
-                    
-                    
-                    
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown">
-                                <li>
+                            
+                                <li id="nameheader">
                                     <?php $username = $this->session->userdata('username') ?>
                                 
                                 <?php
@@ -125,6 +112,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             }
                                         ?>
                                 </li>
+                           
+                            <li>
                                 <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="material-icons">person</i>
                                         <p class="hidden-lg hidden-md">Profile</p>
@@ -143,17 +132,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <a href="<?php echo base_url('Login/logout');  ?>">Logout</a>
                                     </li>
                                 </ul>
-                            
-                            
-                            
-                            
+                            </li>
                                
-         <!------------------                                          NOTIFICATION                    ---------------------------------->           
+       <!------------------                                          NOTIFICATION                    ---------------------------------->           
                             
-                            
+                            <li>
                             
                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">shopping_basket</i>
+                                        <i class="material-icons">announcement</i>
                                         <p class="hidden-lg hidden-md">Profile</p>
                                        <span class="label-count" style='background-color: #f44336;'> <?php 
                                            
@@ -177,7 +163,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                  for($i = 0; $i <= 3 ;$i++){
                                      if(!empty($reorder[$i])){
                                           foreach($reorder[$i] as $object){
-                                            echo   '<li>' . $object->name . "     " . $object->type. '</li>';
+                                            echo   '<li><a href="inventoryStocks">' . $object->name . "     " . $object->type. ' now drops below the re-order level</a></li>';
                                                  
                                              }
                                       }
@@ -186,36 +172,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                    
                                 </ul>
                             
-                            
-          <!------------------                                          NOTIFICATION                    ---------------------------------->              
-                            
+                            </li>
                             
                             
                             
-                             </li>
-                 
-                        
-                        
+    <!------------------                                          NOTIFICATION                    ---------------------------------->           
+
                         
                         </ul>
                     </div>
                 
                 </div>
             </nav>
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
             <div class="content">
@@ -255,12 +223,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <th>Item Name</th>
                                                     <th>Type</th>
                                                     <th>Qty/Original Weight(g)</th>
-                                                    <th>Yield Weight(g)</th>
-                                                    <th>Yield(g)</th>
+                                              <!--      <th>Yield Weight(g)</th>
+                                                    <th>Yield(g)</th> -->
                                                     <th>Unit Price</th>
-                                                    <th>Amount</th>
+                                                    
+                                                 <!--   <th>Amount</th>
                                                     <th>Date Received</th>
-                                                    <th>Received by</th>
+                                                     <th>Received by</th> -->
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -271,9 +240,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                  $arrayItem = array("raw_coffee","sticker","packaging","machine");
                    $arrayOn = array("raw_coffee","sticker","package_type","brewer");
                       $arrayType = array("raw_type","sticker_type","package_size","brewer_type");
+                        
                          for($table = 0 ; $table < 4 ; $table++){
                           
-                             $retrieveDetails ="SELECT * FROM supp_delivery join supp_po_ordered using(supp_po_ordered_id)  join ".$arrayItem[$table]." on   item =  ".$arrayOn[$table]." where sup_id = 
+                             $retrieveDetails ="SELECT * from supp_po_ordered join ".$arrayItem[$table]." on   item =  ".$arrayOn[$table]." where sup_id = 
                              ".$sup_id ." and  type = ".$arrayType[$table]." and supp_po_ordered.supp_po_id = $temp"  ;  
                
                                               $query = $this->db->query($retrieveDetails);
@@ -284,12 +254,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 '<td>'  . $object->item. '</td>' ,
                                                 '<td>'  . $object->type  . '</td>' ,
                                                 '<td>'  . $object->qty  . '</td>' ,
-                                                '<td>'  . $object->yield_weight. '</td>' ,
-                                                '<td>'  . $object->yields  . '</td>' ,
+                                             //   '<td>'  . $object->yield_weight. '</td>' ,
+                                            //    '<td>'  . $object->yields  . '</td>' ,
                                                 '<td>'  . $object->unitPrice  . '</td>' ,
-                                                '<td>'  . $object->amount  . '</td>' ,
-                                                '<td>'  . $object->date_received  . '</td>' ,         
-                                                '<td>'  . $object->received_by  . '</td>' , 
+                                            //    '<td>'  . $object->amount  . '</td>' ,
+                                              //  '<td>'  . $object->date_received  . '</td>' ,         
+                                             //   '<td>'  . $object->received_by  . '</td>' , 
                                                 '</tr>' ;
                                               }
                                             }
@@ -317,6 +287,118 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  ?>                      
              
                               <!-------------------------------    END OF   MODAL ---------------->   
+                                
+                                
+                                
+                                
+                                  
+                                <!-------------------------------        MODAL DELIVERY ---------------->
+                                
+                                
+<?php
+           $delivery = 1;
+        if(!empty($Transactions)) {                                  
+           foreach($Transactions as $object){
+            $temp =  $object->supp_po_id;
+            $sup_id = $object->sup_id;
+
+?>                          
+                                
+             <div class="modal fade" id="<?php echo "delivery" . $delivery   ?>" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="panel panel-primary modal-content">
+                        <form action="#" method="post" accept-charset="utf-8">
+                            <div class="modal-body" style="padding: 5px;">
+                                <div id="page-wrapper">
+                                    <div class="table-responsive">
+                                   
+                                        <table class="table table-striped" id="table-mutasi">
+                                            <thead>
+                                                <tr>
+                                                    <th>Date Delivered</th>
+                                                    <th>Item Name <th>
+                                                    <th>Type <th>
+                                                    <th>Quantity/Weight(g) Delivered<th>
+                                                    <th>Yield Weight</th>
+                                                    <th>Yields</th>
+                                                    <th>Received By</th>
+                                                </tr>
+                                                
+                                            </thead>
+                                            
+                                            <tbody>
+                                                
+      <?php
+
+                             $retrieveDetails ="SELECT date_received , item , type ,supp_delivery.received as received , yield_weight , yields, received_by FROM supp_delivery join supp_po_ordered  using(supp_po_id) where supp_po_id =".$temp  ;  
+               
+                                              $query = $this->db->query($retrieveDetails);
+                                           if ($query->num_rows() > 0) {
+                                               
+                                              foreach ($query->result() as $object) {
+                                                  
+                                           echo '<tr>' ,
+                                                '<td>'  . $object->date_received. '</td>' ,
+                                                '<td>'  . $object->item .         '</td>' ,
+                                                '<td>'  ,                         '</td>' ,
+                                                  
+                                                '<td>'  . $object->type .         '</td>' ,  
+                                                '<td>'                            ,'</td>' ,
+                                                '<td>'  . $object->received .     '</td>' ,  
+                                                '<td>'                            ,'</td>' ,  
+                                                '<td>'  . $object->yield_weight . '</td>' ,
+                                                '<td>'  . $object->yields .       '</td>' ,  
+                                                '<td>'  . $object->received_by  . '</td>' ,
+                                                '</tr>' ;
+                                              }
+                                            }
+                                         
+                                        ?>                     
+                                   
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-footer" align="center" style="margin-bottom:-14px;">
+                                <button type="button" class="btn btn-default btn-close" data-dismiss="modal">CLOSE</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+                                
+        <?php                       
+                   $delivery++;
+                               
+                            }  
+        }
+ ?>                      
+             
+                              <!-------------------------------    END OF   MODAL ---------------->                              
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
                                 
                                 
                                 
@@ -360,7 +442,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                               foreach ($query->result() as $object) {
                                                   
                                            echo '<tr>' ,
-                                                '<td>'  . $object->payment_date. '</td>' ,
+                                                '<td>'  . $object->date. '</td>' ,
                                                 '<td>'  . $object->amount . '</td>' ,
                                                 '<td>'  . $object->bank  . '</td>' ,
                                                 '</tr>' ;
@@ -391,15 +473,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
              
                               <!-------------------------------    END OF   MODAL ---------------->   
                                                             
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
                                 
                                 
                                 
@@ -482,7 +555,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                               '<td>'  . $object->total_amount  . '</td>' ;
                                                                              // '<td>'  . $object->date_payment     . '</td>'; 
                                                                       ?> 
-                                            <td><center><a class="btn btn-info btn-sm" data-toggle="modal" data-target="#<?php echo "details".$i   ?>">Item Details</a></center></td>                                 
+                                            <td><center><a class="btn btn-info btn-sm" data-toggle="modal" data-target="#<?php echo "details".$i   ?>">Order Details</a></center></td>
+                                             <td><center><a class="btn btn-info btn-sm" data-toggle="modal" data-target="#<?php echo "delivery".$i   ?>">Delivery Details</a></center></td>  
                                             <td><center><a class="btn btn-info btn-sm" data-toggle="modal" data-target="#<?php echo "payment".$i   ?>">Payment Details</a></center></td> 
                                                                   <?php         '</tr>' ; 
                                                                          

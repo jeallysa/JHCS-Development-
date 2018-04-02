@@ -1,6 +1,6 @@
 <?php
 
-	class AdmiChangePassword extends CI_Controller
+	class AdminChangePassword extends CI_Controller
 	{
 		
 		function __construct(){

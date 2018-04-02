@@ -36,7 +36,11 @@
 
             $client_balance = $gross_amount - $blend_price * $deliver_quantity;
 
+
 			$client =$this->input->post("client_company");
+
+			$client =$this->input->post("client_company");
+
 
 			$data = array(
 				"client_dr" =>$this->input->post("client_dr"),

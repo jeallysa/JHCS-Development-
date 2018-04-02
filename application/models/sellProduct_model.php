@@ -139,6 +139,20 @@ class sellProduct_model extends CI_MODEL
 		$this->db->query("UPDATE coffee_blend SET blend_qty = blend_qty + ".$blend_returnedQty." WHERE blend_id = '".$blend_id."';");
 	}
 
+	function getBlend($id){
+		$query = $this->db->query("SELECT * from coffee_blend NATURAL JOIN packaging WHERE blend_id='$id'");
+		return $query->row();
+	}
+	function getMachinebyId($id){
+		$query = $this->db->query("SELECT * from machine WHERE mach_id='$id'");
+		return $query->row();
+	}
+	function getClientbyId($id){
+		$query = $this->db->query("SELECT * from contracted_client WHERE client_id='$id'");
+		return $query->row();
+	}
+
+
 	function activity_logs($module, $activity){
 		$username = $this->session->userdata('username');
         $query = $this->db->query("SELECT user_no from jhcs.user where username ='".$username."';");
@@ -155,6 +169,7 @@ class sellProduct_model extends CI_MODEL
         $this->db->insert('activitylogs', $data);
 		}
 		
+
 }
 
 ?>

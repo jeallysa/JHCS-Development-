@@ -4,13 +4,15 @@
 	{
 		function __construct(){
 			parent::__construct();
+			$this->load->model("InventoryMachines_Model");
+			$this->load->model('notification_model');
 		}
 		
 		public function index()
 		{ 
 			if ($this->session->userdata('username') != '')
 			{
-				$this->load->model("InventoryMachines_Model");
+				$data['reorder'] = $this->notification_model->reorder();
 				$data["machine"] = $this->InventoryMachines_Model->retrieveMachine();
 				$this->load->view('Inventory_Module/inventoryMachines', $data);
 			} else {
@@ -19,16 +21,23 @@
 		}
 
 
-		function update(){
-			$this->load->model('InventoryMachines_Model');
-			$machid = $this->input->post("machid");
-			$count = $this->input->post("count");
-			$discrepancy = $this->input->post("discrepancy");
-			$remarks = $this->input->post("remarks");
-			$this->InventoryStickers_Model->update($machid, $count, $discrepancy, $remarks);
-			echo "<script>alert('Update successful!');</script>";
-			redirect('inventoryMachines', 'refresh');
-		}
+		function update($id){
+             
+            
+            $data = array(
+                        'mach_id'         => $this->input->post("machid"),
+                        'mach_physcount'  => $this->input->post("physcount"),
+                        'mach_discrepancy'=> $this->input->post("discrepancy"),
+                        'mach_remarks'    => $this->input->post("remarks"),
+                        'inventory_date'    => $this->input->post("date"),
+                    );              
+                
+        
+            $this->InventoryMachines_Model->update($data , $id);    
+        
+            
+            redirect('inventoryMachines');
+        }  
 
 
 	}

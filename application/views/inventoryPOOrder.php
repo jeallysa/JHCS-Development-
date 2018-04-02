@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url(); ?>assets/img/apple-icon.png"/>
     <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/img/favicon.png"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Inventory Stocks</title>
+    <title>Purchase Order</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
@@ -28,6 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <style>
 .title {
     font-size: large;
+    padding-top: 15px;
 
 }
 </style>
@@ -95,24 +96,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="main-panel">
             <nav class="navbar navbar-transparent navbar-absolute">
                 <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
-                    
-                    
-                    
-                    
-                    
-                    
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown">
-                                <li>
+                            
+                                <li id="nameheader">
                                     <?php $username = $this->session->userdata('username') ?>
                                 
                                 <?php
@@ -125,6 +112,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             }
                                         ?>
                                 </li>
+                           
+                            <li>
                                 <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="material-icons">person</i>
                                         <p class="hidden-lg hidden-md">Profile</p>
@@ -143,14 +132,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <a href="<?php echo base_url('Login/logout');  ?>">Logout</a>
                                     </li>
                                 </ul>
-                            
+                            </li>
                                
-    <!------------------                                          NOTIFICATION                    ---------------------------------->           
+       <!------------------                                          NOTIFICATION                    ---------------------------------->           
                             
-                            
+                            <li>
                             
                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">shopping_basket</i>
+                                        <i class="material-icons">announcement</i>
                                         <p class="hidden-lg hidden-md">Profile</p>
                                        <span class="label-count" style='background-color: #f44336;'> <?php 
                                            
@@ -166,13 +155,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                            ?>   </span> </a>
                             
                             
+                            
+                            
                                 <ul class="dropdown-menu">
                                     
                                    <?php 
                                  for($i = 0; $i <= 3 ;$i++){
                                      if(!empty($reorder[$i])){
                                           foreach($reorder[$i] as $object){
-                                            echo   '<li>' . $object->name . "     " . $object->type. '</li>';
+                                            echo   '<li><a href="inventoryStocks">' . $object->name . "     " . $object->type. ' now drops below the re-order level</a></li>';
                                                  
                                              }
                                       }
@@ -180,40 +171,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     ?>
                                    
                                 </ul>
-      <!------------------                                          NOTIFICATION                    ---------------------------------->                  
+                            
+                            </li>
                             
                             
                             
-                            
-                             </li>
-                 
-                        
-                        
+    <!------------------                                          NOTIFICATION                    ---------------------------------->           
+
                         
                         </ul>
                     </div>
                 
                 </div>
             </nav>
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <?php
@@ -279,8 +249,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <tr>
                                                         <th>Item Name</th>
                                                         <th>Type</th>
-                                                        <th>Original Weight(g)</th>
-                                                        <th>Yield Weight(g)</th>
+                                                        <th>Original Qty/Weight(g)</th>
+                                                        <th>Remaining</th>
+                                                        <th>Quantity / Yield Weight(g)</th>
                                                         <th>Yield(g)</th>
                                                     </tr>
                                                 </thead>
@@ -326,8 +297,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <input type="number" class="form-control" name="qty[]" id ="<?php echo "qty".$i?>" value="<?php echo $object->qty ?>" readonly> <!-- name of id=qty-->
                                                   </td>
                                                     
+                                               <td>
+                                               
+                                    <input  type="number" class="form-control" maxlength="4" name="delivered[]" id ="<?php echo "delivered".$i?>" value="<?php echo $object->qty-$object->received ?>" readonly/> 
+                                            
+                                          </td>        
+                                                    
+                                                    
+                                                    
                                                   <td >
-                                            <input type="number" class="form-control" name="yield_weight[]"  min="0" max="<?php echo $object->qty ?>" id="<?php echo "yield_weight".$i?>"  required>
+                                            <input type="number" class="form-control" name="yield_weight[]"  min="0" max="<?php echo $object->qty-$object->received ?>" id="<?php echo "yield_weight".$i?>"  required>
                                                   </td>  
                                                     
                                                  <td>
@@ -408,9 +387,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <tr>
                                                         <th>Item Name</th>
                                                         <th>Type</th>
-                                                        <th>Original Weight(g)</th>
+                                                        <th>Original Qty/Weight(g)</th>
+                                                        <th>Remaining</th>
+                                                        <th>Qty/Weight</th>
                                                         <th>Yield Weight(g)</th>
-                                                        <th>Yield(g)</th>
+                                                         <th>Yield(g)</th>
+                                                        
                                                         <th>Date Received</th>
                                                         <th>Received By</th>
                                                     </tr>
@@ -428,7 +410,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                
                  for($table = 0 ; $table < 4 ; $table++){
                           
-                     $retrievePartial ="SELECT * FROM ".$arrayItem[$table]." join supp_po_ordered  on ".$arrayOn[$table] ." = item join supp_po using (supp_po_id) where supp_PO_id = ".$temp ." and supp_po_ordered.delivery_stat = 0 and sup_id = ".$sup_id." and type =".$arrayType[$table];               
+                     $retrievePartial ="SELECT * FROM ".$arrayItem[$table]." join supp_po_ordered  on ".$arrayOn[$table] ." = item join supp_po using (supp_po_id) where supp_PO_id = ".$temp ." and supp_po_ordered.delivery_stat = 0 and sup_id = ".$sup_id." and received != qty and type =".$arrayType[$table];               
                                                     
                          
                                               $query = $this->db->query($retrievePartial);
@@ -459,12 +441,40 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                          
                                                    <td>
                                                       <input type="number" class="form-control" name="qty[]" id ="<?php echo "qtyp".$i?>" value="<?php echo $object->qty ?>" readonly />
-                                                       <!-- name of id=qty-->
-                                                    </td>        
+                                                  
+                                                    </td>   
+                                                    
+                                                 
+                                           <td>
+                                               
+                                    <input  type="number" class="form-control" maxlength="4" name="delivered[]" id ="<?php echo "delivered".$i?>" value="<?php echo $object->qty-$object->received ?>" readonly/> 
+                                            
+                                          </td>   
+                                                    
                                                 <td>
-                                                      <input  type="number" class="form-control" maxlength="4" name="yield_weight[]" min="0" max="<?php echo $object->qty ?>" id ="<?php echo "yield_weight".$i?>"> <!-- name of id=yield_weight-->
+                                                     
+                                                    <input type="number" class="form-control"  name="received[]" min ="0" max= "<?php echo $object->qty-$object->received ?>" id ="<?php echo "received".$i?>" />
+                                                     
+                                                </td>
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                <td>
+                                                      <input  type="number" class="form-control" maxlength="4" name="yield_weight[]" min="0"  id ="<?php echo "yield_weight".$i?>"> 
                                                 </td>   
-                                                <td><input type="number" class="form-control"  name="yield[]" id ="<?php echo "yield".$i?>" readonly /></td>  <!-- name of id=yield-->
+                                                    
+                                                <td>
+                                                     
+                                                    <input type="number" class="form-control"  name="yield[]" id ="<?php echo "yield".$i?>" readonly />
+                                                     
+                                                </td>  
+                                                   
+                                                    
+                                                    
+                                                    
                                                     
                                                 <td >
                                                             <input type="date" class="form-control" name="date[]"  id ="<?php echo "poPartialDate".$i?>" />
@@ -560,7 +570,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                    
                                                     <th>Item Name</th>
                                                     <th>Type</th>
-                                                    <th>Quantity/ Weight(g)</th>
+                                                    <th>Quantity/Weight(g)</th>
                                                     <th>Unit Price</th>
                                                     <th>Amount</th>
                                                 </tr>
@@ -702,7 +712,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                            echo '<tr>' ,
                                                 
                                                 '<td>'  . $object->supp_po_id . '</td>' ,
-                                                '<td>'  . $object->supp_creditTerm. '</td>' ,
+                                                '<td>'  . $object->supp_creditTerm. ' day/s</td>' ,
                                                 '<td>'  . $object->suppPO_date   . '</td>' ,
                                                 '<td>'  . $object->sup_company  . '</td>' ;
                                         		                      
@@ -779,10 +789,6 @@ $(document).ready(function() {
 });
  
     
-
-    
-    
-        
                                                   
       <?php
            
@@ -814,17 +820,30 @@ $(document).ready(function() {
       
            $(<?php echo "'#partial".$c." input[id=yield_weight".$i."]'"?>).keyup(function(){
             var y = parseFloat($(this).val());
-			var x = parseFloat($(<?php echo "'#partial".$c." input[id=qtyp".$i."]'"?>).val());
+			var x = parseFloat($(<?php echo "'#partial".$c." input[id=received".$i."]'"?>).val());
 			var res = x - y ;
 			$(<?php echo "'#partial".$c." input[id=yield".$i."]'"?>).val(res);
-});      
+               
+               
+    });           
+           
+            $(<?php echo "'#partial".$c." input[id=received".$i."]'"?>).keyup(function(){
+            var y = parseFloat($(this).val());
+			var x = parseFloat($(<?php echo "'#partial".$c." input[id=yield_weight".$i."]'"?>).val());
+			var res = x - y ;
+			$(<?php echo "'#partial".$c." input[id=yield".$i."]'"?>).val(res);
+            $(<?php echo "'#partial".$c." input[id=yield_weight".$i."]'"?>).attr("max", y )
+               
+               
+    });           
+               
 
     
     
                                   
             $(<?php echo "'#full".$c." input[id=yield_weight".$i."]'"?>).keyup(function(){
             var y = parseFloat($(this).val());
-			var x = parseFloat($(<?php echo "'#full".$c." input[id=qty".$i."]'"?>).val());
+			var x = parseFloat($(<?php echo "'#full".$c." input[id=delivered".$i."]'"?>).val());
 			var res = x - y ;
 			$(<?php echo "'#full".$c." input[id=yield".$i."]'"?>).val(res);
                 
