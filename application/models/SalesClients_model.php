@@ -23,7 +23,7 @@
 				$stock = $this->db->query("SELECT * FROM raw_coffee WHERE raw_id = '".$raw_guide."';")->row()->raw_stock;
 				$taker = round($quantity*($package*($percentage * 0.01)));
 				if ($stock < $taker){
-					echo '<script> alert("Maximum order exceeded! Transaction halted."); </script>';
+					echo '<script> alert("Maximum order exceeded from the number of stocks! Transaction halted."); </script>';
 					return;
 				}else{
 					echo '<script> alert("Purchase order added."); </script>';
