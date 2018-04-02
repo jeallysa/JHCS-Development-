@@ -41,6 +41,60 @@
 			$query = $this->db->query("SELECT * FROM contracted_client NATURAL JOIN client_machreturn INNER JOIN machine ON client_machreturn.mach_id = machine.mach_id WHERE client_id='$id' ");
 			 return $query->row();
 		}
+
+		public function less_raw_coffee($date, $quantity, $blend_id, $id){
+			/* NEEDED QUERY for Section 4 */
+			$query = $this->db->query('SELECT c.percentage, c.raw_id, d.package_id, d.package_size, b.sticker_id FROM coffee_blend b JOIN proportions c JOIN packaging d ON b.blend_id = c.blend_id AND b.package_id = d.package_id WHERE c.blend_id ='.$blend_id.';');		
+			
+			
+			
+
+			/* UPDATE of stocks & insert into INV_TRANSACT*/
+			$pack_id = $query->row()->package_id;
+			$stick_id = $query->row()->sticker_id;
+			$this->db->query("UPDATE packaging SET package_stock = package_stock - ".$quantity." WHERE package_id =".$pack_id.";");
+			$this->db->query('UPDATE sticker SET sticker_stock = sticker_stock - '.$quantity.' WHERE sticker_id ='.$stick_id.';');
+			$data_trans = array(
+						'transact_date' => $date,
+						'walkin_return' => $id,
+			        	'type' => "OUT"
+			);
+			$this->db->insert('inv_transact', $data_trans);
+			$trans_id = $this->db->insert_id();
+			
+			/* FOR TRANS_RAW */
+			foreach ($query->result() as $row)
+			{
+
+			        $raw_guide = $row->raw_id;
+			        $percentage = $row->percentage;
+			        $package = $row->package_size;
+			        $this->db->query('UPDATE raw_coffee SET raw_stock = raw_stock - '.$quantity*($package*($percentage * 0.01)).' WHERE raw_id ='.$raw_guide.';'); 
+			        
+			        $data_for = array(
+			        	'trans_id' => $trans_id,
+			        	'raw_coffeeid' => $raw_guide,
+			        	'quantity' => $quantity*($package*($percentage * 0.01))
+			        );
+			        $this->db->insert('trans_raw', $data_for);
+			}
+
+			/* FOR Trans (Machines, Packaging, Stickers..) */
+			$data_pack = array(
+			        	'trans_id' => $trans_id,
+			        	'package_id' => $pack_id,
+			        	'quantity' => $quantity
+			);
+			$data_stick = array(
+					'trans_id' => $trans_id,
+			        	'sticker_id' => $stick_id,
+			        	'quantity' => $quantity
+			);
+			$this->db->insert('trans_pack', $data_pack);
+			$this->db->insert('trans_stick', $data_stick);
+			$this->db->query('INSERT INTO trans_mach (trans_id) VALUES ('.$trans_id.')');
+
+		}
 		
 		
 		

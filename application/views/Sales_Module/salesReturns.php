@@ -344,6 +344,10 @@
                                                 <p class="col-md-5 control"><b><?php echo $row->walkin_returns; ?></b></p>
                                             </div>
                                             <div class="form-group">
+                                                <label class="col-md-5 control">Date Resolved :</label>
+                                                <input type="date" name="date_resolved" class="form_control" required="">
+                                            </div>
+                                            <div class="form-group">
                                                 <label class="col-md-5 control">Remarks :</label>
                                                 <p class="col-md-5 control"><b><?php echo $row->coff_remarks; ?></b></p>
                                             </div>
@@ -488,8 +492,6 @@
                                                         </table>
                                                     </div>
                                                 </div>
-                                                
-
                                             </div>
                                         </div>
                                     </div>
@@ -543,6 +545,10 @@
 															<p><b><input name="quantity" id="Originalquantity" class="no-border" type="disabled"  readonly></b></p>
 														</div>
 													</div>
+                                                <div class="form-group">
+                                                    <label class="col-md-5 control">Date Resolved :</label>
+                                                    <input type="date" name="date_resolved" required="">
+                                                </div>
 												</div>
                                             </div>
                                         </div>

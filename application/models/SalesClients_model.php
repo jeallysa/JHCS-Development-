@@ -44,16 +44,11 @@
 		}
 
 		public function stockDecrease($date, $quantity, $blend_id, $po_id){
+			/* NEEDED QUERY for Section 4 */
 			$query = $this->db->query('SELECT c.percentage, c.raw_id, d.package_id, d.package_size, b.sticker_id FROM coffee_blend b JOIN proportions c JOIN packaging d ON b.blend_id = c.blend_id AND b.package_id = d.package_id WHERE c.blend_id ='.$blend_id.';');		
 			
-			/*$data = array(
-				'walkin_date' => $date,
-				'walkin_qty' => $quantity,
-				'blend_id' => $blend_id
-			);
-
-			$this->db->insert('walkin_sales', $data);
-			$inserted_id = $this->db->insert_id();*/
+			
+			/* validation of stock if less or not */
 			foreach($query->result() AS $row){
 				$raw_guide = $row->raw_id;
 			    $percentage = $row->percentage;
@@ -66,7 +61,7 @@
 			}
 			
 
-
+			/* UPDATE of stocks & insert into INV_TRANSACT*/
 			$pack_id = $query->row()->package_id;
 			$stick_id = $query->row()->sticker_id;
 			$this->db->query("UPDATE packaging SET package_stock = package_stock - ".$quantity." WHERE package_id =".$pack_id.";");
@@ -80,6 +75,7 @@
 			$this->db->insert('inv_transact', $data_trans);
 			$trans_id = $this->db->insert_id();
 			
+			/* FOR TRANS_RAW */
 			foreach ($query->result() as $row)
 			{
 
@@ -96,6 +92,7 @@
 			        $this->db->insert('trans_raw', $data_for);
 			}
 
+			/* FOR Trans (Machines, Packaging, Stickers..) */
 			$data_pack = array(
 			        	'trans_id' => $trans_id,
 			        	'package_id' => $pack_id,

@@ -78,11 +78,14 @@
 		  $id = $this->input->post('walkin_id');
 		  $quantity = $this->input->post('resolve_walkin_qty');
 		  $blend_id = $this->input->post('blend_id_walkin');
+		  $date_resolved = $this->input->post('date_resolved');
 
 		  $this->SalesReturns_model->update_walkin_sales($id);
 		  $this->SalesReturns_model->update_less_return_coffee($quantity, $blend_id);
+		  $this->SalesReturns_model->less_raw_coffee($date_resolved, $quantity, $blend_id, $id);
 		echo "<script>alert('Blend Return has been resolved!');</script>";
-		  redirect('SalesReturns/index');
+			exit;
+		  redirect('SalesReturns/index', 'refresh');
 
 		}
 		
