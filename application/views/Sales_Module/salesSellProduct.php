@@ -126,7 +126,7 @@
                                         <a href="<?php echo base_url(); ?>salesChangePassword">Change Password</a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo base_url(); ?>activitylogs">Activity Logs</a>
+                                        <a href="<?php echo base_url(); ?>salesActivityLogs">Activity Logs</a>
                                     </li>
                                     <li>
                                         <a href="<?php echo base_url('Login/logout');  ?>">Logout</a>

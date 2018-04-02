@@ -124,7 +124,7 @@
                                         <a href="<?php echo base_url(); ?>salesChangePassword">Change Password</a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo base_url(); ?>activitylogs">Activity Logs</a>
+                                        <a href="<?php echo base_url(); ?>salesActivityLogs">Activity Logs</a>
                                     </li>
                                     <li>
                                         <a href="<?php echo base_url('Login/logout');  ?>">Logout</a>
@@ -269,13 +269,13 @@
 										<div class="row">
 											<label class="col-md-3 control">Client :</label>
 											<div class="col-md-3">
-											<b><input name="client" class="no-border" type="disabled" id="displayClient"  readonly /></b>
+											<b><input name="client" class="no-border" type="disabled"  readonly /></b>
 											</div>
 										</div>
 									 	<div class="row">
 											<label class="col-md-3 control">Machine :</label>
 											<div class="col-md-3">
-											<b><input name="brewer" class="no-border" type="disabled" id="displayMachine"  readonly /></b>
+											<b><input name="brewer" class="no-border" type="disabled" readonly /></b>
 											</div>
 										</div>
 										<div class="row">
