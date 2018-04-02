@@ -12,9 +12,8 @@
 		{ 
 			if ($this->session->userdata('username') != '')
 			{
-				
+				$data["reorder"] = $this->notification_model->reorder();
 				$data["fetch_data"] = $this->InventoryActivityLogs_Model->fetch_data();
-				$data['reorder'] = $this->notification_model->reorder();
 
 				$this->load->view('Inventory_Module/inventoryActivityLogs', $data);
 			} else {

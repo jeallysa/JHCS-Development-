@@ -12,7 +12,7 @@
 		{ 
             if ($this->session->userdata('username') != '')
 			{
-				$data['reorder'] = $this->notification_model->reorder();
+				$reorder = $this->notification_model->reorder();
 	            $rawcoffeeStock = $this->InventoryDashboardDateOut_model->get_rawcoffeestock();
 	            $data1['rawcoffeestock'] = $rawcoffeeStock[0]->rawstock;
 	            $packagingStock = $this->InventoryDashboardDateOut_model->get_packagingstock();
@@ -21,7 +21,7 @@
 	            $data3['stickerstock'] = $stickerStock[0]->stickerstock;
 	            $machineStock = $this->InventoryDashboardDateOut_model->get_machinestock();
 	            $data4['machinestock'] = $machineStock[0]->machinestock;
-	            $this->load->view('Inventory_Module/inventoryDashboardDateOut', [$data, 'data1' => $data1, 'data2' => $data2, 'data3' => $data3, 'data4' => $data4] );
+	            $this->load->view('Inventory_Module/inventoryDashboardDateOut', ["reorder" => $reorder, 'data1' => $data1, 'data2' => $data2, 'data3' => $data3, 'data4' => $data4] );
 	         } else {
 	         	redirect('login');
 	         }

@@ -192,7 +192,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="row">
                         <div class="col-md-8">
                               <div class="card">
-                                <div class="card-header" data-background-color="purple">
+                                <div class="card-header" data-background-color="blue">
                                     <h4 class="title">Edit Profile</h4>
                                     <p class="category"></p>
                                 </div>
