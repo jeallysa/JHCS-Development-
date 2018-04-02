@@ -10,7 +10,7 @@ class AdminStickers_model extends CI_MODEL
 	 
 
 	function getStickers(){
-		$query=$this->db->query("SELECT sup_id, sticker_id, sticker, sticker_reorder, sticker_limit, sup_company, sticker_stock, sticker_activation FROM sticker NATURAL JOIN supplier");
+		$query=$this->db->query("SELECT sup_id, sticker_id, sticker, sticker_reorder, sup_company, sticker_stock, sticker_activation FROM sticker NATURAL JOIN supplier");
 		return $query->result();
 	}
     
@@ -23,12 +23,11 @@ class AdminStickers_model extends CI_MODEL
 		$this->db->insert('sticker', $data);
 	}
 
-    function update($id, $name, $reorder, $stocks, $stocklimit, $sup_id){
+    function update($id, $name, $reorder, $stocks, $sup_id){
 		$data = array(
 	        'sticker' => $name,
 	        'sticker_reorder' => $reorder,
 	        'sticker_stock' => $stocks,
-	        'sticker_limit' => $stocklimit,
 	        'sup_id' => $sup_id
 		);
 
