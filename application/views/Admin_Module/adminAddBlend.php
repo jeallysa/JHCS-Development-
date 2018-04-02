@@ -331,7 +331,7 @@ a:focus {
                                                             $colname = "per" . $row2->raw_id;
                                         ?>
                                         <td>
-                                            <input type="number" id="per" name="per[<?php echo $row2->raw_id;?>]" class="form-control" min="0" oninput="findTotal(); validity.valid||(value='');" data-validate="required" max="" required>
+                                            <input type="number" id="per" name="per[<?php echo $row2->raw_id;?>]" class="form-control" min="0" oninput="findTotal(); validity.valid||(value='');" data-validate="required" max="">
                                         </td>
                                         <?php
                                                 }
