@@ -292,7 +292,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                         
                                                                         
                                                                         
-                                                                       <input class="form-control" type="date" name="date" id ="poDate"  value="<?php if(!empty($tempExisting)){
+                                                                        
+                                                                       <input class="form-control" type="date" name="date"  max ="<?php echo date("Y-m-d")?>" id ="poDate"  value="<?php if(!empty($tempExisting)){
                                                                                                                                       echo $tempExisting[0]->date; } ?>" required>
                                                                         
                                                                         
@@ -319,7 +320,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                         
                                                                         
                                                          <input type="number" class="form-control"  min="1"  name = "truckingFee" value = "<?php if(!empty($tempExisting)){
-                                                                                                                                           echo number_format($tempExisting[0]->trucking_fee,2); } ?>" required>
+                                                                                                                                           echo $tempExisting[0]->trucking_fee; } ?>" required>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -489,10 +490,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                          foreach ($TempOrdered as $object) {
                                                                          echo '<tr>' ,
       '<td class="col-sm-3"><input type="text" class="form-control" name="item_name[]" id="item_name'.$counter.'" value ="'.$object->item_name. '" readonly required>   </td>' ,
-      '<td class="col-sm-3"><input type="text" class="form-control" name="qty[]"       id="qty'.$counter.'" value ="'.number_format($object->qty)       .'" readonly required>  </td>' ,
-      '<td class="col-sm-2"><input type="text" class="form-control" name="type[]"      id="type'.$counter.'" value ="'.$object->type      .'" readonly required>   </td>' ,
-      '<td class="col-sm-2"><input type="text" class="form-control" name="unitPrice[]" id="unitPrice'.$counter.'" value ="'.number_format($object->unitPrice,2) .'" readonly required>   </td>' ,
-      '<td class="col-sm-3"><input type="text" class="form-control" name="amount[]"    id="amount'.$counter.'" value ="'.number_format($object->amount,2)    .'" readonly required>   </td>' ,
+      '<td class="col-sm-3"><input type="text" class="form-control" name="qty[]"       id="qty'.$counter.'" value =     "'.$object->qty       .'" readonly required>  </td>' ,
+      '<td class="col-sm-2"><input type="text" class="form-control" name="type[]"      id="type'.$counter.'" value = "'.$object->type      .'" readonly required>   </td>' ,
+      '<td class="col-sm-2"><input type="text" class="form-control" name="unitPrice[]" id="unitPrice'.$counter.'" value = "'.$object->unitPrice .'" readonly required>   </td>' ,
+      '<td class="col-sm-3"><input type="text" class="form-control" name="amount[]"    id="amount'.$counter.'" value = "'.$object->amount    .'" readonly required>   </td>' ,
                                                                               '</tr>' ;
                                                                              $counter++;
                                                                              }
@@ -716,6 +717,10 @@ $(document).ready(function () {
  // I dont understand why it cant validate the first time  
     
     
+    
+    
+    
+    /*
 document.getElementById('submitInfo').onclick = function() {
    
 	      var sendDate = document.getElementById('poDate').value
@@ -729,7 +734,7 @@ document.getElementById('submitInfo').onclick = function() {
     
 }  
 });
-
+*/
 
 
 

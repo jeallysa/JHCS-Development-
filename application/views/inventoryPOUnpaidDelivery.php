@@ -315,7 +315,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                             <div class="col-md-4">
                                                                                 <div class="form-group label-floating">
                                                                                   <label>Date of Payment:</label>
-                                                                                  <input class="form-control" type="date" name="date" required>
+                                                                                  <input class="form-control" type="date"  max ="<?php echo date("Y-m-d")?>" name="date" required>
                                                                                 </div>
                                                                             </div>
                                                                           
@@ -450,7 +450,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                             <div class="col-md-4">
                                                                                 <div class="form-group label-floating">
                                                                                   <label>Date of Payment:</label>
-                                                                                  <input class="form-control" type="date" name="date" required>
+                                                                                  <input class="form-control" type="date"  max ="<?php echo date("Y-m-d")?>" name="date" required>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-4">

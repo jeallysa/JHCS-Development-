@@ -5,11 +5,140 @@
 			parent::__construct();
 		}
 		
-		public function get_companyreturns(){
-			$query = $this->db->query("SELECT * FROM jhcs.company_returns INNER JOIN raw_coffee ON sup_returnItem = raw_id INNER JOIN supplier ON company_returns.sup_id = supplier.sup_id;");
+        
+        
+        public function get_PO(){
+			$query = $this->db->query("SELECT distinct supp_po_id FROM supp_delivery");
 			return $query->result();
 			
 		}
+        
+        
+        
+        
+           public function get_PoList($po){
+			$query = $this->db->query("SELECT distinct supp_delivery.supp_po_ordered_id , item, type FROM supp_delivery join supp_po_ordered on supp_delivery.supp_po_ordered_id = supp_po_ordered.supp_po_ordered_id where supp_delivery.supp_po_id = ".$po);
+			return $query->result();
+			
+		}
+        
+        
+        
+        
+        
+           function insertReturns($return){ 
+                  
+           $this->db->insert("company_returns" , $return);
+           }
+               
+        
+        
+           function updateStocks($return){ 
+         
+           $query1 = $this->db->query("SELECT * from supp_po_ordered where supp_po_ordered_id = ".$return['sup_returnItem']." and supp_po_id = ".$return['poNo']);
+           $query2 = $this->db->query("SELECT * from supp_po where supp_po_id = ".$return['poNo']);        
+                        
+                        $result1= $query1->row();
+                        $result2= $query2->row();
+                        
+                        $itemName = $result1->item;//result1['item'];  //
+                        $itemType = $result1->type;//result1['type'];  //
+                        
+                        $sup_id = $result2->supp_id;// result2['supp_id']; //
+               
+               
+               
+             $arrayItem = array("raw_coffee","sticker","packaging","machine");
+                   $arrayOn = array("raw_coffee","sticker","package_type","brewer");
+                      $arrayType = array("raw_type","sticker_type","package_size","brewer_type");
+                           $stockColumn= array("raw_stock","sticker_stock","package_stock","mach_stocks");
+               
+               
+                         for($i= 0 ; $i <= 3 ; $i++){
+                          
+                     $retrieveDetails ="SELECT ".$stockColumn[$i]." as stock FROM ".$arrayItem[$i]." where ".$arrayOn[$i]." = '".$itemName."' and ".$arrayType[$i]." = '".$itemType."' and sup_id = ".$sup_id;  
+               
+                                       $query = $this->db->query($retrieveDetails);
+                                           if ($query->num_rows() > 0) {
+                                                  $tempResult = $query->row();
+                                                  $stock = $tempResult->stock - $return['sup_returnQty'];
+                                               
+                                       $where = array( $arrayOn[$i] =>$itemName, $arrayType[$i] =>$itemType, 'sup_id' => $sup_id ); // multiple where
+                                               
+                                       $toUpdate =array( $stockColumn[$i] => $stock);        
+                                               
+                                       $this->db->where($where);  //used the where here
+                                       $this->db->update($arrayItem[$i], $toUpdate);   
+                                               
+                                        $this->db->insert($arrayItem[$i] , $toUpdate);       
+                                              }
+                                            }
+                      
+                      
+                      
+                   
+                
+         
+         }  
+        
+        
+        
+		public function get_companyreturns(){
+			$query = $this->db->query("SELECT * FROM company_returns join supp_po_ordered on supp_po_ordered_id = sup_returnItem");
+			return $query->result();
+			
+        }
+            
+          
+            
+            
+               
+		public function get_maxModel($item, $poNo){
+			$query = $this->db->query("SELECT yield_weight-sup_returnQty as max  FROM company_returns join supp_delivery on poNo = supp_po_id where poNo = ".$poNo. " and sup_returnItem = ".$item);
+		
+                if($query->num_rows() > 0){
+                               return $query->row();
+                    
+                    
+                    
+                    
+                    
+                    
+                }else{
+                    
+                      $query2 = $this->db->query("SELECT yield_weight as max FROM supp_delivery where supp_po_id = ".$poNo. " and supp_po_ordered_id =".$item);
+                         if($query2->num_rows() > 0){
+                                    return $query2-> row();
+                              }
+                }
+        }
+            
+            
+            
+            
+            
+
+        
+        
+    
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
 		public function get_clientcoffeereturns(){
 			$query = $this->db->query("SELECT client_coffReturnID, client_dr, coff_returnDate, client_company, coff_returnQty, coff_remarks, coff_returnAction FROM jhcs.client_coffreturn NATURAL JOIN client_delivery NATURAL JOIN contracted_client;");
 			return $query->result();

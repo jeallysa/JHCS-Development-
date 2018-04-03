@@ -18,7 +18,18 @@
 				$data3['get_clientmachinereturns'] = $this->InventoryReturnsList_Model->get_clientmachinereturns();
 				$data4['get_suppliers'] = $this->InventoryReturnsList_Model->get_suppliers();
 				$data5['get_coffee'] = $this->InventoryReturnsList_Model->get_coffee();
-				$this->load->view('Inventory_Module/inventoryReturnsList', ["reorder" => $reorder, 'data1' => $data1, 'data2' => $data2, 'data3' => $data3, 'data4' => $data4, 'data5' => $data5] );
+                
+                
+                
+                $poList = $this->InventoryReturnsList_Model->get_PO();
+                
+                
+                
+                
+             
+                
+                
+				$this->load->view('Inventory_Module/inventoryReturnsList', ["poList" => $poList , "reorder" => $reorder, 'data1' => $data1, 'data2' => $data2, 'data3' => $data3, 'data4' => $data4, 'data5' => $data5] );
 			} else {
 				redirect('login');
 			}
@@ -26,24 +37,89 @@
 			
 		}
 
-		public function insert()
-		{
-			$this->load->model('InventoryReturnsList_Model');
-			$data = array(
-				"sup_returnDate" =>$this->input->post("date"),
-				"sup_id" =>$this->input->post("supplier"),
-				"sup_returnItem" =>$this->input->post("coffee"),
-				"sup_returnQty" =>$this->input->post("quantity"),
-				"sup_returnRemarks" =>$this->input->post("remarks")
-			);
-			$date = $this->input->post("date");
-			$raw_id = $this->input->post("coffee");
-			$quantity = $this->input->post("quantity");
-			$return_id = $this->InventoryReturnsList_Model->insert_data($data);
-			$this->InventoryReturnsList_Model->compReturnDecrease($date, $quantity, $raw_id, $return_id);
-			redirect('inventoryReturnsList', 'refresh');
-			
-		}
+        
+        
+        
+           
+     public function get_itemList(){    
+        $po = $this->input->post('poList');
+        
+        $results = $this->InventoryReturnsList_Model->get_PoList($po);
+        
+        if(count($results)>0){
+            $pro_select_box = '';
+            $pro_select_box .= '<option value="">Select Item</option>';
+            
+          foreach ($results as $object) {  
+             $pro_select_box .=' <option value="'.$object->supp_po_ordered_id.'">'.$object->item. " " .$object->type.'</option>';
+         }
+            echo json_encode($pro_select_box);
+            
+        }/*
+         else{
+       
+              
+              $pro_select_box = '<option value="">Select Type</option>';
+              echo json_encode($pro_select_box);
+          }  
+          */
+        
+    }
+      
+    
+       public function get_max(){    
+        $item = $this->input->post('itemList');
+        $poNo = $this->input->post('poNo');   
+           
+        
+        $result = $this->InventoryReturnsList_Model->get_maxModel($item, $poNo);
+        
+        if(count($result)>0){
+          
+            echo json_encode($result);
+            
+        } else return null;
+      
+    }     
+        
+        
+        
+        
+              
+      public function insertReturn(){
+        
+          
+         $data = array(      "poNo" => $this->input->post('poList'),
+                             "sup_returnDate"  => $this->input->post('date'),
+                             "sup_returnItem"      => $this->input->post('item'),
+                             "sup_returnRemarks" => $this->input->post('remarks'),
+                             "drNo"    => $this->input->post('drNo'),
+                             "sup_returnQty" => $this->input->post('returnQty'),
+                            );    
+        
+        $this->InventoryReturnsList_Model->insertReturns($data);
+          
+         $this->InventoryReturnsList_Model->updateStocks($data);  
+          
+          
+          
+          
+          
+        redirect(base_url('inventoryReturnsList'));
+      }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
 
 	}
 

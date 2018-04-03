@@ -27,77 +27,6 @@
 		}
 		
 		
-		.sidebar .sidebar-background:after,
-		.off-canvas-sidebar .sidebar-background:after{
-			background: rgba(139,69,19, 0.8) !important;
-		}
-		
-		.sidebar[data-color="purple"] .nav li.active a,
-		.off-canvas-sidebar[data-color="purple"] .nav li.active a{
-			background-color: #4cb1d1 !important;
-			font-weight: 600 !important;
-			
-		}
-		.sidebar .nav li.active>a,
-		.off-canvas-sidebar .nav li.active>a {
-			color: #f5f5f5 !important;
-		}
-		.sidebar .nav li>a,
-		.off-canvas-sidebar .nav li>a {
-			margin: 10px 15px 0 !important;
-			border-radius: 3px !important;
-			color: #f5f5f5 !important;
-		}
-		.sidebar .nav li:hover>a,
-		.off-canvas-sidebar .nav li:hover>a {
-			background: rgba(200, 200, 200, 0.2) !important;
-			color: #ddd !important;
-		}
-		.sidebar .nav li.active>a i,
-		.off-canvas-sidebar .nav li.active>a i {
-			color: #1f6fb4 !important;
-		}
-		.off-canvas-sidebar .nav i {
-			font-size: 24px !important;
-			float: left !important;
-			margin-right: 15px !important;
-			line-height: 30px !important;
-			width: 30px !important;
-			text-align: center !important;
-			color: #f5f5f5 !important;
-		}
-		.sidebar .nav i, .off-canvas-sidebar .nav i {
-			font-size: 24px !important;
-			float: left !important;
-			margin-right: 15px !important;
-			line-height: 30px !important;
-			width: 30px !important;
-			text-align: center !important;
-			color: #f5f5f5 !important;
-		}
-		.card [data-background-color="purple"] {
-			background: linear-gradient(60deg, #a16854, #a16854) !important;
-			box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2) !important;
-		}
-		a {
-			color: #634618 !important;
-		}
-
-		a:hover,
-		a:focus {
-			color: #8a6d3b !important;
-			text-decoration: none !important;
-		}
-		.navbar .dropdown-menu li a:hover,
-		.navbar .dropdown-menu li a:focus,
-		.navbar .dropdown-menu li a:active,
-		.navbar.navbar-default .dropdown-menu li a:hover,
-		.navbar.navbar-default .dropdown-menu li a:focus,
-		.navbar.navbar-default .dropdown-menu li a:active {
-			background-color: #a94442 !important;
-			color: #FFFFFF !important;
-			box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2) !important;
-		}
 		
 		
 
@@ -108,7 +37,7 @@
     <div class="wrapper">
         <div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-0.jpg">
             <div class="logo">
-                <img src="<?php echo base_url(); ?>assets/img/logos.png" alt="image1" width="250px" height="150px">
+                <img src="<?php echo base_url(); ?>assets/img/logo.png" alt="image1" width="250px" height="150px">
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
@@ -324,7 +253,7 @@
 													<tr>
 														<td>
 															<span > The contract of <?php echo $object->client_company; ?> client has Expired. </span>
-															<input class="no-border" type="text" value="<?php echo $object->client_id; ?>" id="idClient" readonly />
+															<input class="no-border" type="hidden" value="<?php echo $object->client_id; ?>" id="idClient" readonly />
 														</td >
 														<td class="td-actions text-right"><button type="submit" class="btn btn-primary pull-right" id="check" data-id="<?php echo $object->client_id; ?>" >Details</button></td>
 													</tr>
