@@ -241,7 +241,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 
                                                 
                     <?php
-                     $retrieveCompreturn ="SELECT * FROM company_returns NATURAL JOIN supplier WHERE sup_returnItem = ".$id ; 
+                     $retrieveCompreturn ="SELECT * FROM company_returns INNER JOIN supp_po_ordered ON company_returns.poNo = supp_po_ordered.supp_po_id INNER JOIN supp_po ON supp_po_ordered.supp_po_id = supp_po.supp_po_id INNER JOIN supplier ON supp_po.supp_id = supplier.sup_id INNER JOIN raw_coffee ON supp_po_ordered.item = raw_coffee.raw_coffee WHERE raw_id = ".$id ; 
                                      $query = $this->db->query($retrieveCompreturn);
                                         if ($query->num_rows() > 0) {
                                               foreach ($query->result() as $object) {
