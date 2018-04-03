@@ -254,7 +254,7 @@ a:focus {
                                                 <td><?php echo $row->client_address; ?></td>
                                                 <td><?php echo $row->client_email; ?></td>
                                                 <td><?php echo $row->client_contact; ?></td>
-                                                    <td><a href="<?php echo base_url(); ?>adminContract?p=<?php echo $row->client_id; ?>" class="btn btn-sm btn-round" size="10">Contract</a></td>
+                                                    <td><a href="<?php echo base_url(); ?>adminAddContract?p=<?php echo $row->client_id; ?>" class="btn btn-sm btn-round" size="10">Contract</a></td>
                                                  <td>
                                                                 <a class="btn btn-warning btn-sm" style="margin-top: 0px" data-toggle="modal" data-target="#edit<?php echo $row->client_id; ?>">Edit</a>
                                                 </td>

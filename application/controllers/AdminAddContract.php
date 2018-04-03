@@ -42,18 +42,36 @@
                 "client_id" =>$this->input->post("client_company"),
 				"date_started" =>$this->input->post("date_started"),
 				"date_expiration" =>$this->input->post("date_expiration"),
-				"credit_term" =>$this->input->post("contract_term"),
 				"blend_id" =>$this->input->post("contract_blend"),
 				"mach_id" =>$this->input->post("contract_machine"),
 				"required_qty" =>$this->input->post("contract_bqty"),
-				"package_id" =>$this->input->post("contract_size"),
+				"package_id" =>$this->input->post("contract_bag"),
 				"mach_salesID" => $m_sales_id
                 
 			);
+			$client_id = $this->input->post("client_company");
 			$data = $this->security->xss_clean($data);
-			$this->AdminAddContract_model->insert_data($data);
-			echo "<script>alert('Update successful!');</script>";
-			redirect('adminClients', 'refresh');
+			$query_client = $this->db->query("SELECT * FROM contract WHERE client_id = '".$client_id."';");
+			if ($query_client->num_rows() == 0){
+				$this->AdminAddContract_model->insert_data($data);
+				$this->session->set_flashdata('success', 'Insert & Update successful!');
+			}else{
+				$this->db->where('client_id', $client_id);
+				$this->db->update('contract', $data);
+				$this->session->set_flashdata('success', 'Update successful!');
+			}
+			
+
+			$blend_id = $this->input->post("contract_blend");
+			$data_blend = array(
+				'package_id' => $this->input->post("contract_bag"),
+				'sticker_id' => $this->input->post("contract_sticker")
+
+			);
+			$this->db->where('blend_id', $blend_id);
+			$this->db->update('coffee_blend', $data_blend);
+			
+			redirect('adminAddContract');
 
 			/* data - contract; data_bag = machine_out*/
 		}

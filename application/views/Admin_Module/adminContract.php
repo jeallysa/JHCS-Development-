@@ -302,7 +302,7 @@ a:focus {
                                                 <th><b>Client</b></th>
                                                 <th><b>Date Started</b></th>
                                                 <th><b>Date Expiration</b></th>
-                                                <th><b>Credit Term</b></th>
+
                                                 <th><b>Coffee Blend</b></th>
                                                 <th><b>Bag</b></th>
                                                 <th><b>Size</b></th>
@@ -334,7 +334,7 @@ a:focus {
                                                 <td><?php echo $row->client_company; ?></td>
                                                 <td><?php echo $row->date_started; ?></td>
                                                   <td><?php echo $row->date_expiration; ?></td>
-                                                 <td><?php echo $row->credit_term; ?></td>
+
                                                 <td><?php echo $row->blend; ?></td>
                                                 <td><?php echo $row->package_type; ?></td>
                                                 <td><?php echo $row->package_size; ?></td>

@@ -13,7 +13,7 @@ class AdminAddContract_model extends CI_model
 	}
     
     function getBlend(){
-		$query = $this->db->query("SELECT blend_id, blend FROM jhcs.coffee_blend;");
+		$query = $this->db->query("SELECT a.blend_id, a.blend, b.package_type AS pack_type, b.package_size AS pack_size FROM coffee_blend a JOIN packaging b ON a.package_id = b.package_id");
 		return $query->result();	
 	}
     
@@ -33,6 +33,10 @@ class AdminAddContract_model extends CI_model
 	}
 	function getPackage(){
 		$query = $this->db->query("SELECT package_id, package_size FROM jhcs.packaging;");
+		return $query->result();	
+	}
+	function getSticker(){
+		$query = $this->db->query("SELECT sticker_id, sticker FROM jhcs.sticker;");
 		return $query->result();	
 	}
 

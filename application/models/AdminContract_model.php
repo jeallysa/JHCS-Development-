@@ -16,7 +16,6 @@ class AdminContract_model extends CI_model
 		$query = $this->db->query("SELECT 
     a.client_company,
     b.contract_id,
-    b.credit_term,
     b.date_started,
     b.date_expiration,
     c.blend,

@@ -1,4 +1,4 @@
-f<!doctype html>
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -456,7 +456,7 @@ a:focus {
                                     </div>
                                 </div>
                                 <div class="card-content">
-                                    <a href="<?php echo base_url(); ?>AdminBlends/add_show" class="btn btn-success" style="float: right">Add New Blend</a>
+                                    <a href="<?php echo base_url(); ?>AdminBlends/add_showClient" class="btn btn-success" style="float: right">Add New Blend</a>
                                      <table id="example" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" style="font-size: 11px">
                                         <thead>
                                             <th><b class="pull-left">Client Blend</b></th>
@@ -517,7 +517,7 @@ a:focus {
                                                 -->
                                                 
                                                 <td>
-                                                    <a href="<?php echo base_url(); ?>AdminBlends/edit_show?id=<?php echo $row->main_id;?>" class="btn btn-warning btn-sm" style="float: right">Edit</a>
+                                                    <a href="<?php echo base_url(); ?>AdminBlends/editclient_show?id=<?php echo $row->main_id;?>" class="btn btn-warning btn-sm" style="float: right">Edit</a>
                                                 </td>
                                                 <td>
                                                     <div class="onoffswitch">

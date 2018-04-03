@@ -194,10 +194,6 @@
                                                         <td><?php echo $row->date_started; ?></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><b>Credit Term:</b></td>
-                                                        <td><?php echo $row->credit_term; ?></td>
-                                                    </tr>
-                                                    <tr>
                                                         <td><b>Coffee Blend:</b></td>
                                                         <td><?php echo $row->blend; ?></td>
                                                     </tr>
