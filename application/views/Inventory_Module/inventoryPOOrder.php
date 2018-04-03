@@ -102,24 +102,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="main-panel">
             <nav class="navbar navbar-transparent navbar-absolute">
                 <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
-                    
-                    
-                    
-                    
-                    
-                    
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown">
-                                <li>
+                            
+                                <li id="nameheader">
                                     <?php $username = $this->session->userdata('username') ?>
                                 
                                 <?php
@@ -132,6 +118,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             }
                                         ?>
                                 </li>
+                           
+                            <li>
                                 <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="material-icons">person</i>
                                         <p class="hidden-lg hidden-md">Profile</p>
@@ -150,16 +138,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <a href="<?php echo base_url('Login/logout');  ?>">Logout</a>
                                     </li>
                                 </ul>
-                            
+                            </li>
                                
-    <!------------------                                          NOTIFICATION                    ---------------------------------->           
+       <!------------------                                          NOTIFICATION                    ---------------------------------->           
                             
-                            
+                            <li>
                             
                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">shopping_basket</i>
+                                        <i class="material-icons">announcement</i>
                                         <p class="hidden-lg hidden-md">Profile</p>
-                                       <span class="label-count" style='background-color: #f44336;'> <?php 
+                                        
+                                       <span class="label-count"><b> <?php 
                                            
                               $total = 0;
                                 for($i = 0; $i <= 3 ;$i++){
@@ -170,7 +159,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                              }
                                       }
                                  } echo $total;
-                                           ?>   </span> </a>
+                                           ?>   </b></span> </a>
+                            
+                            
                             
                             
                                 <ul class="dropdown-menu">
@@ -179,7 +170,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                  for($i = 0; $i <= 3 ;$i++){
                                      if(!empty($reorder[$i])){
                                           foreach($reorder[$i] as $object){
-                                            echo   '<li>' . $object->name . "     " . $object->type. '</li>';
+                                            echo   '<li><a href="inventoryStocks">' . $object->name . "     " . $object->type. ' now drops below the re-order level</a></li>';
                                                  
                                              }
                                       }
@@ -187,21 +178,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     ?>
                                    
                                 </ul>
-      <!------------------                                          NOTIFICATION                    ---------------------------------->                  
+                            
+                            </li>
                             
                             
                             
-                            
-                             </li>
-                 
-                        
-                        
+    <!------------------                                          NOTIFICATION                    ---------------------------------->           
+
                         
                         </ul>
                     </div>
                 
-                </div>
-            </nav>
+                </div>            </nav>
         
 
 
@@ -252,13 +240,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <b> <?php echo date('m-d-Y') ?></b></center>
                                         
                                             <div class="row">
-                                                <div class="col-md-6 form-group">
+                                                <div class="col-md-4 form-group">
                                                     <div class="form-group label-floating">
                                                         <label>Date Received:</label>
                                                          <input type="date" class="form-control" name="date[]" required>
                                                     </div>
+
+
+
+
                                                 </div>
-                                                <div class="col-md-6 form-group">
+
+
+                                               
+
+                                        <div class="col-md-4 form-group">
+                                                    <div class="form-group label-floating">
+                                                        <label>DR No.</label>
+                                                         <input type="number" class="form-control" name="DRNO" required>
+                                                    </div>
+                                                </div>
+
+
+
+
+
+                                                <div class="col-md-4 form-group">
                                                     <div class="form-group label-floating">
                                                         <label>Received By: </label>
                                                         <select class="form-control" name="receivedBy[]" required>
@@ -390,7 +397,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 
-<!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
 
 
 
@@ -418,7 +425,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <center><b>Partial Delivery</b>
                                             <br>
                                             <b><?php echo date('m-d-Y') ?></b></center>
-                                        
+
+
+
+                                        <div class="col-md-6 form-group">
+                                                    <div class="form-group label-floating">
+                                                        <label>DR No.</label>
+                                                         <input type="number" class="form-control" name="DRNO" required>
+                                                    </div>
+                                                </div>
+                                  
+                                                            
+                                                            
+                                                            
+                                                      
+
+
+
                                             <table class="table table-striped" id="table-mutasi">
                                                 <thead>
                                                     <tr>

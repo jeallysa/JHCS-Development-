@@ -240,13 +240,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <b> <?php echo date('m-d-Y') ?></b></center>
                                         
                                             <div class="row">
-                                                <div class="col-md-6 form-group">
+                                                <div class="col-md-4 form-group">
                                                     <div class="form-group label-floating">
                                                         <label>Date Received:</label>
                                                          <input type="date" class="form-control" name="date[]" required>
                                                     </div>
+
+
+
+
                                                 </div>
-                                                <div class="col-md-6 form-group">
+
+
+                                               
+
+                                        <div class="col-md-4 form-group">
+                                                    <div class="form-group label-floating">
+                                                        <label>DR No.</label>
+                                                         <input type="number" class="form-control" name="DRNO" required>
+                                                    </div>
+                                                </div>
+
+
+
+
+
+                                                <div class="col-md-4 form-group">
                                                     <div class="form-group label-floating">
                                                         <label>Received By: </label>
                                                         <select class="form-control" name="receivedBy[]" required>
@@ -378,7 +397,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 
-<!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
 
 
 
@@ -406,7 +425,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <center><b>Partial Delivery</b>
                                             <br>
                                             <b><?php echo date('m-d-Y') ?></b></center>
-                                        
+
+
+
+                                        <div class="col-md-6 form-group">
+                                                    <div class="form-group label-floating">
+                                                        <label>DR No.</label>
+                                                         <input type="number" class="form-control" name="DRNO" required>
+                                                    </div>
+                                                </div>
+                                  
+                                                            
+                                                            
+                                                            
+                                                      
+
+
+
                                             <table class="table table-striped" id="table-mutasi">
                                                 <thead>
                                                     <tr>
